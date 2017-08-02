@@ -1,0 +1,90 @@
+
+#include "Bind.h"
+
+$#include <vcl.h>
+$#include "Usefuls.h"                 
+$#include "MTL.h"
+$#include "MyTemplates.h"
+$#pragma hdrstop
+
+
+$#define LUA_N = 1<<31;
+$#include "Main.h"
+$#include "LuaUniFormV.h"
+$#include "MDICountReportV.h"
+$#include "Poligon.h"
+$#include "MyGL.h"
+$#include "LogicNode.h"
+//$#include "DrawViewV.h"
+$#include "World.h"
+$#include "UI.h"
+$#include "LogicNode.h"
+$#include "DynamicCast.h"
+$#include "CounterBaseV.h"
+$#include "Triangulation.h"
+$#include "Compose.h"
+$#include "Roof.h"
+$#include "GeomObjV.h"
+
+$#include "ElementV.h"
+$#include "PlatformV.h"
+$#include "MultiElementV.h"
+$#include "Label3DV.h"
+$#include "RoomV.h"
+$#include "NomenclatureV.h"
+$#include "WallV.h"
+$#include "ArchitectureSupportV.h"
+$#include "Driver.h"
+$#include "BaseToolV.h"
+$#include "MDI3DV.h"
+$#include "AUIV.h"
+$#include "IntExplorerV.h"
+$#include "Select.h"
+$#include "CatalogUnitV.h"
+$#include "LuaAttributeV.h"
+$#include "IntExplorerV.h"
+$#include "Driver.h"
+$#include "MainToolsV.h"
+
+typedef float MBTi;
+class TMTList : public TMyObject{
+public:
+    TMTList();
+	~TMTList();
+
+    T* GetItem(int i) ;
+    T& operator[](int i);
+    tolua_readonly int Count;
+    void Add(T* It);
+    void Delete(int i);
+    int IndexOf(T* It) ;
+    bool Exists(T* It) ;
+    void Clear();
+    bool Consists( TMTList<T> *L) ;
+    bool Same ( TMTList<T> *L) ;
+    void Assign ( TMTList<T> *L);
+    void Invert();
+    void Exchange(int id1,int id2);
+    TEMPLATE_BIND(T,TIntVec,TElement,TLink,TPolygon,THoledPolygon,TMetaElement,TMetaNode,TMDelTList<int>);
+};
+
+class TMDelTList : public TMyObject{
+public:
+    TMDelTList();
+	~TMDelTList();
+    T* GetItem(int i);
+    T* GetCycleItem(int i);
+    T& operator[](int i);
+    tolua_readonly int Count;
+
+    void Add(T* It);
+    void RemoveOnly(T* it);
+    void RemoveOnly(int index);
+    void Delete(int i);
+    int IndexOf(T* It);
+    void Clear();
+    void Exchange(int id1,int id2);
+    void Invert();
+    void Insert(int index,T* Item);
+    TEMPLATE_BIND(T,TIntVec,TLuaRoofCut,TPolygon,THoledPolygon,T3DScope,TRoutePoint,TObjectAttributePreSet,TSyngleLink,TMDelTList<TIntVec>,TMDelTList<TPolygon>,TMDelTList<int>);
+};

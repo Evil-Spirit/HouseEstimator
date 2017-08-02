@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\..\BIN\G2DObject.bpl"/>
+    <OBJFILES value="..\..\OBJ\G2DObject.obj ..\..\OBJ\G2DObjectV.obj 
+      ..\..\OBJ\InfinityLineV.obj ..\..\OBJ\G2DAngleLinkV.obj 
+      ..\..\OBJ\G2DFunctionsV.obj ..\..\OBJ\G2DDistanceLinkV.obj 
+      ..\..\OBJ\G2DPointV.obj ..\..\OBJ\InfluenceU.obj ..\..\OBJ\TreeV.obj 
+      ..\..\OBJ\PolinomV.obj"/>
+    <RESFILES value="G2DObject.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="rtl.lib vis30p5c.lib vcl.lib"/>
+    <PACKAGES value="rtl.bpi CommonAL.bpi GeomObject.bpi vis30p5c.bpi vcl.bpi MathAL.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
+    <MAINSOURCE value="G2DObject.cpp"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\GeomObject;..\Math"/>
+    <LIBPATH value="..\VectorEditor;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I$(BCB)\include -I$(BCB)\include\vcl -I..\VisIt -I..\COMMON 
+      -I..\GeomObject -I..\Math -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c -tWM"/>
+    <PFLAGS value="-N2..\..\OBJ -N0..\..\OBJ -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-l..\..\LIB -I..\..\OBJ -D&quot;&quot; -aa -Tpp -Gpr -x -Gn -Gl -Gi -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0pkg32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="G2DObject.res" FORMNAME="" UNITNAME="G2DObject.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="G2DObject.cpp" FORMNAME="" UNITNAME="G2DObject" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\LIB\rtl.bpi" FORMNAME="" UNITNAME="rtl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\LIB\CommonAL.bpi" FORMNAME="" UNITNAME="CommonAL" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="G2DObjectV.cpp" FORMNAME="" UNITNAME="G2DObjectV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\LIB\GeomObject.bpi" FORMNAME="" UNITNAME="GeomObject" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\LIB\vis30p5c.bpi" FORMNAME="" UNITNAME="vis30p5c" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\LIB\vcl.bpi" FORMNAME="" UNITNAME="vcl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="InfinityLineV.cpp" FORMNAME="" UNITNAME="InfinityLineV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="G2DAngleLinkV.cpp" FORMNAME="" UNITNAME="G2DAngleLinkV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="G2DFunctionsV.cpp" FORMNAME="" UNITNAME="G2DFunctionsV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="G2DDistanceLinkV.cpp" FORMNAME="" UNITNAME="G2DDistanceLinkV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="G2DPointV.cpp" FORMNAME="" UNITNAME="G2DPointV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="InfluenceU.cpp" FORMNAME="" UNITNAME="InfluenceU" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="TreeV.cpp" FORMNAME="" UNITNAME="TreeV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\MathAL.bpi" FORMNAME="" UNITNAME="MathAL" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="PolinomV.cpp" FORMNAME="" UNITNAME="PolinomV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=7
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\GeomObject;..\Math
+Item1=..\VectorEditor;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\GeomObject
+Item2=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\GeomObject
+Item3=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON
+Item4=..\VectorEditor;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item5=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item6=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=4
+Item0=..\VectorEditor;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item1=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item2=..\VectorEditor;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item3=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=..\..\OBJ
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\..\BIN\
+Item1=..\..\BIN
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=..\..\LIB
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=..\..\BIN\VectorEditor.exe
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Linker]
+LibPrefix=
+LibSuffix=
+LibVersion=
+  </IDEOPTIONS>
+</PROJECT>

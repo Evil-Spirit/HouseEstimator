@@ -1,0 +1,6 @@
+del *.~*
+cd ..\LuaEnv
+del *.~*
+
+
+

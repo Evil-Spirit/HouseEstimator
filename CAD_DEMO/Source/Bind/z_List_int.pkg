@@ -1,0 +1,47 @@
+
+#include "Bind.h"
+
+$#include <vcl.h>
+$#include "Usefuls.h"
+$#include "MTL.h"
+$#include "MyTemplates.h"
+$#pragma hdrstop
+
+$#define LUA_N = 1<<31;
+
+typedef float MBTi;
+
+class TMTList : public TMyObject{
+public:
+    TMTList();
+	~TMTList();
+    T* GetItem(int i) ;
+    T& operator[](int i);
+    tolua_readonly int Count;
+    void Delete(int i);
+    void Clear();
+    bool Consists( TMTList<T> *L) ;
+    bool Same ( TMTList<T> *L) ;
+    void Assign ( TMTList<T> *L);
+    void Invert();
+    void Exchange(int id1,int id2);
+    TEMPLATE_BIND(T,int);
+};
+
+class TMDelTList : public TMyObject{
+public:
+    TMDelTList();
+	~TMDelTList();
+    T* GetItem(int i);
+    T& operator[](int i);
+    T* GetCycleItem(int i);
+    tolua_readonly int Count;
+
+    void RemoveOnly(int index);
+    void Delete(int i);
+    void Clear();
+    void Exchange(int id1,int id2);
+    void Invert();
+    TEMPLATE_BIND(T,int);
+}; 
+

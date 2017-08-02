@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\..\BIN\BaseTool.bpl"/>
+    <OBJFILES value="..\..\OBJ\BaseTool.obj ..\..\OBJ\BaseToolV.obj"/>
+    <RESFILES value="BaseTool.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="rtl.lib vis30p5c.lib vcl.lib CommonAL.lib"/>
+    <PACKAGES value="rtl.bpi vis30p5c.bpi vcl.bpi CommonAL.bpi LuaEnv.bpi GeomObject.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
+    <MAINSOURCE value="BaseTool.cpp"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;..\Math;..\VisIt;..\COMMON;..\LuaEnv;..\GeomObject"/>
+    <LIBPATH value="c:\config\lib;&quot;c:\development\components\mwa jpeg&quot;;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I$(BCB)\include -I$(BCB)\include\vcl -I..\Math -I..\VisIt -I..\COMMON 
+      -I..\LuaEnv -I..\GeomObject -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c -tWM"/>
+    <PFLAGS value="-N2..\..\OBJ -N0..\..\OBJ -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-l..\..\LIB -I..\..\OBJ -D&quot;Base Interactive Tool&quot; -aa -Tpp -x -Gn -Gl -Gi -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0pkg32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="BaseTool.res" FORMNAME="" UNITNAME="BaseTool.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="BaseTool.cpp" FORMNAME="" UNITNAME="BaseTool" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\rtl.bpi" FORMNAME="" UNITNAME="rtl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="BaseToolV.cpp" FORMNAME="" UNITNAME="BaseToolV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\vis30p5c.bpi" FORMNAME="" UNITNAME="vis30p5c" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\vcl.bpi" FORMNAME="" UNITNAME="vcl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\CommonAL.bpi" FORMNAME="" UNITNAME="CommonAL" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="\\dimasomna\K\Shared\(WORK)\Config_\LIB\LuaEnv.bpi" FORMNAME="" UNITNAME="LuaEnv" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\LIB\GeomObject.bpi" FORMNAME="" UNITNAME="GeomObject" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+c:\program files\borland\cbuilder6\Bin\dclmydac60.bpl=MySQL Data Access Components
+C:\Program Files\Borland\CBuilder6\Bin\mydacvcl60.bpl=MySQL Data Access GUI related Components
+
+[HistoryLists\hlIncludePath]
+Count=12
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\Math;..\VisIt;..\COMMON;..\LuaEnv;..\GeomObject
+Item1=$(BCB)\include;$(BCB)\include\vcl;..\Math;..\VisIt;..\COMMON;..\LuaEnv
+Item2=..\check;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\COMMON;..\LuaEnv
+Item3=..\check;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\COMMON;..\LuaEnv;..\MainTools
+Item4=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\COMMON;..\LuaEnv
+Item5=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\COMMON
+Item6=..\check;C:\Program Files\Borland\CBuilder6\Projects;..\..;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item7=..\..;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item8=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item9=..\..;..\VectorEditor;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item10=$(BCB)\include;$(BCB)\include\vcl
+Item11=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=8
+Item0=c:\config\lib;c:\development\components\mwa jpeg;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item1=c:\development\components\mwa jpeg;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item2=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item3=..\check;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item4=..\check;C:\Program Files\Borland\CBuilder6\Projects;..\..;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item5=..\..;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item6=..\..;..\VectorEditor;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item7=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=..\..\OBJ
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\..\BIN\
+Item1=..\..\BIN
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=..\..\LIB
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=C:\Config_\BIN\pConfig.exe
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Linker]
+LibPrefix=
+LibSuffix=
+LibVersion=
+  </IDEOPTIONS>
+</PROJECT>

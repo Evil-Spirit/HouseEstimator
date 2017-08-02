@@ -1,0 +1,317 @@
+
+$#include "Bind.h"
+
+$#include <vcl.h>
+$#include "Usefuls.h"                 
+$#include "MTL.h"
+$#include "MyTemplates.h"
+$#pragma hdrstop
+
+$#include "VisPrimitiveObj.hpp"
+$#include "VisClass.hpp"
+$#include "VisAttr.hpp"
+$#include "VisMat.hpp"
+$#include "VisMath.hpp"
+$#include "VisObj.hpp"
+$#include "VisView.hpp"
+
+$const int LUA_N = 1<<30;
+
+module VisConst {
+    enum TColor {clMin=-0x7fffffff-1, clMax=0x7fffffff};
+    enum TVisTransformationOrder { toRotTraSca, toRotScaTra, toTraRotSca, toTraScaRot, toScaRotTra, toScaTraRot };
+    enum TVisTexMode { tmModulate, tmDecal, tmBlend, tmReplace };
+    enum TVisTexFilter { tfNearest, tfLinear, tfNearest_Nearest, tfLinear_Nearest, tfNearest_Linear, tfLinear_Linear };
+    enum TVisPolygonMode { pmPoint, pmLine, pmFill };
+    enum TVisCullFace { cfNone, cfFront, cfBack };
+    enum TVisShadeModel { smFlat, smSmooth };
+    enum TVisTransparencyMode { tmNone, tmAlpha, tmAddAlpha, tmAddColor, tmSubColor };
+    enum TVisDepthAlign { daStandard, daForeground, daBackground };
+    enum TVisLineStipple { lsClear, lsDash, lsDot, lsDashDot, lsDashDotDot, lsSolid };
+    enum TVisQuality { quFastest, quNicest, quDontCare };
+    enum TVisFogMode { fmLinear, fmExp, fmExp2 };
+    enum TVisTextureMode { txStandard, txLinearX, txLinearY, txLinearZ, txLinearXY, txLinearYZ, txLinearZX, txLinearYX, txLinearZY, txLinearXZ, txSphereZ, txByNormal };
+    enum TVisColorAsMaterial { cmNone, cmAmbient, cmDiffuse, cmSpecular, cmEmission, cmAmbientDiffuse };
+    tolua_readonly int GL_POINTS;
+    tolua_readonly int GL_LINES;
+    tolua_readonly int GL_LINE_LOOP;
+    tolua_readonly int GL_LINE_STRIP;
+    tolua_readonly int GL_TRIANGLES;
+    tolua_readonly int GL_TRIANGLE_STRIP;
+    tolua_readonly int GL_TRIANGLE_FAN;
+    tolua_readonly int GL_QUADS;
+    tolua_readonly int GL_QUAD_STRIP;
+    tolua_readonly int GL_POLYGON;
+}
+
+class TVisMathVector {
+public:
+    TVisMathVector();
+    ~TVisMathVector();
+    double x;
+    double y;
+    double z;
+    double a[3];
+};
+
+TVisMathVector ToVec(double x,double y,double z);
+
+class TVisProperty {
+public:
+    TVisProperty(void);
+	~TVisProperty(void);
+	virtual void Assign(TPersistent* Source);
+};
+
+class TVisVector : public TVisProperty {
+public:
+    TVisVector(void);
+    ~TVisVector(void);
+    TVisMathVector AsMathVector;
+	void incX(float value);
+	void incY(float value);
+	void incZ(float value);
+	void SetValues(float x, float y, float z);
+	float X;
+	float Y;
+	float Z;
+};
+
+class TVisColor : public TVisProperty {
+public:
+	TVisColor(void);
+	~TVisColor(void);
+    TColor Color;
+	float Alpha;
+};
+
+enum TMaterialFace { mfFront, mfBack, mfFrontBack };
+class TVisMaterial : public TVisRender {
+public:
+	TVisMaterial(TComponent* aOwner);
+	virtual ~TVisMaterial(void);
+	TMaterialFace Face;
+	TVisColor* ColorAmbient;
+	TVisColor* ColorDiffuse;
+	TVisColor* ColorSpecular;
+	TVisColor* ColorEmission;
+	int Shininess;
+};
+
+class TVisTexture : public TVisRender {
+public:
+	TVisTexture(TComponent* aOwner);
+	~TVisTexture(void);
+	void SetAlphaBitmap(Graphics::TBitmap* aBitmap);
+	bool SetMaskAlpha(double Alpha, TColor MaskColor, double MaskAlpha);
+	void Invalidate(void);
+	void BitmapChange(TObject* Sender);
+	void AddMipMap(Graphics::TBitmap* MipMap);
+	void ClearMipMaps(void);
+	TVisTexFilter MinFilter;
+	TVisTexFilter MagFilter;
+	Graphics::TBitmap* Bitmap;
+	float Alpha;
+	TVisTexMode Mode;
+    TVisColor* BlendColor;
+};
+
+class TVisTextureFlags : public TVisProperty {
+public:
+	TVisTextureFlags(void);
+	~TVisTextureFlags(void);
+	TVisTextureMode Mode;
+	double ShiftX;
+	double ShiftY;
+	double ScaleX;
+	double ScaleY;
+	TVisVector* ParamVector;
+};
+
+
+class TVisAttributes : public TVisRender {
+public:
+	TVisAttributes(TComponent* aOwner);
+	~TVisAttributes(void);
+	int StippleShift;
+	int StippleScale;
+
+	bool Antialiasing;
+	TVisColor* ColorAmbient;
+    TVisCullFace CullFace;
+    bool Dithering;
+    bool Lighting;
+    bool LightTwoSide;
+    TVisPolygonMode PolygonMode;
+    TVisQuality PerspectiveCorrection;
+    TVisShadeModel ShadeModel;
+    TVisTransparencyMode Transparency;
+    TVisLineStipple LineStipple;
+    float PointSize;
+    float LineWidth;
+};
+
+
+class TVisRotation : public TVisTransform {
+public:
+	void Execute(void);
+    TVisRotationOrder Order;
+    TVisRotation(void);
+    ~TVisRotation(void);
+};
+
+class TVisScale : public TVisTransform {
+public:
+	TVisScale(void);
+	~TVisScale(void);
+};
+
+class TVisTranslation : public TVisTransform {
+public:
+	TVisTranslation(void);
+	~TVisTranslation(void);
+};
+
+
+class TVisTransformation : public TVisProperty {
+public:
+    TVisTransformation(void);
+    ~TVisTransformation(void);
+	void Execute(void);
+    tolua_readonly bool Empty;
+	TVisRotation* Rotation;
+	TVisScale* Scale;
+	TVisTranslation* Translation;
+	TVisTransformationOrder Order;
+};
+
+class TVisRender : public TVisTransformed {
+public:
+	void SetNodeDirect(const TVisCustomNode* Value);
+    TVisRender(TComponent* aOwner);
+    virtual ~TVisRender(void);
+	virtual void Render(TVisCustomView* aView);
+	bool Enabled;
+};
+
+
+class TVisObject : public TVisRender {
+public:
+	TVisObject(TComponent* aOwner);
+	virtual ~TVisObject(void);
+	TVisColorAsMaterial ColorAsMaterial;
+	TVisColor* Color;
+    TVisAttributes* Attributes;
+    TVisMaterial* Material;
+};
+
+class TVisPrimitivePoints : public TVisProperty{
+public:
+	TVisMathVector operator[](int Nr);
+public:
+    TVisPrimitivePoints(void);
+    virtual ~TVisPrimitivePoints(void);
+	int Add(double x, double y, double z);
+	int Add(const TVisMathVector &Vertex, const TVisMathVector &Normal, const TVisMathVector &Texture);
+	int Add(TVisPointItem* value);
+	int Add(TVisPrimitivePoints* value);
+	void Delete(int Index, int aCount);
+	void GetPoint(int index, TVisPointItem* &value);
+	void SetPoint(int index, TVisPointItem* value);
+	void LiftPoint(int index, double value);
+	void ScalePoints(double scaleX, double scaleY, double scaleZ);
+	void MovePoints(double moveX, double moveY, double moveZ);
+	int Size;
+    int Count;
+
+    TVisMathVector PointVec[LUA_N];
+	TVisMathVector NormalVec[LUA_N];
+	TVisMathVector TextureVec[LUA_N];
+	int EdgeFlag[LUA_N];
+	bool ShareLight[LUA_N];
+    bool SharePosition[LUA_N];
+	bool CloseFlag[LUA_N];
+/*	double Color[LUA_N][3];
+
+	double Point[LUA_N][3];
+	double Normal[LUA_N][3];
+	double Texture[LUA_N][3]; */
+};
+
+
+class TVisPrimitiveArray : public TVisProperty
+{
+public:
+	TVisPrimitiveArray(int aType);
+	virtual ~TVisPrimitiveArray(void);
+	void AddIndex(int index);
+	void Add(TVisPrimitiveArray* Value, int offset);
+	void Insert(int position, int index);
+	void Delete(int index, int aCount);
+	void Assign(TPersistent* Source);
+	void Invert(void);
+	void ProceedDirectRendering(void);
+	int Indices[LUA_N];
+    int Size;
+    int Count;
+    bool Enabled;
+    int PrimitiveType;
+    TVisTexture* Texture;
+    TVisColor* Color;
+    TVisColorAsMaterial ColorAsMaterial;
+    TVisMaterial* Material;
+    bool Textured;
+};
+
+
+class TVisPrimitiveObj : public TVisObject {
+public:
+    TVisPrimitiveObj(TComponent* aOwner);
+	~TVisPrimitiveObj(void);
+	void Init(void);
+	void InitPoints(void);
+	void InitPrimitives(void);
+	void AddIndex(int index);
+	void AddIndex(int index, int PrimitiveNum);
+	int AddPrimitiveArray(int aType);
+	int AddPrimitiveObj(TVisPrimitiveObj* aValue);
+	void DeletePrimitiveArray(int index);
+	void DeletePrimitiveArray(int index, int count);
+	void ClearAll(void);
+	void ClearPoints(void);
+	void ClearPrimitives(void);
+	int getNearPoint(int PrimitiveNum, const TVisMathVector &Point);
+	void SplitTriangle(int nr, int index);
+	void CalcNormals(void);
+	void CalcTexture(void);
+	void CalcTexturePoint(int index);
+	void SetReliefBitmap(Graphics::TBitmap* aBitmap, float Height, float RepX, float RepY);
+	void Extrude(double Value, int steps, bool smooth);
+	void Extrude(double Value, int steps, bool smooth, TVisTexture* texture);
+	void ExtrudeByVec(const TVisMathVector &vector, int steps, bool smooth);
+	void ExtrudeByVec(const TVisMathVector &vector, int steps, bool smooth, TVisTexture* texture);
+	void Invert(void);
+	void FreePoints(int index, int num);
+	void FreeUnusedPoints(void);
+	tolua_readonly bool Inited ;
+	tolua_readonly int PrimitiveCount;
+	bool AutoCalcNormals;
+	bool Textured;
+    TVisTexture* Texture;
+    TVisTextureFlags* TextureFlags;
+	tolua_readonly TVisPrimitivePoints* Points;
+    tolua_readonly TVisPrimitiveArray* Primitive[LUA_N];
+};
+
+class TVisCustomView{
+public:
+	TVisCustomView(TComponent* aOwner);
+	virtual ~TVisCustomView(void);
+};
+
+class TVisView : public TVisCustomView{
+public:
+	TVisView(TComponent* aOwner);
+	virtual ~TVisView(void);
+};
+

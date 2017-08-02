@@ -1,0 +1,8 @@
+copy "C:\SASHA\Config_new\Source\Bind\z_List_int.pkg" "C:\SASHA\TOLUA\tolua++-1.0.3\src\bin\z_List_int.pkg"
+
+cd C:\SASHA\TOLUA\tolua++-1.0.3\src\bin
+tolua_103_app.exe -o z_List_int.cpp z_List_int.pkg
+
+copy "C:\SASHA\TOLUA\tolua++-1.0.3\src\bin\z_List_int.cpp" "C:\SASHA\Config_new\Source\Bind\z_List_int.cpp"
+del z_List_int.pkg
+del z_List_int.cpp

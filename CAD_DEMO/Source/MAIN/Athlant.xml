@@ -1,0 +1,7 @@
+<PROJECTS>
+	<PROJECT NAME="C:\SASHA\Config_new\Source\MAIN\pConfig.bpr">
+		<PROVIDER NAME="Perforce SCM">
+			<DATABASE PROJECTNAME="Perforce Project" USERNAME="Russ" LOCALPATH="c:\SASHA\Config_new\Source\MAIN" AUXPATH="P4SCC#127.0.0.1:1666##Russ##MAIN" ACTIVE="TRUE"/>
+		</PROVIDER>
+	</PROJECT>
+</PROJECTS>

@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\..\BIN\Main.exe"/>
+    <OBJFILES value="..\..\OBJ\Main.obj ..\..\OBJ\Object.obj ..\..\OBJ\MyViewV.obj 
+      ..\..\OBJ\TGPrimitive.obj ..\..\OBJ\GeomObject.obj ..\..\OBJ\TGCut.obj 
+      ..\..\OBJ\TGMisc.obj ..\..\OBJ\TGObject.obj ..\..\OBJ\TGPoint.obj 
+      ..\..\OBJ\TGPolygon.obj ..\..\OBJ\TGOExtrude.obj ..\..\OBJ\TGOBoolean.obj 
+      ..\..\OBJ\TGAnalyticalRender.obj ..\..\OBJ\TGTriangulation.obj 
+      ..\..\OBJ\VecForm.obj ..\..\OBJ\MarkForm.obj ..\..\OBJ\TGUnitV.obj 
+      ..\..\OBJ\Convert.obj"/>
+    <RESFILES value="Main.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) Object.dfm MyViewV.dfm VecForm.dfm MarkForm.dfm Convert.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="vcl.lib rtl.lib CommonAL.lib vis30p5c.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi vis30p5c.bpi CommonAL.bpi MathAL.bpi"/>
+    <PATHCPP value=".;..\GeomObject"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
+    <MAINSOURCE value="Main.cpp"/>
+    <INCLUDEPATH value="..\GeomObject;$(BCB)\include;$(BCB)\include\vcl;..\COMMON;..\VisIt;C:\(WORK)\Config_\Source\KERNEL;..\Math"/>
+    <LIBPATH value="..\Math;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;..\GeomObject;..\theRoof;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\GeomObject -I$(BCB)\include -I$(BCB)\include\vcl -I..\COMMON 
+      -I..\VisIt -IC:\(WORK)\Config_\Source\KERNEL -I..\Math -src_suffix cpp 
+      -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c -tW -tWM"/>
+    <PFLAGS value="-N2..\..\OBJ -N0..\..\OBJ -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-l..\..\LIB -I..\..\OBJ -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="Main.res" FORMNAME="" UNITNAME="Main.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Main.cpp" FORMNAME="" UNITNAME="Main" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Object.cpp" FORMNAME="Form1" UNITNAME="Object" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\BIN\GeomObject.bpl" FORMNAME="" UNITNAME="GeomObject.bpl" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyViewV.cpp" FORMNAME="MyView" UNITNAME="MyViewV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGPrimitive.cpp" FORMNAME="" UNITNAME="TGPrimitive.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\GeomObject.cpp" FORMNAME="" UNITNAME="GeomObject.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGCut.cpp" FORMNAME="" UNITNAME="TGCut.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGMisc.cpp" FORMNAME="" UNITNAME="TGMisc.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGObject.cpp" FORMNAME="" UNITNAME="TGObject.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGPoint.cpp" FORMNAME="" UNITNAME="TGPoint.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGPolygon.cpp" FORMNAME="" UNITNAME="TGPolygon.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGOExtrude.cpp" FORMNAME="" UNITNAME="TGOExtrude" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGOBoolean.cpp" FORMNAME="" UNITNAME="TGOBoolean" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGAnalyticalRender.cpp" FORMNAME="" UNITNAME="TGAnalyticalRender.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGTriangulation.cpp" FORMNAME="" UNITNAME="TGTriangulation.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="VecForm.cpp" FORMNAME="Form3" UNITNAME="VecForm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\GeomObjV.h" FORMNAME="" UNITNAME="GeomObjV.h" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MarkForm.cpp" FORMNAME="Form4" UNITNAME="MarkForm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\GeomObject\TGUnitV.cpp" FORMNAME="" UNITNAME="TGUnitV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Convert.cpp" FORMNAME="Form2" UNITNAME="Convert" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=7
+Item0=..\GeomObject;$(BCB)\include;$(BCB)\include\vcl;..\COMMON;..\VisIt;C:\(WORK)\Config_\Source\KERNEL;..\Math
+Item1=C:\Program Files\Borland\CBuilder6\Projects;..\GeomObject;$(BCB)\include;$(BCB)\include\vcl;..\COMMON;..\VisIt;C:\(WORK)\Config_\Source\KERNEL
+Item2=..\GeomObject;$(BCB)\include;$(BCB)\include\vcl;..\COMMON;..\VisIt;C:\(WORK)\Config_\Source\KERNEL
+Item3=C:\Program Files\Borland\CBuilder6\Projects;..\GeomObject;..\theRoof;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;C:\(WORK)\Config_\Source\KERNEL
+Item4=C:\Program Files\Borland\CBuilder6\Projects;..\GeomObject;..\theRoof;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item5=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item6=..\theRoof;C:\Program Files\Borland\CBuilder6\Projects;C:\(WORK)\Config_\Source\TestObj;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=3
+Item0=C:\Program Files\Borland\CBuilder6\Projects;..\GeomObject;..\theRoof;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item1=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item2=..\..\LIB;..\theRoof;C:\Program Files\Borland\CBuilder6\Projects;C:\(WORK)\Config_\Source\TestObj;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=2
+Item0=$(BCB)\source\vcl;C:\(WORK)\Config_\Source\COMMON\
+Item1=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=..\..\OBJ
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\..\BIN\
+Item1=..\..\BIN
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=..\..\LIB
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl;C:\(WORK)\Config_\Source\COMMON\
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>

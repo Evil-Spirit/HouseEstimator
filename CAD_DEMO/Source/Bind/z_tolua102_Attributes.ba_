@@ -1,0 +1,8 @@
+copy "C:\SASHA\Config_new\Source\Bind\z_Attributes.pkg" "C:\SASHA\TOLUA\tolua++-1.0.3\src\bin\z_Attributes.pkg"
+
+cd C:\SASHA\TOLUA\tolua++-1.0.3\src\bin
+tolua_103_app.exe -o z_Attributes.cpp z_Attributes.pkg
+
+copy "C:\SASHA\TOLUA\tolua++-1.0.3\src\bin\z_Attributes.cpp" "C:\SASHA\Config_new\Source\Bind\z_Attributes.cpp"
+del z_Attributes.pkg
+del z_Attributes.cpp

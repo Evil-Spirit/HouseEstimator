@@ -1,0 +1,96 @@
+
+#include "Bind.h"
+
+$#include <vcl.h>
+$#include "Usefuls.h"                 
+$#include "MTL.h"
+$#include "MyTemplates.h"
+$#pragma hdrstop
+
+
+$#define LUA_N = 1<<31;
+
+typedef float MBTi;
+
+$void PUSH(LuaState* tolua_S,void* Address,int Type)
+${
+$    switch(self->Type)
+$    {
+$        case mtInt:
+$            tolua_pushnumber(tolua_S, *((int*)Address) );
+$        break;
+$        case mtMBTi:
+$            tolua_pushnumber(tolua_S, *((MBTi*)Address) );
+$        break;
+$        case mtString:
+$            tolua_pushstring(tolua_S, ((AnsiString*)Address)->c_str() );
+$        break;
+$        case mtCharString:
+$            tolua_pushstring(tolua_S, (char*)Address );
+$        break;
+$        case mtMyObject:
+$            tolua_pushusertype(tolua_S,Address, ((TMyObject*)Address)->DynamicType->Name->c_str() );
+$        break;
+$        case mtFloat:
+$            tolua_pushnumber(tolua_S, *((float*)Address) );
+$        break;
+$        case mtDouble:
+$            tolua_pushnumber(tolua_S, *((double*)Address) );
+$        break;
+$        case mtBool:
+$            tolua_pushboolean(tolua_S, *((bool*)Address) );
+$        break;
+$        tolua_pushuserdata(tolua_S,Address);
+$    }
+$}
+
+/*    TLuaAttribute* LA =  self->GetAttributeI(Name);
+    if (LA)
+        PUSH(tolua_S,LA->Type,LA->Value)
+    else
+        tolua_pushuserdata(tolua_S,(void*)NULL);
+*/
+
+$void PUSHATTRIBUTE(lua_State* tolua_S,TLuaAttribute* LA)
+${
+$    if (LA->Type == mtString)
+$        PUSH(tolua_S,mtCharString,LA->Value)
+$    else
+$        PUSH(tolua_S,LA->Type,LA->Value)
+$}
+
+class TLuaAttribute : public TMyObject {
+public:
+    TLuaAttribute();
+    virtual ~TLuaAttribute();
+    void* Value;
+    int Type;
+};
+
+class TLuaAttributeList : public TMyObject {
+public:
+    TLuaAttributeList();
+    virtual ~TLuaAttributeList();
+
+    TLuaAttribute* GetAttribute(char* Name);
+    TLuaAttribute* GetAttributeI(int index);
+
+    TLuaAttribute* AddAttribute(int type,char* Name);
+    TLuaAttribute* AddAttribute(char* Name);
+    TLuaAttribute* AddAttributeI(int type);
+    TLuaAttribute* AddAttributeI(void);
+
+    void* GetAttributeValue(char* Name);
+    void* GetAttributeIValue(int index);
+    void SetAttributeValue(char* Name,void* Value);
+    void SetAttributeIValue(int index,void* Value);
+
+    void DeleteAttributeI(int index);
+    void DeleteAttribute(char* Name);
+
+    char* GetAttributeName(int index);
+    int GetAttributeIndex(char* Name);
+    void Clear();
+    tolua_readonly int AttributeCount;
+    tolua_readonly int AttributeICount;
+};

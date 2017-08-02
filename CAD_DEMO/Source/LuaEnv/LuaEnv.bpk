@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\..\BIN\LuaEnv.bpl"/>
+    <OBJFILES value="..\..\OBJ\InspectorMain.obj ..\..\OBJ\LuaEditorV.obj ..\..\OBJ\LuaEnv.obj 
+      ..\..\OBJ\LuaModuleV.obj ..\..\OBJ\LuaStationV.obj 
+      ..\..\OBJ\MDILuaEditorV.obj ..\..\OBJ\VCLSCILEXERV.obj 
+      ..\..\OBJ\OutPutV.obj ..\..\OBJ\LuaEnvV.obj ..\..\OBJ\DebugU.obj 
+      ..\..\OBJ\FileMapper.obj ..\..\OBJ\BaseVariableFormV.obj 
+      ..\..\OBJ\TreeFormV.obj ..\..\OBJ\StackMain.obj"/>
+    <RESFILES value="LuaEnv.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) InspectorMain.dfm LuaEditorV.dfm MDILuaEditorV.dfm OutPutV.dfm 
+      DebugU.dfm BaseVariableFormV.dfm TreeFormV.dfm StackMain.dfm"/>
+    <LIBFILES value="..\..\LIB\luacontrols5_omf.lib ..\..\LIB\lualib5_omf.lib 
+      ..\..\LIB\iup_omf.lib ..\..\LIB\iupcontrols_omf.lib 
+      ..\..\LIB\iuplua5_omf.lib ..\..\LIB\lua5_omf.lib ..\..\LIB\tolua_103.lib"/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="rtl.lib vis30p5c.lib vcl.lib CommonAL.lib"/>
+    <PACKAGES value="rtl.bpi vis30p5c.bpi vcl.bpi CommonAL.bpi MyDialog.bpi MathAL.bpi IMGLIB.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT;_RTLDLL;USEPACKAGES"/>
+    <MAINSOURCE value="LuaEnv.cpp"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\COMMON;..\tolua_include;..\DialogEditor;..\Math;..\IMGLIB"/>
+    <LIBPATH value="..\BaseTool;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I$(BCB)\include -I$(BCB)\include\vcl -I..\VisIt -I..\iup_include 
+      -I..\lexer_include -I..\lua_include -I..\COMMON -I..\tolua_include 
+      -I..\DialogEditor -I..\Math -I..\IMGLIB -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c -tWM"/>
+    <PFLAGS value="-N2..\..\OBJ -N0..\..\OBJ -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-l..\..\LIB -I..\..\OBJ -D&quot;Lua Environment&quot; -aa -Tpp -Gpr -x -Gn -Gl -Gi -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0pkg32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="InspectorMain.cpp" FORMNAME="DbgInspector" UNITNAME="InspectorMain" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LuaEnv.res" FORMNAME="" UNITNAME="LuaEnv.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LuaEditorV.cpp" FORMNAME="FLuaEditor" UNITNAME="LuaEditorV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LuaEnv.cpp" FORMNAME="" UNITNAME="LuaEnv" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\rtl.bpi" FORMNAME="" UNITNAME="rtl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\vis30p5c.bpi" FORMNAME="" UNITNAME="vis30p5c" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\vcl.bpi" FORMNAME="" UNITNAME="vcl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\CommonAL.bpi" FORMNAME="" UNITNAME="CommonAL" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LuaModuleV.cpp" FORMNAME="" UNITNAME="LuaModuleV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LuaStationV.cpp" FORMNAME="" UNITNAME="LuaStationV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\luacontrols5_omf.lib" FORMNAME="" UNITNAME="luacontrols5_omf" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\lualib5_omf.lib" FORMNAME="" UNITNAME="lualib5_omf" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\iup_omf.lib" FORMNAME="" UNITNAME="iup_omf" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\iupcontrols_omf.lib" FORMNAME="" UNITNAME="iupcontrols_omf" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\iuplua5_omf.lib" FORMNAME="" UNITNAME="iuplua5_omf" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\lua5_omf.lib" FORMNAME="" UNITNAME="lua5_omf" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDILuaEditorV.cpp" FORMNAME="MDILuaEditor" UNITNAME="MDILuaEditorV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="VCLSCILEXERV.cpp" FORMNAME="" UNITNAME="VCLSCILEXERV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\tolua_103.lib" FORMNAME="" UNITNAME="tolua_103" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="OutPutV.cpp" FORMNAME="OutPut" UNITNAME="OutPutV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="D:\LIB\MyDialog.bpi" FORMNAME="" UNITNAME="MyDialog" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="D:\LIB\MathAL.bpi" FORMNAME="" UNITNAME="MathAL" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LuaEnvV.cpp" FORMNAME="" UNITNAME="LuaEnvV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DebugU.cpp" FORMNAME="DebugForm" UNITNAME="DebugU" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="FileMapper.cpp" FORMNAME="" UNITNAME="FileMapper" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="BaseVariableFormV.cpp" FORMNAME="Global" UNITNAME="BaseVariableFormV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="TreeFormV.cpp" FORMNAME="TreeWindow" UNITNAME="TreeFormV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\IMGLIB.bpi" FORMNAME="" UNITNAME="IMGLIB" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="StackMain.cpp" FORMNAME="StackWindow" UNITNAME="StackMain" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=16
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\COMMON;..\tolua_include;..\DialogEditor;..\Math;..\IMGLIB
+Item1=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\COMMON;..\tolua_include;..\DialogEditor;..\Math
+Item2=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\COMMON;..\tolua_include;..\DialogEditor
+Item3=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\COMMON;..\tolua_include
+Item4=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\COMMON;..\tolua_include
+Item5=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\COMMON
+Item6=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\COMMON;D:\Config_\Source\lua_include
+Item7=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\COMMON
+Item8=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\COMMON;..\VCL_LEXER
+Item9=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include
+Item10=..\BaseTool;..\check;C:\Program Files\Borland\CBuilder6\Projects;..\..;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item11=..\..;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item12=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item13=..\..;..\VectorEditor;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item14=$(BCB)\include;$(BCB)\include\vcl
+Item15=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=9
+Item0=..\BaseTool;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item1=D:\lib;..\BaseTool;..\check;C:\Program Files\Borland\CBuilder6\Projects;..\..;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item2=D:\lib;..\..\..\lib;..\BaseTool;..\check;C:\Program Files\Borland\CBuilder6\Projects;..\..;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item3=..\..\..\lib;..\BaseTool;..\check;C:\Program Files\Borland\CBuilder6\Projects;..\..;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item4=..\BaseTool;..\check;C:\Program Files\Borland\CBuilder6\Projects;..\..;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item5=..\..;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item6=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item7=..\..;..\VectorEditor;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item8=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=..\..\OBJ
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\..\BIN\
+Item1=..\..\BIN
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=..\..\LIB
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=DEBUG
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=D:\Config_\BIN\pConfig.exe
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Linker]
+LibPrefix=
+LibSuffix=
+LibVersion=
+  </IDEOPTIONS>
+</PROJECT>

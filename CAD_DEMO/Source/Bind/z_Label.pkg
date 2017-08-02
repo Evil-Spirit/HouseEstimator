@@ -1,0 +1,28 @@
+$#include "Usefuls.h"
+$#include "MyTemplates.h"
+$#include "MTL.h"
+$#include "bind.h"
+$#include <vcl.h>
+$#include "MyDialogU.h"
+
+enum TAlignment { taLeftJustify, taRightJustify, taCenter };
+
+module VCLConst
+{
+	enum TTextLayout { tlTop, tlCenter, tlBottom };
+}
+
+class TLabel : public TGraphicControl
+{
+	TAlignment Alignment;
+	bool AutoSize;
+	TWinControl* FocusControl;
+	bool ShowAccelChar;
+	bool Transparent;
+	TTextLayout Layout;
+	bool WordWrap;
+	string Caption ;
+	virtual TLabel(TComponent* AOwner);
+	virtual ~TLabel();
+};
+

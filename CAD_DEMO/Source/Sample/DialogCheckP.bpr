@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\..\BIN\DialogCheckP.exe"/>
+    <OBJFILES value="..\..\OBJ\DialogCheckP.obj ..\..\OBJ\DialogCheckU.obj"/>
+    <RESFILES value="DialogCheckP.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) DialogCheckU.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="vcl.lib rtl.lib"/>
+    <PACKAGES value="MyDialog.bpi CommonAL.bpi vcl.bpi rtl.bpi vclx.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG;DIALOGTEST;"/>
+    <SYSDEFINES value="NO_STRICT;_RTLDLL;USEPACKAGES"/>
+    <MAINSOURCE value="DialogCheckP.cpp"/>
+    <INCLUDEPATH value="&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\DialogEditor\ObjectInspector;..\BaseTool;..\DialogEditor;..\LuaEnv;..\lexer_include;..\lua_include;..\iup_include"/>
+    <LIBPATH value="&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I&quot;C:\Program Files\Borland\CBuilder6\Projects&quot; -I$(BCB)\include 
+      -I$(BCB)\include\vcl -I..\include -I..\VisIt 
+      -I..\DialogEditor\ObjectInspector -I..\BaseTool -I..\DialogEditor 
+      -I..\LuaEnv -I..\lexer_include -I..\lua_include -I..\iup_include 
+      -src_suffix cpp -D_DEBUG -DDIALOGTEST -boa"/>
+    <CFLAG1 value="-Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c -tW -tWM"/>
+    <PFLAGS value="-N2..\..\OBJ -N0..\..\OBJ -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-l..\..\LIB -I..\..\OBJ -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="DialogCheckP.res" FORMNAME="" UNITNAME="DialogCheckP.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DialogCheckP.cpp" FORMNAME="" UNITNAME="DialogCheckP" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DialogCheckU.cpp" FORMNAME="CheckForm" UNITNAME="DialogCheckU" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DialogCheckP.todo" FORMNAME="" UNITNAME="DialogCheckP.todo" CONTAINERID="ToDo" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=9
+Item0=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\DialogEditor\ObjectInspector;..\BaseTool;..\DialogEditor;..\LuaEnv;..\lexer_include;..\lua_include;..\iup_include
+Item1=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\DialogEditor\ObjectInspector;..\BaseTool;..\DialogEditor;..\LuaEnv
+Item2=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\DialogEditor\ObjectInspector;..\BaseTool;..\DialogEditor;..\LuaEnv
+Item3=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\DialogEditor\ObjectInspector;..\BaseTool;..\DialogEditor
+Item4=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\DialogEditor\ObjectInspector;..\BaseTool
+Item5=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\DialogEditor;..\DialogEditor\ObjectInspector;..\BaseTool
+Item6=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\DialogEditor;..\DialogEditor\ObjectInspector
+Item7=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\DialogEditor
+Item8=C:\Program Files\Borland\CBuilder6\Projects;C:\Config_\Source\Sample;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=6
+Item0=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item1=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item2=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON;..\DialogEditor;..\LuaEnv
+Item3=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON;..\DialogEditor
+Item4=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON
+Item5=C:\Program Files\Borland\CBuilder6\Projects;C:\Config_\Source\Sample;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=3
+Item0=_DEBUG;DIALOGTEST;
+Item1=_DEBUG;TEST;
+Item2=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=..\..\OBJ
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\..\BIN\
+Item1=..\..\BIN
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=..\..\LIB
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>

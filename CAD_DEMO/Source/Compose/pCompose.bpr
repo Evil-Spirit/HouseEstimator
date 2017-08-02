@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\..\BIN\pCompose.dll"/>
+    <OBJFILES value="..\..\OBJ\Compose.obj ..\..\OBJ\ComposeV.obj"/>
+    <RESFILES value="pCompose.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="CommonAL.lib rtl.lib vis30p5c.lib vcl.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi vis30p5c.bpi CommonAL.bpi MathAL.bpi GeomObject.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT;_NO_VCL;_RTLDLL;USEPACKAGES"/>
+    <MAINSOURCE value="pCompose.bpf"/>
+    <INCLUDEPATH value="$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\Math;..\GeomObject"/>
+    <LIBPATH value="c:\config\lib;&quot;c:\development\components\mwa jpeg&quot;;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I$(BCB)\include -I$(BCB)\include\vcl -I..\VisIt -I..\COMMON -I..\Math 
+      -I..\GeomObject -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-WD -Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -tWD -tWM -c"/>
+    <PFLAGS value="-N2..\..\OBJ -N0..\..\OBJ -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-l..\..\LIB -I..\..\OBJ -D&quot;&quot; -aa -Tpd -x -Gn -Gi -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0d32.obj $(PACKAGES) $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cw32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="pCompose.res" FORMNAME="" UNITNAME="pCompose.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="pCompose.bpf" FORMNAME="" UNITNAME="pCompose" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Compose.cpp" FORMNAME="" UNITNAME="Compose" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ComposeV.cpp" FORMNAME="" UNITNAME="ComposeV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=9
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\Math;..\GeomObject
+Item1=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\Math
+Item2=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\Math;..\ObjectInspector
+Item3=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\Math;..\LuaEnv
+Item4=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON
+Item5=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\include
+Item6=C:\SASHA\Config_new\Source\Compose;$(BCB)\include;$(BCB)\include\vcl;..\VisIt
+Item7=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item8=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=5
+Item0=c:\config\lib;c:\development\components\mwa jpeg;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item1=c:\development\components\mwa jpeg;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item2=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item3=C:\SASHA\Config_new\Source\Compose;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item4=$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=..\..\OBJ
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\..\BIN\
+Item1=..\..\BIN
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=..\..\LIB
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=C:\(WORK)\Config_\BIN\pConfig.exe
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+
+[Linker]
+LibPrefix=
+LibSuffix=
+LibVersion=
+  </IDEOPTIONS>
+</PROJECT>

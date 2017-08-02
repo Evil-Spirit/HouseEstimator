@@ -1,0 +1,85 @@
+
+#include "Bind.h"
+
+$#include <vcl.h>
+$#include "Usefuls.h"                 
+$#include "MTL.h"
+$#include "MyTemplates.h"
+$#pragma hdrstop
+$#include "GeomObjV.h"
+
+$#define LUA_N = 1<<31;
+typedef float MBTi;
+
+//Константы
+class TGPoint : public TMyObject{
+public:
+	TGPoint();
+	TGPoint(TIntVec);
+	virtual ~TGPoint();
+//--------------------------------------------------------
+	TIntVec Point;
+	TGCut &GetCut(int index);
+	tolua_readonly int CutsCount;
+};
+
+class TGCut : public TMyObject{
+public:
+	TGCut();
+	virtual ~TGCut();
+//-------------------------------------------------------------
+	int Tag;
+	TGPoint* Src;
+	TGPoint* Dst;
+	tolua_readonly TGPolygon* Left;
+	tolua_readonly TGPolygon* Right;
+
+//-------------------------------------------------------------
+	TGPoint *CanConnect(const TGCut &cut);
+	bool IsOneFreeSide();
+	bool Equal(const TGCut& other) const;
+	bool ConsistsDstAndSrc(TGPoint* R1,TGPoint* R2);
+	bool SameDirection(const TGCut &cut);//SameDIrection работает при условии, что CanConnect() != NULL
+};
+
+class TGPolygon : public TMyObject{
+public:
+	TGPolygon();
+	virtual ~TGPolygon();
+	//---------------------------------
+	__int16 Tag;
+
+	TGPoint &GetPoint(int index);
+	TGCut &GetCut(int index);
+	int AddCut(TGCut*);
+	void RemoveCut(TGCut *cut);
+	void DeleteCut(int index);
+    tolua_readonly int Count;
+};
+
+class TGeomObject : public TMyObject {
+public:
+	TGeomObject();
+	virtual ~TGeomObject(){};
+	//---------------------------------
+	TGPoint &GetVertex(int index) const;
+	TGCut &GetCut(int index) const;
+	TGPolygon &GetPolygon(int index) const;
+    tolua_readonly int CutsCount;
+    tolua_readonly int PolygonsCount;
+    tolua_readonly int VertexCount;
+
+	TGCut* GetCutByPoints(TGPoint* P1,TGPoint* P2);
+	int AddPoint(const TIntVec &v);					//OK
+	int AddPoint(const TGPoint &p);                 //OK
+	int AddCut(const TGCut &c);
+	int AddCut(int, int);
+	int AddCut(TGPoint *, TGPoint *);
+	int AddPolygon(TMTList<TGCut>& );
+	int AddPolygon(const TMTList<int>& indices);
+	int ExistsCut(const TGCut &);
+	void Clear();
+	void FreeUnused(TFreeUnusedType fur);
+	void Assign(TMyObject* Object);
+};
+

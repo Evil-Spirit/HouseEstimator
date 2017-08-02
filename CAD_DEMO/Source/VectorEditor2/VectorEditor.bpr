@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\..\BIN\VectorEditor.exe"/>
+    <OBJFILES value="..\..\OBJ\VectorEditor.obj ..\..\OBJ\EditorV.obj ..\..\OBJ\MyEdit.obj 
+      ..\..\OBJ\SeparationAreaView.obj ..\..\OBJ\CreateObjectLines.obj 
+      ..\..\OBJ\Select.obj ..\..\OBJ\ProgramPropertyV.obj ..\..\OBJ\ViewV.obj 
+      ..\..\OBJ\ParamEnteringV.obj ..\..\OBJ\G2DPointV.obj"/>
+    <RESFILES value="VectorEditor.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) EditorV.dfm ProgramPropertyV.dfm ParamEnteringV.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="vcl.lib rtl.lib vis30p5c.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi vis30p5c.bpi G2DObject.bpi CommonAL.bpi 
+      BaseTool.bpi"/>
+    <PATHCPP value=".;..\G2DObject"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
+    <MAINSOURCE value="VectorEditor.cpp"/>
+    <INCLUDEPATH value="&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\G2DObject;..\GeomObject;..\BaseTool;..\LuaEnv"/>
+    <LIBPATH value="..\G2DObject;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I&quot;C:\Program Files\Borland\CBuilder6\Projects&quot; -I$(BCB)\include 
+      -I$(BCB)\include\vcl -I..\VisIt -I..\COMMON -I..\G2DObject -I..\GeomObject 
+      -I..\BaseTool -I..\LuaEnv -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c -tW -tWM"/>
+    <PFLAGS value="-N2..\..\OBJ -N0..\..\OBJ -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-l..\..\LIB -I..\..\OBJ -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="VectorEditor.res" FORMNAME="" UNITNAME="VectorEditor.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="VectorEditor.cpp" FORMNAME="" UNITNAME="VectorEditor" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="EditorV.cpp" FORMNAME="Editor2D" UNITNAME="EditorV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyEdit.cpp" FORMNAME="" UNITNAME="MyEdit" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SeparationAreaView.cpp" FORMNAME="" UNITNAME="SeparationAreaView" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="CreateObjectLines.cpp" FORMNAME="" UNITNAME="CreateObjectLines" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Select.cpp" FORMNAME="" UNITNAME="Select" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ProgramPropertyV.cpp" FORMNAME="ProgramProperty" UNITNAME="ProgramPropertyV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ViewV.cpp" FORMNAME="" UNITNAME="ViewV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ParamEnteringV.cpp" FORMNAME="ParamEntering" UNITNAME="ParamEnteringV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\G2DObject\G2DPointV.cpp" FORMNAME="" UNITNAME="G2DPointV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=9
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\G2DObject;..\GeomObject;..\BaseTool;..\LuaEnv
+Item1=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\G2DObject;..\GeomObject;..\BaseTool
+Item2=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\G2DObject;..\GeomObject
+Item3=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON;..\G2DObject
+Item4=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\COMMON
+Item5=C:\Program Files\Borland\CBuilder6\Projects;..\Sample;$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\include
+Item6=$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\include
+Item7=$(BCB)\include;$(BCB)\include\vcl;C:\Config_\Source\VisIt
+Item8=$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=5
+Item0=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item1=..\include;C:\Program Files\Borland\CBuilder6\Projects;..\Sample;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item2=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item3=$(BCB)\lib\obj;$(BCB)\lib;C:\Config_\LIB
+Item4=$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=2
+Item0=$(BCB)\source\vcl;$(BCB)\source
+Item1=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=..\..\OBJ
+
+[HistoryLists\hlFinalOutputDir]
+Count=4
+Item0=..\..\BIN\
+Item1=..\..\BIN
+Item2=C:\Config_\BIN\
+Item3=C:\Config_\BIN
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=..\..\LIB
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl;$(BCB)\source
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+  </IDEOPTIONS>
+</PROJECT>

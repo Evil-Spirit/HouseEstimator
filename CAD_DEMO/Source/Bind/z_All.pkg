@@ -1,0 +1,1206 @@
+
+#include "Bind.h"
+
+$#include <vcl.h>
+$#include "Usefuls.h"                 
+$#include "MTL.h"
+$#include "MyTemplates.h"
+$#pragma hdrstop
+
+
+$#define LUA_N = 1<<31;
+$#include "Main.h"
+$#include "LuaUniFormV.h"
+$#include "MDICountReportV.h"
+$#include "Poligon.h"
+$#include "MyGL.h"
+$#include "LogicNode.h"
+//$#include "DrawViewV.h"
+$#include "World.h"
+$#include "UI.h"
+$#include "LogicNode.h"
+$#include "DynamicCast.h"
+$#include "CounterBaseV.h"
+$#include "Triangulation.h"
+$#include "Compose.h"
+$#include "Roof.h"
+$#include "GeomObjV.h"
+
+$#include "ElementV.h"
+$#include "PlatformV.h"
+$#include "MultiElementV.h"
+$#include "Label3DV.h"
+$#include "RoomV.h"
+$#include "NomenclatureV.h"
+$#include "WallV.h"
+$#include "ArchitectureSupportV.h"
+$#include "Driver.h"
+$#include "BaseToolV.h"
+$#include "MDI3DV.h"
+$#include "AUIV.h"
+$#include "IntExplorerV.h"
+$#include "Select.h"
+$#include "CatalogUnitV.h"
+$#include "LuaAttributeV.h"
+$#include "IntExplorerV.h"
+$#include "Driver.h"
+$#include "MainToolsV.h"
+
+typedef float MBTi;
+
+//Константы
+module const
+{
+    enum TColor {clMin=-0x7fffffff-1, clMax=0x7fffffff};
+    enum TPenMode {pmBlack, pmWhite, pmNop, pmNot, pmCopy, pmNotCopy, pmMergePenNot, pmMaskPenNot, pmMergeNotPen, pmMaskNotPen, pmMerge, pmNotMerge, pmMask, pmNotMask, pmXor, pmNotXor};
+    enum TPenStyle {psSolid, psDash, psDot, psDashDot, psDashDotDot, psClear, psInsideFrame};
+    enum TBrushStyle {bsSolid, bsClear, bsHorizontal, bsVertical, bsFDiagonal, bsBDiagonal, bsCross, bsDiagCross};
+    enum TFillStyle {fsSurface, fsBorder};
+
+    // операции на полигонах
+    tolua_readonly int opAND;
+    tolua_readonly int opOR;
+    tolua_readonly int opMINUS;
+    tolua_readonly int opXOR;
+
+    //line crossing
+    tolua_readonly int lcNONE;           //нет пересечения
+    tolua_readonly int lcCROSSING;       //пересечение обычное
+    tolua_readonly int lcPARALLEL;       //параллельны
+    tolua_readonly int lcEQUAL;          //совпадают
+    tolua_readonly int lcCOMMONPOINT;    //одна общая точка
+    tolua_readonly int lcCOLLINEAR;    //коллинеарны
+
+    //classify point
+    tolua_readonly int etLEFT;//           слева
+    tolua_readonly int etRIGHT;//          справа
+    tolua_readonly int etBETWEEN;//        между
+    tolua_readonly int etBEHIND;//         позади на прямой
+    tolua_readonly int etBEYOND;//         впереди на прямой
+    tolua_readonly int etORIGIN;//         первая точка
+    tolua_readonly int etDESTINATION;//    вторая точка
+
+    // стен в точке
+    tolua_readonly int ntNULL;
+    tolua_readonly int ntONE;
+    tolua_readonly int ntTWO;
+    tolua_readonly int ntTHREE;
+    tolua_readonly int ntFOUR;
+    tolua_readonly int ntFIVE;
+
+    // принадлежность полигону
+    tolua_readonly int pipBOUNDARY;// на границе
+    tolua_readonly int pipOUTSIDE;//  снаружи
+    tolua_readonly int pipINSIDE; //  внутри
+    // цвет
+    tolua_readonly TColor clBlack;
+    tolua_readonly TColor clWhite;
+    //режим расчета
+    tolua_readonly int PaymentCount;
+    tolua_readonly int WorkCount;
+    tolua_readonly int SimpleCount;
+
+    //направление полигона
+    tolua_readonly int cwClockWize;
+    tolua_readonly int cwNotClockWize;
+    tolua_readonly int cwNotDefined;
+
+    //типы данных
+    tolua_readonly int mtInt;
+    tolua_readonly int mtDouble;
+    tolua_readonly int mtString;
+    tolua_readonly int mtMyObject;
+
+    //shiftstate
+    enum Classes__1 { ssShift, ssAlt, ssCtrl, ssLeft, ssRight, ssMiddle, ssDouble };
+
+//    enum GeomResult { GEOM_OK , GEOM_CANNOT};
+    enum TFreeUnusedType  {fuPoints ,fuCuts, fuAll };
+
+    //опции работы драйвера
+    const int ocmNone;
+    const int ocmPosition;
+    const int ocmSize;
+}
+
+module My
+{
+//    tolua_readonly TDrawView *CurDrawView;
+    tolua_readonly TElement  *CurElement;
+    tolua_readonly TLink *CurLink;
+
+    tolua_readonly TLinkInfo *curLinkInfo;
+    void ApplySkinTheme(TControl *Control);
+
+		double RoundTo(double src,int digit);
+		void BindEvents(TComponent *Component);
+		void EditRoof(TElement *Element);
+		//расчет
+    tolua_readonly TCounterBase* Counter;
+    TNomenclature* FindNomenclatureByID(int ID);
+    TNomenclature* FindNomenclatureByGUID(char* GUID);
+    TNomenclature* FindNomenclatureByName(char* Name);
+    TNomenclature* FindNomenclatureByStrCode(char* StrCode);
+
+    tolua_readonly TMetaNodeCollection* MetaNodeCollection;	//метаданные
+    tolua_readonly TMainTree* World;			//мир
+    tolua_readonly TMetaAction* curAction;
+    tolua_readonly TMetaMenuItem* curMenuItem;
+
+    tolua_readonly TLinkNodes* LN;
+    EditRoof(TElement* Element);
+    //проверка технологии
+    bool TechnologyCheckPass;
+    char* TechnologyCheckStr;
+
+    tolua_readonly TLuaUniForm* LuaUniForm;
+    tolua_readonly TNomenclature* CurNomenclature;
+    tolua_readonly TDelone* Deloune;
+
+    //Tool
+    tolua_readonly TBindedBaseTool* CurrentTool;
+    tolua_readonly TAdvancedUserInterface AUI;
+
+    tolua_readonly TElementQueueCollection SelectionCollection;
+    tolua_readonly TSelection MySelection;
+    tolua_readonly TIntExplorer* IntExplorer;
+    bool LuaConditionResult;
+
+    //UNDO
+    tolua_readonly TUndoStack UndoStack;
+    tolua_readonly TDriver Driver;
+    TColor RGB(int r,int g,int b);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+class TRect{
+public:
+    TRect();
+    ~TRect();
+    int Left;
+    int Top;
+    int Right;
+    int Bottom;
+    int Width();
+    int Height();
+};
+
+/*class TWinControl{
+public:
+    TWinControl(TWinControl* WC);
+    ~TWinControl();
+    TRect BoundsRect;
+    tolua_readonly TRect ClientRect;
+    int ClientHeight;
+    int ClientWidth;
+    int Top;
+    int Left;
+    int Height;
+		int Width;
+    bool Visible;
+    tolua_readonly char* Handle;
+}; */
+
+class TLuaUniForm : public TWinControl{
+public:
+    TLuaUniForm(TWinControl* WC);
+    ~TLuaUniForm();
+    tolua_readonly TWinControl* btOK;
+    tolua_readonly TWinControl* btCancel;
+    tolua_readonly TWinControl* btApply;
+    tolua_readonly TWinControl* pView;    
+    TWinControl* GetPanel(int PanelIndex);
+    void SetPageCountForPanel(int PanelIndex, int PageCount);
+    TWinControl* GetPage(int PanelIndex,int PageIndex);
+    void SetCaption(char* Caption);
+    void SetPageCaption(int PanelIndex,int PageIndex,char* Caption);
+
+    //метаэлемент для показа если нет то пропустить
+    TElement* ShowElement;
+    //метаэлемент для показа если нет то пропустить
+    TMetaElement* ShowMetaElement;
+    void Start();
+    void Close();
+    void SetDialogParent(TWinControl* Parent,char* DialogName);
+    bool AutoAlign;
+};
+/////////////////////////////////////////////////////
+class TElementViewer : public TForm
+{
+public:		// User declarations
+		TPanel *pView;
+		FormActivate(TObject *Sender);
+		TElement* ShowElement;
+		TMetaElement* ShowMetaElement;
+		TMainTree *MT;
+		TMDITV *TV;
+
+		TElementViewer(TComponent* Owner);
+		~TElementViewer();
+		Start();
+};
+/////////////////////////////////////////////////////
+
+/*class TDrawView{
+public:
+  TDrawView(TWinControl* WC);
+  ~TDrawView();
+  MBTi aWidth;
+  MBTi aHeight;
+  MBTi CameraPosX;
+  MBTi CameraPosY;
+
+  tolua_readonly int ShiftX;
+  tolua_readonly int ShiftY;
+  tolua_readonly double Scale;
+
+  void MoveTo(const TElement *Sender,MBTi X,MBTi Y);
+  void LineTo(const TElement *Sender,MBTi X,MBTi Y);
+  void FloodFill(const TElement *Sender,MBTi X, MBTi Y, TColor Color, TFillStyle FillStyle);
+  void Polygon(const TElement *Sender,TMDelTList<TIntVec>* pnts);
+
+  tolua_readonly TBrush *Brush;
+  tolua_readonly TPen *Pen;
+};*/
+
+class TBrush
+{
+  public:
+  TBrush();
+  ~TBrush();
+  TColor Color;
+  TBrushStyle Style;
+};
+
+class TPen
+{
+  public:
+  TPen();
+  ~TPen();
+  TColor Color;
+  TPenStyle Style;
+  TPenMode Mode;
+  int Width;
+};
+
+class TIntVec : public TInt3d
+{
+    public:
+    MBTi x;
+    MBTi y;
+    MBTi z;
+    TIntVec();
+    ~TIntVec();
+    TIntVec(const TIntVec& rhs  );
+    TIntVec(MBTi x,MBTi y,MBTi z);
+    bool operator <=(const TIntVec &rhs) const;
+    bool operator ==(const TIntVec &rhs) const;
+    TIntVec operator +(const TIntVec &rhs) const;
+    TIntVec operator -(const TIntVec &rhs) const;
+    TIntVec operator *(const TIntVec &rhs) const;
+    TIntVec operator /(const TIntVec &rhs) const;
+    TIntVec operator /(double rhs) const;
+    TIntVec operator *(double rhs) const;
+    MBTi Length() const;
+    TIntVec& Assign(const TIntVec& Vec);
+    bool Equal2D(const TIntVec& P,MBTi USEEPS=0);
+    MBTi Length2D();
+};
+char* VecToStr(const TIntVec& Vec);
+TIntVec StrToVec(char* str);
+
+
+
+class TMyObject {
+public:
+    TMyObject();
+    ~TMyObject();
+    char *GetCharName();
+    char *GetCharDescription();
+    void SetCharDescription(char *newDescription);
+    bool LuaCompareAddress(TMyObject* Obj);
+    void Assign(TMyObject *Obj);
+};
+
+//---------------------------------------
+
+class TLuaRoofCut{
+    TLuaRoofCut();
+    ~TLuaRoofCut();
+    tolua_readonly TIntVec LOW;
+    tolua_readonly TIntVec HI;
+    int Slope0;
+    int Slope1;
+};
+
+class TPolygon :public TMyObject{
+public:
+    TPolygon();
+    ~TPolygon();
+    void Invert();
+    tolua_readonly TMDelTList <TIntVec> *Vertex;
+    void Clear();
+    TIntVec MIN();
+    TIntVec MAX();
+    void Insert(int index,TIntVec* Item);
+    void Move(const TIntVec& _Move);
+    void Rotate(const TIntVec &Angle,const TIntVec &Center);
+    int ConsistsPoint(const TIntVec &Point,MBTi USEEPS);
+    bool FindSelfCrossing(int& i1,int& i2,MBTi USEEPS);
+    TIntVec Center();
+    MBTi CentralArea();
+    void GetCrossPoints(const TIntVec& P1,const TIntVec& P2, TMDelTList<TIntVec>* PointList,bool UseLinePoints,bool Edge,MBTi USEEPS);
+    tolua_readonly TMDelTList<TRoutePoint>* Router;
+    int IsClockWize();//1-Clockwize, (-1) - not Clockwize, 0 -
+    bool KillCollinear_1(MBTi USEEPS);
+    bool KillCloseEdges_0(MBTi USEEPS);
+    void SquareCreate(const TIntVec& Size);
+    int IntrudeRib(int index,MBTi Value,MBTi USEEPS);
+    bool Valid(MBTi USEEPS);
+    void ToConvex(MBTi USEEPS);
+    bool RibIsConvex(int index,MBTi USEEPS);
+    bool IsConvex(MBTi USEEPS);
+    bool PointIsConvex(int index,MBTi USEEPS);
+    void ToConvexAndExtrude(MBTi USEEPS,MBTi Value);
+    bool CrossedWithPolygon(TPolygon* ElsePol,MBTi USEEPS);
+    void KillSelfCrossing_2(TMDelTList<TPolygon>* POLS,MBTi USEEPS);
+    void ExtrudeRib(int index,MBTi Value,MBTi USEEPS);
+};
+
+class THoledPolygon : public TPolygon {
+public:
+    THoledPolygon();
+    ~THoledPolygon();
+    tolua_readonly TMDelTList < TPolygon > *Holes;
+    void Clear();
+    void AddHole(TPolygon *Polygon);
+    bool ExistsVertex(const TIntVec &P,TIntVec D);
+    void Move(const TIntVec& _Move);
+    void Rotate(const TIntVec &Angle,const TIntVec &Center);
+    void Set(int axes,int Value);
+    void GetCrossPoints_UseHoles(  const TIntVec& P1, const TIntVec& P2, TMDelTList<TIntVec>* PointList, bool UseLinePoints, bool Edge, bool HoleEdge, MBTi USEEPS );
+    int ConsistsPoint_UseHoles(const TIntVec &Point,MBTi USEEPS);
+    bool Valid(MBTi USEEPS);
+};
+
+//---------------------------------------
+
+class TMetaNode : public TMyObject{
+public:
+    TMetaNode();
+    ~TMetaNode();
+    char* GetAttributeValue(char *_name);
+    TLuaAttribute* GetAttribute(char *_name);
+    void SetAttributeValue(char *_name,char *_value);
+     tolua_readonly TMetaNode *Parent;
+};
+//---------------------------------------
+class TMetaTexture : public TMetaNode {
+public:
+    TMetaTexture();
+    virtual ~TMetaTexture();
+};
+
+class TMetaMaterial : public TMetaNode {
+public:
+    TMetaMaterial();
+    virtual ~TMetaMaterial();
+};
+
+class TMetaElement : public TMetaNode{
+public:
+    TMetaElement();
+    ~TMetaElement();
+    TDynamicLink* GetDynLink(int index);
+    tolua_readonly int DynLinkCount;
+    TDynamicLink* SearchNeededLinkFor(TMetaElement * Target);
+};
+
+class TMetaLink : public TMetaNode{
+public:
+    TMetaLink();
+    ~TMetaLink();
+};
+
+class TDynamicLink : public TMetaNode{
+public:
+    TDynamicLink();
+    ~TDynamicLink();
+    tolua_readonly TMetaLink* Link;
+    bool NeededFor(TMetaElement *MEL);
+};
+
+class TNomenclature :public TMetaNode{
+public:
+    TNomenclature();
+    ~TNomenclature();
+    char* GetMemo();
+    double Price;
+    double Weight;
+    tolua_readonly TIntVec Size;
+    tolua_readonly TIntVec Dimensions;
+    tolua_readonly TMetaElement* Associated;
+    char *GetStrCode();
+};
+
+class TUnit : public TMyObject{
+public:
+    TUnit();
+    ~TUnit();
+     tolua_readonly TUnit *Parent;
+    char* GetAttributeValue(char *_name);
+    TLuaAttribute* GetAttribute(char *_name);
+    void SetAttributeValue(char *_name,char *_value);
+};
+
+class TLink : public TUnit {
+public:
+    TLink();
+    ~TLink();
+    bool Exists(TElement *El,int i=-1);
+    bool Exists(TMetaElement *mel,int i=-1);
+    bool NeededFor(TElement *El);
+    tolua_readonly TIntVec Angle;
+    TIntVec AbsPositionBy(TElement *El);
+    TIntVec GetPos(int i);
+    TElement *GetElement(int i);
+    bool Counted;
+    tolua_readonly TDynamicLink *MyMeta;
+};
+
+class TPlatform : public TElement {
+public:
+    TPlatform();
+    ~TPlatform();
+    void CreateClient(TElement * Target);
+    bool CheckFields();
+    bool Init();
+    void FillCompletePolygon(THoledPolygon* CP);
+};
+
+class TElement : public TUnit{
+public:
+    TElement();
+    ~TElement();
+    void CreateView();
+    void SetPos(const TIntVec& newPos);
+    void SetAngle(const TIntVec& newAngle);
+    void SetSize(const TIntVec& newSize);
+    void UserChangePosition(const TIntVec& Move,const TIntVec& Rotate);
+    void ChangeSize(const TIntVec& ChangeVector,const TIntVec& ChangeDirection,bool Try=false);
+    void SetSlope(const TIntVec& _SlopeMinus,const TIntVec& _SlopePlus,bool Render=true);
+    bool LinkPosition(TElement * ElOther,TIntVec& Position);
+    void CreateClient(TElement* Target);
+    void LOW_HI(TIntVec& LOW,TIntVec& HI);
+    bool CurrentEnabled;
+    tolua_readonly bool CustomEnabled ;
+    tolua_readonly bool ModeEnabled;
+    tolua_readonly bool TotalEnabled;
+    //-------------------------------------------
+    TIntVec AbsSize;
+    TIntVec AbsPos;
+    TIntVec AbsAngle;
+    tolua_readonly TIntVec SlopeMinus;
+    tolua_readonly TIntVec SlopePlus;
+    //-------------------------------------------
+    TLink *GetLink(int i);
+    tolua_readonly int LinksCount;
+    TLink *GetLinkOf(TElement *El);
+    TLabel3D *CreateLabel(bool Rotateble);
+    TLabel3D *CreateLabel(bool Rotateble,const TIntVec& Pos);
+    void KillLabel();
+    //-------------------------------------------
+    TElement *GetChild(int i);
+    int GetChildCount();
+    //-------------------------------------------
+    THoledPolygon *HP;
+    void ClearPoints();
+    void AddArrPoint(const TIntVec &_Point);
+    //--------------------------------------------
+    bool Counted;
+    bool EditStatus(int &Operation,int &Type);
+    tolua_readonly TMetaElement *MyMeta;
+    int SideRender;
+    //--------------------------------------------
+    TElement* Create_SIZER(int ID,const TIntVec& P1,const TIntVec& P2);
+    void Kill_SIZER(int ID);
+    //void StandartRender2D(TDrawView *DrawView);
+    void AbsFromLocal(const TIntVec& Vector,TIntVec& Result);
+    void LocalFromAbs(const TIntVec& Vector,TIntVec& Result);
+    void LocalizePolygon();
+    //--------------------------------------------
+    tolua_readonly int SideCount;
+    TSide* GetSide(int i);
+
+    void StandartCreateView();
+
+    tolua_readonly int RenderParamCount;
+    TRenderParam* GetRenderParam(int i);
+
+    void RegisterCreateView();
+    void RegisterUpdatePos();
+    void RegisterTexturing();
+    void ProcessCreateView();
+    void ProcessUpdatePos();
+    void ProcessTexturing();
+    void Render(TVisView* aView);
+};
+
+class TLabel3D : public TElement {
+public:
+    TLabel3D();
+    ~TLabel3D();
+    void SetCharText(char* _Text );
+};
+
+class TRoom : public TElement {
+public:
+    TRoom();
+    ~TRoom();
+    tolua_readonly TRenderParam FloorParam;
+    tolua_readonly TRenderParam CeilParam;
+    MBTi GetFloorArea();
+    MBTi GetCeilArea();
+    MBTi CeilServiceZ;
+    int Status;
+    MBTi FloorServiceZ; //для этой переменной
+};
+
+class TCube : public TElement {
+public:
+    TCube();
+    ~TCube();
+    tolua_readonly THoledPolygon VHP;
+    tolua_readonly int FragmentsCount;
+    TFragmentSettings* GetFragment(int i);
+    MBTi FragmentArea(int Fragment,int Param);
+    void NominateVHP();    
+    void FillCompletePolygon(THoledPolygon* CP);
+    tolua_readonly TVisPrimitiveObj* VP;
+};
+
+class TMultiElement : public TElement{
+public:
+    TMultiElement();
+    ~TMultiElement();
+    TElement *Add(int index);
+    TElement *AddOnly(int index);
+    void DeleteOne(TElement *El);
+    void DeleteOne(int typeindex,int index);
+    void Clear();
+    TElement *GetPart(int i,int j);
+    int CountOf(int type);
+    tolua_readonly int MetaPartCount;
+};
+
+TCube* ToCube(TMyObject* Obj);
+TRoom* ToRoom(TMyObject* Obj);
+TMultiElement* ToMultiElement(TMyObject* Obj);
+TPlatform* ToPlatform(TMyObject* Obj);
+TElement* ToElement(TMyObject* Obj);
+TMetaElement* ToMetaElement(TMyObject* Obj);
+TMetaLink* ToMetaLink(TMyObject* Obj);
+TDynamicLink* ToDynamicLink(TMyObject *Obj);
+TMyRegObject* ToMyRegObject(TMyObject* Obj);
+
+TMetaNode* ToMetaNode(TMyObject* Obj);
+TPolygon* ToPolygon(TMyObject* Obj);
+
+TMetaTexture* ToMetaTexture(TMyObject* Obj);
+TMetaMaterial* ToMetaMaterial(TMyObject* Obj);
+
+
+//math
+double AngleRad(const TIntVec& X1,const TIntVec& X2,const TIntVec& X3);
+double AngleRadOX(const TIntVec& X1,const TIntVec& X2);
+TIntVec RotateAround(const TIntVec& Point,const TIntVec& Angle,TIntVec Center);
+
+MBTi slope_around(MBTi x, MBTi y, MBTi y0, MBTi angle);
+MBTi slope_delta(MBTi y, MBTi y0, MBTi angle);
+TIntVec SlopeAround(  const TIntVec& Point,
+                      const TIntVec& Slope,
+                      const TIntVec& Param,
+                      const TIntVec& Center);
+
+
+int IsLinesCrossedExactly(const TIntVec& _P00,const TIntVec& _P01,const TIntVec& _P10,const TIntVec& _P11, TIntVec & CrossPoint);
+
+//first line points then cut points
+int IsLineAndCutCrossedExactly(const TIntVec& LINE0,const TIntVec& LINE1,const TIntVec& CUT0,const TIntVec& CUT1, TIntVec & CrossPoint);
+int IsCutsCrossedExactly(   const TIntVec& _P00,
+                            const TIntVec& _P01,
+                            const TIntVec& _P10,
+                            const TIntVec& _P11,
+                            TIntVec & CrossPoint);
+int Classify(const TIntVec& P2, const TIntVec& P0, const TIntVec& Pl,MBTi EPS);
+
+int IsCutsCrossed(  const TIntVec& _P00,
+                    const TIntVec& _P01,
+                    const TIntVec& _P10,
+                    const TIntVec& _P11,
+                    TIntVec & CrossPoint,
+                    MBTi USEEPS);
+
+bool IsLinesParallel(   const TIntVec& _P00,
+                        const TIntVec& _P01,
+                        const TIntVec& _P10,
+                        const TIntVec& _P11,
+                        MBTi USEEPS);
+
+bool IsLinesCollinear(   const TIntVec& _P00,
+                        const TIntVec& _P01,
+                        const TIntVec& _P10,
+                        const TIntVec& _P11,
+                        MBTi USEEPS);
+
+bool IsCutsCollinearAndCrossing(  const TIntVec& _P00,
+                                  const TIntVec& _P01,
+                                  const TIntVec& _P10,
+                                  const TIntVec& _P11,
+                                  MBTi USEEPS);
+
+
+double GetTotalArea(TMainTree* aWorld,int FloorIndex);
+
+void StrOut(char *Text,bool Clear=false);
+int Mes(char *Text,char*Caption=NULL);
+
+TIntVec VectorP(const TIntVec& a,const TIntVec& b);
+double ScalarP(const TIntVec& a,const TIntVec& b);
+bool PlaneCrossPoint(   const TIntVec& P1,
+                        const TIntVec& P2,
+                        const TIntVec& P3,
+                        const TIntVec& V1,
+                        const TIntVec& V2,
+                        TIntVec& CP);
+
+void ComposePolygon(TPolygon& Pol,TMDelTList<TPolygon>& Pols,TMDelTList< TMDelTList<int> >& Indices);
+
+//-------------------------------------------------------
+//------------     расчет     ---------------------------
+class TCounterBase{
+public:
+    TCounterBase();
+    ~TCounterBase();
+    void DefineField(char *FieldName,int Type,char* Meter,int Digit,bool Visible,bool Accumulate, bool Total);
+    bool FieldExists(char *FieldName);
+    //--------------------------------------------------------------------------
+    bool SetData(TMyObject *Sender,TNomenclature * Nom,char* FieldName,char* Data);
+    bool AddData(TMyObject *Sender,TNomenclature * Nom,char* FieldName,char* Data);
+
+    bool SetDataByValue(TMyObject *Sender,TNomenclature * Nom,char* FieldName,char* Data,char* KeyField,char* KeyData);
+    bool AddDataByValue(TMyObject *Sender,TNomenclature * Nom,char* FieldName,char* Data,char* KeyField,char* KeyData);
+
+    char* GetSum(TMyObject *Sender,TNomenclature * Nom,char* FieldName,bool Round);
+    char* GetSumByNomFilter(TMyRegObject* Parent,TMyObject *Sender,char* FieldName,bool Round);
+
+    void Clear();
+    int CountMode;
+};
+
+//класс для обмена данными по этажу
+class TFloorInfo {
+public:
+    TFloorInfo();
+    ~TFloorInfo();
+    MBTi Up_Lost;
+    MBTi Down_Lost;
+    bool OK_Pressed; 			//нажата кнопка OK
+    char* FloorName; 			//имя этажа
+    MBTi Height;				//высота этажа
+    int FloorFrom;				//откуда копировать
+    TMTList<TMetaNode>* ElToMove;		//что копировать --- список ссылок на мета-объекты
+    int AddIndex;				//под каким номером добавлять
+};
+
+//этаж
+class TFloor: public TMyObject {
+public:
+    TFloor();
+    ~TFloor();
+    tolua_readonly MBTi AbsZ;				//высота над уровнем пола
+    tolua_readonly TElement* FirstElement;  //платформа-сетка первая на этаже
+    tolua_readonly MBTi Height;
+    MBTi Up_Lost;
+    MBTi Down_Lost;
+};
+
+class TMainTree {
+
+    public:
+    TMainTree();
+    ~TMainTree();
+    int FloorOf(TElement* El);
+    int FloorOfUseDriver(TElement* El);
+    tolua_readonly TFloor* ActiveFloor; 		//активный этаж
+    tolua_readonly int FloorCount;		//количество этажей
+    tolua_readonly TFloorInfo* FloorInfo;		//обмен даннымии
+    TFloor* GetFloor(int i);			//получить этаж по индексу
+    //выбрать элементы по мета элементу и индексу этажа
+    bool SelectByMetaElement(int Floor,TMetaElement* MetaElement,TMTList<TElement>* LST);
+    int IndexOfFloor(TFloor* Floor);//индекс этажа
+    tolua_readonly int ModeIndex;
+    tolua_readonly int PrevModeIndex;
+    void AutoConnect(TElement * Target, TElement * Source);
+///////////////////////////////////Drive////////////////////////////////////////
+    void Process_AddElement(TMetaElement *Mel,TElement* UseFloorElement);
+///////////////////////////////////Drive////////////////////////////////////////
+};
+
+//метаданные (все)
+class TMetaNodeCollection
+{
+    public:
+    TMetaNodeCollection();
+    ~TMetaNodeCollection();
+    TMetaNode* FindMDByName(char* name);	//найти по имени
+    TMetaNode* FindMDByGUID(char* GUID);		//найти по идентификатору
+};
+
+class T3DScope
+{
+    public:
+    T3DScope();
+    T3DScope(const TIntVec & VecLow,const TIntVec & VecHi);
+    ~T3DScope();
+    TIntVec LOW;
+    TIntVec HI;
+    bool CheckFields();
+    bool Valid(const TIntVec & Vec);
+    void CrossedWithStep(const T3DScope& OS,TIntVec &Step);
+    bool Crossed(T3DScope* OS);
+    void Move(const TIntVec &Trans);
+    void Scale(const TIntVec &Scale);
+    bool PointAbout(const TIntVec&Point,TIntVec &Step,const TIntVec& DiscrStep);
+    void Discrete(TIntVec& Point,const TIntVec &Step);
+};
+
+class TObjectAttributePreSet{
+public:
+    TObjectAttributePreSet(char* Name,char* Value);
+    ~TObjectAttributePreSet();
+    void SetAttributeName(char* Name);
+    void SetAttributeValue(char* Value);
+};
+
+class TSyngleLink
+{
+    TSyngleLink();
+    ~TSyngleLink();
+    TIntVec CrossPoint;
+    tolua_readonly TMDelTList<TObjectAttributePreSet> OAPreSet;
+};
+
+class TLINKPATTERN {
+public:
+    TLINKPATTERN();
+    ~TLINKPATTERN();
+    TDynamicLink *DL;
+
+    TIntVec TS_Common;
+    TIntVec R_Common;
+
+    TIntVec CrossPoint;
+    TIntVec Direction;
+    TIntVec RotateCenter;
+    tolua_readonly TMDelTList<TSyngleLink> SyngleLinks;
+};
+
+class TLinkInfo{
+public:
+    TLinkInfo();
+    ~TLinkInfo();
+    TElement* Target;
+    TElement* Source;
+    T3DScope* TargetScope;
+    T3DScope* SourceScope;
+
+    TLINKPATTERN* LINKPATTERN;
+    bool SizeTransform;
+    bool OK;
+};
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////ROUTERS/////////////////////////////////////////////
+class TSide
+{
+    public:
+    TSide();
+    ~TSide();
+    int SideType;
+    tolua_readonly TRouteNode* Node0;
+    tolua_readonly TIntVec* CenterP0;
+    tolua_readonly TIntVec* P0;
+    tolua_readonly TRouteNode* Node1;
+    tolua_readonly TIntVec* CenterP1;
+    tolua_readonly TIntVec* P1;
+    tolua_readonly TPolygon* Premises;
+    tolua_readonly TElement* Element;
+    int Crossed(const TSide& ELSE,TIntVec& CROSS_POINT,MBTi USEEPS);
+    int AnalizePoint(const TIntVec& Point);
+    bool ConsistsPoint(const TIntVec& Point);
+    void SplitMeDestination( TSide& New_, TIntVec* Middle, TIntVec* CenterMiddle,TRouteNode* RouteMiddle);
+    void SplitMeOrigin( TSide& New_, TIntVec* Middle, TIntVec* CenterMiddle,TRouteNode* RouteMiddle);
+    void UpdateEdge(TIntVec* NewDest, TIntVec* NewCenterDest,bool DestinationEdge,TRouteNode* NewNode);
+    bool IsOutSide();
+
+    tolua_readonly bool ISWALLEND;
+    tolua_readonly bool ISWALLSTART;
+} ;
+
+class TLinkPair {
+public:
+    TLinkPair();
+    ~TLinkPair();
+    tolua_readonly TIntVec Pos;
+    tolua_readonly TLink *Link;
+    bool Satisfy(const TIntVec& ElseVec);
+    void GetTranslate(const TIntVec& From,TIntVec& Translate);
+};
+
+class TRay {
+public:
+    TRay();
+    ~TRay();
+    tolua_readonly bool XPlusDirection;
+    tolua_readonly TElementPoints* ElementPoints;
+    tolua_readonly TSide* YMinusSide;
+    tolua_readonly TSide* YPlusSide;
+    tolua_readonly TIntVec* Point;
+    tolua_readonly MBTi AngleOX;
+};
+
+class TRoutePoint {
+public:
+    TRoutePoint();
+    ~TRoutePoint();
+    tolua_readonly TIntVec* Pnt;
+    tolua_readonly TSide* InputSide;
+    tolua_readonly TSide* OutPutSide;
+    tolua_readonly TRoutePoint* Next;
+    tolua_readonly TRoutePoint* Prev;
+};
+
+class TElementPoints{
+public:
+    TElementPoints();
+    ~TElementPoints();
+    tolua_readonly TElement* Element;
+
+    TSide* FindSide(int Type,TIntVec* Point,bool ByDestination);
+
+    tolua_readonly int SideCount;
+    tolua_readonly int FilteredRouteNodesCount;
+    tolua_readonly int AllRouteNodesCount;
+    TSide* GetSide(int i);
+    TRouteNode* GetFilteredRouteNode(int i);
+    TRouteNode* GetAllRouteNode(int i);
+};
+
+class TRouteNode{
+public:
+    TRouteNode();
+    ~TRouteNode();
+    tolua_readonly TIntVec LinkPoint ;
+    tolua_readonly TElement* Element;
+    tolua_readonly int RayCount;
+    TRay* GetRay(int i);
+    tolua_readonly int LinkPairCount;
+    TLinkPair* GetLinkPair(int i);
+    tolua_readonly int RayCrossCount;
+    TIntVec* GetRayCross(int i);
+    bool Satisfy(TLinkPair* LinkPair);
+    int IndexOf(TLinkPair* LinkPair);
+};
+
+class TLinkNodes {
+public:
+    TLinkNodes();
+    ~TLinkNodes();
+    int Exists(TLink *Link);
+    int ExistsElem(TElement *Elem);
+    void GetLinksForVec(const TIntVec& Vec,TMTList<TLink>* LNKL,TElement* Parent);
+    void GetLinksForLink(TLink *Link,TMTList<TLink>* LNKL,bool NeedFalse);
+    TElement* SelectNearestPoint(const TIntVec& Point,TMTList<TMetaElement>* ELS,TMDelTList<TIntVec>* Steps,TIntVec& Trans);
+    TLink* SelectNearestLink(const TIntVec& Point,TIntVec& Trans,TMetaElement* El0,TMetaElement* El1);
+
+    void DefinePermises_06(TElement* ParentFilter);
+
+    tolua_readonly int RouteNodeCount;
+    tolua_readonly int ElementFragmentsCount;
+    tolua_readonly int PremisesPolygonCount;
+    tolua_readonly int BuildingPolygonCount;
+    tolua_readonly int RouterListsCount;
+
+    TRouteNode* GetRouteNode(int i);
+    TElementPoints* GetElementFragments(int i);
+    THoledPolygon* GetPremisesPolygon(int i);
+    THoledPolygon* GetBuildingPolygon(int i);
+
+    int GetRouterCount(int i);
+    TRoutePoint* GetRouter(int i,int j);
+
+    void ClearMetaFilter();
+    void AddToMetaFilter(TMetaElement* MetaElement);
+    int IndexOfFilterMetaElement(TMetaElement* MetaElement);
+
+    tolua_readonly int FilterMetaElementCount;
+    TMetaElement*  GetFilterMetaElement(int i);
+    bool NetActual;
+
+};
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////UI////////////////////////////////////////////////
+
+class TMetaUI : public TMetaNode{
+public:
+    TMetaUI();
+    ~TMetaUI();
+    int UImageIndex;
+    bool Enabled;
+    bool Visible;
+};
+
+class TMetaAction : public TMetaNode{
+public:
+    TMetaAction();
+    ~TMetaAction();
+    int UImageIndex;
+    bool Enabled;
+    bool Visible;
+    void Update();
+    void Execute();
+};
+
+class TMetaMenuItem : public TMetaUI{
+public:
+    TMetaMenuItem();
+    ~TMetaMenuItem();
+    void Update();
+    void Execute();
+    tolua_readonly TMetaAction* AssociatedAction;
+};
+
+class TRenderParam: public TMyObject{
+public:
+    TRenderParam();
+    ~TRenderParam();
+    MBTi Area;
+    TMetaTexture* Texture;
+    TMetaMaterial* Material;
+    TIntVec TexCenter;
+    TIntVec TexAngle;
+    bool Enabled;
+    bool OverPosMode;
+    TIntVec OverPos;
+    bool OverSizeMode;
+    TIntVec OverSize;
+    bool FLAT2D;
+};
+
+class TFragmentSettings: public TMyObject{
+public:
+    TFragmentSettings();
+    ~TFragmentSettings();
+    tolua_readonly TIntVec LocalP0;
+    tolua_readonly TIntVec LocalP1;
+
+    tolua_readonly bool IsOutSide;
+    tolua_readonly int SideType;
+    tolua_readonly int SideIndex;
+
+    int FragmentOfPoint(const TIntVec& LocPoint,MBTi USEEPS);
+
+    tolua_readonly int PolygonCount;
+    TRenderParam* GetRenderParam(int i);
+    THoledPolygon* GetPolygon(int i);
+};
+
+class TDelone {
+    TDelone();
+    ~TDelone();
+    MBTi EPS;
+    tolua_readonly TMTList<TIntVec> Triangles;
+    tolua_readonly TMTList<TIntVec> Contour;
+    TMTList<TIntVec>* OPERATION(TPolygon* P0,TPolygon* P1,int oper);
+    TMTList<TIntVec>* Triangulate(THoledPolygon* HP);
+    TMTList<TIntVec>* Triangulate3(THoledPolygon* HP,TMTList<TIntVec>* LineEdges);
+};
+
+void CreateRoofOld( TMDelTList<TIntVec>* RoofPolygon,
+                    TMDelTList<TIntVec>* Param,
+                    TMDelTList<TPolygon>* RES,
+                    TMDelTList<TLuaRoofCut>* FLEGS,
+                    TMDelTList<TLuaRoofCut>* FSCATES);
+
+void CreateRoof(    TMDelTList< TMDelTList<TIntVec> > &pp_N, //контур крыши
+					TMDelTList< TMDelTList<TIntVec> > &pp_O, //список векторов параметров (x - угол,y - выступ карниза в случае фронтона)
+					TIntVec &b_N,
+					TIntVec &b_O,
+					TMDelTList< TMDelTList<TPolygon> >& RES,  //результат работы список полигонов
+					TMDelTList<TLuaRoofCut>& FLEGS, //список ендов
+					TMDelTList<TLuaRoofCut>& FSCATES);                    
+
+void ConstructRoof(     TMDelTList< TMDelTList<TIntVec> >& pp_N, //контур крыши
+                        TMDelTList< TMDelTList<TIntVec> >& pp_O, //список векторов параметров (x - угол,y - выступ карниза в случае фронтона)
+						TIntVec& b_N,
+						TIntVec& b_O,
+                        TGeomObject& G0);
+                    
+TLink* CreateLinkFunction(TElement* EL0,TElement* EL1,TDynamicLink* DynamicLink,const TIntVec& AbsPoint);
+int AllowLink(TLink *Link,TMTList<TLink>* LNKL);
+
+//local lestnica = My.MetaNodeCollection:FindMDByName("Stairs");
+//My.World.FloorInfo.ElToMove:Add( lestnica ) ;
+//My.World.FloorInfo.Height = 3;
+//--------------------------------------------------------
+
+//---------------------------------------------------
+class TMDI3D {
+public:
+    TMDI3D(TComponent* Owner,TMainTree* MT);
+    ~TMDI3D();
+    //---------------------------------
+    TIntVec A,PlaneN;
+    TIntVec ScreenToProject(MBTi x, MBTi y, MBTi z);
+    TIntVec ScreenToProject(const TIntVec& V);
+    TIntVec ProjectToScreen(const TIntVec& Vv);
+    MBTi Factor(int Pixels);
+    tolua_readonly TVisView* View;
+};
+
+
+class TShiftState {
+public:
+    TShiftState();
+    ~TShiftState();
+    bool Contains(Classes__1 State);
+};
+
+class TUserInterfaceParam{
+public:
+    TUserInterfaceParam();
+    ~TUserInterfaceParam();
+    TIntVec Center;
+    TIntVec NewCursorPos;
+    TMDI3D* Sender;
+    WORD Key;
+    TShiftState Shift;
+};
+
+class TBaseTool : public TMyObject{
+public:
+    tolua_readonly TUserInterfaceParam UIP;
+    tolua_readonly TVisPrimitiveObj* VCO;
+    tolua_readonly TVisPrimitiveObj* SnapCursor;
+    
+    TBaseTool();
+    virtual ~TBaseTool();
+};
+
+class TDialogBaseTool : public TBaseTool{
+public:
+    TDialogBaseTool();
+    virtual ~TDialogBaseTool();
+
+    tolua_readonly TMDI3D* Sender;
+    TIntVec A;
+    TIntVec PlaneN;
+    void Changed(void* Field);
+};
+
+class TBindedBaseTool : public TDialogBaseTool{
+public:
+    TBindedBaseTool();
+    virtual ~TBindedBaseTool(){};
+    tolua_readonly char* ExecutedName;
+    char* KeyToStrChar(WORD Key);
+    tolua_readonly TLuaAttribute Attribute;
+};
+
+class TAdvancedUserInterface {
+public:
+    TAdvancedUserInterface();
+    virtual ~TAdvancedUserInterface(){};
+    //--------------------------------------------------------------------------
+    tolua_readonly int CurrentWorldIndex;
+    tolua_readonly TMDI3D* ActiveView;
+    tolua_readonly TMainTree* ActiveWorld;
+
+    void InvalidateView();
+    tolua_readonly TMetaMyMode* Mode;
+    bool AdvancedTexturing;
+    tolua_readonly bool PrevAdvancedTexturing;
+};
+
+class TIntExplorer {
+public:
+    TIntExplorer(TComponent* Owner);
+    ~TIntExplorer();
+    tolua_readonly TMetaCatalogUnit *MetaCatalogUnit;
+};
+
+class TMetaCatalogUnit : public TMetaNode {
+public:
+    TMetaCatalogUnit();
+    virtual ~TMetaCatalogUnit(){};
+    tolua_readonly TMetaNode* Associated;
+};
+
+class TElementQueue {
+public:
+    TElementQueue();
+    ~TElementQueue();
+    void Add(TElement* Element);
+    void Changed(TElement* Element);
+    void Remove(TElement* Element);
+    virtual void Clear();
+    tolua_readonly int Count;
+    TElement* GetElement(int i);
+    bool Enabled;
+};
+
+class TElementQueueCollection {
+public:
+    TElementQueueCollection();
+    ~TElementQueueCollection();
+    tolua_readonly bool Enabled;
+    void Remove(TElement* Element);
+    void Changed(TElement* Element);
+};
+
+class TSelection : public TElementQueue{
+public:
+    TSelection();
+    ~TSelection();
+    void Render(TVisView* aView);
+};
+
+TElement *CreateElementFunction(TMainTree *_Tree,TMetaNode* MetaNode);
+void KillElement(TElement *EL);
+TElement *CreateElementFunction(TMainTree *_Tree,int _METAID);
+
+class TUndoStack {
+public:
+    TUndoStack();
+    ~TUndoStack();
+    void OpenSessionC(char* Name);
+    void CloseSession();
+    void BreakSession();
+    bool Opened();
+};
+
+class TDriver {
+public:
+    TDriver();
+    ~TDriver();
+    int MainMode;
+    int CorrectMode;
+    void Init(TElement *_Element,bool IgnoreAuto,TElement* UseFloor=NULL);
+    bool Check();
+    bool Stop();
+    void Clear();
+    tolua_readonly int PreLinksCount;
+    TLinkInfo& GetPreLink(int index);
+};

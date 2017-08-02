@@ -1,0 +1,30 @@
+object DrawView: TDrawView
+  Left = 431
+  Top = 265
+  Align = alClient
+  BorderStyle = bsNone
+  Caption = 'DrawView'
+  ClientHeight = 237
+  ClientWidth = 321
+  Color = clBtnFace
+  Constraints.MinHeight = 200
+  Constraints.MinWidth = 250
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poDefault
+  OnCreate = FormCreate
+  OnDblClick = FormDblClick
+  OnDestroy = FormDestroy
+  OnMouseDown = FormMouseDown
+  OnMouseMove = FormMouseMove
+  OnMouseWheel = FormMouseWheel
+  OnPaint = FormPaint
+  OnResize = FormResize
+  PixelsPerInch = 96
+  TextHeight = 13
+end

@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\..\BIN\CommonAL.bpl"/>
+    <OBJFILES value="..\..\OBJ\CommonAL.obj ..\..\OBJ\MTL.obj ..\..\OBJ\MyTemplates.obj 
+      ..\..\OBJ\Poligon.obj ..\..\OBJ\QuckList.obj ..\..\OBJ\Triangulation.obj 
+      ..\..\OBJ\Usefuls.obj ..\..\OBJ\MDIObjectEditV.obj 
+      ..\..\OBJ\SimpleEditV.obj ..\..\OBJ\MDISignVectorEditV.obj 
+      ..\..\OBJ\MDIBoolVectorEditV.obj ..\..\OBJ\MDIVectorEditV.obj 
+      ..\..\OBJ\DelegateEventV.obj ..\..\OBJ\MyGL.obj ..\..\OBJ\ContainerV.obj 
+      ..\..\OBJ\ListV.obj ..\..\OBJ\FreeListV.obj ..\..\OBJ\LuaAttributeV.obj 
+      ..\..\OBJ\MyMDIChildV.obj ..\..\OBJ\FloatingV.obj ..\..\OBJ\MyRegTreeV.obj 
+      ..\..\OBJ\BaseFormV.obj ..\..\OBJ\BaseDockSiteFormV.obj"/>
+    <RESFILES value="CommonAL.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) MDIObjectEditV.dfm SimpleEditV.dfm MDISignVectorEditV.dfm 
+      MDIBoolVectorEditV.dfm MDIVectorEditV.dfm MyMDIChildV.dfm FloatingV.dfm 
+      BaseFormV.dfm BaseDockSiteFormV.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="rtl.lib vis30p5c.lib vcl.lib"/>
+    <PACKAGES value="rtl.bpi vis30p5c.bpi vcl.bpi MathAL.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
+    <MAINSOURCE value="CommonAL.cpp"/>
+    <INCLUDEPATH value="\\q1\Config;$(BCB)\include;$(BCB)\include\vcl;..\Math;..\Visit"/>
+    <LIBPATH value="c:\config\lib;&quot;c:\development\components\mwa jpeg&quot;;\\q1\Config;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I\\q1\Config -I$(BCB)\include -I$(BCB)\include\vcl -I..\Math -I..\Visit 
+      -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c -tWM"/>
+    <PFLAGS value="-N2..\..\OBJ -N0..\..\OBJ -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-l..\..\LIB -I..\..\OBJ -D&quot;Common Algorithm Library&quot; -aa -Tpp -Gpr -x -Gn 
+      -Gl -Gi -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0pkg32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="CommonAL.res" FORMNAME="" UNITNAME="CommonAL.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="CommonAL.cpp" FORMNAME="" UNITNAME="CommonAL" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\BIN\rtl.bpi" FORMNAME="" UNITNAME="rtl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MTL.cpp" FORMNAME="" UNITNAME="MTL" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyTemplates.cpp" FORMNAME="" UNITNAME="MyTemplates" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Poligon.cpp" FORMNAME="" UNITNAME="Poligon" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="QuckList.cpp" FORMNAME="" UNITNAME="QuckList" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Triangulation.cpp" FORMNAME="" UNITNAME="Triangulation" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Usefuls.cpp" FORMNAME="" UNITNAME="Usefuls" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\BIN\vis30p5c.bpi" FORMNAME="" UNITNAME="vis30p5c" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="C:\BIN\vcl.bpi" FORMNAME="" UNITNAME="vcl" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIObjectEditV.cpp" FORMNAME="MDIObjectEdit" UNITNAME="MDIObjectEditV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SimpleEditV.cpp" FORMNAME="MDISimpleEdit" UNITNAME="SimpleEditV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDISignVectorEditV.cpp" FORMNAME="MDISIGNVECEDIT" UNITNAME="MDISignVectorEditV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIBoolVectorEditV.cpp" FORMNAME="MDIBOOLVECEDIT" UNITNAME="MDIBoolVectorEditV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIVectorEditV.cpp" FORMNAME="MDIVECEDIT" UNITNAME="MDIVectorEditV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DelegateEventV.cpp" FORMNAME="" UNITNAME="DelegateEventV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyGL.cpp" FORMNAME="" UNITNAME="MyGL" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ContainerV.cpp" FORMNAME="" UNITNAME="ContainerV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ListV.cpp" FORMNAME="" UNITNAME="ListV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="FreeListV.cpp" FORMNAME="" UNITNAME="FreeListV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LuaAttributeV.cpp" FORMNAME="" UNITNAME="LuaAttributeV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyMDIChildV.cpp" FORMNAME="MyMDIChild" UNITNAME="MyMDIChildV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="FloatingV.cpp" FORMNAME="FloatForm" UNITNAME="FloatingV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyRegTreeV.cpp" FORMNAME="" UNITNAME="MyRegTreeV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="\\dimasomna\K\Shared\(WORK)\Config_\LIB\MathAL.bpi" FORMNAME="" UNITNAME="MathAL" CONTAINERID="BPITool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="BaseFormV.cpp" FORMNAME="BaseForm" UNITNAME="BaseFormV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="BaseDockSiteFormV.cpp" FORMNAME="BaseDockSiteForm" UNITNAME="BaseDockSiteFormV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=1
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=6
+Item0=$(BCB)\include;$(BCB)\include\vcl;..\Math;..\Visit
+Item1=C:\Program Files\Borland\CBuilder6\Projects;..\..;$(BCB)\include;$(BCB)\include\vcl;..\Include;..\Visit
+Item2=$(BCB)\include;$(BCB)\include\vcl;..\Include;..\Visit
+Item3=..\;..\KERNEL;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\Include;..\Visit
+Item4=..\KERNEL;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\Include;..\Visit
+Item5=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=6
+Item0=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item1=C:\Program Files\Borland\CBuilder6\Projects;..\..;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item2=..\;..\KERNEL;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item3=..\KERNEL;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item4=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\include
+Item5=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=1
+Item0=..\..\OBJ
+
+[HistoryLists\hlFinalOutputDir]
+Count=2
+Item0=..\..\BIN\
+Item1=..\..\BIN
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=..\..\LIB
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Linker]
+LibPrefix=
+LibSuffix=
+LibVersion=
+  </IDEOPTIONS>
+</PROJECT>

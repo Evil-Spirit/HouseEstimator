@@ -1,0 +1,6 @@
+Build
+  [Pascal Error] GridRoutineU.pas(4284): Missing operator or semicolon
+  [Pascal Error] GridRoutineU.pas(4284): Statement expected, but expression of type 'Pointer' found
+  [Pascal Error] GridRoutineU.pas(4309): Expression expected but 'AND' found
+  [Pascal Error] GridRoutineU.pas(4309): Missing operator or semicolon
+  [Pascal Fatal Error] pasall.tmp(3): Could not compile used unit 'C:\Config\Source\GridEdit\GridRoutineU.pas'

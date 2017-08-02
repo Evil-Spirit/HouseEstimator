@@ -1,0 +1,45 @@
+enum THitTest { htAbove, htBelow, htNowhere, htOnItem, htOnButton, htOnIcon, htOnIndent, htOnLabel, htOnRight, htOnStateIcon, htToLeft, htToRight };
+typedef Set <THitTest, htAbove, htToRight> THitTests;
+
+class TCustomTabControl : public TWinControl
+{
+    public:
+    TCustomTabControl(TComponent* AOwner);
+    ~TCustomTabControl();
+    int IndexOfTabAt(int X, int Y);
+    THitTests GetHitTestInfoAt(int X, int Y);
+    TRect TabRect(int Index);
+    int RowCount();
+    void ScrollTabs(int Delta);
+    tolua_readonly TCanvas* Canvas;
+};
+
+class TPageControl;
+
+class TTabSheet : public TWinControl
+{
+    public:
+    bool Highlighted;
+    TImageIndex ImageIndex;
+    int PageIndex;
+    bool TabVisible;
+
+    TTabSheet(TComponent* AOwner);
+    ~TTabSheet();
+    TPageControl* PageControl;
+    tolua_readonly int TabIndex;
+};
+
+class TPageControl : public TCustomTabControl
+{
+    public:
+    TTabSheet* ActivePage;
+
+    TPageControl(TComponent* AOwner)
+    ~TPageControl();
+    TTabSheet* FindNextPage(TTabSheet* CurPage, bool GoForward, bool CheckTabVisible);
+    void SelectNextPage(bool GoForward, bool CheckTabVisible);
+    int ActivePageIndex;
+    tolua_readonly int PageCount;
+    tolua_readonly TTabSheet* Pages[LUA_N];
+};

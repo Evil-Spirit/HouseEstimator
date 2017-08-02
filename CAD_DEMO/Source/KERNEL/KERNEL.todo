@@ -1,0 +1,39 @@
+{TODO : Нет функции registerfor и т.д. исправить в LUA}
+{TODO 1 : Сделать в mdipointerlistedit создание объекта по шаблону или по statictype}
+{TODO 1 :
+void Triangulate(THoledPolygon* HP,TMDelTList<TIntVec>* Triangles);
+в Lua заменить на Delone.triangulate}
+{TODO 1 : Исправить в Lua функцию GetTotalArea}
+
+{TODO 1 : 
+void TSelect::Terminate()
+комментарии}
+{TODO 1 :
+void TSelect::SetElement(TElement *El)
+закоментарены actions}
+{TODO 1 : в  OutPut отключен doubleclick, из-за требования MDIConfig}
+{TODO 1 : сделать форму для archivars}
+
+
+{TODO 1 : 
+при переделке функции createMetafunction
+создание dynamiclink было изменено но не провререно}
+{TODO 1 : Определиться где добавлять в MetaNodeSupport суппорты и где editable objects}
+{TODO 1 :
+Почему в MetaNodeCollection при записи 
+обнулялись MAE,LINKS,ITD}
+{TODO 1 : Подключить редактирование основных дефаултов}
+{TODO 1 : 
+TMyActionSettings::Apply отключен
+это проверка на активацию соотв контролов}
+{TODO 1 : Сделать функцию TMetaNodeCollection::Validate автоматической}
+
+{TODO 1 : проверить что работает в mdiluaeditor Application->MainForm->IsShortCut(Msg)}
+{TODO 1 : в Config включить проверку tbLua_Edit->Visible на MDILUAEDITOR}
+{TODO 1 : в Config отключить StdOut и перенаправить в Usefuls}
+{TODO 1 -oIntExplorerV : Select->FMetaElement->MAS.Apply(Config->miTransformation,true)  в функции start}
+
+{TODO 1 : в IntExplorer отключен FillToolBar на ObjectClick}
+{TODO  : Скачать у Леши библиотеку}
+
+{TODO 1 : Исправить в Lua FillCompletePolygon}

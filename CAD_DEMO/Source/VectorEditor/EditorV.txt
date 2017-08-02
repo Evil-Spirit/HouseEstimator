@@ -1,0 +1,469 @@
+//---------------------------------------------------------------------------
+#include "math.h"
+#include "Usefuls.h"
+#include "MTL.h"
+#include "MyTemplates.h"
+#include <vcl.h>
+#include <Poligon.h>
+#pragma hdrstop
+
+#include "EditorV.h"
+
+#include "Controls.hpp"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma link "VisAttr"
+#pragma link "VisCam"
+#pragma link "VisCanvasView"
+#pragma link "VisClass"
+#pragma link "VisComp"
+#pragma link "VisMat"
+#pragma link "VisObj"
+#pragma link "VisPrimitiveObj"
+#pragma link "VisShape"
+#pragma link "VisView"
+#pragma link "VisLight"
+#pragma link "VisTex"
+
+#pragma link "VisGeom"
+#pragma link "VisCustomObj"
+#pragma resource "*.dfm"
+
+TEditor2D *Editor2D;
+MBTi PZOOM = 0.01;
+
+__fastcall TEditor2D::TEditor2D(TComponent* Owner)
+    :TForm(Owner)
+{
+    MyControls.Matrix.Add(new TMDelTList<TBaseTool>());
+    MyControls.Matrix.Add(new TMDelTList<TBaseTool>());
+    MyControls.Matrix.Add(new TMDelTList<TBaseTool>());
+    MyControls.Matrix.Add(new TMDelTList<TBaseTool>());
+
+    MyControls.Matrix[3].Add(new TSelect);
+    MyControls.Matrix[2].Add(new TCreateObjectLines());
+    MyControls.Matrix[2].Add(new TAdditionalBox(false));
+//    MyControls.Matrix[0].Add(new TAdditionalCutsDraw());
+    MyControls.Matrix[1].Add(new TAdditionalInfinityLine);
+    MyControls.Matrix[1].Add(new TAdditionalInfinityVGLine(0,1));
+    MyControls.Matrix[1].Add(new TAdditionalInfinityVGLine(1,0));
+    MyControls.Matrix[1].Add(new TAdditionalCut);
+    MyControls.Matrix[1].Add(new TAdditionalInfinityPerLine);
+    MyControls.Matrix[1].Add(new TAdditionalInfinityParLine);
+    MyControls.Matrix[1].Add(new TAdditionalDivLine);
+    MyControls.Matrix[1].Add(new TAdditionalBox(true));
+    MyControls.Matrix[0].Add(new TSeparationAreaView);
+
+    MyControls.ActiveIndices.Add(new int(0));
+    MyControls.ActiveIndices.Add(new int(0));
+    MyControls.ActiveIndices.Add(new int(0));
+    MyControls.ActiveIndices.Add(new int(0));
+    MyControls.ActiveList=0;
+
+    for (int i=0;i<MyControls.Matrix.Count;i++)
+    {
+        TAction* Action = new TAction(AL);
+        Action->ActionList = AL;
+        Action->OnExecute = ActionExecute;
+        Action->Tag = i;
+
+        TToolButton* TB = new TToolButton(this);
+        if (MyControls.Matrix[i].Count>1)
+        {
+            TB->Style = tbsDropDown;
+            TPopupMenu* PM = new TPopupMenu(this);
+            TB->DropdownMenu = PM;
+            PM->Images = ImageList;
+            PM->Tag = i;
+            for (int j=0;j<MyControls.Matrix[i].Count;j++)
+            {
+                TMenuItem* MI = new TMenuItem(PM);
+                MI->Caption = MyControls.Matrix[i][j].Description;
+                MI->ImageIndex = MyControls.Matrix[i][j].ImageId;
+                MI->OnClick = PopupMenuItemClick ;
+                PM->Items->Add(MI);
+                MI->Tag = j;
+            }
+        }
+        else
+        {
+            TB->Style = tbsButton;
+        }
+        TB->Action = Action;
+        TB->Parent = ToolBar;
+    }
+
+    GridSnap = true;
+    AdditionalLinesSnap = true;
+}
+
+TIntVec TEditor2D::AllSnap(TIntVec Point, bool _GridSnap, bool _AdditionalLineSnap, bool TCFSnap, bool _Selected, MBTi SnapValue)
+{
+    if (AdditionalLinesSnap && _AdditionalLineSnap)
+    {
+        for (int i = 0; i < CustomFigures.Count; i++)
+        {
+            if (_Selected){
+                int Index = Selection.FindFigure(CustomFigures.Items[i]);
+                if (Index != -1)
+                    continue;
+            }
+            if (typeid(CustomFigures[i]) == typeid(TCustomFigure))
+            {
+                TCustomFigure* CFi = (TCustomFigure*)CustomFigures.Items[i];
+                if (CFi->Additional)
+                    for (int j = 0; j < CFi->CutsCount; j++)
+                        LinesAndCuts.Add(new TLinesAndCuts(CFi->GetCut(j).Src->Point, CFi->GetCut(j).Dst->Point, false));
+            }
+            if (typeid(CustomFigures[i]) == typeid(TInfinityLine))
+            {
+                TInfinityLine* ILi = (TInfinityLine*)CustomFigures.Items[i];
+                for (int j = 0; j < ILi->CutsCount; j++)
+                     LinesAndCuts.Add(new TLinesAndCuts(ILi->GetCut(j).Src->Point, ILi->GetCut(j).Dst->Point, true));
+            }
+        }
+        for (int i = 0; i < LinesAndCuts.Count-1; i++)
+            for (int j = i+1; j < LinesAndCuts.Count; j++)
+            {
+                  TIntVec V;
+                  int ICC = -1;
+                  if (!LinesAndCuts[i].Infinity && !LinesAndCuts[j].Infinity)
+                      ICC = IsCutsCrossedExactly(LinesAndCuts[i].Point1,
+                                                 LinesAndCuts[i].Point2,
+                                                 LinesAndCuts[j].Point1,
+                                                 LinesAndCuts[j].Point2,V);
+                  if (LinesAndCuts[i].Infinity && !LinesAndCuts[j].Infinity)
+                      ICC = IsLineAndCutCrossedExactly(LinesAndCuts[i].Point1,
+                                                       LinesAndCuts[i].Point2,
+                                                       LinesAndCuts[j].Point1,
+                                                       LinesAndCuts[j].Point2,V);
+                  if (!LinesAndCuts[i].Infinity && LinesAndCuts[j].Infinity)
+                      ICC = IsLineAndCutCrossedExactly(LinesAndCuts[j].Point1,
+                                                       LinesAndCuts[j].Point2,
+                                                       LinesAndCuts[i].Point1,
+                                                       LinesAndCuts[i].Point2,V);
+                  if (LinesAndCuts[i].Infinity && LinesAndCuts[j].Infinity)
+                      ICC = IsLinesCrossedExactly(LinesAndCuts[i].Point1,
+                                                  LinesAndCuts[i].Point2,
+                                                  LinesAndCuts[j].Point1,
+                                                  LinesAndCuts[j].Point2,V);
+                  if (ICC == lcCROSSING || ICC == lcCOMMONPOINT)
+                  {
+                        MBTi SV = 5;
+                        MBTi SVF = fabs(ScreenToProject(SV,0).x - ScreenToProject(0,0).x);
+                        if (V.Equal2D(Point,SVF))
+                        {
+                            LinesAndCuts.Clear();
+                            return V;
+                        }
+                  }
+            }
+        LinesAndCuts.Clear();
+    }
+    bool BoolCF = false;
+    TIntVec V;
+    int CutIndex;
+    if (AdditionalLinesSnap && _AdditionalLineSnap)
+        for (int i = 0; i < CustomFigures.Count && !BoolCF; i++)
+            if (CustomFigures[i].Additional || TCFSnap)
+            {
+/*    if (AdditionalLinesSnap && _AdditionalLineSnap)
+        for (int i = 0; i < CustomFigures.Count && !BoolCF; i++)
+            if (CustomFigures[i].Additional || TCFSnap)
+            {
+                if (_Selected){
+                    int Index = Selection.FindFigure(CustomFigures.Items[i]);
+                    if (Index == -1)
+                    {
+                        if ( typeid(CustomFigures[i]) == typeid(TInfinityLine) )
+                            BoolCF = CustomFigures[i].Snap(Point, V, CutIndex, SnapValue, true);
+                    }else
+                        BoolCF = CustomFigures[i].Snap(Point, V, CutIndex, SnapValue, false);
+                }
+            }
+*/                bool b = true;
+                if (_Selected)
+                    for (int j = 0; j < Selected.Count && b; j++)
+                        if (Selected[j].CustomFigure == CustomFigures.Items[i])
+                            b = false;
+                if (b)
+                    if ( typeid(CustomFigures[i]) == typeid(TInfinityLine) )
+                        BoolCF = CustomFigures[i].Snap(Point, V, CutIndex, SnapValue, true);
+                    else
+                        BoolCF = CustomFigures[i].Snap(Point, V, CutIndex, SnapValue, false);
+            }
+    if (!BoolCF)
+        if (GridSnap && _GridSnap)
+            V = Grid.Snap(Point);
+        else
+            V = Point;
+    return V;
+}
+
+bool TEditor2D::AllFigureSnap(TIntVec Point, TIntVec& P1, TIntVec& P2, bool _AdditionalLineSnap, bool TCFSnap, MBTi SnapValue)
+{
+    bool BoolPoint = false;
+    bool BoolCF = false;
+    int MFIndex;
+    TIntVec P;
+    int CutIndex;
+    if (AdditionalLinesSnap && _AdditionalLineSnap)
+        for (int i = 0; i < CustomFigures.Count && !BoolCF; i++)
+            if (CustomFigures[i].Additional || TCFSnap)
+            if ( typeid(CustomFigures[i]) == typeid(TInfinityLine) )
+            {
+                BoolCF = CustomFigures[i].Snap(Point, P, CutIndex, SnapValue, true);
+                MFIndex = i;
+            }else
+            {
+                BoolCF = CustomFigures[i].Snap(Point, P, CutIndex, SnapValue, false);
+                MFIndex = i;
+            }
+    if (BoolCF)
+    {
+        P1 = CustomFigures[MFIndex].GetCut(CutIndex).Src->Point;
+        P2 = CustomFigures[MFIndex].GetCut(CutIndex).Dst->Point;
+    }
+    return BoolCF;
+}
+
+void TEditor2D::TestGrid(const TIntVec &V1,const TIntVec &V2)
+{
+    TIntVec P1 = ProjectToScreenF(TIntVec(0,0,0));
+    TIntVec P2 = ProjectToScreenF(TIntVec(Grid.Attr.Step,0,0));
+    double dist =fabs(P2.x-P1.x);
+    if (dist <= Grid.Attr.SwitchEpsilon)
+        Grid.Attr.ChangeMinToMax = true;
+    else
+        if (dist/Grid.Attr.Multiplier > Grid.Attr.Multiplier)
+            Grid.Attr.ChangeMaxToMin = true;
+}
+
+void __fastcall TEditor2D::VisView1Render(TVisView *aView)
+{
+    VisAttributes1->Render(aView);
+    VisLight1->Render(aView);
+
+    for(int i = 0; i < CustomFigures.Count; i++)
+        CustomFigures[i].Render(aView);
+
+    if (Grid.Attr.ReBuild)
+    {
+        TIntVec V1 = ScreenToProject(0,VisView1->Height);
+        TIntVec V2 = ScreenToProject(VisView1->Width,0);
+        TestGrid(V1,V2);
+        Grid.Create(V1,V2);
+        Grid.Attr.ReBuild = false;
+    }
+
+    Grid.Render(aView);
+    MyControls.Render(aView);
+}
+
+TIntVec TEditor2D::ScreenToProject(MBTi x,MBTi y)
+{
+    MBTi k;
+    if(VisView1->Height < VisView1->Width)
+        k = VisOrtCam->ViewHeight / VisView1->Height;
+    else
+        k = VisOrtCam->ViewWidth / VisView1->Width;
+    TIntVec V;
+    V.x = (x - VisView1->Width / 2) * k;
+    V.y = ((VisView1->Height - y) - VisView1->Height / 2) * k;
+    V.z = 10;
+
+    return  V - TIntVec(VisOrtCam->Transformation->Translation->X,VisOrtCam->Transformation->Translation->Y,0);
+}
+
+TIntVec TEditor2D::ScreenToProject(const TPoint& P)
+{
+    return  ScreenToProject(P.x,P.y);
+}
+
+TPoint TEditor2D::ProjectToScreen(const TIntVec& Vv)
+{
+    MBTi k;
+    if(VisView1->Height < VisView1->Width)
+        k = VisView1->Height / VisOrtCam->ViewHeight;
+    else
+        k = VisView1->Width / VisOrtCam->ViewWidth;
+    TPoint P;
+    TIntVec V = Vv + TIntVec(VisOrtCam->Transformation->Translation->X,VisOrtCam->Transformation->Translation->Y,0);
+    P.x = V.x * k + VisView1->Width / 2;
+    P.y = VisView1->Height-(V.y * k + VisView1->Height / 2);
+    return  P;
+}
+
+TIntVec TEditor2D::ProjectToScreenF(const TIntVec& Vv)
+{
+    MBTi k;
+    if(VisView1->Height < VisView1->Width)
+        k = VisView1->Height / VisOrtCam->ViewHeight;
+    else
+        k = VisView1->Width / VisOrtCam->ViewWidth;
+    TIntVec P;
+    TIntVec V = Vv + TIntVec(VisOrtCam->Transformation->Translation->X,VisOrtCam->Transformation->Translation->Y,0);
+    P.x = V.x * k + VisView1->Width / 2;
+    P.y = VisView1->Height-(V.y * k + VisView1->Height / 2);
+    return  P;
+}
+
+void __fastcall TEditor2D::VisView1Click(TObject *Sender)
+{
+//    MainCF.AddCut(ScreenToProject(random(VisView1->Width),random(VisView1->Height)),ScreenToProject(random(VisView1->Width),random(VisView1->Height)));
+////    TPoint P = ScreenToClient(Mouse->CursorPos);
+////    MainCF.AddPoint(ScreenToProject(P));
+//    VisView1->InvalidateGL();
+}
+//---------------------------------------------------------------------------
+void __fastcall TEditor2D::VisView1MouseWheel(TObject *Sender,
+      TShiftState Shift, int WheelDelta, TPoint &MousePos, bool &Handled)
+{
+    if (Grid.Attr.Step > Grid.Attr.ZoomLimit && WheelDelta<0)
+        return;
+    if (Grid.Attr.Step < (MBTi)1/Grid.Attr.ZoomLimit && WheelDelta>0)
+        return;
+    TIntVec V = ScreenToProject( VisView1->ScreenToClient(MousePos) );
+
+    MBTi wd = MBTi(WheelDelta);
+    VisOrtCam->ViewWidth -= wd*Grid.Attr.ZoomStep*VisOrtCam->ViewWidth;
+    VisOrtCam->ViewHeight -= wd*Grid.Attr.ZoomStep*VisOrtCam->ViewHeight;
+
+    TIntVec V1 = ScreenToProject( VisView1->ScreenToClient(MousePos) ) - V;
+
+
+    VisOrtCam->Transformation->Translation->incX(V1.x);
+    VisOrtCam->Transformation->Translation->incY(V1.y);
+    Grid.Attr.ReBuild = true;
+}
+
+
+
+//---------------------------------------------------------------------------
+
+void __fastcall TEditor2D::FormShow(TObject *Sender)
+{
+    ::SetFocus(VisView1->Handle);
+}
+
+void __fastcall TEditor2D::VisView1MouseDown(TObject *Sender,
+      TMouseButton Button, TShiftState Shift, int X, int Y)
+{
+    MyControls.MouseDown(this, Button, Shift, TPoint(X,Y));
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditor2D::VisView1MouseUp(TObject *Sender,
+      TMouseButton Button, TShiftState Shift, int X, int Y)
+{
+    MyControls.MouseUp(this, Button, Shift, TPoint(X,Y));
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditor2D::VisView1KeyDown(TObject *Sender, WORD &Key,
+      TShiftState Shift)
+{
+    MyControls.KeyDown(this, Key, Shift);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditor2D::VisView1KeyUp(TObject *Sender, WORD &Key,
+      TShiftState Shift)
+{
+    MyControls.KeyUp(this, Key, Shift);
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall TEditor2D::PopupMenuItemClick(TObject *Sender)
+{
+    if ( Sender->ClassType() == __classid(TMenuItem) )
+    {
+        TMenuItem* MI = (TMenuItem*)Sender;
+        TMenu* Menu = MI->GetParentMenu();
+        MyControls.ActiveList = Menu->Tag;
+        MyControls.ActiveIndices[Menu->Tag] = MI->Tag;
+    }
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall TEditor2D::ApplicationEventsActionUpdate(
+      TBasicAction *_Action, bool &Handled)
+{
+    //без проверки
+    TAction* Action = (TAction*)_Action;
+    int ind = Action->Tag;
+        Action->ImageIndex =
+            MyControls.Matrix[ind][MyControls.ActiveIndices[ind]].ImageId;
+        Action->Caption =
+            MyControls.Matrix[ind][MyControls.ActiveIndices[ind]].Description;
+        Action->Hint =
+            MyControls.Matrix[ind][MyControls.ActiveIndices[ind]].Description;
+    Action->Checked = (ind == MyControls.ActiveList);
+    Action->Enabled=true;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditor2D::ActionExecute(TObject *Sender)
+{
+    //Без этого action not enabled
+    int i = 0;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TEditor2D::ALExecute(TBasicAction *Action, bool &Handled)
+{
+    MyControls.Exit();
+    MyControls.ActiveList = Action->Tag ;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditor2D::VisView1Resize(TObject *Sender)
+{
+    Grid.Attr.ReBuild = true;
+    VisView1->InvalidateGL();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditor2D::VisView1MouseMove(TObject *Sender,
+      TShiftState Shift, int X, int Y)
+{
+    TPoint P(X,Y);
+    TIntVec ObjectP = ScreenToProject(P);
+    TIntVec V = ObjectP - ScreenToProject(OldPoint);
+    //---------------------------------------------------------------
+    TVarRec args[2] = {ObjectP.x,ObjectP.y};
+    SB->Panels->Items[0]->Text = Format("X: %4.2f Y: %4.2f", args, 1);
+    //---------------------------------------------------------------
+    if (Shift.Contains(ssMiddle) && (VisOrtCam->Transformation->Translation->X <= 1000000 || V.x<=0)
+                                 && (VisOrtCam->Transformation->Translation->X >= -1000000 || V.x>0)
+                                 && (VisOrtCam->Transformation->Translation->Y <= 1000000 || V.y<=0)
+                                 && (VisOrtCam->Transformation->Translation->Y >= -1000000 || V.y>0))
+    {
+        VisOrtCam->Transformation->Translation->incX(V.x);
+        VisOrtCam->Transformation->Translation->incY(V.y);
+        VisView1->InvalidateGL();
+        Grid.Attr.ReBuild = true;
+    }
+    OldPoint.x = X;
+    OldPoint.y = Y;
+
+    MyControls.MouseMove(this, Shift, TPoint(X,Y));
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditor2D::ToolButton1Click(TObject *Sender)
+{
+    ProgramProperty->Visible = true;    
+}
+//---------------------------------------------------------------------------
+

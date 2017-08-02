@@ -1,0 +1,18 @@
+
+#include "Bind.h"
+
+$#include <vcl.h>
+$#include "Usefuls.h"                 
+$#include "MTL.h"
+$#include "MyTemplates.h"
+$#pragma hdrstop
+$#include "ElementV.h"
+
+
+class TPointer :public TMyObject {
+public:
+    TPointer();
+    virtual ~TPointer();
+    T* ADR;
+    TEMPLATE_BIND(T,TElement);
+};

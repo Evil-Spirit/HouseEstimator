@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\BIN\WebVer.exe"/>
+    <OBJFILES value="..\OBJ\WebVer.obj ..\OBJ\main.obj ..\OBJ\MyTemplates.obj ..\OBJ\World.obj 
+      ..\OBJ\childwin.obj ..\OBJ\about.obj ..\OBJ\MyGL.obj ..\OBJ\TBox.obj 
+      ..\OBJ\MetaClasses.obj ..\OBJ\MDI3DV.obj ..\OBJ\MDITVV.obj ..\OBJ\MTL.obj 
+      ..\OBJ\RMetaData.obj ..\OBJ\MDI3DUserV.obj ..\OBJ\Usefuls.obj 
+      ..\OBJ\Essences.obj ..\OBJ\InterFace.obj ..\OBJ\Poligon.obj 
+      ..\OBJ\Driver.obj ..\OBJ\z_All.obj ..\OBJ\OutPutV.obj 
+      ..\OBJ\MDICountReportV.obj ..\OBJ\LogicNode.obj ..\OBJ\SelectBMPV.obj 
+      ..\OBJ\LOGOV.obj ..\OBJ\UNDO.obj ..\OBJ\Select.obj ..\OBJ\MyControls.obj 
+      ..\OBJ\MDI2DV.obj ..\OBJ\DrawViewV.obj ..\OBJ\Building.obj 
+      ..\OBJ\QuckList.obj ..\OBJ\UI.obj ..\OBJ\MDIVisibleSelectFloorV.obj 
+      ..\OBJ\DynamicCast.obj ..\OBJ\LuaUniFormV.obj ..\OBJ\LinkGeometry.obj 
+      ..\OBJ\CounterBaseV.obj ..\OBJ\MDIViewSettingsV.obj ..\OBJ\PBV.obj 
+      ..\OBJ\MessageCentre.obj ..\OBJ\IntExplorerV.obj ..\OBJ\CatalogUnitV.obj 
+      ..\OBJ\MetaNodeCollection.obj ..\OBJ\RoofV.obj ..\OBJ\Triangulation.obj 
+      ..\OBJ\Bakilin.obj ..\OBJ\MDILuaEditorV.obj ..\OBJ\MYIMPORTV.obj 
+      ..\OBJ\MDIMetaTextureV.obj ..\OBJ\ExcelExchangeV.obj ..\OBJ\ELementV.obj 
+      ..\OBJ\RegisterModule.obj ..\OBJ\RenderParamV.obj"/>
+    <RESFILES value=""/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) main.dfm childwin.dfm about.dfm MDI3DV.dfm MDITVV.dfm 
+      MDI3DUserV.dfm OutPutV.dfm MDICountReportV.dfm SelectBMPV.dfm LOGOV.dfm 
+      MDI2DV.dfm DrawViewV.dfm MDIVisibleSelectFloorV.dfm LuaUniFormV.dfm 
+      MDIViewSettingsV.dfm PBV.dfm IntExplorerV.dfm MDILuaEditorV.dfm 
+      ExcelExchangeV.dfm RegisterModule.dfm"/>
+    <LIBFILES value="Editor\lua5_omf.lib Editor\lualib5_omf.lib ..\LIB\toluapp_102.lib 
+      ..\LIB\iuplua5_omf.lib ..\LIB\luacontrols5_omf.lib 
+      ..\LIB\iupcontrols_omf.lib ..\LIB\iup_omf.lib ..\LIB\chk.lib"/>
+    <LIBRARIES value="bcbsmp.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib bcbsmp.lib vclx.lib vis30p5c.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi vis30p5c.bpi"/>
+    <PATHCPP value=".;..\bakilin"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT;_RTLDLL;USEPACKAGES"/>
+    <MAINSOURCE value="WebVer.cpp"/>
+    <INCLUDEPATH value="&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\my_include;..\VisIt30\cbuilder\source;..\lua_include;..\tolua_include;..\bakilin"/>
+    <LIBPATH value="..\bakilin;..\BIN;$(BCB)\Projects\Lib;&quot;c:\documents and settings\russ\мои документы\новая папка&quot;;&quot;C:\Documents and Settings\russ\Мои документы\GEOM&quot;;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB;$(BCB)\Projects\Bpl"/>
+    <WARNINGS value="-w-pch -w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I&quot;C:\Program Files\Borland\CBuilder6\Projects&quot; -I$(BCB)\Imports 
+      -I$(BCB)\include -I$(BCB)\include\vcl -I..\my_include 
+      -I..\VisIt30\cbuilder\source -I..\lua_include -I..\tolua_include 
+      -I..\bakilin -src_suffix cpp -D_DEBUG"/>
+    <CFLAG1 value="-Od -H=$(BCB)\lib\vcld.csm -Vx -Ve -xp -X- -r- -a8 -b- -k -y -v -vi- -c 
+      -tW -tWM"/>
+    <PFLAGS value="-N2..\OBJ -N0..\OBJ -$Y+ -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-l..\LIB -I..\OBJ -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="WebVer.cpp" FORMNAME="" UNITNAME="WebVer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="main.cpp" FORMNAME="Config" UNITNAME="Main" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyTemplates.cpp" FORMNAME="" UNITNAME="MyTemplates" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="World.cpp" FORMNAME="" UNITNAME="World" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="childwin.cpp" FORMNAME="MDIChild" UNITNAME="ChildWin" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="about.cpp" FORMNAME="AboutBox" UNITNAME="about" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyGL.cpp" FORMNAME="" UNITNAME="MyGL" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="TBox.cpp" FORMNAME="" UNITNAME="TBox" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MetaClasses.cpp" FORMNAME="" UNITNAME="MetaClasses" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDI3DV.cpp" FORMNAME="MDI3D" UNITNAME="MDI3DV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDITVV.cpp" FORMNAME="MDITV" UNITNAME="MDITVV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MTL.cpp" FORMNAME="" UNITNAME="MTL" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="RMetaData.cpp" FORMNAME="" UNITNAME="RMetaData" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDI3DUserV.cpp" FORMNAME="MDI3DUser" UNITNAME="MDI3DUserV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Usefuls.cpp" FORMNAME="" UNITNAME="Usefuls" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Essences.cpp" FORMNAME="" UNITNAME="Essences" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="InterFace.cpp" FORMNAME="" UNITNAME="InterFace" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Poligon.cpp" FORMNAME="" UNITNAME="Poligon" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Driver.cpp" FORMNAME="" UNITNAME="Driver" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="z_All.cpp" FORMNAME="" UNITNAME="z_All" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="All.pkg" FORMNAME="" UNITNAME="All" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Editor\lua5_omf.lib" FORMNAME="" UNITNAME="lua5_omf.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Editor\lualib5_omf.lib" FORMNAME="" UNITNAME="lualib5_omf.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="OutPutV.cpp" FORMNAME="OutPut" UNITNAME="OutPutV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDICountReportV.cpp" FORMNAME="MDICountReport" UNITNAME="MDICountReportV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LogicNode.cpp" FORMNAME="" UNITNAME="LogicNode" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="SelectBMPV.cpp" FORMNAME="SelectBMP" UNITNAME="SelectBMPV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LOGOV.cpp" FORMNAME="Logo" UNITNAME="LOGOV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UNDO.cpp" FORMNAME="" UNITNAME="UNDO" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Select.cpp" FORMNAME="" UNITNAME="Select" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MyControls.cpp" FORMNAME="" UNITNAME="MyControls" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDI2DV.cpp" FORMNAME="MDI2D" UNITNAME="MDI2DV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DrawViewV.cpp" FORMNAME="DrawView" UNITNAME="DrawViewV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\LIB\toluapp_102.lib" FORMNAME="" UNITNAME="toluapp_102.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Building.cpp" FORMNAME="" UNITNAME="Building" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="QuckList.cpp" FORMNAME="" UNITNAME="QuckList" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UI.cpp" FORMNAME="" UNITNAME="UI" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIVisibleSelectFloorV.cpp" FORMNAME="MDIVisibleSelectFloor" UNITNAME="MDIVisibleSelectFloorV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DynamicCast.cpp" FORMNAME="" UNITNAME="DynamicCast" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LuaUniFormV.cpp" FORMNAME="LuaUniForm" UNITNAME="LuaUniFormV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LinkGeometry.cpp" FORMNAME="" UNITNAME="LinkGeometry" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="CounterBaseV.cpp" FORMNAME="" UNITNAME="CounterBaseV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIViewSettingsV.cpp" FORMNAME="MDIViewSettings" UNITNAME="MDIViewSettingsV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="PBV.cpp" FORMNAME="PB" UNITNAME="PBV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\LIB\iuplua5_omf.lib" FORMNAME="" UNITNAME="iuplua5_omf.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\LIB\luacontrols5_omf.lib" FORMNAME="" UNITNAME="luacontrols5_omf.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\LIB\iupcontrols_omf.lib" FORMNAME="" UNITNAME="iupcontrols_omf.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\LIB\iup_omf.lib" FORMNAME="" UNITNAME="iup_omf.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MessageCentre.cpp" FORMNAME="" UNITNAME="MessageCentre" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="IntExplorerV.cpp" FORMNAME="IntExplorer" UNITNAME="IntExplorerV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="CatalogUnitV.cpp" FORMNAME="" UNITNAME="CatalogUnitV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MetaNodeCollection.cpp" FORMNAME="" UNITNAME="MetaNodeCollection" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="RoofV.cpp" FORMNAME="" UNITNAME="RoofV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Triangulation.cpp" FORMNAME="" UNITNAME="Triangulation" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\bakilin\Bakilin.cpp" FORMNAME="" UNITNAME="Bakilin" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDILuaEditorV.cpp" FORMNAME="LuaEditor" UNITNAME="MDILuaEditorV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MYIMPORTV.cpp" FORMNAME="" UNITNAME="MYIMPORTV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIMetaTextureV.cpp" FORMNAME="" UNITNAME="MDIMetaTextureV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ExcelExchangeV.cpp" FORMNAME="ExcelExchange" UNITNAME="ExcelExchangeV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ELementV.cpp" FORMNAME="" UNITNAME="ELementV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="RegisterModule.cpp" FORMNAME="Form1" UNITNAME="RegisterModule" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="RenderParamV.cpp" FORMNAME="" UNITNAME="RenderParamV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\LIB\chk.lib" FORMNAME="" UNITNAME="chk.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=1
+MajorVer=1
+MinorVer=0
+Release=0
+Build=208
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.208
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=27
+Item0=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;..\my_include;..\VisIt30\cbuilder\source;..\lua_include;..\tolua_include;..\bakilin
+Item1=..\bakilin;C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;C:\Config\my_include;C:\Config\VisIt30\cbuilder\source;C:\Config\lua_include;C:\Config\bakilin;C:\Config\tolua_include
+Item2=C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;C:\Config\my_include;C:\Config\VisIt30\cbuilder\source;C:\Config\lua_include;C:\Config\bakilin;C:\Config\tolua_include
+Item3=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;C:\Config\my_include;C:\Config\VisIt30\cbuilder\source;C:\Config\lua_include;C:\Config\bakilin;C:\Config\tolua_include
+Item4=C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;C:\Config\my_include;C:\Config\VisIt30\cbuilder\source;C:\Config\lua_include;C:\Config\bakilin
+Item5=C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;C:\Config\my_include;C:\Config\VisIt30\cbuilder\source;C:\Config\lua_include
+Item6=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;C:\Config\my_include;C:\Config\VisIt30\cbuilder\source;C:\Config\lua_include
+Item7=C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;C:\Config\my_include;C:\Config\VisIt30\cbuilder\source
+Item8=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;C:\Config\my_include;C:\Config\VisIt30\cbuilder\source
+Item9=c:\documents and settings\russ\мои документы\новая папка;C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\my_include;C:\Program Files\Signsoft\VisIt30\cbuilder\source
+Item10=C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\my_include;C:\Program Files\Signsoft\VisIt30\cbuilder\source
+Item11=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\my_include;C:\Program Files\Signsoft\VisIt30\cbuilder\source
+Item12=$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\my_include;C:\Program Files\Signsoft\VisIt30\cbuilder\source
+Item13=C:\Documents and Settings\russ\Рабочий стол\images;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\my_include;C:\Program Files\Signsoft\VisIt30\cbuilder\source
+Item14=C:\Program Files\Borland\CBuilder6\Projects;C:\Documents and Settings\russ\Рабочий стол\images;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\my_include
+Item15=C:\Documents and Settings\russ\Рабочий стол\images;$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\my_include
+Item16=$(BCB)\Imports;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\my_include
+Item17=C:\Documents and Settings\russ\Рабочий стол\images;Editor;$(BCB)\Imports;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\my_include
+Item18=Editor;$(BCB)\Imports;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;$(BCB)\include\my_include
+Item19=Editor;$(BCB)\Imports;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item20=$(BCB)\Imports;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item21=C:\Documents and Settings\russ\Рабочий стол\Новая папка (3)\images;C:\Documents and Settings\russ\Рабочий стол\images;..;c:\program files\borland\cbuilder6\Lib;C:\Documents and Settings\Administrator\Desktop\images;$(BCB)\Imports;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item22=C:\Documents and Settings\russ\Рабочий стол\images;..;c:\program files\borland\cbuilder6\Lib;C:\Documents and Settings\Administrator\Desktop\images;$(BCB)\Imports;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item23=..;c:\program files\borland\cbuilder6\Lib;C:\Documents and Settings\Administrator\Desktop\images;$(BCB)\Imports;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item24=..\;c:\program files\borland\cbuilder6\Lib;C:\Documents and Settings\Administrator\Desktop\images;$(BCB)\Imports;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item25=c:\program files\borland\cbuilder6\Lib;C:\Documents and Settings\Administrator\Desktop\images;$(BCB)\Imports;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+Item26=C:\Documents and Settings\Administrator\Desktop\images;$(BCB)\Imports;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=25
+Item0=..\bakilin;..\BIN;$(BCB)\Projects\Lib;c:\documents and settings\russ\мои документы\новая папка;C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB;$(BCB)\Projects\Bpl
+Item1=..\BIN;$(BCB)\Projects\Lib;c:\documents and settings\russ\мои документы\новая папка;C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB;$(BCB)\Projects\Bpl
+Item2=$(BCB)\Projects\Lib;c:\documents and settings\russ\мои документы\новая папка;C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB;$(BCB)\Projects\Bpl
+Item3=C:\Documents and Settings\russ\Мои документы\GEOM;C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB;$(BCB)\Projects\Bpl
+Item4=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB;$(BCB)\Projects\Bpl
+Item5=$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB;$(BCB)\Projects\Bpl
+Item6=C:\Program Files\Borland\CBuilder6\Projects;C:\Documents and Settings\russ\Рабочий стол\images;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB;$(BCB)\Projects\Bpl
+Item7=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Projects\Lib;C:\Documents and Settings\russ\Рабочий стол\images;$(BCB)\include;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB;C:\Program Files\Borland\CBuilder6\Projects\Bpl
+Item8=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\Projects\Lib;C:\Documents and Settings\russ\Рабочий стол\images;$(BCB)\include;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB
+Item9=$(BCB)\include;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ;..\LIB
+Item10=$(BCB)\Projects\Lib;C:\Documents and Settings\russ\Рабочий стол\images;$(BCB)\include;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\OBJ
+Item11=$(BCB)\Projects\Lib;C:\Documents and Settings\russ\Рабочий стол\images;$(BCB)\include;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;..\..\OBJ
+Item12=$(BCB)\Projects\Lib;C:\Documents and Settings\russ\Рабочий стол\images;$(BCB)\include;$(BCB)\Imports;$(BCB)\lib\obj;$(BCB)\lib;c:\config\OBJ
+Item13=$(BCB)
+  </IDEOPTIONS>
+</PROJECT>

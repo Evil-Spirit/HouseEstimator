@@ -1,0 +1,3 @@
+{TODO : CreateLink заменен на CreateLinkFunction}
+{TODO 1 : Отремонтировать tolua так чтобы при перегенерации работал operator[] на доступ}
+ 

@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="..\..\BIN\pConfig.exe"/>
+    <OBJFILES value="..\..\OBJ\pConfig.obj ..\..\OBJ\about.obj ..\..\OBJ\CounterBaseV.obj 
+      ..\..\OBJ\DynamicCast.obj ..\..\OBJ\ExcelExchangeV.obj ..\..\OBJ\LOGOV.obj 
+      ..\..\OBJ\MDIConfigV.obj ..\..\OBJ\MDICountReportV.obj 
+      ..\..\OBJ\MDICubeV.obj ..\..\OBJ\MDIMetaActionListV.obj 
+      ..\..\OBJ\MDIMetaActionV.obj ..\..\OBJ\MDIMetaMenuItemV.obj 
+      ..\..\OBJ\MDIMetaPlatformV.obj ..\..\OBJ\MDIMetaRoomV.obj 
+      ..\..\OBJ\MDIMetaUIV.obj ..\..\OBJ\MDINomenclatureV.obj 
+      ..\..\OBJ\MDIVisibleSelectFloorV.obj ..\..\OBJ\MetaInterface.obj 
+      ..\..\OBJ\UI.obj ..\..\OBJ\ArchitectElementV.obj ..\..\OBJ\PlatformV.obj 
+      ..\..\OBJ\WallV.obj ..\..\OBJ\RoomV.obj ..\..\OBJ\NomenclatureV.obj 
+      ..\..\OBJ\RegisterArchitectureV.obj ..\..\OBJ\ArchitectureSupportV.obj 
+      ..\..\OBJ\MDITriggerBlockEditV.obj ..\..\OBJ\ClassExplorerV.obj 
+      ..\..\OBJ\Main.obj ..\..\OBJ\RoofV.obj ..\..\OBJ\RoofEditV.obj 
+      ..\..\OBJ\LoginForm.obj"/>
+    <RESFILES value="pConfig.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) about.dfm ExcelExchangeV.dfm LOGOV.dfm MDIConfigV.dfm 
+      MDICountReportV.dfm MDIMetaUIV.dfm MDINomenclatureV.dfm 
+      MDIVisibleSelectFloorV.dfm ..\KERNEL\MDITriggerBlockEditV.dfm 
+      ClassExplorerV.dfm Main.dfm RoofEditV.dfm LoginForm.dfm"/>
+    <LIBFILES value="..\..\LIB\Roof.lib ..\..\LIB\memmgr.lib ..\..\LIB\pCompose.lib 
+      ..\..\LIB\tolua_103.lib ..\..\LIB\Bind.lib ..\..\LIB\lua5_omf.lib 
+      ..\..\LIB\lualib5_omf.lib"/>
+    <LIBRARIES value="vcldb.lib dbrtl.lib SUIPackC6.lib"/>
+    <SPARELIBS value="vcl.lib rtl.lib CommonAL.lib vis30p5c.lib vclx.lib SUISkinC6.lib 
+      SUIPackC6.lib dbrtl.lib vcldb.lib"/>
+    <PACKAGES value="CommonAL.bpi IMGLIB.bpi KERNEL.bpi BaseTool.bpi GeomObject.bpi vcl.bpi 
+      rtl.bpi vis30p5c.bpi vclx.bpi MathAL.bpi SUISkinC6.bpi"/>
+    <PATHCPP value=".;..\KERNEL;..\Roof"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT;_RTLDLL;USEPACKAGES"/>
+    <MAINSOURCE value="pConfig.cpp"/>
+    <INCLUDEPATH value="&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;$(BCB)\include;$(BCB)\include\vcl;..\Math;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool;..\MainTools;..\LuaEnv;..\GeomObject;C:\development\components\suiskin2\Include\BCB6;C:\suiskin2\Include\BCB6"/>
+    <LIBPATH value="$(BCB)\Projects\Lib;c:\config\lib;..\Roof;&quot;c:\development\components\mwa jpeg&quot;;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;..\KERNEL;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON;..\LuaEnv;..\BaseTool;..\MainTools;..\VisIt;..\ImgLib;C:\suiskin\Packages"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I&quot;C:\Program Files\Borland\CBuilder6\Projects&quot; -I$(BCB)\include 
+      -I$(BCB)\include\vcl -I..\Math -I..\VisIt -I..\iup_include 
+      -I..\lexer_include -I..\lua_include -I..\tolua_include -I..\ROOF 
+      -I..\Compose -I..\KERNEL -I..\COMMON -I..\IMGLIB -I..\BaseTool 
+      -I..\MainTools -I..\LuaEnv -I..\GeomObject 
+      -IC:\development\components\suiskin2\Include\BCB6 
+      -IC:\suiskin2\Include\BCB6 -src_suffix cpp -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c -tW -tWM"/>
+    <PFLAGS value="-N2..\..\OBJ -N0..\..\OBJ -$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-l..\..\LIB -I..\..\OBJ -D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="pConfig.res" FORMNAME="" UNITNAME="pConfig.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="pConfig.cpp" FORMNAME="" UNITNAME="pConfig" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="about.cpp" FORMNAME="AboutBox" UNITNAME="about" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="CounterBaseV.cpp" FORMNAME="" UNITNAME="CounterBaseV.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DynamicCast.cpp" FORMNAME="" UNITNAME="DynamicCast.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ExcelExchangeV.cpp" FORMNAME="ExcelExchange" UNITNAME="ExcelExchangeV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LOGOV.cpp" FORMNAME="Logo" UNITNAME="LOGOV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIConfigV.cpp" FORMNAME="MDIConfig" UNITNAME="MDIConfigV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDICountReportV.cpp" FORMNAME="MDICountReport" UNITNAME="MDICountReportV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDICubeV.cpp" FORMNAME="" UNITNAME="MDICubeV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIMetaActionListV.cpp" FORMNAME="" UNITNAME="MDIMetaActionListV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIMetaActionV.cpp" FORMNAME="" UNITNAME="MDIMetaActionV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIMetaMenuItemV.cpp" FORMNAME="" UNITNAME="MDIMetaMenuItemV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIMetaPlatformV.cpp" FORMNAME="" UNITNAME="MDIMetaPlatformV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIMetaRoomV.cpp" FORMNAME="" UNITNAME="MDIMetaRoomV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIMetaUIV.cpp" FORMNAME="MDIMetaUI" UNITNAME="MDIMetaUIV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDINomenclatureV.cpp" FORMNAME="MDINomenclature" UNITNAME="MDINomenclatureV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MDIVisibleSelectFloorV.cpp" FORMNAME="MDIVisibleSelectFloor" UNITNAME="MDIVisibleSelectFloorV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="MetaInterface.cpp" FORMNAME="" UNITNAME="MetaInterface.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="UI.cpp" FORMNAME="" UNITNAME="UI.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\Roof.lib" FORMNAME="" UNITNAME="Roof.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\memmgr.lib" FORMNAME="" UNITNAME="memmgr.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\pCompose.lib" FORMNAME="" UNITNAME="pCompose.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\tolua_103.lib" FORMNAME="" UNITNAME="tolua_103.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\Bind.lib" FORMNAME="" UNITNAME="Bind.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ArchitectElementV.cpp" FORMNAME="" UNITNAME="ArchitectElementV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="PlatformV.cpp" FORMNAME="" UNITNAME="PlatformV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="WallV.cpp" FORMNAME="" UNITNAME="WallV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="RoomV.cpp" FORMNAME="" UNITNAME="RoomV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="NomenclatureV.cpp" FORMNAME="" UNITNAME="NomenclatureV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="RegisterArchitectureV.cpp" FORMNAME="" UNITNAME="RegisterArchitectureV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ArchitectureSupportV.cpp" FORMNAME="" UNITNAME="ArchitectureSupportV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\KERNEL\MDITriggerBlockEditV.cpp" FORMNAME="MDITriggerBlockEdit" UNITNAME="MDITriggerBlockEditV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ClassExplorerV.cpp" FORMNAME="ClassExplorer" UNITNAME="ClassExplorerV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Main.cpp" FORMNAME="Config" UNITNAME="Main" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\lua5_omf.lib" FORMNAME="" UNITNAME="lua5_omf.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\LIB\lualib5_omf.lib" FORMNAME="" UNITNAME="lualib5_omf.lib" CONTAINERID="LibTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\Roof\RoofV.cpp" FORMNAME="" UNITNAME="RoofV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="RoofEditV.cpp" FORMNAME="RoofForm" UNITNAME="RoofEditV" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="LoginForm.cpp" FORMNAME="frmLogin" UNITNAME="LoginForm" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+..\..\BIN\CommonAL.bpl=Common Algorithm Library
+
+[HistoryLists\hlIncludePath]
+Count=23
+Item0=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\Math;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool;..\MainTools;..\LuaEnv;..\GeomObject;C:\development\components\suiskin2\Include\BCB6;C:\suiskin2\Include\BCB6
+Item1=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\Math;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool;..\MainTools;..\LuaEnv;..\GeomObject;C:\development\components\suiskin2\Include\BCB6
+Item2=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\Math;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool;..\MainTools;..\LuaEnv;..\GeomObject
+Item3=$(BCB)\include;$(BCB)\include\vcl;..\Math;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool;..\MainTools;..\LuaEnv;..\GeomObject
+Item4=$(BCB)\include;$(BCB)\include\vcl;..\Math;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool;..\MainTools;..\LuaEnv
+Item5=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool;..\MainTools;..\LuaEnv
+Item6=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool;..\MainTools;..\LuaEnv
+Item7=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool;..\MainTools;..\LuaEnv
+Item8=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool;..\MainTools
+Item9=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB;..\BaseTool
+Item10=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON;..\IMGLIB
+Item11=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL;..\COMMON
+Item12=C:\Program Files\Borland\CBuilder6\Projects;..\Bind;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL
+Item13=..\Bind;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose;..\KERNEL
+Item14=..\Bind;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose
+Item15=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Compose
+Item16=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF
+Item17=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include;..\ROOF;..\Triangulation
+Item18=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include
+Item19=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt;..\iup_include;..\lexer_include;..\lua_include;..\tolua_include
+Item20=$(BCB)\include;$(BCB)\include\vcl;..\include;..\VisIt
+Item21=$(BCB)\include;$(BCB)\include\vcl;..\include
+Item22=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=16
+Item0=$(BCB)\Projects\Lib;c:\config\lib;..\Roof;c:\development\components\mwa jpeg;C:\Program Files\Borland\CBuilder6\Projects;..\KERNEL;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON;..\LuaEnv;..\BaseTool;..\MainTools;..\VisIt;..\ImgLib;C:\suiskin\Packages
+Item1=$(BCB)\Projects\Lib;c:\config\lib;..\Roof;c:\development\components\mwa jpeg;C:\Program Files\Borland\CBuilder6\Projects;..\KERNEL;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON;..\LuaEnv;..\BaseTool;..\MainTools;..\VisIt;..\ImgLib;C:\suiskin2\Packages
+Item2=$(BCB)\Projects\Lib;c:\config\lib;..\Roof;c:\development\components\mwa jpeg;C:\Program Files\Borland\CBuilder6\Projects;..\KERNEL;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON;..\LuaEnv;..\BaseTool;..\MainTools;..\VisIt;..\ImgLib
+Item3=..\Roof;c:\development\components\mwa jpeg;C:\Program Files\Borland\CBuilder6\Projects;..\KERNEL;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON;..\LuaEnv;..\BaseTool;..\MainTools;..\VisIt;..\ImgLib
+Item4=C:\Program Files\Borland\CBuilder6\Projects;..\KERNEL;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON;..\LuaEnv;..\BaseTool;..\MainTools;..\VisIt;..\ImgLib
+Item5=C:\Program Files\Borland\CBuilder6\Projects;..\KERNEL;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON;..\LuaEnv;..\BaseTool;..\MainTools;..\VisIt
+Item6=C:\Program Files\Borland\CBuilder6\Projects;..\KERNEL;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\COMMON;..\LuaEnv;..\BaseTool;..\MainTools
+Item7=C:\Program Files\Borland\CBuilder6\Projects;..\KERNEL;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item8=..\KERNEL;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item9=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item10=C:\Program Files\Borland\CBuilder6\Projects;..\Bind;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item11=..\Bind;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item12=C:\Program Files\Borland\CBuilder6\Projects;$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB
+Item13=$(BCB)\lib\obj;$(BCB)\lib;..\..\LIB;..\..\OBJ
+Item14=$(BCB)\lib\obj;$(BCB)\lib
+Item15=C:\Pro
+
+[HistoryLists\hlDebugSourcePath]
+Count=2
+Item0=..\KERNEL
+Item1=C:\SASHA\Config_new\Source\COMMON\;C:\SASHA\Config_new\Source\VisIt\
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[HistoryLists\hlIntOutputDir]
+Count=3
+Item0=..\..\OBJ
+Item1=
+Item2=..\..\OBJ\
+
+[HistoryLists\hlFinalOutputDir]
+Count=1
+Item0=..\..\BIN\
+
+[HistoryLists\hIBPIOutputDir]
+Count=1
+Item0=..\..\LIB
+
+[Debugging]
+DebugSourceDirs=..\KERNEL
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>
