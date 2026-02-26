@@ -1,11 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef EditorVH
 #define EditorVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "VisAttr.hpp"
 #include "VisCam.hpp"
 #include "VisCanvasView.hpp"
@@ -20,16 +21,7 @@
 #include "VisTex.hpp"
 #include "VisGeom.hpp"
 #include "VisCustomObj.hpp"
-#include <Buttons.hpp>
-#include <ComCtrls.hpp>
-#include <ToolWin.hpp>
 
-#include <Menus.hpp>
-#include <ExtCtrls.hpp>
-#include <ImgList.hpp>
-#include <AppEvnts.hpp>
-#include <ActnList.hpp>
-#include <Graphics.hpp>
 
 #include "MyEdit.h"
 #include "ViewV.h"
@@ -60,22 +52,22 @@ __published:	// IDE-managed Components
     TToolButton *TBZoomSub;
     TToolButton *TBIdle;
     TToolButton *TBViewAll;
-    void __fastcall FormShow(TObject *Sender);
-    void __fastcall PopupMenuItemClick(TObject *Sender);
-    void __fastcall ActionExecute(TObject *Sender);
-    void __fastcall ALExecute(TBasicAction *Action, bool &Handled);
-    void __fastcall TBPropertyClick(TObject *Sender);
-    void __fastcall TBViewAllClick(TObject *Sender);
-    void __fastcall ALUpdate(TBasicAction *Action, bool &Handled);
-    void __fastcall TBZoomAddClick(TObject *Sender);
-    void __fastcall TBZoomSubClick(TObject *Sender);
-    void __fastcall FormResize(TObject *Sender);
+    void  FormShow(TObject *Sender);
+    void  PopupMenuItemClick(TObject *Sender);
+    void  ActionExecute(TObject *Sender);
+    void  ALExecute(TBasicAction *Action, bool &Handled);
+    void  TBPropertyClick(TObject *Sender);
+    void  TBViewAllClick(TObject *Sender);
+    void  ALUpdate(TBasicAction *Action, bool &Handled);
+    void  TBZoomAddClick(TObject *Sender);
+    void  TBZoomSubClick(TObject *Sender);
+    void  FormResize(TObject *Sender);
 private:	// User declarations
 //    TMDelTList< TMDelTList<TCutsToInt> > CutsToInt;
     bool FInvalidated;
 public:		// User declarations
     TMyView* MyView;
-    __fastcall TEditor2D(TComponent* Owner);
+     TEditor2D(TComponent* Owner);
     TGrid Grid;
     int NumberButtonDown;
     TMyEditorControls MyControls;
@@ -101,9 +93,9 @@ public:		// User declarations
           TShiftState Shift);
     void EditorMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
-    __property bool Invalidated = {read = FInvalidated};
+    // __property bool Invalidated {read=FInvalidated}; // [manual migration needed]
     void PostRePaint();
 };
-extern PACKAGE TEditor2D *Editor2D;
+extern  TEditor2D *Editor2D;
 //---------------------------------------------------------------------------
 #endif

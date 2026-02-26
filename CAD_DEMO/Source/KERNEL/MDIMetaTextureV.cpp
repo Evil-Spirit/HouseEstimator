@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMetaTextureV.h"
 #include "MDIElementSelectV.h"
@@ -12,12 +15,11 @@
 #include "MySupportV.h"
 #include "AUIV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIMetaNodeV"
 #pragma resource "*.dfm"
 TMDIMetaTexture *MDIMetaTexture;
 //---------------------------------------------------------------------------
-__fastcall TMDIMetaTexture::TMDIMetaTexture(TComponent* Owner,TMetaTexture *MM)
+ TMDIMetaTexture::TMDIMetaTexture(TComponent* Owner,TMetaTexture *MM)
     : TMDIMetaNode(Owner,MM)
 {
 }
@@ -133,7 +135,7 @@ void TMDIMetaTexture::KILL()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMDIMetaTexture::BitBtn1Click(TObject *Sender)
+void  TMDIMetaTexture::BitBtn1Click(TObject *Sender)
 {
     BMPPointer->Select();
     Graphics::TBitmap *bmp = new Graphics::TBitmap();
@@ -144,13 +146,13 @@ void __fastcall TMDIMetaTexture::BitBtn1Click(TObject *Sender)
     TV->View->Invalidate();
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIMetaTexture::FormActivate(TObject *Sender)
+void  TMDIMetaTexture::FormActivate(TObject *Sender)
 {
     AUI.ActivateView(TV);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIMetaTexture::Button1Click(TObject *Sender)
+void  TMDIMetaTexture::Button1Click(TObject *Sender)
 {
     BMPS->ADR = (TBMPSet*)SelectNode(TBMPSet::StaticType,true,true,NULL);
     ApplyMipMaps(VIST,*BMPS);

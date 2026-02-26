@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef VCLSCILEXERVH
@@ -19,13 +23,13 @@ const IDM_SEARCH_REPLACE = 13;
 //---------------------------------------------------------------------------
 class TSciLexer;
 struct SCNotification;
-typedef void __fastcall (__closure *TSciNotifyEvent)(TSciLexer* Sender,SCNotification *notification);
+typedef void  ( *TSciNotifyEvent)(TSciLexer* Sender,SCNotification *notification);
 
-class PACKAGE TSciLexer : public TWinControl {
+class  TSciLexer : public TWinControl {
 protected:
-    void __fastcall WndProc(Messages::TMessage &Message);
-    virtual void __fastcall CreateParams(Controls::TCreateParams &Params);
-    virtual void __fastcall CreateWnd(void);
+    void  WndProc(Messages::TMessage &Message);
+    virtual void  CreateParams(Controls::TCreateParams &Params);
+    virtual void  CreateWnd(void);
     TSciNotifyEvent FOnNotify;
     void InitialiseEditor();
 	void SetAStyle(int style, COLORREF fore, COLORREF back=white, int size=-1, const char *face=0);
@@ -33,9 +37,9 @@ protected:
     void SetText(const AnsiString& Text);
     AnsiString GetText();
 public:
-    __property AnsiString Text = {read = GetText,write = SetText};
-    __property TSciNotifyEvent OnNotify = {read = FOnNotify,write = FOnNotify};
-	__fastcall virtual TSciLexer(Classes::TComponent* AOwner);
+    // __property AnsiString Text {read=GetText, write=SetText}; // [manual migration needed]
+    // __property TSciNotifyEvent OnNotify {read=FOnNotify, write=FOnNotify}; // [manual migration needed]
+	 virtual TSciLexer(Classes::TComponent* AOwner);
 	LRESULT SendEditor(UINT Msg, WPARAM wParam=0, LPARAM lParam=0);
     void Command(int id);
     __property OnKeyDown;

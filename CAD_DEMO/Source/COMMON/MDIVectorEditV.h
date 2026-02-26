@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIVectorEditVH
 #define MDIVectorEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 //#include "MDIObjectEditV.h"
 #include "SimpleEditV.h"
 //---------------------------------------------------------------------------
@@ -23,12 +24,12 @@ __published:	// IDE-managed Components
     TLabel *Label5;
     TLabel *Label6;
 	TCheckBox *IsProportional;
-	void __fastcall Edit1Change(TObject *Sender);
-	void __fastcall Edit2Change(TObject *Sender);
-	void __fastcall Edit3Change(TObject *Sender);
+	void  Edit1Change(TObject *Sender);
+	void  Edit2Change(TObject *Sender);
+	void  Edit3Change(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-__fastcall TMDIVECEDIT(TComponent* Owner,TControl *_Parent,TMyObject *_Obj,const AnsiString& _Text,void *_Data);
+ TMDIVECEDIT(TComponent* Owner,TControl *_Parent,TMyObject *_Obj,const AnsiString& _Text,void *_Data);
 
 void SETUP();
 void *Value();

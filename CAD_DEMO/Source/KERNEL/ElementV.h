@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ElementVH
@@ -28,7 +32,7 @@ void COMMONAL_API KillElement(TElement* El);
 
 AnsiString COMMONAL_API CutMeta(const AnsiString& _MetaName);
 
-const AnsiString NoName = AnsiString("<Без имени>");
+const AnsiString NoName = AnsiString("<ГЃГҐГ§ ГЁГ¬ГҐГ­ГЁ>");
 
 //---------------------------------------
 class COMMONAL_API TUnit : public TMyRegObject{
@@ -40,8 +44,8 @@ public:
     void UndoRegister(TRegisterMode RM);
     virtual void SetMetaObject(TMyRegObject* aMetaObject);
     void SetMETAGUID(const AnsiString& aMETAGUID);
-    __property AnsiString METAGUID = {read = FMETAGUID,write = SetMETAGUID};
-    __property TMyRegObject* MetaObject = {read = FMetaObject,write = SetMetaObject};
+    // __property AnsiString METAGUID {read=FMETAGUID, write=SetMETAGUID}; // [manual migration needed]
+    // __property TMyRegObject* MetaObject {read=FMetaObject, write=SetMetaObject}; // [manual migration needed]
     static TClassNode* StaticType;
     TUnit();
     virtual ~TUnit(){};
@@ -171,13 +175,13 @@ public:
     void DeleteHole(int i);
 //----------Link Management Routine-------------------------------------------------
     int GetNeededLink();
-    TMTList<TLink> FLinks;//список связок (условно первая обязательная)
+    TMTList<TLink> FLinks;//Г±ГЇГЁГ±Г®ГЄ Г±ГўГїГ§Г®ГЄ (ГіГ±Г«Г®ГўГ­Г® ГЇГҐГ°ГўГ Гї Г®ГЎГїГ§Г ГІГҐГ«ГјГ­Г Гї)
     int GetLinksCount(){return(FLinks.Count);};
     TLink * GetLink(int i){return(FLinks.Items[i]);}
-    __property int LinksCount = {read = GetLinksCount};
+    // __property int LinksCount {read=GetLinksCount}; // [manual migration needed]
     int IOF(TLink *Lnk);
     void DeleteNeededLink();
-    __property int NeededLink = {read = GetNeededLink};
+    // __property int NeededLink {read=GetNeededLink}; // [manual migration needed]
     void DeleteAllLinks();
     void DeleteAllLinksOnly();
     void AddLink(TLink *Link);
@@ -201,13 +205,13 @@ public:
     void TexturePrimitive(TVisPrimitiveObj* Obj,int Index,TRenderParam& RP);
     void TextureObject(TVisPrimitiveObj* Obj,TRenderParam& RP);
     virtual void TexturePrimitive(TVisPrimitiveObj* Obj,TVisPrimitiveArray* Array,TRenderParam& RP, int Index = 0);
-    __property bool AdvancedTextureView = {read = FAdvancedTextureView, write = SetAdvancedTextureView};
-    __property bool TotalAllowAdvancedTexture = {read = GetTotalAllowAdvancedTexture};
+    // __property bool AdvancedTextureView {read=FAdvancedTextureView, write=SetAdvancedTextureView}; // [manual migration needed]
+    // __property bool TotalAllowAdvancedTexture {read=GetTotalAllowAdvancedTexture}; // [manual migration needed]
 //-----------Enabled Routine------------------------------------------------
     __property bool CustomEnabled = {read = GetEnabled,write = SetEnabled,index = 0};
     __property bool CurrentEnabled = {read = GetEnabled,write = SetEnabled,index = 1};
-    __property bool ModeEnabled = {read = GetModeEnabled};
-    __property bool TotalEnabled = {read = GetTotalEnabled};
+    // __property bool ModeEnabled {read=GetModeEnabled}; // [manual migration needed]
+    // __property bool TotalEnabled {read=GetTotalEnabled}; // [manual migration needed]
 //------------Working with Render and Tree-----------------------------------------------
     __property TMainTree *MyTree = {read = GetMainTree,write = SetMainTree};
     virtual void Render(TVisCustomView *aView);
@@ -228,7 +232,7 @@ public:
     void ValidateConstruction(MBTi USEEPS);
 //--------------Mode Management Routine-----------------------------------------------------------
     TMDelTList<TRenderParam> RenPars;
-    __property int RenderParamCount = {read = GetRenderParamCount};
+    // __property int RenderParamCount {read=GetRenderParamCount}; // [manual migration needed]
     TRenderParam* GetRenderParam(int i);
     void SetMode();
     //-----------OverLoaded from TMyObject--------------------------
@@ -237,10 +241,10 @@ public:
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 //-----------Architecture Routine--------------------------
     TElementPoints* ElementPoints;
-    __property int SideCount = {read = GetSideCount};
+    // __property int SideCount {read=GetSideCount}; // [manual migration needed]
     TSide* GetSide(int i);
     TMDelTList<TFragmentSettings> FragSet;
-    __property int FragmentsCount = {read = GetFragmentCount};
+    // __property int FragmentsCount {read=GetFragmentCount}; // [manual migration needed]
     TFragmentSettings* GetFragment(int i);
     void SynchronizeRenderParams();
     //------------------SizeCache------------------
@@ -258,7 +262,7 @@ public:
     virtual void CreateClient(TElement* Target);
     //-------------------------------------
 
-    //перекрыть
+    //ГЇГҐГ°ГҐГЄГ°Г»ГІГј
     //-------------------------------------
     bool Counted;
     bool DoNotDelete;
@@ -306,9 +310,9 @@ public:
     __property TDynamicLink *MyMeta = {read = GetDynamicLink};
     bool Exists(TElement *El,int i=-1);
     bool Exists(TMetaElement *mel,int i=-1);
-    __property TChangeVec Position0 = { read = Pos0 };
-    __property TChangeVec Position1 = { read = Pos1 };
-    __property TElement *Elements[int i] = {read = GetElement};
+    // __property TChangeVec Position0 {read=Pos0}; // [manual migration needed]
+    // __property TChangeVec Position1 {read=Pos1}; // [manual migration needed]
+// [indexed property - needs manual migration]:     __property TElement *Elements[int i] = {read = GetElement};
     TIntVec GetPos(int i);//for lua but not only-
     MBTi GeomAngle();
     TElement* OtherElement(TElement* Sender);

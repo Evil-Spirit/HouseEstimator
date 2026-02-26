@@ -1,21 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDILuaEditorV.h"
 #include "LuaEditorV.h"
 #include "LuaModuleV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TMDILuaEditor *MDILuaEditor;
 //---------------------------------------------------------------------------
-__fastcall TMDILuaEditor::TMDILuaEditor(TComponent* Owner,TLuaModule* _LM)
+ TMDILuaEditor::TMDILuaEditor(TComponent* Owner,TLuaModule* _LM)
     : TForm(Owner)
 {
     LM = _LM;
@@ -23,7 +25,7 @@ __fastcall TMDILuaEditor::TMDILuaEditor(TComponent* Owner,TLuaModule* _LM)
     LF->Refresh();
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDILuaEditor::FormClose(TObject *Sender,
+void  TMDILuaEditor::FormClose(TObject *Sender,
       TCloseAction &Action)
 {
     LF->Apply();

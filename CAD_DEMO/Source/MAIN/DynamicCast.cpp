@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "DynamicCast.h"
 #include "MultiElementV.h"
@@ -17,7 +20,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 
 
@@ -29,7 +31,7 @@ TCube* ToCube(TMyObject* Obj)
     if ( Obj->Is(TCube::StaticType) )
         return (TCube*)Obj;
     else
-        throw EMyException("Невозможно преобразование в 'TCube'"); */
+        throw EMyException("ГЌГҐГўГ®Г§Г¬Г®Г¦Г­Г® ГЇГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ Гў 'TCube'"); */
 }
 
 TRoom* ToRoom(TMyObject* Obj)

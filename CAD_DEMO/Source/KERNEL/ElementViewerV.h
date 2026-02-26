@@ -1,13 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ElementViewerVH
 #define ElementViewerVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "QuckList.h"
 
 class TElement;
@@ -21,13 +21,13 @@ class COMMONAL_API TElementViewer : public TForm
 {
 __published:	// IDE-managed Components
 		TPanel *pView;
-		void __fastcall FormActivate(TObject *Sender);
+		void  FormActivate(TObject *Sender);
 private:	// User declarations
 		TElement *Element;
 		TElement *FShowElement;
 		TMetaElement *FShowMetaElement;
-		void __fastcall SetShowElement(TElement *NewElement);
-		void __fastcall SetShowMetaElement(TMetaElement *NewElement);
+		void  SetShowElement(TElement *NewElement);
+		void  SetShowMetaElement(TMetaElement *NewElement);
 public:		// User declarations
 		__property TElement* ShowElement =
 		{
@@ -42,8 +42,8 @@ public:		// User declarations
 		TMainTree *MT;
 		TMDITV *TV;
 
-		__fastcall TElementViewer(TComponent* Owner);
-		__fastcall ~TElementViewer();
+		 TElementViewer(TComponent* Owner);
+		 ~TElementViewer();
 		void Start();
 };
 //---------------------------------------------------------------------------

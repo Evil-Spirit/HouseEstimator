@@ -1,11 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
-#pragma hdrstop
 
 #include "LuaUniFormV.h"
 #include "ElementV.h"
@@ -22,11 +24,10 @@
 #include "LuaEnvV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TLuaUniForm *LuaUniForm = NULL;
 //---------------------------------------------------------------------------
-__fastcall TLuaUniForm::TLuaUniForm(TComponent* Owner,TLuaModule* _Module)
+ TLuaUniForm::TLuaUniForm(TComponent* Owner,TLuaModule* _Module)
     : TForm(Owner)
 {
     AutoAlign = true;
@@ -50,7 +51,7 @@ __fastcall TLuaUniForm::TLuaUniForm(TComponent* Owner,TLuaModule* _Module)
     }
 }
 
-__fastcall TLuaUniForm::TLuaUniForm(TComponent* Owner)
+ TLuaUniForm::TLuaUniForm(TComponent* Owner)
     : TForm(Owner)
 {
     throw EMyException("Invalid constructor");
@@ -140,7 +141,7 @@ bool TLuaUniForm::ShowView()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TLuaUniForm::FormCreate(TObject *Sender)
+void  TLuaUniForm::FormCreate(TObject *Sender)
 {
     CloseOK = false;
     LuaUniForm = this;
@@ -217,7 +218,7 @@ void TLuaUniForm::Start()
     //--------------------------------------------------------------------------
     ShowModal();
 }
-void __fastcall TLuaUniForm::FormClose(TObject *Sender,
+void  TLuaUniForm::FormClose(TObject *Sender,
       TCloseAction &Action)
 {
 		if (!LuaUniForm)
@@ -240,7 +241,7 @@ void __fastcall TLuaUniForm::FormClose(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TLuaUniForm::FormDestroy(TObject *Sender)
+void  TLuaUniForm::FormDestroy(TObject *Sender)
 {
 		if (ShowView())
 		{
@@ -261,25 +262,25 @@ void __fastcall TLuaUniForm::FormDestroy(TObject *Sender)
     LuaUniForm = NULL;
 }
 //---------------------------------------------------------------------------
-void __fastcall TLuaUniForm::btOKClick(TObject *Sender)
+void  TLuaUniForm::btOKClick(TObject *Sender)
 {
     CloseOK = true;
     RUN_LUA("DIALOG_CALLBACK_OK();");
 }
 //---------------------------------------------------------------------------
-void __fastcall TLuaUniForm::btCancelClick(TObject *Sender)
+void  TLuaUniForm::btCancelClick(TObject *Sender)
 {
     Close();
 }
 //---------------------------------------------------------------------------
-void __fastcall TLuaUniForm::btApplyClick(TObject *Sender)
+void  TLuaUniForm::btApplyClick(TObject *Sender)
 {
     RUN_LUA( "DIALOG_CALLBACK_APPLY();");
     SelectionCollection.Enabled=false;
     AUI.InvalidateView();
 }
 //---------------------------------------------------------------------------
-void __fastcall TLuaUniForm::FormActivate(TObject *Sender)
+void  TLuaUniForm::FormActivate(TObject *Sender)
 {
     if (ShowView())
     {

@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "Poligon.h"
 #include "MyGL.h"
@@ -14,7 +17,6 @@
 #include "G2DFunctionsV.h"
 #include "G2DPointCutV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 TClassNode* TDistanceLink::StaticType = NULL;
 
@@ -87,7 +89,7 @@ void TDistanceLink::UpdateDistanceLink(TGUnit* _Client,TFlowInfo& FlowInfo)
 
     if ( !_Client || (Client0 != Client && Client1 != Client) )
     {
-        AnsiString Str = "<TAngleLink::UpdateClient>: точка не принадлежит связке";
+        AnsiString Str = "<TAngleLink::UpdateClient>: ГІГ®Г·ГЄГ  Г­ГҐ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г±ГўГїГ§ГЄГҐ";
         throw EMyException(Str);
     }
     TG2DPoint* SourcePoint = Client0;

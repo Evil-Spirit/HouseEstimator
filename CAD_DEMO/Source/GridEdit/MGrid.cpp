@@ -1,15 +1,16 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
-#include <Math.hpp>
 #include "CellGrid.h"
 #include "OffsetCellU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 // ----------- TMGrid ------------------
 TMyObject* TMGrid::CreateFunction()
@@ -37,7 +38,7 @@ TMGrid::~TMGrid()
 {
 }
 
-void __fastcall TMGrid::FromCellGrid(TCellGrid* CellGrid)
+void  TMGrid::FromCellGrid(TCellGrid* CellGrid)
 {
     for (int y=0; y<=CellGrid->EndColRowCell.y; y++)
         for (int x=0; x<=CellGrid->EndColRowCell.x; x++)
@@ -50,14 +51,14 @@ void __fastcall TMGrid::FromCellGrid(TCellGrid* CellGrid)
             }
 }
 
-void __fastcall TMGrid::ToCellGrid(TCellGrid* CellGrid)
-{// ÷òåíèå
+void  TMGrid::ToCellGrid(TCellGrid* CellGrid)
+{// Ã·Ã²Ã¥Ã­Ã¨Ã¥
     for (int i=0;i<Cols.Count;i++)
     {
         if ((Cols[i] ==0 && Rows[i] ==0)||
             (Cols[i] ==1 && Rows[i] ==1)
         )
-        {// - Òàáëèöà
+        {// - Ã’Ã Ã¡Ã«Ã¨Ã¶Ã 
             CellGrid->DelCell(Cols[i],Rows[i]);
             CellGrid->NewCell(Cols[i],Rows[i],(TCellTab*)Cells.Items[i]);
 
@@ -69,23 +70,23 @@ void __fastcall TMGrid::ToCellGrid(TCellGrid* CellGrid)
             }
         }
         else if (Cols[i] >1 && Rows[i] ==1)
-        { // - Ñòîëáöû
+        { // - Ã‘Ã²Ã®Ã«Ã¡Ã¶Ã»
             CellGrid->DelCell(Cols[i],Rows[i]);
             CellGrid->NewCell(Cols[i],Rows[i],(TCellColRow*)Cells.Items[i]);
             CellGrid->SetColWidths(Cols[i], ((TCellColRow*)Cells.Items[i])->ColRowWidth);
         }
         else if (Cols[i] ==1 && Rows[i] >1)
-        {// - Ñòðîêè
+        {// - Ã‘Ã²Ã°Ã®ÃªÃ¨
             CellGrid->DelCell(Cols[i],Rows[i]);
             CellGrid->NewCell(Cols[i],Rows[i],(TCellColRow*)Cells.Items[i]);
             CellGrid->SetRowHeights(Rows[i], ((TCellColRow*)Cells.Items[i])->ColRowWidth);
         }
         else
-        { // - ß÷åéêè è ñåêöèè
-            if (Cols[i] ==0 && Rows[i] >1)// - Ñåêöèÿ ãîðèçîíòàë íà ïîêàç
+        { // - ÃŸÃ·Ã¥Ã©ÃªÃ¨ Ã¨ Ã±Ã¥ÃªÃ¶Ã¨Ã¨
+            if (Cols[i] ==0 && Rows[i] >1)// - Ã‘Ã¥ÃªÃ¶Ã¨Ã¿ Ã£Ã®Ã°Ã¨Ã§Ã®Ã­Ã²Ã Ã« Ã­Ã  Ã¯Ã®ÃªÃ Ã§
                 CellGrid->VisibleSectionLeft =true;
 
-            if (Cols[i] >1 && Rows[i] ==0)// - Ñåêöèÿ âåðòèêàë íà ïîêàç
+            if (Cols[i] >1 && Rows[i] ==0)// - Ã‘Ã¥ÃªÃ¶Ã¨Ã¿ Ã¢Ã¥Ã°Ã²Ã¨ÃªÃ Ã« Ã­Ã  Ã¯Ã®ÃªÃ Ã§
                 CellGrid->VisibleSectionTop =true;
 
             CellGrid->DelCell(Cols[i],Rows[i]);
@@ -95,7 +96,7 @@ void __fastcall TMGrid::ToCellGrid(TCellGrid* CellGrid)
     CellGrid->Invalidate();
 }
 
-void __fastcall TMGrid::CorrectionRect(TCellGrid* CellGrid, TRect& rect)
+void  TMGrid::CorrectionRect(TCellGrid* CellGrid, TRect& rect)
 {
     if (rect.Left ==2 && rect.Right ==CellGrid->ColCount-1)
         rect.Left =1;
@@ -103,7 +104,7 @@ void __fastcall TMGrid::CorrectionRect(TCellGrid* CellGrid, TRect& rect)
         rect.Top =1;
 }
 
-void __fastcall TMGrid::DelCells(TCellGrid* CellGrid, const TRect& rect)
+void  TMGrid::DelCells(TCellGrid* CellGrid, const TRect& rect)
 {
     TRect rect2 =rect;
     CorrectionRect(CellGrid, rect2);
@@ -116,13 +117,13 @@ void __fastcall TMGrid::DelCells(TCellGrid* CellGrid, const TRect& rect)
     int iPasteY =0;
 
     if (rect2.Left ==1 && rect2.Top ==1)
-    {// - Òàáëèöà
+    {// - Ã’Ã Ã¡Ã«Ã¨Ã¶Ã 
         CellGrid->ClearSelectRect(TRect(1,1,CellGrid->EndColRowCell.x, CellGrid->EndColRowCell.y));
         bOK =false;
         CellGrid->Invalidate();
     }
     else if (rect2.Left >1 && rect2.Top ==1)
-    { // - Ñòîëáåö
+    { // - Ã‘Ã²Ã®Ã«Ã¡Ã¥Ã¶
         rectcopy.Left   =rect2.Right +1;
         rectcopy.Right  =CellGrid->EndColRowCell.x;
         rectcopy.Bottom =CellGrid->EndColRowCell.y;
@@ -142,7 +143,7 @@ void __fastcall TMGrid::DelCells(TCellGrid* CellGrid, const TRect& rect)
         iPasteY =0;
     }
     else if (rect2.Left ==1 && rect2.Top >1)
-    { // - Ñòðîêà
+    { // - Ã‘Ã²Ã°Ã®ÃªÃ 
         rectcopy.Top    =rect2.Bottom +1;
         rectcopy.Bottom =CellGrid->EndColRowCell.y;
         rectcopy.Right  =CellGrid->EndColRowCell.x;
@@ -162,14 +163,14 @@ void __fastcall TMGrid::DelCells(TCellGrid* CellGrid, const TRect& rect)
         iPasteY =rect.Bottom -rect.Top+1;
     }
     else if (rect2.Left >1 && rect2.Top >1)
-    { // - ß÷åéêà
+    { // - ÃŸÃ·Ã¥Ã©ÃªÃ 
         OffsetCell =new TOffsetCell(NULL, this);
         OffsetCell->ShowModal();
         delete OffsetCell;
         OffsetCell =NULL;
 
         if (iOffsetCell ==0)
-        {// Ñäâèã ââåðõ
+        {// Ã‘Ã¤Ã¢Ã¨Ã£ Ã¢Ã¢Ã¥Ã°Ãµ
             rectcopy.Top    =rect2.Bottom +1;
             rectcopy.Bottom =CellGrid->EndColRowCell.y;
 
@@ -179,7 +180,7 @@ void __fastcall TMGrid::DelCells(TCellGrid* CellGrid, const TRect& rect)
             iPasteY =rect.Bottom -rect.Top+1;
         }
         else if (iOffsetCell ==1)
-        {// Ñäâèã âëåâî
+        {// Ã‘Ã¤Ã¢Ã¨Ã£ Ã¢Ã«Ã¥Ã¢Ã®
             rectcopy.Left   =rect2.Right +1;
             rectcopy.Right  =CellGrid->EndColRowCell.x;
 
@@ -215,7 +216,7 @@ void __fastcall TMGrid::DelCells(TCellGrid* CellGrid, const TRect& rect)
     iOffsetCell =0;
 }
 
-void __fastcall TMGrid::dCopyCellGrid(TCellGrid* CellGrid, const TRect& RectCopy)
+void  TMGrid::dCopyCellGrid(TCellGrid* CellGrid, const TRect& RectCopy)
 {
     Cols.Clear();
     Rows.Clear();
@@ -230,7 +231,7 @@ void __fastcall TMGrid::dCopyCellGrid(TCellGrid* CellGrid, const TRect& RectCopy
             if (Cell !=NULL)
             {
                 if (rect.Left ==1)
-                {// Ñòðîêà
+                {// Ã‘Ã²Ã°Ã®ÃªÃ 
                     if (Cell->UnionRect !=NULL)
                     {
                         if (Cell->UnionRect->Top <rect.Top)
@@ -244,7 +245,7 @@ void __fastcall TMGrid::dCopyCellGrid(TCellGrid* CellGrid, const TRect& RectCopy
                     }
                 }
                 else if (rect.Top ==1)
-                {// Ñòîëáåö
+                {// Ã‘Ã²Ã®Ã«Ã¡Ã¥Ã¶
                     if (Cell->UnionRect !=NULL)
                     {
                         if (Cell->UnionRect->Left <rect.Left)
@@ -258,11 +259,11 @@ void __fastcall TMGrid::dCopyCellGrid(TCellGrid* CellGrid, const TRect& RectCopy
                     }
                 }
                 else if (rect.Top >1 && rect.Left >1)
-                {// ß÷åéêà
+                {// ÃŸÃ·Ã¥Ã©ÃªÃ 
                     if (Cell->UnionRect !=NULL)
                     {
                         if (iOffsetCell ==0)
-                        {// Ñäâèã â âåðõ
+                        {// Ã‘Ã¤Ã¢Ã¨Ã£ Ã¢ Ã¢Ã¥Ã°Ãµ
                             if (!CellGrid->Rect1InRect2(*Cell->UnionRect, TRect(RectCopy.Left,RectCopy.Top-1,RectCopy.Right,RectCopy.Bottom)))
                             {
                                 CellGrid->DeleteUnionRect(Cell);
@@ -278,7 +279,7 @@ void __fastcall TMGrid::dCopyCellGrid(TCellGrid* CellGrid, const TRect& RectCopy
                                     Cell->UnionRect->Top =rect.Top;
                         }
                         if (iOffsetCell ==1)
-                        {// Ñäâèã â âëåâî
+                        {// Ã‘Ã¤Ã¢Ã¨Ã£ Ã¢ Ã¢Ã«Ã¥Ã¢Ã®
                             if (!CellGrid->Rect1InRect2(*Cell->UnionRect, TRect(RectCopy.Left-1,RectCopy.Top,RectCopy.Right,RectCopy.Bottom)))
                             {
                                 CellGrid->DeleteUnionRect(Cell);
@@ -310,7 +311,7 @@ void __fastcall TMGrid::dCopyCellGrid(TCellGrid* CellGrid, const TRect& RectCopy
     Cell =NULL;
 }
 
-void __fastcall TMGrid::dPasteToCellGrid(TCellGrid* CellGrid, int DeltaX, int DeltaY)
+void  TMGrid::dPasteToCellGrid(TCellGrid* CellGrid, int DeltaX, int DeltaY)
 {
     int Col,Row;
     bool bError =false;
@@ -400,7 +401,7 @@ void __fastcall TMGrid::dPasteToCellGrid(TCellGrid* CellGrid, int DeltaX, int De
     CellGrid->Invalidate();
 }
 
-void __fastcall TMGrid::DelTextToCellGrid(TCellGrid* CellGrid)
+void  TMGrid::DelTextToCellGrid(TCellGrid* CellGrid)
 {
     CellGrid->GetSelectCells(true);
     int iEnd =CellGrid->ListFilling.Count;

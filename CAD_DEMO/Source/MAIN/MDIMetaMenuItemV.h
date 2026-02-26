@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMetaMenuItemVH
 #define MDIMetaMenuItemVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaUIV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMDIMetaMenuItem : public TMDIMetaUI
 {
@@ -23,9 +22,9 @@ public:		// User declarations
     virtual void MNRefresh();
     virtual void MNApply();
     virtual void SETUP();
-    __fastcall TMDIMetaMenuItem(TComponent* Owner,TMetaNode *N);
+     TMDIMetaMenuItem(TComponent* Owner,TMetaNode *N);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMDIMetaMenuItem *MDIMetaMenuItem;
+extern  TMDIMetaMenuItem *MDIMetaMenuItem;
 //---------------------------------------------------------------------------
 #endif

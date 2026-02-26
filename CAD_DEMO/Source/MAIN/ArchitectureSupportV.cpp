@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "ArchitectureSupportV.h"
 #include "World.h"
@@ -15,7 +18,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 TMyObject* TArchitectSupport::CreateFunction()
 {
@@ -62,49 +64,49 @@ void TArchitectSupport::PreProcessActions()
 {
 /*    if (!FirstPlatform)
     {
-        Application->MessageBox("Standart First TPlatform νε νΰιδεν","Error");
+        Application->MessageBox("Standart First TPlatform Γ­Γ₯ Γ­Γ Γ©Γ€Γ₯Γ­","Error");
         inited = false;
         return;
     }
     if (!DefaultLand)
     {
-        Application->MessageBox("DefaultLand νε νΰιδεν","Error");
+        Application->MessageBox("DefaultLand Γ­Γ₯ Γ­Γ Γ©Γ€Γ₯Γ­","Error");
         inited = false;
         return;
     }
     if (!MetaLabel3D)
     {
-        Application->MessageBox("Standart MetaLabel3D νε νΰιδεν","Error");
+        Application->MessageBox("Standart MetaLabel3D Γ­Γ₯ Γ­Γ Γ©Γ€Γ₯Γ­","Error");
         inited = false;
         return;
     }
     if (!MetaLabelLink)
     {
-        Application->MessageBox("Standart MetaLabelLink νε νΰιδεν","Error");
+        Application->MessageBox("Standart MetaLabelLink Γ­Γ₯ Γ­Γ Γ©Γ€Γ₯Γ­","Error");
         inited = false;
         return;
     }
     if (!Platform_Land)
     {
-        Application->MessageBox("Standart Platform_Land_Link νε νΰιδεν","Error");
+        Application->MessageBox("Standart Platform_Land_Link Γ­Γ₯ Γ­Γ Γ©Γ€Γ₯Γ­","Error");
         inited = false;
         return;
     }
     if (!DEFAULT_SIZE)
     {
-        Application->MessageBox("Standart DEFAULT_SIZE νε νΰιδεν","Error");
+        Application->MessageBox("Standart DEFAULT_SIZE Γ­Γ₯ Γ­Γ Γ©Γ€Γ₯Γ­","Error");
         inited = false;
         return;
     }
     if (!DEFAULT_MODE)
     {
-        Application->MessageBox("Standart DEFAULT_MODE νε νΰιδεν","Error");
+        Application->MessageBox("Standart DEFAULT_MODE Γ­Γ₯ Γ­Γ Γ©Γ€Γ₯Γ­","Error");
         inited = false;
         return;
     }
     if (!_3D_MODE)
     {
-        Application->MessageBox("Standart _3D_MODE νε νΰιδεν","Error");
+        Application->MessageBox("Standart _3D_MODE Γ­Γ₯ Γ­Γ Γ©Γ€Γ₯Γ­","Error");
         inited = false;
         return;
     }
@@ -119,7 +121,7 @@ void TArchitectSupport::AfterProcessActions()
     //do nothing
 }
 
-double PACKAGE GetTotalArea(TMainTree* aWorld,int FloorIndex)
+double  GetTotalArea(TMainTree* aWorld,int FloorIndex)
 {
     double total = 0;
     TMTList<TMyRegObject> LST;

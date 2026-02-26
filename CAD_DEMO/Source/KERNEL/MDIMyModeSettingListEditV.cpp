@@ -1,20 +1,22 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMyModeSettingListEditV.h"
 #include "MDIElementSelectV.h"
 #include "MetaClasses.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma resource "*.dfm"
 TMDIMyModeSettingListEdit *MDIMyModeSettingListEdit;
 //---------------------------------------------------------------------------
-__fastcall TMDIMyModeSettingListEdit::TMDIMyModeSettingListEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDIMyModeSettingListEdit::TMDIMyModeSettingListEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }
@@ -52,7 +54,7 @@ void FillSettingList(TListView *LV,TMyModeSettingList *S_List )
   }
 }
 
-void __fastcall TMDIMyModeSettingListEdit::tbtAddClick(TObject *Sender)
+void  TMDIMyModeSettingListEdit::tbtAddClick(TObject *Sender)
 {
   TMetaNode *SN = SelectNode(TMetaMyMode::StaticType,true,true,NULL);
   bool Exists=false;
@@ -130,7 +132,7 @@ void TMDIMyModeSettingListEdit::KILL()
 {
   delete EditCopy;
 }
-void __fastcall TMDIMyModeSettingListEdit::tbtDelClick(TObject *Sender)
+void  TMDIMyModeSettingListEdit::tbtDelClick(TObject *Sender)
 {
   if (!LV->Selected)
 	return;
@@ -148,7 +150,7 @@ void __fastcall TMDIMyModeSettingListEdit::tbtDelClick(TObject *Sender)
   }
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIMyModeSettingListEdit::LVClick(TObject *Sender)
+void  TMDIMyModeSettingListEdit::LVClick(TObject *Sender)
 {
   if (!LV->Selected)
 	return;
@@ -181,7 +183,7 @@ void __fastcall TMDIMyModeSettingListEdit::LVClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIMyModeSettingListEdit::IsDefaultClick(TObject *Sender)
+void  TMDIMyModeSettingListEdit::IsDefaultClick(TObject *Sender)
 {
   if(!LV->Selected)
 	return;

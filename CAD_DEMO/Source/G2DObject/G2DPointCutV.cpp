@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "G2DPointCutV.h"
 #include "G2DFunctionsV.h"
@@ -14,12 +17,10 @@
 #include "math.h"
 #include "G2DObjectV.h"
 #include "Poligon.h"
-#include "Math.hpp"
 #include "G2DApproxCalcV.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 TClassNode* TG2DCut::StaticType = NULL;
 TClassNode* TG2DPoint::StaticType = NULL;

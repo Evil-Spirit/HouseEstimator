@@ -100,3 +100,33 @@
 #ifndef __INT64
     typedef long long          __int64;
 #endif
+
+// ---------------------------------------------------------------------------
+// Borland math helpers
+// ---------------------------------------------------------------------------
+#ifndef __BORLANDC__
+#include <cmath>
+// RoundTo(Value, Digits): round Value to Digits decimal places.
+// Negative Digits round to powers of 10 (e.g. -1 rounds to nearest 10).
+inline double RoundTo(double Value, int Digits) {
+    if (Digits == 0) return std::round(Value);
+    double factor = std::pow(10.0, static_cast<double>(-Digits));
+    return std::round(Value / factor) * factor;
+}
+// SimpleRoundTo: alias
+inline double SimpleRoundTo(double Value, int Digits) {
+    return RoundTo(Value, Digits);
+}
+// ArcTan2: Borland alias for atan2
+inline double ArcTan2(double Y, double X) { return std::atan2(Y, X); }
+// SinCos: Borland function that computes sin and cos in one call
+inline void SinCos(double Theta, double& Sin, double& Cos) {
+    Sin = std::sin(Theta);
+    Cos = std::cos(Theta);
+}
+// Overload for long double (used when SIN/COS arrays are long double)
+inline void SinCos(long double Theta, long double& Sin, long double& Cos) {
+    Sin = std::sin(static_cast<double>(Theta));
+    Cos = std::cos(static_cast<double>(Theta));
+}
+#endif

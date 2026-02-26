@@ -1,16 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDITextureVH
 #define MDITextureVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MyMDIChildV.h"
-#include <ComCtrls.hpp>
-#include <Dialogs.hpp>
-#include <ExtCtrls.hpp>
 #include <VisTex.hpp>
 #include <VisView.hpp>
 //---------------------------------------------------------------------------
@@ -40,9 +38,9 @@ __published:	// IDE-managed Components
   TComboBox *cbMAG;
   TLabel *Label3;
   TComboBox *cbMIN;
-    void __fastcall BlendMouseDown(TObject *Sender, TMouseButton Button,
+    void  BlendMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall BlendAChange(TObject *Sender);
+    void  BlendAChange(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     TVisTexture *VT;
@@ -50,7 +48,7 @@ public:		// User declarations
     void ToForm();
     bool Creation;
     void Apply();
-    __fastcall TMDITexture(TComponent* Owner,TVisTexture *VT,TVisView *VV,TWinControl *Par);
+     TMDITexture(TComponent* Owner,TVisTexture *VT,TVisView *VV,TWinControl *Par);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDITexture *MDITexture;

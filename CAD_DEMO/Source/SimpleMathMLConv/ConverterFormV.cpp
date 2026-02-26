@@ -1,22 +1,24 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "ConverterFormV.h"
 #include "ConverterV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TConverterForm *ConverterForm;
 //---------------------------------------------------------------------------
-__fastcall TConverterForm::TConverterForm(TComponent* Owner)
+ TConverterForm::TConverterForm(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConverterForm::Button1Click(TObject *Sender)
+void  TConverterForm::Button1Click(TObject *Sender)
 {
 	AnsiString _Text = RichEdit1->Text;
 	AnsiString Result;

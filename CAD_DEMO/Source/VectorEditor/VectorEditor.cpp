@@ -1,12 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
-USEFORM("EditorV.cpp", Editor2D);
-USEFORM("ProgramPropertyV.cpp", ProgramProperty);
-USEFORM("ParamEnteringV.cpp", ParamEntering);
-USEFORM("MyViewV.cpp", MyView);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

@@ -1,18 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDISelectClassV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TMDISelectClass *MDISelectClass;
 //---------------------------------------------------------------------------
-__fastcall TMDISelectClass::TMDISelectClass(TComponent* Owner,TMTList<TClassNode> *L)
+ TMDISelectClass::TMDISelectClass(TComponent* Owner,TMTList<TClassNode> *L)
     : TForm(Owner)
 {
     ListBox1->Clear();
@@ -20,19 +22,19 @@ __fastcall TMDISelectClass::TMDISelectClass(TComponent* Owner,TMTList<TClassNode
         ListBox1->AddItem(L->Items[i]->Name,NULL);
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDISelectClass::Button2Click(TObject *Sender)
+void  TMDISelectClass::Button2Click(TObject *Sender)
 {
 Returned = -1;
 Close();    
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDISelectClass::Button1Click(TObject *Sender)
+void  TMDISelectClass::Button1Click(TObject *Sender)
 {
 Returned = ListBox1->ItemIndex;
 Close(); 
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDISelectClass::FormShow(TObject *Sender)
+void  TMDISelectClass::FormShow(TObject *Sender)
 {
 Returned = -1;
 }

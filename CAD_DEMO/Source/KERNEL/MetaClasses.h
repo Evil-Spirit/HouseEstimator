@@ -1,15 +1,18 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef MetaClassesH
 #define MetaClassesH               
 #include "VisMat.hpp"
 #include "VisTex.hpp"
 #include "VisGL.hpp"
-#include <ComCtrls.hpp>
-#include <typeinfo.h>
+#include "compat/vcl_qt.h"
 #include "TriggerBlockV.h"
 #include "VisPrimitiveObj.hpp"
 
-///типы классов для конструктора по строке
+///ГІГЁГЇГ» ГЄГ«Г Г±Г±Г®Гў Г¤Г«Гї ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г  ГЇГ® Г±ГІГ°Г®ГЄГҐ
  const AnsiString cNone = AnsiString();
  const System::AnsiString cMetaNode = AnsiString("TMetaNode");
  const AnsiString cMetaLink = AnsiString("TMetaLink");
@@ -113,8 +116,8 @@ public:
     //----------------------------------
     THasAngle();
     virtual ~THasAngle(){};
-    __property TIntVec LOW = {read = FLow, write = SetLow };
-    __property TIntVec HI = {read = FHi, write = SetHi };
+    // __property TIntVec LOW {read=FLow, write=SetLow}; // [manual migration needed]
+    // __property TIntVec HI {read=FHi, write=SetHi}; // [manual migration needed]
     TBoolVec Mirrored;
     virtual bool CheckFields();
     void Edit(TComponent *Owner,TWinControl *Parent,void *Data);    
@@ -137,9 +140,9 @@ public:
     //----------------------------------
     THasSize();
     virtual ~THasSize(){};
-    __property TIntVec LOW = {read = FLow, write = SetLow };
-    __property TIntVec HI = {read = FHi, write = SetHi };
-    __property TIntVec DEFAULT = {read = FDefault, write = SetDefault};
+    // __property TIntVec LOW {read=FLow, write=SetLow}; // [manual migration needed]
+    // __property TIntVec HI {read=FHi, write=SetHi}; // [manual migration needed]
+    // __property TIntVec DEFAULT {read=FDefault, write=SetDefault}; // [manual migration needed]
     THasStep STEP;
     virtual bool CheckFields();
     void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
@@ -289,8 +292,8 @@ public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
     //----------------------------------
-    __property TColor Color = {read = GetColor,write = SetColor};
-    __property GLfloat Alpha = {read = GetAlpha,write = SetAlpha};
+    // __property TColor Color {read=GetColor, write=SetColor}; // [manual migration needed]
+    // __property GLfloat Alpha {read=GetAlpha, write=SetAlpha}; // [manual migration needed]
     TMyColor();
     virtual ~TMyColor(){};
 };
@@ -349,7 +352,7 @@ public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
     //----------------------------------
-    __property TImageList* IL = {read = GetIL};
+    // __property TImageList* IL {read=GetIL}; // [manual migration needed]
     virtual void SaveData(FILE *F) const;
     virtual void WriteData(TMemoryStream *MS) const;
     TRect R;
@@ -381,8 +384,8 @@ public:
     TMyObject* CreateFunction();
     //----------------------------------
     TPointer<TBMPSet> BMPSet;
-    __property int Index = {read = GetIndex,write = SetIndex};
-    __property int RealIndex = {read = FIndex};
+    // __property int Index {read=GetIndex, write=SetIndex}; // [manual migration needed]
+    // __property int RealIndex {read=FIndex}; // [manual migration needed]
     bool GetBitmap(Graphics::TBitmap * BMP);
     void GetStandartBitmap(int index,Graphics::TBitmap * BMP);
     bool Valid();
@@ -467,7 +470,7 @@ public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
     //----------------------------------
-    __property GLfloat Alpha = {read = GetAlpha,write = SetAlpha};
+    // __property GLfloat Alpha {read=GetAlpha, write=SetAlpha}; // [manual migration needed]
     int Mode;
     TMyColor Blend;
     TBMPPointer BMP;
@@ -603,7 +606,7 @@ public:
     TPointer<TMetaMaterial> MAT;
     TPointer<TMetaTexture> TEX;
     TMyTextureFlags MTF;
-    __property TVisMaterial* VM = {read =GetMaterial};
+    // __property TVisMaterial* VM {read=GetMaterial}; // [manual migration needed]
     TMetaElement(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TMetaElement();
     virtual ~TMetaElement();
@@ -617,7 +620,7 @@ public:
     bool IsAuto;
     TDynamicLink* SearchNeededLinkFor(TMetaElement * Target);
     TDynamicLink* GetDynLink(int index);
-    __property int DynLinkCount = {read = GetDynLinkCount};
+    // __property int DynLinkCount {read=GetDynLinkCount}; // [manual migration needed]
     int FILEBMP;
     TMyActionSettings MAS;
     //---------------------------------------------------------------------------

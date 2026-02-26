@@ -1,13 +1,15 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "TGPrimitive.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 //#include "MTL.h"
 //#include "Usefuls.h"  
@@ -15,8 +17,6 @@
 #include "math.h"
 #include "misc.h"
 
-#pragma hdrstop
-#pragma package(smart_init)
 
 #include "TGObject.h"
 

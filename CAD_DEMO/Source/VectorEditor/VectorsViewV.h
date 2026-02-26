@@ -1,34 +1,35 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef VectorsViewVH
 #define VectorsViewVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TMyView : public TForm
 {
 __published:	// IDE-managed Components
 /*    TVisView* View;
-    void __fastcall Render(TVisView *aView);
-    void __fastcall Click(TObject *Sender);
-    void __fastcall MouseWheel(TObject *Sender, TShiftState Shift,
+    void  Render(TVisView *aView);
+    void  Click(TObject *Sender);
+    void  MouseWheel(TObject *Sender, TShiftState Shift,
           int WheelDelta, TPoint &MousePos, bool &Handled);
-    void __fastcall ViewMouseDown(TObject *Sender, TMouseButton Button,
+    void  ViewMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall ViewMouseUp(TObject *Sender, TMouseButton Button,
+    void  ViewMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall ViewKeyDown(TObject *Sender, WORD &Key,
+    void  ViewKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
-    void __fastcall ViewKeyUp(TObject *Sender, WORD &Key,
+    void  ViewKeyUp(TObject *Sender, WORD &Key,
           TShiftState Shift);*/
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMyView(TComponent* Owner);
+     TMyView(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMyView *MyView;
+extern  TMyView *MyView;
 //---------------------------------------------------------------------------
 #endif

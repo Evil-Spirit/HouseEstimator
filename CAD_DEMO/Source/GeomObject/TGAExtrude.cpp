@@ -1,12 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "TGAExtrude.h"
 #include "TGObject.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 TGPoint *TGAExtrude::Point(TGPoint *p, const TIntVec& d)
 {

@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MetaClasses.h"
 #include "MDIConfigV.h"
@@ -19,13 +22,12 @@
 #include "World.h"
 #include "SkinEngineV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MyMDIChildV"
 #pragma link "SUISkinEngine"
 #pragma resource "*.dfm"
 TMDIConfig *MDIConfig;
 //---------------------------------------------------------------------------
-__fastcall TMDIConfig::TMDIConfig(TComponent* Owner)
+ TMDIConfig::TMDIConfig(TComponent* Owner)
     : TMyMDIChild(Owner)
 {
     SkinEngine->AddForm_BCB(this);
@@ -38,7 +40,7 @@ __fastcall TMDIConfig::TMDIConfig(TComponent* Owner)
     //suiSkinEngine1->Active = true;
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIConfig::NewFolExecute(TObject *Sender)
+void  TMDIConfig::NewFolExecute(TObject *Sender)
 {
     if (!tvTechnology->Selected)
         return;
@@ -56,7 +58,7 @@ void __fastcall TMDIConfig::NewFolExecute(TObject *Sender)
 
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIConfig::NewExecute(TObject *Sender)
+void  TMDIConfig::NewExecute(TObject *Sender)
 {
     if (!tvTechnology->Selected)
         return;
@@ -93,7 +95,7 @@ void __fastcall TMDIConfig::NewExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIConfig::EditExecute(TObject *Sender)
+void  TMDIConfig::EditExecute(TObject *Sender)
 {
     if (!tvTechnology->Selected)
         return;
@@ -107,7 +109,7 @@ void __fastcall TMDIConfig::EditExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIConfig::DelExecute(TObject *Sender)
+void  TMDIConfig::DelExecute(TObject *Sender)
 {
     if (!tvTechnology->Selected)
         return;
@@ -133,7 +135,7 @@ void __fastcall TMDIConfig::DelExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDIConfig::tvTechnologyDeletion(TObject *Sender,
+void  TMDIConfig::tvTechnologyDeletion(TObject *Sender,
       TTreeNode *Node)
 {
     if (Node->Data)
@@ -142,7 +144,7 @@ void __fastcall TMDIConfig::tvTechnologyDeletion(TObject *Sender,
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDIConfig::tvTechnologyStartDrag(TObject *Sender,
+void  TMDIConfig::tvTechnologyStartDrag(TObject *Sender,
       TDragObject *&DragObject)
 {
     MNL->Clear();
@@ -155,7 +157,7 @@ void __fastcall TMDIConfig::tvTechnologyStartDrag(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIConfig::tvTechnologyDragOver(TObject *Sender,
+void  TMDIConfig::tvTechnologyDragOver(TObject *Sender,
       TObject *Source, int X, int Y, TDragState State, bool &Accept)
 {
     if (tvTechnology->DropTarget)
@@ -169,13 +171,13 @@ void __fastcall TMDIConfig::tvTechnologyDragOver(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIConfig::FormDestroy(TObject *Sender)
+void  TMDIConfig::FormDestroy(TObject *Sender)
 {
     delete MNL;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIConfig::tvTechnologyDragDrop(TObject *Sender,
+void  TMDIConfig::tvTechnologyDragDrop(TObject *Sender,
       TObject *Source, int X, int Y)
 {
     if (tvTechnology->DropTarget)
@@ -196,7 +198,7 @@ void __fastcall TMDIConfig::tvTechnologyDragDrop(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIConfig::FormCloseQuery(TObject *Sender, bool &CanClose)
+void  TMDIConfig::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
     ((TMDIObjectEdit*)tsMainVariable->Controls[0])->Apply();
     TMyMDIChild::FormCloseQuery(Sender,CanClose);
@@ -211,7 +213,7 @@ void __fastcall TMDIConfig::FormCloseQuery(TObject *Sender, bool &CanClose)
         }
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIConfig::tvTechnologyMouseDown(TObject *Sender,
+void  TMDIConfig::tvTechnologyMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     if (Button == mbRight)
@@ -224,7 +226,7 @@ void __fastcall TMDIConfig::tvTechnologyMouseDown(TObject *Sender,
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIConfig::tvTechnologyDblClick(TObject *Sender)
+void  TMDIConfig::tvTechnologyDblClick(TObject *Sender)
 {
     TTreeNode *TN = (TTreeNode*)Sender;
     if (TN == NULL)
@@ -235,7 +237,7 @@ void __fastcall TMDIConfig::tvTechnologyDblClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDIConfig::UpActionExecute(TObject *Sender)
+void  TMDIConfig::UpActionExecute(TObject *Sender)
 {
     if (!tvTechnology->Selected)
         return;
@@ -266,7 +268,7 @@ void __fastcall TMDIConfig::UpActionExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIConfig::DownActionExecute(TObject *Sender)
+void  TMDIConfig::DownActionExecute(TObject *Sender)
 {
     if (!tvTechnology->Selected)
         return;
@@ -291,7 +293,7 @@ void __fastcall TMDIConfig::DownActionExecute(TObject *Sender)
 
 
 
-void __fastcall TMDIConfig::NewCopyExecute(TObject *Sender)
+void  TMDIConfig::NewCopyExecute(TObject *Sender)
 {
     if (!tvTechnology->Selected)
         return;
@@ -319,7 +321,7 @@ void __fastcall TMDIConfig::NewCopyExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDIConfig::ExportHereExecute(TObject *Sender)
+void  TMDIConfig::ExportHereExecute(TObject *Sender)
 {
     if (!tvTechnology->Selected)
         return;
@@ -332,7 +334,7 @@ void __fastcall TMDIConfig::ExportHereExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIConfig::ImportHereExecute(TObject *Sender)
+void  TMDIConfig::ImportHereExecute(TObject *Sender)
 {
     if (OD->Execute())
         ExcelImport(OD->FileName);

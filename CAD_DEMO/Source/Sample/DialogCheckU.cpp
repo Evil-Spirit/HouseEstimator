@@ -1,16 +1,18 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MyTemplates.h"
 #include "MTL.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <stdlib.h>
-#pragma hdrstop
 
 #include "LuaEnvV.h"
 #include "MyDialogEditU.h"
 #include "DialogCheckU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 
 void RegisterDialogCheck()
@@ -22,19 +24,19 @@ void RegisterDialogCheck()
 
 TCheckForm *CheckForm;
 //---------------------------------------------------------------------------
-__fastcall TCheckForm::TCheckForm(TComponent* Owner) : TForm(Owner)
+ TCheckForm::TCheckForm(TComponent* Owner) : TForm(Owner)
 {
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TCheckForm::SaveBClick(TObject *Sender)
+void  TCheckForm::SaveBClick(TObject *Sender)
 {
     if (FDialog)
         FDialog->Save("checkfile.txt");
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TCheckForm::LoadBClick(TObject *Sender)
+void  TCheckForm::LoadBClick(TObject *Sender)
 {
     if (FDialog)
     {
@@ -44,27 +46,27 @@ void __fastcall TCheckForm::LoadBClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TCheckForm::EditBClick(TObject *Sender)
+void  TCheckForm::EditBClick(TObject *Sender)
 {
     if (FDialog)
         FDialog->Edit(NULL, NULL, NULL);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TCheckForm::CreateBClick(TObject *Sender)
+void  TCheckForm::CreateBClick(TObject *Sender)
 {
     if (FDialog)
         TForm* NewForm = FDialog->CreateForm(NULL, NULL);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TCheckForm::NewBClick(TObject *Sender)
+void  TCheckForm::NewBClick(TObject *Sender)
 {
     FDialog = new TMyDialog();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TCheckForm::ExitBClick(TObject *Sender)
+void  TCheckForm::ExitBClick(TObject *Sender)
 {
     exit(EXIT_SUCCESS);
 }

@@ -1,18 +1,15 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIElementVH
 #define MDIElementVH
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaNodeV.h"
-#include <ExtCtrls.hpp>
-#include <Buttons.hpp>
-#include <CheckLst.hpp>
 
 class TElement;
 class TMDITV;
@@ -49,11 +46,11 @@ __published:	// IDE-managed Components
     TTabSheet *tsDepend;
     TCheckBox *cbLight;
     TButton *Button2;
-    void __fastcall FormActivate(TObject *Sender);
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall bShowClick(TObject *Sender);
-    void __fastcall btGenClick(TObject *Sender);
-    void __fastcall Button2Click(TObject *Sender);
+    void  FormActivate(TObject *Sender);
+    void  FormCreate(TObject *Sender);
+    void  bShowClick(TObject *Sender);
+    void  btGenClick(TObject *Sender);
+    void  Button2Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 //TMetaElement * MetaNode;
@@ -67,7 +64,7 @@ TMDITV *TV;
 TElement *Element;
 TMainTree *MT;
 //------------tsSize--------------------
-__fastcall TMDIElement(TComponent* Owner,TMetaElement *N);
+ TMDIElement(TComponent* Owner,TMetaElement *N);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIElement *MDIElement;

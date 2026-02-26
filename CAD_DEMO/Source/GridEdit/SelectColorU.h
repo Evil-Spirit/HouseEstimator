@@ -1,13 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef SelectColorUH
 #define SelectColorUH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TColorComboBox;
 class TCellGrid;
@@ -62,20 +62,20 @@ __published:	// IDE-managed Components
 
 
 
-    void __fastcall CL11MouseMove(TObject *Sender, TShiftState Shift,
+    void  CL11MouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
-    void __fastcall CL11MouseDown(TObject *Sender, TMouseButton Button,
+    void  CL11MouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall AutoFontColorClick(TObject *Sender);
-    void __fastcall FormDeactivate(TObject *Sender);
+    void  AutoFontColorClick(TObject *Sender);
+    void  FormDeactivate(TObject *Sender);
 
 private:	// User declarations
 public:		// User declarations
     TCellGrid* CellGrid;
     TColorComboBox* ColorComboBox;
-    __fastcall TSelectColor(TComponent* Owner, TCellGrid* _CellGrid,TColorComboBox* _ColorComboBox);
-    TColor __fastcall GetColor();
-    void __fastcall CloseU2();
+     TSelectColor(TComponent* Owner, TCellGrid* _CellGrid,TColorComboBox* _ColorComboBox);
+    TColor  GetColor();
+    void  CloseU2();
     bool bAutoColor;
 
 };

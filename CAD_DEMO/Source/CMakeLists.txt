@@ -16,6 +16,13 @@ target_include_directories(compat_includes SYSTEM INTERFACE
     "${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
+# All modules using the compat layer need Qt Core + Widgets (vcl_qt.h includes Qt Widgets)
+if(QT_VERSION_MAJOR EQUAL 6)
+    target_link_libraries(compat_includes INTERFACE Qt6::Core Qt6::Widgets Qt6::PrintSupport)
+else()
+    target_link_libraries(compat_includes INTERFACE Qt5::Core Qt5::Widgets Qt5::PrintSupport)
+endif()
+
 # ---------------------------------------------------------------------------
 # Lua – optional, needed by LuaEnv
 # ---------------------------------------------------------------------------

@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDITriggerBlockEditV.h"
 #include "LuaModuleV.h"
@@ -11,13 +14,12 @@
 #include "MetaClasses.h"
 #include "MyMDIChildV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma resource "*.dfm"
 
 TMDITriggerBlockEdit *MDITriggerBlockEdit;
 //---------------------------------------------------------------------------
-__fastcall TMDITriggerBlockEdit::TMDITriggerBlockEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDITriggerBlockEdit::TMDITriggerBlockEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }
@@ -36,7 +38,7 @@ void UpdateLV(TListView *LV,TTriggerBlock *TB)
     }
 }
 
-void __fastcall TMDITriggerBlockEdit::tbtAddClick(TObject *Sender)
+void  TMDITriggerBlockEdit::tbtAddClick(TObject *Sender)
 {
     PM->Items->Clear();
     for (int i=0;i<TriggerTypeCount;i++)
@@ -53,7 +55,7 @@ void __fastcall TMDITriggerBlockEdit::tbtAddClick(TObject *Sender)
     PM->Popup(P.x,P.y);
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDITriggerBlockEdit::SelectClick(TObject *Sender)
+void  TMDITriggerBlockEdit::SelectClick(TObject *Sender)
 {
     if (IS(Sender,__classid(TMenuItem)))
     {
@@ -71,7 +73,7 @@ void __fastcall TMDITriggerBlockEdit::SelectClick(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDITriggerBlockEdit::tbtDelClick(TObject *Sender)
+void  TMDITriggerBlockEdit::tbtDelClick(TObject *Sender)
 {
     if (!LV->Selected)
         return;
@@ -87,7 +89,7 @@ void __fastcall TMDITriggerBlockEdit::tbtDelClick(TObject *Sender)
         LV->Selected = LV->Items->Item[index];
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDITriggerBlockEdit::tbtEditClick(TObject *Sender)
+void  TMDITriggerBlockEdit::tbtEditClick(TObject *Sender)
 {
     if (!LV->Selected)
         return;

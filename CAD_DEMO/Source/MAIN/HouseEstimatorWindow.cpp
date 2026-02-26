@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 // HouseEstimatorWindow.cpp – Qt main window implementation.
 
 #include "HouseEstimatorWindow.h"

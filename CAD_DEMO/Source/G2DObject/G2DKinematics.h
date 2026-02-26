@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef G2DKinematicsH
@@ -25,8 +29,8 @@ public:
 	~TSkeleton(){};
 	TMTList<TG2DPoint> Pnts;
 	TMTList<TG2DCut> Cuts;
-	__property int LimitDegreeCount 	= 	{	read 	= 	GetLimitDegreeCount		};
-	__property TFlowInfo* FlowInfo 		= 	{	read 	= 	FFlowInfo				};
+	// __property int LimitDegreeCount {read=GetLimitDegreeCount}; // [manual migration needed]
+	// __property TFlowInfo* FlowInfo {read=FFlowInfo}; // [manual migration needed]
 
 	//access routine
     int IndexOfUnit(TGUnit* Unit)			{	return FCheckedUnits.IndexOf(Unit);		};
@@ -37,10 +41,10 @@ public:
     TG2DCut* GetCheckedCut(int index)		{	return FCheckedCuts.Items[index];		};
     TG2DPoint* GetCheckedPoint(int index)	{	return FCheckedPoints.Items[index];		};
     TDegreeRule* GetCheckedRule(int index)	{	return FCheckedRules.Items[index];		};
-    __property int CheckedUnitCount 	=	{	read 	= 	GetCheckedUnitCount			};
-    __property int CheckedCutCount 		= 	{	read 	= 	GetCheckedCutCount			};
-    __property int CheckedPointCount 	= 	{	read 	= 	GetCheckedPointCount		};
-    __property int CheckedRuleCount 	= 	{	read 	= 	GetCheckedRuleCount			};
+    // __property int CheckedUnitCount {read=GetCheckedUnitCount}; // [manual migration needed]
+    // __property int CheckedCutCount {read=GetCheckedCutCount}; // [manual migration needed]
+    // __property int CheckedPointCount {read=GetCheckedPointCount}; // [manual migration needed]
+    // __property int CheckedRuleCount {read=GetCheckedRuleCount}; // [manual migration needed]
 
 
 	void FixByDistance(TG2DPoint* GPoint,TMTList<TG2DPoint>& NotPnts);

@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "CameraEngineV.h"
 #include "MetaClasses.h"
@@ -15,7 +18,6 @@
 #include "World.h"
 #include "math.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 TInterFace *BIF;
 void TCameraEngine::Init(   TVisPerspectiveCamera *_Perspective,
                             TVisOrthographicCamera *_Orthographic    )

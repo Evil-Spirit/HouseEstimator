@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef AUIVH
@@ -11,7 +15,7 @@ class TMDI3DUser;
 class TMetaMyMode;
 class TWorldAndViews;
 
-typedef void (__closure* TCurrentViewIndexChanged)(TWorldAndViews* WAV);
+typedef void (* TCurrentViewIndexChanged)(TWorldAndViews* WAV);
 
 class COMMONAL_API TWorldAndViews {
 private:
@@ -24,7 +28,7 @@ public:
     ~TWorldAndViews(){};
     TMainTree* World;
     TMTList<TMDI3D> Views;
-    __property int CurrentViewIndex = {read = FCurrentViewIndex,write = SetCurrentViewIndex};
+    // __property int CurrentViewIndex {read=FCurrentViewIndex, write=SetCurrentViewIndex}; // [manual migration needed]
 };
 
 class COMMONAL_API TAdvancedUserInterface {
@@ -53,9 +57,9 @@ public:
     virtual ~TAdvancedUserInterface(){};
     void CurrentViewIndexChanged(TWorldAndViews* WAV);
     //--------------------------------------------------------------------------
-    __property int CurrentWorldIndex = {read = FCurrentWorldIndex, write = SetCurrentWorldIndex};
-    __property TMDI3D* ActiveView = {read = FActiveView};
-    __property TMainTree* ActiveWorld = {read = FActiveWorld};
+    // __property int CurrentWorldIndex {read=FCurrentWorldIndex, write=SetCurrentWorldIndex}; // [manual migration needed]
+    // __property TMDI3D* ActiveView {read=FActiveView}; // [manual migration needed]
+    // __property TMainTree* ActiveWorld {read=FActiveWorld}; // [manual migration needed]
 
     void Register(TMainTree* aMainTree);
     void ActivateWorld(TMainTree* aMainTree);
@@ -69,9 +73,9 @@ public:
     TCameraEngine CameraEngine;
     void CustomRender();
     void InvalidateView();
-    __property TMetaMyMode* Mode = {read = GetMetaMyMode};
-    __property bool AdvancedTexturing = {read = FAdvancedTexturing,write = SetAdvancedTexturing};
-    __property bool PrevAdvancedTexturing = {read = FPrevAdvancedTexturing};
+    // __property TMetaMyMode* Mode {read=GetMetaMyMode}; // [manual migration needed]
+    // __property bool AdvancedTexturing {read=FAdvancedTexturing, write=SetAdvancedTexturing}; // [manual migration needed]
+    // __property bool PrevAdvancedTexturing {read=FPrevAdvancedTexturing}; // [manual migration needed]
     //--------------------------------
     bool CheckExplorerVisible();
 };

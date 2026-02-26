@@ -1,15 +1,15 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef LuaEditorVH
 #define LuaEditorVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
+#include "compat/vcl_qt.h"
 #include <windows.h>
 #include <richedit.h>
-#include <Controls.hpp>
-#include <ExtCtrls.hpp>
-#include <ComCtrls.hpp>
-#include <StdCtrls.hpp>
 #include "MDIObjectEditV.h"
 
 class TLuaModule;
@@ -21,17 +21,17 @@ class COMMONAL_API TFLuaEditor : public TMDIObjectEdit
 __published:	// IDE-managed Components
     TPanel *Panel1;
     TLabel *Label1;
-    void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
+    void  FormKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
-    void __fastcall FormKeyUp(TObject *Sender, WORD &Key,
+    void  FormKeyUp(TObject *Sender, WORD &Key,
           TShiftState Shift);
 private:	// User declarations
     TLuaModule* GetModule();
 public:		// User declarations
-    __property TLuaModule* Module = {read = GetModule};
+    // __property TLuaModule* Module {read=GetModule}; // [manual migration needed]
     TFLuaEditor(TComponent* Owner,TWinControl* _Parent,TLuaModule *_Module,const AnsiString& Text,void *Data);
 
-	void __fastcall Notify(TSciLexer* SciLexer,SCNotification *notification);
+	void  Notify(TSciLexer* SciLexer,SCNotification *notification);
     TSciLexer* SciLexer;
     void Refresh();
     void Apply();

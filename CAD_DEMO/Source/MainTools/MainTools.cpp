@@ -1,13 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <basepch.h>
-#pragma hdrstop
-USEFORM("BindedBaseToolEditV.cpp", BindedBaseToolEdit);
-USEFORM("BindedBlockEditV.cpp", BindedBlockEdit);
-USEFORM("BindedGoEditV.cpp", BindedGoEdit);
-USEFORM("ToolFormV.cpp", ToolForm);
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 
 //   Package source.

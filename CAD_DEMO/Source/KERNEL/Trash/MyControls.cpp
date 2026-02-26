@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MyControls.h"
 //#include "Main.h"
@@ -15,7 +18,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 TAllActions *ALLACTIONS;
 
@@ -238,7 +240,7 @@ void Pos_Accord( TIntVec& New_E1_Position, TMetaLink *ML, TElement *EL0, TElemen
     New_E1_Position = New_E1_Position+SRV_PNT_1-SRV_PNT;
 }
 
-// öåíòð 1 + ïîçèöèÿ 1 = öåíòð 2 + ïîçèöèÿ 2
+// Ã¶Ã¥Ã­Ã²Ã° 1 + Ã¯Ã®Ã§Ã¨Ã¶Ã¨Ã¿ 1 = Ã¶Ã¥Ã­Ã²Ã° 2 + Ã¯Ã®Ã§Ã¨Ã¶Ã¨Ã¿ 2
 //interface objects
 
 
@@ -325,7 +327,7 @@ void TMyControls::Continue()
     if (!FirstRender)
     {
         //return this
-        //ýòî äëÿ ïîìåùåíèÿ ÷òîáû îíî íå åçäèëî
+        //Ã½Ã²Ã® Ã¤Ã«Ã¿ Ã¯Ã®Ã¬Ã¥Ã¹Ã¥Ã­Ã¨Ã¿ Ã·Ã²Ã®Ã¡Ã» Ã®Ã­Ã® Ã­Ã¥ Ã¥Ã§Ã¤Ã¨Ã«Ã®
         if (BIF->Element->MyMeta->IsAuto)
             return;
         OnContinue();
@@ -372,7 +374,7 @@ void TMyControls::CustomRender()
 //rotation
 void TRotater::OnStart()
 {
-    //ïî êàêèì êîîðäèíàòàì
+    //Ã¯Ã® ÃªÃ ÃªÃ¨Ã¬ ÃªÃ®Ã®Ã°Ã¤Ã¨Ã­Ã Ã²Ã Ã¬
     StartPoint = Mouse->CursorPos;
     StartAngle = BIF->Element->AbsAngle;
     BIF->Driver.MainMode = ocmPosition;
@@ -592,7 +594,7 @@ bool TScaler::OnCustomRender(const TPoint& _P)
         return false;
     if (FirstRender==true)
     {
-        //Àíàëèç Z-------------------------------------------------------------
+        //Ã€Ã­Ã Ã«Ã¨Ã§ Z-------------------------------------------------------------
 
         BIF->VisView->ClearBuffers(TVisBufferType()<<btColor<<btDepth);
         BIF->Atr->Render(BIF->VisView);

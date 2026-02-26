@@ -1,18 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
-#include <Math.hpp>
 #include "CellGrid.h"
 #include "TextEditU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 
-void __fastcall TCellGrid::SetNumerColRow(int ACol, int ARow, int type, TColor ColorBk)
+void  TCellGrid::SetNumerColRow(int ACol, int ARow, int type, TColor ColorBk)
 {
     if (type ==1)
     {
@@ -77,12 +78,12 @@ void __fastcall TCellGrid::SetNumerColRow(int ACol, int ARow, int type, TColor C
     }
 }
 
-bool  __fastcall TCellGrid::PointInGridRect(int Col, int Row,TGridRect Rect)
+bool   TCellGrid::PointInGridRect(int Col, int Row,TGridRect Rect)
 {
     return ((Col >= Rect.Left) && (Col <= Rect.Right) && (Row >= Rect.Top) && (Row <= Rect.Bottom));
 }
 
-void  __fastcall TCellGrid::DrawTextU2(int CurCol, int CurRow, const TRect& RectDrawText)// Рисование текста
+void   TCellGrid::DrawTextU2(int CurCol, int CurRow, const TRect& RectDrawText)// ГђГЁГ±Г®ГўГ Г­ГЁГҐ ГІГҐГЄГ±ГІГ 
 {
     TCell* Cell = GetCell(CurCol,CurRow);
     AnsiString str =Cell->Text;
@@ -97,28 +98,28 @@ void  __fastcall TCellGrid::DrawTextU2(int CurCol, int CurRow, const TRect& Rect
         switch (Cell->CellFlags.FontStyle)
         {
             case 0:
-            {// Обычный
+            {// ГЋГЎГ»Г·Г­Г»Г©
                 Style.Clear();
             }break;
             case 1:
-            {// Курсив
+            {// ГЉГіГ°Г±ГЁГў
                 Style <<fsItalic;
             }break;
             case 2:
-            {// Жирный
+            {// Г†ГЁГ°Г­Г»Г©
                 Style <<fsBold;
             }break;
             case 3:
-            {// Жирный курсив
+            {// Г†ГЁГ°Г­Г»Г© ГЄГіГ°Г±ГЁГў
                 Style <<fsBold <<fsItalic;
             }break;
         }
         if (Cell->CellFlags.FontStrikeOut ==1)
-        {// Зачеркнутый шрифт
+        {// Г‡Г Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ
             Style <<fsStrikeOut;
         }
         if (Cell->CellFlags.FontUnderline ==1)
-        {// Подчеркнутый шрифт
+        {// ГЏГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ
             Style <<fsUnderline;
         }
         Canvas->Font->Style =Style;
@@ -177,16 +178,16 @@ void  __fastcall TCellGrid::DrawTextU2(int CurCol, int CurRow, const TRect& Rect
     }
 }
 
-void  __fastcall TCellGrid::SetColorCanvas(int CurCol, int CurRow)
+void   TCellGrid::SetColorCanvas(int CurCol, int CurRow)
 {
     TRect CurrentAnchorSelect =GetAnchorCurrentSort();
     TCell* Cell2 = GetCell(CurCol,CurRow);
     if (Cell2!= NULL)
-    {// Ячейка Существует
+    {// ГџГ·ГҐГ©ГЄГ  Г‘ГіГ№ГҐГ±ГІГўГіГҐГІ
         if (Cell2->UnionRect != NULL)
-        {// Ячейка Объедененная
+        {// ГџГ·ГҐГ©ГЄГ  ГЋГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї
             if (SelectColumn || SelectString)
-            {// Столбец
+            {// Г‘ГІГ®Г«ГЎГҐГ¶
                 if (Rect1InRect2(*Cell2->UnionRect,CurrentAnchorSelect))
                 {
                     Canvas->Brush->Color =SetColorCursor(Cell2->bgColor);
@@ -216,7 +217,7 @@ void  __fastcall TCellGrid::SetColorCanvas(int CurCol, int CurRow)
             }
 
         } else
-        {// Ячейка НЕ Объедененная
+        {// ГџГ·ГҐГ©ГЄГ  ГЌГ… ГЋГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї
             if (Rect1InRect2(TRect(CurCol,CurRow,CurCol,CurRow),CurrentAnchorSelect))
             {
                 if (StartMouseDown.X ==CurCol && StartMouseDown.Y ==CurRow)
@@ -230,45 +231,45 @@ void  __fastcall TCellGrid::SetColorCanvas(int CurCol, int CurRow)
             }
         }
     } else
-    {// Ячейка пустая
+    {// ГџГ·ГҐГ©ГЄГ  ГЇГіГ±ГІГ Гї
         if (GetCell(CurCol,1) !=NULL)
-        {// Столбец
+        {// Г‘ГІГ®Г«ГЎГҐГ¶
             if (Rect1InRect2(TRect(CurCol,CurRow,CurCol,CurRow),CurrentAnchorSelect))
-            { // В области выделения
+            { // Г‚ Г®ГЎГ«Г Г±ГІГЁ ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї
                 if (StartMouseDown.X ==CurCol && StartMouseDown.Y ==CurRow)
                 {
                     Canvas->Brush->Color =GetCell(CurCol,1)->bgColor;
                 } else
                     Canvas->Brush->Color =SetColorCursor(GetCell(CurCol,1)->bgColor);
             } else
-            { //За областью выделения
+            { //Г‡Г  Г®ГЎГ«Г Г±ГІГјГѕ ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї
                 Canvas->Brush->Color =GetCell(CurCol,1)->bgColor;
             }
         } else
         if (GetCell(1,CurRow) !=NULL)
-        {// Строка
+        {// Г‘ГІГ°Г®ГЄГ 
             if (Rect1InRect2(TRect(CurCol,CurRow,CurCol,CurRow),CurrentAnchorSelect))
-            { // В области выделения
+            { // Г‚ Г®ГЎГ«Г Г±ГІГЁ ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї
                 if (StartMouseDown.X ==CurCol && StartMouseDown.Y ==CurRow)
                 {
                     Canvas->Brush->Color =GetCell(1,CurRow)->bgColor;
                 } else
                     Canvas->Brush->Color =SetColorCursor(GetCell(1,CurRow)->bgColor);
             } else
-            { //За областью выделения
+            { //Г‡Г  Г®ГЎГ«Г Г±ГІГјГѕ ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї
                 Canvas->Brush->Color =GetCell(1,CurRow)->bgColor;
             }
         } else
-        {// Таблица
+        {// Г’Г ГЎГ«ГЁГ¶Г 
             if (Rect1InRect2(TRect(CurCol,CurRow,CurCol,CurRow),CurrentAnchorSelect))
-            { // В области выделения
+            { // Г‚ Г®ГЎГ«Г Г±ГІГЁ ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї
                 if (StartMouseDown.X ==CurCol && StartMouseDown.Y ==CurRow)
                 {
                     Canvas->Brush->Color =GetCell(1,1)->bgColor;
                 } else
                     Canvas->Brush->Color =SetColorCursor(GetCell(1,1)->bgColor);
             } else
-            { //За областью выделения
+            { //Г‡Г  Г®ГЎГ«Г Г±ГІГјГѕ ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї
                 Canvas->Brush->Color =GetCell(1,1)->bgColor;
             }
         }
@@ -276,7 +277,7 @@ void  __fastcall TCellGrid::SetColorCanvas(int CurCol, int CurRow)
 
 }
 
-void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,int StopX,int StopY,TColor Color,TGridDrawState IncludeDrawState)
+void   TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,int StopX,int StopY,TColor Color,TGridDrawState IncludeDrawState)
 {
     Canvas->Lock();
     long CurCol, CurRow;
@@ -287,7 +288,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
 
     ColorCursor =clWhite;
 
-// ---- Предварительный расчет ---
+// ---- ГЏГ°ГҐГ¤ГўГ Г°ГЁГІГҐГ«ГјГ­Г»Г© Г°Г Г±Г·ГҐГІ ---
     TRect RectReal_22 =GetGridRectToRectPixelNotUnionReal(2,2);
 
     TRect RectReal_1FixedRows =GetGridRectToRectPixelNotUnionReal(1,FixedRows);
@@ -295,7 +296,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
 
     TRect RectReal_FixedCols2 =GetGridRectToRectPixelNotUnionReal(FixedCols,2);
     TRect RectReal_2FixedRows =GetGridRectToRectPixelNotUnionReal(2,FixedRows);
-// ---- Предварительный расчет --- END
+// ---- ГЏГ°ГҐГ¤ГўГ Г°ГЁГІГҐГ«ГјГ­Г»Г© Г°Г Г±Г·ГҐГІ --- END
 
     CurRow = ARow;
     Where.Top = StartY;
@@ -321,9 +322,9 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                     if ((DefaultDrawing)||(ComponentState.Contains(csDesigning)))
                     {
 
-                        ColorSelect =(TColor)RGB(109,149,213); // Выделение нескольких яччек
+                        ColorSelect =(TColor)RGB(109,149,213); // Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ Г­ГҐГ±ГЄГ®Г«ГјГЄГЁГµ ГїГ·Г·ГҐГЄ
                         if (MoveCellBorder && !PointInRect(CurCol,CurRow,TRect(StartMouseDown.X,StartMouseDown.Y,MouseUpCoord.X,MouseUpCoord.Y)))
-                            ColorSelect =(TColor)RGB(255,255,255); // Выделение нескольких яччек
+                            ColorSelect =(TColor)RGB(255,255,255); // Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ Г­ГҐГ±ГЄГ®Г«ГјГЄГЁГµ ГїГ·Г·ГҐГЄ
 
                         if (CurRow >1 && CurCol >1)
                             SetColorCanvas(CurCol, CurRow);
@@ -334,7 +335,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                             if (SelectTable)
                             {
                                 if ((CurCol ==1)||(CurRow ==1))
-                                {// Таблица
+                                {// Г’Г ГЎГ«ГЁГ¶Г 
                                     Canvas->Brush->Color = ColorFixedSelectAll;
                                     ColorCursor = ColorFixedSelect;
                                 }
@@ -352,7 +353,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                                     CurRow<=End)
                                 {
                                     if ((CurCol ==1)&&(CurRow !=1))
-                                    {// Строка
+                                    {// Г‘ГІГ°Г®ГЄГ 
                                         Canvas->Brush->Color = ColorFixedSelect;
                                         ColorCursor = Canvas->Brush->Color;
                                     }
@@ -370,7 +371,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                                     CurCol<=End)
                                 {
                                     if ((CurRow ==1)&&(CurCol !=1))
-                                    {// Столбец
+                                    {// Г‘ГІГ®Г«ГЎГҐГ¶
                                         Canvas->Brush->Color = ColorFixedSelect;
                                         ColorCursor = Canvas->Brush->Color;
                                     }
@@ -387,7 +388,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                                 rectCurColCurRow =GetGridRectToRectPixelNotUnionAndScroll(CurCol,CurRow);
 
                             if (getcell!= NULL)
-                            {// Ячейка существует
+                            {// ГџГ·ГҐГ©ГЄГ  Г±ГіГ№ГҐГ±ГІГўГіГҐГІ
                                 TRect RectClipText;
                                 TRect RectDrawText;
 
@@ -398,7 +399,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                                     CurRow < getcell->UnionRect->Bottom)
                                 )
                                 )
-                                {// Ячейка объедененная
+                                {// ГџГ·ГҐГ©ГЄГ  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї
                                     if (CurCol ==0 || CurRow ==0 )
                                     {
                                         recttemp =rectCurColCurRow;
@@ -432,7 +433,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                                     else
                                     {
                                         int NewColStart,NewRowStart,NewColEnd,NewRowEnd;
-                                        // получаем регион в ячейках указывающий на объедененную ячеку
+                                        // ГЇГ®Г«ГіГ·Г ГҐГ¬ Г°ГҐГЈГЁГ®Г­ Гў ГїГ·ГҐГ©ГЄГ Гµ ГіГЄГ Г§Г»ГўГ ГѕГ№ГЁГ© Г­Г  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГЄГі
 
                                         TRect rectCurrent = *getcell->UnionRect;
                                         NewColStart = getcell->UnionRect->Left;
@@ -625,7 +626,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                                         int iClipB=0;
 
                                         if (SelectColumn)
-                                        {// Столбец
+                                        {// Г‘ГІГ®Г«ГЎГҐГ¶
                                             if (NewColStart ==CurCol) iClipL=-3;
                                             if (NewColEnd ==CurCol) iClipR=+3;
 
@@ -635,7 +636,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                                         }
                                         else
                                         if (SelectString)
-                                        {// Строка
+                                        {// Г‘ГІГ°Г®ГЄГ 
                                             if (NewRowStart ==CurRow) iClipT=-3;
                                             if (NewRowEnd ==CurRow) iClipB=+3;
 
@@ -644,13 +645,13 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
 
                                         }
                                         else
-                                        {// ячейка
+                                        {// ГїГ·ГҐГ©ГЄГ 
                                             DrawCursorU2(CurCol, CurRow, Where.Left+iClipR, Where.Top+iClipB , Where.Right+1+iClipL, Where.Bottom+1+iClipT);
                                         }
                                     }
                                 }
                                 else
-                                {// Заполненная ячейка
+                                {// Г‡Г ГЇГ®Г«Г­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ 
                                     if (!(getcell->UnionRect != NULL &&
                                         (CurCol > getcell->UnionRect->Left &&
                                         CurCol < getcell->UnionRect->Right &&
@@ -666,7 +667,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                                 }
                             }
                             else
-                            {// Пустая ячейка
+                            {// ГЏГіГ±ГІГ Гї ГїГ·ГҐГ©ГЄГ 
                                 if (CurCol ==0 || CurRow ==0 )
                                 {
                                     temprect =Where;
@@ -682,8 +683,8 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                                 }
                             }
                             ::DeleteObject(MyRgn);
-//---------- Область всех ячеек (пустых, созданных) ---------------------------
-// Рисует линии на первых ячейка
+//---------- ГЋГЎГ«Г Г±ГІГј ГўГ±ГҐГµ ГїГ·ГҐГҐГЄ (ГЇГіГ±ГІГ»Гµ, Г±Г®Г§Г¤Г Г­Г­Г»Гµ) ---------------------------
+// ГђГЁГ±ГіГҐГІ Г«ГЁГ­ГЁГЁ Г­Г  ГЇГҐГ°ГўГ»Гµ ГїГ·ГҐГ©ГЄГ 
 
                             FixedOne =Where;
                             FixedOne.Right++;
@@ -716,7 +717,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
                                     SectionLine(FixedOne,2);
                                 }
                             }
-                            SetNumerColRow(CurCol, CurRow,1, Canvas->Brush->Color);// Нумерация первых ячеек
+                            SetNumerColRow(CurCol, CurRow,1, Canvas->Brush->Color);// ГЌГіГ¬ГҐГ°Г Г¶ГЁГї ГЇГҐГ°ГўГ»Гµ ГїГ·ГҐГҐГЄ
 //-------------------------------- END ---------------------------------
                         }
                     }
@@ -731,7 +732,7 @@ void  __fastcall TCellGrid::DrawCells(long ACol,long ARow,int StartX,int StartY,
     Canvas->Unlock();
 }
 
-void __fastcall TCellGrid::Paint()
+void  TCellGrid::Paint()
 {
     if (UseRightToLeftAlignment())
         ChangeGridOrientation(true);
@@ -741,7 +742,7 @@ void __fastcall TCellGrid::Paint()
 //    { Draw the cells in the four areas }
     Sel = Selection;
     TGridDrawState set;
-    set.Clear(); // Пустое множество
+    set.Clear(); // ГЏГіГ±ГІГ®ГҐ Г¬Г­Г®Г¦ГҐГ±ГІГўГ®
     if (CursorMoveStarted())
         DrawCursorMove(CurrentMouseCoordTimer.X,CurrentMouseCoordTimer.Y);
 
@@ -764,7 +765,7 @@ void __fastcall TCellGrid::Paint()
     }
 
 //      { Fill in area not occupied by cells }
-// *************** Обработка за областью таблицы
+// *************** ГЋГЎГ°Г ГЎГ®ГІГЄГ  Г§Г  Г®ГЎГ«Г Г±ГІГјГѕ ГІГ ГЎГ«ГЁГ¶Г»
     if (DrawInfo.Horz.GridBoundary < DrawInfo.Horz.GridExtent)
     {
         Canvas->Brush->Color = Color;

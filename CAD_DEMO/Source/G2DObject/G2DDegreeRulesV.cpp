@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "G2DDegreeRulesV.h"
 #include "G2DPointCutV.h"
@@ -14,7 +17,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 TClassNode* TDegreeRule::StaticType = NULL;
 TClassNode* TLineDegreeRule::StaticType = NULL;
@@ -205,7 +207,7 @@ bool LimaconCrossingWith(const TLimaconDegreeRule& Rule1,const TDegreeRule& Rule
     	return Rule1.PL.CrossingWithLimacon(LDR.PL,CPS,USEEPS);
     }
     else
-        throw EMyException("<LimaconCrossingWith>: неизвестное сочетание законов.");
+        throw EMyException("<LimaconCrossingWith>: Г­ГҐГЁГ§ГўГҐГ±ГІГ­Г®ГҐ Г±Г®Г·ГҐГІГ Г­ГЁГҐ Г§Г ГЄГ®Г­Г®Гў.");
 }
 
 bool CrossPointsOf(const TDegreeRule& Rule1,const TDegreeRule& Rule2,TMDelTList<TIntVec>& CPS,MBTi USEEPS)
@@ -258,7 +260,7 @@ bool CrossPointsOf(const TDegreeRule& Rule1,const TDegreeRule& Rule2,TMDelTList<
     	return	LimaconCrossingWith((TLimaconDegreeRule&)Rule2,Rule1,CPS,USEEPS);
     }
     else
-        throw EMyException("<CrossPointsOf>: неизвестное сочетание законов.");
+        throw EMyException("<CrossPointsOf>: Г­ГҐГЁГ§ГўГҐГ±ГІГ­Г®ГҐ Г±Г®Г·ГҐГІГ Г­ГЁГҐ Г§Г ГЄГ®Г­Г®Гў.");
 }
 
 TMyObject* TLimaconDegreeRule::CreateFunction()

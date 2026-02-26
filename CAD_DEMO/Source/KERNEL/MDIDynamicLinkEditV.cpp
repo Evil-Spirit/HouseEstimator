@@ -1,24 +1,25 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
-#include <typeinfo.h>
 
 #include "MDIDynamicLinkEditV.h"
 //#include "MDILuaEditorV.h"
 #include "TriggerBlockV.h"
 #include "MetaNodeCollectionV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIMetaNodeV"
 #pragma resource "*.dfm"
 TMDIDynamicLinkEdit *MDIDynamicLinkEdit;
 //---------------------------------------------------------------------------
-__fastcall TMDIDynamicLinkEdit::TMDIDynamicLinkEdit(TComponent* Owner,TDynamicLink *N)
+ TMDIDynamicLinkEdit::TMDIDynamicLinkEdit(TComponent* Owner,TDynamicLink *N)
     : TMDIMetaNode(Owner,N)
 {
 }
@@ -88,7 +89,7 @@ void TMDIDynamicLinkEdit::SETUP()
     cbNeeded->Checked = DL->Needed;
 }
 
-void __fastcall TMDIDynamicLinkEdit::FormClose(TObject *Sender,
+void  TMDIDynamicLinkEdit::FormClose(TObject *Sender,
       TCloseAction &Action)
 {
      TMyMDIChild::FormClose(Sender,Action);    

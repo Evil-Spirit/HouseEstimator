@@ -1,7 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "OtherMetaClasses.h"
 
@@ -15,7 +18,6 @@
     #include "MDINomenclatureV.h"
 #endif
 
-#pragma package(smart_init)
 
 
 

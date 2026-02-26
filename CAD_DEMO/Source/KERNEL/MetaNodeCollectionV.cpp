@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MetaNodeCollectionV.h"
 #include "MDISelectClassV.h"
@@ -16,7 +19,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 TQuickList TMetaNodeCollection::TypesToEdit;
 
 TMetaNodeCollection *MetaNodeCollection;
@@ -34,7 +36,7 @@ TMetaNodeCollection::TMetaNodeCollection()
 {
     RegisterNewClass< TMyRegTree, TMetaNodeCollection >(this,false,&(CreateFunction));
     RegisterField(&Supports,&aSupports,mtMyObject);
-    Supports.Add( new TKernelSupport() ); //âñåãäà ïåðâûé
+    Supports.Add( new TKernelSupport() ); //Ã¢Ã±Ã¥Ã£Ã¤Ã  Ã¯Ã¥Ã°Ã¢Ã»Ã©
 }
 
 TKernelSupport* TMetaNodeCollection::GetKernelSupport()
@@ -160,7 +162,7 @@ TMetaNode *TMetaNodeCollection::AddMetaChild(TMetaNode *Node,AnsiString NeedCT,i
 
 void TMetaNodeCollection::Validate()
 {
-    /* TODO : Îñòàëîñü äîáàâèòü nomenclature è metaui,metaactionlist */
+    /* TODO : ÃŽÃ±Ã²Ã Ã«Ã®Ã±Ã¼ Ã¤Ã®Ã¡Ã Ã¢Ã¨Ã²Ã¼ nomenclature Ã¨ metaui,metaactionlist */
     if (!Head)
     {
         TMetaNode *Head=MetaNodeCollection->AddMetaChild(NULL,cMetaNode,0,AnsiString("Demo"),true);
@@ -239,7 +241,7 @@ bool TMetaNodeCollection::Save()
     return true;
 }
 
-//àäðåññ îáðàáîò÷èêà onclick áåðåòñÿ èç MenuItem
+//Ã Ã¤Ã°Ã¥Ã±Ã± Ã®Ã¡Ã°Ã Ã¡Ã®Ã²Ã·Ã¨ÃªÃ  onclick Ã¡Ã¥Ã°Ã¥Ã²Ã±Ã¿ Ã¨Ã§ MenuItem
 void TMetaNodeCollection::FillMenuItem(TMenuItem *MenuItem,Classes::TNotifyEvent Event)
 {
     MenuItem->Clear();

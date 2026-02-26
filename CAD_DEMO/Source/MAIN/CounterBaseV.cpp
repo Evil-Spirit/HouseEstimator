@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MultiElementV.h"
 #include "NomenclatureV.h"
@@ -16,7 +19,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 TCounterBase* Counter = NULL;
 
 void TCounterBase::ForceCount()
@@ -515,7 +517,7 @@ TQuerryNode::~TQuerryNode()
 void TQuerryNode::SetParent(TQuerryNode* newParent)
 {
     if (Parent == newParent)
-        return;//ò.ê. äèíàìè÷åñêèå ñâÿçêè ïðûãàþò èç êîíöà â íà÷àëî
+        return;//Ã².Ãª. Ã¤Ã¨Ã­Ã Ã¬Ã¨Ã·Ã¥Ã±ÃªÃ¨Ã¥ Ã±Ã¢Ã¿Ã§ÃªÃ¨ Ã¯Ã°Ã»Ã£Ã Ã¾Ã² Ã¨Ã§ ÃªÃ®Ã­Ã¶Ã  Ã¢ Ã­Ã Ã·Ã Ã«Ã®
     if (Parent)
         Parent->Childs.Remove(this);
     FParent = newParent;

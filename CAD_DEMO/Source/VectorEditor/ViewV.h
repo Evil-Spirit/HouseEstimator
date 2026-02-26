@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ViewVH
@@ -16,24 +20,24 @@ public:
     TVisPerspectiveCamera *VisPerspCam;
     TVisAttributes *VisAttributes;
     TVisLight *VisLight;
-    void __fastcall Render(TVisView *aView);
-    void __fastcall Click(TObject *Sender);
-    void __fastcall MouseWheel(TObject *Sender, TShiftState Shift,
+    void  Render(TVisView *aView);
+    void  Click(TObject *Sender);
+    void  MouseWheel(TObject *Sender, TShiftState Shift,
           int WheelDelta, TPoint &MousePos, bool &Handled);
-    void __fastcall ViewMouseDown(TObject *Sender, TMouseButton Button,
+    void  ViewMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall ViewMouseUp(TObject *Sender, TMouseButton Button,
+    void  ViewMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall ViewKeyDown(TObject *Sender, WORD &Key,
+    void  ViewKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
-    void __fastcall ViewKeyUp(TObject *Sender, WORD &Key,
+    void  ViewKeyUp(TObject *Sender, WORD &Key,
           TShiftState Shift);
 };*/
 //-----------&&&------------
 class TEditor2D;
 class TMyView;
 
-class PACKAGE TMyCursor : public TMyObject{
+class  TMyCursor : public TMyObject{
 public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
@@ -49,5 +53,5 @@ public:
     void Render(TMyView* aView);
 };
 
-extern PACKAGE TClassNode* TMyCursor::StaticType;
+extern  TClassNode* TMyCursor::StaticType;
 #endif

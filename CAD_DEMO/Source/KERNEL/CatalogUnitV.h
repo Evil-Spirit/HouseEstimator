@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef CatalogUnitVH
@@ -18,7 +22,7 @@ public:
     virtual ~TMetaCatalogUnit(){};
     TPointer<TMyRegObject> ASSOCIATED;
     void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
-    __property TMetaNode* Associated = {read = GetAssociated};
+    // __property TMetaNode* Associated {read=GetAssociated}; // [manual migration needed]
     virtual void GetImage(bool Small,bool Masked,Graphics::TBitmap* bmp,Graphics::TBitmap* mask);
 };
 

@@ -1,27 +1,27 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ClassExplorerVH
 #define ClassExplorerVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TClassExplorer : public TForm
 {
 __published:	// IDE-managed Components
     TTreeView *TreeView1;
     TButton *bClose;
-    void __fastcall bCloseClick(TObject *Sender);
-    void __fastcall FormShow(TObject *Sender);
+    void  bCloseClick(TObject *Sender);
+    void  FormShow(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TClassExplorer(TComponent* Owner);
+     TClassExplorer(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TClassExplorer *ClassExplorer;
+extern  TClassExplorer *ClassExplorer;
 //---------------------------------------------------------------------------
 
 void ShowClasses()

@@ -1,8 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "ToolBarCellGrid.h"
 #include "ImagesU.h"
@@ -10,7 +13,6 @@
 #include "SelectBorderU.h"
 #include "SelectColorU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 
 int CALLBACK GetFontToMashine(LOGFONT* lplf, TEXTMETRIC* lptm, DWORD dwType, LPARAM lpData);
@@ -23,7 +25,7 @@ TCellGrid* FindGrid()
         return (TCellGrid*)ComponentExists(__classid(TCellGrid),Application->MainForm);
 }
 
-__fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aParent)
+ TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aParent)
     : TToolBar(Owner)
 {
 //    Height =24;
@@ -38,7 +40,7 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     Images->ImageType =itImage;
     Images->ShareImages =false;
 
-    // Отображение нумерованых (строк, столбцов)
+    // ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ Г­ГіГ¬ГҐГ°Г®ГўГ Г­Г»Гµ (Г±ГІГ°Г®ГЄ, Г±ГІГ®Г«ГЎГ¶Г®Гў)
     tb_VisOne =new TToolButton(this);
     tb_VisOne->Parent = this;
     tb_VisOne->Style =tbsButton;
@@ -48,7 +50,7 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     tb_VisOne->Visible =true;
     tb_VisOne->OnClick =tb_VisOneClick;
 
-    // Разделитель
+    // ГђГ Г§Г¤ГҐГ«ГЁГІГҐГ«Гј
     ToolButton5 =new TToolButton(this);
     ToolButton5->Parent = this;
     ToolButton5->Style =tbsSeparator;
@@ -59,7 +61,7 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     PopupMenuFontColor =new TPopupMenu(this);
     PopupMenuFontColor->OnPopup =PopupMenuFontColorPopup;
 
-    // Цвет шрифта
+    // Г–ГўГҐГІ ГёГ°ГЁГґГІГ 
     tb_FontColor =new TToolButton(this);
     tb_FontColor->Parent = this;
     tb_FontColor->Style =tbsDropDown;
@@ -75,7 +77,7 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     PopupMenuBgColor =new TPopupMenu(this);
     PopupMenuBgColor->OnPopup =PopupMenuBgColorPopup;
 
-    // Цвет фона
+    // Г–ГўГҐГІ ГґГ®Г­Г 
     tb_BgColor =new TToolButton(this);
     tb_BgColor->Parent = this;
     tb_BgColor->Style =tbsDropDown;
@@ -104,14 +106,14 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
 
     SetBorderIcoToToolBar(3);
 
-    // Разделитель
+    // ГђГ Г§Г¤ГҐГ«ГЁГІГҐГ«Гј
     ToolButton4 =new TToolButton(this);
     ToolButton4->Parent = this;
     ToolButton4->Style =tbsSeparator;
     ToolButton4->Width =2;
     ToolButton4->Visible =true;
 
-    // Объеденение
+    // ГЋГЎГєГҐГ¤ГҐГ­ГҐГ­ГЁГҐ
     tb_Union =new TToolButton(this);
     tb_Union->Parent = this;
     tb_Union->Style =tbsButton;
@@ -121,14 +123,14 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     tb_Union->Visible =true;
     tb_Union->OnClick =tb_UnionClick;
 
-    // Разделитель
+    // ГђГ Г§Г¤ГҐГ«ГЁГІГҐГ«Гј
     ToolButton3 =new TToolButton(this);
     ToolButton3->Parent = this;
     ToolButton3->Style =tbsSeparator;
     ToolButton3->Width =2;
     ToolButton3->Visible =true;
 
-    // Выровнять по право
+    // Г‚Г»Г°Г®ГўГ­ГїГІГј ГЇГ® ГЇГ°Г ГўГ®
     tb_RightH =new TToolButton(this);
     tb_RightH->Parent = this;
     tb_RightH->Style =tbsButton;
@@ -138,7 +140,7 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     tb_RightH->Visible =true;
     tb_RightH->OnClick =tb_RightHClick;
 
-    // Выровнять по Центру
+    // Г‚Г»Г°Г®ГўГ­ГїГІГј ГЇГ® Г–ГҐГ­ГІГ°Гі
     tb_CenterH =new TToolButton(this);
     tb_CenterH->Parent = this;
     tb_CenterH->Style =tbsButton;
@@ -148,7 +150,7 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     tb_CenterH->Visible =true;
     tb_CenterH->OnClick =tb_CenterHClick;
 
-    // Выровнять по лево
+    // Г‚Г»Г°Г®ГўГ­ГїГІГј ГЇГ® Г«ГҐГўГ®
     tb_LeftH =new TToolButton(this);
     tb_LeftH->Parent = this;
     tb_LeftH->Style =tbsButton;
@@ -159,14 +161,14 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     tb_LeftH->OnClick =tb_LeftHClick;
 
 
-    // Разделитель
+    // ГђГ Г§Г¤ГҐГ«ГЁГІГҐГ«Гј
     ToolButton2 =new TToolButton(this);
     ToolButton2->Parent = this;
     ToolButton2->Style =tbsSeparator;
     ToolButton2->Width =2;
     ToolButton2->Visible =true;
 
-    // Подчеркнутый шрифт
+    // ГЏГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ
     tb_ch =new TToolButton(this);
     tb_ch->Parent = this;
     tb_ch->Style =tbsButton;
@@ -176,7 +178,7 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     tb_ch->Visible =true;
     tb_ch->OnClick =tb_chClick;
 
-    // Курсивный шрифт
+    // ГЉГіГ°Г±ГЁГўГ­Г»Г© ГёГ°ГЁГґГІ
     tb_k =new TToolButton(this);
     tb_k->Parent = this;
     tb_k->Style =tbsButton;
@@ -186,7 +188,7 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     tb_k->Visible =true;
     tb_k->OnClick =tb_kClick;
 
-    // Жирный шрифт
+    // Г†ГЁГ°Г­Г»Г© ГёГ°ГЁГґГІ
     tb_j =new TToolButton(this);
     tb_j->Parent = this;
     tb_j->Style =tbsButton;
@@ -197,14 +199,14 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     tb_j->OnClick =tb_jClick;
 
 
-    // Разделитель
+    // ГђГ Г§Г¤ГҐГ«ГЁГІГҐГ«Гј
     ToolButton1 =new TToolButton(this);
     ToolButton1->Parent = this;
     ToolButton1->Style =tbsSeparator;
     ToolButton1->Width =2;
     ToolButton1->Visible =true;
 
-    // Размер шрифта
+    // ГђГ Г§Г¬ГҐГ° ГёГ°ГЁГґГІГ 
     cbFontSize =new TComboBox(this);
     cbFontSize->Parent = this;
     cbFontSize->Top=0;
@@ -213,7 +215,7 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
     cbFontSize->Visible =true;
     cbFontSize->OnChange =cbFontSizeChange;
 
-    // Имя шрифта
+    // Г€Г¬Гї ГёГ°ГЁГґГІГ 
     cbFontName =new TComboBox(this);
     cbFontName->Parent = this;
     int iLeftComponent =2;
@@ -268,7 +270,7 @@ __fastcall TToolBarCellGrid::TToolBarCellGrid(TComponent* Owner,TWinControl* aPa
 
 }
 
-void __fastcall TToolBarCellGrid::PopupMenuBgColorPopup(TObject *Sender)
+void  TToolBarCellGrid::PopupMenuBgColorPopup(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -278,7 +280,7 @@ void __fastcall TToolBarCellGrid::PopupMenuBgColorPopup(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::PopupMenuFontColorPopup(TObject *Sender)
+void  TToolBarCellGrid::PopupMenuFontColorPopup(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -288,7 +290,7 @@ void __fastcall TToolBarCellGrid::PopupMenuFontColorPopup(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::PopupMenuBorderPopup(TObject *Sender)
+void  TToolBarCellGrid::PopupMenuBorderPopup(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -298,7 +300,7 @@ void __fastcall TToolBarCellGrid::PopupMenuBorderPopup(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::SelectBgColorClose(TObject *Sender,TCloseAction &Action)
+void  TToolBarCellGrid::SelectBgColorClose(TObject *Sender,TCloseAction &Action)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -317,7 +319,7 @@ void __fastcall TToolBarCellGrid::SelectBgColorClose(TObject *Sender,TCloseActio
     }
 }
 
-void __fastcall TToolBarCellGrid::SelectFontColorClose(TObject *Sender,TCloseAction &Action)
+void  TToolBarCellGrid::SelectFontColorClose(TObject *Sender,TCloseAction &Action)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -336,7 +338,7 @@ void __fastcall TToolBarCellGrid::SelectFontColorClose(TObject *Sender,TCloseAct
     }
 }
 
-void __fastcall TToolBarCellGrid::SelectBorderClose(TObject *Sender,TCloseAction &Action)
+void  TToolBarCellGrid::SelectBorderClose(TObject *Sender,TCloseAction &Action)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -401,7 +403,7 @@ void __fastcall TToolBarCellGrid::SelectBorderClose(TObject *Sender,TCloseAction
     }
 }
 
-void __fastcall TToolBarCellGrid::SetBorderIcoToToolBar(int Index)
+void  TToolBarCellGrid::SetBorderIcoToToolBar(int Index)
 {
     Graphics::TBitmap *bit = new Graphics::TBitmap();
     Graphics::TBitmap *msk = new Graphics::TBitmap();
@@ -421,7 +423,7 @@ void __fastcall TToolBarCellGrid::SetBorderIcoToToolBar(int Index)
     delete msk;
 }
 
-void __fastcall TToolBarCellGrid::SetColorIcoTollBar(TColor Color,int Index)
+void  TToolBarCellGrid::SetColorIcoTollBar(TColor Color,int Index)
 {
     Graphics::TBitmap *bit = new Graphics::TBitmap();
     Graphics::TBitmap *msk = new Graphics::TBitmap();
@@ -447,7 +449,7 @@ void __fastcall TToolBarCellGrid::SetColorIcoTollBar(TColor Color,int Index)
     delete msk;
 }
 
-void __fastcall TToolBarCellGrid::tb_BgColorClick(TObject *Sender)
+void  TToolBarCellGrid::tb_BgColorClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -458,7 +460,7 @@ void __fastcall TToolBarCellGrid::tb_BgColorClick(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::tb_BorderClick(TObject *Sender)
+void  TToolBarCellGrid::tb_BorderClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -470,7 +472,7 @@ void __fastcall TToolBarCellGrid::tb_BorderClick(TObject *Sender)
 }
 
 
-void __fastcall TToolBarCellGrid::tb_FontColorClick(TObject *Sender)
+void  TToolBarCellGrid::tb_FontColorClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -481,7 +483,7 @@ void __fastcall TToolBarCellGrid::tb_FontColorClick(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::cbFontNameChange(TObject *Sender)
+void  TToolBarCellGrid::cbFontNameChange(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -491,7 +493,7 @@ void __fastcall TToolBarCellGrid::cbFontNameChange(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::cbFontSizeChange(TObject *Sender)
+void  TToolBarCellGrid::cbFontSizeChange(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -505,7 +507,7 @@ void __fastcall TToolBarCellGrid::cbFontSizeChange(TObject *Sender)
         }
     }
 }
-void __fastcall TToolBarCellGrid::tb_jClick(TObject *Sender)
+void  TToolBarCellGrid::tb_jClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -531,7 +533,7 @@ void __fastcall TToolBarCellGrid::tb_jClick(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::tb_kClick(TObject *Sender)
+void  TToolBarCellGrid::tb_kClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -549,7 +551,7 @@ void __fastcall TToolBarCellGrid::tb_kClick(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::tb_chClick(TObject *Sender)
+void  TToolBarCellGrid::tb_chClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -564,7 +566,7 @@ void __fastcall TToolBarCellGrid::tb_chClick(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::tb_LeftHClick(TObject *Sender)
+void  TToolBarCellGrid::tb_LeftHClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -579,7 +581,7 @@ void __fastcall TToolBarCellGrid::tb_LeftHClick(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::tb_CenterHClick(TObject *Sender)
+void  TToolBarCellGrid::tb_CenterHClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -594,7 +596,7 @@ void __fastcall TToolBarCellGrid::tb_CenterHClick(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::tb_RightHClick(TObject *Sender)
+void  TToolBarCellGrid::tb_RightHClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -608,7 +610,7 @@ void __fastcall TToolBarCellGrid::tb_RightHClick(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::tb_UnionClick(TObject *Sender)
+void  TToolBarCellGrid::tb_UnionClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -618,7 +620,7 @@ void __fastcall TToolBarCellGrid::tb_UnionClick(TObject *Sender)
     }
 }
 
-void __fastcall TToolBarCellGrid::tb_VisOneClick(TObject *Sender)
+void  TToolBarCellGrid::tb_VisOneClick(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -637,8 +639,8 @@ void __fastcall TToolBarCellGrid::tb_VisOneClick(TObject *Sender)
     }
 }
 
-//----------------------- Создание или присвоение новых указателей
-void __fastcall TToolBarCellGrid::NewFormBgColor(TCellGrid* CellGrid1)
+//----------------------- Г‘Г®Г§Г¤Г Г­ГЁГҐ ГЁГ«ГЁ ГЇГ°ГЁГ±ГўГ®ГҐГ­ГЁГҐ Г­Г®ГўГ»Гµ ГіГЄГ Г§Г ГІГҐГ«ГҐГ©
+void  TToolBarCellGrid::NewFormBgColor(TCellGrid* CellGrid1)
 {
     if (SBgColor ==NULL)
     {
@@ -666,7 +668,7 @@ void __fastcall TToolBarCellGrid::NewFormBgColor(TCellGrid* CellGrid1)
     }
 }
 
-void __fastcall TToolBarCellGrid::NewFormFontColor(TCellGrid* CellGrid1)
+void  TToolBarCellGrid::NewFormFontColor(TCellGrid* CellGrid1)
 {
     if (SFontColor ==NULL)
     {
@@ -693,7 +695,7 @@ void __fastcall TToolBarCellGrid::NewFormFontColor(TCellGrid* CellGrid1)
     }
 }
 
-void __fastcall TToolBarCellGrid::NewFormBorder(TCellGrid* CellGrid1)
+void  TToolBarCellGrid::NewFormBorder(TCellGrid* CellGrid1)
 {
     if (SBorder ==NULL)
     {
@@ -717,7 +719,7 @@ void __fastcall TToolBarCellGrid::NewFormBorder(TCellGrid* CellGrid1)
     }
 }
 
-//----------------------- Создание или присвоение новых указателей END
+//----------------------- Г‘Г®Г§Г¤Г Г­ГЁГҐ ГЁГ«ГЁ ГЇГ°ГЁГ±ГўГ®ГҐГ­ГЁГҐ Г­Г®ГўГ»Гµ ГіГЄГ Г§Г ГІГҐГ«ГҐГ© END
 
 void SetBtnDown(TToolButton* BT,bool Flag)
 {
@@ -725,8 +727,8 @@ void SetBtnDown(TToolButton* BT,bool Flag)
         BT->Down=Flag;
 }
 
-void __fastcall TToolBarCellGrid::SetDownToolBar(TCellGrid* CellGrid1)
-{ // Установить нажатие иконок ToolBar в соответствии с выделенной областью
+void  TToolBarCellGrid::SetDownToolBar(TCellGrid* CellGrid1)
+{ // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г­Г Г¦Г ГІГЁГҐ ГЁГЄГ®Г­Г®ГЄ ToolBar Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГЁ Г± ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГјГѕ
     if (CellGrid1 !=NULL &&
         CellGrid1->FCurrent.X >1 &&
         CellGrid1->FCurrent.Y >1 &&
@@ -734,87 +736,87 @@ void __fastcall TToolBarCellGrid::SetDownToolBar(TCellGrid* CellGrid1)
         CellGrid1->FAnchor.Y != CellGrid1->RowCount-1
         )
     {
-        //--- Установка флагов
-        // Выравнивание
+        //--- Г“Г±ГІГ Г­Г®ГўГЄГ  ГґГ«Г ГЈГ®Гў
+        // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ
         bool bTextHAlign=true;
         unsigned int iTextHAlign;
 
-        // Имя шрифта
+        // Г€Г¬Гї ГёГ°ГЁГґГІГ 
         bool bFontName=true;
         AnsiString sFontName;
 
-        // Стиль Шрифта
+        // Г‘ГІГЁГ«Гј ГГ°ГЁГґГІГ 
         bool bFontStyle=true;
         unsigned int iFontStyle;
 
-        // Размер
+        // ГђГ Г§Г¬ГҐГ°
         bool bFontSize=true;
         unsigned int iFontSize;
 
-        //  Шрифт подчеркнутый
+        //  ГГ°ГЁГґГІ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
         bool bFontUnderline=true;
         unsigned int iFontUnderline;
 
-        //  Объедененная ячейка
+        //  ГЋГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ 
         bool bUnion=false;
 
-        //--- Получение параметров первой ячейки
+        //--- ГЏГ®Г«ГіГ·ГҐГ­ГЁГҐ ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў ГЇГҐГ°ГўГ®Г© ГїГ·ГҐГ©ГЄГЁ
 
         CellGrid1->GetSelectCells(false);
         int End=CellGrid1->ListFilling.Count;
 
         TCell* Cell00 =CellGrid1->GetCellParam(CellGrid1->ListFilling[0].x,CellGrid1->ListFilling[0].y);
 
-        // Выравнивание
+        // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ
         iTextHAlign =Cell00->CellFlags.TextHAlign;
 
-        // Стиль текста
+        // Г‘ГІГЁГ«Гј ГІГҐГЄГ±ГІГ 
         iFontStyle =Cell00->CellFlags.FontStyle;
 
-        // Размер текста
+        // ГђГ Г§Г¬ГҐГ° ГІГҐГЄГ±ГІГ 
         iFontSize =Cell00->CellFlags.FontSize;
 
-        // Имя шрифта
+        // Г€Г¬Гї ГёГ°ГЁГґГІГ 
         sFontName =Cell00->FontName;
 
-        // Шрифт подчеркнутый
+        // ГГ°ГЁГґГІ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
         iFontUnderline =Cell00->CellFlags.FontUnderline;
 
-        //  Объедененная ячейка
+        //  ГЋГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ 
         if (CellGrid1->GetCell(CellGrid1->ListFilling[0].x,CellGrid1->ListFilling[0].y) !=NULL &&
             CellGrid1->GetCell(CellGrid1->ListFilling[0].x,CellGrid1->ListFilling[0].y)->UnionRect !=NULL
         )
             bUnion =true;
 
-        //------- Цикл проверки с остальными ячейками
+        //------- Г–ГЁГЄГ« ГЇГ°Г®ГўГҐГ°ГЄГЁ Г± Г®Г±ГІГ Г«ГјГ­Г»Г¬ГЁ ГїГ·ГҐГ©ГЄГ Г¬ГЁ
         TCell* Cell;
         for (int i=0; i<End; i++)
         {
             Cell =CellGrid1->GetCellParam(CellGrid1->ListFilling[i].x,CellGrid1->ListFilling[i].y);
 
-            // Выравнивание
+            // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ
             if (iTextHAlign !=Cell->CellFlags.TextHAlign)
                 bTextHAlign=false;
 
-            // Стиль текста
+            // Г‘ГІГЁГ«Гј ГІГҐГЄГ±ГІГ 
             if (iFontStyle !=Cell->CellFlags.FontStyle)
                 bFontStyle=false;
 
-            // Размер текста
+            // ГђГ Г§Г¬ГҐГ° ГІГҐГЄГ±ГІГ 
             if (iFontSize !=Cell->CellFlags.FontSize)
                 bFontSize=false;
 
 
-            // Имя шрифта
+            // Г€Г¬Гї ГёГ°ГЁГґГІГ 
             if (sFontName !=Cell->FontName)
                 bFontName=false;
 
 
-            // Шрифт подчеркнутый
+            // ГГ°ГЁГґГІ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
             if (iFontUnderline !=Cell->CellFlags.FontUnderline)
                 bFontUnderline =false;
 
-            //  Объедененная ячейка
+            //  ГЋГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ 
             if (!bUnion && CellGrid1->GetCell(CellGrid1->ListFilling[i].x,CellGrid1->ListFilling[i].y) !=NULL &&
                 CellGrid1->GetCell(CellGrid1->ListFilling[i].x,CellGrid1->ListFilling[i].y)->UnionRect !=NULL
             )
@@ -823,34 +825,34 @@ void __fastcall TToolBarCellGrid::SetDownToolBar(TCellGrid* CellGrid1)
         }
         Cell =NULL;
 
-        //--- Установка соответствующего положения
+        //--- Г“Г±ГІГ Г­Г®ГўГЄГ  Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГҐГЈГ® ГЇГ®Г«Г®Г¦ГҐГ­ГЁГї
 
-        // Выравнивание
+        // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ
         SetBtnDown(tb_LeftH,    bTextHAlign&&(iTextHAlign==0));
         SetBtnDown(tb_CenterH,  bTextHAlign&&(iTextHAlign==1));
         SetBtnDown(tb_RightH,   bTextHAlign&&(iTextHAlign==2));
 
-        // Стиль текста
+        // Г‘ГІГЁГ«Гј ГІГҐГЄГ±ГІГ 
 
         SetBtnDown(tb_k,bFontStyle&&(iFontStyle==1 || iFontStyle==3));
         SetBtnDown(tb_j,bFontStyle&&(iFontStyle==2 || iFontStyle==3));
 
-        // Шрифт подчеркнутый
+        // ГГ°ГЁГґГІ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
         SetBtnDown(tb_ch,bFontUnderline&&iFontUnderline ==1);
 
-        // Размер текста
+        // ГђГ Г§Г¬ГҐГ° ГІГҐГЄГ±ГІГ 
         if (bFontSize)
             cbFontSize->Text =iFontSize;
         else
             cbFontSize->ItemIndex =-1;
 
-        // Имя шрифта
+        // Г€Г¬Гї ГёГ°ГЁГґГІГ 
         if (bFontName)
             cbFontName->Text =sFontName;
         else
             cbFontName->ItemIndex =-1;
 
-        //  Объедененная ячейка
+        //  ГЋГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ 
         SetBtnDown(tb_Union,bUnion);
     }
 }

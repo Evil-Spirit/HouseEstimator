@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "DrawViewV.h"
 #include "ElementV.h"
@@ -13,17 +16,16 @@
 #include "Triangulation.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TDrawView *CurDrawView=NULL;
 TPoint TEMP_P[PointsCount];
 //---------------------------------------------------------------------------
-__fastcall TDrawView::TDrawView(TComponent* Owner,TWinControl *_Parent)
+ TDrawView::TDrawView(TComponent* Owner,TWinControl *_Parent)
   : TForm(Owner)
 {
     Parent = _Parent;
 }
-  __fastcall TDrawView::TDrawView(TComponent* Owner)
+   TDrawView::TDrawView(TComponent* Owner)
   : TForm(Owner)
 {
     throw EMyException("Invalid constructor");
@@ -114,7 +116,7 @@ void TDrawView::PaintCanvas(TCanvas *Canvas)
   Canvas->FloodFill(25,25,clBlack,fsBorder);*/
 }
 
-void __fastcall TDrawView::FormCreate(TObject *Sender)
+void  TDrawView::FormCreate(TObject *Sender)
 {
   BMP = new Graphics::TBitmap();
                         BMP->HandleType = bmDIB;
@@ -131,20 +133,20 @@ void __fastcall TDrawView::FormCreate(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDrawView::FormDestroy(TObject *Sender)
+void  TDrawView::FormDestroy(TObject *Sender)
 {
   delete BMP;
   delete RenderBMP;
 }
 //---------------------------------------------------------------------------
-void __fastcall TDrawView::FormPaint(TObject *Sender)
+void  TDrawView::FormPaint(TObject *Sender)
 {
   PaintCanvas(BMP->Canvas);
   Canvas->Draw(0,0,RenderBMP);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDrawView::FormResize(TObject *Sender)
+void  TDrawView::FormResize(TObject *Sender)
 {
     if (BMP->Width>Width || BMP->Height>Height)
     {
@@ -420,14 +422,14 @@ void TDrawView::In_Out()
                 DrawArrow(this,Land,LN->RNS[i].LinkPoint,*LN->RNS[i].Rays[j].Point);
         }*/
 }
-void __fastcall TDrawView::FormDblClick(TObject *Sender)
+void  TDrawView::FormDblClick(TObject *Sender)
 {
     debug_in_out = !debug_in_out;
     Invalidate();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDrawView::FormKeyDown(TObject *Sender, WORD &Key,
+void  TDrawView::FormKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
   switch(Key)
@@ -513,7 +515,7 @@ void ForceConditionTriangulation(int blue,int red,int point)
     DV->ShowModal();
     delete DV;
 }
-void __fastcall TDrawView::FormMouseMove(TObject *Sender,
+void  TDrawView::FormMouseMove(TObject *Sender,
       TShiftState Shift, int X, int Y)
 {
     if (Shift.Contains(ssMiddle))
@@ -532,7 +534,7 @@ void __fastcall TDrawView::FormMouseMove(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDrawView::FormMouseDown(TObject *Sender,
+void  TDrawView::FormMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     if (Shift.Contains(ssMiddle))
@@ -545,7 +547,7 @@ void __fastcall TDrawView::FormMouseDown(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDrawView::FormMouseWheel(TObject *Sender,
+void  TDrawView::FormMouseWheel(TObject *Sender,
       TShiftState Shift, int WheelDelta, TPoint &MousePos, bool &Handled)
 {
     if (WheelDelta>0)

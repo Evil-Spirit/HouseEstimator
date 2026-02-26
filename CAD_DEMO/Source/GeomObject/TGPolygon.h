@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef TGPolygonH
@@ -18,7 +22,7 @@ friend class TGATriangulate;
 
 protected:
 	TMTList<TGCut> FCuts;
-	bool FClosed;				//Замкнутый
+	bool FClosed;				//Г‡Г Г¬ГЄГ­ГіГІГ»Г©
 	TBBox			FBBox;
 
 	TGeomFlags FFlags;
@@ -36,84 +40,84 @@ public:
 	int IndexForSmoothGroups;
 //Drive
 
-	__property TBBox BBox = {read = GetBBox};
+	// __property TBBox BBox {read=GetBBox}; // [manual migration needed]
 	
 	TGPolygon();
 	TGPolygon(TMTList <TGCut> &cuts);
 
-	int Tag;								// Пользовательский тэг
+	int Tag;								// ГЏГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГЁГ© ГІГЅГЈ
 	int Index;
-	TMDelTList < TGPolygon > FHoles;		// Дырки полигона
+	TMDelTList < TGPolygon > FHoles;		// Г„Г»Г°ГЄГЁ ГЇГ®Г«ГЁГЈГ®Г­Г 
 
-	int GetCount() const;						// Колличество элементов
-	__property int Count = {read = GetCount};	// Колличество элементов
+	int GetCount() const;						// ГЉГ®Г«Г«ГЁГ·ГҐГ±ГІГўГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
+	// __property int Count {read=GetCount}; // [manual migration needed]
 
-	const TGPoint &GetPoint(int index) const;				// Вершины
-	TGPoint &GetPoint(int index);			 				// Вершины
-	__property TGPoint &Points[int] = {read = GetPoint};	// Вершины
+	const TGPoint &GetPoint(int index) const;				// Г‚ГҐГ°ГёГЁГ­Г»
+	TGPoint &GetPoint(int index);			 				// Г‚ГҐГ°ГёГЁГ­Г»
+// [indexed property - needs manual migration]: 	__property TGPoint &Points[int] = {read = GetPoint};	// Г‚ГҐГ°ГёГЁГ­Г»
 
 	bool FindBasisPoints(TMTList<TGPoint> &points);
 	
-	const TGCut &GetCut(int index) const;					// Отрезки
-	TGCut &GetCut(int index);								// Отрезки
-	__property TGCut &Cuts[int] = {read = GetCut};			// Отрезки
+	const TGCut &GetCut(int index) const;					// ГЋГІГ°ГҐГ§ГЄГЁ
+	TGCut &GetCut(int index);								// ГЋГІГ°ГҐГ§ГЄГЁ
+// [indexed property - needs manual migration]: 	__property TGCut &Cuts[int] = {read = GetCut};			// ГЋГІГ°ГҐГ§ГЄГЁ
 
-	bool IsHoled() const;							   		// Содержание дырок
+	bool IsHoled() const;							   		// Г‘Г®Г¤ГҐГ°Г¦Г Г­ГЁГҐ Г¤Г»Г°Г®ГЄ
 
 	TIntVec GetOrigin() const;
 	TIntVec GetNormal();
 	TIntVec GetMidOrigin() const;
 	
-	__property bool Closed = {read = FClosed};		   		// Замкнутость отрезков
-	__property bool Holed = {read = IsHoled};		   		//
-	__property TGeomFlags Flags = {read = FFlags, write = FFlags};	   		// Флаги
+	// __property bool Closed {read=FClosed}; // [manual migration needed]
+	// __property bool Holed {read=IsHoled}; // [manual migration needed]
+	// __property TGeomFlags Flags {read=FFlags, write=FFlags}; // [manual migration needed]
 	
-	__property TIntVec Normal = {read = GetNormal};			// Нормаль
-	__property TIntVec Origin = {read = GetOrigin};			// Точка на плоскости
-	__property TIntVec MidOrigin = {read = GetMidOrigin};	// Точка на плоскости
+	// __property TIntVec Normal {read=GetNormal}; // [manual migration needed]
+	// __property TIntVec Origin {read=GetOrigin}; // [manual migration needed]
+	// __property TIntVec MidOrigin {read=GetMidOrigin}; // [manual migration needed]
 	
-/********************************* Композиция полигона **********************************************/
+/********************************* ГЉГ®Г¬ГЇГ®Г§ГЁГ¶ГЁГї ГЇГ®Г«ГЁГЈГ®Г­Г  **********************************************/
 
-	int AddCut(TGCut *);					// Добавление отрезка
-	void DeleteCut(TGCut *cut);				// Удаление отрезка
-	void DeleteCut(int index);				// Удаление отрезка
+	int AddCut(TGCut *);					// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ 
+	void DeleteCut(TGCut *cut);				// Г“Г¤Г Г«ГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ 
+	void DeleteCut(int index);				// Г“Г¤Г Г«ГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ 
 
-	TGPolygon *AddHole(TMTList<TGCut>& );				// Добавление дырки
+	TGPolygon *AddHole(TMTList<TGCut>& );				// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г¤Г»Г°ГЄГЁ
 
-	void ClearCuts();									// Очистка отрезков
+	void ClearCuts();									// ГЋГ·ГЁГ±ГІГЄГ  Г®ГІГ°ГҐГ§ГЄГ®Гў
 	void Cache();
 	void Restore();
 
-	void PlaceOnPlane (MBTi &AngX, MBTi &AngY,const TIntVec &org = TIntVec(0,0,0));						//Положить на плоскость
-	void BackFromPlane(const MBTi &AngX, const MBTi &AngY, const TIntVec &org = TIntVec(0,0,0));		// вернуть с плоскости
+	void PlaceOnPlane (MBTi &AngX, MBTi &AngY,const TIntVec &org = TIntVec(0,0,0));						//ГЏГ®Г«Г®Г¦ГЁГІГј Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГј
+	void BackFromPlane(const MBTi &AngX, const MBTi &AngY, const TIntVec &org = TIntVec(0,0,0));		// ГўГҐГ°Г­ГіГІГј Г± ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
 
-	bool CalculatePlane();								// Рассчитать уравнение (Normal, Origin)
+	bool CalculatePlane();								// ГђГ Г±Г±Г·ГЁГІГ ГІГј ГіГ°Г ГўГ­ГҐГ­ГЁГҐ (Normal, Origin)
 
-/********************************* Вспомагательные функции **********************************************/
-	int IndexOf(TGPoint *pnt);											// Индекс точки
+/********************************* Г‚Г±ГЇГ®Г¬Г ГЈГ ГІГҐГ«ГјГ­Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ **********************************************/
+	int IndexOf(TGPoint *pnt);											// Г€Г­Г¤ГҐГЄГ± ГІГ®Г·ГЄГЁ
 
-	bool Equals(const TGPolygon& other) const;							// Аналогичность полигонов
-	bool ConsistsCut(TGCut *cut);									   	// Содержание отрезка
-	void Invert(bool JstInvert = false);                                // Инвертирование направления обхода
+	bool Equals(const TGPolygon& other) const;							// ГЂГ­Г Г«Г®ГЈГЁГ·Г­Г®Г±ГІГј ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
+	bool ConsistsCut(TGCut *cut);									   	// Г‘Г®Г¤ГҐГ°Г¦Г Г­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ 
+	void Invert(bool JstInvert = false);                                // Г€Г­ГўГҐГ°ГІГЁГ°Г®ГўГ Г­ГЁГҐ Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГї Г®ГЎГµГ®Г¤Г 
 
-	int PointInPolygon2d(const TIntVec& Point, MBTi USEEPS);			// Попадание точки в полигон
-	int PointInPolygon_UseHoles2d(const TIntVec &Point, MBTi USEEPS);	// Попадание точки в полигон с дырками
+	int PointInPolygon2d(const TIntVec& Point, MBTi USEEPS);			// ГЏГ®ГЇГ Г¤Г Г­ГЁГҐ ГІГ®Г·ГЄГЁ Гў ГЇГ®Г«ГЁГЈГ®Г­
+	int PointInPolygon_UseHoles2d(const TIntVec &Point, MBTi USEEPS);	// ГЏГ®ГЇГ Г¤Г Г­ГЁГҐ ГІГ®Г·ГЄГЁ Гў ГЇГ®Г«ГЁГЈГ®Г­ Г± Г¤Г»Г°ГЄГ Г¬ГЁ
 
-	int PolygonInPolygon2d(const TGPolygon &p, MBTi USEEPS);			// Попадание полигона в полигон
-	int PolygonInPolygon_UseHoles2d(const TGPolygon &p, MBTi USEEPS);	// Попадание полигона в полигон с дырками
+	int PolygonInPolygon2d(const TGPolygon &p, MBTi USEEPS);			// ГЏГ®ГЇГ Г¤Г Г­ГЁГҐ ГЇГ®Г«ГЁГЈГ®Г­Г  Гў ГЇГ®Г«ГЁГЈГ®Г­
+	int PolygonInPolygon_UseHoles2d(const TGPolygon &p, MBTi USEEPS);	// ГЏГ®ГЇГ Г¤Г Г­ГЁГҐ ГЇГ®Г«ГЁГЈГ®Г­Г  Гў ГЇГ®Г«ГЁГЈГ®Г­ Г± Г¤Г»Г°ГЄГ Г¬ГЁ
 
-	TClassify ClassifyByPlane(const TIntVec &n, const TIntVec &o, MBTi EPS);	// Классификация
+	TClassify ClassifyByPlane(const TIntVec &n, const TIntVec &o, MBTi EPS);	// ГЉГ«Г Г±Г±ГЁГґГЁГЄГ Г¶ГЁГї
 
 /**/bool DetectSelfHoles();//?????????????
 
-	TGPoint *GetLowestPoint2d();				// Самая нижняя точка
-	TGPoint *GetHighestPoint2d();				// Самая верхняя точка
+	TGPoint *GetLowestPoint2d();				// Г‘Г Г¬Г Гї Г­ГЁГ¦Г­ГїГї ГІГ®Г·ГЄГ 
+	TGPoint *GetHighestPoint2d();				// Г‘Г Г¬Г Гї ГўГҐГ°ГµГ­ГїГї ГІГ®Г·ГЄГ 
 	
-/*********************************** Системные ***********************************************************/
+/*********************************** Г‘ГЁГ±ГІГҐГ¬Г­Г»ГҐ ***********************************************************/
 	static TClassNode* StaticType;
 	TMyObject* CreateFunction();
 	void Assign(TMyObject* MO);
-/*********************************** Системные ***********************************************************/
+/*********************************** Г‘ГЁГ±ГІГҐГ¬Г­Г»ГҐ ***********************************************************/
 
 	virtual ~TGPolygon();
 };

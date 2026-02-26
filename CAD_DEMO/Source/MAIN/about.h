@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //----------------------------------------------------------------------------
 #ifndef AboutH
 #define AboutH
@@ -22,7 +26,7 @@ __published:
     TLabel *Label3;
 private:
 public:
-	virtual __fastcall TAboutBox(TComponent *Owner);
+	virtual  TAboutBox(TComponent *Owner);
 };
 //----------------------------------------------------------------------------
 extern TAboutBox *AboutBox;

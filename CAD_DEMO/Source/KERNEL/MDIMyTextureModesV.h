@@ -1,14 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMyTextureModesVH
 #define MDIMyTextureModesVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIMyTextureModes : public TMDIObjectEdit
 {
@@ -20,10 +20,10 @@ __published:	// IDE-managed Components
     TEdit *edZMax;
     TLabel *Label2;
     TEdit *edZMin;
-    void __fastcall cbModeChange(TObject *Sender);
+    void  cbModeChange(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMDIMyTextureModes(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+     TMDIMyTextureModes(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
     void SETUP();
     void Refresh();
     bool Checked();

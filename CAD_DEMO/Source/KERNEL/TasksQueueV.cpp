@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
                 
 #include "TasksQueueV.h"
 #include "AUIV.h"
@@ -16,7 +19,7 @@ void TTaskQueue::Register(TElement* Element)
 {
     if (AddList.Count + ElementList.Count == 0)
         AUI.InvalidateView();
-    //простейшая оптимизация т.к. чаще всего изменения одновременно
+    //ГЇГ°Г®Г±ГІГҐГ©ГёГ Гї Г®ГЇГІГЁГ¬ГЁГ§Г Г¶ГЁГї ГІ.ГЄ. Г·Г Г№ГҐ ГўГ±ГҐГЈГ® ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї Г®Г¤Г­Г®ГўГ°ГҐГ¬ГҐГ­Г­Г®
     if ( AddList.Count==0 || AddList.Last()->TargetID != Element->IntId )
         Add(Element);
 }
@@ -32,9 +35,8 @@ void TTaskQueue::ActionCame()
 						ElementList.Clear();
 				}
 		_ENDTRY_(
-				AnsiString("<TTaskQueue::ActionCame>: Очередь задач: сбой на <")+ElementList.GetCurrent()->ADR->Name+AnsiString(">"),
+				AnsiString("<TTaskQueue::ActionCame>: ГЋГ·ГҐГ°ГҐГ¤Гј Г§Г Г¤Г Г·: Г±ГЎГ®Г© Г­Г  <")+ElementList.GetCurrent()->ADR->Name+AnsiString(">"),
 				Clear();
 	       );
 }
 
-#pragma package(smart_init)

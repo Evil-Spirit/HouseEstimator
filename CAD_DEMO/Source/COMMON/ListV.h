@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ListVH
@@ -5,7 +9,7 @@
 #include "ContainerV.h"
 //---------------------------------------------------------------------------
 template <class T>
-class /*PACKAGE*/ TMListItem{
+class /**/ TMListItem{
 public:
     TMListItem(){};
     virtual ~TMListItem(){};
@@ -17,7 +21,7 @@ public:
 typedef void (*TDoSomeThing)(void* Obj);
 
 template <class T>
-class /*PACKAGE*/ TMTList : public TContainer<T>{
+class /**/ TMTList : public TContainer<T>{
 protected:
     int FCount;
     mutable int FCurrentIndex;
@@ -43,7 +47,7 @@ protected:
     bool Find(const T* It) const;
     void KillValue(T* value);
 public:
-    static /*PACKAGE*/ TClassNode* StaticType;
+    static /**/ TClassNode* StaticType;
     TMTList();
     TMyObject* CreateFunction();
 	virtual ~TMTList();
@@ -59,7 +63,7 @@ public:
     const T& CycVal(int i) const;
     T& CycVal(int i);
     T* GetCurrent();
-    __property int CurrentIndex = {read = FCurrentIndex};
+    // __property int CurrentIndex {read=FCurrentIndex}; // [manual migration needed]
 
     const T* GetCurrent() const;
     T& GetValCurrent();
@@ -72,16 +76,16 @@ public:
     const T* Last() const;
     T* First();
     const T* First() const;
-    __property T* Items[int i] = {read = GetItem,write = SetItem};
-    __property T* CycleItems[int i] = {read = GetCycleItem};
-    __property int Count = {read = FCount};
-    //последовательный доступ
+// [indexed property - needs manual migration]:     __property T* Items[int i] = {read = GetItem,write = SetItem};
+// [indexed property - needs manual migration]:     __property T* CycleItems[int i] = {read = GetCycleItem};
+    // __property int Count {read=FCount}; // [manual migration needed]
+    //ГЇГ®Г±Г«ГҐГ¤Г®ГўГ ГІГҐГ«ГјГ­Г»Г© Г¤Г®Г±ГІГіГЇ
     bool Next() const;
     bool Prev() const;
     bool Start() const;
     bool End() const;
-    __property T* Current = {read = GetCurrent};
-    __property T& CurVal = {read = GetValCurrent};
+    // __property T* Current {read=GetCurrent}; // [manual migration needed]
+    // __property T& CurVal {read=GetValCurrent}; // [manual migration needed]
     void ForEachIndex(TDoSomeThing DoSomeThing);
 
     //add-remove routine
@@ -111,7 +115,7 @@ public:
 };
 
 template <class T>
-/*extern PACKAGE*/ TClassNode* TMTList<T>::StaticType = NULL;
+/*extern */ TClassNode* TMTList<T>::StaticType = NULL;
 template <class T>
 int TMTList<T>::FSimpleType = mtNotDefined;
 
@@ -174,9 +178,9 @@ void TMTList<T>::Sort(TMyCompareProc Proc)
 {
     AboutToChange(this);
     int InsertIndex;
-    for (int i=1;i<FCount;i++)
+    for(int i=1;i<FCount;i++)
     {
-        InsertIndex = DirectInsertIndex(Items[i],i,Proc);
+        InsertIndex = DirectInsertIndex(GetItem(i),i,Proc);
         if (InsertIndex != i)
             Move(i,InsertIndex);
     }
@@ -186,7 +190,7 @@ template <class T>
 int TMTList<T>::DirectInsertIndex(T *VAL,int _Count,TMyCompareProc Proc)
 {
     for (int i=0;i<_Count;i++)
-        if (Proc(Items[i],VAL))
+        if (Proc(GetItem(i),VAL))
             return i;
     return _Count;
 }
@@ -195,7 +199,7 @@ template <class T>
 void TMTList<T>::ForEachIndex(TDoSomeThing DoSomeThing)
 {
     AboutToChangeSimpleType();
-    if (Count==0)
+    if (GetCount()==0)
         return;
     TMListItem<T>* IT = FFirst;
     do
@@ -298,7 +302,7 @@ void TMTList<T>::Assign (  TMyObject* MO)
         TMTList<T>* L = (TMTList<T>*)MO;
         Clear();
         for (int i=0;i<L->Count;i++)
-            Add(L->Items[i]);
+            Add(L->GetItem(i));
     }
     else
         throw EMyException("Assign incorrect type");
@@ -317,7 +321,7 @@ template <class T>
 bool TMTList<T>::Consists( const TMTList<T> *L) const
 {
     for (int i=0;i<L->Count;i++)
-        if (IndexOf(L->Items[i])==-1)
+        if (IndexOf(L->GetItem(i))==-1)
             return false;
     return true;
 }
@@ -336,7 +340,7 @@ void TMTList<T>::Invert()
     L->Assign(this);
     Clear();
     for (int i=L->Count-1;i>=0;i--)
-        Add(L->Items[i]);
+        Add(L->GetItem(i));
     delete L;
 }
 
@@ -400,7 +404,7 @@ bool TMTList<T>::Direct_IndexOK(int i) const
         return true;
     else
     {
-            AnsiString STR = AnsiString("<")+DynamicType->Name+AnsiString(">: ");
+            AnsiString STR = AnsiString("<")+this->DynamicType->GetNameProp()+AnsiString(">: ");
             STR = STR+ AnsiString("Index is out of list range, Size - ");
             STR = STR+IntToStr(FCount)+AnsiString(", Index - ");
             STR = STR+IntToStr(i);
@@ -413,7 +417,7 @@ void TMTList<T>::Direct_Iterate(int i) const
 {
     if (i<0 || i >= FCount)
     {
-        AnsiString STR = AnsiString("<")+DynamicType->Name+AnsiString(">: ");
+        AnsiString STR = AnsiString("<")+this->DynamicType->GetNameProp()+AnsiString(">: ");
         STR = STR+ AnsiString("Index is out of list range, Size - ");
         STR = STR+IntToStr(FCount)+AnsiString(", Index - ");
         STR = STR+IntToStr(i);
@@ -757,7 +761,7 @@ void TMTList<T>::Move(int ifrom,int idest)
 {
     AboutToChange(this);
   T* P0;
-  P0 = Items[ifrom];
+  P0 = GetItem(ifrom);
   DeleteCurrent();
   Insert(idest,P0);
 }

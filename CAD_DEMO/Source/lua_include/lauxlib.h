@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 /*
 ** $Id: lauxlib.h,v 1.1 2006/07/26 12:40:24 Alex Exp $
 ** Auxiliary functions for building Lua libraries

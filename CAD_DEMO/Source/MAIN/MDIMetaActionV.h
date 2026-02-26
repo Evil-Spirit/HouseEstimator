@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMetaActionVH
 #define MDIMetaActionVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaNodeV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMetaNode;
 
@@ -26,9 +25,9 @@ public:		// User declarations
     virtual void MNRefresh();
     virtual void MNApply();
     virtual void SETUP();
-    __fastcall TMDIMetaAction(TComponent* Owner,TMetaNode *N);
+     TMDIMetaAction(TComponent* Owner,TMetaNode *N);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMDIMetaAction *MDIMetaAction;
+extern  TMDIMetaAction *MDIMetaAction;
 //---------------------------------------------------------------------------
 #endif

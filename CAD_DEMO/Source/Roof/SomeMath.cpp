@@ -1,6 +1,9 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#pragma hdrstop
 
 #include "SomeMath.h"
 //---------------------------------------------------------------------------
@@ -9,18 +12,18 @@ bool PlanesParallel(const TIntVec& N1,const TIntVec& N2,MBTi USEEPS)
 {
 	return ( ((N1-N2).Length()<USEEPS) || ((N1+N2).Length()<USEEPS) );
 }
-int PlaneCrossPoint2(   const TIntVec& A,//точка на плоскости
-						const TIntVec& N,//нормаль
-						const TIntVec& X,//прямая точка 1
-						const TIntVec& Y,//прямая точка 2
-						TIntVec& O, //точка пересечения
-						MBTi USEEPS)    //мера параллельности
+int PlaneCrossPoint2(   const TIntVec& A,//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+						const TIntVec& N,//Г­Г®Г°Г¬Г Г«Гј
+						const TIntVec& X,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+						const TIntVec& Y,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
+						TIntVec& O, //ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
+						MBTi USEEPS)    //Г¬ГҐГ°Г  ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ
 {
 	TIntVec V = A - X ;
-	// расстояние до плоскости по нормали
+	// Г°Г Г±Г±ГІГ®ГїГ­ГЁГҐ Г¤Г® ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ
 	MBTi d = ScalarP ( N, V );
 	TIntVec W = Y - X;
-	// приближение к плоскости по нормали при прохождении отрезка
+	// ГЇГ°ГЁГЎГ«ГЁГ¦ГҐГ­ГЁГҐ ГЄ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ ГЇГ°ГЁ ГЇГ°Г®ГµГ®Г¦Г¤ГҐГ­ГЁГЁ Г®ГІГ°ГҐГ§ГЄГ 
 	MBTi e = ScalarP ( N, W );
 
 	if( fabs(e)>USEEPS )
@@ -36,25 +39,25 @@ int PlaneCrossPoint2(   const TIntVec& A,//точка на плоскости
 	else
 		return 0;               
 }
-//поиск пересечения луча и плоскости
-//1 - одна точка
-//2 - прямая принадлежит плоскости
-//0 - прямая и плоскость параллельны
-//3 - точка пресечения не лежит на луче
-int PlaneAndLineCrossed(const TIntVec& A,//точка на плоскости
-						const TIntVec& N,//нормаль
-						const TIntVec& X,//прямая точка 1
-						const TIntVec& Y,//прямая точка 2
+//ГЇГ®ГЁГ±ГЄ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї Г«ГіГ·Г  ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+//1 - Г®Г¤Г­Г  ГІГ®Г·ГЄГ 
+//2 - ГЇГ°ГїГ¬Г Гї ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+//0 - ГЇГ°ГїГ¬Г Гї ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГј ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г»
+//3 - ГІГ®Г·ГЄГ  ГЇГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї Г­ГҐ Г«ГҐГ¦ГЁГІ Г­Г  Г«ГіГ·ГҐ
+int PlaneAndLineCrossed(const TIntVec& A,//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+						const TIntVec& N,//Г­Г®Г°Г¬Г Г«Гј
+						const TIntVec& X,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+						const TIntVec& Y,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
 						bool xFixed,
 						bool yFixed,
-						TIntVec& O, //точка пересечения
-						MBTi USEEPS)    //мера параллельности
+						TIntVec& O, //ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
+						MBTi USEEPS)    //Г¬ГҐГ°Г  ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ
 {
 	TIntVec V = A - X;
-	// расстояние до плоскости по нормали
+	// Г°Г Г±Г±ГІГ®ГїГ­ГЁГҐ Г¤Г® ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ
 	MBTi d = ScalarP ( N, V );
 	TIntVec W = Y - X;
-	// приближение к плоскости по нормали при прохождении отрезка
+	// ГЇГ°ГЁГЎГ«ГЁГ¦ГҐГ­ГЁГҐ ГЄ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ ГЇГ°ГЁ ГЇГ°Г®ГµГ®Г¦Г¤ГҐГ­ГЁГЁ Г®ГІГ°ГҐГ§ГЄГ 
 	MBTi e = ScalarP ( N, W );
 
 	if( fabs(e)>USEEPS )
@@ -75,9 +78,9 @@ int PlaneAndLineCrossed(const TIntVec& A,//точка на плоскости
 		return PL_CROSS_PARALLEL;               
 }
 
-//проверка коллинеарности двух плоскостей
-bool PlanesCollinear(   const TIntVec& X1,//точка на плоскости
-						const TIntVec& N1,//нормаль
+//ГЇГ°Г®ГўГҐГ°ГЄГ  ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г®Г±ГІГЁ Г¤ГўГіГµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+bool PlanesCollinear(   const TIntVec& X1,//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+						const TIntVec& N1,//Г­Г®Г°Г¬Г Г«Гј
 						const TIntVec& X2,
 						const TIntVec& N2,
 						MBTi USEEPS  )
@@ -90,5 +93,4 @@ bool PlanesCollinear(   const TIntVec& X1,//точка на плоскости
 	return true;
 }
 
-#pragma package(smart_init)
 

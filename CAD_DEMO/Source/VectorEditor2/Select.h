@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef SelectH
@@ -38,7 +42,7 @@ private:
     TIntVec OldCursorPos;
     int SelectedPointIndex;
 public:
-    __property TEditor2D* Sender = {read = GetSender };
+    // __property TEditor2D* Sender {read=GetSender}; // [manual migration needed]
     TSelect();
     virtual ~TSelect();
     void RotateCursor(MBTi Angle, TPoint Point);

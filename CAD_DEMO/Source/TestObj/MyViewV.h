@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MyViewVH
 #define MyViewVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "VisCanvasView.hpp"
 #include "VisClass.hpp"
 #include "VisView.hpp"
@@ -14,9 +15,7 @@
 #include "VisCam.hpp"
 #include "VisComp.hpp"
 #include "VisLight.hpp"
-#include <ImgList.hpp>
 //---------------------------------------------------------------------------
-#include <ActnList.hpp>
 
 enum TCameraOperation { coVERTICAL_TRANSLATION = 0,
                         coHORISONTAL_TRANSLATION = 1,
@@ -45,27 +44,27 @@ public:
 
 class TEditor2D;
 //class TCameraEngine;
-typedef void (__closure *TViewRender)(TVisView *aView);
-typedef void (__closure *TViewMouseWheel)(TObject *Sender, TShiftState Shift,
+typedef void ( *TViewRender)(TVisView *aView);
+typedef void ( *TViewMouseWheel)(TObject *Sender, TShiftState Shift,
           int WheelDelta, TPoint &MousePos, bool &Handled);
-typedef void (__closure *TViewMouseDown)(TObject *Sender, TMouseButton Button,
+typedef void ( *TViewMouseDown)(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-typedef void (__closure *TViewMouseUp)(TObject *Sender, TMouseButton Button,
+typedef void ( *TViewMouseUp)(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-typedef void (__closure *TViewKeyDown)(TObject *Sender, WORD &Key,
+typedef void ( *TViewKeyDown)(TObject *Sender, WORD &Key,
           TShiftState Shift);
-typedef void (__closure *TViewKeyUp)(TObject *Sender, WORD &Key,
+typedef void ( *TViewKeyUp)(TObject *Sender, WORD &Key,
           TShiftState Shift);
-typedef void (__closure *TViewMouseMove)(TObject *Sender, TShiftState Shift,
+typedef void ( *TViewMouseMove)(TObject *Sender, TShiftState Shift,
           int X, int Y);
-/*typedef void (__closure *TEditorMouseMove)(void* Sender, TShiftState Shift, const TIntVec& MousePosition);
-typedef void (__closure *TEditorMouseDown)(void* Sender, TMouseButton Button, TShiftState Shift, const TIntVec& MousePosition);
-typedef void (__closure *TEditorMouseUp)(void* Sender, TMouseButton Button, TShiftState Shift, const TIntVec& MousePosition);
-typedef void (__closure *TEditorKeyDown)(void* Sender, WORD &Key, TShiftState Shift);
-typedef void (__closure *TEditorKeyUp)(void* Sender, WORD &Key, TShiftState Shift);
-typedef void (__closure *TEditorExit)(void* Sender);
-typedef void (__closure *TEditorRender)(void* Sender);
-typedef AnsiString (__closure *TEditorHint)(void* Sender);*/
+/*typedef void ( *TEditorMouseMove)(void* Sender, TShiftState Shift, const TIntVec& MousePosition);
+typedef void ( *TEditorMouseDown)(void* Sender, TMouseButton Button, TShiftState Shift, const TIntVec& MousePosition);
+typedef void ( *TEditorMouseUp)(void* Sender, TMouseButton Button, TShiftState Shift, const TIntVec& MousePosition);
+typedef void ( *TEditorKeyDown)(void* Sender, WORD &Key, TShiftState Shift);
+typedef void ( *TEditorKeyUp)(void* Sender, WORD &Key, TShiftState Shift);
+typedef void ( *TEditorExit)(void* Sender);
+typedef void ( *TEditorRender)(void* Sender);
+typedef AnsiString ( *TEditorHint)(void* Sender);*/
 
 class TMyView : public TForm
 {
@@ -81,23 +80,23 @@ __published:	// IDE-managed Components
     TAction *MoveAction;
     TAction *RotateAction;
 	TVisLight *VisLight1;
-    void __fastcall ViewRender(TVisView *aView);
-    void __fastcall ViewMouseWheel(TObject *Sender, TShiftState Shift,
+    void  ViewRender(TVisView *aView);
+    void  ViewMouseWheel(TObject *Sender, TShiftState Shift,
           int WheelDelta, TPoint &MousePos, bool &Handled);
-    void __fastcall ViewMouseDown(TObject *Sender, TMouseButton Button,
+    void  ViewMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall ViewMouseUp(TObject *Sender, TMouseButton Button,
+    void  ViewMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall ViewKeyDown(TObject *Sender, WORD &Key,
+    void  ViewKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
-    void __fastcall ViewKeyUp(TObject *Sender, WORD &Key,
+    void  ViewKeyUp(TObject *Sender, WORD &Key,
           TShiftState Shift);
-    void __fastcall ViewMouseMove(TObject *Sender, TShiftState Shift,
+    void  ViewMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
-    void __fastcall MoveActionExecute(TObject *Sender);
-    void __fastcall RotateActionExecute(TObject *Sender);
-    void __fastcall IdleActionExecute(TObject *Sender);
-    void __fastcall ActionListUpdate(TBasicAction *Action, bool &Handled);
+    void  MoveActionExecute(TObject *Sender);
+    void  RotateActionExecute(TObject *Sender);
+    void  IdleActionExecute(TObject *Sender);
+    void  ActionListUpdate(TBasicAction *Action, bool &Handled);
 private:	// User declarations
     TPoint OldPoint;
     bool WinTo3D(int X,int Y,double value,TIntVec& RES);
@@ -115,7 +114,7 @@ public:		// User declarations
     TViewMouseMove EditorMouseMove;
 //------------------------------------------------------------------------------
     TIntVec A,PlaneN;
-    __fastcall TMyView(TComponent* Owner);
+     TMyView(TComponent* Owner);
     TIntVec ScreenToProject(MBTi x, MBTi y, MBTi z);
     TIntVec ScreenToProject(const TIntVec& V);
     TIntVec ProjectToScreen(const TIntVec& Vv);
@@ -124,6 +123,6 @@ public:		// User declarations
     int CameraAction;
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMyView *__MyView;
+extern  TMyView *__MyView;
 //---------------------------------------------------------------------------
 #endif

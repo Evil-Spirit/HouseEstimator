@@ -1,16 +1,18 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MyTemplates.h"
 #include "MTL.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "MyDialogU.h"
 #include "MyDialogEditU.h"
 #include "LuaEnvV.h"
 #include "tolua++.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 TClassNode* TMyProp::StaticType = NULL;
 TClassNode* TMyPropObject::StaticType = NULL;

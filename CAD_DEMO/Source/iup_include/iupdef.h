@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 /** \file
  * \brief Callbacks, Attributes and Attribute Values definitions.    
  * Avoid using these definitions. Use the strings instead.

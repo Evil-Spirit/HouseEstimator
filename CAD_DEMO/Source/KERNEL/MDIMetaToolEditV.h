@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMetaToolEditVH
 #define MDIMetaToolEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaNodeV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIMetaToolEdit : public TMDIMetaNode
 {
@@ -17,7 +16,7 @@ __published:	// IDE-managed Components
     TTabSheet *tsMetaTool;
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMDIMetaToolEdit(TComponent* Owner,TMetaNode *N);
+     TMDIMetaToolEdit(TComponent* Owner,TMetaNode *N);
     virtual void MNRefresh();
     virtual void MNApply();
     virtual bool MNChecked();

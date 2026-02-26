@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef LinearListH
@@ -53,9 +57,9 @@ public:
 	const T* Last() const;
 	T* First();
 	const T* First() const;
-	__property T* Items[int i] = {read = GetItem,write = SetItem};
-	__property T* CycleItems[int i] = {read = GetCycleItem};
-	__property int Count = { read = GetCount, write = SetCount};
+// [indexed property - needs manual migration]: 	__property T* Items[int i] = {read = GetItem,write = SetItem};
+// [indexed property - needs manual migration]: 	__property T* CycleItems[int i] = {read = GetCycleItem};
+	// __property int Count {read=GetCount, write=SetCount}; // [manual migration needed]
 	
 	void ForEachIndex(TDoSomeThing DoSomeThing);
 	
@@ -87,8 +91,8 @@ public:
 	void Grow();
 	void SetCapacity(int NewCapacity);
 	void Pack();
-	__property int Capacity = { read = FCapacity, write = SetCapacity};
-	__property T** List = { read = FList };
+	// __property int Capacity {read=FCapacity, write=SetCapacity}; // [manual migration needed]
+	// __property T** List {read=FList}; // [manual migration needed]
 };
 
 template <class T>
@@ -126,7 +130,7 @@ void TLList<T>::SetCount(int NewCount)
 	if ( NewCount < 0 )
 	{
 		AnsiString STR = AnsiString("<")+DynamicType->Name+AnsiString(">: ");
-		STR = STR + AnsiString("Ошибка при изменении кол-ва элементов списка, кол-во - ");
+		STR = STR + AnsiString("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГЁ ГЄГ®Г«-ГўГ  ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г±ГЇГЁГ±ГЄГ , ГЄГ®Г«-ГўГ® - ");
 		STR = STR+IntToStr(NewCount);
 		throw EMyException(STR);
 	}
@@ -476,8 +480,8 @@ void TLList<T>::SetCapacity(int NewCapacity)
 	if ( NewCapacity < FCount )
 	{
 		AnsiString STR = AnsiString("<")+DynamicType->Name+AnsiString(">: ");
-		STR = STR + AnsiString("Ошибка при увеличении размера списка, текущий размер - ");
-		STR = STR + IntToStr(FCount)+AnsiString(", требуемый размер - ");
+		STR = STR + AnsiString("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ ГіГўГҐГ«ГЁГ·ГҐГ­ГЁГЁ Г°Г Г§Г¬ГҐГ°Г  Г±ГЇГЁГ±ГЄГ , ГІГҐГЄГіГ№ГЁГ© Г°Г Г§Г¬ГҐГ° - ");
+		STR = STR + IntToStr(FCount)+AnsiString(", ГІГ°ГҐГЎГіГҐГ¬Г»Г© Г°Г Г§Г¬ГҐГ° - ");
 		STR = STR + IntToStr(NewCapacity);
 		throw EMyException(STR);
 	}
@@ -525,8 +529,8 @@ bool TLList<T>::Direct_IndexOK(int i) const
 	else
 	{
 		AnsiString STR = AnsiString("<")+DynamicType->Name+AnsiString(">: ");
-		STR = STR+ AnsiString("Index is out of range списка, Размер - ");
-		STR = STR+IntToStr(FCount)+AnsiString(", Индекс - ");
+		STR = STR+ AnsiString("Index is out of range Г±ГЇГЁГ±ГЄГ , ГђГ Г§Г¬ГҐГ° - ");
+		STR = STR+IntToStr(FCount)+AnsiString(", Г€Г­Г¤ГҐГЄГ± - ");
 		STR = STR+IntToStr(i);
 		throw EMyException(STR);
 	}

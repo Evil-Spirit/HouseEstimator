@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef MyDialogUH
 #define MyDialogUH
@@ -65,7 +69,7 @@ public:
 
     TMyComponent();
     virtual ~TMyComponent();
-  __property int ClassId = {read = FClassId, write = InitObject};
+  // __property int ClassId {read=FClassId, write=InitObject}; // [manual migration needed]
 };
 
 extern COMMONAL_API TClassNode* TMyComponent::StaticType;

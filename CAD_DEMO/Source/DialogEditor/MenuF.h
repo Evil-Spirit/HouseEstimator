@@ -1,16 +1,16 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef MenuFH
 #define MenuFH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <Menus.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TMyDialogEdit;
 
-class PACKAGE TMainMenuF : public TForm
+class  TMainMenuF : public TForm
 {
   __published:
     TMainMenu *MainMenu;
@@ -18,16 +18,16 @@ class PACKAGE TMainMenuF : public TForm
     TMenuItem *mmObjectInspector;
     TMenuItem *mmObjectTreeView;
     TMenuItem *mmToolBar;
-    void __fastcall mmObjectInspectorClick(TObject *Sender);
-    void __fastcall mmObjectTreeViewClick(TObject *Sender);
-    void __fastcall mmToolBarClick(TObject *Sender);
+    void  mmObjectInspectorClick(TObject *Sender);
+    void  mmObjectTreeViewClick(TObject *Sender);
+    void  mmToolBarClick(TObject *Sender);
     private:
 
     public:
-  __fastcall TMainMenuF(TComponent* Owner);
+   TMainMenuF(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMainMenuF *MenuF;
+extern  TMainMenuF *MenuF;
 //---------------------------------------------------------------------------
 #endif
 //---------------------------------------------------------------------------

@@ -1,14 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ToolFormVH
 #define ToolFormVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
-#include <Buttons.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TToolForm : public TForm
 {
@@ -25,13 +24,13 @@ __published:	// IDE-managed Components
     TLabel *Label3;
     TLabel *Label4;
     TPanel *pCustom;
-    void __fastcall FormResize(TObject *Sender);
-    void __fastcall pCoordinatesResize(TObject *Sender);
+    void  FormResize(TObject *Sender);
+    void  pCoordinatesResize(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TToolForm(TComponent* Owner);
+     TToolForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TToolForm *ToolForm;
+extern  TToolForm *ToolForm;
 //---------------------------------------------------------------------------
 #endif

@@ -1,8 +1,11 @@
-#include <vcl.h>
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "FileMapper.h"
 
@@ -13,12 +16,11 @@
 #include "QuckList.h"
 #include "MDILuaEditorV.h"
 
-#pragma package(smart_init)
 //////////////////////////////////////////////////////////////////////////
 //New Filemaping object on TMemoryStream
 //////////////////////////////////////////////////////////////////////////
 
-__fastcall TFileMapStream::TFileMapStream(AnsiString fmName)
+ TFileMapStream::TFileMapStream(AnsiString fmName)
     :TMemoryStream()
 {   
     SECURITY_ATTRIBUTES lpSecAttrFile;
@@ -102,7 +104,7 @@ void TFileMapStream::WriteEvent(bool State)
     if (!RetState) DisplayMessage(GetLastError());
 }
 
-void __fastcall TFileMapStream::Open()
+void  TFileMapStream::Open()
 {
     int FileSize=GetFileSize(hFileMap,NULL);
     if (!FileSize) FileSize=SystemInfo.dwAllocationGranularity;
@@ -129,7 +131,7 @@ void __fastcall TFileMapStream::Open()
     SetPointer(pMapMemory,FileSize-1);
 }
 
-void __fastcall TFileMapStream::Close()
+void  TFileMapStream::Close()
 {
     if (!fMap) return;
     FlushViewOfFile(pMapMemory,Size);
@@ -139,7 +141,7 @@ void __fastcall TFileMapStream::Close()
     fMap=NULL;
 }
 
-int __fastcall TFileMapStream::Write(const void *Buffer, int Count)
+int  TFileMapStream::Write(const void *Buffer, int Count)
 {
     int NewSize=Position+Count;
     if (Size<NewSize) Size=NewSize;
@@ -149,7 +151,7 @@ int __fastcall TFileMapStream::Write(const void *Buffer, int Count)
     return Count;
 }
 
-int __fastcall TFileMapStream::Read(void *Buffer, int Count)
+int  TFileMapStream::Read(void *Buffer, int Count)
 {
     int NewSize=Position+Count;
     if (Size<NewSize) Size=NewSize;
@@ -159,7 +161,7 @@ int __fastcall TFileMapStream::Read(void *Buffer, int Count)
     return Count;
 }
 
-void __fastcall TFileMapStream::SetSize(int NewSize)
+void  TFileMapStream::SetSize(int NewSize)
 {
     int PageRequest=(NewSize/SystemInfo.dwAllocationGranularity);
     int CurPage=(Size/SystemInfo.dwAllocationGranularity);
@@ -199,7 +201,7 @@ void __fastcall TFileMapStream::SetSize(int NewSize)
     }
 }
 
-__fastcall TFileMapStream::~TFileMapStream()
+ TFileMapStream::~TFileMapStream()
 {
     if (fMap)
     {

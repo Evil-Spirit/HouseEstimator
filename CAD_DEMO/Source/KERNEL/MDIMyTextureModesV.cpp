@@ -1,20 +1,22 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMyTextureModesV.h"
 #include "MetaClasses.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma resource "*.dfm"
 TMDIMyTextureModes *MDIMyTextureModes;
 //---------------------------------------------------------------------------
-__fastcall TMDIMyTextureModes::TMDIMyTextureModes(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDIMyTextureModes::TMDIMyTextureModes(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }
@@ -47,7 +49,7 @@ void TMDIMyTextureModes::Apply()
     ((TMyTextureModes *)Obj)->ZMax = TO_DOUBLE(edZMax->Text);
 }
 
-void __fastcall TMDIMyTextureModes::cbModeChange(TObject *Sender)
+void  TMDIMyTextureModes::cbModeChange(TObject *Sender)
 {
     gbMinMax->Enabled = (cbMode->ItemIndex >= 2);
 }

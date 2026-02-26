@@ -1,18 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDITextureV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MyMDIChildV"
 #pragma resource "*.dfm"
 TMDITexture *MDITexture;
 //---------------------------------------------------------------------------
-__fastcall TMDITexture::TMDITexture(TComponent* Owner,TVisTexture *_VT,TVisView *_VV,TWinControl *Par)
+ TMDITexture::TMDITexture(TComponent* Owner,TVisTexture *_VT,TVisView *_VV,TWinControl *Par)
     : TForm(Owner)
 {
     if (Par)
@@ -105,7 +107,7 @@ void TMDITexture::Apply()
     VV->Invalidate();
 }
 
-void __fastcall TMDITexture::BlendMouseDown(TObject *Sender,
+void  TMDITexture::BlendMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     ColorDialog->Color = ((TShape *)Sender)->Brush->Color;
@@ -115,7 +117,7 @@ void __fastcall TMDITexture::BlendMouseDown(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDITexture::BlendAChange(TObject *Sender)
+void  TMDITexture::BlendAChange(TObject *Sender)
 {
     if (__classid(TTrackBar) == Sender->ClassType())
         Application->Hint = ((TTrackBar*)Sender)->Position;

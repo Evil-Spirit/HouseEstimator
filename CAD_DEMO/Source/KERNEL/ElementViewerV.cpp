@@ -1,11 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
-#pragma hdrstop
 
 #include "ElementViewerV.h"
 #include "ElementV.h"
@@ -22,11 +24,10 @@
 #include "LuaEnvV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TElementViewer *ElementViewer = NULL;
 //---------------------------------------------------------------------------
-__fastcall TElementViewer::TElementViewer(TComponent* Owner)
+ TElementViewer::TElementViewer(TComponent* Owner)
 		: TForm(Owner)
 {
 		//Align = alClient;
@@ -34,7 +35,7 @@ __fastcall TElementViewer::TElementViewer(TComponent* Owner)
 		FShowMetaElement = NULL;
 }
 
-void __fastcall TElementViewer::SetShowElement(TElement *NewElement)
+void  TElementViewer::SetShowElement(TElement *NewElement)
 {
 	FShowElement = NewElement;
 	if (FShowElement)
@@ -61,7 +62,7 @@ void __fastcall TElementViewer::SetShowElement(TElement *NewElement)
 	}
 }
 
-void __fastcall TElementViewer::SetShowMetaElement(TMetaElement *NewElement)
+void  TElementViewer::SetShowMetaElement(TMetaElement *NewElement)
 {
 	FShowMetaElement = NewElement;
 	if (FShowMetaElement)
@@ -89,7 +90,7 @@ void __fastcall TElementViewer::SetShowMetaElement(TMetaElement *NewElement)
 	}
 }
 
-__fastcall TElementViewer::~TElementViewer()
+ TElementViewer::~TElementViewer()
 {
 		if (ShowElement || ShowMetaElement)
 		{
@@ -144,7 +145,7 @@ void TElementViewer::Start()
 //		ShowModal();
 }
 
-void __fastcall TElementViewer::FormActivate(TObject *Sender)
+void  TElementViewer::FormActivate(TObject *Sender)
 {
 		if (ShowElement || ShowMetaElement)
 		{

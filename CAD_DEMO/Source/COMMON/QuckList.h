@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef QuckListH
@@ -35,8 +39,8 @@ public:
     TQuickList();
 	virtual ~TQuickList();
 
-    __property void* Items[int i] = {read = GetItem,write = SetItem};
-    __property int Count = {read = FCount};
+// [indexed property - needs manual migration]:     __property void* Items[int i] = {read = GetItem,write = SetItem};
+    // __property int Count {read=FCount}; // [manual migration needed]
 
     void Add(void* It);
 
@@ -95,8 +99,8 @@ public:
 	virtual ~TQuickList();
 
     void* GetItem(int i) const;
-    __property void* Items[int i] = {read = GetItem,write = SetItem};
-    __property int Count = {read = FCount};
+// [indexed property - needs manual migration]:     __property void* Items[int i] = {read = GetItem,write = SetItem};
+    // __property int Count {read=FCount}; // [manual migration needed]
 
     int Add(void* It);
 
@@ -134,7 +138,7 @@ public:
     bool Prev() const;
     bool Start() const;
     bool End() const;
-    __property void* Current = {read = GetCurrent};
+    // __property void* Current {read=GetCurrent}; // [manual migration needed]
 };
 
 

@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LinkGeometry.h"
 #include "Driver.h"
@@ -16,7 +19,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 
 /*TIntVec PTarget[2];
@@ -180,11 +182,11 @@ bool PointPoint_Pos(         TElement *Target,
     SGL.DL->Link->SourceScope(Target,Source,SC2);
     //-------------------------------------------------------------
 
-    //грани связок таргета
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ ГІГ Г°ГЈГҐГІГ 
     PTarget[0] = RotateAround(SC1.LOW+Target->AbsPos,Target->AbsAngle,Target->AbsPos);
     PTarget[1] = RotateAround(SC1.HI+Target->AbsPos,Target->AbsAngle,Target->AbsPos);
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     PSource[0] = RotateAround(SC2.LOW+Source->AbsPos,Source->AbsAngle,Source->AbsPos);
     PSource[1] = RotateAround(SC2.HI+Source->AbsPos,Source->AbsAngle,Source->AbsPos);
 
@@ -192,7 +194,7 @@ bool PointPoint_Pos(         TElement *Target,
         for (int j=0;j<2;j++)
         STEPS[i][j] = (PTarget[i] - PSource[j]);
 
-    //проверка краев
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  ГЄГ°Г ГҐГў
     MBTi MeasureStep=Measure(_EPS);
     int i0=-1,j0=-1;
     for (int i=0;i<2;i++)
@@ -243,15 +245,15 @@ bool LineLine_Pos(   TElement *Target,
     SGL.DL->Link->SourceScope(Target,Source,SC2);
     //-------------------------------------------------------------
 
-    //грани связок таргета
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ ГІГ Г°ГЈГҐГІГ 
     Target->AbsFromLocal(SC1.LOW,PTarget[0]);
     Target->AbsFromLocal(SC1.HI,PTarget[1]);
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     Source->AbsFromLocal(SC2.LOW,PSource[0]);
     Source->AbsFromLocal(SC2.HI,PSource[1]);
 
-    //общее соединение
+    //Г®ГЎГ№ГҐГҐ Г±Г®ГҐГ¤ГЁГ­ГҐГ­ГЁГҐ
     int ResCrossing = IsCutAndLineCrossedExactly(PTarget[0],PTarget[1],PSource[0],PSource[1],SGL.CrossPoint);
 
     if (ResCrossing == lcNONE || ResCrossing == lcPARALLEL || ResCrossing == lcCOLLINEAR)//parralel
@@ -302,11 +304,11 @@ bool LineLine_Size( TElement *Target,
     SGL.DL->Link->SourceScope(Target,Source,SC2);
     //-------------------------------------------------------------
 
-    //грани связок таргета
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ ГІГ Г°ГЈГҐГІГ 
     Target->AbsFromLocal(SC1.LOW,PTarget[0]);
     Target->AbsFromLocal(SC1.HI,PTarget[1]);
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     Source->AbsFromLocal(SC2.LOW,PSource[0]);
     Source->AbsFromLocal(SC2.HI,PSource[1]);
 
@@ -363,11 +365,11 @@ bool PointPoint_Size(        TElement *Target,
     SGL.DL->Link->SourceScope(Target,Source,SC2);
     //-------------------------------------------------------------
 
-    //грани связок таргета
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ ГІГ Г°ГЈГҐГІГ 
     Target->AbsFromLocal(SC1.LOW,PTarget[0]);
     Target->AbsFromLocal(SC1.HI,PTarget[1]);
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     Source->AbsFromLocal(SC2.LOW,PSource[0]);
     Source->AbsFromLocal(SC2.HI,PSource[1]);
 
@@ -375,7 +377,7 @@ bool PointPoint_Size(        TElement *Target,
         for (int j=0;j<2;j++)
         STEPS[i][j] = (PTarget[i] - PSource[j]);
 
-    //проверка краев
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  ГЄГ°Г ГҐГў
     MBTi MeasureStep=Measure(_EPS);
     int i0=-1,j0=-1;
     for (int i=0;i<2;i++)
@@ -430,17 +432,17 @@ bool AreaPoint_Size(     TElement *Target,
     SGL.DL->Link->SourceScope(Target,Source,SC2);
     //-------------------------------------------------------------
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     Source->AbsFromLocal(SC2.LOW,PSource[0]);
     Source->AbsFromLocal(SC2.HI,PSource[1]);
 
-    //грани связок соча  в координатах target
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г   Гў ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ Гµ target
     Target->LocalFromAbs(PSource[0],TSource[0]);
     Target->LocalFromAbs(PSource[1],TSource[1]);
 
-    //проверка краев 2
-    //близость этих точек для таргета определяются
-    //в Un_Opt то же самое но наоборот
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  ГЄГ°Г ГҐГў 2
+    //ГЎГ«ГЁГ§Г®Г±ГІГј ГЅГІГЁГµ ГІГ®Г·ГҐГЄ Г¤Г«Гї ГІГ Г°ГЈГҐГІГ  Г®ГЇГ°ГҐГ¤ГҐГ«ГїГѕГІГ±Гї
+    //Гў Un_Opt ГІГ® Г¦ГҐ Г±Г Г¬Г®ГҐ Г­Г® Г­Г Г®ГЎГ®Г°Г®ГІ
     SGL.CrossPoint.z = PSource[0].z;
     for (int i=0;i<2;i++)
         SC1.PointAbout(TSource[i],STEPS[0][i]);
@@ -490,19 +492,19 @@ bool LinePoint_Size(    TElement *Target,
     SGL.DL->Link->SourceScope(Target,Source,SC2);
     //-------------------------------------------------------------
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     Target->AbsFromLocal(SC1.LOW,PTarget[0]);
     Target->AbsFromLocal(SC1.HI,PTarget[1]);
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     Source->AbsFromLocal(SC2.LOW,PSource[0]);
     Source->AbsFromLocal(SC2.HI,PSource[1]);
 
-    //грани связок соча  в координатах target
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г   Гў ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ Гµ target
     Target->LocalFromAbs(PSource[0],TSource[0]);
     Target->LocalFromAbs(PSource[1],TSource[1]);
 
-    //сначала проверка по прямой
+    //Г±Г­Г Г·Г Г«Г  ГЇГ°Г®ГўГҐГ°ГЄГ  ГЇГ® ГЇГ°ГїГ¬Г®Г©
     int ResCrossing = IsCutAndLineCrossedExactly(PTarget[0],PTarget[1],PSource[0],PSource[1],SGL.CrossPoint);
 
     if (ResCrossing != lcNONE && ResCrossing != lcPARALLEL &&  ResCrossing != lcCOLLINEAR) //parralel
@@ -531,9 +533,9 @@ bool LinePoint_Size(    TElement *Target,
     }
     else
     {
-        //проверка краев 2
-        //близость этих точек для таргета определяются
-        //в Un_Opt то же самое но наоборот
+        //ГЇГ°Г®ГўГҐГ°ГЄГ  ГЄГ°Г ГҐГў 2
+        //ГЎГ«ГЁГ§Г®Г±ГІГј ГЅГІГЁГµ ГІГ®Г·ГҐГЄ Г¤Г«Гї ГІГ Г°ГЈГҐГІГ  Г®ГЇГ°ГҐГ¤ГҐГ«ГїГѕГІГ±Гї
+        //Гў Un_Opt ГІГ® Г¦ГҐ Г±Г Г¬Г®ГҐ Г­Г® Г­Г Г®ГЎГ®Г°Г®ГІ
         SGL.CrossPoint.z = PSource[0].z;
         for (int i=0;i<2;i++)
             SC1.PointAbout(TSource[i],STEPS[0][i]);
@@ -584,19 +586,19 @@ bool LinePoint_Pos(  TElement *Target,
     SGL.DL->Link->SourceScope(Target,Source,SC2);
     //-------------------------------------------------------------
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     Target->AbsFromLocal(SC1.LOW,PTarget[0]);
     Target->AbsFromLocal(SC1.HI,PTarget[1]);
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     Source->AbsFromLocal(SC2.LOW,PSource[0]);
     Source->AbsFromLocal(SC2.HI,PSource[1]);
 
-    //грани связок соча  в координатах target
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г   Гў ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ Гµ target
     Target->LocalFromAbs(PSource[0],TSource[0]);
     Target->LocalFromAbs(PSource[1],TSource[1]);
 
-    //сначала проверка по прямой
+    //Г±Г­Г Г·Г Г«Г  ГЇГ°Г®ГўГҐГ°ГЄГ  ГЇГ® ГЇГ°ГїГ¬Г®Г©
     int ResCrossing = IsCutAndLineCrossedExactly(PTarget[0],PTarget[1],PSource[0],PSource[1],SGL.CrossPoint);
 
     if (ResCrossing != lcNONE && ResCrossing != lcPARALLEL && ResCrossing != lcCOLLINEAR) //parralel
@@ -610,9 +612,9 @@ bool LinePoint_Pos(  TElement *Target,
     }
     else
     {
-        //проверка краев 2
-        //близость этих точек для таргета определяются
-        //в Un_Opt то же самое но наоборот
+        //ГЇГ°Г®ГўГҐГ°ГЄГ  ГЄГ°Г ГҐГў 2
+        //ГЎГ«ГЁГ§Г®Г±ГІГј ГЅГІГЁГµ ГІГ®Г·ГҐГЄ Г¤Г«Гї ГІГ Г°ГЈГҐГІГ  Г®ГЇГ°ГҐГ¤ГҐГ«ГїГѕГІГ±Гї
+        //Гў Un_Opt ГІГ® Г¦ГҐ Г±Г Г¬Г®ГҐ Г­Г® Г­Г Г®ГЎГ®Г°Г®ГІ
         if (!CheckAngle(Target,Source,SGL,_ANGLEEPS))
 			return false;
         SGL.CrossPoint.z = PSource[0].z;
@@ -683,7 +685,7 @@ bool AreaPoint_Pos( TElement *Target,
       SRV_Step = MAXCATCHEPS;
     Source->UserChangePosition(ZEROINTVEC,SGL.R_Common*(-1));
     SGL.TS_Common = RotateAround(SRV_Step,Target->AbsAngle,ZEROINTVEC);
-    //точка связки
+    //ГІГ®Г·ГЄГ  Г±ГўГїГ§ГЄГЁ
     SGL.CrossPoint = Service_ + SGL.TS_Common;
     return (ABSINTVEC(SGL.TS_Common)<= _EPS );
 }

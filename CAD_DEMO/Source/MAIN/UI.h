@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef UIH
@@ -21,9 +25,9 @@ public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
     //----------------------------------
-    __property int UImageIndex = {read = FUImageIndex,write = SetUImageIndex};
-    __property bool Enabled = {read = FEnabled,write = SetEnabled};
-    __property bool Visible = {read = FVisible,write = SetVisible};
+    // __property int UImageIndex {read=FUImageIndex, write=SetUImageIndex}; // [manual migration needed]
+    // __property bool Enabled {read=FEnabled, write=SetEnabled}; // [manual migration needed]
+    // __property bool Visible {read=FVisible, write=SetVisible}; // [manual migration needed]
     TMetaUI();
     TMetaUI(TMetaNode *_Parent,int _ID,const AnsiString& _Name);
     virtual ~TMetaUI(){};
@@ -64,16 +68,16 @@ public:
     TMetaAction();
     TMetaAction(TMetaNode *_Parent,int _ID,const AnsiString& _Name);
     virtual ~TMetaAction();
-    __property int UImageIndex = {read = FUImageIndex,write = SetUImageIndex};
-    __property bool Enabled = {read = FEnabled,write = SetEnabled};
-    __property bool Visible = {read = FVisible,write = SetVisible};
+    // __property int UImageIndex {read=FUImageIndex, write=SetUImageIndex}; // [manual migration needed]
+    // __property bool Enabled {read=FEnabled, write=SetEnabled}; // [manual migration needed]
+    // __property bool Visible {read=FVisible, write=SetVisible}; // [manual migration needed]
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
     virtual bool UsedTrigger(int Trigger);
     TAction *Action;
     bool CheckFields();
     void Update();
     void Execute();
-    __property TMetaActionList* MetaActionList = {read = GetMetaActionList};
+    // __property TMetaActionList* MetaActionList {read=GetMetaActionList}; // [manual migration needed]
 };
 TClassNode* TMetaAction::StaticType = NULL;
 
@@ -90,7 +94,7 @@ public:
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
     TMenuItem *MI;
     TPointer<TMetaAction> MetaAction;
-    __property TMetaAction* AssociatedAction = {read = GetAssociatedAction};
+    // __property TMetaAction* AssociatedAction {read=GetAssociatedAction}; // [manual migration needed]
     bool CheckFields();
     virtual bool UsedTrigger(int Trigger);
     void Update();

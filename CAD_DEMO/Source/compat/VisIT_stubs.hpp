@@ -4,8 +4,35 @@
 // These are minimal stub definitions that allow the code to compile;
 // actual rendering functionality must be re-implemented.
 
+// Include Qt global header early so Q_DECL_EXPORT etc. are defined
+// before source files process their own COMMONAL_API macro definitions.
+#include <QtGlobal>
+
 #include <cstring>
 #include <cmath>
+
+// ---------------------------------------------------------------------------
+// Basic geometry types used in Math headers (before full VCL/Qt headers arrive)
+// ---------------------------------------------------------------------------
+#ifndef TPOINT_DEFINED
+#define TPOINT_DEFINED
+struct TPoint {
+    int x, y;
+    TPoint() : x(0), y(0) {}
+    TPoint(int _x, int _y) : x(_x), y(_y) {}
+};
+#endif
+
+#ifndef TRECT_DEFINED
+#define TRECT_DEFINED
+struct TRect {
+    int left, top, right, bottom;
+    TRect() : left(0), top(0), right(0), bottom(0) {}
+    TRect(int l, int t, int r, int b) : left(l), top(t), right(r), bottom(b) {}
+    int Width()  const { return right - left; }
+    int Height() const { return bottom - top; }
+};
+#endif
 
 // ---------------------------------------------------------------------------
 // Forward declarations
@@ -63,6 +90,16 @@ struct TVisMathVector {
 
 // Alias used in Bind/tolua generated code
 typedef TVisMathVector TVisMathPoint;
+
+// ---------------------------------------------------------------------------
+// Helper function: create TVisMathVector from x,y,z (Borland VisIT API)
+// ---------------------------------------------------------------------------
+inline TVisMathVector ToVec(double x, double y, double z) {
+    return TVisMathVector(x, y, z);
+}
+inline TVisVector ToVisVec(float x, float y, float z) {
+    return TVisVector(x, y, z);
+}
 
 // ---------------------------------------------------------------------------
 // TVisColor – RGBA color

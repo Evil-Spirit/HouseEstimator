@@ -1,15 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LogicNode.h"
 #include "MyGL.h"
 #include "World.h"
 #include "MySupportV.h"
-#pragma package(smart_init)
 
 TLinkNodes * LN;
 
@@ -166,7 +168,7 @@ TRoutePoint::~TRoutePoint()
 
 TRoutePoint::TRoutePoint()
 {
-    //нельзя использовать
+    //Г­ГҐГ«ГјГ§Гї ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ ГІГј
     Prev = this;
     Next = this;
 }
@@ -1004,7 +1006,7 @@ void TLinkNodes::DefinePermises_06(TElement* newParentFilter)
             SetPolygonToRouterSides(Buldings.Last(),*Buldings.Last()->Router);
             Buldings.Last()->Invert();
         }
-        //иначе это внешний контур
+        //ГЁГ­Г Г·ГҐ ГЅГІГ® ГўГ­ГҐГёГ­ГЁГ© ГЄГ®Г­ГІГіГ°
         SERVICE.Move(0,SERVICE.Count-1);
         POLS.Delete(0);
         ClockWize.Delete(0);
@@ -1134,15 +1136,15 @@ int AnalizeNode(TMTList<TLink>* LNKL,const TIntVec& __EPS,int AXE)
         }
     }
     //-----------------------------------------------------------------
-    //--------------- теперь сам анализ -----------------
+    //--------------- ГІГҐГЇГҐГ°Гј Г±Г Г¬ Г Г­Г Г«ГЁГ§ -----------------
     int returned=-1;
-    //проверка на количество лучей
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г«ГіГ·ГҐГ©
     if (SUN->Count>4)
         returned = ntNULL;
     if (SUN->Count<2)
         returned = ntNULL;
 
-    //проверка на углы лучей
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГіГЈГ«Г» Г«ГіГ·ГҐГ©
     MBTi CurrentAngle;
     int _180thcount=0;
     if (returned != ntNULL)

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef CustomElementVH
@@ -37,7 +41,7 @@ public:
 	TMyObject* CreateFunction();
 	//----------------------------------
 
-    __property TVisPrimitiveObj* VisObject = {read = GetVisObject};
+    // __property TVisPrimitiveObj* VisObject {read=GetVisObject}; // [manual migration needed]
     TCustomMetaElement(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TCustomMetaElement();
     virtual ~TCustomMetaElement();
@@ -56,7 +60,7 @@ protected:
     void SetMetaObject(TMyRegObject* aMetaObject);
 public:
 //    TGeomObject* FGeomObject;
-    __property TVisPrimitiveObj* VisObject = {read = OBJ};
+    // __property TVisPrimitiveObj* VisObject {read=OBJ}; // [manual migration needed]
     void ApplyObject(const TIntVec& AbsPoint,TVisRender* Render,TMyObject* Object, int PrimID);
 //	void ProcessTexturing();
 	void TexturePrimitive(TVisPrimitiveObj* Obj,TVisPrimitiveArray* Array,TRenderParam& RP, int Index = 0);

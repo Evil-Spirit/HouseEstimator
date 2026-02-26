@@ -1,18 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef ToolBarUH
 #define ToolBarUH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ToolWin.hpp>
+#include "compat/vcl_qt.h"
 
 #include "BaseToolV.h"
 #include "MyDialogEditU.h"
 //---------------------------------------------------------------------------
-class PACKAGE TToolBarForm : public TForm
+class  TToolBarForm : public TForm
 {
   __published:
     TToolBar *ToolBar;
@@ -22,11 +21,11 @@ class PACKAGE TToolBarForm : public TForm
     public:
     TMyDialogEdit *Dialog;
     TMyControls DialogTools;
-    __fastcall TToolBarForm(TComponent* Owner);
+     TToolBarForm(TComponent* Owner);
     void SetToolBar();    
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TToolBarForm *ToolBarF;
+extern  TToolBarForm *ToolBarF;
 //---------------------------------------------------------------------------
 #endif
 //---------------------------------------------------------------------------

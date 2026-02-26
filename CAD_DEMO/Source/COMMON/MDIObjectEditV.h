@@ -1,13 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIObjectEditVH
 #define MDIObjectEditVH
 //---------------------------------------------------------------------------
 
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "BaseFormV.h"
 
 //----------------
@@ -34,15 +35,15 @@ virtual void SETUP(){};
 void ObjectApply();
 bool ObjectChecked();
 bool Constructing;
-    __fastcall TMDIObjectEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+     TMDIObjectEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIObjectEdit *MDIObjectEdit;
-//стандартно е окно редактирования перебирает массив панелей вызывает для них
-//соответствующие стандартные окна редактирования
-//общается с ними на интерфейсе Apply и Refresh.
-//в дочерних классах окна создаются в OnCreate
-//все окна при создании получают Owner,Parent,Obj,Text,Data
-//окна бывают простые и составные но все имеют один интерфейс.
+//Г±ГІГ Г­Г¤Г Г°ГІГ­Г® ГҐ Г®ГЄГ­Г® Г°ГҐГ¤Г ГЄГІГЁГ°Г®ГўГ Г­ГЁГї ГЇГҐГ°ГҐГЎГЁГ°Г ГҐГІ Г¬Г Г±Г±ГЁГў ГЇГ Г­ГҐГ«ГҐГ© ГўГ»Г§Г»ГўГ ГҐГІ Г¤Г«Гї Г­ГЁГµ
+//Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГЁГҐ Г±ГІГ Г­Г¤Г Г°ГІГ­Г»ГҐ Г®ГЄГ­Г  Г°ГҐГ¤Г ГЄГІГЁГ°Г®ГўГ Г­ГЁГї
+//Г®ГЎГ№Г ГҐГІГ±Гї Г± Г­ГЁГ¬ГЁ Г­Г  ГЁГ­ГІГҐГ°ГґГҐГ©Г±ГҐ Apply ГЁ Refresh.
+//Гў Г¤Г®Г·ГҐГ°Г­ГЁГµ ГЄГ«Г Г±Г±Г Гµ Г®ГЄГ­Г  Г±Г®Г§Г¤Г ГѕГІГ±Гї Гў OnCreate
+//ГўГ±ГҐ Г®ГЄГ­Г  ГЇГ°ГЁ Г±Г®Г§Г¤Г Г­ГЁГЁ ГЇГ®Г«ГіГ·Г ГѕГІ Owner,Parent,Obj,Text,Data
+//Г®ГЄГ­Г  ГЎГ»ГўГ ГѕГІ ГЇГ°Г®Г±ГІГ»ГҐ ГЁ Г±Г®Г±ГІГ ГўГ­Г»ГҐ Г­Г® ГўГ±ГҐ ГЁГ¬ГҐГѕГІ Г®Г¤ГЁГ­ ГЁГ­ГІГҐГ°ГґГҐГ©Г±.
 //---------------------------------------------------------------------------
 #endif

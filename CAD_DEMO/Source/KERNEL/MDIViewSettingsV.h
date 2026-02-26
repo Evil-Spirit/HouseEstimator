@@ -1,15 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIViewSettingsVH
 #define MDIViewSettingsVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <Buttons.hpp>
-#include <ExtCtrls.hpp>
-#include <Dialogs.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIViewSettings : public TForm
 {
@@ -31,11 +29,11 @@ __published:	// IDE-managed Components
     TBitBtn *btOK;
     TBitBtn *btCancel;
     TColorDialog *CD;
-    void __fastcall shBackColor2dMouseDown(TObject *Sender,
+    void  shBackColor2dMouseDown(TObject *Sender,
           TMouseButton Button, TShiftState Shift, int X, int Y);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMDIViewSettings(TComponent* Owner);
+     TMDIViewSettings(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIViewSettings *MDIViewSettings;

@@ -1,17 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "AddLuaVarV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TAddLuaVar *AddLuaVar;
 //---------------------------------------------------------------------------
-__fastcall TAddLuaVar::TAddLuaVar(TComponent* Owner)
+ TAddLuaVar::TAddLuaVar(TComponent* Owner)
     : TForm(Owner)
 {
 }
@@ -29,7 +31,7 @@ bool VariantNameOK(const AnsiString& Name)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TAddLuaVar::FormCreate(TObject *Sender)
+void  TAddLuaVar::FormCreate(TObject *Sender)
 {
     cbVarType->Items->Clear();
     for (int i=0;i<3;i++)
@@ -42,7 +44,7 @@ void __fastcall TAddLuaVar::FormCreate(TObject *Sender)
     Meter = "";
 }
 //---------------------------------------------------------------------------
-void __fastcall TAddLuaVar::FormShow(TObject *Sender)
+void  TAddLuaVar::FormShow(TObject *Sender)
 {
     eVarName->Text = VarName;
     cbVarType->ItemIndex = VarType;
@@ -53,7 +55,7 @@ void __fastcall TAddLuaVar::FormShow(TObject *Sender)
     OK = false;
 }
 //---------------------------------------------------------------------------
-void __fastcall TAddLuaVar::btOKClick(TObject *Sender)
+void  TAddLuaVar::btOKClick(TObject *Sender)
 {
     AnsiString AllowSyms = _ABC_+AnsiString("_");
     if (eVarName->Text.IsEmpty())
@@ -93,13 +95,13 @@ void __fastcall TAddLuaVar::btOKClick(TObject *Sender)
     Close();
 }
 //---------------------------------------------------------------------------
-void __fastcall TAddLuaVar::btCancelClick(TObject *Sender)
+void  TAddLuaVar::btCancelClick(TObject *Sender)
 {
     OK=false;
     Close();
 }
 //---------------------------------------------------------------------------
-void __fastcall TAddLuaVar::FormClose(TObject *Sender,
+void  TAddLuaVar::FormClose(TObject *Sender,
       TCloseAction &Action)
 {
     VarType = cbVarType->ItemIndex;

@@ -1,13 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ExcelExchangeVH
 #define ExcelExchangeVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TMetaNode;
 //class Variant;
@@ -20,12 +20,12 @@ __published:	// IDE-managed Components
     TCheckBox *cbCreateAttributes;
     TCheckBox *cbText;
     TComboBox *cbType;
-    void __fastcall btOKClick(TObject *Sender);
-    void __fastcall LVClick(TObject *Sender);
-    void __fastcall cbTypeCloseUp(TObject *Sender);
+    void  btOKClick(TObject *Sender);
+    void  LVClick(TObject *Sender);
+    void  cbTypeCloseUp(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TExcelExchange(TComponent* Owner);
+     TExcelExchange(TComponent* Owner);
 };
 
 //void ExcelExport(Variant* WS,TMetaNode* MN);
@@ -33,6 +33,6 @@ void ExcelExport(TMetaNode* MN,bool All,const AnsiString& FileName);
 void ExcelImport(const AnsiString& FileName);
 void Act(const AnsiString& FileName);
 //---------------------------------------------------------------------------
-extern PACKAGE TExcelExchange *ExcelExchange;
+extern  TExcelExchange *ExcelExchange;
 //---------------------------------------------------------------------------
 #endif

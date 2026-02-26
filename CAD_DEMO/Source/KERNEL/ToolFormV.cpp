@@ -1,24 +1,26 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "ToolFormV.h"
 #include <Windows.hpp>
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TToolForm *ToolForm;
 //---------------------------------------------------------------------------
-__fastcall TToolForm::TToolForm(TComponent* Owner)
+ TToolForm::TToolForm(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TToolForm::FormResize(TObject *Sender)
+void  TToolForm::FormResize(TObject *Sender)
 {
 /*    int D = Width - 164;
     eDecX->Width += D;
@@ -28,7 +30,7 @@ void __fastcall TToolForm::FormResize(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TToolForm::pCoordinatesResize(TObject *Sender)
+void  TToolForm::pCoordinatesResize(TObject *Sender)
 {
     int W = pCoordinates->Width - eDecX->Left - 5;
     eDecX->Width = W;

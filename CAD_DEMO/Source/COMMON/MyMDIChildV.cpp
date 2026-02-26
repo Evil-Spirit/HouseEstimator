@@ -1,25 +1,27 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
        
 #include "MyMDIChildV.h"
 //---------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "FloatingV"
 #pragma link "BaseFormV"
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------
 TMyMDIChild* MyMDIChild;
 
-__fastcall TMyMDIChild::TMyMDIChild(TComponent *Owner)
+ TMyMDIChild::TMyMDIChild(TComponent *Owner)
 	: TBaseForm(Owner)
 {
 //	DockIndex=100;
 }
-__fastcall TMyMDIChild::TMyMDIChild(TComponent *Owner,const AnsiString& _Caption,bool load)
+ TMyMDIChild::TMyMDIChild(TComponent *Owner,const AnsiString& _Caption,bool load)
 	: TBaseForm(Owner)
 {
 //	DockIndex=100;
@@ -27,14 +29,14 @@ __fastcall TMyMDIChild::TMyMDIChild(TComponent *Owner,const AnsiString& _Caption
 }
 
 //--------------------------------------------------------------------- 
-void __fastcall TMyMDIChild::FormClose(TObject *Sender, TCloseAction &Action)
+void  TMyMDIChild::FormClose(TObject *Sender, TCloseAction &Action)
 {
 	Action = caFree;
 }
 //---------------------------------------------------------------------
 
 
-void __fastcall TMyMDIChild::FormCloseQuery(TObject *Sender, bool &CanClose)
+void  TMyMDIChild::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
     for (int i=0;i<Screen->FormCount;i++)
     {

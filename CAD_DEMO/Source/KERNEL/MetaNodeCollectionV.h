@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MetaNodeCollectionVH
@@ -19,7 +23,7 @@ private:
     TMetaNode *CreateMetaFunction(TMetaNode *Owner,const AnsiString& NeedCT,int _ID, const AnsiString& _Name, bool IsNew=false);
     TKernelSupport* GetKernelSupport();
 public:
-    __property TKernelSupport* KernelSupport = {read = GetKernelSupport};
+    // __property TKernelSupport* KernelSupport {read=GetKernelSupport}; // [manual migration needed]
     static TQuickList TypesToEdit;
     TMDelTList<TMySupport> Supports;
     //----------------------------------

@@ -1,13 +1,15 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 #include "BaseToolV.h"
 #include "math.h"
 
-#pragma package(smart_init)
 
 TClassNode* TUserInterfaceParam::StaticType = NULL;
 TClassNode* TBaseBlock::StaticType = NULL;
@@ -451,7 +453,7 @@ void TBaseTool::FillMenu()
     }
 }
 
-void __fastcall TBaseTool::MenuClick(TObject *Sender)
+void  TBaseTool::MenuClick(TObject *Sender)
 {
     if ( !IS( Sender, __classid(TMenuItem) ) )
         return;

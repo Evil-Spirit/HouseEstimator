@@ -1,7 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "VectorV.h"
 #include "math.h"
@@ -10,24 +13,23 @@
 //---------------------------------------------------------------------------
 
 
-#pragma package(smart_init)
 
 
 //TIntVec
 
 void TIntVec::SetX(MBTi ax)
 {
-    fx = ax;
+    x = ax;
 }
 
 void TIntVec::SetY(MBTi ay)
 {
-    fy = ay;
+    y = ay;
 }
 
 void TIntVec::SetZ(MBTi az)
 {
-    fz = az;
+    z = az;
 }
 
 void TIntVec::SetA(int i,MBTi aa)
@@ -42,81 +44,81 @@ MBTi TIntVec::GetA(int i) const
 
 TIntVec::TIntVec()
 {
-    fx = 0;
-    fy = 0;
-    fz = 0;
+    x = 0;
+    y = 0;
+    z = 0;
     MyObjectParent = NULL;
 }
 /*
 TIntVec::TIntVec(const TBoolVec &rhs)
 {
-    fx=(MBTi)rhs.x;
-    fy=(MBTi)rhs.y;
-    fz=(MBTi)rhs.z;
+    x=(MBTi)rhs.x;
+    y=(MBTi)rhs.y;
+    z=(MBTi)rhs.z;
     MyObjectParent = NULL;
 }
 
 */
 TIntVec::TIntVec(const TVisVector &rhs)
 {
-    fx=(MBTi)rhs.X;
-    fy=(MBTi)rhs.Y;
-    fz=(MBTi)rhs.Z;
+    x=(MBTi)rhs.X;
+    y=(MBTi)rhs.Y;
+    z=(MBTi)rhs.Z;
     MyObjectParent = NULL;
 }
 
 TIntVec::TIntVec(MBTi _x,MBTi _y,MBTi _z)
 {
-    fx=_x;
-    fy=_y;
-    fz=_z;
+    x=_x;
+    y=_y;
+    z=_z;
     MyObjectParent = NULL;
 }
 
 TIntVec::TIntVec(const TVisMathVector &rhs)
 {
-    fx=(MBTi)rhs.x;
-    fy=(MBTi)rhs.y;
-    fz=(MBTi)rhs.z;
+    x=(MBTi)rhs.x;
+    y=(MBTi)rhs.y;
+    z=(MBTi)rhs.z;
     MyObjectParent = NULL;
 }
 
 TIntVec::TIntVec(const TIntVec& rhs  )
 {
-    fx=rhs.fx;
-    fy=rhs.fy;
-    fz=rhs.fz;
+    x=rhs.x;
+    y=rhs.y;
+    z=rhs.z;
     MyObjectParent = NULL;
 }
 
 TIntVec & TIntVec::operator = (const TIntVec &rhs)
 {
-    fx=rhs.x;
-    fy=rhs.y;
-    fz=rhs.z;
+    x=rhs.x;
+    y=rhs.y;
+    z=rhs.z;
     return *this;
 }
 
 
 TIntVec & TIntVec::operator =(const TVisMathVector &rhs)
 {
-    fx=rhs.x;
-    fy=rhs.y;
-    fz=rhs.z;
+    x=rhs.x;
+    y=rhs.y;
+    z=rhs.z;
     return *this;
 }
 
 TIntVec & TIntVec::operator = (const TVisVector &rhs)
 {
-    fx=rhs.X;
-	fy=rhs.Y;
-    fz=rhs.Z;
+    x=rhs.X;
+	y=rhs.Y;
+    z=rhs.Z;
     return *this;
 }
 
 bool  TIntVec::operator == (const TIntVec &rhs) const
 {
-    return (fx==rhs.fx && fy==rhs.fy && fz==rhs.fz);
+    return (x==rhs.x && y==rhs.y && z==rhs.z);
 }
 
 bool  TIntVec::operator != (const TIntVec &rhs) const
@@ -126,120 +128,120 @@ bool  TIntVec::operator != (const TIntVec &rhs) const
 
 bool TIntVec::operator <= (const TIntVec &rhs) const
 {
-    return (fx<=rhs.fx && fy<=rhs.fy && fz<=rhs.fz);
+    return (x<=rhs.x && y<=rhs.y && z<=rhs.z);
 }
 
 bool TIntVec::operator >= (const TIntVec &rhs) const
 {
-    return (fx>=rhs.fx && fy>=rhs.fy && fz>=rhs.fz);
+    return (x>=rhs.x && y>=rhs.y && z>=rhs.z);
 }
 
 TIntVec TIntVec::operator +(const TIntVec &rhs) const
 {
-	return( TIntVec(fx+rhs.fx,fy+rhs.fy,fz+rhs.fz) );
+	return( TIntVec(x+rhs.x,y+rhs.y,z+rhs.z) );
 }
 
 TIntVec TIntVec::operator -(const TIntVec &rhs) const
 {
-    return( TIntVec(fx-rhs.fx,fy-rhs.fy,fz-rhs.fz) );
+    return( TIntVec(x-rhs.x,y-rhs.y,z-rhs.z) );
 }
 
 TIntVec TIntVec::XYZ_Multiply(const TIntVec &rhs) const
 {
-    return( TIntVec(fx*rhs.fx,fy*rhs.fy,fz*rhs.fz) );
+    return( TIntVec(x*rhs.x,y*rhs.y,z*rhs.z) );
 }
 
 TIntVec TIntVec::XYZ_Divide(const TIntVec &rhs) const
 {
-    return( TIntVec(fx/rhs.fx,fy/rhs.fy,fz/rhs.fz) );
+    return( TIntVec(x/rhs.x,y/rhs.y,z/rhs.z) );
 }
 
 TIntVec TIntVec::operator *(const TIntVec &rhs) const
 {
-    return TIntVec(fy*rhs.fz - fz*rhs.fy,fz*rhs.fx - fx*rhs.fz,fx*rhs.fy - fy*rhs.fx);
+    return TIntVec(y*rhs.z - z*rhs.y,z*rhs.x - x*rhs.z,x*rhs.y - y*rhs.x);
 }
 
 MBTi TIntVec::operator &(const TIntVec &rhs) const
 {
-    return fx*rhs.fx+fy*rhs.fy+fz*rhs.fz;
+    return x*rhs.x+y*rhs.y+z*rhs.z;
 }
 
 TIntVec TIntVec::operator ^(const TIntVec &rhs) const
 {
-    return TIntVec(fx*rhs.fx,fy*rhs.fy,fz*rhs.fz);
+    return TIntVec(x*rhs.x,y*rhs.y,z*rhs.z);
 }
 
 TIntVec TIntVec::operator /(const TIntVec &rhs) const
 {
-    return TIntVec(fx/rhs.fx,fy/rhs.fy,fz/rhs.fz);
+    return TIntVec(x/rhs.x,y/rhs.y,z/rhs.z);
 }
 
 TIntVec& TIntVec::operator +=(const TIntVec &rhs)
 {
-    fx+=rhs.fx;
-    fy+=rhs.fy;
-    fz+=rhs.fz;
+    x+=rhs.x;
+    y+=rhs.y;
+    z+=rhs.z;
     return *this;
 }
 
 TIntVec& TIntVec::operator -=(const TIntVec &rhs)
 {
-    fx-=rhs.fx;
-    fy-=rhs.fy;
-    fz-=rhs.fz;
+    x-=rhs.x;
+    y-=rhs.y;
+    z-=rhs.z;
     return *this;
 }
 
 TIntVec& TIntVec::operator *=(const TIntVec &rhs)
 {
-    *this = TIntVec(fy*rhs.fz - fz*rhs.fy,fz*rhs.fx - fx*rhs.fz,fx*rhs.fy - fy*rhs.fx);
+    *this = TIntVec(y*rhs.z - z*rhs.y,z*rhs.x - x*rhs.z,x*rhs.y - y*rhs.x);
     return *this;
 }
 
 TIntVec& TIntVec::operator ^=(const TIntVec &rhs)
 {
-    fx*=rhs.fx;
-    fy*=rhs.fy;
-    fz*=rhs.fz;
+    x*=rhs.x;
+    y*=rhs.y;
+    z*=rhs.z;
     return *this;
 }
 
 TIntVec& TIntVec::operator /=(const TIntVec &rhs)
 {
-    fx/=rhs.fx;
-    fy/=rhs.fy;
-    fz/=rhs.fz;
+    x/=rhs.x;
+    y/=rhs.y;
+    z/=rhs.z;
     return *this;
 }
 
 TIntVec& TIntVec::operator /=(MBTi rhs)
 {
-    fx/=rhs;
-    fy/=rhs;
-    fz/=rhs;
+    x/=rhs;
+    y/=rhs;
+    z/=rhs;
 	return *this;
 }
 
 TIntVec TIntVec::operator /(MBTi rhs) const
 {
-    return( TIntVec(fx/rhs,fy/rhs,fz/rhs) );
+    return( TIntVec(x/rhs,y/rhs,z/rhs) );
 }
 
 MBTi TIntVec::Length() const
 {
-	return sqrtDC((fx*fx)+(fy*fy)+(fz*fz));
+	return sqrtDC((x*x)+(y*y)+(z*z));
 }
 
 TIntVec TIntVec::operator *(MBTi rhs) const
 {
-    return( TIntVec(fx*rhs,fy*rhs,fz*rhs) );
+    return( TIntVec(x*rhs,y*rhs,z*rhs) );
 }
 
 TIntVec& TIntVec::operator *=(MBTi rhs)
 {
-    fx*=rhs;
-    fy*=rhs;
-    fz*=rhs;
+    x*=rhs;
+    y*=rhs;
+    z*=rhs;
     return *this;
 }
 
@@ -253,25 +255,25 @@ MBTi CycleOf(MBTi Angle,MBTi Cycle)
 TIntVec TIntVec::operator %(MBTi Cycle) const
 {
 	TIntVec Res;
-	Res.fx = CycleOf( fx, Cycle);
-    Res.fy = CycleOf( fy, Cycle);
-    Res.fz = CycleOf( fz, Cycle);
+	Res.x = CycleOf( x, Cycle);
+    Res.y = CycleOf( y, Cycle);
+    Res.z = CycleOf( z, Cycle);
     return(Res);
 }
 
 int TIntVec::intX() const
 {
-    return (int)RoundTo(fx,0);
+    return (int)RoundTo(x,0);
 }
 
 int TIntVec::intY() const
 {
-    return (int)RoundTo(fy,0);
+    return (int)RoundTo(y,0);
 }
 
 int TIntVec::intZ() const
 {
-    return (int)RoundTo(fz,0);
+    return (int)RoundTo(z,0);
 }
 
 int TIntVec::intA(int index) const
@@ -281,34 +283,34 @@ int TIntVec::intA(int index) const
 
 TIntVec& TIntVec::Assign(const TIntVec& Vec)
 {
-    fx = Vec.fx;
-    fy = Vec.fy;
-    fz = Vec.fz;
+    x = Vec.x;
+    y = Vec.y;
+    z = Vec.z;
     return *this;
 }
 
 bool TIntVec::Equal2D(const TIntVec& P,MBTi USEEPS) const
 {
-    if ( (fabs(fx-P.fx) <= USEEPS) &&  (fabs(fy-P.fy) <= USEEPS))
-        return ((fx-P.fx)*(fx-P.fx)+(fy-P.fy)*(fy-P.fy))<=USEEPS*USEEPS;
+    if ( (fabs(x-P.x) <= USEEPS) &&  (fabs(y-P.y) <= USEEPS))
+        return ((x-P.x)*(x-P.x)+(y-P.y)*(y-P.y))<=USEEPS*USEEPS;
     else
         return false;
 }
 
 MBTi TIntVec::Length2D() const
 {
-    return sqrtDC(fx*fx + fy*fy);
+    return sqrtDC(x*x + y*y);
 }
 
 TIntVec TIntVec::Perpendicular2D() const
 {
-	//ñîîòâåòñòâóåò TIntVec(x,y,0)*TIntVec(0,0,1);
+	//Ã±Ã®Ã®Ã²Ã¢Ã¥Ã²Ã±Ã²Ã¢Ã³Ã¥Ã² TIntVec(x,y,0)*TIntVec(0,0,1);
     return TIntVec(y,-x,0);
 }
 
 bool TIntVec::Equal(const TIntVec& P,MBTi USEEPS) const
 {
-    if ( ((fabs(fx-P.fx) <= USEEPS) &&  (fabs(fy-P.fy) <= USEEPS) && (fabs(fz-P.fz) <= USEEPS)) )
+    if ( ((fabs(x-P.x) <= USEEPS) &&  (fabs(y-P.y) <= USEEPS) && (fabs(z-P.z) <= USEEPS)) )
 		return ScalarP( (*this - P),(*this - P) ) <= USEEPS*USEEPS;
     else
         return false;
@@ -334,7 +336,7 @@ TIntVec VectorP(const TIntVec& a,const TIntVec& b)
 	TIntVec VC;
 	
 	for (int i=0;i<3;i++)
-		VC.a[i] = a.a[(i+1)%3]*b.a[(i+2)%3] - b.a[(i+1)%3]*a.a[(i+2)%3];
+		VC[i] = a[(i+1)%3]*b[(i+2)%3] - b[(i+1)%3]*a[(i+2)%3];
 		
 	return VC;
 }

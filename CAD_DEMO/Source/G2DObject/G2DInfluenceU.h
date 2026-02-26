@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef G2DInfluenceUH
@@ -37,7 +41,7 @@ public:
 
     TMTList<TG2DCut> AllCuts;
     TMTList< TMTList<TG2DPoint> > EdgeCutSkeletons;
-    TMDelTList< TMTList<TG2DCut> > EdgeCuts;//крайние отрезки дерева углов
+    TMDelTList< TMTList<TG2DCut> > EdgeCuts;//ГЄГ°Г Г©Г­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГЁ Г¤ГҐГ°ГҐГўГ  ГіГЈГ«Г®Гў
     TMDelTList< TCommonPoint >  SkeletonCP;
     TMTList<TG2DPoint> InfluenceSequence;
 

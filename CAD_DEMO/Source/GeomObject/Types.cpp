@@ -1,7 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "Types.h"
 #include "Misc.h"
@@ -63,5 +66,4 @@ void TBBox::Calculate(const TMTList <TGCut> &cuts)
 }
 
 
-#pragma package(smart_init)
 

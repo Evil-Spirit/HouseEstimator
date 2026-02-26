@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "BaseDockSiteFormV.h"
 #include "FloatingV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "BaseFormV"
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------
-__fastcall TBaseDockSiteForm::TBaseDockSiteForm(TComponent* Owner)
+ TBaseDockSiteForm::TBaseDockSiteForm(TComponent* Owner)
 	: TBaseForm(Owner)
 {
     // change wnd procs for the docking panels
@@ -37,7 +39,7 @@ __fastcall TBaseDockSiteForm::TBaseDockSiteForm(TComponent* Owner)
         pnlBottomSide->WindowProc = OldBottomDockWndProc;
 */
 //---------------------------------------------------------------------------
-void __fastcall TBaseDockSiteForm::LeftDockWindowProc(Messages::TMessage &Message)
+void  TBaseDockSiteForm::LeftDockWindowProc(Messages::TMessage &Message)
 {
     OldLeftDockWndProc(Message);
     if (Message.Msg == Controls::CM_DOCKNOTIFICATION)
@@ -48,7 +50,7 @@ void __fastcall TBaseDockSiteForm::LeftDockWindowProc(Messages::TMessage &Messag
     }
 }
 
-void __fastcall TBaseDockSiteForm::RightDockWindowProc(Messages::TMessage &Message)
+void  TBaseDockSiteForm::RightDockWindowProc(Messages::TMessage &Message)
 {
     OldRightDockWndProc(Message);
     if (Message.Msg == Controls::CM_DOCKNOTIFICATION)
@@ -59,7 +61,7 @@ void __fastcall TBaseDockSiteForm::RightDockWindowProc(Messages::TMessage &Messa
     }
 }
 
-void __fastcall TBaseDockSiteForm::BottomDockWindowProc(Messages::TMessage &Message)
+void  TBaseDockSiteForm::BottomDockWindowProc(Messages::TMessage &Message)
 {
     if (Message.Msg == WM_SIZE)
     {
@@ -75,7 +77,7 @@ void __fastcall TBaseDockSiteForm::BottomDockWindowProc(Messages::TMessage &Mess
     }
 }
 
-void __fastcall TBaseDockSiteForm::ControlVisibilityChanged(TPanel* DockTarget,TControl* Control,bool Visible)
+void  TBaseDockSiteForm::ControlVisibilityChanged(TPanel* DockTarget,TControl* Control,bool Visible)
 {
     // all removed
     if (DockTarget->VisibleDockClientCount == 0)
@@ -114,7 +116,7 @@ void __fastcall TBaseDockSiteForm::ControlVisibilityChanged(TPanel* DockTarget,T
 }
 
 
-void __fastcall TBaseDockSiteForm::pnlLeftSideDockOver(TObject *Sender,
+void  TBaseDockSiteForm::pnlLeftSideDockOver(TObject *Sender,
       TDragDockObject *Source, int X, int Y, TDragState State,
       bool &Accept)
 {
@@ -139,7 +141,7 @@ void __fastcall TBaseDockSiteForm::pnlLeftSideDockOver(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBaseDockSiteForm::pnlLeftSideDockDrop(TObject *Sender,
+void  TBaseDockSiteForm::pnlLeftSideDockDrop(TObject *Sender,
       TDragDockObject *Source, int X, int Y)
 {
     spltrLeft->Visible = true;
@@ -151,7 +153,7 @@ void __fastcall TBaseDockSiteForm::pnlLeftSideDockDrop(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBaseDockSiteForm::pnlRightSideDockDrop(TObject *Sender,
+void  TBaseDockSiteForm::pnlRightSideDockDrop(TObject *Sender,
       TDragDockObject *Source, int X, int Y)
 {
   spltrRight->Visible = true;
@@ -163,7 +165,7 @@ void __fastcall TBaseDockSiteForm::pnlRightSideDockDrop(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBaseDockSiteForm::pnlBottomSideDockDrop(TObject *Sender,
+void  TBaseDockSiteForm::pnlBottomSideDockDrop(TObject *Sender,
       TDragDockObject *Source, int X, int Y)
 {
     spltrBottom->Visible = true;
@@ -175,7 +177,7 @@ void __fastcall TBaseDockSiteForm::pnlBottomSideDockDrop(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBaseDockSiteForm::pnlLeftSideUnDock(TObject *Sender,
+void  TBaseDockSiteForm::pnlLeftSideUnDock(TObject *Sender,
       TControl *Client, TWinControl *NewTarget, bool &Allow)
 {
     if (pnlLeftSide->VisibleDockClientCount == 1)
@@ -186,7 +188,7 @@ void __fastcall TBaseDockSiteForm::pnlLeftSideUnDock(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBaseDockSiteForm::pnlRightSideUnDock(TObject *Sender,
+void  TBaseDockSiteForm::pnlRightSideUnDock(TObject *Sender,
       TControl *Client, TWinControl *NewTarget, bool &Allow)
 {
     if (pnlRightSide->VisibleDockClientCount == 1)
@@ -197,7 +199,7 @@ void __fastcall TBaseDockSiteForm::pnlRightSideUnDock(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBaseDockSiteForm::pnlBottomSideUnDock(TObject *Sender,
+void  TBaseDockSiteForm::pnlBottomSideUnDock(TObject *Sender,
       TControl *Client, TWinControl *NewTarget, bool &Allow)
 {
     if (pnlBottomSide->VisibleDockClientCount == 1)

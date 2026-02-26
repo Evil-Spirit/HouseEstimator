@@ -1,13 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
-USEFORM("Object.cpp", Form1);
-USEFORM("MyViewV.cpp", MyView);
-USEFORM("VecForm.cpp", Form3);
-USEFORM("MarkForm.cpp", Form4);
-USEFORM("Convert.cpp", Form2);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

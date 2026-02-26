@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 #pragma once
 // HouseEstimatorWindow.h – Qt main window replacing the Borland VCL TConfig MDI form.
 

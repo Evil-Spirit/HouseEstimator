@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef fNextBlockVH
 #define fNextBlockVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TfNextBlock : public TForm
 {
@@ -15,9 +16,9 @@ __published:	// IDE-managed Components
     TComboBox *cbNextBlock;
 private:	// User declarations
 public:		// User declarations
-    __fastcall TfNextBlock(TComponent* Owner);
+     TfNextBlock(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TfNextBlock *fNextBlock;
+extern  TfNextBlock *fNextBlock;
 //---------------------------------------------------------------------------
 #endif

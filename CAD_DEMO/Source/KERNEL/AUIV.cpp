@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "IntExplorerV.h"
 #include "AUIV.h"
@@ -15,7 +18,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 TAdvancedUserInterface AUI;
 
@@ -82,7 +84,7 @@ void TAdvancedUserInterface::ActivateWorld(TMainTree* aMainTree)
     AfterProcessView();
 }
 
-bool TAdvancedUserInterface::ProcessSaveProject(TMainTree* aWorld)//возвращает истина если ответ не cancel
+bool TAdvancedUserInterface::ProcessSaveProject(TMainTree* aWorld)//ГўГ®Г§ГўГ°Г Г№Г ГҐГІ ГЁГ±ГІГЁГ­Г  ГҐГ±Г«ГЁ Г®ГІГўГҐГІ Г­ГҐ cancel
 {
 //-------------
     _TRY_

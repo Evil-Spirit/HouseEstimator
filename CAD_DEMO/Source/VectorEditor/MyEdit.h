@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef MyEditH
 #define MyEditH
@@ -24,7 +28,7 @@ struct TEditorLineWidth{
     int Fixid;
 };
 
-class PACKAGE TEditorAttributes : public TMyObject{
+class  TEditorAttributes : public TMyObject{
 public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
@@ -40,7 +44,7 @@ public:
     TEditorLineWidth LinesWidth;
 };
 
-extern PACKAGE TClassNode* TEditorAttributes::StaticType;
+extern  TClassNode* TEditorAttributes::StaticType;
 
 struct TGridColors{
     TColor OSI;
@@ -54,7 +58,7 @@ struct TGridLineWidth{
     int MAX;
 };
 
-class PACKAGE TGridAttributes : public TMyObject{
+class  TGridAttributes : public TMyObject{
 public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
@@ -75,9 +79,9 @@ public:
     bool Minimal;
 };
 
-extern PACKAGE TClassNode* TGridAttributes::StaticType;
+extern  TClassNode* TGridAttributes::StaticType;
 
-class PACKAGE TGrid : public TMyObject{
+class  TGrid : public TMyObject{
 public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
@@ -93,7 +97,7 @@ public:
     void Render(TMyView* aView);
 };
 
-extern PACKAGE TClassNode* TGrid::StaticType;
+extern  TClassNode* TGrid::StaticType;
 
 class TG2DLink;
 class TGPoint;

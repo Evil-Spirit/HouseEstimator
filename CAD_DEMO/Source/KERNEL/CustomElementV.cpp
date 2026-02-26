@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "CustomElementV.h"
 #include "MYIMPORTV.h"
@@ -33,12 +36,11 @@
 
 
 AnsiString GOB = AnsiString(".GOB");
-#pragma package(smart_init)
 TClassNode* TCustomMetaElement::StaticType = NULL;
 TClassNode* TCustomElement::StaticType = NULL;
-//карпова 18 клуб метро 206386 417652 с 10-18,
-//Светлана Валентиновна
-//алтайская 163
+//ГЄГ Г°ГЇГ®ГўГ  18 ГЄГ«ГіГЎ Г¬ГҐГІГ°Г® 206386 417652 Г± 10-18,
+//Г‘ГўГҐГІГ«Г Г­Г  Г‚Г Г«ГҐГ­ГІГЁГ­Г®ГўГ­Г 
+//Г Г«ГІГ Г©Г±ГЄГ Гї 163
 
 void PrimitiveObjToGeomObj( TVisPrimitiveObj* PObj,TGeomObject* GObj )
 {

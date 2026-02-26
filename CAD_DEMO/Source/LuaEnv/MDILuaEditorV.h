@@ -1,26 +1,27 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDILuaEditorVH
 #define MDILuaEditorVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 class TLuaModule;
 class TFLuaEditor;
 //---------------------------------------------------------------------------
-class PACKAGE TMDILuaEditor : public TForm
+class  TMDILuaEditor : public TForm
 {
 __published:	// IDE-managed Components
-    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+    void  FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 public:		// User declarations
     TLuaModule* LM;
     TFLuaEditor* LF;
-    __fastcall TMDILuaEditor(TComponent* Owner,TLuaModule* _LM);
+     TMDILuaEditor(TComponent* Owner,TLuaModule* _LM);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMDILuaEditor *MDILuaEditor;
+extern  TMDILuaEditor *MDILuaEditor;
 //---------------------------------------------------------------------------
 #endif

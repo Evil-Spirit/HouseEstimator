@@ -1,18 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
         
 #include "QueueRoutineV.h"
 #include "ElementV.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 int FindInPsevdoPointerList(const TMDelTList<TPsevdoPointer<TElement> >* List,const TPsevdoPointer<TElement>* Adress)
 {

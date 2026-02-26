@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "BindedBaseToolEditV.h"
 #include "BindedBlockEditV.h"
 //#include "BaseToolV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TBindedBaseToolEdit *BindedBaseToolEdit;
 //---------------------------------------------------------------------------
-__fastcall TBindedBaseToolEdit::TBindedBaseToolEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TBindedBaseToolEdit::TBindedBaseToolEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }
@@ -111,7 +113,7 @@ void TBindedBaseToolEdit::GenerateImage( int _Id, int BlockType )
     BlocksImageList->Add(Image, NULL);*/
 }
 
-void __fastcall TBindedBaseToolEdit::spmStateBlockClick(TObject *Sender)
+void  TBindedBaseToolEdit::spmStateBlockClick(TObject *Sender)
 {
     ApplyAndDestroyBlock();
     MyTool.AddStateBlock(Mouse_Move);
@@ -121,7 +123,7 @@ void __fastcall TBindedBaseToolEdit::spmStateBlockClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedBaseToolEdit::spmActionBlockClick(TObject *Sender)
+void  TBindedBaseToolEdit::spmActionBlockClick(TObject *Sender)
 {
     ApplyAndDestroyBlock();
     MyTool.AddActionBlock();
@@ -131,7 +133,7 @@ void __fastcall TBindedBaseToolEdit::spmActionBlockClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedBaseToolEdit::spmConditionalBlockClick(
+void  TBindedBaseToolEdit::spmConditionalBlockClick(
       TObject *Sender)
 {
     ApplyAndDestroyBlock();
@@ -164,7 +166,7 @@ void TBindedBaseToolEdit::EditBlock()
     MyTool.GetBlock(lvBlocks->ItemIndex)->Edit(this, pBlocks, NULL);
 }
 
-void __fastcall TBindedBaseToolEdit::lvBlocksSelectItem(TObject *Sender,
+void  TBindedBaseToolEdit::lvBlocksSelectItem(TObject *Sender,
       TListItem *Item, bool Selected)
 {
     ApplyAndDestroyBlock();
@@ -173,7 +175,7 @@ void __fastcall TBindedBaseToolEdit::lvBlocksSelectItem(TObject *Sender,
 //---------------------------------------------------------------------------
 
 
-void __fastcall TBindedBaseToolEdit::tbDeleteClick(TObject *Sender)
+void  TBindedBaseToolEdit::tbDeleteClick(TObject *Sender)
 {
     if (lvBlocks->ItemIndex < 0 || lvBlocks->ItemIndex >= lvBlocks->Items->Count || lvBlocks->Items->Count < 1 )
         return;
@@ -200,13 +202,13 @@ void __fastcall TBindedBaseToolEdit::tbDeleteClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedBaseToolEdit::lvBlocksResize(TObject *Sender)
+void  TBindedBaseToolEdit::lvBlocksResize(TObject *Sender)
 {
     lvBlocks->Columns->Items[0]->Width = lvBlocks->ClientWidth;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedBaseToolEdit::Button1Click(TObject *Sender)
+void  TBindedBaseToolEdit::Button1Click(TObject *Sender)
 {
 //    ApplyAndDestroyBlock();
     //TRenderLuaModuleEdit* RenderLuaModuleEdit = new TRenderLuaModuleEdit(this);
@@ -221,7 +223,7 @@ void __fastcall TBindedBaseToolEdit::Button1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedBaseToolEdit::pmBlocksTypesPopup(TObject *Sender)
+void  TBindedBaseToolEdit::pmBlocksTypesPopup(TObject *Sender)
 {
     pmBlocksTypes->Images = lvBlocks->SmallImages;        
 }

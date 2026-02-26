@@ -1,17 +1,16 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ConverterFormVH
 #define ConverterFormVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "VVV_02Proj1_OCX.h"
 #include <OleCtrls.hpp>
 #include "EDITOR_OCX.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TConverterForm : public TForm
 {
@@ -21,13 +20,13 @@ __published:	// IDE-managed Components
 	TPanel *Panel1;
 	TButton *Button1;
 	TSplitter *Splitter1;
-	void __fastcall Button1Click(TObject *Sender);
+	void  Button1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TConverterForm(TComponent* Owner);
+     TConverterForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TConverterForm *ConverterForm;
+extern  TConverterForm *ConverterForm;
 //---------------------------------------------------------------------------
 #endif
  

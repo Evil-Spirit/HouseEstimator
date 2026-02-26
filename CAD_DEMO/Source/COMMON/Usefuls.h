@@ -1,13 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef UsefulsH
 #define UsefulsH
 #include <stdio.h>
-#include <typeinfo.h>
-#include <ComCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "MTL.h"
 #include "VisComp.hpp"
 
-#define MyShowExc(Exc) ErrorMsg( AnsiString("Exception ") + Exc.Message + AnsiString(" was caught at address ")+ IntToHex((int)ExceptAddr(),8) )
+// Borland ExceptAddr() stub - returns null pointer on non-Borland platforms
+#ifndef __BORLANDC__
+inline void* ExceptAddr() { return nullptr; }
+#endif
+
+#define MyShowExc(Exc) ErrorMsg( AnsiString("Exception ") + Exc.Message + AnsiString(" was caught at address ")+ IntToHex((int)(intptr_t)ExceptAddr(),8) )
 #define _TRY_  try{
 #define _ENDTRY_(str,oper) }catch ( Exception& Exc ){MyShowExc(Exc); ErrorMsg(str); oper; };
 
@@ -41,7 +49,7 @@ const char SAVE_NL = '@';
 const AnsiString MSG_ERR_1 =  AnsiString("Assumed parent node is not defined");
 const AnsiString MSG_ERR_2 =  AnsiString("Can not create process of debugger");
 const AnsiString MSG_ERR_3 =  AnsiString("Collapsed cut");
-const AnsiString MSG_ERR_4 =  AnsiString("Invalid polygon");//В клетках есть то чего нет в полигонах
+const AnsiString MSG_ERR_4 =  AnsiString("Invalid polygon");//Г‚ ГЄГ«ГҐГІГЄГ Гµ ГҐГ±ГІГј ГІГ® Г·ГҐГЈГ® Г­ГҐГІ Гў ГЇГ®Г«ГЁГЈГ®Г­Г Гµ
 const AnsiString MSG_ERR_5 =  AnsiString("Point on the plane");
 const AnsiString MSG_ERR_6 =  AnsiString("Incorrect angle region");
 const AnsiString MSG_ERR_7 =  AnsiString("Parallel not working");
@@ -56,8 +64,8 @@ const AnsiString MSG_3 =  AnsiString("Start");
 const AnsiString MSG_4 =  AnsiString("Rotation angles");
 const AnsiString MSG_5 =  AnsiString("Region selection");
 const AnsiString MSG_6 =  AnsiString("Finish position");
-const AnsiString MSG_7 =  AnsiString(" must have one of following groups: "); // должен иметь одну из следующих групп соединений
-const AnsiString MSG_8 =  AnsiString("Act"); // Акт -выполненных объемов в соответствии с утвержденными нормами
+const AnsiString MSG_7 =  AnsiString(" must have one of following groups: "); // Г¤Г®Г«Г¦ГҐГ­ ГЁГ¬ГҐГІГј Г®Г¤Г­Гі ГЁГ§ Г±Г«ГҐГ¤ГіГѕГ№ГЁГµ ГЈГ°ГіГЇГЇ Г±Г®ГҐГ¤ГЁГ­ГҐГ­ГЁГ©
+const AnsiString MSG_8 =  AnsiString("Act"); // ГЂГЄГІ -ГўГ»ГЇГ®Г«Г­ГҐГ­Г­Г»Гµ Г®ГЎГєГҐГ¬Г®Гў Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГЁ Г± ГіГІГўГҐГ°Г¦Г¤ГҐГ­Г­Г»Г¬ГЁ Г­Г®Г°Г¬Г Г¬ГЁ
 
 
 template <class T> class TMTList;
@@ -137,14 +145,31 @@ public:
     TMyObject();
     virtual ~TMyObject();
     int GetDepth() const;
-    __property TInstanceRegisterInfo* RegisterInfo = {read = FRegisterInfo};
-    __property TMyObject* MyObjectParent = {read = FMyObjectParent, write = SetMyObjectParent};
-    __property AnsiString Name = {read = FName,write = SetName};
-    __property AnsiString GUID = {read = FGUID};
+    // Cross-platform property accessors (replaces Borland __property)
+    TInstanceRegisterInfo* GetRegisterInfo() const { return FRegisterInfo; }
+    TMyObject*       GetMyObjectParentProp()  const { return FMyObjectParent; }
+    void             SetMyObjectParentProp(TMyObject* p) { SetMyObjectParent(p); }
+    const AnsiString& GetNameProp()           const { return FName; }
+    void             SetNameProp(const AnsiString& n) { SetName(n); }
+    const AnsiString& GetGUIDProp()           const { return FGUID; }
+#ifdef _MSC_VER
+    __declspec(property(get=GetRegisterInfo))                    TInstanceRegisterInfo* RegisterInfo;
+    __declspec(property(get=GetMyObjectParentProp, put=SetMyObjectParentProp)) TMyObject* MyObjectParent;
+    __declspec(property(get=GetNameProp,  put=SetNameProp))      AnsiString Name;
+    __declspec(property(get=GetGUIDProp))                        AnsiString GUID;
+// Public accessor methods available on ALL platforms (complement __declspec(property))
+    const AnsiString& GetName_()         const { return FName; }
+    const AnsiString& GetGUID_()         const { return FGUID; }
+    TMyObject*        GetMyObjectParent_() const { return FMyObjectParent; }
+#else
+    // GCC/Clang: provide public member accessors usable via setter/getter pattern
+    TMyObject*& _GetMyObjParentRef() { return FMyObjectParent; }
+    AnsiString& _GetNameRef()        { return FName; }
+#endif
     AnsiString Description;
 
-    char *GetCharName()const{return Name.c_str();} ;
-    char *GetCharDescription()const{return Description.c_str();};
+    const char *GetCharName()const{return FName.c_str();}
+    const char *GetCharDescription()const{return Description.c_str();}
     void SetCharDescription(char *newDescription);
 
     //---------------------fields acess--------------------------
@@ -202,12 +227,12 @@ COMMONAL_API TMyObject* FindByGUID(const AnsiString& GUID);
 
 class COMMONAL_API EMyException : public Exception{
 public:
-  __fastcall EMyException(const AnsiString& _Error_Text);
-  __fastcall virtual ~EMyException(){};
+   EMyException(const AnsiString& _Error_Text);
+   virtual ~EMyException(){};
 };
 
 //-------------------------TClassNode;
-typedef TMyObject* (__closure* TCreateFunction)();
+typedef TMyObject* (* TCreateFunction)();
 
 class COMMONAL_API TInstanceRegisterInfo {
 friend class TClassNode;
@@ -217,13 +242,18 @@ private:
 public:
     TInstanceRegisterInfo();
     virtual ~TInstanceRegisterInfo(){};
-    __property TMyObject* Object = {read = FMyObject};
-    __property TVisRender* Render = {read = FRender};
+    // Cross-platform accessors
+    TMyObject*  GetObjectProp() const { return FMyObject; }
+    TVisRender* GetRenderProp() const { return FRender; }
+#ifdef _MSC_VER
+    __declspec(property(get=GetObjectProp)) TMyObject*  Object;
+    __declspec(property(get=GetRenderProp)) TVisRender* Render;
+#endif
 };
 
 class COMMONAL_API TClassNode {
 protected:
-    AnsiString GetName();
+    AnsiString GetName() const;
     TClassNode* GetUniqueNameNode();
 public:
     TClassNode(TClassNode*_Paren,const std::type_info & ti,bool _Virtual,TCreateFunction CreateFunction);
@@ -235,24 +265,37 @@ public:
     //----------------------------------
     AnsiString MnChDescription;
     int ImageIndex;
-    __property AnsiString Name = {read = GetName};
+    const AnsiString GetNameProp() const { return GetName(); }
+#ifdef _MSC_VER
+    __declspec(property(get=GetNameProp)) AnsiString Name;
+#else
+    // GCC: use GetName() to access name property
+#endif
     bool Virtual;
 
     
     TClassNode *Parent;
     TQuickList *ChildList;
     TClassNode *GetChild(int i);
-    __property TClassNode *Childs[int i] = {read = GetChild};
+#ifdef _MSC_VER
+    __declspec(property(get=GetChild)) TClassNode* Childs[];
+#endif
     int GetChildCount();
-    __property int ChildCount = {read = GetChildCount};
+#ifdef _MSC_VER
+    __declspec(property(get=GetChildCount)) int ChildCount;
+#endif
     void AddChild(TClassNode *CN);
 
     TQuickList* RegList;
     TInstanceRegisterInfo *GetRegInfo(int i);
     void AddRegInfo(TInstanceRegisterInfo *CN);
-    __property TInstanceRegisterInfo *RegInfo[int i] = {read = GetRegInfo};
+#ifdef _MSC_VER
+    __declspec(property(get=GetRegInfo)) TInstanceRegisterInfo* RegInfo[];
+#endif
     int GetRegInfoCount();
-    __property int RegInfoCount = {read = GetRegInfoCount};
+#ifdef _MSC_VER
+    __declspec(property(get=GetRegInfoCount)) int RegInfoCount;
+#endif
     TInstanceRegisterInfo *GetRegInfoByObject(TMyObject* Object);
     TInstanceRegisterInfo *GetRegInfoByRender(TVisRender* Render);
 
@@ -279,11 +322,18 @@ public:
     TClassNode* Find(const std::type_info & ti);
     void FillChildList (TMTList<TClassNode> *L);
     bool UniqueNameFlag;
-    __property TClassNode* UniqueNameNode = {read = GetUniqueNameNode};
+#ifdef _MSC_VER
+    __declspec(property(get=GetUniqueNameNode)) TClassNode* UniqueNameNode;
+#endif
 };
 
 COMMONAL_API TMyObject* FindByGUID(TClassNode* CN,const AnsiString& aGUID);
 COMMONAL_API TMyObject* FindByGUID(const AnsiString& aGUID);
+
+// Forward declaration needed by the SPSObject template below
+extern COMMONAL_API TClassNode* fClassHead;
+// Forward declare GetClassHead() so the template below can use it
+COMMONAL_API TClassNode* GetClassHead();
 
 namespace SPSObject
 {
@@ -352,14 +402,27 @@ public:
     TTreeNode *TN;
     TListItem *LI;
     TMTList<TMyRegObject> *ChildList;
-    __property int ImageIndex = {read = FImageIndex, write = SetImageIndex};
-    __property TMyRegObject *Parent = {read = FParent, write = SetParent};
-    __property TMyRegTree *MyTree = {read = FMyTree, write = SetMyTree};
+    int  GetImageIndexProp() const { return FImageIndex; }
+#ifdef _MSC_VER
+    __declspec(property(get=GetImageIndexProp, put=SetImageIndex)) int ImageIndex;
+#endif
+#ifdef _MSC_VER
+    __declspec(property(get=GetParentProp, put=SetParent)) TMyRegObject* Parent;
+#endif
+#ifdef _MSC_VER
+    __declspec(property(get=GetMyTreeProp, put=SetMyTree)) TMyRegTree* MyTree;
+#endif
     virtual void OnChange();
     TMyRegObject();
     virtual ~TMyRegObject();
-    __property int ID = {read = FID};
-    __property int Table = {read = FTable};
+    int GetIDProp() const { return FID; }
+#ifdef _MSC_VER
+    __declspec(property(get=GetIDProp)) int ID;
+#endif
+    int GetTableProp() const { return FTable; }
+#ifdef _MSC_VER
+    __declspec(property(get=GetTableProp)) int Table;
+#endif
 /*    bool RegThis(int _Table,int _ID,const AnsiString& _Name);
     bool NewRegThis(int _Table,const AnsiString& PATTERN);
     bool ReRegThis(int _ID,const AnsiString& _Name);*/
@@ -367,7 +430,9 @@ public:
     virtual void FromTree();
     bool CheckFields();
     bool ServiceNode;
-    __property int SaveChildCount = {read = GetSaveChildCount};
+#ifdef _MSC_VER
+    __declspec(property(get=GetSaveChildCount)) int SaveChildCount;
+#endif
     bool In(TMyRegObject *Node);
     virtual void AssignLST(const TMyObject *Obj,TStringList *SKIP);
 
@@ -375,7 +440,7 @@ public:
     char* GetAttributeValue(char *_name);
     TLuaAttribute* GetAttribute(char *_name);
     void SetAttributeValue(char *_name,char *_value);
-    __int16 Tag1;
+    qint16 Tag1;
     int GetAttributeIndex(char* _name);
 };
 
@@ -462,12 +527,12 @@ T* AssertCast(const AnsiString& FuncName,const TMyObject* Object)
         return NULL;
     if ( !T::StaticType )
     {
-        AnsiString Str = "<ValidCast>: аргумент-класс не зарегистрирован.";
+        AnsiString Str = "<ValidCast>: Г Г°ГЈГіГ¬ГҐГ­ГІ-ГЄГ«Г Г±Г± Г­ГҐ Г§Г Г°ГҐГЈГЁГ±ГІГ°ГЁГ°Г®ГўГ Г­.";
         throw EMyException(Str);
     }
     if ( !Object->DynamicType )
     {
-        AnsiString Str = "<ValidCast>: аргумент-объект не зарегистрирован.";
+        AnsiString Str = "<ValidCast>: Г Г°ГЈГіГ¬ГҐГ­ГІ-Г®ГЎГєГҐГЄГІ Г­ГҐ Г§Г Г°ГҐГЈГЁГ±ГІГ°ГЁГ°Г®ГўГ Г­.";
         throw EMyException(Str);
     }
     if ( !Object->Is(T::StaticType) )
@@ -475,7 +540,7 @@ T* AssertCast(const AnsiString& FuncName,const TMyObject* Object)
         AnsiString Str = FuncName + AnsiString(": Expected instance of class - <");
         Str += T::StaticType->Name;
         Str += AnsiString(">, got - <");
-        Str += Object->DynamicType->Name;
+        Str += Object->DynamicType->GetNameProp();
         Str += AnsiString(">.");
         throw EMyException(Str);
     }

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef G2DPointVH
@@ -5,9 +9,9 @@
 #include "GeomObjV.h"
 //---------------------------------------------------------------------------
 
-const MBTf MBTf_EPS = 0.0000000001; //10^(-10)  для расчетов с чисто MBTf
-const MBTf THRESHOLD_EPS = 0.0000001; //10^(-7) точность граничная для MBTi и MBTf
-const MBTi MBTi_EXACT_EPS = 0.00001; //10^(-5) наиболее низкий EPS для MBTi
+const MBTf MBTf_EPS = 0.0000000001; //10^(-10)  Г¤Г«Гї Г°Г Г±Г·ГҐГІГ®Гў Г± Г·ГЁГ±ГІГ® MBTf
+const MBTf THRESHOLD_EPS = 0.0000001; //10^(-7) ГІГ®Г·Г­Г®Г±ГІГј ГЈГ°Г Г­ГЁГ·Г­Г Гї Г¤Г«Гї MBTi ГЁ MBTf
+const MBTi MBTi_EXACT_EPS = 0.00001; //10^(-5) Г­Г ГЁГЎГ®Г«ГҐГҐ Г­ГЁГ§ГЄГЁГ© EPS Г¤Г«Гї MBTi
 
 
 class TG2DLink;
@@ -22,10 +26,10 @@ public:
     ~TDegreeRule(){};
     TG2DPoint* GPoint;
     TG2DLink* GLink;
-    __property TIntVec Point = {read=GetPoint};
+    // __property TIntVec Point {read=GetPoint}; // [manual migration needed]
     virtual void SwitchPointToPoint(TG2DPoint* FromPoint,TG2DPoint* ToPoint,TG2DPoint* TargetPoint)
     {
-        throw EMyException("<TDegreeRule::SwitchPointToPoint>: Нереализовано в классах наследниках.");
+        throw EMyException("<TDegreeRule::SwitchPointToPoint>: ГЌГҐГ°ГҐГ Г«ГЁГ§Г®ГўГ Г­Г® Гў ГЄГ«Г Г±Г±Г Гµ Г­Г Г±Г«ГҐГ¤Г­ГЁГЄГ Гµ.");
     };
 };
 extern COMMONAL_API TClassNode* TDegreeRule::StaticType;
@@ -39,7 +43,7 @@ public:
     TMyObject* CreateFunction();
     TCircleDegreeRule();
     ~TCircleDegreeRule(){};
-    __property MBTi Radius = {read = GetRadius,write = FRadius};
+    // __property MBTi Radius {read=GetRadius, write=FRadius}; // [manual migration needed]
 };
 
 extern COMMONAL_API TClassNode* TCircleDegreeRule::StaticType;
@@ -58,7 +62,7 @@ public:
     TG2DPoint* GPY_SRC;
     MBTi Angle;
     bool Strongly;
-    __property TIntVec Direction = {read=GetDirection};
+    // __property TIntVec Direction {read=GetDirection}; // [manual migration needed]
     void SwitchPointToPoint(TG2DPoint* FromPoint,TG2DPoint* ToPoint,TG2DPoint* TargetPoint);
 };
 
@@ -148,8 +152,8 @@ class COMMONAL_API TMFunction {
 public:
     TMFunction(){};
     ~TMFunction(){};
-    virtual TIntVec CalcPolarValue(MBTf arg)const {throw EMyException("<TMFunction::CalcPolarValue>: нет реализации.");};
-    virtual MBTf CalcValue(MBTf arg) const {throw EMyException("<TMFunction::CalcPolarValue>: нет реализации.");};
+    virtual TIntVec CalcPolarValue(MBTf arg)const {throw EMyException("<TMFunction::CalcPolarValue>: Г­ГҐГІ Г°ГҐГ Г«ГЁГ§Г Г¶ГЁГЁ.");};
+    virtual MBTf CalcValue(MBTf arg) const {throw EMyException("<TMFunction::CalcPolarValue>: Г­ГҐГІ Г°ГҐГ Г«ГЁГ§Г Г¶ГЁГЁ.");};
     virtual void ToGeomObject(TGeomObject* GO,MBTi a0,MBTi a1,int Count);
 };
 

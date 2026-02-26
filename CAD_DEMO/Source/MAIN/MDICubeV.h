@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDICubeVH
 #define MDICubeVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIElementV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMetaCube;
 class TMDICube : public TMDIElement
@@ -22,10 +21,10 @@ private:	// User declarations
 public:		// User declarations
     virtual void MNRefresh();
     virtual void MNApply();
-    __fastcall TMDICube(TComponent* Owner,TMetaCube *MN);
+     TMDICube(TComponent* Owner,TMetaCube *MN);
 };
 
 //---------------------------------------------------------------------------
-extern PACKAGE TMDICube *MDICube;
+extern  TMDICube *MDICube;
 //---------------------------------------------------------------------------
 #endif

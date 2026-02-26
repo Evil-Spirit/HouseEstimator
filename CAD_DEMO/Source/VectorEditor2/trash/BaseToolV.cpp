@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 #include "BaseToolV.h"
 #include "EditorV.h"
 
@@ -124,7 +127,7 @@ void TBaseTool::ProcessEscapeCommands()
 void TBaseTool::AddActionBlock(TCommands _Commands,int Id)
 {
     if (_Commands == NULL)
-        throw EMyException("œMandatory parameter TCommands is missing");
+        throw EMyException("√èMandatory parameter TCommands is missing");
     if (FindIndexFromId(Id) != -1)
         throw EMyException("Incorrect identifier");
     Blocks.Add(new TActionBlock(_Commands, Id));
@@ -452,4 +455,3 @@ AnsiString TMyControls::Hint(TEditor2D* Sender)
 {
     return  Matrix[ActiveList][ActiveIndices[ActiveList]].Hint(Sender);
 }
-#pragma package(smart_init)

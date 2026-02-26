@@ -1,10 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "Grid.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)

@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "math.h"
-#pragma hdrstop
 
 #include "GeomObjV.h"
 
@@ -12,7 +15,6 @@
 #include "Poligon.h"
 #include "TGMisc.cpp"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 const MBTi CrossEPS = 0.000000001;
 const MBTi UpDownEPS = 0.0001;
 const MBTi EqualEPS = 0.0000001;
@@ -645,7 +647,7 @@ return;
         for ( int j = i+1; j < FCuts.Count; j++ )
             if ( FCuts[i].Src == FCuts[j].Src && FCuts[i].Dst == FCuts[j].Dst ||
                  FCuts[i].Src == FCuts[j].Dst && FCuts[i].Dst == FCuts[j].Src )
-                throw EMyException("ProcessCrossCuts: Наложение отрезков");*/
+                throw EMyException("ProcessCrossCuts: ГЌГ Г«Г®Г¦ГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ®Гў");*/
 
     for ( int i = 0; i < FCuts.Count; i++ )
         if ( !FCuts.Items[i] || !FCuts[i].Src || !FCuts[i].Dst )
@@ -785,7 +787,7 @@ return;     */
 //                if ( TmpPoly.IndexOf(FPolygons.Items[j]) == -1 )
   //                  TmpPoly.Add(FPolygons.Items[j]);
     //            else
-      //              ErrorMsg("AnalRen: Повторный полигон!");
+      //              ErrorMsg("AnalRen: ГЏГ®ГўГІГ®Г°Г­Г»Г© ГЇГ®Г«ГЁГЈГ®Г­!");
 
 //        for ( int j = 0; j < FPolygons.Count; j++ )
   //          if ( FPolygons[j].FCuts.Count == 0 )
@@ -858,7 +860,7 @@ return;     */
                         break;
                 }
             if ( ii == FCuts[i].FPlane.Count )
-                if ( Inds.IndexOf(FCuts.Items[i]) == -1 )//на всякий пожарный, убрать при оптимизации
+                if ( Inds.IndexOf(FCuts.Items[i]) == -1 )//Г­Г  ГўГ±ГїГЄГЁГ© ГЇГ®Г¦Г Г°Г­Г»Г©, ГіГЎГ°Г ГІГј ГЇГ°ГЁ Г®ГЇГІГЁГ¬ГЁГ§Г Г¶ГЁГЁ
                 {
                     Inds.Add(FCuts.Items[i]);
                     FCuts[i].FFlags.Mark = gfTRUE;
@@ -1102,7 +1104,7 @@ bool TGeomObject::ExistsPolygonInPolygonUseHoles2(TMTList<TGCut>& cuts, TGPolygo
             if ( PIPQ == 0 )
                 PIPQ = PIPC;
             else
-                throw EMyException("<TGeomObject::ExistsPolygonInPolygonUseHoles2>: Не отслеженная ситуация!");
+                throw EMyException("<TGeomObject::ExistsPolygonInPolygonUseHoles2>: ГЌГҐ Г®ГІГ±Г«ГҐГ¦ГҐГ­Г­Г Гї Г±ГЁГІГіГ Г¶ГЁГї!");
     }
 
     TIntVec Vec = GetPointInPolygon2d(cuts);
@@ -1117,11 +1119,11 @@ bool TGeomObject::ExistsPolygonInPolygonUseHoles2(TMTList<TGCut>& cuts, TGPolygo
             return false;
         else
             return true;
-    throw EMyException("<TGeomObject::ExistsPolygonInPolygonUseHoles2>: Не отслеженная ситуация!");
+    throw EMyException("<TGeomObject::ExistsPolygonInPolygonUseHoles2>: ГЌГҐ Г®ГІГ±Г«ГҐГ¦ГҐГ­Г­Г Гї Г±ГЁГІГіГ Г¶ГЁГї!");
     return false;
 }
 
-//не забывать про флаг!!!
+//Г­ГҐ Г§Г ГЎГ»ГўГ ГІГј ГЇГ°Г® ГґГ«Г ГЈ!!!
 bool TGeomObject::ExistsPolygonInPolygonUseHoles(TMTList<TGCut>& cuts, TGPolygon& PolygonUseHole, bool DifferentHoles)
 {
     int j;
@@ -1248,7 +1250,7 @@ void TGeomObject::ConstructPolygonsFromHoles( TGPolygon& p, TMTList<TGPolygon>& 
                     j--;
                     p.FHoles[i].FHoles.
                     ConstructPolygonsFromHoles(AddPolygon);*/
-                    ErrorMsg("<TGeomObject::IntersectPolygonsUseHoles>: Дырка в дырке!");
+                    ErrorMsg("<TGeomObject::IntersectPolygonsUseHoles>: Г„Г»Г°ГЄГ  Гў Г¤Г»Г°ГЄГҐ!");
                 }
         }
 }
@@ -1778,7 +1780,7 @@ TIntVec TGeomObject::PointInPolygon(TGPolygon* p)
     }
     if ( i == p->Count )
     {
-        ErrorMsg("< TGeomObject::PointInPolygon>: Точки полигона на одной линии");
+        ErrorMsg("< TGeomObject::PointInPolygon>: Г’Г®Г·ГЄГЁ ГЇГ®Г«ГЁГЈГ®Г­Г  Г­Г  Г®Г¤Г­Г®Г© Г«ГЁГ­ГЁГЁ");
         for ( int i = 0; i < GHP->Count; i++ )
             GHP->GetPoint(i).Point = TransformFrom(GHP->GetPoint(i).Point, ang);
 
@@ -1788,7 +1790,7 @@ TIntVec TGeomObject::PointInPolygon(TGPolygon* p)
         GHP->FNormal = TmpNormal;
         return TransformFrom(TIntVec((p0.x + p1.x)/2, (p0.y  + p1.y)/2, (p0.z + p1.z)/2), ang);
     }
-//        throw EMyException ("< TGeomObject::PointInPolygon>: Точки полигона на одной линии");
+//        throw EMyException ("< TGeomObject::PointInPolygon>: Г’Г®Г·ГЄГЁ ГЇГ®Г«ГЁГЈГ®Г­Г  Г­Г  Г®Г¤Г­Г®Г© Г«ГЁГ­ГЁГЁ");
 
     TIntVec pCenter( (p2.x + p0.x)/2, (p2.y + p0.y)/2, (p2.z + p0.z)/2 );
 
@@ -1870,7 +1872,7 @@ TIntVec TGeomObject::GetPointInPolygon2d(TGPolygon* p)
     }
     if ( i == p->Count )
     {
-        ErrorMsg("< TGeomObject::PointInPolygon>: Точки полигона на одной линии");
+        ErrorMsg("< TGeomObject::PointInPolygon>: Г’Г®Г·ГЄГЁ ГЇГ®Г«ГЁГЈГ®Г­Г  Г­Г  Г®Г¤Г­Г®Г© Г«ГЁГ­ГЁГЁ");
         return TIntVec((p0.x + p1.x)/2, (p0.y  + p1.y)/2, (p0.z + p1.z)/2);
     }
 
@@ -1942,7 +1944,7 @@ TIntVec TGeomObject::GetPointInPolygon2d(TMTList<TGCut>& cuts)
     }
     if ( i == cuts.Count )
     {
-        ErrorMsg("< TGeomObject::PointInPolygon>: Точки полигона на одной линии");
+        ErrorMsg("< TGeomObject::PointInPolygon>: Г’Г®Г·ГЄГЁ ГЇГ®Г«ГЁГЈГ®Г­Г  Г­Г  Г®Г¤Г­Г®Г© Г«ГЁГ­ГЁГЁ");
         return TIntVec((p0.x + p1.x)/2, (p0.y  + p1.y)/2, (p0.z + p1.z)/2);
     }
 
@@ -2043,7 +2045,7 @@ TIntVec TGeomObject::GetPointInPolygonUseHoles(TGPolygon* p)
     }
     if ( i == p->Count )
     {
-        ErrorMsg("< TGeomObject::PointInPolygonUseHoles>: Ошибка выбора точек проверки");
+        ErrorMsg("< TGeomObject::PointInPolygonUseHoles>: ГЋГёГЁГЎГЄГ  ГўГ»ГЎГ®Г°Г  ГІГ®Г·ГҐГЄ ГЇГ°Г®ГўГҐГ°ГЄГЁ");
         for ( int i = 0; i < GHP->Count; i++ )
             GHP->GetPoint(i).Point = TransformFrom(GHP->GetPoint(i).Point, ang);
 
@@ -2153,7 +2155,7 @@ TIntVec TGeomObject::GetPointInPolygonUseHoles2d(TGPolygon* p)
     }
     if ( i == p->Count )
     {
-        ErrorMsg("< TGeomObject::PointInPolygonUseHoles>: Ошибка выбора точек проверки");
+        ErrorMsg("< TGeomObject::PointInPolygonUseHoles>: ГЋГёГЁГЎГЄГ  ГўГ»ГЎГ®Г°Г  ГІГ®Г·ГҐГЄ ГЇГ°Г®ГўГҐГ°ГЄГЁ");
         return ZEROINTVEC;
     }
 

@@ -1,13 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef DrawViewVH
 #define DrawViewVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "MDI3DV.h"
 //---------------------------------------------------------------------------
 class TElement;
@@ -19,18 +19,18 @@ extern TPoint TEMP_P[PointsCount];
 class COMMONAL_API TDrawView : public TForm
 {
 __published:	// IDE-managed Components
-  void __fastcall FormCreate(TObject *Sender);
-  void __fastcall FormDestroy(TObject *Sender);
-  void __fastcall FormPaint(TObject *Sender);
-  void __fastcall FormResize(TObject *Sender);
-    void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
+  void  FormCreate(TObject *Sender);
+  void  FormDestroy(TObject *Sender);
+  void  FormPaint(TObject *Sender);
+  void  FormResize(TObject *Sender);
+    void  FormKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
-    void __fastcall FormDblClick(TObject *Sender);
-    void __fastcall FormMouseMove(TObject *Sender, TShiftState Shift,
+    void  FormDblClick(TObject *Sender);
+    void  FormMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
-    void __fastcall FormMouseDown(TObject *Sender, TMouseButton Button,
+    void  FormMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall FormMouseWheel(TObject *Sender, TShiftState Shift,
+    void  FormMouseWheel(TObject *Sender, TShiftState Shift,
           int WheelDelta, TPoint &MousePos, bool &Handled);
 private:	// User declarations
   TFont *GetFont();
@@ -57,18 +57,18 @@ private:	// User declarations
   void SetCameraPosY(MBTi value);
 
 public:		// User declarations
-  __fastcall TDrawView(TComponent* Owner,TWinControl *_Parent);
-  __fastcall TDrawView(TComponent* Owner);
+   TDrawView(TComponent* Owner,TWinControl *_Parent);
+   TDrawView(TComponent* Owner);
   Graphics::TBitmap * BMP;
   Graphics::TBitmap * RenderBMP;
-  __property MBTi aWidth = {read = FaWidth,write = SetaWidth};
-  __property MBTi aHeight= {read = FaHeight,write = SetaHeight};
-  __property MBTi CameraPosX= {read = FCameraPosX,write = SetCameraPosX};
-  __property MBTi CameraPosY= {read = FCameraPosY,write = SetCameraPosY};
+  // __property MBTi aWidth {read=FaWidth, write=SetaWidth}; // [manual migration needed]
+  // __property MBTi aHeight {read=FaHeight, write=SetaHeight}; // [manual migration needed]
+  // __property MBTi CameraPosX {read=FCameraPosX, write=SetCameraPosX}; // [manual migration needed]
+  // __property MBTi CameraPosY {read=FCameraPosY, write=SetCameraPosY}; // [manual migration needed]
 
-  __property int ShiftX= {read = FShiftX};
-  __property int ShiftY= {read = FShiftY};
-  __property double Scale= {read = FScale};
+  // __property int ShiftX {read=FShiftX}; // [manual migration needed]
+  // __property int ShiftY {read=FShiftY}; // [manual migration needed]
+  // __property double Scale {read=FScale}; // [manual migration needed]
 
   void PaintCanvas(TCanvas *Canvas);
 

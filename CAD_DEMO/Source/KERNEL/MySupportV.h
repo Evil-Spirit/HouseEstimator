@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MySupportVH
@@ -61,14 +65,14 @@ public:
     TPointer<TMetaElement> ARootElement;
     TPointer<TMetaElement> ASubRootElement;
 
-    __property TMetaLabel3D*    MetaLabel3D = {read = GetMetaLabel3D};
-    __property TDynamicLink*    DefaultLink = {read = GetDefaultLink};
-    __property TMetaElement*    DefaultTarget = {read = GetDefaultTarget};
-    __property TMetaElement*    DEFAULT_SIZE = {read = GetDEFAULT_SIZE};
-    __property TMetaMyMode*     DEFAULT_MODE = {read = GetDEFAULT_MODE};
-    __property TMetaMyMode*     _3D_MODE = {read = Get_3D_MODE};
-    __property TMetaElement*    RootElement = {read = GetRootElement};
-    __property TMetaElement*    SubRootElement = {read = GetSubRootElement};
+    // __property TMetaLabel3D* MetaLabel3D {read=GetMetaLabel3D}; // [manual migration needed]
+    // __property TDynamicLink* DefaultLink {read=GetDefaultLink}; // [manual migration needed]
+    // __property TMetaElement* DefaultTarget {read=GetDefaultTarget}; // [manual migration needed]
+    // __property TMetaElement* DEFAULT_SIZE {read=GetDEFAULT_SIZE}; // [manual migration needed]
+    // __property TMetaMyMode* DEFAULT_MODE {read=GetDEFAULT_MODE}; // [manual migration needed]
+    // __property TMetaMyMode* _3D_MODE {read=Get_3D_MODE}; // [manual migration needed]
+    // __property TMetaElement* RootElement {read=GetRootElement}; // [manual migration needed]
+    // __property TMetaElement* SubRootElement {read=GetSubRootElement}; // [manual migration needed]
 
 
 

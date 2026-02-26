@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ArchitectureSupportVH
@@ -5,7 +9,7 @@
 #include "MySupportV.h"
 //---------------------------------------------------------------------------
 class TMainTree;
-double PACKAGE GetTotalArea(TMainTree* aWorld,int FloorIndex);
+double  GetTotalArea(TMainTree* aWorld,int FloorIndex);
 
 
 class TMetaPlatform;
@@ -28,9 +32,9 @@ public:
     TDynamicLink* GetPlatform_Land();
 
 
-    __property TMetaPlatform*   FirstPlatform = {read = GetFirstPlatform};
-    __property TMetaPlatform*   DefaultLand = {read = GetDefaultLand};
-    __property TDynamicLink*    Platform_Land = {read = GetPlatform_Land};
+    // __property TMetaPlatform* FirstPlatform {read=GetFirstPlatform}; // [manual migration needed]
+    // __property TMetaPlatform* DefaultLand {read=GetDefaultLand}; // [manual migration needed]
+    // __property TDynamicLink* Platform_Land {read=GetPlatform_Land}; // [manual migration needed]
 
     void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
     

@@ -1,32 +1,33 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
              
-#include "Math.hpp"
 #include "ProgBarV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 
 TProgBar *ProgBar=NULL;
 //---------------------------------------------------------------------------
-__fastcall TProgBar::TProgBar(TComponent* Owner)
+ TProgBar::TProgBar(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TProgBar::FormCreate(TObject *Sender)
+void  TProgBar::FormCreate(TObject *Sender)
 {
     ProgBar = this;
     SetStartProcess(RealStartProcess);
     SetCountProcess(RealCountProcess);
 }
 //---------------------------------------------------------------------------
-void __fastcall TProgBar::FormDestroy(TObject *Sender)
+void  TProgBar::FormDestroy(TObject *Sender)
 {
     ProgBar = NULL;
     SetStartProcess(NULL);
@@ -64,7 +65,7 @@ void RealCountProcess(const AnsiString& ObjectName,int Count)
             Application->ProcessMessages();
     }
 }
-void __fastcall TProgBar::FormHide(TObject *Sender)
+void  TProgBar::FormHide(TObject *Sender)
 {
     Screen->Cursor = crDefault;    
 }

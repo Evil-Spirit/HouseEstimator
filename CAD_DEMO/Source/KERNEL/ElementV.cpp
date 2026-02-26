@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "ElementV.h"
 #include "World.h"
@@ -26,7 +29,6 @@
 #include "..\GeomObject\Misc.h"
 #include "CustomElementV.h"
 
-#pragma package(smart_init)
 
 TClassNode* TLink::StaticType = NULL;
 TClassNode* TElement::StaticType = NULL;
@@ -377,7 +379,7 @@ void TElement::Changed(void* Sender)
 {
     if (Sender == &AbsSize)
     {
-        //чтобы не слали сообщения
+        //Г·ГІГ®ГЎГ» Г­ГҐ Г±Г«Г Г«ГЁ Г±Г®Г®ГЎГ№ГҐГ­ГЁГї
         AbsSize.MyObjectParent = NULL;
         for (int i=0;i<3;i++)
             if (AbsSize.a[i]<MyMeta->Size.LOW.a[i])
@@ -419,7 +421,7 @@ void TElement::AboutToChange(void* Sender)
     //RegisterInUNDO
     UndoRegister(rmChanged);
     //RegisterInDriver;
-    //сначала целевые
+    //Г±Г­Г Г·Г Г«Г  Г¶ГҐГ«ГҐГўГ»ГҐ
     if (!NeedUpdatePos)
         if ( Sender == &AbsPos || Sender == &AbsAngle)
         {
@@ -476,8 +478,8 @@ TElement::TElement()
 {
 	RegisterNewClass< TUnit, TElement >(this,false,&CreateFunction);
     IntId = TotalCount++;
-    //реально мы не знаем будет ли регится элемент
-    //поэтому коментарим UndoRegister(rmCreated);
+    //Г°ГҐГ Г«ГјГ­Г® Г¬Г» Г­ГҐ Г§Г­Г ГҐГ¬ ГЎГіГ¤ГҐГІ Г«ГЁ Г°ГҐГЈГЁГІГ±Гї ГЅГ«ГҐГ¬ГҐГ­ГІ
+    //ГЇГ®ГЅГІГ®Г¬Гі ГЄГ®Г¬ГҐГ­ГІГ Г°ГЁГ¬ UndoRegister(rmCreated);
     ATVChanged = true;
     FAdvancedTextureView = true;
     FAdvancedTextured = false;
@@ -530,7 +532,7 @@ void TElement::ProcessCreateView()
 
     if (!RunElementTrigger(trConstruct))
         StandartCreateView();
-    /* TODO : Проверка на вхождение в Select, чтобы апдейтить его */        
+    /* TODO : ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГўГµГ®Г¦Г¤ГҐГ­ГЁГҐ Гў Select, Г·ГІГ®ГЎГ» Г ГЇГ¤ГҐГ©ГІГЁГІГј ГҐГЈГ® */        
     /*
     if (Select->Element == this)
         Select->CreateSelectView();
@@ -549,7 +551,7 @@ void TElement::ProcessUpdatePos()
         if ( RenPars[MyTree->ModeIndex].OverPosMode )
             MyRender()->Transformation->Translation->Z = AbsPos.z + RenPars[MyTree->ModeIndex].OverPos.z - AbsSize.z/2;
     }
-    /* TODO : Проверка на вхождение в Select, чтобы апдейтить его 2 */
+    /* TODO : ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГўГµГ®Г¦Г¤ГҐГ­ГЁГҐ Гў Select, Г·ГІГ®ГЎГ» Г ГЇГ¤ГҐГ©ГІГЁГІГј ГҐГЈГ® 2 */
     /*if (Select->Element == this)
     {
         AssignVisVec(*(Select->SelObj->Transformation->Rotation),AbsAngle);
@@ -788,7 +790,7 @@ void TElement::RemoveRenderFromTree()
 void TElement::SetParent(TMyRegObject *_Parent)
 {
 //    if (Parent == _Parent)
-//        return;//т.к. динамические связки прыгают из конца в начало
+//        return;//ГІ.ГЄ. Г¤ГЁГ­Г Г¬ГЁГ·ГҐГ±ГЄГЁГҐ Г±ГўГїГ§ГЄГЁ ГЇГ°Г»ГЈГ ГѕГІ ГЁГ§ ГЄГ®Г­Г¶Г  Гў Г­Г Г·Г Г«Г®
     if (Parent)
         MyTree->RemoveElement(this);
     if (Parent)
@@ -921,8 +923,8 @@ TElement::~TElement()
         InfoMsg("Deleting in progress");
     DestroyStarted = true;
 
-    //Нельзя этого делать т.к. реальные поля в в доч. объектоах уже сдохли 
-    // поэтому коментируем UndoRegister(rmDeleted);
+    //ГЌГҐГ«ГјГ§Гї ГЅГІГ®ГЈГ® Г¤ГҐГ«Г ГІГј ГІ.ГЄ. Г°ГҐГ Г«ГјГ­Г»ГҐ ГЇГ®Г«Гї Гў Гў Г¤Г®Г·. Г®ГЎГєГҐГЄГІГ®Г Гµ ГіГ¦ГҐ Г±Г¤Г®ГµГ«ГЁ 
+    // ГЇГ®ГЅГІГ®Г¬Гі ГЄГ®Г¬ГҐГ­ГІГЁГ°ГіГҐГ¬ UndoRegister(rmDeleted);
     
 	bool ProcessAddElement = false;
     if (World && World->IsFloorElement(this))
@@ -940,7 +942,7 @@ TElement::~TElement()
     if (World && ProcessAddElement && MetaNodeCollection->KernelSupport->WEBMETA.Count)
         World->Process_AddElement(MetaNodeCollection->KernelSupport->WEBMETA.Items[0],NULL);
 
-    //TaskQueue.UnRegister(this); // не нужно т.к. следующая строка
+    //TaskQueue.UnRegister(this); // Г­ГҐ Г­ГіГ¦Г­Г® ГІ.ГЄ. Г±Г«ГҐГ¤ГіГѕГ№Г Гї Г±ГІГ°Г®ГЄГ 
     ElementQueueCollection.Remove(this);
     delete HP;
     LinkHoles.MyObjectParent = NULL;
@@ -1154,13 +1156,13 @@ void TElement::DeleteNeededLink()
 void TElement::AddLink(TLink *Link)
 {
     FLinks.Add(Link);
-    //Связка сама себя добавляет
+    //Г‘ГўГїГ§ГЄГ  Г±Г Г¬Г  Г±ГҐГЎГї Г¤Г®ГЎГ ГўГ«ГїГҐГІ
 }
 
 int TElement::GetNeededLink()
 {
     //return this
-    //эту функцию переделать чтобы был индекс
+    //ГЅГІГі ГґГіГ­ГЄГ¶ГЁГѕ ГЇГҐГ°ГҐГ¤ГҐГ«Г ГІГј Г·ГІГ®ГЎГ» ГЎГ»Г« ГЁГ­Г¤ГҐГЄГ±
     int Needed=-1;
     int NeededCount=0;
     for (int i=0;i<FLinks.Count;i++)
@@ -1197,7 +1199,7 @@ void TElement::KillLink(void *Sender,int Index)
 	if (KillingLink != Sender)
     {
         KillingLink->UnLinkElement(this,ind);
-        //связка еще раз должна вызвать
+        //Г±ГўГїГ§ГЄГ  ГҐГ№ГҐ Г°Г Г§ Г¤Г®Г«Г¦Г­Г  ГўГ»Г§ГўГ ГІГј
         return;
     }
     bool Depend = KillingLink->DependElement(this);
@@ -1205,9 +1207,9 @@ void TElement::KillLink(void *Sender,int Index)
 
     if (NeededLink==-1)
     {
-    //------------------попадает ли в драйвер----------------------------------
+    //------------------ГЇГ®ГЇГ Г¤Г ГҐГІ Г«ГЁ Гў Г¤Г°Г Г©ГўГҐГ°----------------------------------
         Parent = NULL;
-        if (MyTree->Head==this)//У корня обязательных связок нет
+        if (MyTree->Head==this)//Г“ ГЄГ®Г°Г­Гї Г®ГЎГїГ§Г ГІГҐГ«ГјГ­Г»Гµ Г±ГўГїГ§Г®ГЄ Г­ГҐГІ
             return;
         if (Driver.Element==this)
             return;
@@ -1228,7 +1230,7 @@ int TElement::IOF(TLink *Lnk)
 
 bool TElement::EditStatus(int &Operation,int &Type)
 {
-   /* TODO : Проверка на редактирование - редактируется ли элемент сейчас */ 
+   /* TODO : ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г°ГҐГ¤Г ГЄГІГЁГ°Г®ГўГ Г­ГЁГҐ - Г°ГҐГ¤Г ГЄГІГЁГ°ГіГҐГІГ±Гї Г«ГЁ ГЅГ«ГҐГ¬ГҐГ­ГІ Г±ГҐГ©Г·Г Г± */ 
 /*    if (BIF->Element != this)
     {
         Operation = ioNone;
@@ -1589,8 +1591,8 @@ TLink::TLink(TMetaNode *_Meta,TElement *Target,TElement *Source,const TIntVec &A
 {
     RegisterNewClass< TUnit, TLink >(this,false,&CreateFunction);
     //------------------------------
-    //Здесь мы не знаем будет ли регистрироваться
-    //поэтому комментирум UndoRegister(rmCreated);
+    //Г‡Г¤ГҐГ±Гј Г¬Г» Г­ГҐ Г§Г­Г ГҐГ¬ ГЎГіГ¤ГҐГІ Г«ГЁ Г°ГҐГЈГЁГ±ГІГ°ГЁГ°Г®ГўГ ГІГјГ±Гї
+    //ГЇГ®ГЅГІГ®Г¬Гі ГЄГ®Г¬Г¬ГҐГ­ГІГЁГ°ГіГ¬ UndoRegister(rmCreated);
 
     ELS.Add(new TPointer<TElement>());
     ELS.Add(new TPointer<TElement>());
@@ -1643,8 +1645,8 @@ TLink::TLink(TMetaNode *_Meta,TElement *Target,TElement *Source,const TIntVec &A
 TLink::TLink()
 {
 	RegisterNewClass< TUnit, TLink >(this,false,&CreateFunction);
-    //Здесь мы не знаем будет ли регистрироваться
-    //поэтому комментирум UndoRegister(rmCreated);
+    //Г‡Г¤ГҐГ±Гј Г¬Г» Г­ГҐ Г§Г­Г ГҐГ¬ ГЎГіГ¤ГҐГІ Г«ГЁ Г°ГҐГЈГЁГ±ГІГ°ГЁГ°Г®ГўГ ГІГјГ±Гї
+    //ГЇГ®ГЅГІГ®Г¬Гі ГЄГ®Г¬Г¬ГҐГ­ГІГЁГ°ГіГ¬ UndoRegister(rmCreated);
     ELS.Add(new TPointer<TElement>());
     ELS.Add(new TPointer<TElement>());
     RegisterField(&Pos0,&aPos0,mtIntVec);
@@ -1909,9 +1911,9 @@ bool TLink::DependElement(TElement* Sender)
 void TLink::LinkElement(void * Sender, int i, TElement * El)
 {
     ELS[i].ADR = El;
-    //перед линком
+    //ГЇГҐГ°ГҐГ¤ Г«ГЁГ­ГЄГ®Г¬
     if (El0!=NULL&&El1!=NULL)
-    {   //Задать позиции
+    {   //Г‡Г Г¤Г ГІГј ГЇГ®Г§ГЁГ¶ГЁГЁ
 		Pos0 = RotateAround(Pos1,El1->AbsAngle,ZEROINTVEC);
         Pos0 = Pos0 + El1->AbsPos - El0->AbsPos;
         Pos0 = RotateAround(Pos0,El0->AbsAngle*(-1),ZEROINTVEC);
@@ -1919,7 +1921,7 @@ void TLink::LinkElement(void * Sender, int i, TElement * El)
     }
     Elements[i]->AddLink(this);
 
-    //после линка
+    //ГЇГ®Г±Г«ГҐ Г«ГЁГ­ГЄГ 
     if ( El0!=NULL && El1!=NULL)
     {
         if (MyMeta->Needed)

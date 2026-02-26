@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "math.h"
-#pragma hdrstop
 
 #include "TGATriangulation.h"
 
@@ -12,18 +15,17 @@
 #include "Poligon.h"
 #include "TGObject.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 void TGATriangulate::Find2BasePoints(TGPoint*& pnt1, TGPoint*& pnt2)
 {
-    //-= 1-я базовая точка
-    for (int i=0; i<FVertex.Count; i++)  //еще условие по x
+    //-= 1-Гї ГЎГ Г§Г®ГўГ Гї ГІГ®Г·ГЄГ 
+    for (int i=0; i<FVertex.Count; i++)  //ГҐГ№ГҐ ГіГ±Г«Г®ГўГЁГҐ ГЇГ® x
         if (FVertex[i].Point.y > pnt1->Point.y + EPS)
             pnt1 = FVertex.Items[i];
         else if ( fabs(FVertex[i].Point.y - pnt1->Point.y) < EPS  && FVertex[i].Point.x < pnt1->Point.x)
             pnt1 = FVertex.Items[i];
 
-    //-= 2-я базовая точка
+    //-= 2-Гї ГЎГ Г§Г®ГўГ Гї ГІГ®Г·ГЄГ 
     float Angle = 1;
     float Length = 900000;
     for (int i=0; i<FVertex.Count; i++)
@@ -153,17 +155,17 @@ TGCut *TGATriangulate::ExistsCutIn_GObjFCuts( TGCut* cut )
 TGCut *TGATriangulate::NewCut(TGPoint *p1, TGPoint *p2)
 {
     if ( !p1 || !p2 )
-		throw EMyException ("<TGeomObject::NewCut> невозможно добавить отрезок!");
+		throw EMyException ("<TGeomObject::NewCut> Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г® Г¤Г®ГЎГ ГўГЁГІГј Г®ГІГ°ГҐГ§Г®ГЄ!");
     if (  (int)p1 == 48 || (int)p2 == 48 )
-		throw EMyException ("<TGeomObject::NewCut> невозможно добавить отрезок!");
+		throw EMyException ("<TGeomObject::NewCut> Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г® Г¤Г®ГЎГ ГўГЁГІГј Г®ГІГ°ГҐГ§Г®ГЄ!");
 /*	if (FVertex.IndexOf(p1) == -1)
-		throw EMyException ("<TGeomObject::AddCut> первой точки нет в отрезке!");
+		throw EMyException ("<TGeomObject::AddCut> ГЇГҐГ°ГўГ®Г© ГІГ®Г·ГЄГЁ Г­ГҐГІ Гў Г®ГІГ°ГҐГ§ГЄГҐ!");
 
 	if (FVertex.IndexOf(p2) == -1)
-		throw EMyException ("<TGeomObject::AddCut> второй точки нет в отрезке!");
+		throw EMyException ("<TGeomObject::AddCut> ГўГІГ®Г°Г®Г© ГІГ®Г·ГЄГЁ Г­ГҐГІ Гў Г®ГІГ°ГҐГ§ГЄГҐ!");
 
 	if (p2 == p1)
-		throw EMyException ("<TGeomObject::AddCut> невозможно добавить отрезок с равными концами!");*/
+		throw EMyException ("<TGeomObject::AddCut> Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г® Г¤Г®ГЎГ ГўГЁГІГј Г®ГІГ°ГҐГ§Г®ГЄ Г± Г°Г ГўГ­Г»Г¬ГЁ ГЄГ®Г­Г¶Г Г¬ГЁ!");*/
 /*TODO : CreateFunction*/
 	TGCut& cut = *((TGCut *)GObj.CreateCutFunction()/*new TGCut*/);
 //	TGCut& cut = *(new TGCut);
@@ -301,7 +303,7 @@ void TGATriangulate::TriangulateByPoints()
     TGPoint* P2 = NULL;
     Find2BasePoints(P1, P2);
     if ( P2 == NULL )
-        throw EMyException("<TGATriangulate::TriangulateByPoints> После Find2BasePoints P2 == NULL");
+        throw EMyException("<TGATriangulate::TriangulateByPoints> ГЏГ®Г±Г«ГҐ Find2BasePoints P2 == NULL");
     FindDeloneBrother(P1, P2);
 }
 

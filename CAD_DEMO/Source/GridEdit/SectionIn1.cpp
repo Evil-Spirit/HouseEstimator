@@ -1,15 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "SectionIn1.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TSectionIn *SectionIn;
 //---------------------------------------------------------------------------
-__fastcall TSectionIn::TSectionIn(TComponent* Owner)
+ TSectionIn::TSectionIn(TComponent* Owner)
     : TForm(Owner)
 {
 }

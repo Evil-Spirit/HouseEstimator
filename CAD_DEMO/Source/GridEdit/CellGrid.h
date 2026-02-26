@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef CellGridH
 #define CellGridH
@@ -8,11 +12,11 @@
 // ----------- Const ------------------
     const int iPixelTact=2;
 //*********************  Color **********
-//    const TColor ColorSelect =RGB(182,202,234); // Выделение нескольких яччек
-//    const TColor ColorSelect =RGB(109,149,213); // Выделение нескольких яччек
-//    const TColor ColorSelect =RGB(255,255,255); // Выделение нескольких яччек
-    const TColor ColorFixedSelect =RGB(248, 247, 239);// Выделено или строка или столбец
-    const TColor ColorFixedSelectAll =RGB(255, 192, 111); // Выделена Вся таблица
+//    const TColor ColorSelect =RGB(182,202,234); // Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ Г­ГҐГ±ГЄГ®Г«ГјГЄГЁГµ ГїГ·Г·ГҐГЄ
+//    const TColor ColorSelect =RGB(109,149,213); // Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ Г­ГҐГ±ГЄГ®Г«ГјГЄГЁГµ ГїГ·Г·ГҐГЄ
+//    const TColor ColorSelect =RGB(255,255,255); // Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ Г­ГҐГ±ГЄГ®Г«ГјГЄГЁГµ ГїГ·Г·ГҐГЄ
+    const TColor ColorFixedSelect =RGB(248, 247, 239);// Г‚Г»Г¤ГҐГ«ГҐГ­Г® ГЁГ«ГЁ Г±ГІГ°Г®ГЄГ  ГЁГ«ГЁ Г±ГІГ®Г«ГЎГҐГ¶
+    const TColor ColorFixedSelectAll =RGB(255, 192, 111); // Г‚Г»Г¤ГҐГ«ГҐГ­Г  Г‚Г±Гї ГІГ ГЎГ«ГЁГ¶Г 
 //*********************  Color ********** END
 
 
@@ -26,7 +30,7 @@ class TCellMatrix;
 
 
 class COMMONAL_API TCell : public TMyObject{
-// Работа с ячейкой
+// ГђГ ГЎГ®ГІГ  Г± ГїГ·ГҐГ©ГЄГ®Г©
 public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
@@ -36,32 +40,32 @@ public:
     TCell();
     ~TCell();
 
-    TColor bgColor;// Цвет фона
-    bool LineColorNot;// Флаг наличия заливки фона у ячейки
-    AnsiString Text;// Текст в ячейке
-    AnsiString FontName;// Шрифт
-    TColor FontColor;// Цвет фрифта
-    struct TLineWidth // Наличее бордюра и его тип
+    TColor bgColor;// Г–ГўГҐГІ ГґГ®Г­Г 
+    bool LineColorNot;// Г”Г«Г ГЈ Г­Г Г«ГЁГ·ГЁГї Г§Г Г«ГЁГўГЄГЁ ГґГ®Г­Г  Гі ГїГ·ГҐГ©ГЄГЁ
+    AnsiString Text;// Г’ГҐГЄГ±ГІ Гў ГїГ·ГҐГ©ГЄГҐ
+    AnsiString FontName;// ГГ°ГЁГґГІ
+    TColor FontColor;// Г–ГўГҐГІ ГґГ°ГЁГґГІГ 
+    struct TLineWidth // ГЌГ Г«ГЁГ·ГҐГҐ ГЎГ®Г°Г¤ГѕГ°Г  ГЁ ГҐГЈГ® ГІГЁГЇ
     {
         byte WidthLeft;
         byte WidthTop;
         byte WidthRight;
         byte WidthBottom;
     } Line;
-    TRect* UnionRect;// Объедененная ячейка (Ячейка первая и последняя в регионе)
+    TRect* UnionRect;// ГЋГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ  (ГџГ·ГҐГ©ГЄГ  ГЇГҐГ°ГўГ Гї ГЁ ГЇГ®Г±Г«ГҐГ¤Г­ГїГї Гў Г°ГҐГЈГЁГ®Г­ГҐ)
 
     struct TCellFlags
     {
-        unsigned FontSize:8;// Размер шрифта
-        unsigned FontStyle:3;// Стиль шрифта (Обычны=0, Курсив=1, Жирный=2, Жирный курсив=3)
-        unsigned FontStrikeOut:1;// Зачеркнутый шрифт (НЕТ=0, зачеркнутый=1)
-        unsigned FontUnderline:1;// Подчеркнутый шрифт (НЕТ=0, подчеркнутый=1)
-        unsigned ValueType:2;// Тип Значения (текст =0, выражение =1, шаблон =2)
-        unsigned TypeAutoSize:2;// тип расположения текста в ячейке (без авто =0, авто размер строки =1)
-        unsigned TextHAlign:2;// Выравнивание текста по горизонтали (Left=0, Center=1, Right=2)
-        unsigned TextVAlign:2;// Выравнивание текста по вертикали (Left=0, Center=1, Right=2)
-        unsigned TextWordBreak:1;// перенос по словам (НЕ переносить=0, переносить=1)
-        unsigned TextHeightAuto:1;// Расширять высоту строки под набранный текст (НЕ расширять=0, Расширять=1)
+        unsigned FontSize:8;// ГђГ Г§Г¬ГҐГ° ГёГ°ГЁГґГІГ 
+        unsigned FontStyle:3;// Г‘ГІГЁГ«Гј ГёГ°ГЁГґГІГ  (ГЋГЎГ»Г·Г­Г»=0, ГЉГіГ°Г±ГЁГў=1, Г†ГЁГ°Г­Г»Г©=2, Г†ГЁГ°Г­Г»Г© ГЄГіГ°Г±ГЁГў=3)
+        unsigned FontStrikeOut:1;// Г‡Г Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ (ГЌГ…Г’=0, Г§Г Г·ГҐГ°ГЄГ­ГіГІГ»Г©=1)
+        unsigned FontUnderline:1;// ГЏГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ (ГЌГ…Г’=0, ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©=1)
+        unsigned ValueType:2;// Г’ГЁГЇ Г‡Г­Г Г·ГҐГ­ГЁГї (ГІГҐГЄГ±ГІ =0, ГўГ»Г°Г Г¦ГҐГ­ГЁГҐ =1, ГёГ ГЎГ«Г®Г­ =2)
+        unsigned TypeAutoSize:2;// ГІГЁГЇ Г°Г Г±ГЇГ®Г«Г®Г¦ГҐГ­ГЁГї ГІГҐГЄГ±ГІГ  Гў ГїГ·ГҐГ©ГЄГҐ (ГЎГҐГ§ Г ГўГІГ® =0, Г ГўГІГ® Г°Г Г§Г¬ГҐГ° Г±ГІГ°Г®ГЄГЁ =1)
+        unsigned TextHAlign:2;// Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ ГІГҐГЄГ±ГІГ  ГЇГ® ГЈГ®Г°ГЁГ§Г®Г­ГІГ Г«ГЁ (Left=0, Center=1, Right=2)
+        unsigned TextVAlign:2;// Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ ГІГҐГЄГ±ГІГ  ГЇГ® ГўГҐГ°ГІГЁГЄГ Г«ГЁ (Left=0, Center=1, Right=2)
+        unsigned TextWordBreak:1;// ГЇГҐГ°ГҐГ­Г®Г± ГЇГ® Г±Г«Г®ГўГ Г¬ (ГЌГ… ГЇГҐГ°ГҐГ­Г®Г±ГЁГІГј=0, ГЇГҐГ°ГҐГ­Г®Г±ГЁГІГј=1)
+        unsigned TextHeightAuto:1;// ГђГ Г±ГёГЁГ°ГїГІГј ГўГ»Г±Г®ГІГі Г±ГІГ°Г®ГЄГЁ ГЇГ®Г¤ Г­Г ГЎГ°Г Г­Г­Г»Г© ГІГҐГЄГ±ГІ (ГЌГ… Г°Г Г±ГёГЁГ°ГїГІГј=0, ГђГ Г±ГёГЁГ°ГїГІГј=1)
 
         unsigned reserve:9;
     } CellFlags;
@@ -77,7 +81,7 @@ public:
 extern COMMONAL_API TClassNode* TCell::StaticType;
 
 class COMMONAL_API TCellFlag : public TCell{
-// Работа с строками сталбцами
+// ГђГ ГЎГ®ГІГ  Г± Г±ГІГ°Г®ГЄГ Г¬ГЁ Г±ГІГ Г«ГЎГ¶Г Г¬ГЁ
 public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
@@ -118,7 +122,7 @@ public:
 extern COMMONAL_API TClassNode* TCellFlag::StaticType;
 
 class COMMONAL_API TCellColRow : public TCell{
-// Работа с строками сталбцами
+// ГђГ ГЎГ®ГІГ  Г± Г±ГІГ°Г®ГЄГ Г¬ГЁ Г±ГІГ Г«ГЎГ¶Г Г¬ГЁ
 public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
@@ -129,7 +133,7 @@ public:
 extern COMMONAL_API TClassNode* TCellColRow::StaticType;
 
 class COMMONAL_API TCellTab : public TCell{
-// Работа с ячейкой
+// ГђГ ГЎГ®ГІГ  Г± ГїГ·ГҐГ©ГЄГ®Г©
 public:
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
@@ -142,12 +146,12 @@ extern COMMONAL_API TClassNode* TCellTab::StaticType;
 
 
 class COMMONAL_API TCellList : public TSparseList {
-// Динамическая строка
+// Г„ГЁГ­Г Г¬ГЁГ·ГҐГ±ГЄГ Гї Г±ГІГ°Г®ГЄГ 
 public:
-    __fastcall TCellList(TSPAQuantum Quantum)
+     TCellList(TSPAQuantum Quantum)
     :TSparseList(Quantum){};
-    void __fastcall Put(int index, TCell * item);
-    TCell* __fastcall Get(int index);
+    void  Put(int index, TCell * item);
+    TCell*  Get(int index);
 };
 
 //---------------------------------------------------------------------------
@@ -155,18 +159,18 @@ class TEditText;
 class TToolBarCellGrid;
 
 class COMMONAL_API TCellGrid : public TMyDrawGrid {
-// Рисование
+// ГђГЁГ±Г®ГўГ Г­ГЁГҐ
 protected:
-	virtual void __fastcall WndProc(Messages::TMessage &Message);
+	virtual void  WndProc(Messages::TMessage &Message);
 private:
     void* FData;
 __published:
 
 public:
     TToolBarCellGrid* ToolBarCellGrid;
-    TEditText* EditText; // RichEdit -для ввода текста в ячейку
+    TEditText* EditText; // RichEdit -Г¤Г«Гї ГўГўГ®Г¤Г  ГІГҐГЄГ±ГІГ  Гў ГїГ·ГҐГ©ГЄГі
 
-// Переменные НАШЕГО Paint
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint
     bool InvalidateRectOK;
     bool StartVisible;
     bool bResizeColRow;
@@ -175,13 +179,13 @@ public:
     TGridCoord oldFAnchor;
     int iMouseDown;
     int iMouseMove;
-    TPoint EndColRowCell; // Последняя существующая ячейка
+    TPoint EndColRowCell; // ГЏГ®Г±Г«ГҐГ¤Г­ГїГї Г±ГіГ№ГҐГ±ГІГўГіГѕГ№Г Гї ГїГ·ГҐГ©ГЄГ 
 
     TRect CurrentRectMouseDown;
 //    bool FieldCut;
 //    PIntArray PointsCopy;
-    TRect OldRectDown;//Для корректной выделении при выходе из объедененной ячейки
-    TRect OldRectDownCurrentAnchor;//Для корректной выделении при выходе из объедененной ячейки
+    TRect OldRectDown;//Г„Г«Гї ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г© ГўГ»Г¤ГҐГ«ГҐГ­ГЁГЁ ГЇГ°ГЁ ГўГ»ГµГ®Г¤ГҐ ГЁГ§ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г®Г© ГїГ·ГҐГ©ГЄГЁ
+    TRect OldRectDownCurrentAnchor;//Г„Г«Гї ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г© ГўГ»Г¤ГҐГ«ГҐГ­ГЁГЁ ГЇГ°ГЁ ГўГ»ГµГ®Г¤ГҐ ГЁГ§ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г®Г© ГїГ·ГҐГ©ГЄГЁ
 
 
     TRect OldRectMouseDown;
@@ -192,18 +196,18 @@ public:
 //    bool MouseDownAndMoveCursor;
 
     bool MoveCellBorder;
-// Переменные НАШЕГО Paint - END
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint - END
 
-// Переменные НАШЕГО Paint V2
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint V2
 //    TRect OldRectCurrentAnchorMouseDown;
     TRect OldRectCurrentAnchorMouseMove;
     TGridRect OldRectCurrentAnchorMouseMoveCell;
     TGridCoord OldCellMouseMove;
     TGridCoord JobFCurrent;
     TGridCoord JobFAnchor;
-// Переменные НАШЕГО Paint END
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint END
 
-// Переменные НАШЕГО Paint V4
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint V4
     TGridCoord StartMouseDown;
     TRect CurrentUnionRectMouseMove;
     int iCountYes;
@@ -246,12 +250,12 @@ public:
 
     TGridCoord OldFAnchorBorder;//
 
-    TPoint CellGridResizeRow; // Для изменения размера высоты строк
-    TPoint CellGridResizeCol; // Для изменения размера высоты строк
+    TPoint CellGridResizeRow; // Г„Г«Гї ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї Г°Г Г§Г¬ГҐГ°Г  ГўГ»Г±Г®ГІГ» Г±ГІГ°Г®ГЄ
+    TPoint CellGridResizeCol; // Г„Г«Гї ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї Г°Г Г§Г¬ГҐГ°Г  ГўГ»Г±Г®ГІГ» Г±ГІГ°Г®ГЄ
     int NewSizeColRow;
 
 //*********************  Color **********
-    TColor ColorCursor; // Стандартный фон
+    TColor ColorCursor; // Г‘ГІГ Г­Г¤Г Г°ГІГ­Г»Г© ГґГ®Г­
 //*********************  Color ********** END
 
     TRect FValidSelection;
@@ -263,45 +267,45 @@ public:
     TGridCoord DrawCursCurrent;
     TGridCoord DrawCursAnchor;
 
-    bool PopupMenuNotMouseUp;// Для того чтобы после выхода не портил MouseUP для правилиного обновления предыдущего ректа
+    bool PopupMenuNotMouseUp;// Г„Г«Гї ГІГ®ГЈГ® Г·ГІГ®ГЎГ» ГЇГ®Г±Г«ГҐ ГўГ»ГµГ®Г¤Г  Г­ГҐ ГЇГ®Г°ГІГЁГ« MouseUP Г¤Г«Гї ГЇГ°Г ГўГЁГ«ГЁГ­Г®ГЈГ® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї ГЇГ°ГҐГ¤Г»Г¤ГіГ№ГҐГЈГ® Г°ГҐГЄГІГ 
 //********************* Function System
-    bool SelectTable; // Выделена таблица
-    bool SelectColumn;// Выделен столбец
-    bool SelectString;// Выделена строка
-    bool SelectCell;// Выделена ячейка
+    bool SelectTable; // Г‚Г»Г¤ГҐГ«ГҐГ­Г  ГІГ ГЎГ«ГЁГ¶Г 
+    bool SelectColumn;// Г‚Г»Г¤ГҐГ«ГҐГ­ Г±ГІГ®Г«ГЎГҐГ¶
+    bool SelectString;// Г‚Г»Г¤ГҐГ«ГҐГ­Г  Г±ГІГ°Г®ГЄГ 
+    bool SelectCell;// Г‚Г»Г¤ГҐГ«ГҐГ­Г  ГїГ·ГҐГ©ГЄГ 
 
     int XM;
     int YM;
     TGridCoord MousePosCellMoveSelect;
 
-    TMDelTList <TPoint> ListFilling; // список ячеек подлежащих изменению
-    TMDelTList <TPoint> ListFilling2; // список ячеек подлежащих изменению
+    TMDelTList <TPoint> ListFilling; // Г±ГЇГЁГ±Г®ГЄ ГїГ·ГҐГҐГЄ ГЇГ®Г¤Г«ГҐГ¦Г Г№ГЁГµ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГѕ
+    TMDelTList <TPoint> ListFilling2; // Г±ГЇГЁГ±Г®ГЄ ГїГ·ГҐГҐГЄ ГЇГ®Г¤Г«ГҐГ¦Г Г№ГЁГµ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГѕ
     TRect OldCurrentAnchorSort;
 //********************* Function System END
 
-    bool PrivatEvent_1;// Перерисовать после Scrool (старт в раб зоне конец в Fixed)
-    bool PrivatEvent_2;// Перерисовать все для MouseDown
+    bool PrivatEvent_1;// ГЏГҐГ°ГҐГ°ГЁГ±Г®ГўГ ГІГј ГЇГ®Г±Г«ГҐ Scrool (Г±ГІГ Г°ГІ Гў Г°Г ГЎ Г§Г®Г­ГҐ ГЄГ®Г­ГҐГ¶ Гў Fixed)
+    bool PrivatEvent_2;// ГЏГҐГ°ГҐГ°ГЁГ±Г®ГўГ ГІГј ГўГ±ГҐ Г¤Г«Гї MouseDown
 
-    int OldRectDrawCellFixedT; // Для проверки необходимости вычислять значения Top объедененной ячейки
-    int OldRectDrawCellFixedL; // Для проверки необходимости вычислять значения Left объедененной ячейки
+    int OldRectDrawCellFixedT; // Г„Г«Гї ГЇГ°Г®ГўГҐГ°ГЄГЁ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г®Г±ГІГЁ ГўГ»Г·ГЁГ±Г«ГїГІГј Г§Г­Г Г·ГҐГ­ГЁГї Top Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г®Г© ГїГ·ГҐГ©ГЄГЁ
+    int OldRectDrawCellFixedL; // Г„Г«Гї ГЇГ°Г®ГўГҐГ°ГЄГЁ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г®Г±ГІГЁ ГўГ»Г·ГЁГ±Г«ГїГІГј Г§Г­Г Г·ГҐГ­ГЁГї Left Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г®Г© ГїГ·ГҐГ©ГЄГЁ
     int OldRectDrawCellFixedTop;
     int OldRectDrawCellFixedLeft;
-    TRect CurrentRectDrawUnionFixed;// Рект текущей UnionCell
+    TRect CurrentRectDrawUnionFixed;// ГђГҐГЄГІ ГІГҐГЄГіГ№ГҐГ© UnionCell
 
-// Переменные НАШЕГО Paint END4
-// Переменные Для теста
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint END4
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Г„Г«Гї ГІГҐГ±ГІГ 
     int iTest1;
     int iTest2;
-// Переменные END
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ END
 
-// Переменные Edit
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Edit
     TRect CurrentEditCell;
     AnsiString TempStringCell;
     int CurrentEditCol;
     int CurrentEditRow;
-// Переменные Edit End
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Edit End
 
-// Переменные стандартного Paint
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Г±ГІГ Г­Г¤Г Г°ГІГ­Г®ГЈГ® Paint
     TGridDrawInfo DrawInfo;
     TGridRect Sel;
     TRect UpdateRect;
@@ -309,10 +313,10 @@ public:
     bool Focused;
 
     TGridForm* GridForm;
-    TCellFlag* gCellFlag;// Для установки флагов
+    TCellFlag* gCellFlag;// Г„Г«Гї ГіГ±ГІГ Г­Г®ГўГЄГЁ ГґГ«Г ГЈГ®Гў
     TMDelTList <TMDelTList <TCellFlag> > CellF;
     bool ProgressCopy;
-// Переменные стандартного END
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Г±ГІГ Г­Г¤Г Г°ГІГ­Г®ГЈГ® END
     TTimer* Timer;
     TTimer* TStart;
 
@@ -320,51 +324,51 @@ public:
     TCellMatrix* Matrix;
     // - Matrix - END
 
-    void __fastcall OnTimer(TObject *Sender);
-    void __fastcall StartTime(TObject *Sender);
+    void  OnTimer(TObject *Sender);
+    void  StartTime(TObject *Sender);
 
-    __fastcall TCellGrid(Classes::TComponent* AOwner, TGridForm* _Form, TToolBarCellGrid* _ToolBarCellGrid);
-	inline __fastcall virtual ~TCellGrid(void);
+     TCellGrid(Classes::TComponent* AOwner, TGridForm* _Form, TToolBarCellGrid* _ToolBarCellGrid);
+	inline  virtual ~TCellGrid(void);
     void Initialize();
 
 
 //********************* Function System
-    void        __fastcall NewCell(int Col, int Row);// Создать новую ячейку
-    void        __fastcall NewCell(int Col, int Row, TCell* data);// Создать новую ячейку
-    void        __fastcall DelCell(int Col, int Row);// Удалить ячейку
+    void         NewCell(int Col, int Row);// Г‘Г®Г§Г¤Г ГІГј Г­Г®ГўГіГѕ ГїГ·ГҐГ©ГЄГі
+    void         NewCell(int Col, int Row, TCell* data);// Г‘Г®Г§Г¤Г ГІГј Г­Г®ГўГіГѕ ГїГ·ГҐГ©ГЄГі
+    void         DelCell(int Col, int Row);// Г“Г¤Г Г«ГЁГІГј ГїГ·ГҐГ©ГЄГі
 
-    void        __fastcall SetCell(int aCol, int aRow, TCell* data);//
-    void        __fastcall SetNewCell(int aCol, int aRow, TCell* data);
-    void        __fastcall NewCellAndSetDefault(int Col, int Row, byte ColRow/*0=Auto, 1=Col, 2=Row*/); // Создать ячейку и заполнить ее Default
-    void        __fastcall NewCellAndSetDefault2(int Col, int Row, byte ColRow/*0=Auto, 1=Col, 2=Row*/); // Создать ячейку и заполнить ее Default
+    void         SetCell(int aCol, int aRow, TCell* data);//
+    void         SetNewCell(int aCol, int aRow, TCell* data);
+    void         NewCellAndSetDefault(int Col, int Row, byte ColRow/*0=Auto, 1=Col, 2=Row*/); // Г‘Г®Г§Г¤Г ГІГј ГїГ·ГҐГ©ГЄГі ГЁ Г§Г ГЇГ®Г«Г­ГЁГІГј ГҐГҐ Default
+    void         NewCellAndSetDefault2(int Col, int Row, byte ColRow/*0=Auto, 1=Col, 2=Row*/); // Г‘Г®Г§Г¤Г ГІГј ГїГ·ГҐГ©ГЄГі ГЁ Г§Г ГЇГ®Г«Г­ГЁГІГј ГҐГҐ Default
 
-    void        __fastcall NewCellAndSetParam(int Col, int Row);// Создать новую ячейку и при необходимости создает на пересечении
-    TCellFlag*  __fastcall GetParamCell(int Col, int Row); // Получить ячейку со всеми параметрами
-    void        __fastcall ClearSelectRect();// Очистка выделенной области
-    void        __fastcall ClearSelectRect(const TRect& rect);// Очистка Recta
-    void        __fastcall ClearCell(int Col, int Row);// Очистка Ячейки
-    void        __fastcall DelAndSetDefaultCell(int Col, int Row);// Удалить и заполнить Defaultam от 0:0
-    void        __fastcall DelAndSetDefaultCell(const TRect& Rect);// Удалить и заполнить Defaultam от 0:0
-    void        __fastcall DelAndSetDefaultCellF(const TRect& Rect);// Удалить и заполнить Defaultam от 0:0
-    int         __fastcall DelCellF(int Col, int Row, void * TheItem);// для DelAndSetDefaultCellF
-    void        __fastcall GetSelectCells(bool AllUnion); // Заполнение ListFilling
-    //(x,y) Ячеек для изменения
-    //(AllUnion если true тогда если объедененная ячейка попадает циликом
-    //в выделенную область тогда включать в список иначе исключаем область объедененной ячейки)
+    void         NewCellAndSetParam(int Col, int Row);// Г‘Г®Г§Г¤Г ГІГј Г­Г®ГўГіГѕ ГїГ·ГҐГ©ГЄГі ГЁ ГЇГ°ГЁ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г®Г±ГІГЁ Г±Г®Г§Г¤Г ГҐГІ Г­Г  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГЁ
+    TCellFlag*   GetParamCell(int Col, int Row); // ГЏГ®Г«ГіГ·ГЁГІГј ГїГ·ГҐГ©ГЄГі Г±Г® ГўГ±ГҐГ¬ГЁ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ
+    void         ClearSelectRect();// ГЋГ·ГЁГ±ГІГЄГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
+    void         ClearSelectRect(const TRect& rect);// ГЋГ·ГЁГ±ГІГЄГ  Recta
+    void         ClearCell(int Col, int Row);// ГЋГ·ГЁГ±ГІГЄГ  ГџГ·ГҐГ©ГЄГЁ
+    void         DelAndSetDefaultCell(int Col, int Row);// Г“Г¤Г Г«ГЁГІГј ГЁ Г§Г ГЇГ®Г«Г­ГЁГІГј Defaultam Г®ГІ 0:0
+    void         DelAndSetDefaultCell(const TRect& Rect);// Г“Г¤Г Г«ГЁГІГј ГЁ Г§Г ГЇГ®Г«Г­ГЁГІГј Defaultam Г®ГІ 0:0
+    void         DelAndSetDefaultCellF(const TRect& Rect);// Г“Г¤Г Г«ГЁГІГј ГЁ Г§Г ГЇГ®Г«Г­ГЁГІГј Defaultam Г®ГІ 0:0
+    int          DelCellF(int Col, int Row, void * TheItem);// Г¤Г«Гї DelAndSetDefaultCellF
+    void         GetSelectCells(bool AllUnion); // Г‡Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ ListFilling
+    //(x,y) ГџГ·ГҐГҐГЄ Г¤Г«Гї ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї
+    //(AllUnion ГҐГ±Г«ГЁ true ГІГ®ГЈГ¤Г  ГҐГ±Г«ГЁ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ  ГЇГ®ГЇГ Г¤Г ГҐГІ Г¶ГЁГ«ГЁГЄГ®Г¬
+    //Гў ГўГ»Г¤ГҐГ«ГҐГ­Г­ГіГѕ Г®ГЎГ«Г Г±ГІГј ГІГ®ГЈГ¤Г  ГўГЄГ«ГѕГ·Г ГІГј Гў Г±ГЇГЁГ±Г®ГЄ ГЁГ­Г Г·ГҐ ГЁГ±ГЄГ«ГѕГ·Г ГҐГ¬ Г®ГЎГ«Г Г±ГІГј Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г®Г© ГїГ·ГҐГ©ГЄГЁ)
 
-//    void        __fastcall GetSelectCellsColRow(); // Заполнение ListFilling (x,y) (Строк, Столбцов) - для линий
-    void        __fastcall ClearListFilling();// Очистка ListFilling
-    void        __fastcall SetDefaultCell11(); // Устанавливает в ячейку 1:1 значение Default
-    void*       __fastcall EnsureDataRow(int aRow);
-    TCell*      __fastcall GetCell(int Col, int Row);// Получить данные о ячейке с учетом объеденоной
-    TCell*      __fastcall GetCellSimple(int Col, int Row);// Получить данные о ячейке Без учета объедененой
-    TCell*      __fastcall GetCellParam(int Col, int Row); // Получить параметры ячейки
-    TCell*      __fastcall GetCellParamSimple(int Col, int Row);// Получить параметры ячейки
-    void        __fastcall CopyCell1ToCell2(int Col1, int Row1, int Col2, int Row2);// Копироватьь из Cell1 в Cell2
-    void        __fastcall CopyCell1ToCell2(int Col,int Row, TCell* Cell2);// Копироватьь из Col,Row в Cell2
-    void        __fastcall CopyCell1ToCell2(TCell* Cell1, int Col,int Row);// Копироватьь из Cell2 в Col,Row
-    void        __fastcall InvalidateRect2(const TRect& rect);
-    __property TCell* Cells[int i][int j] = {read = GetCell,write = SetCell};
+//    void         GetSelectCellsColRow(); // Г‡Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ ListFilling (x,y) (Г‘ГІГ°Г®ГЄ, Г‘ГІГ®Г«ГЎГ¶Г®Гў) - Г¤Г«Гї Г«ГЁГ­ГЁГ©
+    void         ClearListFilling();// ГЋГ·ГЁГ±ГІГЄГ  ListFilling
+    void         SetDefaultCell11(); // Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГІ Гў ГїГ·ГҐГ©ГЄГі 1:1 Г§Г­Г Г·ГҐГ­ГЁГҐ Default
+    void*        EnsureDataRow(int aRow);
+    TCell*       GetCell(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј Г¤Г Г­Г­Г»ГҐ Г® ГїГ·ГҐГ©ГЄГҐ Г± ГіГ·ГҐГІГ®Г¬ Г®ГЎГєГҐГ¤ГҐГ­Г®Г­Г®Г©
+    TCell*       GetCellSimple(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј Г¤Г Г­Г­Г»ГҐ Г® ГїГ·ГҐГ©ГЄГҐ ГЃГҐГ§ ГіГ·ГҐГІГ  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г®Г©
+    TCell*       GetCellParam(int Col, int Row); // ГЏГ®Г«ГіГ·ГЁГІГј ГЇГ Г°Г Г¬ГҐГІГ°Г» ГїГ·ГҐГ©ГЄГЁ
+    TCell*       GetCellParamSimple(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј ГЇГ Г°Г Г¬ГҐГІГ°Г» ГїГ·ГҐГ©ГЄГЁ
+    void         CopyCell1ToCell2(int Col1, int Row1, int Col2, int Row2);// ГЉГ®ГЇГЁГ°Г®ГўГ ГІГјГј ГЁГ§ Cell1 Гў Cell2
+    void         CopyCell1ToCell2(int Col,int Row, TCell* Cell2);// ГЉГ®ГЇГЁГ°Г®ГўГ ГІГјГј ГЁГ§ Col,Row Гў Cell2
+    void         CopyCell1ToCell2(TCell* Cell1, int Col,int Row);// ГЉГ®ГЇГЁГ°Г®ГўГ ГІГјГј ГЁГ§ Cell2 Гў Col,Row
+    void         InvalidateRect2(const TRect& rect);
+// [indexed property - needs manual migration]:     __property TCell* Cells[int i][int j] = {read = GetCell,write = SetCell};
 //********************* Function System END
 
 //********************* Function Undo/Redo
@@ -372,241 +376,241 @@ public:
 //********************* Function Undo/Redo ENDS
 
 //********************* Function Form
-    void __fastcall DoModalFormSection();
-    void __fastcall DoModalFormCellParameter();
-    void __fastcall DoModalSelectColor(int Left, int Top);
+    void  DoModalFormSection();
+    void  DoModalFormCellParameter();
+    void  DoModalSelectColor(int Left, int Top);
 //********************* Function Form End
 
-//********************* Обработка сообщений и переопределение фукций
-    void            __fastcall CellGridMouseMove(TObject *Sender,TShiftState Shift, int X, int Y);// Обработчик Мышь движение
-    void            __fastcall CellGridMouseDown(TObject *Sender,TMouseButton Button, TShiftState Shift, int X, int Y);// Обработчик Мышь Key в верх
-    void            __fastcall CellGridMouseUp(TObject *Sender,TMouseButton Button, TShiftState Shift, int X, int Y);// Обработчик Мышь Key в низ
-	DYNAMIC bool    __fastcall DoMouseWheelUp(Classes::TShiftState Shift, const Types::TPoint &MousePos);// Скрол по колясику в верх
-    DYNAMIC bool    __fastcall DoMouseWheelDown(Classes::TShiftState Shift, const Types::TPoint &MousePos);// Скрол по колясику в низ
-    bool            __fastcall DoMouseWheelLeft(Classes::TShiftState Shift, const Types::TPoint &MousePos);// Скрол по колясику в лево
-    bool            __fastcall DoMouseWheelRight(Classes::TShiftState Shift, const Types::TPoint &MousePos);// Скрол по колясику в право
-    DYNAMIC void    __fastcall KeyDown(Word &Key, Classes::TShiftState Shift);// обработчик клавиатуры
-    void            __fastcall ModifyScrollBar(unsigned ScrollBar, unsigned ScrollCode, unsigned Pos, bool UseRightToLeft);// обработчик скролирования ползунками
-    void            __fastcall ResizeRow(int Index, int OldSize, int NewSize);
-    void            __fastcall ResizeCol(int Index, int OldSize, int NewSize);
-//********************* Обработка сообщений  и переопределение фукций END
+//********************* ГЋГЎГ°Г ГЎГ®ГІГЄГ  Г±Г®Г®ГЎГ№ГҐГ­ГЁГ© ГЁ ГЇГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ ГґГіГЄГ¶ГЁГ©
+    void             CellGridMouseMove(TObject *Sender,TShiftState Shift, int X, int Y);// ГЋГЎГ°Г ГЎГ®ГІГ·ГЁГЄ ГЊГ»ГёГј Г¤ГўГЁГ¦ГҐГ­ГЁГҐ
+    void             CellGridMouseDown(TObject *Sender,TMouseButton Button, TShiftState Shift, int X, int Y);// ГЋГЎГ°Г ГЎГ®ГІГ·ГЁГЄ ГЊГ»ГёГј Key Гў ГўГҐГ°Гµ
+    void             CellGridMouseUp(TObject *Sender,TMouseButton Button, TShiftState Shift, int X, int Y);// ГЋГЎГ°Г ГЎГ®ГІГ·ГЁГЄ ГЊГ»ГёГј Key Гў Г­ГЁГ§
+	DYNAMIC bool     DoMouseWheelUp(Classes::TShiftState Shift, const Types::TPoint &MousePos);// Г‘ГЄГ°Г®Г« ГЇГ® ГЄГ®Г«ГїГ±ГЁГЄГі Гў ГўГҐГ°Гµ
+    DYNAMIC bool     DoMouseWheelDown(Classes::TShiftState Shift, const Types::TPoint &MousePos);// Г‘ГЄГ°Г®Г« ГЇГ® ГЄГ®Г«ГїГ±ГЁГЄГі Гў Г­ГЁГ§
+    bool             DoMouseWheelLeft(Classes::TShiftState Shift, const Types::TPoint &MousePos);// Г‘ГЄГ°Г®Г« ГЇГ® ГЄГ®Г«ГїГ±ГЁГЄГі Гў Г«ГҐГўГ®
+    bool             DoMouseWheelRight(Classes::TShiftState Shift, const Types::TPoint &MousePos);// Г‘ГЄГ°Г®Г« ГЇГ® ГЄГ®Г«ГїГ±ГЁГЄГі Гў ГЇГ°Г ГўГ®
+    DYNAMIC void     KeyDown(Word &Key, Classes::TShiftState Shift);// Г®ГЎГ°Г ГЎГ®ГІГ·ГЁГЄ ГЄГ«Г ГўГЁГ ГІГіГ°Г»
+    void             ModifyScrollBar(unsigned ScrollBar, unsigned ScrollCode, unsigned Pos, bool UseRightToLeft);// Г®ГЎГ°Г ГЎГ®ГІГ·ГЁГЄ Г±ГЄГ°Г®Г«ГЁГ°Г®ГўГ Г­ГЁГї ГЇГ®Г«Г§ГіГ­ГЄГ Г¬ГЁ
+    void             ResizeRow(int Index, int OldSize, int NewSize);
+    void             ResizeCol(int Index, int OldSize, int NewSize);
+//********************* ГЋГЎГ°Г ГЎГ®ГІГЄГ  Г±Г®Г®ГЎГ№ГҐГ­ГЁГ©  ГЁ ГЇГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ ГґГіГЄГ¶ГЁГ© END
 
 //********************* Function EditText
-    void    __fastcall ShowEditText(int Col, int Row, bool clear); // Показать поле ввода
-    void    __fastcall SetCanvasParameterCell(int Col, int Row);// Установить в Canvas параметры ячейки
-    int     __fastcall GetAlignText(int Col, int Row);// получитьвыравнивание текста для DrawText
-    void    __fastcall GetRectDrawText(int Col, int Row, const AnsiString& Text, TRect& calcrect);// Расчитать рект необходимый под текст
-    void    __fastcall UseTextWordBreak(int Col, int Row);// Применить перенос по словам
+    void     ShowEditText(int Col, int Row, bool clear); // ГЏГ®ГЄГ Г§Г ГІГј ГЇГ®Г«ГҐ ГўГўГ®Г¤Г 
+    void     SetCanvasParameterCell(int Col, int Row);// Г“Г±ГІГ Г­Г®ГўГЁГІГј Гў Canvas ГЇГ Г°Г Г¬ГҐГІГ°Г» ГїГ·ГҐГ©ГЄГЁ
+    int      GetAlignText(int Col, int Row);// ГЇГ®Г«ГіГ·ГЁГІГјГўГ»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ ГІГҐГЄГ±ГІГ  Г¤Г«Гї DrawText
+    void     GetRectDrawText(int Col, int Row, const AnsiString& Text, TRect& calcrect);// ГђГ Г±Г·ГЁГІГ ГІГј Г°ГҐГЄГІ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»Г© ГЇГ®Г¤ ГІГҐГЄГ±ГІ
+    void     UseTextWordBreak(int Col, int Row);// ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј ГЇГҐГ°ГҐГ­Г®Г± ГЇГ® Г±Г«Г®ГўГ Г¬
 //********************* Function EditText
 
-//********************* Разное
-    void    __fastcall InvalidateU2();// Invalidate 2ого уровня
-    void    __fastcall NullRect(TRect& rect1);// Установить значение 0 в rect
-    void    __fastcall NullLine(TCell& Cell);// Установить значение 0 в Line
-    void    __fastcall RecalculationEndCell(int Col, int Row);// Пересчет последней ячейки
-    void    __fastcall FForAll(TRect& rect, TMyFunc Func);
-    int     __fastcall ProcessCell(int Col, int Row, void * TheItem);
-    bool    __fastcall TestingRectToSelection(TCell* Cell, const TRect RectSelection);// Находиться ли объедененная ячейка  в заданном Recte
-    void    __fastcall SelectAllCells(); // Выделить всю таблицу
-//********************* Разное END
+//********************* ГђГ Г§Г­Г®ГҐ
+    void     InvalidateU2();// Invalidate 2Г®ГЈГ® ГіГ°Г®ГўГ­Гї
+    void     NullRect(TRect& rect1);// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г§Г­Г Г·ГҐГ­ГЁГҐ 0 Гў rect
+    void     NullLine(TCell& Cell);// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г§Г­Г Г·ГҐГ­ГЁГҐ 0 Гў Line
+    void     RecalculationEndCell(int Col, int Row);// ГЏГҐГ°ГҐГ±Г·ГҐГІ ГЇГ®Г±Г«ГҐГ¤Г­ГҐГ© ГїГ·ГҐГ©ГЄГЁ
+    void     FForAll(TRect& rect, TMyFunc Func);
+    int      ProcessCell(int Col, int Row, void * TheItem);
+    bool     TestingRectToSelection(TCell* Cell, const TRect RectSelection);// ГЌГ ГµГ®Г¤ГЁГІГјГ±Гї Г«ГЁ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ   Гў Г§Г Г¤Г Г­Г­Г®Г¬ Recte
+    void     SelectAllCells(); // Г‚Г»Г¤ГҐГ«ГЁГІГј ГўГ±Гѕ ГІГ ГЎГ«ГЁГ¶Гі
+//********************* ГђГ Г§Г­Г®ГҐ END
 
 //********************* Function MouseMoveCell and CursorDraw
-    void    __fastcall DrawCursor(const TRect& Rect);// Рисуем курсор
-    void    __fastcall DrawCursorU2(int CurCol, int CurRow, int iLeft,int iTop,int iRight,int iBottom);// Рисуем курсор
-    void    __fastcall DrawCursorMove(const TRect& Rect, int Width);
-    TColor  __fastcall SetColorCursor(TColor& Color);// Установить цвет курсора
-    void    __fastcall DrawCursorMove(int Col, int Row);// Рисуем курсор перетаскивания ячеек
-    void    __fastcall DrawCursorMove2(int Col, int Row);// Рисуем курсор перетаскивания ячеек Уровень 2
-    bool    __fastcall SelectAllJobField(); // Выделенно все рабочее поле
-    void    __fastcall StartScrollingTimer1(TGridCoord& CellHit1);
-    void    __fastcall StartScrollingTimer2(TGridCoord& CellHit1);
+    void     DrawCursor(const TRect& Rect);// ГђГЁГ±ГіГҐГ¬ ГЄГіГ°Г±Г®Г°
+    void     DrawCursorU2(int CurCol, int CurRow, int iLeft,int iTop,int iRight,int iBottom);// ГђГЁГ±ГіГҐГ¬ ГЄГіГ°Г±Г®Г°
+    void     DrawCursorMove(const TRect& Rect, int Width);
+    TColor   SetColorCursor(TColor& Color);// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г¶ГўГҐГІ ГЄГіГ°Г±Г®Г°Г 
+    void     DrawCursorMove(int Col, int Row);// ГђГЁГ±ГіГҐГ¬ ГЄГіГ°Г±Г®Г° ГЇГҐГ°ГҐГІГ Г±ГЄГЁГўГ Г­ГЁГї ГїГ·ГҐГҐГЄ
+    void     DrawCursorMove2(int Col, int Row);// ГђГЁГ±ГіГҐГ¬ ГЄГіГ°Г±Г®Г° ГЇГҐГ°ГҐГІГ Г±ГЄГЁГўГ Г­ГЁГї ГїГ·ГҐГҐГЄ Г“Г°Г®ГўГҐГ­Гј 2
+    bool     SelectAllJobField(); // Г‚Г»Г¤ГҐГ«ГҐГ­Г­Г® ГўГ±ГҐ Г°Г ГЎГ®Г·ГҐГҐ ГЇГ®Г«ГҐ
+    void     StartScrollingTimer1(TGridCoord& CellHit1);
+    void     StartScrollingTimer2(TGridCoord& CellHit1);
 
 //********************* Function MouseMoveCell END
 
-//********************* Function  по работе с объеденеными ячейками
-    // Расчет выделенной области
+//********************* Function  ГЇГ® Г°Г ГЎГ®ГІГҐ Г± Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г»Г¬ГЁ ГїГ·ГҐГ©ГЄГ Г¬ГЁ
+    // ГђГ Г±Г·ГҐГІ ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
     void    RecalculateSelection();
     TRect&  GetValidSelection();
     TRect&  GetValidSelectionPlus();
     TRect&  GetValidSelectionMinus();
-    // Расчет выделенной области END
+    // ГђГ Г±Г·ГҐГІ ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ END
 
-    TRect       __fastcall GetAnchorCurrentSort();// получить результат отсортированых FCurrent и FAnchor
-    void        __fastcall SetAnchorCurrentSort();// отсортировать FCurrent и FAnchor
-    TGridRect   __fastcall GetAnchorCurrentSortGrid();// отсортировать FCurrent и FAnchor
-    TRect       __fastcall GetAnchorCurrentSortPlus();// отсортировать FCurrent и FAnchor и zoom на +1 ячейку
-    TRect       __fastcall GetJobAnchorCurrentSort();// отсортировать FCurrentJob и FAnchorJob
-    void        __fastcall SetUnionCell(bool Test);// Создать объедененную ячейку
-    void        __fastcall SetUnionCell(const TRect& rect,bool Test);// Создать объедененную ячейку
-    TRect       __fastcall CalculationRect(TGridCoord mousestart, TGridCoord mousemove);// Получить рект по координатам
-    TRect       __fastcall CalculationRect(int StartX, int StartY, int EndX, int EndY);// Получить рект по координатам
-    TRect       __fastcall CalculationRect(const TRect& rect);// Получить рект по координатам
-    TRect       __fastcall SideRect1InRect2(const TRect& rect1, const TRect& rect2);// строна rect1 миньше или ровна стороне rect2
-    bool        __fastcall CellInRect(const TRect& rect, const TGridCoord& cell);// принадлежит ли ячейка объедененной ячейке
-    bool        __fastcall CellBeUnionCell(const TGridCoord& cell);// Являеться ли эта ячейка объедененной
-    bool        __fastcall CellBeUnionCell(int Col, int Row);// Являеться ли эта ячейка объедененной
-    void        __fastcall DeleteUnionRect(TCell* Cell);// Удалить всю объедененную ячейку
-    void        __fastcall DelUnionCell(TCell* Cell);// Удалить только инфу об объеденении
-//********************* Function  по работе с объеденеными ячейками
+    TRect        GetAnchorCurrentSort();// ГЇГ®Г«ГіГ·ГЁГІГј Г°ГҐГ§ГіГ«ГјГІГ ГІ Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ Г­Г»Гµ FCurrent ГЁ FAnchor
+    void         SetAnchorCurrentSort();// Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј FCurrent ГЁ FAnchor
+    TGridRect    GetAnchorCurrentSortGrid();// Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј FCurrent ГЁ FAnchor
+    TRect        GetAnchorCurrentSortPlus();// Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј FCurrent ГЁ FAnchor ГЁ zoom Г­Г  +1 ГїГ·ГҐГ©ГЄГі
+    TRect        GetJobAnchorCurrentSort();// Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј FCurrentJob ГЁ FAnchorJob
+    void         SetUnionCell(bool Test);// Г‘Г®Г§Г¤Г ГІГј Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГ©ГЄГі
+    void         SetUnionCell(const TRect& rect,bool Test);// Г‘Г®Г§Г¤Г ГІГј Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГ©ГЄГі
+    TRect        CalculationRect(TGridCoord mousestart, TGridCoord mousemove);// ГЏГ®Г«ГіГ·ГЁГІГј Г°ГҐГЄГІ ГЇГ® ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ Г¬
+    TRect        CalculationRect(int StartX, int StartY, int EndX, int EndY);// ГЏГ®Г«ГіГ·ГЁГІГј Г°ГҐГЄГІ ГЇГ® ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ Г¬
+    TRect        CalculationRect(const TRect& rect);// ГЏГ®Г«ГіГ·ГЁГІГј Г°ГҐГЄГІ ГЇГ® ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ Г¬
+    TRect        SideRect1InRect2(const TRect& rect1, const TRect& rect2);// Г±ГІГ°Г®Г­Г  rect1 Г¬ГЁГ­ГјГёГҐ ГЁГ«ГЁ Г°Г®ГўГ­Г  Г±ГІГ®Г°Г®Г­ГҐ rect2
+    bool         CellInRect(const TRect& rect, const TGridCoord& cell);// ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г«ГЁ ГїГ·ГҐГ©ГЄГ  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г®Г© ГїГ·ГҐГ©ГЄГҐ
+    bool         CellBeUnionCell(const TGridCoord& cell);// ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г®Г©
+    bool         CellBeUnionCell(int Col, int Row);// ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г®Г©
+    void         DeleteUnionRect(TCell* Cell);// Г“Г¤Г Г«ГЁГІГј ГўГ±Гѕ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГ©ГЄГі
+    void         DelUnionCell(TCell* Cell);// Г“Г¤Г Г«ГЁГІГј ГІГ®Г«ГјГЄГ® ГЁГ­ГґГі Г®ГЎ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­ГЁГЁ
+//********************* Function  ГЇГ® Г°Г ГЎГ®ГІГҐ Г± Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г»Г¬ГЁ ГїГ·ГҐГ©ГЄГ Г¬ГЁ
 
-//********************* Function Рисования бордюр
-//############# Находятся в DrawBorder #############
-    void __fastcall CellLineTop(const TRect& Rect);
-    void __fastcall CellRightBottomPixel(const TRect& RectStart);
-    void __fastcall CellRightBottomPixel2(const TRect& RectStart);
-    void __fastcall CellLineBottom(const TRect& Rect);
-    void __fastcall CellLineBottomColorBk(int Col, int Row);
-    void __fastcall CellLineTopColorBk(int Col, int Row);
-    void __fastcall CellLineLeft(const TRect& Rect);
-    void __fastcall CellLineRight(const TRect& Rect);
-    void __fastcall CellLineRightColorBk(int Col, int Row);
-    void __fastcall CellLineLeftColorBk(int Col, int Row);
-    void __fastcall CellLineTop2(const TRect& Rect);
-    void __fastcall CellLineBottom2(const TRect& Rect);
-    void __fastcall CellLineLeft2(const TRect& Rect);
-    void __fastcall CellLineRight2(const TRect& Rect);
-    void __fastcall Line(int Col, int Row, TColor Color);// Отрисовать линии согласно параметрам ячейки
-    void __fastcall SetBorder(int Col, int Row, /*1=Left, 2=Top, 3=Right, 4=Bottom*/int Border, int WidthLine, TColor Color);
-    void __fastcall SectionLine(const TRect& Rect,int Param/*1=Left, 2=Top*/);
-    void __fastcall CellLineBottomSection(const TRect& RectStart);
-    void __fastcall CellLineRightSection(const TRect& RectStart);
-    void __fastcall CellLineBottom2b(const TRect& RectStart);
-    void __fastcall CellLineRight2b(const TRect& RectStart);
-    bool __fastcall TopLineUnion(int Col, int Row);// Являеться ли эта ячейка простой или Union но отличной от нижнего Union
-    bool __fastcall BottomLineUnion(int Col, int Row);// Являеться ли эта ячейка простой или Union но отличной от иерх Union
-    bool __fastcall LeftLineUnion(int Col, int Row); // Являеться ли эта ячейка простой или Union но отличной от Право Union
-    bool __fastcall RightLineUnion(int Col, int Row); // Являеться ли эта ячейка простой или Union но отличной от Лево Union
-    void __fastcall DrawBorder_0(int Col, int Row, int Border, const TRect& rect, TColor Color);
-    void __fastcall DrawBorder_1(int Col, int Row, int Border, const TRect& rect, TColor Color);
-    void __fastcall DrawBorder_2(int Col, int Row, int Border, const TRect& rect, TColor Color);
-    int  __fastcall GetLeftBorder(int Col, int Row);// Получить толщину
-    int  __fastcall GetTopBorder(int Col, int Row);// Получить толщину
-    int  __fastcall GetRightBorder(int Col, int Row);// Получить толщину
-    int  __fastcall GetBottomBorder(int Col, int Row);// Получить толщину
-    int  __fastcall GetLeftBorderEliminateCurrent(int Col, int Row);// Получить толщину Исключая себя
-    int  __fastcall GetTopBorderEliminateCurrent(int Col, int Row);// Получить толщину Исключая себя
-    int  __fastcall GetRightBorderEliminateCurrent(int Col, int Row);// Получить толщину Исключая себя
-    int  __fastcall GetBottomBorderEliminateCurrent(int Col, int Row);// Получить толщину Исключая себя
-    void __fastcall SetCircumferentialBorder(int Col, int Row);// Заполнить окружающие ячейки бордюрам из текущей
-    void __fastcall SetCircumferentialBorderRow(int Col, int Row);// Заполнить окружающие ячейки бордюрам по текущим параметрам Приоритет строк
-    void __fastcall SetCircumferentialBorderCol(int Col, int Row);// Заполнить окружающие ячейки бордюрам по текущим параметрам Приоритет столбцов
-    void __fastcall SetToCellBorder(int Col, int Row);//Заполнить текущюю ячейку бордюрам
-//############# Находятся в DrawBorder ############# END
+//********************* Function ГђГЁГ±Г®ГўГ Г­ГЁГї ГЎГ®Г°Г¤ГѕГ°
+//############# ГЌГ ГµГ®Г¤ГїГІГ±Гї Гў DrawBorder #############
+    void  CellLineTop(const TRect& Rect);
+    void  CellRightBottomPixel(const TRect& RectStart);
+    void  CellRightBottomPixel2(const TRect& RectStart);
+    void  CellLineBottom(const TRect& Rect);
+    void  CellLineBottomColorBk(int Col, int Row);
+    void  CellLineTopColorBk(int Col, int Row);
+    void  CellLineLeft(const TRect& Rect);
+    void  CellLineRight(const TRect& Rect);
+    void  CellLineRightColorBk(int Col, int Row);
+    void  CellLineLeftColorBk(int Col, int Row);
+    void  CellLineTop2(const TRect& Rect);
+    void  CellLineBottom2(const TRect& Rect);
+    void  CellLineLeft2(const TRect& Rect);
+    void  CellLineRight2(const TRect& Rect);
+    void  Line(int Col, int Row, TColor Color);// ГЋГІГ°ГЁГ±Г®ГўГ ГІГј Г«ГЁГ­ГЁГЁ Г±Г®ГЈГ«Г Г±Г­Г® ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ ГїГ·ГҐГ©ГЄГЁ
+    void  SetBorder(int Col, int Row, /*1=Left, 2=Top, 3=Right, 4=Bottom*/int Border, int WidthLine, TColor Color);
+    void  SectionLine(const TRect& Rect,int Param/*1=Left, 2=Top*/);
+    void  CellLineBottomSection(const TRect& RectStart);
+    void  CellLineRightSection(const TRect& RectStart);
+    void  CellLineBottom2b(const TRect& RectStart);
+    void  CellLineRight2b(const TRect& RectStart);
+    bool  TopLineUnion(int Col, int Row);// ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  ГЇГ°Г®Г±ГІГ®Г© ГЁГ«ГЁ Union Г­Г® Г®ГІГ«ГЁГ·Г­Г®Г© Г®ГІ Г­ГЁГ¦Г­ГҐГЈГ® Union
+    bool  BottomLineUnion(int Col, int Row);// ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  ГЇГ°Г®Г±ГІГ®Г© ГЁГ«ГЁ Union Г­Г® Г®ГІГ«ГЁГ·Г­Г®Г© Г®ГІ ГЁГҐГ°Гµ Union
+    bool  LeftLineUnion(int Col, int Row); // ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  ГЇГ°Г®Г±ГІГ®Г© ГЁГ«ГЁ Union Г­Г® Г®ГІГ«ГЁГ·Г­Г®Г© Г®ГІ ГЏГ°Г ГўГ® Union
+    bool  RightLineUnion(int Col, int Row); // ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  ГЇГ°Г®Г±ГІГ®Г© ГЁГ«ГЁ Union Г­Г® Г®ГІГ«ГЁГ·Г­Г®Г© Г®ГІ Г‹ГҐГўГ® Union
+    void  DrawBorder_0(int Col, int Row, int Border, const TRect& rect, TColor Color);
+    void  DrawBorder_1(int Col, int Row, int Border, const TRect& rect, TColor Color);
+    void  DrawBorder_2(int Col, int Row, int Border, const TRect& rect, TColor Color);
+    int   GetLeftBorder(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј ГІГ®Г«Г№ГЁГ­Гі
+    int   GetTopBorder(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј ГІГ®Г«Г№ГЁГ­Гі
+    int   GetRightBorder(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј ГІГ®Г«Г№ГЁГ­Гі
+    int   GetBottomBorder(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј ГІГ®Г«Г№ГЁГ­Гі
+    int   GetLeftBorderEliminateCurrent(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј ГІГ®Г«Г№ГЁГ­Гі Г€Г±ГЄГ«ГѕГ·Г Гї Г±ГҐГЎГї
+    int   GetTopBorderEliminateCurrent(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј ГІГ®Г«Г№ГЁГ­Гі Г€Г±ГЄГ«ГѕГ·Г Гї Г±ГҐГЎГї
+    int   GetRightBorderEliminateCurrent(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј ГІГ®Г«Г№ГЁГ­Гі Г€Г±ГЄГ«ГѕГ·Г Гї Г±ГҐГЎГї
+    int   GetBottomBorderEliminateCurrent(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј ГІГ®Г«Г№ГЁГ­Гі Г€Г±ГЄГ«ГѕГ·Г Гї Г±ГҐГЎГї
+    void  SetCircumferentialBorder(int Col, int Row);// Г‡Г ГЇГ®Г«Г­ГЁГІГј Г®ГЄГ°ГіГ¦Г ГѕГ№ГЁГҐ ГїГ·ГҐГ©ГЄГЁ ГЎГ®Г°Г¤ГѕГ°Г Г¬ ГЁГ§ ГІГҐГЄГіГ№ГҐГ©
+    void  SetCircumferentialBorderRow(int Col, int Row);// Г‡Г ГЇГ®Г«Г­ГЁГІГј Г®ГЄГ°ГіГ¦Г ГѕГ№ГЁГҐ ГїГ·ГҐГ©ГЄГЁ ГЎГ®Г°Г¤ГѕГ°Г Г¬ ГЇГ® ГІГҐГЄГіГ№ГЁГ¬ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ ГЏГ°ГЁГ®Г°ГЁГІГҐГІ Г±ГІГ°Г®ГЄ
+    void  SetCircumferentialBorderCol(int Col, int Row);// Г‡Г ГЇГ®Г«Г­ГЁГІГј Г®ГЄГ°ГіГ¦Г ГѕГ№ГЁГҐ ГїГ·ГҐГ©ГЄГЁ ГЎГ®Г°Г¤ГѕГ°Г Г¬ ГЇГ® ГІГҐГЄГіГ№ГЁГ¬ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ ГЏГ°ГЁГ®Г°ГЁГІГҐГІ Г±ГІГ®Г«ГЎГ¶Г®Гў
+    void  SetToCellBorder(int Col, int Row);//Г‡Г ГЇГ®Г«Г­ГЁГІГј ГІГҐГЄГіГ№ГѕГѕ ГїГ·ГҐГ©ГЄГі ГЎГ®Г°Г¤ГѕГ°Г Г¬
+//############# ГЌГ ГµГ®Г¤ГїГІГ±Гї Гў DrawBorder ############# END
 //********************* Function End
 
 //********************* Function Fixed
-    void __fastcall SetScrollStartCol();// Проскролировать все столбцы на начало
-    void __fastcall SetScrollStartRow();// Проскролировать все строки на начало
+    void  SetScrollStartCol();// ГЏГ°Г®Г±ГЄГ°Г®Г«ГЁГ°Г®ГўГ ГІГј ГўГ±ГҐ Г±ГІГ®Г«ГЎГ¶Г» Г­Г  Г­Г Г·Г Г«Г®
+    void  SetScrollStartRow();// ГЏГ°Г®Г±ГЄГ°Г®Г«ГЁГ°Г®ГўГ ГІГј ГўГ±ГҐ Г±ГІГ°Г®ГЄГЁ Г­Г  Г­Г Г·Г Г«Г®
 //********************* Function Fixed END
 
 //********************* Function Test
-    void __fastcall Test_CellInfo(TGridCoord& CellHit1);
-    void __fastcall Test_Speed();
+    void  Test_CellInfo(TGridCoord& CellHit1);
+    void  Test_Speed();
 //********************* Function Test End
 
 //********************* Function User
-//############# Находятся в SetCellParameter #############
-    bool __fastcall GetVisibleOfficialMargin(); // Отображение Полей с нумерацией
-    void __fastcall SetVisibleOfficialMargin(bool Visible);// Отображение Полей с нумерацией
-    bool __fastcall GetVisibleSectionLeft(); // Отображение секций
-    void __fastcall SetVisibleSectionLeft(bool Visible); // Отображение секций
-    bool __fastcall GetVisibleSectionTop(); // Отображение секций
-    void __fastcall SetVisibleSectionTop(bool Visible); // Отображение секций
-    void __fastcall SetColorRegion(TColor Color, bool FlagLineColor); // Установить цвет выделенной области
-    void __fastcall SetFontNameRegion(AnsiString FontName); // Установить Шрифт выделенной области
-    void __fastcall SetFontSizeRegion(int FontSize); // Установить Размер Шрифт выделенной области
-    void __fastcall SetFontColorRegion(TColor FontColor); // Установить Цвет Шрифта выделенной области
-    void __fastcall SetValueTypeRegion(int ValueType);// Установить Тип Значения (текст =0, выражение =1, шаблон =2)
-    void __fastcall SetTextHAlignRegion(int TextHAlign);// Установить Выравнивание текста по горизонтали (Left=0, Center=1, Right=2)
-    void __fastcall SetTextVAlignRegion(int TextVAlign);// Установить Выравнивание текста по вертикали (Left=0, Center=1, Right=2)
-    void __fastcall SetTypeAutoSizeRegion(int TypeAutoSize);// Установить авто размер строки по тексту (Not=0, Auto=1)
-    void __fastcall SetTextWordBreakRegion(int TextWordBreak);// Установить авто перенос по словам (Not=0, Auto=1)
-    void __fastcall SetFontStyleRegion(int FontStyle); // Установить Стиль Шрифта выделенной области (Обычны=0, Курсив=1, Жирный=2, Жирный курсив=3)
-    void __fastcall SetFontStrikeOutRegion(int FontStrikeOut); // Установить зачеркнутый шрифт
-    void __fastcall SetFontUnderlineRegion(int FontUnderline); // Установить подчеркнутый шрифт (НЕТ=0, подчеркнутый=1)
-    void __fastcall SetCellLine(int WidthLeft, int WidthTop, int WidthRight, int WidthBottom);// записать параметры обведенной границы в ячейки
-    void __fastcall SetCellBorder(const TRect& Rect, int WidthLeft, int WidthTop, int WidthRight, int WidthBottom);// Нижний уровень для SetCellLine
-    void __fastcall SetCellLineFlood(int WidthLeft, int WidthTop, int WidthRight, int WidthBottom);// записать параметры заливки границы в ячейки
-    void __fastcall SetCellLineOne(/*1=Left, 2=Top, 3=Right, 4=Bottom*/int Border, int WidthLine);// Установить бордюры по одному
-    void __fastcall SetCellBorderOne(const TRect& Rect ,int Border, int WidthLine);// Нижний уровень для SetCellLineOne
-    void __fastcall SetCellLineFloodVert(int WidthLine);// Заполнить вертикальными линиями
-    void __fastcall SetCellBorderFloodVert(const TRect& Rect, int WidthLine);// Нижний уровень для SetCellLineFloodVert
-    void __fastcall SetCellLineFloodHorz(int WidthLine);// Заполнить горизонтальными линиями
-    void __fastcall SetCellBorderFloodHorz(const TRect& Rect, int WidthLine);// Нижний уровень для SetCellLineFloodHorz
-    void __fastcall SetNotChangeParamRegion(const TRect& rectcopy);// Создать ячейку заполнить параметрами в соответствии с ее положением но новых изменений не вносить (для CopyCell)
-    void __fastcall UseTextWordBreakRegion();// Применить перенос по словам к выделенной области
+//############# ГЌГ ГµГ®Г¤ГїГІГ±Гї Гў SetCellParameter #############
+    bool  GetVisibleOfficialMargin(); // ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЏГ®Г«ГҐГ© Г± Г­ГіГ¬ГҐГ°Г Г¶ГЁГҐГ©
+    void  SetVisibleOfficialMargin(bool Visible);// ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ ГЏГ®Г«ГҐГ© Г± Г­ГіГ¬ГҐГ°Г Г¶ГЁГҐГ©
+    bool  GetVisibleSectionLeft(); // ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ Г±ГҐГЄГ¶ГЁГ©
+    void  SetVisibleSectionLeft(bool Visible); // ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ Г±ГҐГЄГ¶ГЁГ©
+    bool  GetVisibleSectionTop(); // ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ Г±ГҐГЄГ¶ГЁГ©
+    void  SetVisibleSectionTop(bool Visible); // ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ Г±ГҐГЄГ¶ГЁГ©
+    void  SetColorRegion(TColor Color, bool FlagLineColor); // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г¶ГўГҐГІ ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
+    void  SetFontNameRegion(AnsiString FontName); // Г“Г±ГІГ Г­Г®ГўГЁГІГј ГГ°ГЁГґГІ ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
+    void  SetFontSizeRegion(int FontSize); // Г“Г±ГІГ Г­Г®ГўГЁГІГј ГђГ Г§Г¬ГҐГ° ГГ°ГЁГґГІ ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
+    void  SetFontColorRegion(TColor FontColor); // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г–ГўГҐГІ ГГ°ГЁГґГІГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
+    void  SetValueTypeRegion(int ValueType);// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г’ГЁГЇ Г‡Г­Г Г·ГҐГ­ГЁГї (ГІГҐГЄГ±ГІ =0, ГўГ»Г°Г Г¦ГҐГ­ГЁГҐ =1, ГёГ ГЎГ«Г®Г­ =2)
+    void  SetTextHAlignRegion(int TextHAlign);// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ ГІГҐГЄГ±ГІГ  ГЇГ® ГЈГ®Г°ГЁГ§Г®Г­ГІГ Г«ГЁ (Left=0, Center=1, Right=2)
+    void  SetTextVAlignRegion(int TextVAlign);// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ ГІГҐГЄГ±ГІГ  ГЇГ® ГўГҐГ°ГІГЁГЄГ Г«ГЁ (Left=0, Center=1, Right=2)
+    void  SetTypeAutoSizeRegion(int TypeAutoSize);// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г ГўГІГ® Г°Г Г§Г¬ГҐГ° Г±ГІГ°Г®ГЄГЁ ГЇГ® ГІГҐГЄГ±ГІГі (Not=0, Auto=1)
+    void  SetTextWordBreakRegion(int TextWordBreak);// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г ГўГІГ® ГЇГҐГ°ГҐГ­Г®Г± ГЇГ® Г±Г«Г®ГўГ Г¬ (Not=0, Auto=1)
+    void  SetFontStyleRegion(int FontStyle); // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г‘ГІГЁГ«Гј ГГ°ГЁГґГІГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ (ГЋГЎГ»Г·Г­Г»=0, ГЉГіГ°Г±ГЁГў=1, Г†ГЁГ°Г­Г»Г©=2, Г†ГЁГ°Г­Г»Г© ГЄГіГ°Г±ГЁГў=3)
+    void  SetFontStrikeOutRegion(int FontStrikeOut); // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г§Г Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ
+    void  SetFontUnderlineRegion(int FontUnderline); // Г“Г±ГІГ Г­Г®ГўГЁГІГј ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ (ГЌГ…Г’=0, ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©=1)
+    void  SetCellLine(int WidthLeft, int WidthTop, int WidthRight, int WidthBottom);// Г§Г ГЇГЁГ±Г ГІГј ГЇГ Г°Г Г¬ГҐГІГ°Г» Г®ГЎГўГҐГ¤ГҐГ­Г­Г®Г© ГЈГ°Г Г­ГЁГ¶Г» Гў ГїГ·ГҐГ©ГЄГЁ
+    void  SetCellBorder(const TRect& Rect, int WidthLeft, int WidthTop, int WidthRight, int WidthBottom);// ГЌГЁГ¦Г­ГЁГ© ГіГ°Г®ГўГҐГ­Гј Г¤Г«Гї SetCellLine
+    void  SetCellLineFlood(int WidthLeft, int WidthTop, int WidthRight, int WidthBottom);// Г§Г ГЇГЁГ±Г ГІГј ГЇГ Г°Г Г¬ГҐГІГ°Г» Г§Г Г«ГЁГўГЄГЁ ГЈГ°Г Г­ГЁГ¶Г» Гў ГїГ·ГҐГ©ГЄГЁ
+    void  SetCellLineOne(/*1=Left, 2=Top, 3=Right, 4=Bottom*/int Border, int WidthLine);// Г“Г±ГІГ Г­Г®ГўГЁГІГј ГЎГ®Г°Г¤ГѕГ°Г» ГЇГ® Г®Г¤Г­Г®Г¬Гі
+    void  SetCellBorderOne(const TRect& Rect ,int Border, int WidthLine);// ГЌГЁГ¦Г­ГЁГ© ГіГ°Г®ГўГҐГ­Гј Г¤Г«Гї SetCellLineOne
+    void  SetCellLineFloodVert(int WidthLine);// Г‡Г ГЇГ®Г«Г­ГЁГІГј ГўГҐГ°ГІГЁГЄГ Г«ГјГ­Г»Г¬ГЁ Г«ГЁГ­ГЁГїГ¬ГЁ
+    void  SetCellBorderFloodVert(const TRect& Rect, int WidthLine);// ГЌГЁГ¦Г­ГЁГ© ГіГ°Г®ГўГҐГ­Гј Г¤Г«Гї SetCellLineFloodVert
+    void  SetCellLineFloodHorz(int WidthLine);// Г‡Г ГЇГ®Г«Г­ГЁГІГј ГЈГ®Г°ГЁГ§Г®Г­ГІГ Г«ГјГ­Г»Г¬ГЁ Г«ГЁГ­ГЁГїГ¬ГЁ
+    void  SetCellBorderFloodHorz(const TRect& Rect, int WidthLine);// ГЌГЁГ¦Г­ГЁГ© ГіГ°Г®ГўГҐГ­Гј Г¤Г«Гї SetCellLineFloodHorz
+    void  SetNotChangeParamRegion(const TRect& rectcopy);// Г‘Г®Г§Г¤Г ГІГј ГїГ·ГҐГ©ГЄГі Г§Г ГЇГ®Г«Г­ГЁГІГј ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГЁ Г± ГҐГҐ ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐГ¬ Г­Г® Г­Г®ГўГ»Гµ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГ© Г­ГҐ ГўГ­Г®Г±ГЁГІГј (Г¤Г«Гї CopyCell)
+    void  UseTextWordBreakRegion();// ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј ГЇГҐГ°ГҐГ­Г®Г± ГЇГ® Г±Г«Г®ГўГ Г¬ ГЄ ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
 
-    void __fastcall SetFlagRect(const TRect& SetRectCell, TCellFlag* CellFlag);// Установить параметр
-    void __fastcall SetFlagCell(int Col, int Row, TCellFlag* CellFlag);// Установить параметр
-    void __fastcall AssignParamCell(TCellFlag* CellFlag, int Col, int Row);// Праверка нужных параметров
-    bool __fastcall ParamCellCompare(TCell* Cell, TCellFlag* CellFlag);// Проверка на одинаковость параметров ячеек
-    void __fastcall SetAllFlag(TCellFlag* CellFlag, bool Set); // Установить все флаги
-    void __fastcall CopyFlag1ToFlag2(TCellFlag* CellFlag1, TCellFlag* Cell);// Копировать заначения установленных флагов и установить данные флаги
+    void  SetFlagRect(const TRect& SetRectCell, TCellFlag* CellFlag);// Г“Г±ГІГ Г­Г®ГўГЁГІГј ГЇГ Г°Г Г¬ГҐГІГ°
+    void  SetFlagCell(int Col, int Row, TCellFlag* CellFlag);// Г“Г±ГІГ Г­Г®ГўГЁГІГј ГЇГ Г°Г Г¬ГҐГІГ°
+    void  AssignParamCell(TCellFlag* CellFlag, int Col, int Row);// ГЏГ°Г ГўГҐГ°ГЄГ  Г­ГіГ¦Г­Г»Гµ ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў
+    bool  ParamCellCompare(TCell* Cell, TCellFlag* CellFlag);// ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г®Г¤ГЁГ­Г ГЄГ®ГўГ®Г±ГІГј ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў ГїГ·ГҐГҐГЄ
+    void  SetAllFlag(TCellFlag* CellFlag, bool Set); // Г“Г±ГІГ Г­Г®ГўГЁГІГј ГўГ±ГҐ ГґГ«Г ГЈГЁ
+    void  CopyFlag1ToFlag2(TCellFlag* CellFlag1, TCellFlag* Cell);// ГЉГ®ГЇГЁГ°Г®ГўГ ГІГј Г§Г Г­Г Г·ГҐГ­ГЁГї ГіГ±ГІГ Г­Г®ГўГ«ГҐГ­Г­Г»Гµ ГґГ«Г ГЈГ®Гў ГЁ ГіГ±ГІГ Г­Г®ГўГЁГІГј Г¤Г Г­Г­Г»ГҐ ГґГ«Г ГЈГЁ
     // Matrix
-    void __fastcall PasteBuffInGrid(int Col, int Row); //Вставить из буфера в Grid
-    void __fastcall CopyInBuff(const TRect& rect);// Копировать в буффер
-    void __fastcall GetCellToTest(const TRect& rect);
-    int  __fastcall ProcessCellTest(int Col, int Row, void * TheItem);
-    int  __fastcall ProcessCellTest2(int Col, int Row, void * TheItem);
-    void __fastcall SetParam(const TRect& rect,TCellFlag* CellFlag);// Заполнение матрицы и затем применение для Recta
-    void __fastcall SetListFillingToCopy(const TRect& rect);
-    int  __fastcall CellYes(int Col, int Row, void * TheItem);
+    void  PasteBuffInGrid(int Col, int Row); //Г‚Г±ГІГ ГўГЁГІГј ГЁГ§ ГЎГіГґГҐГ°Г  Гў Grid
+    void  CopyInBuff(const TRect& rect);// ГЉГ®ГЇГЁГ°Г®ГўГ ГІГј Гў ГЎГіГґГґГҐГ°
+    void  GetCellToTest(const TRect& rect);
+    int   ProcessCellTest(int Col, int Row, void * TheItem);
+    int   ProcessCellTest2(int Col, int Row, void * TheItem);
+    void  SetParam(const TRect& rect,TCellFlag* CellFlag);// Г‡Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ Г¬Г ГІГ°ГЁГ¶Г» ГЁ Г§Г ГІГҐГ¬ ГЇГ°ГЁГ¬ГҐГ­ГҐГ­ГЁГҐ Г¤Г«Гї Recta
+    void  SetListFillingToCopy(const TRect& rect);
+    int   CellYes(int Col, int Row, void * TheItem);
     // Matrix END
-//############# Находятся в SetCellParameter ############# END
+//############# ГЌГ ГµГ®Г¤ГїГІГ±Гї Гў SetCellParameter ############# END
 //********************* Function User END
 
 //********************* Function Job Rect
-    TRect       __fastcall GetSelectGridRect(); // Получить выделенный регион в ячейках
-    TRect       __fastcall GetRectCellSort(const TRect& rect);// Отсортировать rect
-    void        __fastcall SetRectCellSort(TRect& rect);// Отсортировать rect и установить
-    TRect       __fastcall GetRectCellSort(const TGridRect& rect);// Отсортировать rect
-    TGridRect   __fastcall GetGridRectCellSort(const TGridRect& rect);// Отсортировать rect
-    TRect       __fastcall GetUnionRect(const TRect& rect1,const TRect& rect2); // Получить объеденение rect1 с rect2
-    TRect       __fastcall GetUnionRect(const TGridRect& rect1, const TGridRect& rect2); // Получить объеденение rect1 с rect2
-    TGridRect   __fastcall GetUnionGridRect(const TGridRect& rect1,const TGridRect& rect2); // Получить объеденение rect1 с rect2
-    TGridRect   __fastcall RectToGridRectType(const TRect& rect);// Тип TRect в TGridRect
-    TRect       __fastcall GridRectToRectType(const TGridRect& rect);// Тип TGridRect в TRect
-    TRect       __fastcall Zoom(const TRect& rect, int zoom);// Изменить размер rect на величену zoom
-    TGridRect   __fastcall ZoomGrid(const TRect& rect, int zoom);// Изменить размер rect на величену zoom
-    TGridRect   __fastcall ZoomGrid(TGridRect& rect, int zoom);// Изменить размер rect на величену zoom
-    void        __fastcall ClipRectToJobRect(TRect& rect);// Ограничение ректа по рабочей зоне
-    void        __fastcall ClipRectToJobRect(TGridRect& rect);// Ограничение ректа по рабочей зоне
-    void        __fastcall ZoomAndClipRectToJobRect(TRect& rect,int zoom);// Изменить размер rect на величену zoom и Ограничение ректа по рабочей зоне
-    void        __fastcall ZoomAndClipRectToJobRect(TGridRect& rect,int zoom);// Изменить размер rect на величену zoom и Ограничение ректа по рабочей зоне
-    TRect       __fastcall GetGridRectCell(int iCol,int iRow);// Возвращает Rect в ячейках по позиции Col и Row
-    int         __fastcall SumRow(int Start, int End);// получить высоту в пикселях от ячейки Start до ячейки End
-    int         __fastcall SumCol(int Start, int End);// получить ширину в пикселях от ячейки Start до ячейки End
-    TRect       __fastcall GetGridRectToRectPixelNotUnion(int iCol,int iRow);// Возвращает Rect в пикселях
-    TRect       __fastcall GetGridRectToRectPixelNotUnionReal(int iCol,int iRow);// Возвращает Rect в пикселях в реальных координатах (без скролирования)
-    TRect       __fastcall GetGridRectToRectPixelNotUnionAndScroll(int iCol,int iRow);// Возвращает Rect в пикселях с учетом скролтрования
-    TRect       __fastcall GetGridRectToRectPixelForBorder(int Col,int Row);// Возвращает Rect в пикселях Без учета объедененных
-    TRect       __fastcall GetGridRectToRectPixelUnionReal(int iCol,int iRow);// Возвращает Rect в пикселях в Real и с учетом Union
-    bool        __fastcall BeEqualRect(const TRect& rect1, const TRect& rect2); // равены ли rect1 и rect2
-    bool        __fastcall EqualSizeRect(const TRect& rect1, const TRect& rect2);// равены ли rect1 и rect2 по размерам
-    bool        __fastcall Rect1InRect2(const TRect& rect1, const TRect& rect2);// Находиться rect1 внутри rect2
-    bool        __fastcall PointInRect(int Col, int Row,const TRect& Rect);// Находиться ячейка внутри rect
-    int         __fastcall CalcColumnWidthAutoText(int Col, int Row);// Расчет Max ширины столбца по тексту
-    int         __fastcall CalcStringHeightAutoText(int Col, int Row);// Расчет Max высоты строки по тексту
-    void        __fastcall ClipByEndCell(TRect& rect);// Обзезать Rect по последней сущ ячейке и скорректировать по столбцам
-    bool        __fastcall Rect1CrossRect2(const TRect& rect1, const TRect& rect2); // Пересекаються ли rect1 и rect2 тогда OK
-    bool        __fastcall PointInCut(const TPoint& cut, int point); // точка находиться в промежутке cut
+    TRect        GetSelectGridRect(); // ГЏГ®Г«ГіГ·ГЁГІГј ГўГ»Г¤ГҐГ«ГҐГ­Г­Г»Г© Г°ГҐГЈГЁГ®Г­ Гў ГїГ·ГҐГ©ГЄГ Гµ
+    TRect        GetRectCellSort(const TRect& rect);// ГЋГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј rect
+    void         SetRectCellSort(TRect& rect);// ГЋГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј rect ГЁ ГіГ±ГІГ Г­Г®ГўГЁГІГј
+    TRect        GetRectCellSort(const TGridRect& rect);// ГЋГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј rect
+    TGridRect    GetGridRectCellSort(const TGridRect& rect);// ГЋГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј rect
+    TRect        GetUnionRect(const TRect& rect1,const TRect& rect2); // ГЏГ®Г«ГіГ·ГЁГІГј Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­ГЁГҐ rect1 Г± rect2
+    TRect        GetUnionRect(const TGridRect& rect1, const TGridRect& rect2); // ГЏГ®Г«ГіГ·ГЁГІГј Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­ГЁГҐ rect1 Г± rect2
+    TGridRect    GetUnionGridRect(const TGridRect& rect1,const TGridRect& rect2); // ГЏГ®Г«ГіГ·ГЁГІГј Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­ГЁГҐ rect1 Г± rect2
+    TGridRect    RectToGridRectType(const TRect& rect);// Г’ГЁГЇ TRect Гў TGridRect
+    TRect        GridRectToRectType(const TGridRect& rect);// Г’ГЁГЇ TGridRect Гў TRect
+    TRect        Zoom(const TRect& rect, int zoom);// Г€Г§Г¬ГҐГ­ГЁГІГј Г°Г Г§Г¬ГҐГ° rect Г­Г  ГўГҐГ«ГЁГ·ГҐГ­Гі zoom
+    TGridRect    ZoomGrid(const TRect& rect, int zoom);// Г€Г§Г¬ГҐГ­ГЁГІГј Г°Г Г§Г¬ГҐГ° rect Г­Г  ГўГҐГ«ГЁГ·ГҐГ­Гі zoom
+    TGridRect    ZoomGrid(TGridRect& rect, int zoom);// Г€Г§Г¬ГҐГ­ГЁГІГј Г°Г Г§Г¬ГҐГ° rect Г­Г  ГўГҐГ«ГЁГ·ГҐГ­Гі zoom
+    void         ClipRectToJobRect(TRect& rect);// ГЋГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГҐ Г°ГҐГЄГІГ  ГЇГ® Г°Г ГЎГ®Г·ГҐГ© Г§Г®Г­ГҐ
+    void         ClipRectToJobRect(TGridRect& rect);// ГЋГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГҐ Г°ГҐГЄГІГ  ГЇГ® Г°Г ГЎГ®Г·ГҐГ© Г§Г®Г­ГҐ
+    void         ZoomAndClipRectToJobRect(TRect& rect,int zoom);// Г€Г§Г¬ГҐГ­ГЁГІГј Г°Г Г§Г¬ГҐГ° rect Г­Г  ГўГҐГ«ГЁГ·ГҐГ­Гі zoom ГЁ ГЋГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГҐ Г°ГҐГЄГІГ  ГЇГ® Г°Г ГЎГ®Г·ГҐГ© Г§Г®Г­ГҐ
+    void         ZoomAndClipRectToJobRect(TGridRect& rect,int zoom);// Г€Г§Г¬ГҐГ­ГЁГІГј Г°Г Г§Г¬ГҐГ° rect Г­Г  ГўГҐГ«ГЁГ·ГҐГ­Гі zoom ГЁ ГЋГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГҐ Г°ГҐГЄГІГ  ГЇГ® Г°Г ГЎГ®Г·ГҐГ© Г§Г®Г­ГҐ
+    TRect        GetGridRectCell(int iCol,int iRow);// Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Rect Гў ГїГ·ГҐГ©ГЄГ Гµ ГЇГ® ГЇГ®Г§ГЁГ¶ГЁГЁ Col ГЁ Row
+    int          SumRow(int Start, int End);// ГЇГ®Г«ГіГ·ГЁГІГј ГўГ»Г±Г®ГІГі Гў ГЇГЁГЄГ±ГҐГ«ГїГµ Г®ГІ ГїГ·ГҐГ©ГЄГЁ Start Г¤Г® ГїГ·ГҐГ©ГЄГЁ End
+    int          SumCol(int Start, int End);// ГЇГ®Г«ГіГ·ГЁГІГј ГёГЁГ°ГЁГ­Гі Гў ГЇГЁГЄГ±ГҐГ«ГїГµ Г®ГІ ГїГ·ГҐГ©ГЄГЁ Start Г¤Г® ГїГ·ГҐГ©ГЄГЁ End
+    TRect        GetGridRectToRectPixelNotUnion(int iCol,int iRow);// Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Rect Гў ГЇГЁГЄГ±ГҐГ«ГїГµ
+    TRect        GetGridRectToRectPixelNotUnionReal(int iCol,int iRow);// Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Rect Гў ГЇГЁГЄГ±ГҐГ«ГїГµ Гў Г°ГҐГ Г«ГјГ­Г»Гµ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ Гµ (ГЎГҐГ§ Г±ГЄГ°Г®Г«ГЁГ°Г®ГўГ Г­ГЁГї)
+    TRect        GetGridRectToRectPixelNotUnionAndScroll(int iCol,int iRow);// Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Rect Гў ГЇГЁГЄГ±ГҐГ«ГїГµ Г± ГіГ·ГҐГІГ®Г¬ Г±ГЄГ°Г®Г«ГІГ°Г®ГўГ Г­ГЁГї
+    TRect        GetGridRectToRectPixelForBorder(int Col,int Row);// Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Rect Гў ГЇГЁГЄГ±ГҐГ«ГїГµ ГЃГҐГ§ ГіГ·ГҐГІГ  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г»Гµ
+    TRect        GetGridRectToRectPixelUnionReal(int iCol,int iRow);// Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Rect Гў ГЇГЁГЄГ±ГҐГ«ГїГµ Гў Real ГЁ Г± ГіГ·ГҐГІГ®Г¬ Union
+    bool         BeEqualRect(const TRect& rect1, const TRect& rect2); // Г°Г ГўГҐГ­Г» Г«ГЁ rect1 ГЁ rect2
+    bool         EqualSizeRect(const TRect& rect1, const TRect& rect2);// Г°Г ГўГҐГ­Г» Г«ГЁ rect1 ГЁ rect2 ГЇГ® Г°Г Г§Г¬ГҐГ°Г Г¬
+    bool         Rect1InRect2(const TRect& rect1, const TRect& rect2);// ГЌГ ГµГ®Г¤ГЁГІГјГ±Гї rect1 ГўГ­ГіГІГ°ГЁ rect2
+    bool         PointInRect(int Col, int Row,const TRect& Rect);// ГЌГ ГµГ®Г¤ГЁГІГјГ±Гї ГїГ·ГҐГ©ГЄГ  ГўГ­ГіГІГ°ГЁ rect
+    int          CalcColumnWidthAutoText(int Col, int Row);// ГђГ Г±Г·ГҐГІ Max ГёГЁГ°ГЁГ­Г» Г±ГІГ®Г«ГЎГ¶Г  ГЇГ® ГІГҐГЄГ±ГІГі
+    int          CalcStringHeightAutoText(int Col, int Row);// ГђГ Г±Г·ГҐГІ Max ГўГ»Г±Г®ГІГ» Г±ГІГ°Г®ГЄГЁ ГЇГ® ГІГҐГЄГ±ГІГі
+    void         ClipByEndCell(TRect& rect);// ГЋГЎГ§ГҐГ§Г ГІГј Rect ГЇГ® ГЇГ®Г±Г«ГҐГ¤Г­ГҐГ© Г±ГіГ№ ГїГ·ГҐГ©ГЄГҐ ГЁ Г±ГЄГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГ ГІГј ГЇГ® Г±ГІГ®Г«ГЎГ¶Г Г¬
+    bool         Rect1CrossRect2(const TRect& rect1, const TRect& rect2); // ГЏГҐГ°ГҐГ±ГҐГЄГ ГѕГІГјГ±Гї Г«ГЁ rect1 ГЁ rect2 ГІГ®ГЈГ¤Г  OK
+    bool         PointInCut(const TPoint& cut, int point); // ГІГ®Г·ГЄГ  Г­Г ГµГ®Г¤ГЁГІГјГ±Гї Гў ГЇГ°Г®Г¬ГҐГ¦ГіГІГЄГҐ cut
 
 //********************* Function Job Rect END
 
-//************* Методы стандартного Paint*************
-//############# Находятся в DrawCells #############
-    void    __fastcall Paint();
-    void    __fastcall DrawCells(long ACol,long ARow,int StartX,int StartY,int StopX,int StopY,TColor Color,TGridDrawState IncludeDrawState);
-    void    __fastcall SetColorCanvas(int CurCol, int CurRow);
-    void    __fastcall SetNumerColRow(int ACol, int ARow, int type,TColor ColorBk); // Пронуеровать поля с нумерацией
-    bool    __fastcall PointInGridRect(int Col, int Row,TGridRect Rect);
-    void    __fastcall DrawTextU2(int CurCol, int CurRow, const TRect& RectDrawText);// Рисование текста
-//############# Находятся в DrawCells ############# END
+//************* ГЊГҐГІГ®Г¤Г» Г±ГІГ Г­Г¤Г Г°ГІГ­Г®ГЈГ® Paint*************
+//############# ГЌГ ГµГ®Г¤ГїГІГ±Гї Гў DrawCells #############
+    void     Paint();
+    void     DrawCells(long ACol,long ARow,int StartX,int StartY,int StopX,int StopY,TColor Color,TGridDrawState IncludeDrawState);
+    void     SetColorCanvas(int CurCol, int CurRow);
+    void     SetNumerColRow(int ACol, int ARow, int type,TColor ColorBk); // ГЏГ°Г®Г­ГіГҐГ°Г®ГўГ ГІГј ГЇГ®Г«Гї Г± Г­ГіГ¬ГҐГ°Г Г¶ГЁГҐГ©
+    bool     PointInGridRect(int Col, int Row,TGridRect Rect);
+    void     DrawTextU2(int CurCol, int CurRow, const TRect& RectDrawText);// ГђГЁГ±Г®ГўГ Г­ГЁГҐ ГІГҐГЄГ±ГІГ 
+//############# ГЌГ ГµГ®Г¤ГїГІГ±Гї Гў DrawCells ############# END
 //************* END *************
 
-    __property bool VisibleOfficialMargin = {read =GetVisibleOfficialMargin, write =SetVisibleOfficialMargin}; // Отображать первые 2 Строки и Столбца
-    __property bool VisibleSectionLeft = {read =GetVisibleSectionLeft, write =SetVisibleSectionLeft}; // Отображать Зону секций Left
-    __property bool VisibleSectionTop = {read =GetVisibleSectionTop, write =SetVisibleSectionTop}; // Отображать Зону секций Top
+    // __property bool VisibleOfficialMargin {read=GetVisibleOfficialMargin, write=SetVisibleOfficialMargin}; // [manual migration needed]
+    // __property bool VisibleSectionLeft {read=GetVisibleSectionLeft, write=SetVisibleSectionLeft}; // [manual migration needed]
+    // __property bool VisibleSectionTop {read=GetVisibleSectionTop, write=SetVisibleSectionTop}; // [manual migration needed]
 };
 //---------------------------------------------------------------------------
 class TOffsetCell;
@@ -625,15 +629,15 @@ public:
     int CopyHeight;
 
     TOffsetCell* OffsetCell;
-    bool CutCells; // Вырезать ячейки
-    int iOffsetCell; // Направление сдвига ячеек при удалении (0=Вверх, 1=Влево)
-    void __fastcall ToCellGrid(TCellGrid* CellGrid);// Загрузить
-    void __fastcall FromCellGrid(TCellGrid* CellGrid);// Сохранить
-    void __fastcall DelTextToCellGrid(TCellGrid* CellGrid);// Удаление текста
-    void __fastcall CorrectionRect(TCellGrid* CellGrid, TRect& rect);// Корректировка ректа при выделении всей области
-    void __fastcall DelCells(TCellGrid* CellGrid, const TRect& rect); // Удаление ячеек
-    void __fastcall dCopyCellGrid(TCellGrid* CellGrid, const TRect& RectCopy); // вспомогательные для уданения
-    void __fastcall dPasteToCellGrid(TCellGrid* CellGrid, int DeltaX, int DeltaY);// вспомогательные для уданения
+    bool CutCells; // Г‚Г»Г°ГҐГ§Г ГІГј ГїГ·ГҐГ©ГЄГЁ
+    int iOffsetCell; // ГЌГ ГЇГ°Г ГўГ«ГҐГ­ГЁГҐ Г±Г¤ГўГЁГЈГ  ГїГ·ГҐГҐГЄ ГЇГ°ГЁ ГіГ¤Г Г«ГҐГ­ГЁГЁ (0=Г‚ГўГҐГ°Гµ, 1=Г‚Г«ГҐГўГ®)
+    void  ToCellGrid(TCellGrid* CellGrid);// Г‡Г ГЈГ°ГіГ§ГЁГІГј
+    void  FromCellGrid(TCellGrid* CellGrid);// Г‘Г®ГµГ°Г Г­ГЁГІГј
+    void  DelTextToCellGrid(TCellGrid* CellGrid);// Г“Г¤Г Г«ГҐГ­ГЁГҐ ГІГҐГЄГ±ГІГ 
+    void  CorrectionRect(TCellGrid* CellGrid, TRect& rect);// ГЉГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГ  Г°ГҐГЄГІГ  ГЇГ°ГЁ ГўГ»Г¤ГҐГ«ГҐГ­ГЁГЁ ГўГ±ГҐГ© Г®ГЎГ«Г Г±ГІГЁ
+    void  DelCells(TCellGrid* CellGrid, const TRect& rect); // Г“Г¤Г Г«ГҐГ­ГЁГҐ ГїГ·ГҐГҐГЄ
+    void  dCopyCellGrid(TCellGrid* CellGrid, const TRect& RectCopy); // ГўГ±ГЇГ®Г¬Г®ГЈГ ГІГҐГ«ГјГ­Г»ГҐ Г¤Г«Гї ГіГ¤Г Г­ГҐГ­ГЁГї
+    void  dPasteToCellGrid(TCellGrid* CellGrid, int DeltaX, int DeltaY);// ГўГ±ГЇГ®Г¬Г®ГЈГ ГІГҐГ«ГјГ­Г»ГҐ Г¤Г«Гї ГіГ¤Г Г­ГҐГ­ГЁГї
 };
 
 extern COMMONAL_API TClassNode* TMGrid::StaticType;
@@ -658,28 +662,28 @@ public:
     bool CopyCell;
 
 //********************* Function System
-    __fastcall  TCellMatrix(Classes::TComponent* AOwner, TCellGrid* _CellGrid);
-	inline      __fastcall virtual ~TCellMatrix(void);
+      TCellMatrix(Classes::TComponent* AOwner, TCellGrid* _CellGrid);
+	inline       virtual ~TCellMatrix(void);
 
     void        Initialize();
-    void*       __fastcall EnsureDataRow(int aRow);
-    void        __fastcall SetCell(int aCol, int aRow, TCellFlag* data);//
-    TCellFlag*  __fastcall GetCell(int Col, int Row);// Получить данные о ячейке с учетом объеденоной
-    TCellFlag*  __fastcall GetCellSimple(int Col, int Row);// Получить данные о ячейке Без учета объедененой
-    void        __fastcall FForAll(TRect& rect, TMyFunc Func);
-    void        __fastcall MatrixForAllTest();
-    void        __fastcall NewCell(int Col, int Row, TCellFlag* data);
-    void        __fastcall NewCell(int Col, int Row);
-    void        __fastcall DelCell(int Col, int Row);
-    void        __fastcall SetAllFlag(TCellFlag* CellFlag, bool Set);
-    void        __fastcall CopyCell1ToCell2(int Col,int Row, TCellFlag* Cell2);
-    TCellFlag*  __fastcall GetCellParam(int Col, int Row);
-    TCellFlag*  __fastcall GetParamCell(int Col, int Row); // Получить ячейку со всеми параметрами
-    TCellFlag*  __fastcall GetParamCellAndFlag(int Col, int Row);
+    void*        EnsureDataRow(int aRow);
+    void         SetCell(int aCol, int aRow, TCellFlag* data);//
+    TCellFlag*   GetCell(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј Г¤Г Г­Г­Г»ГҐ Г® ГїГ·ГҐГ©ГЄГҐ Г± ГіГ·ГҐГІГ®Г¬ Г®ГЎГєГҐГ¤ГҐГ­Г®Г­Г®Г©
+    TCellFlag*   GetCellSimple(int Col, int Row);// ГЏГ®Г«ГіГ·ГЁГІГј Г¤Г Г­Г­Г»ГҐ Г® ГїГ·ГҐГ©ГЄГҐ ГЃГҐГ§ ГіГ·ГҐГІГ  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г®Г©
+    void         FForAll(TRect& rect, TMyFunc Func);
+    void         MatrixForAllTest();
+    void         NewCell(int Col, int Row, TCellFlag* data);
+    void         NewCell(int Col, int Row);
+    void         DelCell(int Col, int Row);
+    void         SetAllFlag(TCellFlag* CellFlag, bool Set);
+    void         CopyCell1ToCell2(int Col,int Row, TCellFlag* Cell2);
+    TCellFlag*   GetCellParam(int Col, int Row);
+    TCellFlag*   GetParamCell(int Col, int Row); // ГЏГ®Г«ГіГ·ГЁГІГј ГїГ·ГҐГ©ГЄГі Г±Г® ГўГ±ГҐГ¬ГЁ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ
+    TCellFlag*   GetParamCellAndFlag(int Col, int Row);
 //********************* Function System END
 
-    void __fastcall ClearAll();
-    int __fastcall ProcessMx(int Col, int Row, void * TheItem);
+    void  ClearAll();
+    int  ProcessMx(int Col, int Row, void * TheItem);
 };
 //---------------------------------------------------------------------------
 

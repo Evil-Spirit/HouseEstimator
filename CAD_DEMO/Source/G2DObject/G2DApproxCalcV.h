@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef G2DApproxCalcVH
@@ -7,7 +11,7 @@
 //---------------------------------------------------------------------------
 class TGeomObject;
 
-typedef MBTf (__closure *TDihotomiaFunc)(MBTf arg,int Level);
+typedef MBTf ( *TDihotomiaFunc)(MBTf arg,int Level);
 void COMMONAL_API Dihotomia(TDihotomiaFunc Func,MBTf X0,MBTf X1,int Level,TMDelTList< TMTwinElement<bool,MBTf> >& Roots,MBTf EPS);
 
 
@@ -28,7 +32,7 @@ class COMMONAL_API TPolinom : public TEquation{
 public:
     TPolinom(){};
     ~TPolinom(){};
-    //коэффициенты упорядочены по убыванию степени
+    //ГЄГ®ГЅГґГґГЁГ¶ГЁГҐГ­ГІГ» ГіГЇГ®Г°ГїГ¤Г®Г·ГҐГ­Г» ГЇГ® ГіГЎГ»ГўГ Г­ГЁГѕ Г±ГІГҐГЇГҐГ­ГЁ
     TMDelTList< TMDelTList<MBTf> > DA;
     void Initialize(const TMTList<MBTf>& A);
     virtual MBTf Derivative(MBTf X,int Level);

@@ -1,12 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LuaVarsEditV.h"
-#include "typeinfo.h"
 #include "AddLuaVarV.h"
 #include "MetaClasses.h"
 #include "LuaAttributeV.h"
@@ -14,11 +16,10 @@
 //#include "MDIConfigV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TLuaVarsEdit *LuaVarsEdit;
 //---------------------------------------------------------------------------
-__fastcall TLuaVarsEdit::TLuaVarsEdit(  TComponent* Owner,
+ TLuaVarsEdit::TLuaVarsEdit(  TComponent* Owner,
                                         TControl *_Parent,
                                         TMyObject *_Obj,
                                         const AnsiString& Text,
@@ -56,7 +57,7 @@ int FindTypeByName(const AnsiString& tName)
     return mtString;
 }
 
-void __fastcall TLuaVarsEdit::btAddClick(TObject *Sender)
+void  TLuaVarsEdit::btAddClick(TObject *Sender)
 {
     TAddLuaVar *ALV= new TAddLuaVar(NULL);
     ALV->VarName = "NewVar";
@@ -119,7 +120,7 @@ void TLuaVarsEdit::Apply()
 }
 
 
-void __fastcall TLuaVarsEdit::btEditClick(TObject *Sender)
+void  TLuaVarsEdit::btEditClick(TObject *Sender)
 {
     if (!LV->Selected)
         return;
@@ -146,7 +147,7 @@ void __fastcall TLuaVarsEdit::btEditClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TLuaVarsEdit::btDelClick(TObject *Sender)
+void  TLuaVarsEdit::btDelClick(TObject *Sender)
 {
     if (LV->Selected&&Application->MessageBox( (AnsiString("Delete variable ")+LV->Selected->Caption+AnsiString("?")).c_str(),"Confirmation",MB_YESNO)==IDYES)
     {

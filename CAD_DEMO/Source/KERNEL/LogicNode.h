@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef LogicNodeH
@@ -116,9 +120,9 @@ public:
     void Delete(int index);
     int IndexOf(TLinkPair* LinkPair);
     //-------------------lua-------------------------
-    __property int RayCount = {read = GetRayCount};
-    __property int LinkPairCount = {read = GetLinkPairCount};
-    __property int RayCrossCount = {read = GetRayCrossCount};
+    // __property int RayCount {read=GetRayCount}; // [manual migration needed]
+    // __property int LinkPairCount {read=GetLinkPairCount}; // [manual migration needed]
+    // __property int RayCrossCount {read=GetRayCrossCount}; // [manual migration needed]
     TLinkPair* GetLinkPair(int i) {return LNKS.Items[i];};
     TRay* GetRay(int i) {return Rays.Items[i];};
     TIntVec* GetRayCross(int i) {return CPS.Items[i];};
@@ -150,8 +154,8 @@ public:
     TIntVec HI;
     TMDelTList<TSide> Sides;
     void Create_Sides_02();
-    TMTList<TRouteNode> AllRNs;//упорядочены по localX
-    TMTList<TRouteNode> FilterRNs;//упорядочены по localX
+    TMTList<TRouteNode> AllRNs;//ГіГЇГ®Г°ГїГ¤Г®Г·ГҐГ­Г» ГЇГ® localX
+    TMTList<TRouteNode> FilterRNs;//ГіГЇГ®Г°ГїГ¤Г®Г·ГҐГ­Г» ГЇГ® localX
     void Register_Route_Node_01(TRouteNode* RN);
     void UnRegister_Route_Node_01(TRouteNode* RN);
     int IsEdge(const TIntVec& Point,MBTi USEEPS);//(1) - plus, (-1) - minus
@@ -168,9 +172,9 @@ public:
     void GetTranslateStep(const TIntVec& From,TIntVec& Translate,const TIntVec& Step);
 
     //---------------lua-------------------------------------
-    __property int SideCount = {read = GetSideCount};
-    __property int FilteredRouteNodesCount = {read = GetFilteredRouteNodesCount};
-    __property int AllRouteNodesCount = {read = GetAllRouteNodesCount};
+    // __property int SideCount {read=GetSideCount}; // [manual migration needed]
+    // __property int FilteredRouteNodesCount {read=GetFilteredRouteNodesCount}; // [manual migration needed]
+    // __property int AllRouteNodesCount {read=GetAllRouteNodesCount}; // [manual migration needed]
     TSide* GetSide(int i){return Sides.Items[i];}
     TRouteNode* GetFilteredRouteNode(int i){return FilterRNs.Items[i];}
     TRouteNode* GetAllRouteNode(int i){return AllRNs.Items[i];}
@@ -225,11 +229,11 @@ public:
     void DefinePermises_06(TElement* ParentFilter);
 
     //---------------------lua----------------------------------------------
-    __property int RouteNodeCount = {read = GetRNSCount};
-    __property int ElementFragmentsCount = {read = GetEPCount};
-    __property int PremisesPolygonCount = {read = GetPremisesPolygonCount};
-    __property int BuildingPolygonCount = {read = GetBuildingPolygonCount};
-    __property int RouterListsCount = {read = GetRouterListsCount};
+    // __property int RouteNodeCount {read=GetRNSCount}; // [manual migration needed]
+    // __property int ElementFragmentsCount {read=GetEPCount}; // [manual migration needed]
+    // __property int PremisesPolygonCount {read=GetPremisesPolygonCount}; // [manual migration needed]
+    // __property int BuildingPolygonCount {read=GetBuildingPolygonCount}; // [manual migration needed]
+    // __property int RouterListsCount {read=GetRouterListsCount}; // [manual migration needed]
 
     TRouteNode* GetRouteNode(int i) {return RNS.Items[i];};
     TElementPoints* GetElementFragments(int i) {return EP.Items[i];};
@@ -246,7 +250,7 @@ public:
     int IndexOfFilterMetaElement(TMetaElement* MetaElement);
     void SetDefaultMetaFilter();
 
-    __property int FilterMetaElementCount = {read = GetMetaFilterCount};
+    // __property int FilterMetaElementCount {read=GetMetaFilterCount}; // [manual migration needed]
     TMetaElement*  GetFilterMetaElement(int i) {return FEMetaFilter.Items[i];}
     //-------------------------------------------------------------------------
     TElement* ParentFilter;

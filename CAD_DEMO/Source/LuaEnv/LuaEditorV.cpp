@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 
 #include "VCLSCILEXERV.h"
@@ -15,7 +18,6 @@
 
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TFLuaEditor *FLuaEditor;
 //---------------------------------------------------------------------------
@@ -49,7 +51,7 @@ void TFLuaEditor::Apply()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TFLuaEditor::Notify(TSciLexer* SciLexer,SCNotification *notification)
+void  TFLuaEditor::Notify(TSciLexer* SciLexer,SCNotification *notification)
 {
 	switch (notification->nmhdr.code)
     {
@@ -136,7 +138,7 @@ void __fastcall TFLuaEditor::Notify(TSciLexer* SciLexer,SCNotification *notifica
         }
         case SCN_CHARADDED  :
         case SCN_UPDATEUI   :
-            Label1->Caption = AnsiString("Ñòðîêà ")+IntToStr( SciLexer->SendEditor(SCI_LINEFROMPOSITION,SciLexer->SendEditor(SCI_GETCURRENTPOS))+1 );
+            Label1->Caption = AnsiString("Ã‘Ã²Ã°Ã®ÃªÃ  ")+IntToStr( SciLexer->SendEditor(SCI_LINEFROMPOSITION,SciLexer->SendEditor(SCI_GETCURRENTPOS))+1 );
         break;
     }
 }
@@ -153,7 +155,7 @@ bool TFLuaEditor::CheckSave()
     }
     if ( NewStr == Module->CODE.Trim())
         return true;
-    switch(Application->MessageBox( (AnsiString("Ñîõðàíèòü òåêñò â ìîäóëå: ")+Caption+AnsiString("?")).c_str(),"Ïîäòâåðæäåíèå",MB_YESNOCANCEL))
+    switch(Application->MessageBox( (AnsiString("Ã‘Ã®ÃµÃ°Ã Ã­Ã¨Ã²Ã¼ Ã²Ã¥ÃªÃ±Ã² Ã¢ Ã¬Ã®Ã¤Ã³Ã«Ã¥: ")+Caption+AnsiString("?")).c_str(),"ÃÃ®Ã¤Ã²Ã¢Ã¥Ã°Ã¦Ã¤Ã¥Ã­Ã¨Ã¥",MB_YESNOCANCEL))
     {
         case 0:
         case IDCANCEL:
@@ -196,7 +198,7 @@ void TFLuaEditor::SETUP()
     SciLexer->OnNotify = Notify;
 }
 
-void __fastcall TFLuaEditor::FormKeyDown(TObject *Sender, WORD &Key,
+void  TFLuaEditor::FormKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
     if ((AnsiString(GetCommandLine()).UpperCase().Pos("DEBUG")!=0)||(Application->MainForm->Caption=="Debuger"))
@@ -225,7 +227,7 @@ void __fastcall TFLuaEditor::FormKeyDown(TObject *Sender, WORD &Key,
 
 }
 //---------------------------------------------------------------------------
-void __fastcall TFLuaEditor::FormKeyUp(TObject *Sender, WORD &Key,
+void  TFLuaEditor::FormKeyUp(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
     if ((AnsiString(GetCommandLine()).UpperCase().Pos("DEBUG")!=0)||(Application->MainForm->Caption=="Debuger"))

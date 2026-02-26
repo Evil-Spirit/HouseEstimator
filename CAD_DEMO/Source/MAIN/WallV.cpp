@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "WallV.h"
 #include "MDICubeV.h"
@@ -19,7 +22,6 @@
 */
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 //---------------------------TMetaCube-------------------------
 TMyObject* TMetaCube::CreateFunction()
@@ -67,7 +69,7 @@ const AnsiString aVHP = AnsiString("VHP");;
     RegisterNewClass< TArchitectElement, TCube >(this,false,&CreateFunction);
     if (typeid(*_Meta)!=typeid(TMetaCube))
     {
-		Application->MessageBox("Ожидалось MetaCube, получено Unknown. Приложение СТОП.","Error");
+		Application->MessageBox("ГЋГ¦ГЁГ¤Г Г«Г®Г±Гј MetaCube, ГЇГ®Г«ГіГ·ГҐГ­Г® Unknown. ГЏГ°ГЁГ«Г®Г¦ГҐГ­ГЁГҐ Г‘Г’ГЋГЏ.","Error");
         Application->Terminate();
         return;
     }
@@ -132,7 +134,7 @@ void TCube::Changed(void* Sender)
         VHP.Vertex->Items[1]->x = AbsSize.x/2;
         VHP.Vertex->Items[VHP.Vertex->Count-2]->x = -AbsSize.x/2;
         VHP.Vertex->Items[VHP.Vertex->Count-1]->x = -AbsSize.x/2;
-		if (VHP.Vertex->Count==4) //return this (зависимость размера от полигона м.б. по z брать самый маленький)
+		if (VHP.Vertex->Count==4) //return this (Г§Г ГўГЁГ±ГЁГ¬Г®Г±ГІГј Г°Г Г§Г¬ГҐГ°Г  Г®ГІ ГЇГ®Г«ГЁГЈГ®Г­Г  Г¬.ГЎ. ГЇГ® z ГЎГ°Г ГІГј Г±Г Г¬Г»Г© Г¬Г Г«ГҐГ­ГјГЄГЁГ©)
         {
             VHP.Vertex->Items[0]->y = -AbsSize.z/2;
             VHP.Vertex->Items[1]->y = AbsSize.z/2;
@@ -290,7 +292,7 @@ void TCube::ApplyObject(const TIntVec& AbsPoint,TVisRender* Render,TMyObject* Ob
         //-------------------------------------------
 		TIntVec LocPoint;
         LocalFromAbs(AbsPoint,LocPoint);
-        //найти fragment;
+        //Г­Г Г©ГІГЁ fragment;
         int FragIndex = -1;
         int index = -1;
         for (int i=0;i<FragSet.Count;i++)
@@ -433,7 +435,7 @@ void TCube::GetWallEdge(TRouteNode* RN,TIntVec& CP)
 
 void TCube::SynhronizeFragments()
 {
-	//----------------важно для работы алгоритма синхронизации
+	//----------------ГўГ Г¦Г­Г® Г¤Г«Гї Г°Г ГЎГ®ГІГ» Г Г«ГЈГ®Г°ГЁГІГ¬Г  Г±ГЁГ­ГµГ°Г®Г­ГЁГ§Г Г¶ГЁГЁ
     if (!MyMeta || !MyMeta->InWeb)
         return ;
     if (FragSet.Count == 0)
@@ -441,9 +443,9 @@ void TCube::SynhronizeFragments()
         FragSet.Add( new TFragmentSettings() );
         FragSet[0].Parameteres[0].Texture = NULL;
         FragSet[0].Parameteres[0].Material = RenPars[MyTree->ModeIndex].Material;
-//        FragSet[0].Polygons[0].Vertex->Add() //return this задание по умолчанию
+//        FragSet[0].Polygons[0].Vertex->Add() //return this Г§Г Г¤Г Г­ГЁГҐ ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ
     }
-    //----------------важно для работы алгоритма синхронизации
+    //----------------ГўГ Г¦Г­Г® Г¤Г«Гї Г°Г ГЎГ®ГІГ» Г Г«ГЈГ®Г°ГЁГІГ¬Г  Г±ГЁГ­ГµГ°Г®Г­ГЁГ§Г Г¶ГЁГЁ
 	TMTList<TFragmentSettings> FSL;
     FSL.Assign(&FragSet);
     FSL.RecurrentCheck();
@@ -491,11 +493,11 @@ void TCube::SynhronizeFragments()
         SDL[i].Parameteres.Assign(&FSL[MAXCROSSINDEX].Parameteres);
         SDL[i].Parameteres.RecurrentCheck();
 
-		//не можем сделать просто ассигн
-        //потому что первый полигон использует полигон "is read only"
-        //а не копирует список векторов проема
-        //а во время работы с окнами этот список меняется
-        //происходит обращение не в те участки памяти
+		//Г­ГҐ Г¬Г®Г¦ГҐГ¬ Г±Г¤ГҐГ«Г ГІГј ГЇГ°Г®Г±ГІГ® Г Г±Г±ГЁГЈГ­
+        //ГЇГ®ГІГ®Г¬Гі Г·ГІГ® ГЇГҐГ°ГўГ»Г© ГЇГ®Г«ГЁГЈГ®Г­ ГЁГ±ГЇГ®Г«ГјГ§ГіГҐГІ ГЇГ®Г«ГЁГЈГ®Г­ "is read only"
+        //Г  Г­ГҐ ГЄГ®ГЇГЁГ°ГіГҐГІ Г±ГЇГЁГ±Г®ГЄ ГўГҐГЄГІГ®Г°Г®Гў ГЇГ°Г®ГҐГ¬Г 
+        //Г  ГўГ® ГўГ°ГҐГ¬Гї Г°Г ГЎГ®ГІГ» Г± Г®ГЄГ­Г Г¬ГЁ ГЅГІГ®ГІ Г±ГЇГЁГ±Г®ГЄ Г¬ГҐГ­ГїГҐГІГ±Гї
+        //ГЇГ°Г®ГЁГ±ГµГ®Г¤ГЁГІ Г®ГЎГ°Г Г№ГҐГ­ГЁГҐ Г­ГҐ Гў ГІГҐ ГіГ·Г Г±ГІГЄГЁ ГЇГ Г¬ГїГІГЁ
         while (SDL[i].Polygons.Count>FSL[MAXCROSSINDEX].Polygons.Count)
             SDL[i].Polygons.Delete(SDL[i].Polygons.Count-1);
         while (SDL[i].Polygons.Count<FSL[MAXCROSSINDEX].Polygons.Count)
@@ -512,7 +514,7 @@ void TCube::SynhronizeFragments()
 	SDL.NoDelClear();
     ValidateVHP();
     
-    //теперь получение первых полигонов
+    //ГІГҐГЇГҐГ°Гј ГЇГ®Г«ГіГ·ГҐГ­ГЁГҐ ГЇГҐГ°ГўГ»Гµ ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
     for (int i=0;i<FragSet.Count;i++)
     {
         FragSet[i].Polygons[0].Vertex->Clear();
@@ -559,7 +561,7 @@ void TCube::SynhronizeFragments()
                 if (LeftEdge)
                 {
                     FragSet[i].Polygons[0].Vertex->Add(new TIntVec(VHP.Vertex->CycVal(-2)));
-                    //предпоследний
+                    //ГЇГ°ГҐГ¤ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ©
 					//int _index;
                     //CrossXYPolygon(LOCLEFT,_index,*(FragSet[i].Polygons[0].Vertex->Last()));
                     //-------------
@@ -754,7 +756,7 @@ void TCube::ProcessTexturing()
 
 bool TCube::AdvancedCreateView()
 {
-	//----------------важно для работы алгоритма синхронизации
+	//----------------ГўГ Г¦Г­Г® Г¤Г«Гї Г°Г ГЎГ®ГІГ» Г Г«ГЈГ®Г°ГЁГІГ¬Г  Г±ГЁГ­ГµГ°Г®Г­ГЁГ§Г Г¶ГЁГЁ
     if (!MyMeta || !MyMeta->InWeb)
         return false ;
     if (FragSet.Count == 0)
@@ -762,9 +764,9 @@ bool TCube::AdvancedCreateView()
         FragSet.Add( new TFragmentSettings() );
         FragSet[0].Parameteres[0].Texture = NULL;
         FragSet[0].Parameteres[0].Material = RenPars[MyTree->ModeIndex].Material;
-//        FragSet[0].Polygons[0].Vertex->Add() //return this задание по умолчанию 
+//        FragSet[0].Polygons[0].Vertex->Add() //return this Г§Г Г¤Г Г­ГЁГҐ ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ 
     }
-    //----------------важно для работы алгоритма синхронизации
+    //----------------ГўГ Г¦Г­Г® Г¤Г«Гї Г°Г ГЎГ®ГІГ» Г Г«ГЈГ®Г°ГЁГІГ¬Г  Г±ГЁГ­ГµГ°Г®Г­ГЁГ§Г Г¶ГЁГЁ
   TIntVec UseSize(AbsSize);
   if (RenPars[MyTree->ModeIndex].OverSizeMode)
 	UseSize += RenPars[MyTree->ModeIndex].OverSize;
@@ -905,7 +907,7 @@ bool TCube::AdvancedCreateView()
                 VP->AddIndex(VP->Points->Add(-AbsSize.x/2,AbsSize.y/2,LEFT_LINK_HEIGHT),VP->PrimitiveCount-1);
 			}
         }
-    //проемы
+    //ГЇГ°Г®ГҐГ¬Г»
     for (int i=0;i<LinkHoles.Count;i++)
     {
         CreateOneHoleView(VP,LinkHoles[i].Hole->Vertex,AbsSize.y);

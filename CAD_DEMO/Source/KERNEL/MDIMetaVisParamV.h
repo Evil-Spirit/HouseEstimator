@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMetaVisParamVH
 #define MDIMetaVisParamVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaNodeV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMetaVisParam;
 class COMMONAL_API TMDIMetaVisParam : public TMDIMetaNode
@@ -27,7 +26,7 @@ public:		// User declarations
     virtual void MNApply();
     virtual bool MNChecked();
     virtual void SETUP();
-    __fastcall TMDIMetaVisParam(TComponent* Owner,TMetaVisParam *N);
+     TMDIMetaVisParam(TComponent* Owner,TMetaVisParam *N);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIMetaVisParam *MDIMetaVisParam;

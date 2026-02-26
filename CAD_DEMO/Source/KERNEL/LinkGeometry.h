@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef LinkGeometryH
@@ -111,9 +115,9 @@ bool SizeConnect(   TElement *Target,
             CanContinue = true;
     if (!CanContinue)
         return false;
-    //пока только для стен
-    //вызов данной функции только для стен
-    //должно быть обеспечено чтобы точки находились на оси стены
+    //ГЇГ®ГЄГ  ГІГ®Г«ГјГЄГ® Г¤Г«Гї Г±ГІГҐГ­
+    //ГўГ»Г§Г®Гў Г¤Г Г­Г­Г®Г© ГґГіГ­ГЄГ¶ГЁГЁ ГІГ®Г«ГјГЄГ® Г¤Г«Гї Г±ГІГҐГ­
+    //Г¤Г®Г«Г¦Г­Г® ГЎГ»ГІГј Г®ГЎГҐГ±ГЇГҐГ·ГҐГ­Г® Г·ГІГ®ГЎГ» ГІГ®Г·ГЄГЁ Г­Г ГµГ®Г¤ГЁГ«ГЁГ±Гј Г­Г  Г®Г±ГЁ Г±ГІГҐГ­Г»
     _ANGLEEPS = Source->MyMeta->EPS.ANGLEEPS;
     _SIZEEPS = (Source->MyMeta->EPS.SIZEEPS);
     //local points
@@ -126,15 +130,15 @@ bool SizeConnect(   TElement *Target,
     SGL.DL->Link->SourceScope(Target,Source,SC2);
     //-------------------------------------------------------------
 
-    //грани связок таргета
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ ГІГ Г°ГЈГҐГІГ 
     Target->AbsFromLocal(SC1.LOW,PTarget[0]);
     Target->AbsFromLocal(SC1.HI,PTarget[1]);
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     Source->AbsFromLocal(SC2.LOW,PSource[0]);
     Source->AbsFromLocal(SC2.HI,PSource[1]);
 
-    //два края стены
+    //Г¤ГўГ  ГЄГ°Г Гї Г±ГІГҐГ­Г»
     DSource[0] = MINUSINTVEC*Source->AbsSize/VEC222;
     DSource[0].y=0;
     Source->AbsFromLocal(DSource[0],DSource[0]);
@@ -149,9 +153,9 @@ bool SizeConnect(   TElement *Target,
 //    PSource[1] = DSource[1];
     //----------
 
-    //выберем край стены
+    //ГўГ»ГЎГҐГ°ГҐГ¬ ГЄГ°Г Г© Г±ГІГҐГ­Г»
     int SideInd=-1;
-    //расстояния до targeta
+    //Г°Г Г±Г±ГІГ®ГїГ­ГЁГї Г¤Г® targeta
     MBTi Measures[2];
     for (int i=0;i<2;i++)
     {
@@ -166,16 +170,16 @@ bool SizeConnect(   TElement *Target,
             MinMeasure=Measures[i];
             SideInd = i;
         }
-//    SideInd = (SideInd>=2);// 1 или 0 край стены
+//    SideInd = (SideInd>=2);// 1 ГЁГ«ГЁ 0 ГЄГ°Г Г© Г±ГІГҐГ­Г»
 
-    //рассчитаем теперь дирекшн
-    //и вокруг чего вращать будем
+    //Г°Г Г±Г±Г·ГЁГІГ ГҐГ¬ ГІГҐГЇГҐГ°Гј Г¤ГЁГ°ГҐГЄГёГ­
+    //ГЁ ГўГ®ГЄГ°ГіГЈ Г·ГҐГЈГ® ГўГ°Г Г№Г ГІГј ГЎГіГ¤ГҐГ¬
     MBTi Mes0 = Measure(PSource[SideInd]-DSource[0]);
     MBTi Mes1 = Measure(PSource[SideInd]-DSource[1]);
     if (Mes0==Mes1)
     {
-        //Точка связки находится одинаково близко
-        //от обоих краев РЕШЕНИЯ НЕТ
+        //Г’Г®Г·ГЄГ  Г±ГўГїГ§ГЄГЁ Г­Г ГµГ®Г¤ГЁГІГ±Гї Г®Г¤ГЁГ­Г ГЄГ®ГўГ® ГЎГ«ГЁГ§ГЄГ®
+        //Г®ГІ Г®ГЎГ®ГЁГµ ГЄГ°Г ГҐГў ГђГ…ГГ…ГЌГ€Гџ ГЌГ…Г’
         return false;
     }
     if (Mes0<Mes1)
@@ -189,14 +193,14 @@ bool SizeConnect(   TElement *Target,
         SGL.RotateCenter = DSource[0];
     }
 
-    //теперь сдвиг так чтобы центр вращения оказался в нуле
-    //запомним сдвиг
+    //ГІГҐГЇГҐГ°Гј Г±Г¤ГўГЁГЈ ГІГ ГЄ Г·ГІГ®ГЎГ» Г¶ГҐГ­ГІГ° ГўГ°Г Г№ГҐГ­ГЁГї Г®ГЄГ Г§Г Г«Г±Гї Гў Г­ГіГ«ГҐ
+    //Г§Г ГЇГ®Г¬Г­ГЁГ¬ Г±Г¤ГўГЁГЈ
     PTarget[0] = PTarget[0] - SGL.RotateCenter;
     PTarget[1] = PTarget[1] - SGL.RotateCenter;
     PSource[SideInd] = PSource[SideInd] - SGL.RotateCenter;
     PSource[1-SideInd] = PSource[1-SideInd] - SGL.RotateCenter;
 
-    //рассчитаем углы всех трех точек относительно нуля
+    //Г°Г Г±Г±Г·ГЁГІГ ГҐГ¬ ГіГЈГ«Г» ГўГ±ГҐГµ ГІГ°ГҐГµ ГІГ®Г·ГҐГЄ Г®ГІГ­Г®Г±ГЁГІГҐГ«ГјГ­Г® Г­ГіГ«Гї
     if ( PTarget[0].x==0&&PTarget[0].y==0 || PTarget[1].x==0&&PTarget[1].y==0 )
     {
         SGL.Direction = ZEROINTVEC;
@@ -211,7 +215,7 @@ bool SizeConnect(   TElement *Target,
         Application->Terminate();
         return false;
     }
-    //проверка на близость к краям
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЎГ«ГЁГ§Г®Г±ГІГј ГЄ ГЄГ°Г ГїГ¬
     STEPS[0][0] = PTarget[0] - PSource[SideInd];
     STEPS[0][1] = PTarget[1] - PSource[SideInd];
     int MinMeasureIndex = Measure(STEPS[0][1]) < Measure(STEPS[0][0]);
@@ -219,7 +223,7 @@ bool SizeConnect(   TElement *Target,
     if ( !(ABSINTVEC(STEPS[0][MinMeasureIndex]) <= _SIZEEPS) )
         MinMeasureIndex = -1;
 
-    //проверка на угол к краю
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГіГЈГ®Г« ГЄ ГЄГ°Г Гѕ
     bool AngleOK=true;
     if (MinMeasureIndex!=-1)
     {
@@ -249,14 +253,14 @@ bool SizeConnect(   TElement *Target,
         MBTi AngleStepZ = (MaxScope-PointAngle)*(MaxScope<PointAngle)+
             (MinScope-PointAngle)*(MinScope>PointAngle);
         SGL.R_Common = TIntVec(0,0,AngleStepZ);
-        //проверка на удовлетворение углу
+        //ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГіГ¤Г®ГўГ«ГҐГІГўГ®Г°ГҐГ­ГЁГҐ ГіГЈГ«Гі
         for (int i=0;i<3;i++)
             if ( ( fabs(SGL.R_Common.a[i]) > _ANGLEEPS.a[i] )
             && ( (360-fabs(SGL.R_Common.a[i]) ) > _ANGLEEPS.a[i] ) )
                 return(false);
     }
 
-    //шаг угла необходимый для совершения связки
+    //ГёГ ГЈ ГіГЈГ«Г  Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»Г© Г¤Г«Гї Г±Г®ГўГҐГ°ГёГҐГ­ГЁГї Г±ГўГїГ§ГЄГЁ
 
     TIntVec OldCenter = PSource[SideInd]/VEC222;
     RSource = RotateAround(PSource[SideInd],SGL.R_Common,ZEROINTVEC);
@@ -293,7 +297,7 @@ bool SizeConnect(   TElement *Target,
     else
         Sign=1;
     SGL.CrossPoint = SGL.CrossPoint + SGL.RotateCenter;
-    //повернуть SizeChange
+    //ГЇГ®ГўГҐГ°Г­ГіГІГј SizeChange
     double DeltaX = SGL.TS_Common.x;
     double DeltaY = SGL.TS_Common.y;
     MBTi SizeX = (MBTi)sqrtDC( DeltaX*DeltaX+DeltaY*DeltaY );
@@ -356,16 +360,16 @@ bool ElementsCanLinkWall(   TElement *Target,
     //-------------------------------------------------------------
 
 
-    //грани связок таргета
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ ГІГ Г°ГЈГҐГІГ 
     PTarget[0] = RotateAround(SC1.LOW+Target->AbsPos,Target->AbsAngle,Target->AbsPos);
     PTarget[1] = RotateAround(SC1.HI+Target->AbsPos,Target->AbsAngle,Target->AbsPos);
 
-    //грани связок соча
+    //ГЈГ°Г Г­ГЁ Г±ГўГїГ§Г®ГЄ Г±Г®Г·Г 
     PSource[0] = RotateAround(SC2.LOW+Source->AbsPos,Source->AbsAngle,Source->AbsPos);
     PSource[1] = RotateAround(SC2.HI+Source->AbsPos,Source->AbsAngle,Source->AbsPos);
 
 
-    //проверка краев
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  ГЄГ°Г ГҐГў
     for (int i=0;i<2;i++)
         for (int j=0;j<2;j++)
         STEPS[i][j] = ABSINTVEC(PTarget[i] - PSource[j]);
@@ -388,9 +392,9 @@ bool ElementsCanLinkWall(   TElement *Target,
         return true;
     }
 
-    //проверка краев 2
-    //близость этих точек для таргета определяются
-    //в Un_Opt то же самое но наоборот
+    //ГЇГ°Г®ГўГҐГ°ГЄГ  ГЄГ°Г ГҐГў 2
+    //ГЎГ«ГЁГ§Г®Г±ГІГј ГЅГІГЁГµ ГІГ®Г·ГҐГЄ Г¤Г«Гї ГІГ Г°ГЈГҐГІГ  Г®ГЇГ°ГҐГ¤ГҐГ«ГїГѕГІГ±Гї
+    //Гў Un_Opt ГІГ® Г¦ГҐ Г±Г Г¬Г®ГҐ Г­Г® Г­Г Г®ГЎГ®Г°Г®ГІ
     SGL.CrossPoint.z = PSource[0].z;
     SC1.Move(Target->AbsPos);
     for (int i=0;i<2;i++)
@@ -402,14 +406,14 @@ bool ElementsCanLinkWall(   TElement *Target,
     if (ABSINTVEC(STEPS[0][j0])<=_EPS)
     {
         SGL.TS_Common = RotateAround(STEPS[0][j0],Target->AbsAngle,ZEROINTVEC);
-        //точка связки
+        //ГІГ®Г·ГЄГ  Г±ГўГїГ§ГЄГЁ
         SGL.CrossPoint = PSource[j0] + SGL.TS_Common;
         Source->UserChangePosition( ZEROINTVEC,
                                     MINUSINTVEC*SGL.R_Common);
         return true;
     }
 
-    //общее соединение
+    //Г®ГЎГ№ГҐГҐ Г±Г®ГҐГ¤ГЁГ­ГҐГ­ГЁГҐ
 
     switch (IsCutsCrossedExactly(PSource[0],PSource[1],PTarget[0],PTarget[1],SGL.CrossPoint))
     {

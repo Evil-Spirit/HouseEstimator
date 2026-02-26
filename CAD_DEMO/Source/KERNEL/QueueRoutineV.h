@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef QueueRoutineVH
@@ -5,7 +9,7 @@
 //---------------------------------------------------------------------------
 
 template <class T>
-class /*PACKAGE*/ TPsevdoPointer {
+class /**/ TPsevdoPointer {
 private:
     void SetAdr(T* newAdr);
 public:
@@ -14,7 +18,7 @@ public:
     TPsevdoPointer();
     TPsevdoPointer(T *adr);
     virtual ~TPsevdoPointer(){};
-    __property T* ADR = {read = FAdr,write = SetAdr};
+    // __property T* ADR {read=FAdr, write=SetAdr}; // [manual migration needed]
 };
 
 template <class T>
@@ -67,7 +71,7 @@ public:
     virtual void Remove(TElement* Element);
     virtual void Delete(int i);
     virtual void Clear();
-    __property int Count = {read = GetCount};
+    // __property int Count {read=GetCount}; // [manual migration needed]
     TElement* GetElement(int i);
     bool Enabled;
     void Process();
@@ -81,7 +85,7 @@ public:
     TMTList<TElementQueue> Queues;
     TElementQueueCollection(){};
     ~TElementQueueCollection(){};
-    __property bool Enabled = {read = FEnabled,write = SetEnabled};
+    // __property bool Enabled {read=FEnabled, write=SetEnabled}; // [manual migration needed]
     void Remove(TElement* Element);
     void Changed(TElement* Element);
 };

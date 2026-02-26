@@ -1,21 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
-USEFORM("about.cpp", AboutBox);
-USEFORM("ExcelExchangeV.cpp", ExcelExchange);
-USEFORM("LOGOV.cpp", Logo);
-USEFORM("MDIConfigV.cpp", MDIConfig);
-USEFORM("MDICountReportV.cpp", MDICountReport);
-USEFORM("MDIMetaUIV.cpp", MDIMetaUI);
-USEFORM("MDINomenclatureV.cpp", MDINomenclature);
-USEFORM("MDIVisibleSelectFloorV.cpp", MDIVisibleSelectFloor);
-USEFORM("..\KERNEL\MDITriggerBlockEditV.cpp", MDITriggerBlockEdit);
-USEFORM("ClassExplorerV.cpp", ClassExplorer);
-USEFORM("Main.cpp", Config);
-USEFORM("RoofEditV.cpp", RoofForm);
-USEFORM("LoginForm.cpp", frmLogin);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

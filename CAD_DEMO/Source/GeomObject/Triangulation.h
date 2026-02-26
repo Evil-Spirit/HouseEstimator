@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef TriangulationH
@@ -44,9 +48,9 @@ public:
 //    TMyObject* MyObjectParent;
   TDVec (){};
   virtual ~TDVec(){};
-/*    __property MBTi x = {read = fx,write = fx};
-    __property MBTi y = {read = fy,write = fy};
-    __property MBTi z = {read = fz,write = fz}; */
+// __property MBTi x {read=fx, write=fx}; // [manual migration needed]
+    // __property MBTi y {read=fy, write=fy}; // [manual migration needed]
+    // __property MBTi z {read=fz, write=fz}; // [manual migration needed]
   TDVec (float _x, float _y) { x = _x; y = _y; };
 
   TDVec (const TIntVec &v) { x = v.x; y = v.y; z = v.z; };

@@ -1,20 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef IntExplorerVH
 #define IntExplorerVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ToolWin.hpp>
-#include <ImgList.hpp>
-#include <Menus.hpp>
-#include <typeinfo.h>
-#include <ExtCtrls.hpp>
-#include <Buttons.hpp>
-#include <Dialogs.hpp>
+#include "compat/vcl_qt.h"
 
 #include "FloatingV.h"
 
@@ -115,16 +108,16 @@ __published:	// IDE-managed Components
   TImageList *ImageList1;
   TToolBar *MinPanel;
   TToolButton *btnMinimize;
-    void __fastcall tbObjectsClick(TObject *Sender);
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall tbUpClick(TObject *Sender);
-    void __fastcall LVMouseMove(TObject *Sender, TShiftState Shift, int X,
+    void  tbObjectsClick(TObject *Sender);
+    void  FormDestroy(TObject *Sender);
+    void  tbUpClick(TObject *Sender);
+    void  LVMouseMove(TObject *Sender, TShiftState Shift, int X,
           int Y);
-    void __fastcall LVMouseDown(TObject *Sender, TMouseButton Button,
+    void  LVMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall MinimizeClick(TObject *Sender);
-    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-    void __fastcall ToolClick(TObject *Sender);
+    void  MinimizeClick(TObject *Sender);
+    void  FormClose(TObject *Sender, TCloseAction &Action);
+    void  ToolClick(TObject *Sender);
 private:	// User declarations
     TMDelTList<TLVParam> LVS;
     void UpdateView(bool CanStart);
@@ -145,7 +138,7 @@ public:
     TToolControlList& ControlList;
 //    TMyControls FTools;
     virtual void OnMyResize();
-    __fastcall TIntExplorer(TComponent* Owner);
+     TIntExplorer(TComponent* Owner);
     __property TMetaCatalogUnit *MetaCatalogUnit = {read = FMetaCatalogUnit,write = SetMetaCatalogUnit};
     void AUIChanged();
     //------------------------------------------------------------

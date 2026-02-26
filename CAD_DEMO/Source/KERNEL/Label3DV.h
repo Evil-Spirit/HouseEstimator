@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef Label3DV2H
@@ -36,7 +40,7 @@ public:
     __property TMetaLabel3D *MetaLabel3D = {read = GetMetaLabel3D};
     virtual void StandartCreateView();
     virtual TVisRender *MyRender(){return(Label_Node);};
-    __property AnsiString Text = {read = Description,write = SetText};
+    // __property AnsiString Text {read=Description, write=SetText}; // [manual migration needed]
     virtual void UserChangePosition(const TIntVec& Move,const TIntVec& Rotate);
     bool Rotateble;
 //    virtual void StandartRender2D(TDrawView *DrawView);
@@ -63,7 +67,7 @@ public:
     __property TMetaLabel3D *MetaLabel3D = {read = GetMetaLabel3D};
     virtual void StandartCreateView();
     virtual TVisRender *MyRender(){return(Label);};
-    __property AnsiString Text = {read = Description,write = SetText};
+    // __property AnsiString Text {read=Description, write=SetText}; // [manual migration needed]
     bool Rotateble;
 };
 extern COMMONAL_API TClassNode* TLabel3D::StaticType;

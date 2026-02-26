@@ -1,15 +1,18 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
+#ifdef _WIN32
 #include <windows.h>
+#endif
 #include "MathV.h"
-#pragma hdrstop
 
 #include "math.h"
-#include "Math.hpp"
 #include "stdlib.h"
 
-#pragma package(smart_init)
 
 /////////////
 // Vectors //
@@ -32,7 +35,7 @@ TIntVec PointOnCut(const TIntVec &src, const TIntVec &dst, MBTi t)
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -47,7 +50,7 @@ bool VectorsParallel(const TIntVec &N1, const TIntVec &N2, MBTi EPS)
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -60,7 +63,7 @@ bool VectorsPerpendicular(const TIntVec &N1, const TIntVec &N2, MBTi EPS)
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -99,7 +102,7 @@ double SqrtDomainCheck(double num, MBTi EPS)
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
 C:\CAD_DEMO\Source\Math\MathV.cpp  !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -152,14 +155,14 @@ TIntVec SIGNVEC(const TIntVec &Vec)
 //////////////
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! XX.03.2005!!
   !!!!!!!!!!!!!!!*/
 int Classify(const TIntVec& P, const TIntVec& A, const TIntVec& B, MBTi EPS)
 {
 	TIntVec l = (B-A);
-    l.z = 0;//поддержка на случай точек не на плоскости
+    l.z = 0;//ГЇГ®Г¤Г¤ГҐГ°Г¦ГЄГ  Г­Г  Г±Г«ГіГ·Г Г© ГІГ®Г·ГҐГЄ Г­ГҐ Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
 	MBTi ro = DistancePointPlane(P, VectorP2d(l), A);
 	if (ro<-EPS)
 		return etLEFT;
@@ -183,7 +186,7 @@ int Classify(const TIntVec& P, const TIntVec& A, const TIntVec& B, MBTi EPS)
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! XX.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -216,11 +219,11 @@ int EdgeType(const TIntVec& A, const TIntVec& V0,const TIntVec& V1,MBTi USEEPS)
 }
 
 ///////////////////////////
-// Расстояния (Distance) //
+// ГђГ Г±Г±ГІГ®ГїГ­ГЁГї (Distance) //
 ///////////////////////////
 //OK
 /*
-TODO : нормализовать нормаль
+TODO : Г­Г®Г°Г¬Г Г«ГЁГ§Г®ГўГ ГІГј Г­Г®Г°Г¬Г Г«Гј
 
 */
 
@@ -231,7 +234,7 @@ MBTi DistancePointPlane(const TIntVec &P, const TIntVec &N, const TIntVec &O)
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -243,7 +246,7 @@ MBTi DistancePointLine(const TIntVec &P, const TIntVec &A, const TIntVec &B)
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -254,7 +257,7 @@ MBTi DistancePointLine(const TIntVec &P, const TIntVec &A, const TIntVec &B)
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 26.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -272,7 +275,7 @@ MBTi DistancePointCut(const TIntVec &P, const TIntVec &A, const TIntVec &B)
 	if ( res == comNEGATIVE)
 		return (P-B).Length();
 		
-//	throw EMyException("DistancePointCut - критическая ошибка!");
+//	throw EMyException("DistancePointCut - ГЄГ°ГЁГІГЁГ·ГҐГ±ГЄГ Гї Г®ГёГЁГЎГЄГ !");
 	return 0;
 }
 
@@ -295,11 +298,11 @@ bool DistanceLineLine(const TIntVec &A1, const TIntVec &B1, const TIntVec &A2, c
 }
 
 ///////////////////
-// Углы (Angle)	 //
+// Г“ГЈГ«Г» (Angle)	 //
 ///////////////////
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!*/
 TIntVec GetToPlaneTransformation(const TIntVec &n)
 {
@@ -312,7 +315,7 @@ TIntVec GetToPlaneTransformation(const TIntVec &n)
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!*/
 TIntVec TransformTo(const TIntVec &v, const TIntVec &ang)
 {
@@ -323,7 +326,7 @@ TIntVec TransformTo(const TIntVec &v, const TIntVec &ang)
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!*/
 TIntVec TransformFrom(const TIntVec &v, const TIntVec &ang)
 {
@@ -335,7 +338,7 @@ TIntVec TransformFrom(const TIntVec &v, const TIntVec &ang)
 
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!*/
 MBTi AngleRad(  const TIntVec& Src0,
 				const TIntVec& Dst0,
@@ -348,7 +351,7 @@ MBTi AngleRad(  const TIntVec& Src0,
 
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!*/
 MBTi AngleRad(const TIntVec& X1,const TIntVec& X2,const TIntVec& X3, MBTi USEEPS)
 {
@@ -365,11 +368,11 @@ MBTi AngleRad(const TIntVec& X1,const TIntVec& X2,const TIntVec& X3, MBTi USEEPS
 
 	switch (Classify(X3, X1, X2, USEEPS))
 	{
-		// угол меньше 180
+		// ГіГЈГ®Г« Г¬ГҐГ­ГјГёГҐ 180
 		case etLEFT:    ostry = true;   break;
-		// угол больше 180
+		// ГіГЈГ®Г« ГЎГ®Г«ГјГёГҐ 180
 		case etRIGHT:   ostry = false;  break;
-		//развернутый
+		//Г°Г Г§ГўГҐГ°Г­ГіГІГ»Г©
 		case etBEYOND:  return M_PI;
 		default:        return 0;
 	}
@@ -394,7 +397,7 @@ MBTi AngleRad(const TIntVec& X1,const TIntVec& X2,const TIntVec& X3, MBTi USEEPS
 //  X1./----------.X3
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!*/
 MBTi AngleRadOX(const TIntVec& X1,const TIntVec& X2, MBTi USEEPS)
 {
@@ -415,11 +418,11 @@ TIntVec RotateAround(const TIntVec& Point,const TIntVec& Angle,const TIntVec& Ce
 		return(Point);
 	for (int i=0;i<3;i++)
 	{
-		if (Angle.a[(i+2) % 3] == 0)
+		if (Angle[(i+2) % 3] == 0)
 			continue;
-		MBTi x = Decart.a[i];
-		MBTi y = Decart.a[(i+1) % 3];
-		MBTi _angle = (Angle.a[(i+2) % 3]*M_PI)/180;
+		MBTi x = Decart[i];
+		MBTi y = Decart[(i+1) % 3];
+		MBTi _angle = (Angle[(i+2) % 3]*M_PI)/180;
 		if (x!=0||y!=0)
 		{
 			if (_angle!=FAngle[i])
@@ -427,15 +430,15 @@ TIntVec RotateAround(const TIntVec& Point,const TIntVec& Angle,const TIntVec& Ce
 				SinCos(_angle,SIN[i],COS[i]);
 				FAngle[i] = _angle;
 			}
-			Decart.a[i]             = x*COS[i] - y*SIN[i];
-			Decart.a[(i+1) % 3]     = x*SIN[i] + y*COS[i];
+			Decart[i]             = x*COS[i] - y*SIN[i];
+			Decart[(i+1) % 3]     = x*SIN[i] + y*COS[i];
 		}
 	}
 	return(Decart+Center);
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 26.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -445,7 +448,7 @@ bool LineConsistsPoint(const TIntVec &P, const TIntVec &A, const TIntVec &B, MBT
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 26.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -455,7 +458,7 @@ bool LineConsistsPoint2d(const TIntVec &P, const TIntVec &A, const TIntVec &B, M
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 26.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -467,7 +470,7 @@ bool CutConsistsPoint2d(const TIntVec &P, const TIntVec &A, const TIntVec &B, MB
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 26.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -487,7 +490,7 @@ bool CutConsistsPoint(const TIntVec &P, const TIntVec &A, const TIntVec &B, MBTi
 /*************************************************************************************************/
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 26.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -505,22 +508,22 @@ bool PlanePlaneCross(	const TIntVec &N1, const TIntVec &O1,
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
-int PlaneSegmentCross(	const	TIntVec& N,	//нормаль
-						const	TIntVec& A,	//точка на плоскости
+int PlaneSegmentCross(	const	TIntVec& N,	//Г­Г®Г°Г¬Г Г«Гј
+						const	TIntVec& A,	//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
 
-						const	TIntVec& X,	//прямая точка 1
-						const	TIntVec& Y,	//прямая точка 2
+						const	TIntVec& X,	//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+						const	TIntVec& Y,	//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
 
-						bool	xFix,		//попадание начала
-						bool	yFix,		//попаданеие конца
+						bool	xFix,		//ГЇГ®ГЇГ Г¤Г Г­ГЁГҐ Г­Г Г·Г Г«Г 
+						bool	yFix,		//ГЇГ®ГЇГ Г¤Г Г­ГҐГЁГҐ ГЄГ®Г­Г¶Г 
 
-						TIntVec& O, 		//точка пересечения
+						TIntVec& O, 		//ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 						
-						MBTi USEEPS)    	//мера параллельности
+						MBTi USEEPS)    	//Г¬ГҐГ°Г  ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ
 {
 	if (VectorsPerpendicular(N, Y-X, USEEPS))
 		return comNONCROSS;
@@ -552,13 +555,13 @@ int PlaneSegmentCross(	const	TIntVec& N,	//нормаль
 		}
 
 	TIntVec V = A - X ;
-	// расстояние до плоскости по нормали
+	// Г°Г Г±Г±ГІГ®ГїГ­ГЁГҐ Г¤Г® ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ
 	MBTi d = ScalarP ( N, V );
 	
 	TIntVec W = Y - X;
 
     //Drive
-	// приближение к плоскости по нормали при прохождении отрезка
+	// ГЇГ°ГЁГЎГ«ГЁГ¦ГҐГ­ГЁГҐ ГЄ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ ГЇГ°ГЁ ГЇГ°Г®ГµГ®Г¦Г¤ГҐГ­ГЁГЁ Г®ГІГ°ГҐГ§ГЄГ 
 	if (!VectorsPerpendicular(N, W, USEEPS))
 	{
 		MBTi e = ScalarP ( N, W );
@@ -570,10 +573,10 @@ int PlaneSegmentCross(	const	TIntVec& N,	//нормаль
     //Drive
 
     /*/Old */
-	// приближение к плоскости по нормали при прохождении отрезка
+	// ГЇГ°ГЁГЎГ«ГЁГ¦ГҐГ­ГЁГҐ ГЄ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ ГЇГ°ГЁ ГЇГ°Г®ГµГ®Г¦Г¤ГҐГ­ГЁГЁ Г®ГІГ°ГҐГ§ГЄГ 
 	MBTi e = ScalarP ( N, W );
 	
-	/*TODO: Проверить деление на ноль*/
+	/*TODO: ГЏГ°Г®ГўГҐГ°ГЁГІГј Г¤ГҐГ«ГҐГ­ГЁГҐ Г­Г  Г­Г®Г«Гј*/
 	
 	O = X + W * (d/e);
 	return comCROSS;
@@ -581,18 +584,18 @@ int PlaneSegmentCross(	const	TIntVec& N,	//нормаль
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
-int  PlaneCutCrossClass(	const TIntVec& N,//точка на плоскости
-							const TIntVec& A,//нормаль
-							const TIntVec& X,//прямая точка 1
-							const TIntVec& Y,//прямая точка 2
-							TIntVec& O, //точка пересечения
-							MBTi USE_PEPS)    //мера параллельности
+int  PlaneCutCrossClass(	const TIntVec& N,//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+							const TIntVec& A,//Г­Г®Г°Г¬Г Г«Гј
+							const TIntVec& X,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+							const TIntVec& Y,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
+							TIntVec& O, //ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
+							MBTi USE_PEPS)    //Г¬ГҐГ°Г  ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ
 {
-	// определить факт пересечения отрезка и плоскости.
+	// Г®ГЇГ°ГҐГ¤ГҐГ«ГЁГІГј ГґГ ГЄГІ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї Г®ГІГ°ГҐГ§ГЄГ  ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ.
 
 	MBTi d1 = DistancePointPlane(X, N ,A);
 	MBTi d2 = DistancePointPlane(Y, N ,A);
@@ -615,12 +618,12 @@ int  PlaneCutCrossClass(	const TIntVec& N,//точка на плоскости
 		}
 	
 	TIntVec V = A - X ;
-	// расстояние до плоскости по нормали
+	// Г°Г Г±Г±ГІГ®ГїГ­ГЁГҐ Г¤Г® ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ
 
 	MBTi d = ScalarP ( N, V );
 	TIntVec W = Y - X;
 
-	// приближение к плоскости по нормали при прохождении отрезка
+	// ГЇГ°ГЁГЎГ«ГЁГ¦ГҐГ­ГЁГҐ ГЄ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ ГЇГ°ГЁ ГЇГ°Г®ГµГ®Г¦Г¤ГҐГ­ГЁГЁ Г®ГІГ°ГҐГ§ГЄГ 
 	if (!VectorsPerpendicular(N, W, USE_PEPS))
 	{
 		MBTi e = ScalarP ( N, W );
@@ -637,43 +640,43 @@ int  PlaneCutCrossClass(	const TIntVec& N,//точка на плоскости
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
-int PlaneLineCross(	const	TIntVec& N,	//нормаль
-					const	TIntVec& A,	//точка на плоскости
+int PlaneLineCross(	const	TIntVec& N,	//Г­Г®Г°Г¬Г Г«Гј
+					const	TIntVec& A,	//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
 
-					const	TIntVec& X,	//прямая точка 1
-					const	TIntVec& Y,	//прямая точка 2
-					TIntVec& O, 		//точка пересечения
+					const	TIntVec& X,	//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+					const	TIntVec& Y,	//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
+					TIntVec& O, 		//ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 						
-					MBTi USEEPS)    	//мера параллельности
+					MBTi USEEPS)    	//Г¬ГҐГ°Г  ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ
 
 {
 	return PlaneSegmentCross(N, A, X, Y, false, false, O, USEEPS);
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
-int PlaneCutCross(	const	TIntVec& N,	//нормаль
-					const	TIntVec& A,	//точка на плоскости
+int PlaneCutCross(	const	TIntVec& N,	//Г­Г®Г°Г¬Г Г«Гј
+					const	TIntVec& A,	//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
 
-					const	TIntVec& X,	//прямая точка 1
-					const	TIntVec& Y,	//прямая точка 2
-					TIntVec& O, 		//точка пересечения
+					const	TIntVec& X,	//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+					const	TIntVec& Y,	//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
+					TIntVec& O, 		//ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 						
-					MBTi USEEPS)    	//мера параллельности
+					MBTi USEEPS)    	//Г¬ГҐГ°Г  ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ
 
 {
 	return PlaneSegmentCross(N, A, X, Y, true, true, O, USEEPS);
 }
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -726,7 +729,7 @@ int CutCutCross2d(const TIntVec &A1, const TIntVec &B1, const TIntVec &A2, const
 
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -809,7 +812,7 @@ int SegmentSegmentCross2d(
 
 
 /*!!!!!!!!!!!!!!!
-  !! Проверено !!
+  !! ГЏГ°Г®ГўГҐГ°ГҐГ­Г® !!
   !!!!!!!!!!!!!!!
   !! 28.03.2005!!
   !!!!!!!!!!!!!!!*/
@@ -851,8 +854,8 @@ bool CutOXCross2d(const TIntVec &p1, const TIntVec &p2, TIntVec &itr, MBTi EPS)
 /**********/
 /**********/
 
-bool PlaneCrossPoint(   const TIntVec& A,//точка на плоскости
-						const TIntVec& N,//нормаль
+bool PlaneCrossPoint(   const TIntVec& A,//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+						const TIntVec& N,//Г­Г®Г°Г¬Г Г«Гј
 						const TIntVec& X,
 						const TIntVec& Y,
 						TIntVec& O)
@@ -918,7 +921,7 @@ bool Cross_Length(MBTi P0,MBTi P1,MBTi S0,MBTi S1,MBTi& EDGE1,MBTi& EDGE2,MBTi E
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-//для линий
+//Г¤Г«Гї Г«ГЁГ­ГЁГ©
 
 int IsLinesCrossedExactly(const TIntVec& _P00,const TIntVec& _P01,const TIntVec& _P10,const TIntVec& _P11, TIntVec & CrossPoint)
 {
@@ -944,14 +947,14 @@ int IsLinesCrossedExactly(const TIntVec& _P00,const TIntVec& _P01,const TIntVec&
 		return(lcCOMMONPOINT);
 	}
 
-	MBTi dx1 = _P01.x-_P00.x, dy1 = _P01.y-_P00.y; // Длина проекций первой линии на ось x и y
-	MBTi dx2 = _P11.x-_P10.x, dy2 = _P11.y-_P10.y; // Длина проекций второй линии на ось x и y
+	MBTi dx1 = _P01.x-_P00.x, dy1 = _P01.y-_P00.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГЇГҐГ°ГўГ®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
+	MBTi dx2 = _P11.x-_P10.x, dy2 = _P11.y-_P10.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГўГІГ®Г°Г®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
 	MBTi dxx = _P00.x-_P10.x, dyy = _P00.y-_P10.y;
 	MBTi div, mul;
 
 	if (  fabs(div = (dy2*dx1-dx2*dy1)) < _MBTi_eps_ )
 	{
-		return (lcPARALLEL); // Линии параллельны...
+		return (lcPARALLEL); // Г‹ГЁГ­ГЁГЁ ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г»...
 	}
 
 	mul = dx2*dyy-dy2*dxx;
@@ -963,7 +966,7 @@ int IsLinesCrossedExactly(const TIntVec& _P00,const TIntVec& _P01,const TIntVec&
 	return lcCROSSING;*/
 }
 
-//для отрезков (точно)
+//Г¤Г«Гї Г®ГІГ°ГҐГ§ГЄГ®Гў (ГІГ®Г·Г­Г®)
 int IsCutsCrossedExactly(const TIntVec& _P00,const TIntVec& _P01,const TIntVec& _P10,const TIntVec& _P11, TIntVec & CrossPoint)
 {
 	int result = SegmentSegmentCross2d(_P00, _P01, _P10, _P11, true, true, true, true, CrossPoint, EXACT_EPSILON);
@@ -1005,22 +1008,22 @@ int IsCutsCrossedExactly(const TIntVec& _P00,const TIntVec& _P01,const TIntVec& 
 
     for (int i=0;i<2;i++)
     {
-		max0.a[i] = MAX(P00.a[i],P01.a[i]);
-        max1.a[i] = MAX(P10.a[i],P11.a[i]);
-        min0.a[i] = MIN(P00.a[i],P01.a[i]);
-        min1.a[i] = MIN(P10.a[i],P11.a[i]);
+		max0[i] = MAX(P00[i],P01[i]);
+        max1[i] = MAX(P10[i],P11[i]);
+        min0[i] = MIN(P00[i],P01[i]);
+        min1[i] = MIN(P10[i],P11[i]);
     }
     if (min0.x > max1.x || max0.x < min1.x || min0.y > max1.y || max0.y < min1.y)
-        return lcNONE;  // Момент, када линии имеют одну общую вершину...
+        return lcNONE;  // ГЊГ®Г¬ГҐГ­ГІ, ГЄГ Г¤Г  Г«ГЁГ­ГЁГЁ ГЁГ¬ГҐГѕГІ Г®Г¤Г­Гі Г®ГЎГ№ГіГѕ ГўГҐГ°ГёГЁГ­Гі...
 
-    long double dx1 = P01.x-P00.x, dy1 = P01.y-P00.y; // Длина проекций первой линии на ось x и y
-    long double dx2 = P11.x-P10.x, dy2 = P11.y-P10.y; // Длина проекций второй линии на ось x и y
+    long double dx1 = P01.x-P00.x, dy1 = P01.y-P00.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГЇГҐГ°ГўГ®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
+    long double dx2 = P11.x-P10.x, dy2 = P11.y-P10.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГўГІГ®Г°Г®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
     long double dxx = P00.x-P10.x, dyy = P00.y-P10.y;
     long double div, mul;
 
 
 	if (  fabsl( div = dy2*dx1-dx2*dy1) <=0.00001 )
-        return (lcPARALLEL); // Линии параллельны...
+        return (lcPARALLEL); // Г‹ГЁГ­ГЁГЁ ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г»...
 
     long double Ub = ((dx1*dyy-dy1*dxx) / div);
     long double Ua = ((dx2*dyy-dy2*dxx) / div);
@@ -1035,7 +1038,7 @@ int IsCutsCrossedExactly(const TIntVec& _P00,const TIntVec& _P01,const TIntVec& 
 		return lcNONE;*/
 }
 
-//для отрезка и линии (точно)
+//Г¤Г«Гї Г®ГІГ°ГҐГ§ГЄГ  ГЁ Г«ГЁГ­ГЁГЁ (ГІГ®Г·Г­Г®)
 int IsCutAndLineCrossedExactly(const TIntVec& _P00,const TIntVec& _P01,const TIntVec& _P10,const TIntVec& _P11, TIntVec & CrossPoint)
 {
 	int result = SegmentSegmentCross2d(_P00, _P01, _P10, _P11, true, true, false, false, CrossPoint, EXACT_EPSILON);
@@ -1069,13 +1072,13 @@ int IsCutAndLineCrossedExactly(const TIntVec& _P00,const TIntVec& _P01,const TIn
         return(lcCOMMONPOINT);
     }
 
-	long double dx1 = P01.x-P00.x, dy1 = P01.y-P00.y; // Длина проекций первой линии на ось x и y
-    long double dx2 = P11.x-P10.x, dy2 = P11.y-P10.y; // Длина проекций второй линии на ось x и y
+	long double dx1 = P01.x-P00.x, dy1 = P01.y-P00.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГЇГҐГ°ГўГ®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
+    long double dx2 = P11.x-P10.x, dy2 = P11.y-P10.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГўГІГ®Г°Г®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
 	long double dxx = P00.x-P10.x, dyy = P00.y-P10.y;
     long double div, mul;
 
     if (  fabsl( div = dy2*dx1-dx2*dy1) <=0.00001 )
-        return (lcPARALLEL); // Линии параллельны...
+        return (lcPARALLEL); // Г‹ГЁГ­ГЁГЁ ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г»...
 
     long double Ua = ((dx2*dyy-dy2*dxx) / div);
     if ( -0.00001<=Ua && Ua<=1.00001)
@@ -1132,15 +1135,15 @@ int IsLinesCrossedFull( const TIntVec& _P00,
         return(lcCOMMONPOINT);
     }
 
-    long double dx1 = P01.x-P00.x, dy1 = P01.y-P00.y; // Длина проекций первой линии на ось x и y
-    long double dx2 = P11.x-P10.x, dy2 = P11.y-P10.y; // Длина проекций второй линии на ось x и y
+    long double dx1 = P01.x-P00.x, dy1 = P01.y-P00.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГЇГҐГ°ГўГ®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
+    long double dx2 = P11.x-P10.x, dy2 = P11.y-P10.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГўГІГ®Г°Г®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
     long double dxx = P00.x-P10.x, dyy = P00.y-P10.y;
     long double div, mul;
 
 
     if (  fabsl( div = dy2*dx1-dx2*dy1) <= USEEPS )
     {
-        // Линии параллельны...
+        // Г‹ГЁГ­ГЁГЁ ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г»...
         return (IsLinesCollinear(P00,P01,P10,P11,USEEPS)) ? lcCOLLINEAR : lcPARALLEL;
     }
 
@@ -1203,8 +1206,8 @@ int IsLineAndCutCrossed(const TIntVec& _P00,const TIntVec& _P01,const TIntVec& _
             return lcCOMMONPOINT;
         }
     }
-    MBTi dx1 = _P01.x-_P00.x, dy1 = _P01.y-_P00.y; // Длина проекций первой линии на ось x и y
-    MBTi dx2 = _P11.x-_P10.x, dy2 = _P11.y-_P10.y; // Длина проекций второй линии на ось x и y
+    MBTi dx1 = _P01.x-_P00.x, dy1 = _P01.y-_P00.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГЇГҐГ°ГўГ®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
+    MBTi dx2 = _P11.x-_P10.x, dy2 = _P11.y-_P10.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГўГІГ®Г°Г®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
     MBTi dxx = _P00.x-_P10.x, dyy = _P00.y-_P10.y;
     MBTi div = (dy2*dx1)-(dx2*dy1);
     MBTi mul =  dx1*dyy-dy1*dxx;
@@ -1245,32 +1248,32 @@ int IsCutsCrossed(const TIntVec& _P00,const TIntVec& _P01,const TIntVec& _P10,co
 		return(lcCOMMONPOINT);
 	}
 
-	MBTi dx1 = _P01.x-_P00.x, dy1 = _P01.y-_P00.y; // Длина проекций первой линии на ось x и y
-	MBTi dx2 = _P11.x-_P10.x, dy2 = _P11.y-_P10.y; // Длина проекций второй линии на ось x и y
+	MBTi dx1 = _P01.x-_P00.x, dy1 = _P01.y-_P00.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГЇГҐГ°ГўГ®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
+	MBTi dx2 = _P11.x-_P10.x, dy2 = _P11.y-_P10.y; // Г„Г«ГЁГ­Г  ГЇГ°Г®ГҐГЄГ¶ГЁГ© ГўГІГ®Г°Г®Г© Г«ГЁГ­ГЁГЁ Г­Г  Г®Г±Гј x ГЁ y
 	MBTi dxx = _P00.x-_P10.x, dyy = _P00.y-_P10.y;
 	MBTi div, mul;
 
 	if (  fabs( div = (dy2*dx1-dx2*dy1)) <= USEEPS )
-		return (lcPARALLEL); // Линии параллельны...
+		return (lcPARALLEL); // Г‹ГЁГ­ГЁГЁ ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г»...
 
 
 	if (div > USEEPS)
 	{
 		mul = dx1*dyy-dy1*dxx;
 		if ( mul  < -USEEPS || mul > div+USEEPS )
-			return lcNONE; // Первый отрезок пересекается за своими границами...
+			return lcNONE; // ГЏГҐГ°ГўГ»Г© Г®ГІГ°ГҐГ§Г®ГЄ ГЇГҐГ°ГҐГ±ГҐГЄГ ГҐГІГ±Гї Г§Г  Г±ГўГ®ГЁГ¬ГЁ ГЈГ°Г Г­ГЁГ¶Г Г¬ГЁ...
 		mul = dx2*dyy-dy2*dxx;
 		if ( mul  < -USEEPS || mul > div+USEEPS )
-			return lcNONE; // Второй отрезок пересекается за своими границами...
+			return lcNONE; // Г‚ГІГ®Г°Г®Г© Г®ГІГ°ГҐГ§Г®ГЄ ГЇГҐГ°ГҐГ±ГҐГЄГ ГҐГІГ±Гї Г§Г  Г±ГўГ®ГЁГ¬ГЁ ГЈГ°Г Г­ГЁГ¶Г Г¬ГЁ...
 	}
 	else
 	{
 		mul = -(dx1*dyy-dy1*dxx);
 		if ( mul  < -USEEPS || mul > (-div)+USEEPS )
-			return lcNONE; // Первый отрезок пересекается за своими границами...
+			return lcNONE; // ГЏГҐГ°ГўГ»Г© Г®ГІГ°ГҐГ§Г®ГЄ ГЇГҐГ°ГҐГ±ГҐГЄГ ГҐГІГ±Гї Г§Г  Г±ГўГ®ГЁГ¬ГЁ ГЈГ°Г Г­ГЁГ¶Г Г¬ГЁ...
 		mul = -(dx2*dyy-dy2*dxx);
 		if ( mul  < -USEEPS || mul > (-div)+USEEPS )
-			return lcNONE; // Второй отрезок пересекается за своими границами...
+			return lcNONE; // Г‚ГІГ®Г°Г®Г© Г®ГІГ°ГҐГ§Г®ГЄ ГЇГҐГ°ГҐГ±ГҐГЄГ ГҐГІГ±Гї Г§Г  Г±ГўГ®ГЁГ¬ГЁ ГЈГ°Г Г­ГЁГ¶Г Г¬ГЁ...
 	}
 
 	MBTi Ua = fabs(mul/div);

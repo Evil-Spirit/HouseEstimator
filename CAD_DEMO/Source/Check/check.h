@@ -1,32 +1,27 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef checkH
 #define checkH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ToolWin.hpp>
+#include "compat/vcl_qt.h"
 #include <ActnCtrls.hpp>
-#include <ActnList.hpp>
 #include <ActnMan.hpp>
-#include <StdActns.hpp>
 #include <CustomizeDlg.hpp>
-#include <Buttons.hpp>
 #include <ExtActns.hpp>
-#include <ImgList.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
-    void __fastcall FormClick(TObject *Sender);
-    void __fastcall Button2Click(TObject *Sender);
-    void __fastcall BitBtn1Click(TObject *Sender);
+    void  FormClick(TObject *Sender);
+    void  Button2Click(TObject *Sender);
+    void  BitBtn1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-        __fastcall TForm1(TComponent* Owner);
+         TForm1(TComponent* Owner);
 };
 
 class TNewVec : private TIntVec {
@@ -38,12 +33,12 @@ private:
     void SetY(MBTi ay);
     void SetZ(MBTi az);
 public:
-    __property MBTi x = {read = GetX ,write = SetX};
-    __property MBTi y = {read = GetY ,write = SetY};
-    __property MBTi z = {read = GetZ ,write = SetZ};
+    // __property MBTi x {read=GetX, write=SetX}; // [manual migration needed]
+    // __property MBTi y {read=GetY, write=SetY}; // [manual migration needed]
+    // __property MBTi z {read=GetZ, write=SetZ}; // [manual migration needed]
 };
 
 //---------------------------------------------------------------------------
-extern PACKAGE TForm1 *Form1;
+extern  TForm1 *Form1;
 //---------------------------------------------------------------------------
 #endif

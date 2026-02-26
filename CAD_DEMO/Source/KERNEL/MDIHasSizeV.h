@@ -1,14 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIHasSizeVH
 #define MDIHasSizeVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDISize : public TMDIObjectEdit
 {
@@ -20,7 +20,7 @@ __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
     virtual void SETUP();
-    __fastcall TMDISize(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+     TMDISize(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
 
 };
 //---------------------------------------------------------------------------

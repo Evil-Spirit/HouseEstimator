@@ -1,13 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ImgLibVH
 #define ImgLibVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ImgList.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TImageLibrary : public TDataModule
 {
@@ -18,12 +18,12 @@ __published:	// IDE-managed Components
     TImageList *ilStandart;
     TImageList *BlocksImageList;
   TImageList *ScrollImgDisabled;
-    void __fastcall DataModuleDestroy(TObject *Sender);
+    void  DataModuleDestroy(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TImageLibrary(TComponent* Owner);
+     TImageLibrary(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TImageLibrary *ImageLibrary;
+extern  TImageLibrary *ImageLibrary;
 //---------------------------------------------------------------------------
 #endif

@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LuaModuleV.h"
 #include "LuaStationV.h"
@@ -12,17 +15,16 @@
 #include "VCLSCILEXERV.h"
 #include "StackMain.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 //TStackWindow *StackWindow;
 
 //---------------------------------------------------------------------------
-__fastcall TStackWindow::TStackWindow(TComponent* Owner)
+ TStackWindow::TStackWindow(TComponent* Owner)
     : TFloatForm(Owner)
 {
 }
 
-void __fastcall TStackWindow::ViewStack(TMDelTList<TLuaVariable>* Vars)
+void  TStackWindow::ViewStack(TMDelTList<TLuaVariable>* Vars)
 {
     Tree->Items->Clear();
     TTreeNode *Prnt=Tree->Items->Add(NULL,"Stack");
@@ -42,7 +44,7 @@ void __fastcall TStackWindow::ViewStack(TMDelTList<TLuaVariable>* Vars)
 
 //---------------------------------------------------------------------------
 
-void __fastcall TStackWindow::FormClose(TObject *Sender,
+void  TStackWindow::FormClose(TObject *Sender,
       TCloseAction &Action)
 {
     Action=caHide;

@@ -1,10 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef RegisterArchitectureVH
 #define RegisterArchitectureVH
 //---------------------------------------------------------------------------
-extern PACKAGE bool ArchitectureIsRegistered;
-void PACKAGE RegisterArchitecture();
+extern  bool ArchitectureIsRegistered;
+void  RegisterArchitecture();
 
 
 #endif

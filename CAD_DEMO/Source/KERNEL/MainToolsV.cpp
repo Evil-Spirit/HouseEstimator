@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 //#include "MetaNodeCollectionV"
 #include "MainToolsV.h"
@@ -25,7 +28,6 @@
 #include "MetaToolV.h"
 #include "Windows.hpp"
 
-#pragma package(smart_init)
 TClassNode* TDialogBaseTool::StaticType = NULL;
 TClassNode* TBindedBaseTool::StaticType = NULL;
 TClassNode* TBindedStateBlock::StaticType = NULL;
@@ -284,7 +286,7 @@ TMainTool::TMainTool()
     TDialogBaseTool::AddActionBlock(Action16, 15, btNone, "None");
 
     TDialogBaseTool::AddActionBlock(DeleteAction, 100, btMenu, "Delete");
-    TDialogBaseTool::AddActionBlock(SelectAllAction, 101, btMenu, "Выделить всё");
+    TDialogBaseTool::AddActionBlock(SelectAllAction, 101, btMenu, "Г‚Г»Г¤ГҐГ«ГЁГІГј ГўГ±Вё");
 	TDialogBaseTool::AddConditionalBlock(Condition5, 102, btNone, "None");
     TDialogBaseTool::AddActionBlock(CopyAction, 103, btNone, "None");
     TDialogBaseTool::AddStateBlock(CopyState, 104, Mouse_Move, btNone, "None");
@@ -350,7 +352,7 @@ TMainTool::TMainTool()
 	TDialogBaseTool::AddConditionalBlock(MoveFinishCondition16, 15, btNone, "None");
 
 	TDialogBaseTool::AddActionBlock(DeleteAction, 100, btMenu, "Delete");
-    TDialogBaseTool::AddActionBlock(SelectAllAction, 101, btMenu, "Выделить всё");
+    TDialogBaseTool::AddActionBlock(SelectAllAction, 101, btMenu, "Г‚Г»Г¤ГҐГ«ГЁГІГј ГўГ±Вё");
     TDialogBaseTool::AddConditionalBlock(Condition5, 102, btNone, "None");
 	TDialogBaseTool::AddActionBlock(CopyAction, 103, btNone, "None");
     TDialogBaseTool::AddStateBlock(CopyState, 104, Mouse_Move, btNone, "None");
@@ -782,7 +784,7 @@ bool TMainTool::MoveFinishCondition16()
 				return false;
 			}
 		}
-        // Process_AddElement по завершению таскания
+        // Process_AddElement ГЇГ® Г§Г ГўГҐГ°ГёГҐГ­ГЁГѕ ГІГ Г±ГЄГ Г­ГЁГї
         bool Process_AddElement_done = false;
         for ( int i = 0; i < MySelection.Count; i++ )
         {
@@ -799,7 +801,7 @@ bool TMainTool::MoveFinishCondition16()
 		ErrorMsg("Can not set element");
 		return false;
     }
-    // Process_AddElement по завершению таскания
+    // Process_AddElement ГЇГ® Г§Г ГўГҐГ°ГёГҐГ­ГЁГѕ ГІГ Г±ГЄГ Г­ГЁГї
 	UndoStack.CloseSession();
 	return true;
 }
@@ -1214,12 +1216,12 @@ TIntVec TDialogBaseTool::SetCursorDec(MBTi DecX, MBTi DecY, bool SetMouse)
     return CoordScreen;
 }
 
-void __fastcall TDialogBaseTool::bDecDClick(TObject *_Sender)
+void  TDialogBaseTool::bDecDClick(TObject *_Sender)
 {
     SetNewCursorPos();
 }
 
-void __fastcall TDialogBaseTool::bPolDClick(TObject *_Sender)
+void  TDialogBaseTool::bPolDClick(TObject *_Sender)
 {
 	SetNewCursorPos();
 }
@@ -1242,7 +1244,7 @@ TIntVec TDialogBaseTool::PolExit(bool SetMouse)
         return SetCursorDec(PolR*cos(PolA*M_PI/180), PolR*sin(PolA*M_PI/180), SetMouse);
 }
 
-void __fastcall TDialogBaseTool::eDecKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift)
+void  TDialogBaseTool::eDecKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift)
 {
     if ( int(Key) == VK_RETURN )
         MouseDown(_Sender, mbLeft, TShiftState()<<ssLeft, DecExit(true));
@@ -1255,7 +1257,7 @@ void __fastcall TDialogBaseTool::eDecKeyDown(TObject* _Sender, WORD &Key, TShift
                     DecExit();*/
 }
 
-void __fastcall TDialogBaseTool::eDecExit(TObject *_Sender)
+void  TDialogBaseTool::eDecExit(TObject *_Sender)
 {
     DecExit(false);
 /*            if ( _Sender == ToolForm->eDecX )
@@ -1265,7 +1267,7 @@ void __fastcall TDialogBaseTool::eDecExit(TObject *_Sender)
                     ToolForm->eDecX->SetFocus();    */
 }
 
-void __fastcall TDialogBaseTool::ePolKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift)
+void  TDialogBaseTool::ePolKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift)
 {
     if ( int(Key) == VK_RETURN )
         MouseDown(_Sender, mbLeft, TShiftState()<<ssLeft, PolExit(true));
@@ -1278,7 +1280,7 @@ void __fastcall TDialogBaseTool::ePolKeyDown(TObject* _Sender, WORD &Key, TShift
                     PolExit();*/
 }
 
-void __fastcall TDialogBaseTool::ePolExit(TObject *_Sender)
+void  TDialogBaseTool::ePolExit(TObject *_Sender)
 {
     PolExit(false);
 /*            if ( _Sender == ToolForm->ePolR )

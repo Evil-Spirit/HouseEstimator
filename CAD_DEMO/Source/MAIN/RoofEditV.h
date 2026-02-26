@@ -1,22 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef RoofEditVH
 #define RoofEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
-#include <ImgList.hpp>
+#include "compat/vcl_qt.h"
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
 
 #include "ElementViewerV.h"
-#include <Graphics.hpp>
 //---------------------------------------------------------------------------
 class TRoofForm : public TForm
 {
@@ -159,22 +156,22 @@ __published:	// IDE-managed Components
 	TImage *Image6;
 	TImage *Image5;
 	TImage *Image7;
-	void __fastcall edWallPrevClick(TObject *Sender);
-	void __fastcall edWallNextClick(TObject *Sender);
-	void __fastcall edSlopePrevClick(TObject *Sender);
-	void __fastcall edSlopeNextClick(TObject *Sender);
-	void __fastcall Button9Click(TObject *Sender);
-	void __fastcall Button2Click(TObject *Sender);
-	void __fastcall Button8Click(TObject *Sender);
-	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall TabSheet7ContextPopup(TObject *Sender, TPoint &MousePos,
+	void  edWallPrevClick(TObject *Sender);
+	void  edWallNextClick(TObject *Sender);
+	void  edSlopePrevClick(TObject *Sender);
+	void  edSlopeNextClick(TObject *Sender);
+	void  Button9Click(TObject *Sender);
+	void  Button2Click(TObject *Sender);
+	void  Button8Click(TObject *Sender);
+	void  Button1Click(TObject *Sender);
+	void  TabSheet7ContextPopup(TObject *Sender, TPoint &MousePos,
           bool &Handled);
-	void __fastcall PageControl1Change(TObject *Sender);
-	void __fastcall Button3Click(TObject *Sender);
+	void  PageControl1Change(TObject *Sender);
+	void  Button3Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	TElementViewer *TElementViewer1;
-	__fastcall TRoofForm(TComponent* Owner);
+	 TRoofForm(TComponent* Owner);
 	void EditRoof(TElement *);
 	void SaveSide();
 	void UpdateSide(int nextSide, int nextPlane);
@@ -184,7 +181,7 @@ void EditRoof(TElement *el);
 
 
 //---------------------------------------------------------------------------
-extern PACKAGE TRoofForm *RoofForm;
+extern  TRoofForm *RoofForm;
 //---------------------------------------------------------------------------
 
 #endif

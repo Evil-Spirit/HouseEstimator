@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyGL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "G2DDistanceLinkV.h"
 #include "G2DAngleLinkV.h"
@@ -447,7 +450,7 @@ void TSelect::Action7()
         EditorXD->Selection.Figures[ind].SCuts.Add( BuffSel.SCuts.Items[0] );
         CreateSelect = true;
     }
-    /* Âûäåëåíèå ñâÿçêè*/
+    /* Ã‚Ã»Ã¤Ã¥Ã«Ã¥Ã­Ã¨Ã¥ Ã±Ã¢Ã¿Ã§ÃªÃ¨*/
     TPolygon SelectRgn;
     SelectRgn.Vertex->Add( new TIntVec(MIN(P1.x,P2.x),MIN(P1.y,P2.y),0) );
     SelectRgn.Vertex->Add( new TIntVec(MAX(P1.x,P2.x),MIN(P1.y,P2.y),0) );
@@ -458,7 +461,7 @@ void TSelect::Action7()
             if ( SelectRgn.ConsistsPoint( EditorXD->CustomFigures[i].GetLink(j).Position,_MBTi_eps_ ) != pipOUTSIDE )
             {
                 CreateSelect = true;
-                //äîáàâëÿåì ñâÿçêó â âûäåëåíèå
+                //Ã¤Ã®Ã¡Ã Ã¢Ã«Ã¿Ã¥Ã¬ Ã±Ã¢Ã¿Ã§ÃªÃ³ Ã¢ Ã¢Ã»Ã¤Ã¥Ã«Ã¥Ã­Ã¨Ã¥
                 int index = EditorXD->Selection.FindFigure( &EditorXD->CustomFigures[i] );
                 TSelected* Sel;
                 if (  index == -1  )
@@ -1001,14 +1004,13 @@ void TSelect::OnRender()
 AnsiString TSelect::OnHint()
 {
     if (ExecutedId == 2)
-        return " ("+FloatToStrF(Point1.x, ffGeneral, 4, EditorXD->Grid.Precision)+"; "+FloatToStrF(Point1.y, ffGeneral, 4, EditorXD->Grid.Precision)+")  ("+FloatToStrF(Point2.x, ffGeneral, 4, EditorXD->Grid.Precision)+"; "+FloatToStrF(Point2.y, ffGeneral, 4, EditorXD->Grid.Precision)+")    Øèðèíà: "+FloatToStrF(fabs(Point2.x - Point1.x), ffGeneral, 4, EditorXD->Grid.Precision)+" Âûñîòà: "+FloatToStrF(fabs(Point2.y - Point1.y), ffGeneral, 4, EditorXD->Grid.Precision);
+        return " ("+FloatToStrF(Point1.x, ffGeneral, 4, EditorXD->Grid.Precision)+"; "+FloatToStrF(Point1.y, ffGeneral, 4, EditorXD->Grid.Precision)+")  ("+FloatToStrF(Point2.x, ffGeneral, 4, EditorXD->Grid.Precision)+"; "+FloatToStrF(Point2.y, ffGeneral, 4, EditorXD->Grid.Precision)+")    Ã˜Ã¨Ã°Ã¨Ã­Ã : "+FloatToStrF(fabs(Point2.x - Point1.x), ffGeneral, 4, EditorXD->Grid.Precision)+" Ã‚Ã»Ã±Ã®Ã²Ã : "+FloatToStrF(fabs(Point2.y - Point1.y), ffGeneral, 4, EditorXD->Grid.Precision);
     if (ExecutedId == 15 || ExecutedId == 17)
         return " ("+FloatToStrF(SelectedMF->RotateCenter.x, ffGeneral, 4, EditorXD->Grid.Precision)+"; "+FloatToStrF(SelectedMF->RotateCenter.y, ffGeneral, 4, EditorXD->Grid.Precision)+")";
     if (ExecutedId == 19)
     {
         MBTi Angle = AngleRad(UIP.NewCursorPos,SelectedMF->RotateCenter,FirstVector);
-        return " ("+FloatToStrF(SelectedMF->RotateCenter.x, ffGeneral, 4, EditorXD->Grid.Precision)+"; "+FloatToStrF(SelectedMF->RotateCenter.y, ffGeneral, 4, EditorXD->Grid.Precision)+")      Óãîë: "+FloatToStrF(Angle*180/M_PI, ffGeneral, 4, EditorXD->Grid.Precision);
+        return " ("+FloatToStrF(SelectedMF->RotateCenter.x, ffGeneral, 4, EditorXD->Grid.Precision)+"; "+FloatToStrF(SelectedMF->RotateCenter.y, ffGeneral, 4, EditorXD->Grid.Precision)+")      Ã“Ã£Ã®Ã«: "+FloatToStrF(Angle*180/M_PI, ffGeneral, 4, EditorXD->Grid.Precision);
     }
     return "";
 }
-#pragma package(smart_init)

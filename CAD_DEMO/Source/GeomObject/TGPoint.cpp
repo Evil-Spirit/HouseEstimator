@@ -1,14 +1,16 @@
-#include <vcl.h>                           
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"  
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "math.h"                                    
-#pragma hdrstop
 
 #include "TGObject.h"
 
 #include "Poligon.h"
-#pragma package(smart_init)
 
 TClassNode* TGPoint::StaticType = NULL;
 
@@ -55,7 +57,7 @@ TGPoint::~TGPoint()
 void TGPoint::Assign(TMyObject* MO)
 {
 	if (!MO->Is(TGPoint::StaticType) )
-		throw EMyException("+°øñúð úþÿø¨þòðýø ");
+		throw EMyException("+Â°Ã¸Ã±ÃºÃ° ÃºÃ¾Ã¿Ã¸Â¨Ã¾Ã²Ã°Ã½Ã¸Â ");
 
 	TMyObject::Assign((TMyObject *)MO);
 

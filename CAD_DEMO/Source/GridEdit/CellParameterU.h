@@ -1,16 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef CellParameterUH
 #define CellParameterUH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <Buttons.hpp>
-#include <ExtCtrls.hpp>
-#include <Menus.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TColorComboBox;
 class COMMONAL_API TCellParameter : public TForm
@@ -65,42 +62,42 @@ __published:	// IDE-managed Components
     TButton *btBkColorNot;
     TGroupBox *GroupBox8;
     TPaintBox *pbBkColor;
-    void __fastcall CanselClick(TObject *Sender);
-    void __fastcall OKClick(TObject *Sender);
-    void __fastcall btLineFloodClick(TObject *Sender);
-    void __fastcall btLine0Click(TObject *Sender);
-    void __fastcall btLineClick(TObject *Sender);
-    void __fastcall btLineOne_TopClick(TObject *Sender);
-    void __fastcall btLineOne_LeftClick(TObject *Sender);
-    void __fastcall btLineOne_RightClick(TObject *Sender);
-    void __fastcall btLineOne_BottomClick(TObject *Sender);
-    void __fastcall imExampleBorderPaint(TObject *Sender);
-    void __fastcall btLineOne_CenterHClick(TObject *Sender);
-    void __fastcall btLineOne_CenterVClick(TObject *Sender);
-    void __fastcall btLineFloodClearClick(TObject *Sender);
-    void __fastcall cbValueTypeChange(TObject *Sender);
-    void __fastcall cbTextHAlignChange(TObject *Sender);
-    void __fastcall cbTextVAlignChange(TObject *Sender);
-    void __fastcall chbTextWordBreakClick(TObject *Sender);
-    void __fastcall chbTypeAutoSizeClick(TObject *Sender);
-    void __fastcall cbFontStyleChange(TObject *Sender);
-    void __fastcall cbFontSizeChange(TObject *Sender);
-    void __fastcall cbFontNameChange(TObject *Sender);
-    void __fastcall chbFontUnderlineClick(TObject *Sender);
-    void __fastcall chbFontStrikeOutClick(TObject *Sender);
-    void __fastcall btBkColorNotClick(TObject *Sender);
-    void __fastcall pbBkColorPaint(TObject *Sender);
+    void  CanselClick(TObject *Sender);
+    void  OKClick(TObject *Sender);
+    void  btLineFloodClick(TObject *Sender);
+    void  btLine0Click(TObject *Sender);
+    void  btLineClick(TObject *Sender);
+    void  btLineOne_TopClick(TObject *Sender);
+    void  btLineOne_LeftClick(TObject *Sender);
+    void  btLineOne_RightClick(TObject *Sender);
+    void  btLineOne_BottomClick(TObject *Sender);
+    void  imExampleBorderPaint(TObject *Sender);
+    void  btLineOne_CenterHClick(TObject *Sender);
+    void  btLineOne_CenterVClick(TObject *Sender);
+    void  btLineFloodClearClick(TObject *Sender);
+    void  cbValueTypeChange(TObject *Sender);
+    void  cbTextHAlignChange(TObject *Sender);
+    void  cbTextVAlignChange(TObject *Sender);
+    void  chbTextWordBreakClick(TObject *Sender);
+    void  chbTypeAutoSizeClick(TObject *Sender);
+    void  cbFontStyleChange(TObject *Sender);
+    void  cbFontSizeChange(TObject *Sender);
+    void  cbFontNameChange(TObject *Sender);
+    void  chbFontUnderlineClick(TObject *Sender);
+    void  chbFontStrikeOutClick(TObject *Sender);
+    void  btBkColorNotClick(TObject *Sender);
+    void  pbBkColorPaint(TObject *Sender);
 private:	// User declarations
 
 public:		// User declarations
     
     TCellGrid* CellGrid;
-    __fastcall TCellParameter(TComponent* Owner, TCellGrid* _CellGrid);
-    void __fastcall InvalidateU2();
+     TCellParameter(TComponent* Owner, TCellGrid* _CellGrid);
+    void  InvalidateU2();
     TColorComboBox* cbFontColor;
     TColorComboBox* cbBkColor;
-    void __fastcall FontColorChanged(TObject *Sender);
-    void __fastcall BkColorChanged(TObject *Sender);
+    void  FontColorChanged(TObject *Sender);
+    void  BkColorChanged(TObject *Sender);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TCellParameter *CellParameter;

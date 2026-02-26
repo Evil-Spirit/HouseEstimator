@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIDynamicLinkEditVH
 #define MDIDynamicLinkEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaNodeV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIDynamicLinkEdit : public TMDIMetaNode
 {
@@ -20,14 +19,14 @@ __published:	// IDE-managed Components
     TGroupBox *GroupBox10;
     TComboBoxEx *cbeLinks;
     TCheckBox *cbNeeded;
-    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+    void  FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 public:		// User declarations
     virtual void MNApply();
     virtual bool MNChecked();
 
     void SETUP();
-    __fastcall TMDIDynamicLinkEdit(TComponent* Owner,TDynamicLink *N);
+     TMDIDynamicLinkEdit(TComponent* Owner,TDynamicLink *N);
 
 };
 //---------------------------------------------------------------------------

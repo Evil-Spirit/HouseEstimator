@@ -1,11 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MyTemplates.h"
 #include "MTL.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------
 #include "MyDialogEditU.h"
@@ -127,36 +129,36 @@ HRESULT __stdcall TMyDesigner::QueryInterface(const GUID &IID, void **ppv)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDesigner::Modified()
+void  TMyDesigner::Modified()
 {
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDesigner::Notification(TPersistent* AnObject, TOperation Operation)
+void  TMyDesigner::Notification(TPersistent* AnObject, TOperation Operation)
 {
 }
 
 //---------------------------------------------------------------------------
-TCustomForm* __fastcall TMyDesigner::GetCustomForm()
+TCustomForm*  TMyDesigner::GetCustomForm()
 {
     return FCustomForm;
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDesigner::SetCustomForm(TCustomForm* Value)
+void  TMyDesigner::SetCustomForm(TCustomForm* Value)
 {
     FCustomForm = Value;
 }
 
 //---------------------------------------------------------------------------
-bool __fastcall TMyDesigner::GetIsControl(void)
+bool  TMyDesigner::GetIsControl(void)
 {
     return true;
 }
 
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDesigner::SetIsControl(bool Value)
+void  TMyDesigner::SetIsControl(bool Value)
 {
 }
 
@@ -238,7 +240,7 @@ void TMyDialogEdit::DeleteSelectedItems()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDialogEdit::WndProc(TMessage &Message)
+void  TMyDialogEdit::WndProc(TMessage &Message)
 {
     switch ( Message.Msg )
     {
@@ -263,7 +265,7 @@ void __fastcall TMyDialogEdit::WndProc(TMessage &Message)
 }
 
 //---------------------------------------------------------------------------
-bool __fastcall TMyDesigner::IsDesignMsg(Controls::TControl* Sender, Messages::TMessage &Message)
+bool  TMyDesigner::IsDesignMsg(Controls::TControl* Sender, Messages::TMessage &Message)
 {
 //Posylat' soobshenie iz OI (Use FindActiveEditor):
     if ( ObjInspector->RefreshSelectionBorder )
@@ -298,7 +300,7 @@ bool __fastcall TMyDesigner::IsDesignMsg(Controls::TControl* Sender, Messages::T
 
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDesigner::PaintGrid()
+void  TMyDesigner::PaintGrid()
 {
     TColor MyColor = ~(Form->Color);
     for(int i = 0; i < ((TMyDialogEdit*)Form)->Width; i += ((TMyDialogEdit*)Form)->GridStep)
@@ -309,18 +311,18 @@ void __fastcall TMyDesigner::PaintGrid()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDesigner::ValidateRename(Classes::TComponent* AComponent, const AnsiString CurName, const AnsiString NewName)
+void  TMyDesigner::ValidateRename(Classes::TComponent* AComponent, const AnsiString CurName, const AnsiString NewName)
 {
 }
 
 //---------------------------------------------------------------------------
-AnsiString __fastcall TMyDesigner::UniqueName(const AnsiString BaseName)
+AnsiString  TMyDesigner::UniqueName(const AnsiString BaseName)
 {
     return "";
 }
 
 //---------------------------------------------------------------------------
-Classes::TComponent* __fastcall TMyDesigner::GetRoot()
+Classes::TComponent*  TMyDesigner::GetRoot()
 {
     return NULL;
 }
@@ -488,14 +490,14 @@ AnsiString TMyDialogEdit::GetName(int _ClassId)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDialogEdit::MyObjectChanged(TObject *Sender)
+void  TMyDialogEdit::MyObjectChanged(TObject *Sender)
 {
     TControl* Control = (TControl*)Sender;
         Control->Invalidate();
 }
 
 //---------------------------------------------------------------------------
-__fastcall TMyDialogEdit::TMyDialogEdit(TComponent* Owner, TWinControl *_Parent, TMyDialog *MyDialog) : TForm(Owner)
+ TMyDialogEdit::TMyDialogEdit(TComponent* Owner, TWinControl *_Parent, TMyDialog *MyDialog) : TForm(Owner)
 {
     int OldTag;
     KeyPreview = true;
@@ -526,7 +528,7 @@ __fastcall TMyDialogEdit::TMyDialogEdit(TComponent* Owner, TWinControl *_Parent,
     Head->Component->Tag = OldTag;
 }
 //---------------------------------------------------------------------------
-__fastcall TMyDialogEdit::~TMyDialogEdit()
+ TMyDialogEdit::~TMyDialogEdit()
 {
     FMyDialog->Name = Name;
     delete Head;
@@ -535,7 +537,7 @@ __fastcall TMyDialogEdit::~TMyDialogEdit()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDialogEdit::FormClose(TObject *Sender, TCloseAction &Action)
+void  TMyDialogEdit::FormClose(TObject *Sender, TCloseAction &Action)
 {
     FromMyDialogEditor(Head, &FMyDialog->Root);
     ComponentState>>csDesigning;
@@ -598,14 +600,14 @@ void TMyDialogEdit::DrawSelection(bool EraseOld, bool ReCalculate, bool DrawNew)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDialogEdit::ALExecute(TBasicAction *Action, bool &Handled)
+void  TMyDialogEdit::ALExecute(TBasicAction *Action, bool &Handled)
 {
     ToolBarF->DialogTools.Exit(this);
     ToolBarF->DialogTools.ActiveList = Action->Tag;
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDialogEdit::ApplicationEventsActionUpdate(TBasicAction *_Action, bool &Handled)
+void  TMyDialogEdit::ApplicationEventsActionUpdate(TBasicAction *_Action, bool &Handled)
 {
     TAction* Action = (TAction*)_Action;
     int ind = Action->Tag;
@@ -626,13 +628,13 @@ void TMyDialogEdit::ClearSelection()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDialogEdit::ActionExecute(TObject *Sender)
+void  TMyDialogEdit::ActionExecute(TObject *Sender)
 {
     //
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDialogEdit::FormActivate(TObject *Sender)
+void  TMyDialogEdit::FormActivate(TObject *Sender)
 {
     if (::GetFocus() != Handle)
         ::SetFocus(Handle);
@@ -786,7 +788,7 @@ void TMyDialogEdit::FromMyDialogEditor(TVCLEditorElement *_Head, TMyWinControl *
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDialogEdit::FormResize(TObject *Sender)
+void  TMyDialogEdit::FormResize(TObject *Sender)
 {
     ObjInspector->ReAct(this, true);
 }
@@ -909,7 +911,7 @@ void FillEvents(TEvents* Events, TComponent* Component, AnsiString Name, AnsiStr
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnClick(TObject* Sender)
+void  TEvents::MyOnClick(TObject* Sender)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -919,7 +921,7 @@ void __fastcall TEvents::MyOnClick(TObject* Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnContextPopup(TObject *Sender, TPoint &MousePos, bool &Handled)
+void  TEvents::MyOnContextPopup(TObject *Sender, TPoint &MousePos, bool &Handled)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -937,7 +939,7 @@ void __fastcall TEvents::MyOnContextPopup(TObject *Sender, TPoint &MousePos, boo
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnDragDrop(TObject *Sender, TObject *Source, int X, int Y)
+void  TEvents::MyOnDragDrop(TObject *Sender, TObject *Source, int X, int Y)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -956,7 +958,7 @@ void __fastcall TEvents::MyOnDragDrop(TObject *Sender, TObject *Source, int X, i
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnDragOver(TObject *Sender, TObject *Source, int X, int Y, TDragState State, bool &Accept)
+void  TEvents::MyOnDragOver(TObject *Sender, TObject *Source, int X, int Y, TDragState State, bool &Accept)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -982,7 +984,7 @@ void __fastcall TEvents::MyOnDragOver(TObject *Sender, TObject *Source, int X, i
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnEndDock(TObject *Sender, TObject *Target, int X, int Y)
+void  TEvents::MyOnEndDock(TObject *Sender, TObject *Target, int X, int Y)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1001,7 +1003,7 @@ void __fastcall TEvents::MyOnEndDock(TObject *Sender, TObject *Target, int X, in
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnEndDrag(TObject *Sender, TObject *Target, int X, int Y)
+void  TEvents::MyOnEndDrag(TObject *Sender, TObject *Target, int X, int Y)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1020,7 +1022,7 @@ void __fastcall TEvents::MyOnEndDrag(TObject *Sender, TObject *Target, int X, in
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnEnter(TObject *Sender)
+void  TEvents::MyOnEnter(TObject *Sender)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1030,7 +1032,7 @@ void __fastcall TEvents::MyOnEnter(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnExit(TObject *Sender)
+void  TEvents::MyOnExit(TObject *Sender)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1040,7 +1042,7 @@ void __fastcall TEvents::MyOnExit(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+void  TEvents::MyOnKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1058,7 +1060,7 @@ void __fastcall TEvents::MyOnKeyDown(TObject *Sender, WORD &Key, TShiftState Shi
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnKeyPress(TObject *Sender, char &Key)
+void  TEvents::MyOnKeyPress(TObject *Sender, char &Key)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1072,7 +1074,7 @@ void __fastcall TEvents::MyOnKeyPress(TObject *Sender, char &Key)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
+void  TEvents::MyOnKeyUp(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1090,7 +1092,7 @@ void __fastcall TEvents::MyOnKeyUp(TObject *Sender, WORD &Key, TShiftState Shift
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y)
+void  TEvents::MyOnMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1113,7 +1115,7 @@ void __fastcall TEvents::MyOnMouseDown(TObject *Sender, TMouseButton Button, TSh
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnMouseMove(TObject *Sender, TShiftState Shift, int X, int Y)
+void  TEvents::MyOnMouseMove(TObject *Sender, TShiftState Shift, int X, int Y)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1133,7 +1135,7 @@ void __fastcall TEvents::MyOnMouseMove(TObject *Sender, TShiftState Shift, int X
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y)
+void  TEvents::MyOnMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1156,7 +1158,7 @@ void __fastcall TEvents::MyOnMouseUp(TObject *Sender, TMouseButton Button, TShif
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnStartDock(TObject *Sender, TDragDockObject *&DragObject)
+void  TEvents::MyOnStartDock(TObject *Sender, TDragDockObject *&DragObject)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1170,7 +1172,7 @@ void __fastcall TEvents::MyOnStartDock(TObject *Sender, TDragDockObject *&DragOb
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TEvents::MyOnStartDrag(TObject *Sender, TDragObject *&DragObject)
+void  TEvents::MyOnStartDrag(TObject *Sender, TDragObject *&DragObject)
 {
     TMDelTList<TLuaAttribute> Args;
     Args.Add( new TLuaAttribute() );
@@ -1184,7 +1186,7 @@ void __fastcall TEvents::MyOnStartDrag(TObject *Sender, TDragObject *&DragObject
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMyDialogEdit::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+void  TMyDialogEdit::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
     if ( Key == VK_DELETE )
       return;

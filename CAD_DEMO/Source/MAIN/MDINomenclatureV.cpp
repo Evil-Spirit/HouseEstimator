@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"     
-#pragma hdrstop
 
 #include "NomenclatureV.h"
 #include "MDINomenclatureV.h"
@@ -11,12 +14,11 @@
 #include "MDIObjectEditV.h"
 #include "MDIPointerEditV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIMetaNodeV"
 #pragma resource "*.dfm"
 TMDINomenclature *MDINomenclature;
 //---------------------------------------------------------------------------
-__fastcall TMDINomenclature::TMDINomenclature(TComponent* Owner,TMetaNode *N)
+ TMDINomenclature::TMDINomenclature(TComponent* Owner,TMetaNode *N)
     : TMDIMetaNode(Owner,N)
 {
 }

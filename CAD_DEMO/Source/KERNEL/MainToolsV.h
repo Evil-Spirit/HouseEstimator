@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MainToolsVH
@@ -29,13 +33,13 @@ private:
 	TIntVec SetCursorDec(MBTi DecX, MBTi DecY, bool SetMouse);
     TIntVec DecExit(bool SetMouse);
     TIntVec PolExit(bool SetMouse);
-    void __fastcall eDecKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift);
-    void __fastcall eDecExit(TObject* _Sender);
-    void __fastcall ePolKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift);
-    void __fastcall ePolExit(TObject* _Sender);
+    void  eDecKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift);
+    void  eDecExit(TObject* _Sender);
+    void  ePolKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift);
+    void  ePolExit(TObject* _Sender);
 
-    void __fastcall bDecDClick(TObject *_Sender);
-    void __fastcall bPolDClick(TObject *_Sender);
+    void  bDecDClick(TObject *_Sender);
+    void  bPolDClick(TObject *_Sender);
 
     TMDI3D* GetTMDI3D();
 
@@ -52,9 +56,9 @@ public:
     int FormType;
     TToolForm* ToolForm;
     TMTList<TForm> Forms;
-//    __property TIntVec Center = {read = GetCenter, write = SetCenter};
-//    __property TIntVec CurrentPoint = {read = GetCurrentPoint, write = SetCurrentPoint};
-    __property TMDI3D* Sender = { read = GetTMDI3D };
+// __property TIntVec Center {read=GetCenter, write=SetCenter}; // [manual migration needed]
+// __property TIntVec CurrentPoint {read=GetCurrentPoint, write=SetCurrentPoint}; // [manual migration needed]
+    // __property TMDI3D* Sender {read=GetTMDI3D}; // [manual migration needed]
 
 	TChangeVec A;
     TChangeVec PlaneN;
@@ -143,7 +147,7 @@ public:
 
     AnsiString KeyToStr(WORD Key);
     char* KeyToStrChar(WORD Key);
-    __property char* ExecutedName = { read = GetExecutedName };
+    // __property char* ExecutedName {read=GetExecutedName}; // [manual migration needed]
 
     TLuaModule RenderLuaModule;
     virtual void OnRender();

@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "IntExplorerV.h"
 //#include "Main.h"
@@ -22,7 +25,6 @@
 #include "ToolFormV.h"
 #include "BaseToolV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TIntExplorer *IntExplorer = NULL;
 //---------------------------------------------------------------------------
@@ -87,7 +89,7 @@ void AddImageFromMetaNode(TImageList* MainIL,TMetaNode* MCU,bool Small)
     delete mask;
 }
 
-__fastcall TIntExplorer::TIntExplorer(TComponent* Owner)
+ TIntExplorer::TIntExplorer(TComponent* Owner)
     : ControlList( *(new TToolControlList) ),
     TFloatForm(Owner)
 {
@@ -355,7 +357,7 @@ void TIntExplorer::SwitchTool(int NewToolIndex)
     }
 }
 
-void __fastcall TIntExplorer::ToolClick(TObject *Sender)
+void  TIntExplorer::ToolClick(TObject *Sender)
 {
     TToolButton* Tool = (TToolButton*)Sender;
     if ( Tool->Tag != ControlList.ActiveIndex )
@@ -374,11 +376,11 @@ void TIntExplorer::UpdateToolImages(TMTList<TMetaTool>& Tools)
 
 void TIntExplorer::ProcessActivateTools()
 {
-    //вычищаем панель кнопок
+    //ГўГ»Г·ГЁГ№Г ГҐГ¬ ГЇГ Г­ГҐГ«Гј ГЄГ­Г®ГЇГ®ГЄ
     while (ToolButtons->ButtonCount)
         delete ToolButtons->Buttons[0];
 
-    //работаем с selection
+    //Г°Г ГЎГ®ГІГ ГҐГ¬ Г± selection
     TMTList<TMetaTool> Tools;
     if (GetSelection().Count )
     {
@@ -398,11 +400,11 @@ void TIntExplorer::ProcessActivateTools()
     }
     else if (!MetaCatalogUnit || !MetaCatalogUnit->Associated )
     {
-        //нет объекта создания
+        //Г­ГҐГІ Г®ГЎГєГҐГЄГІГ  Г±Г®Г§Г¤Г Г­ГЁГї
     }
     else if ( MetaCatalogUnit->Associated->Is(TMetaElement::StaticType) )
     {
-        //работаем с TMetaElement
+        //Г°Г ГЎГ®ГІГ ГҐГ¬ Г± TMetaElement
         TMetaElement* ME = (TMetaElement*)MetaCatalogUnit->Associated;
         for ( int i = 0;i<ME->MAS.CreateTools.Count;i++)
             Tools.Add( ME->MAS.CreateTools[i].ADR );
@@ -411,7 +413,7 @@ void TIntExplorer::ProcessActivateTools()
     }
     else
     {
-        //работаем с TMetaTexture, TMetaMaterial
+        //Г°Г ГЎГ®ГІГ ГҐГ¬ Г± TMetaTexture, TMetaMaterial
         Tools.Add( ControlList.Tools.Items[0] );
     }
 
@@ -431,13 +433,13 @@ void TIntExplorer::ProcessActivateTools()
     }
     else
     {
-        //переключаем тул
+        //ГЇГҐГ°ГҐГЄГ«ГѕГ·Г ГҐГ¬ ГІГіГ«
         SwitchTool(ToolButtons->Buttons[ ToolButtons->ButtonCount>1 ? 1 : 0 ]->Tag);
     }
     ToolButtons->Realign();
 }
 
-void __fastcall TIntExplorer::tbObjectsClick(TObject *Sender)
+void  TIntExplorer::tbObjectsClick(TObject *Sender)
 {
     TToolButton* BT = (TToolButton*)Sender;
     if (BT->Tag != IDMouseAction)
@@ -465,7 +467,7 @@ void TIntExplorer::Start()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TIntExplorer::LVMouseDown(TObject *Sender,
+void  TIntExplorer::LVMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     if (LV->Selected)
@@ -513,14 +515,14 @@ void TIntExplorer::UpdateView(bool CanStart)
 
 //-----------------------512179----------------------------------------------------
 
-void __fastcall TIntExplorer::FormDestroy(TObject *Sender)
+void  TIntExplorer::FormDestroy(TObject *Sender)
 {
     IntExplorer = NULL;
     delete &(ControlList);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TIntExplorer::tbUpClick(TObject *Sender)
+void  TIntExplorer::tbUpClick(TObject *Sender)
 {
     if ( LVS[LV->Tag].CurParent!=LVS[LV->Tag].MaxParent )
     {
@@ -529,7 +531,7 @@ void __fastcall TIntExplorer::tbUpClick(TObject *Sender)
     }
 }
 
-void __fastcall TIntExplorer::LVMouseMove(TObject *Sender,
+void  TIntExplorer::LVMouseMove(TObject *Sender,
       TShiftState Shift, int X, int Y)
 {
     if (!LV->Focused())
@@ -537,7 +539,7 @@ void __fastcall TIntExplorer::LVMouseMove(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TIntExplorer::MinimizeClick(TObject *Sender)
+void  TIntExplorer::MinimizeClick(TObject *Sender)
 {
     Fixed = !Fixed;
 }
@@ -656,7 +658,7 @@ void TIntExplorer::AUIChanged()
 	MainToolBar->Buttons[0]->Click();
 }
 
-void __fastcall TIntExplorer::FormClose(TObject *Sender,
+void  TIntExplorer::FormClose(TObject *Sender,
       TCloseAction &Action)
 {
     if ( AUI.CheckExplorerVisible() )

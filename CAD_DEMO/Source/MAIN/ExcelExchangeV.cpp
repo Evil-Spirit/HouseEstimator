@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "ExcelExchangeV.h"
 #include "MetaNodeCollectionV.h"
@@ -18,11 +21,10 @@
 #include "LuaAttributeV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TExcelExchange *ExcelExchange;
 //---------------------------------------------------------------------------
-__fastcall TExcelExchange::TExcelExchange(TComponent* Owner)
+ TExcelExchange::TExcelExchange(TComponent* Owner)
     : TForm(Owner)
 {
 }
@@ -137,7 +139,7 @@ void ExcelExport(TMetaNode* MN,bool All,const AnsiString& FileName)
                     }
                 }
 
-            //Шапка
+            //ГГ ГЇГЄГ 
             for (int i=0;i<Fields.Count;i++)
             {
                     v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",1,i+1);
@@ -153,7 +155,7 @@ void ExcelExport(TMetaNode* MN,bool All,const AnsiString& FileName)
                     v2.OlePropertyGet("Borders",8).OlePropertySet("Weight",2);
             }
             int rowshift = 1;
-            StartProcess("Экспорт данных в Excel...",Fields.Count);
+            StartProcess("ГќГЄГ±ГЇГ®Г°ГІ Г¤Г Г­Г­Г»Гµ Гў Excel...",Fields.Count);
             for (int i=0;i<FieldCount;i++)
             {
                 CountProcess(Fields[i],1);
@@ -202,7 +204,7 @@ void ExcelExport(TMetaNode* MN,bool All,const AnsiString& FileName)
                 }
             }
 
-            XL.OlePropertySet("DisplayAlerts",false); //отключить диагностику при закрытии сервера
+            XL.OlePropertySet("DisplayAlerts",false); //Г®ГІГЄГ«ГѕГ·ГЁГІГј Г¤ГЁГ ГЈГ­Г®Г±ГІГЁГЄГі ГЇГ°ГЁ Г§Г ГЄГ°Г»ГІГЁГЁ Г±ГҐГ°ГўГҐГ°Г 
             XL.OlePropertyGet("Workbooks").OlePropertyGet("Item",1).OleProcedure("SaveAs",FileName.c_str());
             XL.OleProcedure("Quit");
             XL=CreateOleObject("Excel.Application");
@@ -210,7 +212,7 @@ void ExcelExport(TMetaNode* MN,bool All,const AnsiString& FileName)
             v0.OleProcedure("Add",FileName.c_str());
             XL.OlePropertySet("Visible",true);
 
-    _ENDTRY_("<ExcelExport>: Экспорт не был завершен",);
+    _ENDTRY_("<ExcelExport>: ГќГЄГ±ГЇГ®Г°ГІ Г­ГҐ ГЎГ»Г« Г§Г ГўГҐГ°ГёГҐГ­",);
 
     XL = Unassigned;
     v0 = Unassigned;
@@ -316,8 +318,8 @@ void ExcelImport(const AnsiString& FileName)
         delete EE;
 
         if (GUIDField == -1 || NameField==-1 )
-            throw EMyException("Не найдено поле \"GUID\" или \"Name\". Импорт прерван.");
-        StartProcess("Анализ рабочей книги...",100);
+            throw EMyException("ГЌГҐ Г­Г Г©Г¤ГҐГ­Г® ГЇГ®Г«ГҐ \"GUID\" ГЁГ«ГЁ \"Name\". Г€Г¬ГЇГ®Г°ГІ ГЇГ°ГҐГ°ГўГ Г­.");
+        StartProcess("ГЂГ­Г Г«ГЁГ§ Г°Г ГЎГ®Г·ГҐГ© ГЄГ­ГЁГЈГЁ...",100);
         bool NotEmptyString = true;
         int index_2=2;
         while (NotEmptyString)
@@ -333,7 +335,7 @@ void ExcelImport(const AnsiString& FileName)
             index_2++;
         }
         int StrCount = index_2-1;
-        StartProcess("Прием данных ...",StrCount-1);
+        StartProcess("ГЏГ°ГЁГҐГ¬ Г¤Г Г­Г­Г»Гµ ...",StrCount-1);
         for (int s=2;s<StrCount;s++)
         {
             TMDelTList<AnsiString> Data;
@@ -387,7 +389,7 @@ void ExcelImport(const AnsiString& FileName)
     _ENDTRY_("<ExcelImport>: Import not finished",);
 /*    if (XL!=Unassigned)
     {
-        XL.OlePropertySet("DisplayAlerts",false); //отключить диагностику при закрытии сервера
+        XL.OlePropertySet("DisplayAlerts",false); //Г®ГІГЄГ«ГѕГ·ГЁГІГј Г¤ГЁГ ГЈГ­Г®Г±ГІГЁГЄГі ГЇГ°ГЁ Г§Г ГЄГ°Г»ГІГЁГЁ Г±ГҐГ°ГўГҐГ°Г 
         XL.OleProcedure("Quit");
     }   */
     XL = Unassigned;
@@ -396,14 +398,14 @@ void ExcelImport(const AnsiString& FileName)
     v2 = Unassigned;
     v3 = Unassigned;
 }
-void __fastcall TExcelExchange::btOKClick(TObject *Sender)
+void  TExcelExchange::btOKClick(TObject *Sender)
 {
     Close();    
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TExcelExchange::LVClick(TObject *Sender)
+void  TExcelExchange::LVClick(TObject *Sender)
 {
     if (LV->Selected)
     {
@@ -415,7 +417,7 @@ void __fastcall TExcelExchange::LVClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TExcelExchange::cbTypeCloseUp(TObject *Sender)
+void  TExcelExchange::cbTypeCloseUp(TObject *Sender)
 {
     if (LV->Selected)
     {
@@ -432,7 +434,7 @@ AnsiString DecodeHM(const TDateTime& DT)
     int days = DT.operator int();
     DT.DecodeTime(&h,&m,&s,&ms);
     h = h + days*24;
-    return (IntToStr(h)+AnsiString("ч.")+IntToStr(m))+AnsiString("м.");
+    return (IntToStr(h)+AnsiString("Г·.")+IntToStr(m))+AnsiString("Г¬.");
 }
 
 int OneAct(Variant& Sheet,int RowCount,TMTList<TQuerryNode>& QNS)
@@ -444,7 +446,7 @@ int OneAct(Variant& Sheet,int RowCount,TMTList<TQuerryNode>& QNS)
     _TRY_
 
         v1 = Sheet;
-        //заголовок
+        //Г§Г ГЈГ®Г«Г®ГўГ®ГЄ
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Start,1);
         AnsiString Str = MSG_8;
         v2.OlePropertySet("Value",Str.c_str());
@@ -463,7 +465,7 @@ int OneAct(Variant& Sheet,int RowCount,TMTList<TQuerryNode>& QNS)
         v3 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Start+1,ColCount);
         v1.OlePropertyGet("Range",v2,v3).OleFunction("Merge",false);
 
-        //шапка
+        //ГёГ ГЇГЄГ 
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current,1);
         v2.OlePropertySet("Value","Brigade ________________");
         CellStyle(v2,HAlignLeft,false,10,false);
@@ -481,7 +483,7 @@ int OneAct(Variant& Sheet,int RowCount,TMTList<TQuerryNode>& QNS)
         CellStyle(v2,HAlignLeft,false,10,false);
         //--------------------------------------------------------------------------
         Current = Current + 3 + 1;
-        //строковая часть
+        //Г±ГІГ°Г®ГЄГ®ГўГ Гї Г·Г Г±ГІГј
         //--------------------------------------------------------------------------
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current,1);
         v2.OlePropertySet("Value","Name of work");
@@ -496,7 +498,7 @@ int OneAct(Variant& Sheet,int RowCount,TMTList<TQuerryNode>& QNS)
         CellStyle(v2,HAlignCenter,true,10,true);
         //--------------------------------------------------------------------------
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current,4);
-        v2.OlePropertySet("Value","з. ч.ч.");
+        v2.OlePropertySet("Value","Г§. Г·.Г·.");
         CellStyle(v2,HAlignCenter,true,10,true);
         //--------------------------------------------------------------------------
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current,5);
@@ -504,7 +506,7 @@ int OneAct(Variant& Sheet,int RowCount,TMTList<TQuerryNode>& QNS)
         CellStyle(v2,HAlignCenter,true,10,true);
         //--------------------------------------------------------------------------
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current,6);
-        v2.OlePropertySet("Value","ф. ч.ч.");
+        v2.OlePropertySet("Value","Гґ. Г·.Г·.");
         CellStyle(v2,HAlignCenter,true,10,true);
         //--------------------------------------------------------------------------
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current,7);
@@ -549,7 +551,7 @@ int OneAct(Variant& Sheet,int RowCount,TMTList<TQuerryNode>& QNS)
             v2.OlePropertySet("Value",Str.c_str());
             CellStyle(v2,HAlignCenter,true,10,false);
         }
-        //итого
+        //ГЁГІГ®ГЈГ®
         //--------------------------------------------------------------------------
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current+1,1);
         v2.OlePropertySet("Value","Total");
@@ -571,14 +573,14 @@ int OneAct(Variant& Sheet,int RowCount,TMTList<TQuerryNode>& QNS)
         v2.OlePropertySet("Value",Str.c_str());
         CellStyle(v2,HAlignCenter,true,10,false);
         //--------------------------------------------------------------------------
-        //подвал
+        //ГЇГ®Г¤ГўГ Г«
         Current+=3;
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current,1);
         v2.OlePropertySet("Value","Finished Date and Time _________________________");
         CellStyle(v2,HAlignLeft,false,10,false);
         //--------------------------------------------------------------------------
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current,ColCount);
-        Str = Format("Premium %.2f р.", ARRAYOFCONST( (TotalMoney*0.2) ) );
+        Str = Format("Premium %.2f Г°.", ARRAYOFCONST( (TotalMoney*0.2) ) );
         v2.OlePropertySet("Value",Str.c_str());
         CellStyle(v2,HAlignRight,false,10,false);
         //--------------------------------------------------------------------------
@@ -592,7 +594,7 @@ int OneAct(Variant& Sheet,int RowCount,TMTList<TQuerryNode>& QNS)
         //--------------------------------------------------------------------------
         Current = Current+3;
         v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current,1);
-        v2.OlePropertySet("Value","для аттестации бригады по нормам выполнения работ по системе");
+        v2.OlePropertySet("Value","Г¤Г«Гї Г ГІГІГҐГ±ГІГ Г¶ГЁГЁ ГЎГ°ГЁГЈГ Г¤Г» ГЇГ® Г­Г®Г°Г¬Г Г¬ ГўГ»ГЇГ®Г«Г­ГҐГ­ГЁГї Г°Г ГЎГ®ГІ ГЇГ® Г±ГЁГ±ГІГҐГ¬ГҐ");
         CellStyle(v2,HAlignCenter,false,8,false);
         v3 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",Current,ColCount);
         v1.OlePropertyGet("Range",v2,v3).OleFunction("Merge",false);
@@ -657,11 +659,11 @@ void Graphic( Variant& XL,const Variant& Sheet,TMTList<TQuerryNode>& QNL)
             CellStyle(v2,HAlignCenter,false,8,true);
             v2.OlePropertySet("WrapText",true);
             v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",curcount,2);
-            v2.OlePropertySet("Value","Трудовы Ресурсы");
+            v2.OlePropertySet("Value","Г’Г°ГіГ¤Г®ГўГ» ГђГҐГ±ГіГ°Г±Г»");
             CellStyle(v2,HAlignCenter,false,8,true);
             v2.OlePropertySet("WrapText",true);
             v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",curcount,3);
-            v2.OlePropertySet("Value","Механизмы");
+            v2.OlePropertySet("Value","ГЊГҐГµГ Г­ГЁГ§Г¬Г»");
             CellStyle(v2,HAlignCenter,false,8,true);
             v2.OlePropertySet("WrapText",true);
             v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",curcount,4);
@@ -683,7 +685,7 @@ void Graphic( Variant& XL,const Variant& Sheet,TMTList<TQuerryNode>& QNL)
         for (int i=1;i<=QNL.Count;i++)
             v1.OlePropertyGet("Rows",i+curcount).OlePropertySet("RowHeight",60 );
 
-        StartProcess("Создание линейного графика...",QNL.Count*10);
+        StartProcess("Г‘Г®Г§Г¤Г Г­ГЁГҐ Г«ГЁГ­ГҐГ©Г­Г®ГЈГ® ГЈГ°Г ГґГЁГЄГ ...",QNL.Count*10);
         v1.OleProcedure("Select");
         for (int i=0;i<QNL.Count;i++)
         {
@@ -732,7 +734,7 @@ void Graphic( Variant& XL,const Variant& Sheet,TMTList<TQuerryNode>& QNL)
             v2.OlePropertyGet("Fill").OlePropertyGet("ForeColor").OlePropertySet("SchemeColor",44);
             curpos = curpos + curlen;
         }
-    _ENDTRY_("<Graphic>: Ошибка при создании графика",);
+    _ENDTRY_("<Graphic>: ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ Г±Г®Г§Г¤Г Г­ГЁГЁ ГЈГ°Г ГґГЁГЄГ ",);
     v1 = Unassigned;
     v2 = Unassigned;
     v3 = Unassigned;
@@ -772,10 +774,10 @@ void Act(const AnsiString& FileName)
             v1=v0.OleFunction("Add");
             v0=v1.OlePropertyGet("Worksheets") ;
             v1=v0.OlePropertyGet("Item",1);
-            v1.OlePropertySet("Name","Акты соответствия");
+            v1.OlePropertySet("Name","ГЂГЄГІГ» Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГї");
 
             int curcount = 0;
-            StartProcess("Создание актов соответствия...",10*QNL.Count);
+            StartProcess("Г‘Г®Г§Г¤Г Г­ГЁГҐ Г ГЄГІГ®Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГї...",10*QNL.Count);
             for (int i=0;i<QNL.Count;i++)
             {
                 curcount++;
@@ -785,7 +787,7 @@ void Act(const AnsiString& FileName)
                 v2.OlePropertyGet("Font").OlePropertySet("Color",RGB(128,128,128));
 
                 v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",curcount,6);
-                v2.OlePropertySet("Value",(AnsiString("страница ")+IntToStr(i+1)+AnsiString(" из ")+IntToStr(QNL.Count) ).c_str());
+                v2.OlePropertySet("Value",(AnsiString("Г±ГІГ°Г Г­ГЁГ¶Г  ")+IntToStr(i+1)+AnsiString(" ГЁГ§ ")+IntToStr(QNL.Count) ).c_str());
                 CellStyle(v2,HAlignRight,false,8,false);
                 v2.OlePropertyGet("Font").OlePropertySet("Color",RGB(128,128,128));
                 v1.OlePropertyGet("Rows",curcount).OlePropertySet("RowHeight",12);
@@ -819,7 +821,7 @@ void Act(const AnsiString& FileName)
             v1 = v0.OlePropertyGet("Item",2);
             Graphic(XL,v1,QNL);
 
-            XL.OlePropertySet("DisplayAlerts",false); //отключить диагностику при закрытии сервера
+            XL.OlePropertySet("DisplayAlerts",false); //Г®ГІГЄГ«ГѕГ·ГЁГІГј Г¤ГЁГ ГЈГ­Г®Г±ГІГЁГЄГі ГЇГ°ГЁ Г§Г ГЄГ°Г»ГІГЁГЁ Г±ГҐГ°ГўГҐГ°Г 
             XL.OlePropertyGet("Workbooks").OlePropertyGet("Item",1).OleProcedure("SaveAs",FileName.c_str());
             XL.OleProcedure("Quit");
             

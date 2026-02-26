@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef G2DObjectVH
@@ -68,7 +72,7 @@ protected:
 	void FillLinksFlags(TClassifyFlags Flag, TClassify State);
 	void FillLinksFlags(TMTList <TG2DLink> &Links, TClassifyFlags Flag, TClassify State);
     void FillLinksRecursive(TGUnit* Unit,TFlowInfo& FlowInfo);
-    //-----------------Позиционирование со связками ----------------------------
+    //-----------------ГЏГ®Г§ГЁГ¶ГЁГ®Г­ГЁГ°Г®ГўГ Г­ГЁГҐ Г±Г® Г±ГўГїГ§ГЄГ Г¬ГЁ ----------------------------
     void MakeTempPoints();
     void ReturnTempPoints();
     TFlowInfo* pFlowInfo;
@@ -82,11 +86,11 @@ public:
     TMyObject* CreateFunction();
     T2DGObject();
     virtual ~T2DGObject();
-    //--------------------Параметры прорисовки----------------------------------
+    //--------------------ГЏГ Г°Г Г¬ГҐГІГ°Г» ГЇГ°Г®Г°ГЁГ±Г®ГўГЄГЁ----------------------------------
     TVisPen& PointPen;
     TVisPen& RibPen;
     TVisPen& LinkPen;
-    //----------------------старое----------------------------------------------
+    //----------------------Г±ГІГ Г°Г®ГҐ----------------------------------------------
     TIntVec RotateCenter;
     TIntVec BBoxLU, BBoxRD;
     bool Additional;
@@ -95,7 +99,7 @@ public:
     void CreateBBox();
     virtual int FindPoint(const TIntVec& V) const;
     virtual bool Snap(const TIntVec &Point, TIntVec& SnapPoint, int& CutIndex, MBTi CEPS, bool Infinity) const;
-    //----------------------обычно----------------------------------------------
+    //----------------------Г®ГЎГ»Г·Г­Г®----------------------------------------------
     void ProcessCreateView();
     void CreateView();
     void Render(TVisView* aView);
@@ -114,7 +118,7 @@ public:
     const TG2DCut& GetCut(int index) const;
     void ToGeomObject(TGeomObject* GO);
     void FromGeomObject(TGeomObject* GO);
-    __property int LinksCount = {read = GetLinkCount};
+    // __property int LinksCount {read=GetLinkCount}; // [manual migration needed]
     TG2DLink& GetLink(int index);
     int AddLink(TG2DLink* Link);
 	virtual void Delete(TGCut* Cut);
@@ -129,7 +133,7 @@ public:
     TG2DLink* MakeAngleLink(TG2DCut* Cut1,TG2DCut* Cut2,TAngleLinkSector AngleLinkSector);
     TG2DLink* MakeDistanceLink(TG2DPoint* Point1,TG2DPoint* Point2);
 
-    //-----------------Позиционирование со связками ----------------------------
+    //-----------------ГЏГ®Г§ГЁГ¶ГЁГ®Г­ГЁГ°Г®ГўГ Г­ГЁГҐ Г±Г® Г±ГўГїГ§ГЄГ Г¬ГЁ ----------------------------
     TG2DCut& GP_X;
     TG2DCut& GP_Y;
     TG2DPoint& GP_ZERO;
@@ -138,7 +142,7 @@ public:
     void PrepareMoving(TG2DPoint* Point);
     void ContinueMoving(const TIntVec& NewValue);
     void EndMoving();
-	virtual void Clear();																// Очистить геометрический обьект
+	virtual void Clear();																// ГЋГ·ГЁГ±ГІГЁГІГј ГЈГҐГ®Г¬ГҐГІГ°ГЁГ·ГҐГ±ГЄГЁГ© Г®ГЎГјГҐГЄГІ
     //-------------------------------------------- ----------------------------
 };
 

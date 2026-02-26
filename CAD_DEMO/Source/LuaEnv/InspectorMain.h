@@ -1,18 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef InspectorMainH
 #define InspectorMainH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ToolWin.hpp>
-#include <ExtCtrls.hpp>
-#include <Grids.hpp>
+#include "compat/vcl_qt.h"
 #include <ValEdit.hpp>
-#include <ImgList.hpp>
 #include "MyTemplates.h"
 #include "Usefuls.h"
 #include "QuckList.h"
@@ -34,21 +30,21 @@ __published:	// IDE-managed Components
     TComboBoxEx *VariableName;
     TTabSheet *Sheet2;
     TStringGrid *DataWatch2;
-    void __fastcall FormResize(TObject *Sender);
-    void __fastcall DataWatch1DblClick(TObject *Sender);
-    void __fastcall VariableNameKeyDown(TObject *Sender, WORD &Key,
+    void  FormResize(TObject *Sender);
+    void  DataWatch1DblClick(TObject *Sender);
+    void  VariableNameKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
-    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+    void  FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
     bool GetMethods();
     void SetMethods(bool State);
-    void __fastcall UpdateInspector(TObject *Sender); 
+    void  UpdateInspector(TObject *Sender); 
 public:		// User declarations
     TNotifyEvent OnUpdate;
-    void __fastcall WndProc(Messages::TMessage &Message);
-    void __fastcall ShowProperty(AnsiString Name,TMDelTList<TLuaVariable> *Vars);
-    void __fastcall Clear();
-    __fastcall TDbgInspector(TComponent* Owner);
+    void  WndProc(Messages::TMessage &Message);
+    void  ShowProperty(AnsiString Name,TMDelTList<TLuaVariable> *Vars);
+    void  Clear();
+     TDbgInspector(TComponent* Owner);
     __property bool IsMethods = {read=GetMethods, write=SetMethods, default=false};
 };
 

@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDICountReportV.h"
 #include "MetaClasses.h"
@@ -21,12 +24,11 @@
 
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MyMDIChildV"
 #pragma resource "*.dfm"
 TMDICountReport *MDICountReport=NULL;
 //---------------------------------------------------------------------------
-__fastcall TMDICountReport::TMDICountReport(TComponent* Owner)
+ TMDICountReport::TMDICountReport(TComponent* Owner)
     : TMyMDIChild(Owner)
 {
 //    CountMode = _CountMode;
@@ -36,7 +38,7 @@ __fastcall TMDICountReport::TMDICountReport(TComponent* Owner)
 //---------------------------------------------------------------------------
 int TakeMode = 0;
 
-void __fastcall TMDICountReport::FormDestroy(TObject *Sender)
+void  TMDICountReport::FormDestroy(TObject *Sender)
 {
     SG->ColCount=0;
     SG->RowCount=0;
@@ -45,7 +47,7 @@ void __fastcall TMDICountReport::FormDestroy(TObject *Sender)
     MDICountReport=NULL;
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDICountReport::FormShow(TObject *Sender)
+void  TMDICountReport::FormShow(TObject *Sender)
 {
     MDICountReport=this;
     if (!World)
@@ -133,7 +135,7 @@ void TMDICountReport::UpdateAllCelsSize()
 void TMDICountReport::DrawCounterBaseAdvanced()
 {
     //Parent is not NULL here
-    //выводим  шапку
+    //ГўГ»ГўГ®Г¤ГЁГ¬  ГёГ ГЇГЄГі
     int ShowImages = CB->ShowImages;
     SG->ColCount = CB->GetVisibleFieldCount() + ShowImages + ShowName;
     int CapCount = 1;
@@ -270,7 +272,7 @@ void TMDICountReport::DrawCounterBaseStandart()
     }
 }
 
-void __fastcall TMDICountReport::FormCreate(TObject *Sender)
+void  TMDICountReport::FormCreate(TObject *Sender)
 {
     CB = new TCounterBase();
     HQ = new THierarchyQuerry(CB) ;
@@ -319,7 +321,7 @@ void TMDICountReport::UpdateCellSize(int ACol, int ARow)
     }
 }
 
-void __fastcall TMDICountReport::SGDrawCell(TObject *Sender, int ACol,
+void  TMDICountReport::SGDrawCell(TObject *Sender, int ACol,
       int ARow, TRect &Rect, TGridDrawState State)
 {
     if (ProgBar->Visible)
@@ -354,7 +356,7 @@ void __fastcall TMDICountReport::SGDrawCell(TObject *Sender, int ACol,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDICountReport::FormActivate(TObject *Sender)
+void  TMDICountReport::FormActivate(TObject *Sender)
 {
     SG->Invalidate();
     ::SetFocus(SG->Handle);        
@@ -362,7 +364,7 @@ void __fastcall TMDICountReport::FormActivate(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDICountReport::SGMouseMove(TObject *Sender,
+void  TMDICountReport::SGMouseMove(TObject *Sender,
       TShiftState Shift, int X, int Y)
 {
     if (!Active)
@@ -383,7 +385,7 @@ void __fastcall TMDICountReport::SGMouseMove(TObject *Sender,
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDICountReport::SGMouseDown(TObject *Sender,
+void  TMDICountReport::SGMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     int Col,Row;
@@ -406,7 +408,7 @@ void __fastcall TMDICountReport::SGMouseDown(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDICountReport::SGDblClick(TObject *Sender)
+void  TMDICountReport::SGDblClick(TObject *Sender)
 {
 /*        int Col,Row;
         TPoint P = SG->ScreenToClient(Mouse->CursorPos);
@@ -517,7 +519,7 @@ int ProcessAddBitmap(Variant* XL,Graphics::TBitmap* _BMP,const AnsiString& Capti
 
 void TMDICountReport::ToExcel(const AnsiString& FileName)
 {
-    StartProcess("Передача данных в Excel...",SG->RowCount);
+    StartProcess("ГЏГҐГ°ГҐГ¤Г Г·Г  Г¤Г Г­Г­Г»Гµ Гў Excel...",SG->RowCount);
     Variant XL,v0,v1,v2,v3;
     XL=CreateOleObject("Excel.Application");
 
@@ -531,7 +533,7 @@ void TMDICountReport::ToExcel(const AnsiString& FileName)
     double cw = v1.OlePropertyGet("Cells").OlePropertyGet("Item",1,1).OlePropertyGet("Width");
     double cwsym = v1.OlePropertyGet("Columns",1).OlePropertyGet("ColumnWidth");
     double pWidth = cw/cwsym;
-    //Шапка
+    //ГГ ГЇГЄГ 
     int rowshift=1;
     float _total = GetTotalArea(World,-1);
     AnsiString Str = AnsiString("Cost of materials for building with total area of ");
@@ -540,7 +542,7 @@ void TMDICountReport::ToExcel(const AnsiString& FileName)
     v2 = v1.OlePropertyGet("Cells").OlePropertyGet("Item",1,1);
     v2.OlePropertySet("Value",Str.c_str());
 
-    //строковая часть
+    //Г±ГІГ°Г®ГЄГ®ГўГ Гї Г·Г Г±ГІГј
     for (int i=1;i<=SG->RowCount;i++)
     {
         CountProcess(SG->Cells[CB->ShowImages][i-1],1);
@@ -619,7 +621,7 @@ void TMDICountReport::ToExcel(const AnsiString& FileName)
             }
         }
     }
-    //эскизы и 3d-вид
+    //ГЅГ±ГЄГЁГ§Г» ГЁ 3d-ГўГЁГ¤
     v1=v0.OlePropertyGet("Item",2);
     v1.OlePropertySet("Name","Perspective views and sketches");
     int Row = 1;
@@ -643,7 +645,7 @@ void TMDICountReport::ToExcel(const AnsiString& FileName)
         {
             if (World->Clients[i].ActiveIndex>=0 && World->Clients[i].ActiveIndex<World->Floors.Count)
             {
-                _Str = "План Этажа №" + IntToStr(World->Clients[i].ActiveIndex+1);
+                _Str = "ГЏГ«Г Г­ ГќГІГ Г¦Г  В№" + IntToStr(World->Clients[i].ActiveIndex+1);
                 ((TMDI2D*)World->Clients[i].MDI)->DrawView->GetImage(_BMP);
             }
             CountProcess(_Str,1);
@@ -652,7 +654,7 @@ void TMDICountReport::ToExcel(const AnsiString& FileName)
             Row = ProcessAddBitmap( &(XL),_BMP,_Str.c_str(), Row,pWidth);
         delete _BMP;
     }
-    XL.OlePropertySet("DisplayAlerts",false); //отключить диагностику при закрытии сервера
+    XL.OlePropertySet("DisplayAlerts",false); //Г®ГІГЄГ«ГѕГ·ГЁГІГј Г¤ГЁГ ГЈГ­Г®Г±ГІГЁГЄГі ГЇГ°ГЁ Г§Г ГЄГ°Г»ГІГЁГЁ Г±ГҐГ°ГўГҐГ°Г 
     StartProcess("Saving workbook...",10);
     XL.OlePropertyGet("Workbooks").OlePropertyGet("Item",1).OleProcedure("SaveAs",FileName.c_str());
     StartProcess("Done",10);
@@ -675,7 +677,7 @@ void TMDICountReport::ToExcel(const AnsiString& FileName)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDICountReport::tbTreeClick(TObject *Sender)
+void  TMDICountReport::tbTreeClick(TObject *Sender)
 {
     TreeView = tbTree->Down;
     AllDirectory = tbFull->Down;
@@ -686,7 +688,7 @@ void __fastcall TMDICountReport::tbTreeClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDICountReport::tbUpClick(TObject *Sender)
+void  TMDICountReport::tbUpClick(TObject *Sender)
 {
     if (QNParent!=HQ->Head)
         QNParent = QNParent->Parent;
@@ -695,7 +697,7 @@ void __fastcall TMDICountReport::tbUpClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDICountReport::ToolButton1Click(TObject *Sender)
+void  TMDICountReport::ToolButton1Click(TObject *Sender)
 {
     if (World)
         UpdateReport();

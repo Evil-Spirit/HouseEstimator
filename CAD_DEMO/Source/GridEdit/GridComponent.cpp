@@ -1,15 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <basepch.h>
-#pragma hdrstop
-USEFORM("SectionDialogU.cpp", SectionDialog);
-USEFORM("CellParameterU.cpp", CellParameter);
-USEFORM("SelectColorU.cpp", SelectColor);
-USEFORM("SelectBorderU.cpp", SelectBorder);
+#include "compat/vcl_qt.h"
 USEFORM("ImagesU.cpp", CGIL); /* TDataModule: File Type */
-USEFORM("OffsetCellU.cpp", OffsetCell);
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 
 //   Package source.

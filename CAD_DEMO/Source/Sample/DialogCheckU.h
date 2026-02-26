@@ -1,11 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef DialogCheckUH
 #define DialogCheckUH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MyDialogU.h"
 //---------------------------------------------------------------------------
 class TCheckForm : public TForm
@@ -17,20 +18,20 @@ class TCheckForm : public TForm
     TButton *CreateB;
     TButton *NewB;
     TButton *ExitB;
-    void __fastcall SaveBClick(TObject *Sender);
-    void __fastcall LoadBClick(TObject *Sender);
-    void __fastcall EditBClick(TObject *Sender);
-    void __fastcall CreateBClick(TObject *Sender);
-    void __fastcall NewBClick(TObject *Sender);
-    void __fastcall ExitBClick(TObject *Sender);
+    void  SaveBClick(TObject *Sender);
+    void  LoadBClick(TObject *Sender);
+    void  EditBClick(TObject *Sender);
+    void  CreateBClick(TObject *Sender);
+    void  NewBClick(TObject *Sender);
+    void  ExitBClick(TObject *Sender);
 
     public:
-  __fastcall TCheckForm(TComponent* Owner);
+   TCheckForm(TComponent* Owner);
     TMyDialog* FDialog;
 };
 
 //---------------------------------------------------------------------------
-extern PACKAGE TCheckForm *CheckForm;
+extern  TCheckForm *CheckForm;
 //---------------------------------------------------------------------------
 #endif
 //---------------------------------------------------------------------------

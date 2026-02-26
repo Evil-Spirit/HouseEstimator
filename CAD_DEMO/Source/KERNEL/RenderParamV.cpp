@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
            
 #include "RenderParamV.h"
 #include "LogicNode.h"
@@ -13,7 +16,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 TClassNode* TRenderParam::StaticType = NULL;
 TClassNode* TFragmentSettings::StaticType = NULL;
@@ -142,7 +144,7 @@ void TRenderParam::SetMetaMat(TMetaMaterial* MM)
 
 void TRenderParam::SetMetaTex(TMetaTexture* MT, int i)
 {
-	AboutToChange(this);  /* TODO : избыточно */
+	AboutToChange(this);  /* TODO : ГЁГ§ГЎГ»ГІГ®Г·Г­Г® */
 	while (TEXs.Count<=i)
 		TEXs.Add( new TPointer<TMetaTexture>(NULL) );
 	TEXs[i].ADR = MT;
@@ -151,7 +153,7 @@ void TRenderParam::SetMetaTex(TMetaTexture* MT, int i)
 
 void TRenderParam::SetMetaMat(TMetaMaterial* MM, int i)
 {
-	AboutToChange(this);  /* TODO : избыточно */
+	AboutToChange(this);  /* TODO : ГЁГ§ГЎГ»ГІГ®Г·Г­Г® */
 	while (MATs.Count<=i)
 		MATs.Add( new TPointer<TMetaMaterial>(NULL) );
 	MATs[i].ADR = MM;

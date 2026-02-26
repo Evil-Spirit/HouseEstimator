@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef LuaEnvVH
@@ -20,7 +24,7 @@ extern "C"
 
 
 //---------------------------------------------------------------------------
-//Описание классов и типов переменных ЛУА
+//ГЋГЇГЁГ±Г Г­ГЁГҐ ГЄГ«Г Г±Г±Г®Гў ГЁ ГІГЁГЇГ®Гў ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ Г‹Г“ГЂ
 //---------------------------------------------------------------------------
 class COMMONAL_API TLuaVariable : public TMyObject
 {
@@ -49,25 +53,25 @@ static COMMONAL_API TClassNode* TLuaRegObject::StaticType;
 class COMMONAL_API TLuaVariables
 {
     public:
-    __fastcall TLuaVariables(){};
-    __fastcall ~TLuaVariables(){};
-    void __fastcall FillGlobals(TMDelTList<TLuaVariable>* Vars);
-    void __fastcall FillLocals(TMDelTList<TLuaVariable>* Vars);
-    void __fastcall FillStack(TMDelTList<TLuaVariable>* Vars);
-    //void __fastcall FillTable(TMDelTList<TLuaVariable>* Vars, int index);
-    //void __fastcall FillTable(TMDelTList<TLuaVariable>* Vars, AnsiString name);
+     TLuaVariables(){};
+     ~TLuaVariables(){};
+    void  FillGlobals(TMDelTList<TLuaVariable>* Vars);
+    void  FillLocals(TMDelTList<TLuaVariable>* Vars);
+    void  FillStack(TMDelTList<TLuaVariable>* Vars);
+    //void  FillTable(TMDelTList<TLuaVariable>* Vars, int index);
+    //void  FillTable(TMDelTList<TLuaVariable>* Vars, AnsiString name);
 
 
-    TLuaVariable* __fastcall GetLocal(AnsiString Name, TLuaVariable *LuaVar);
-    TLuaVariable* __fastcall GetGlobal(AnsiString Name, TLuaVariable *LuaVar);
-    bool __fastcall SetGlobal(TLuaVariable *Var);
-    bool __fastcall SetLocal(TLuaVariable *Var);
+    TLuaVariable*  GetLocal(AnsiString Name, TLuaVariable *LuaVar);
+    TLuaVariable*  GetGlobal(AnsiString Name, TLuaVariable *LuaVar);
+    bool  SetGlobal(TLuaVariable *Var);
+    bool  SetLocal(TLuaVariable *Var);
 };
 
 class TMessageHandler
 {
     public:
-    void __fastcall MyWndProc(tagMSG& , bool&);
+    void  MyWndProc(tagMSG& , bool&);
 };
 
 extern COMMONAL_API lua_State* _LUA_;
@@ -80,7 +84,7 @@ COMMONAL_API AnsiString GetLuaValue(int index);
 COMMONAL_API void InspectVariable(HANDLE, AnsiString);
 COMMONAL_API int SetLuaValue(AnsiString type, AnsiString value);
 
-extern PACKAGE TMessageHandler *MessageHandler;
+extern  TMessageHandler *MessageHandler;
 ////////////////////////////////////////////////////////////////
 //Debuger features
 ////////////////////////////////////////////////////////////////

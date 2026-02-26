@@ -1,16 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
-#include <Math.hpp>
 #include "CellGrid.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
-void __fastcall TCellGrid::Test_Speed()
+void  TCellGrid::Test_Speed()
 {
 //    for (int y=100; y>=2; y--)
 //        for (int x=10; x>=2; x--)
@@ -49,7 +50,7 @@ void __fastcall TCellGrid::Test_Speed()
 
 }
 
-void __fastcall TCellGrid::Test_CellInfo(TGridCoord& CellHit1)
+void  TCellGrid::Test_CellInfo(TGridCoord& CellHit1)
 {
 
         AnsiString str,str2,str3,str4;
@@ -57,11 +58,11 @@ void __fastcall TCellGrid::Test_CellInfo(TGridCoord& CellHit1)
         {
 
             if (GetCellSimple(CellHit1.X,CellHit1.Y)->CellFlags.ValueType ==0)
-                str3 ="\n Òåêñò";
+                str3 ="\n Ã’Ã¥ÃªÃ±Ã²";
             if (GetCellSimple(CellHit1.X,CellHit1.Y)->CellFlags.ValueType ==1)
-                str3 ="\n Âûðàæåíèå";
+                str3 ="\n Ã‚Ã»Ã°Ã Ã¦Ã¥Ã­Ã¨Ã¥";
             if (GetCellSimple(CellHit1.X,CellHit1.Y)->CellFlags.ValueType ==2)
-                str3 ="\n Øàáëîí";
+                str3 ="\n Ã˜Ã Ã¡Ã«Ã®Ã­";
 
             str = "Col: " + IntToStr(CellHit1.X) + ", ";
             str += "Row: " + IntToStr(CellHit1.Y) + "\n";
@@ -96,7 +97,7 @@ void __fastcall TCellGrid::Test_CellInfo(TGridCoord& CellHit1)
             str2 += "RectRight: " + IntToStr(GetGridRectToRectPixelForBorder(CellHit1.X, CellHit1.Y).Right) + "\n";
             str2 += "RectBottom: " + IntToStr(GetGridRectToRectPixelForBorder(CellHit1.X, CellHit1.Y).Bottom) + "\n \n";
             str2 += "TypeText: " + str3;
-            str2 += "\n Ïåðåíîñ ïî ñëîâàì â ÿ÷åéêå: " +IntToStr(GetCellSimple(CellHit1.X,CellHit1.Y)->CellFlags.TextWordBreak);
+            str2 += "\n ÃÃ¥Ã°Ã¥Ã­Ã®Ã± Ã¯Ã® Ã±Ã«Ã®Ã¢Ã Ã¬ Ã¢ Ã¿Ã·Ã¥Ã©ÃªÃ¥: " +IntToStr(GetCellSimple(CellHit1.X,CellHit1.Y)->CellFlags.TextWordBreak);
             if (GetCellSimple(CellHit1.X,CellHit1.Y)->LineColorNot)
                 str2 += "\n LineColor: true";
             else
@@ -111,11 +112,11 @@ void __fastcall TCellGrid::Test_CellInfo(TGridCoord& CellHit1)
         str4 += "\nEndRowCell: " +IntToStr(EndColRowCell.y);
 
         if (GetCellSimple(1,CellHit1.Y) !=NULL)
-            str4 += "\n Ïåðåíîñ ïî ñëîâàì â còðîêå: " +IntToStr(GetCellSimple(1,CellHit1.Y)->CellFlags.TextWordBreak);
+            str4 += "\n ÃÃ¥Ã°Ã¥Ã­Ã®Ã± Ã¯Ã® Ã±Ã«Ã®Ã¢Ã Ã¬ Ã¢ cÃ²Ã°Ã®ÃªÃ¥: " +IntToStr(GetCellSimple(1,CellHit1.Y)->CellFlags.TextWordBreak);
         if (GetCellSimple(CellHit1.X,1) !=NULL)
-            str4 += "\n Ïåðåíîñ ïî ñëîâàì â còîëáöå: " +IntToStr(GetCellSimple(CellHit1.X,1)->CellFlags.TextWordBreak);
+            str4 += "\n ÃÃ¥Ã°Ã¥Ã­Ã®Ã± Ã¯Ã® Ã±Ã«Ã®Ã¢Ã Ã¬ Ã¢ cÃ²Ã®Ã«Ã¡Ã¶Ã¥: " +IntToStr(GetCellSimple(CellHit1.X,1)->CellFlags.TextWordBreak);
 
-        str4 += "\n Ïåðåíîñ ïî ñëîâàì â Òàáëèöå: " +IntToStr(GetCellSimple(1,1)->CellFlags.TextWordBreak);
+        str4 += "\n ÃÃ¥Ã°Ã¥Ã­Ã®Ã± Ã¯Ã® Ã±Ã«Ã®Ã¢Ã Ã¬ Ã¢ Ã’Ã Ã¡Ã«Ã¨Ã¶Ã¥: " +IntToStr(GetCellSimple(1,1)->CellFlags.TextWordBreak);
         str4 +="\n LeftBorder: " + IntToStr(GetLeftBorder(CellHit1.X,CellHit1.Y));
         str4 +="\n TopBorder: " + IntToStr(GetTopBorder(CellHit1.X,CellHit1.Y));
         str4 +="\n RightBorder: " + IntToStr(GetRightBorder(CellHit1.X,CellHit1.Y));

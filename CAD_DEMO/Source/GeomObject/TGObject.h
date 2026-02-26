@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef TGObjectH
@@ -33,13 +37,13 @@ friend class TGAGraph;
 friend class TGAAnRender;
 
 protected:
-	TMDelTList<TGPoint>		FVertex;									// Вершины
-	TMDelTList<TGCut>		FCuts;										// Отрезки
-	TMDelTList<TGPolygon>	FPolygons;									// Полигоны
+	TMDelTList<TGPoint>		FVertex;									// Г‚ГҐГ°ГёГЁГ­Г»
+	TMDelTList<TGCut>		FCuts;										// ГЋГІГ°ГҐГ§ГЄГЁ
+	TMDelTList<TGPolygon>	FPolygons;									// ГЏГ®Г«ГЁГЈГ®Г­Г»
 
-	TMTList < TMTList<TGCut> > FUserCuts;								// Пользовательские указатели на отрезки
+	TMTList < TMTList<TGCut> > FUserCuts;								// ГЏГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГЁГҐ ГіГЄГ Г§Г ГІГҐГ«ГЁ Г­Г  Г®ГІГ°ГҐГ§ГЄГЁ
 
-	void UpdateCutPointers(TGCut *o, TMTList <TGCut> n);				// Обновтить пользовательские списки указателей на отрезки
+	void UpdateCutPointers(TGCut *o, TMTList <TGCut> n);				// ГЋГЎГ­Г®ГўГІГЁГІГј ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГЁГҐ Г±ГЇГЁГ±ГЄГЁ ГіГЄГ Г§Г ГІГҐГ«ГҐГ© Г­Г  Г®ГІГ°ГҐГ§ГЄГЁ
 	void UpdateCutPointers(TGCut *o, TGCut *n);							//
 	void UpdateCutPointers(TGCut *o);                                   //
 	void UpdateCutPointers(TGCut *o, TGCut *n, TGCut *n2);              //
@@ -48,32 +52,32 @@ public:
 	TGeomObject();
 
 ///////////////////////////////////
-//	Управление
+//	Г“ГЇГ°Г ГўГ«ГҐГ­ГЁГҐ
 ///////////////////////////////////
-	MBTi PEPS;															// Эпсилон близости точек
+	MBTi PEPS;															// ГќГЇГ±ГЁГ«Г®Г­ ГЎГ«ГЁГ§Г®Г±ГІГЁ ГІГ®Г·ГҐГЄ
 
-	bool SnapPointsToNearest;											// Привязка точек при добавлении к ближайшей
-	bool SnapPoints;													// Привязка точек при добавлении
-	bool SnapPolygons;													// Привязка полигонов
-	bool SnapCuts;														// Привязка отрезков
+	bool SnapPointsToNearest;											// ГЏГ°ГЁГўГїГ§ГЄГ  ГІГ®Г·ГҐГЄ ГЇГ°ГЁ Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГЁ ГЄ ГЎГ«ГЁГ¦Г Г©ГёГҐГ©
+	bool SnapPoints;													// ГЏГ°ГЁГўГїГ§ГЄГ  ГІГ®Г·ГҐГЄ ГЇГ°ГЁ Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГЁ
+	bool SnapPolygons;													// ГЏГ°ГЁГўГїГ§ГЄГ  ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
+	bool SnapCuts;														// ГЏГ°ГЁГўГїГ§ГЄГ  Г®ГІГ°ГҐГ§ГЄГ®Гў
 
-	bool CheckPolygonData;												// Проверка данных при добавлении полигона
-	bool CheckCutData;													// Проверка данных при добавлении полигона
+	bool CheckPolygonData;												// ГЏГ°Г®ГўГҐГ°ГЄГ  Г¤Г Г­Г­Г»Гµ ГЇГ°ГЁ Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГЁ ГЇГ®Г«ГЁГЈГ®Г­Г 
+	bool CheckCutData;													// ГЏГ°Г®ГўГҐГ°ГЄГ  Г¤Г Г­Г­Г»Гµ ГЇГ°ГЁ Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГЁ ГЇГ®Г«ГЁГЈГ®Г­Г 
 
-	void RegisterCutPointers(TMTList <TGCut> *user);					// заРегестрировать пользовательский список
-	void UnRegisterCutPointers(TMTList <TGCut> *user);					// отРегестрировать пользовательский список
-	void UnRegisterCutPointersAtAll();									// отРегистрировать все списки
+	void RegisterCutPointers(TMTList <TGCut> *user);					// Г§Г ГђГҐГЈГҐГ±ГІГ°ГЁГ°Г®ГўГ ГІГј ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГЁГ© Г±ГЇГЁГ±Г®ГЄ
+	void UnRegisterCutPointers(TMTList <TGCut> *user);					// Г®ГІГђГҐГЈГҐГ±ГІГ°ГЁГ°Г®ГўГ ГІГј ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГЁГ© Г±ГЇГЁГ±Г®ГЄ
+	void UnRegisterCutPointersAtAll();									// Г®ГІГђГҐГЈГЁГ±ГІГ°ГЁГ°Г®ГўГ ГІГј ГўГ±ГҐ Г±ГЇГЁГ±ГЄГЁ
 
-	void CachePoints();													// Закэшировать точки
-	void RestorePoints();												// Раскэшировать точки
+	void CachePoints();													// Г‡Г ГЄГЅГёГЁГ°Г®ГўГ ГІГј ГІГ®Г·ГЄГЁ
+	void RestorePoints();												// ГђГ Г±ГЄГЅГёГЁГ°Г®ГўГ ГІГј ГІГ®Г·ГЄГЁ
 
-	void CachePoints(TMTList <TGPoint> &pnt);                           // Закэшировать точки
-	void RestorePoints(TMTList <TGPoint> &pnt);                         // Раскэшировать точки
+	void CachePoints(TMTList <TGPoint> &pnt);                           // Г‡Г ГЄГЅГёГЁГ°Г®ГўГ ГІГј ГІГ®Г·ГЄГЁ
+	void RestorePoints(TMTList <TGPoint> &pnt);                         // ГђГ Г±ГЄГЅГёГЁГ°Г®ГўГ ГІГј ГІГ®Г·ГЄГЁ
 
-	void Cache(TMTList <TMyObject> &pnt);         	    	    	          // Закэшировать точки
-	void Restore(TMTList <TMyObject> &pnt);        	    	             // Раскэшировать точки
+	void Cache(TMTList <TMyObject> &pnt);         	    	    	          // Г‡Г ГЄГЅГёГЁГ°Г®ГўГ ГІГј ГІГ®Г·ГЄГЁ
+	void Restore(TMTList <TMyObject> &pnt);        	    	             // ГђГ Г±ГЄГЅГёГЁГ°Г®ГўГ ГІГј ГІГ®Г·ГЄГЁ
 ///////////////////////////////////
-//	Флаги
+//	Г”Г«Г ГЈГЁ
 ///////////////////////////////////
 	void FillCutsFlags(TClassifyFlags Flag, TClassify State);
 	void FillCutsFlags(TMTList <TGCut> &cuts, TClassifyFlags Flag, TClassify State);
@@ -85,58 +89,58 @@ public:
 	void FillPointsFlags(TMTList <TGPoint> &points, TClassifyFlags Flag, TClassify State);
 	void FillPointsFlags(TMTList<TMyObject> &what, TClassifyFlags fl, TClassify gf);
 
-	void FillCutsTag(const int ID);												// Заполнить тэги отрезков
-	void FillPointsTag(const int ID);											// Заполнить тэги полигонов
+	void FillCutsTag(const int ID);												// Г‡Г ГЇГ®Г«Г­ГЁГІГј ГІГЅГЈГЁ Г®ГІГ°ГҐГ§ГЄГ®Гў
+	void FillPointsTag(const int ID);											// Г‡Г ГЇГ®Г«Г­ГЁГІГј ГІГЅГЈГЁ ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
 
 ///////////////////////////////
-//	Интефейс данных
+//	Г€Г­ГІГҐГґГҐГ©Г± Г¤Г Г­Г­Г»Гµ
 ///////////////////////////////
 
-	// Интерфейс геометрических составляющих обьекта
-	int GetPolygonsCount() const;										// Колличество полигонов
-	__property int PolygonsCount = {read = GetPolygonsCount};			//
+	// Г€Г­ГІГҐГ°ГґГҐГ©Г± ГЈГҐГ®Г¬ГҐГІГ°ГЁГ·ГҐГ±ГЄГЁГµ Г±Г®Г±ГІГ ГўГ«ГїГѕГ№ГЁГµ Г®ГЎГјГҐГЄГІГ 
+	int GetPolygonsCount() const;										// ГЉГ®Г«Г«ГЁГ·ГҐГ±ГІГўГ® ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
+	// __property int PolygonsCount {read=GetPolygonsCount}; // [manual migration needed]
 
-	int GetCutsCount() const;										   	// Колличество отрезков
-	__property int CutsCount = {read = GetCutsCount};					//
+	int GetCutsCount() const;										   	// ГЉГ®Г«Г«ГЁГ·ГҐГ±ГІГўГ® Г®ГІГ°ГҐГ§ГЄГ®Гў
+	// __property int CutsCount {read=GetCutsCount}; // [manual migration needed]
 
-	int GetVertexCount() const;											// Колличество точек
-	__property int VertexCount = {read = GetVertexCount};				//
+	int GetVertexCount() const;											// ГЉГ®Г«Г«ГЁГ·ГҐГ±ГІГўГ® ГІГ®Г·ГҐГЄ
+	// __property int VertexCount {read=GetVertexCount}; // [manual migration needed]
 
-	TGPoint &GetVertex(int index) const;								// Вершины
-	TGPoint &GetVertex(int index);										// Вершины
-	__property TGPoint &Vertex[int] = {read = GetVertex};				// Вершины
+	TGPoint &GetVertex(int index) const;								// Г‚ГҐГ°ГёГЁГ­Г»
+	TGPoint &GetVertex(int index);										// Г‚ГҐГ°ГёГЁГ­Г»
+// [indexed property - needs manual migration]: 	__property TGPoint &Vertex[int] = {read = GetVertex};				// Г‚ГҐГ°ГёГЁГ­Г»
 	void GetPoints(TMTList <TGCut> &ret);
 
-	TGCut &GetCut(int index) const;									   	// Отрезки
-	TGCut &GetCut(int index);										   	// Отрезки
-	__property TGCut &Cuts[int] = {read = GetCut};                      // Отрезки
+	TGCut &GetCut(int index) const;									   	// ГЋГІГ°ГҐГ§ГЄГЁ
+	TGCut &GetCut(int index);										   	// ГЋГІГ°ГҐГ§ГЄГЁ
+// [indexed property - needs manual migration]: 	__property TGCut &Cuts[int] = {read = GetCut};                      // ГЋГІГ°ГҐГ§ГЄГЁ
 	void GetCuts(TMTList <TGCut> &ret);
 
-	TGPolygon &GetPolygon(int index) const;								// Полигоны
-	TGPolygon &GetPolygon(int index);									// Полигоны
+	TGPolygon &GetPolygon(int index) const;								// ГЏГ®Г«ГЁГЈГ®Г­Г»
+	TGPolygon &GetPolygon(int index);									// ГЏГ®Г«ГЁГЈГ®Г­Г»
 	void GetPolygons(TMTList <TGCut> &ret);
 
-	__property TGPolygon &Polygons[int] = {read = GetPolygon};          // Полигоны
+// [indexed property - needs manual migration]: 	__property TGPolygon &Polygons[int] = {read = GetPolygon};          // ГЏГ®Г«ГЁГЈГ®Г­Г»
 
 ///////////////////////////////
-//	Свойства объекта
+//	Г‘ГўГ®Г©Г±ГІГўГ  Г®ГЎГєГҐГЄГІГ 
 ///////////////////////////////
 
-	bool GetClosed() const;												// Замкнутость элементов обьекта
-	__property bool Closed = {read = GetClosed};						//
+	bool GetClosed() const;												// Г‡Г Г¬ГЄГ­ГіГІГ®Г±ГІГј ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Г®ГЎГјГҐГЄГІГ 
+	// __property bool Closed {read=GetClosed}; // [manual migration needed]
 
-	bool GetSolid() const;												// Обьект - твердое тело
-	__property bool Solid = {read = GetSolid};							//
+	bool GetSolid() const;												// ГЋГЎГјГҐГЄГІ - ГІГўГҐГ°Г¤Г®ГҐ ГІГҐГ«Г®
+	// __property bool Solid {read=GetSolid}; // [manual migration needed]
 
 ///////////////////////////////
-//	Поиск
+//	ГЏГ®ГЁГ±ГЄ
 ///////////////////////////////
 
-	int IndexOf(TGPoint *point) const;									// Индекс точки
-	int IndexOf(TGCut *cut) const;										// Индекс отрезка
-	int IndexOf(TGPolygon *polygon) const;								// Индекс полигона
+	int IndexOf(TGPoint *point) const;									// Г€Г­Г¤ГҐГЄГ± ГІГ®Г·ГЄГЁ
+	int IndexOf(TGCut *cut) const;										// Г€Г­Г¤ГҐГЄГ± Г®ГІГ°ГҐГ§ГЄГ 
+	int IndexOf(TGPolygon *polygon) const;								// Г€Г­Г¤ГҐГЄГ± ГЇГ®Г«ГЁГЈГ®Г­Г 
 
-	TGCut *ExistsCut(const TGCut &);											// Содержание отрезка
+	TGCut *ExistsCut(const TGCut &);											// Г‘Г®Г¤ГҐГ°Г¦Г Г­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ 
 	TGCut *ExistsCut(TGPoint *p1, TGPoint *p2);
 
 	TGPoint* ExistsPoint(const TIntVec& v);
@@ -145,15 +149,15 @@ public:
 	TGPoint* ExistsPointNearest(const TIntVec& v);
 	TGPoint* ExistsPointNearest(const TGPoint& v);
 
-	TGPolygon *ExistsPolygon(const TGPolygon &);								// Содержание полигона
+	TGPolygon *ExistsPolygon(const TGPolygon &);								// Г‘Г®Г¤ГҐГ°Г¦Г Г­ГЁГҐ ГЇГ®Г«ГЁГЈГ®Г­Г 
 
-	TGCut* GetCutByPoints(TGPoint* P1, TGPoint* P2);								// Найти отрезок по двум точкам
+	TGCut* GetCutByPoints(TGPoint* P1, TGPoint* P2);								// ГЌГ Г©ГІГЁ Г®ГІГ°ГҐГ§Г®ГЄ ГЇГ® Г¤ГўГіГ¬ ГІГ®Г·ГЄГ Г¬
 
 ///////////////////////////////
-//	Главные функции изменения
+//	ГѓГ«Г ГўГ­Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї
 ///////////////////////////////
 
-// Удаление элементов
+// Г“Г¤Г Г«ГҐГ­ГЁГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
 	virtual void DeletePoint(int index);
 	virtual void DeleteCut(int index);
 	virtual void DeletePolygon(int index);
@@ -162,64 +166,64 @@ public:
 	virtual void Delete(TGCut *target);
 	virtual void Delete(TGPolygon *target);
 
-	virtual void Clear();														// Очистить геометрический обьект
+	virtual void Clear();														// ГЋГ·ГЁГ±ГІГЁГІГј ГЈГҐГ®Г¬ГҐГІГ°ГЁГ·ГҐГ±ГЄГЁГ© Г®ГЎГјГҐГЄГІ
 
-// Добавление элементов
-	TGPoint *AddPoint(const TIntVec &v); 				// Добавление точки
-	TGPoint *AddPoint(const TGPoint &p);				// Добавление точки
+// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
+	TGPoint *AddPoint(const TIntVec &v); 				// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГІГ®Г·ГЄГЁ
+	TGPoint *AddPoint(const TGPoint &p);				// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГІГ®Г·ГЄГЁ
 
-	TGCut *AddCut(const TGCut &c);					   	// Добавление отрезка
-	TGCut *AddCut(int, int);						   	// Добавление отрезка
-	TGCut *AddCut(TGPoint *, TGPoint *);				// Добавление отрезка
-	TGCut *AddCut(TIntVec v1, TIntVec v2);				// Добавление отрезка
+	TGCut *AddCut(const TGCut &c);					   	// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ 
+	TGCut *AddCut(int, int);						   	// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ 
+	TGCut *AddCut(TGPoint *, TGPoint *);				// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ 
+	TGCut *AddCut(TIntVec v1, TIntVec v2);				// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ 
 
-	TGPolygon *AddPolygon(TMTList<TGCut>&, const TIntVec &nrm = TIntVec(0,0,0));				// Добавление полигона
-	TGPolygon *AddPolygon(const TMTList<int>& indices, const TIntVec &nrm = TIntVec(0,0,0));	// Добавление полигона
+	TGPolygon *AddPolygon(TMTList<TGCut>&, const TIntVec &nrm = TIntVec(0,0,0));				// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЇГ®Г«ГЁГЈГ®Г­Г 
+	TGPolygon *AddPolygon(const TMTList<int>& indices, const TIntVec &nrm = TIntVec(0,0,0));	// Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЇГ®Г«ГЁГЈГ®Г­Г 
 
-	TGPolygon *CopyPolygonToObject(const TGPolygon &poly);										// Копирование полигона
-	TGCut *CopyCutToObject(const TGCut &cut);				// Скопировать отрезок в обьект
+	TGPolygon *CopyPolygonToObject(const TGPolygon &poly);										// ГЉГ®ГЇГЁГ°Г®ГўГ Г­ГЁГҐ ГЇГ®Г«ГЁГЈГ®Г­Г 
+	TGCut *CopyCutToObject(const TGCut &cut);				// Г‘ГЄГ®ГЇГЁГ°Г®ГўГ ГІГј Г®ГІГ°ГҐГ§Г®ГЄ Гў Г®ГЎГјГҐГЄГІ
 // CopyPointToObj
 
 //////////////////////////
-// Структурное изменение
+// Г‘ГІГ°ГіГЄГІГіГ°Г­Г®ГҐ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГҐ
 //////////////////////////
 
-	TGCut *CompositeCuts(TGCut *c1, TGCut *c2);							// Главная функция обьединения
+	TGCut *CompositeCuts(TGCut *c1, TGCut *c2);							// ГѓГ«Г ГўГ­Г Гї ГґГіГ­ГЄГ¶ГЁГї Г®ГЎГјГҐГ¤ГЁГ­ГҐГ­ГЁГї
 	void CompositePolygons(const TMTList<TGPolygon> &poly, TMDelTList < TMTList <TGCut> > &res);
 	void CollapsePoints(TMTList <TGPoint> pnt);
 
-	bool SplitCut(TGCut *c, TGPoint *Pnt);													// Разбиение отрезка точкой.
-	bool SplitCut(TGCut *c, TGPoint *newPnt, TGCut *&Result1, TGCut *&Result2);				// Разбиение отрезка точкой.
-	bool MultiSplitCut(TGCut *c, const TMTList<TGPoint> &newPnt, TMTList<TGCut> &Result);	// Множественное разбиение отрезка точкой
-	bool MultiSplitCut(TGCut *c, const TMTList<TGPoint> &newPnt);							// Множественное разбиение отрезка точкой
-	bool SplitPolygon(TGPolygon *p, TMTList<TGCut> &Cut, TMTList<TGPolygon> &result);		// Разбиение полигона отрезками
+	bool SplitCut(TGCut *c, TGPoint *Pnt);													// ГђГ Г§ГЎГЁГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ  ГІГ®Г·ГЄГ®Г©.
+	bool SplitCut(TGCut *c, TGPoint *newPnt, TGCut *&Result1, TGCut *&Result2);				// ГђГ Г§ГЎГЁГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ  ГІГ®Г·ГЄГ®Г©.
+	bool MultiSplitCut(TGCut *c, const TMTList<TGPoint> &newPnt, TMTList<TGCut> &Result);	// ГЊГ­Г®Г¦ГҐГ±ГІГўГҐГ­Г­Г®ГҐ Г°Г Г§ГЎГЁГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ  ГІГ®Г·ГЄГ®Г©
+	bool MultiSplitCut(TGCut *c, const TMTList<TGPoint> &newPnt);							// ГЊГ­Г®Г¦ГҐГ±ГІГўГҐГ­Г­Г®ГҐ Г°Г Г§ГЎГЁГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ  ГІГ®Г·ГЄГ®Г©
+	bool SplitPolygon(TGPolygon *p, TMTList<TGCut> &Cut, TMTList<TGPolygon> &result);		// ГђГ Г§ГЎГЁГҐГ­ГЁГҐ ГЇГ®Г«ГЁГЈГ®Г­Г  Г®ГІГ°ГҐГ§ГЄГ Г¬ГЁ
 
 ///////////
 
-	void Append(TGeomObject &obj);							// Добавить другой обьект
-	void CalculateNormals();								// Пересчитать нормали
+	void Append(TGeomObject &obj);							// Г„Г®ГЎГ ГўГЁГІГј Г¤Г°ГіГЈГ®Г© Г®ГЎГјГҐГЄГІ
+	void CalculateNormals();								// ГЏГҐГ°ГҐГ±Г·ГЁГІГ ГІГј Г­Г®Г°Г¬Г Г«ГЁ
 
 /////////////////////
 
-	void DetectHoles2d(TMTList<TGPolygon> &poly);											// Определение дырок
-	void DetectHolesCreatePolygons2d(TMTList<TGPolygon> &poly);								// Определение дырок с созданием полигонов
-	bool Polygonize2d(const TMTList<TGCut> &Cuts, TMDelTList< TMTList<TGCut> > &poly);				// Общая полигонизация
-	bool Contourize2d(const TMTList<TGCut> &Cuts, TMTList<TGCut> &contour, TGPoint *begin = NULL);	// Общая контуризация
+	void DetectHoles2d(TMTList<TGPolygon> &poly);											// ГЋГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ Г¤Г»Г°Г®ГЄ
+	void DetectHolesCreatePolygons2d(TMTList<TGPolygon> &poly);								// ГЋГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ Г¤Г»Г°Г®ГЄ Г± Г±Г®Г§Г¤Г Г­ГЁГҐГ¬ ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
+	bool Polygonize2d(const TMTList<TGCut> &Cuts, TMDelTList< TMTList<TGCut> > &poly);				// ГЋГЎГ№Г Гї ГЇГ®Г«ГЁГЈГ®Г­ГЁГ§Г Г¶ГЁГї
+	bool Contourize2d(const TMTList<TGCut> &Cuts, TMTList<TGCut> &contour, TGPoint *begin = NULL);	// ГЋГЎГ№Г Гї ГЄГ®Г­ГІГіГ°ГЁГ§Г Г¶ГЁГї
 	bool PolygonizeIsolated(const TMTList<TGCut> &Cuts, TMDelTList< TMTList<TGCut> > &poly);
 
 	void SortCutsByConnect(TMTList <TGCut> &cuts) const;
-	TGPoint *GetLowestPoint2d(const TMTList<TGCut> &cuts);						// Взять самую нижнюю точку из отрезков
+	TGPoint *GetLowestPoint2d(const TMTList<TGCut> &cuts);						// Г‚Г§ГїГІГј Г±Г Г¬ГіГѕ Г­ГЁГ¦Г­ГѕГѕ ГІГ®Г·ГЄГі ГЁГ§ Г®ГІГ°ГҐГ§ГЄГ®Гў
 	void SortByLine(const TIntVec &nrm, TMTList <TGPoint> &pnt);
 
 //////////
 // Save
 //////////
 
-	void CutsToIndices(TMDelTList<int>& indices) const;							// Отрезки в индексы
-	void IndicesToCuts(TMDelTList<int>& indices);								// Индексы в отрезки
+	void CutsToIndices(TMDelTList<int>& indices) const;							// ГЋГІГ°ГҐГ§ГЄГЁ Гў ГЁГ­Г¤ГҐГЄГ±Г»
+	void IndicesToCuts(TMDelTList<int>& indices);								// Г€Г­Г¤ГҐГЄГ±Г» Гў Г®ГІГ°ГҐГ§ГЄГЁ
 
-	void PolygonToIndices(TGPolygon* GP,TMDelTList<int>& indices) const; 		// Полигон в индексы
-	void IndicesToPolygon(TGPolygon* GP,TMDelTList<int>& indices); 				// Индексы в полигон
+	void PolygonToIndices(TGPolygon* GP,TMDelTList<int>& indices) const; 		// ГЏГ®Г«ГЁГЈГ®Г­ Гў ГЁГ­Г¤ГҐГЄГ±Г»
+	void IndicesToPolygon(TGPolygon* GP,TMDelTList<int>& indices); 				// Г€Г­Г¤ГҐГЄГ±Г» Гў ГЇГ®Г«ГЁГЈГ®Г­
 
 	void SavePolygonAsFigure(int ind, const AnsiString &name);
 	void SaveCutsAsFigure(const TMTList <TGCut> &cuts, const  AnsiString &name);

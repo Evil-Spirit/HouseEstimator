@@ -1,11 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
-#include <Math.hpp>
 #include "CellGrid.h"
 #include "GridFormV.h"
 #include "SectionDialogU.h"
@@ -17,7 +19,6 @@
 #include "OffsetCellU.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 TClassNode* TCell::StaticType       =NULL;
 TClassNode* TCellColRow::StaticType =NULL;
 TClassNode* TCellTab::StaticType    =NULL;
@@ -165,28 +166,28 @@ void TCell::InitFont()
     switch (CellFlags.FontStyle)
     {
         case 0:
-        {// Обычный
+        {// ГЋГЎГ»Г·Г­Г»Г©
             Style.Clear();
         }break;
         case 1:
-        {// Курсив
+        {// ГЉГіГ°Г±ГЁГў
             Style <<fsItalic;
         }break;
         case 2:
-        {// Жирный
+        {// Г†ГЁГ°Г­Г»Г©
             Style <<fsBold;
         }break;
         case 3:
-        {// Жирный курсив
+        {// Г†ГЁГ°Г­Г»Г© ГЄГіГ°Г±ГЁГў
             Style <<fsBold <<fsItalic;
         }break;
     }
     if (CellFlags.FontStrikeOut ==1)
-    {// Зачеркнутый шрифт
+    {// Г‡Г Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ
         Style <<fsStrikeOut;
     }
     if (CellFlags.FontUnderline ==1)
-    {// Подчеркнутый шрифт
+    {// ГЏГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ
         Style <<fsUnderline;
     }
     Font->Style =Style;
@@ -330,19 +331,19 @@ void TCell::ReadData(TMemoryStream *MS)
 }
 
 // ----------- TCellList ------------------
-void __fastcall TCellList::Put(int index, TCell * item)
+void  TCellList::Put(int index, TCell * item)
 {
     TSparseList::Put(index, item);
 }
 
-TCell* __fastcall TCellList::Get(int index)
+TCell*  TCellList::Get(int index)
 {
     return (TCell*)TSparseList::Get(index);
 }
 
 // ----------- TCellGrid ------------------
 
-__fastcall TCellGrid::TCellGrid(Classes::TComponent* AOwner, TGridForm* _Form, TToolBarCellGrid* _ToolBarCellGrid)
+ TCellGrid::TCellGrid(Classes::TComponent* AOwner, TGridForm* _Form, TToolBarCellGrid* _ToolBarCellGrid)
     :TMyDrawGrid(AOwner)
 {
 
@@ -357,7 +358,7 @@ __fastcall TCellGrid::TCellGrid(Classes::TComponent* AOwner, TGridForm* _Form, T
     EndColRowCell.x=0;
     EndColRowCell.y=0;
 
-    bResizeColRow =false; //Изменился размер (строк, столбцов)
+    bResizeColRow =false; //Г€Г§Г¬ГҐГ­ГЁГ«Г±Гї Г°Г Г§Г¬ГҐГ° (Г±ГІГ°Г®ГЄ, Г±ГІГ®Г«ГЎГ¶Г®Гў)
 
     TStart = new TTimer(this);
     TStart->Interval = 2;
@@ -366,7 +367,7 @@ __fastcall TCellGrid::TCellGrid(Classes::TComponent* AOwner, TGridForm* _Form, T
 
     ToolBarCellGrid =_ToolBarCellGrid;
     
-// Переменные НАШЕГО Paint
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint
     InvalidateRectOK = false;
     StartVisible = false;
 
@@ -411,17 +412,17 @@ __fastcall TCellGrid::TCellGrid(Classes::TComponent* AOwner, TGridForm* _Form, T
     OldRectDrawCellFixedT =-1;
     OldRectDrawCellFixedL =-1;
 //    iCountCalculation=0;
-// Переменные НАШЕГО Paint - END
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint - END
 
     NullRect(OldCurrentAnchorSort);
 
-// Переменные НАШЕГО Paint V2
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint V2
 //    OldRectCurrentAnchorMouseDown=OldRectDown;
     OldRectCurrentAnchorMouseMove=OldRectDown;
     OldCellMouseMove.X = -1;
     OldCellMouseMove.Y = -1;
 
-// Переменные НАШЕГО Paint - END
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint - END
 
     CellGridResizeRow.x =0;
     CellGridResizeRow.y =0;
@@ -431,11 +432,11 @@ __fastcall TCellGrid::TCellGrid(Classes::TComponent* AOwner, TGridForm* _Form, T
 
     NewSizeColRow =0;
 
-// Переменные Частный случай
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Г—Г Г±ГІГ­Г»Г© Г±Г«ГіГ·Г Г©
     PrivatEvent_1 = false;
-// Переменные Частный случай END
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Г—Г Г±ГІГ­Г»Г© Г±Г«ГіГ·Г Г© END
 
-// Переменные НАШЕГО Paint V4
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint V4
     CurrentUnionRectMouseMove = OldRectDown;
     iCountYes = 0;
 
@@ -465,17 +466,17 @@ __fastcall TCellGrid::TCellGrid(Classes::TComponent* AOwner, TGridForm* _Form, T
 
     MouseX =10;
     MouseY =10;
-// Переменные НАШЕГО Paint - END
+// ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ ГЌГЂГГ…ГѓГЋ Paint - END
 
 //*********************  Color **********
-    ColorCursor =clWhite; // Стандартный фон
+    ColorCursor =clWhite; // Г‘ГІГ Г­Г¤Г Г°ГІГ­Г»Г© ГґГ®Г­
 //*********************  Color ********** END
 
 //********************* Function System
-    SelectTable = false; // Выделена таблица
-    SelectColumn = false;// Выделен столбец
-    SelectString = false;// Выделена строка
-    SelectCell = false;// Выделена ячейка
+    SelectTable = false; // Г‚Г»Г¤ГҐГ«ГҐГ­Г  ГІГ ГЎГ«ГЁГ¶Г 
+    SelectColumn = false;// Г‚Г»Г¤ГҐГ«ГҐГ­ Г±ГІГ®Г«ГЎГҐГ¶
+    SelectString = false;// Г‚Г»Г¤ГҐГ«ГҐГ­Г  Г±ГІГ°Г®ГЄГ 
+    SelectCell = false;// Г‚Г»Г¤ГҐГ«ГҐГ­Г  ГїГ·ГҐГ©ГЄГ 
 
     XM=1;
     YM=1;
@@ -491,7 +492,7 @@ __fastcall TCellGrid::TCellGrid(Classes::TComponent* AOwner, TGridForm* _Form, T
     // Matrix
 }
 
-inline __fastcall TCellGrid::~TCellGrid(void)
+inline  TCellGrid::~TCellGrid(void)
 {
     delete Timer;
     delete TStart;
@@ -513,8 +514,8 @@ inline __fastcall TCellGrid::~TCellGrid(void)
 
 }
 
-void __fastcall TCellGrid::ClearSelectRect()
-{// Очистка выделенной области
+void  TCellGrid::ClearSelectRect()
+{// ГЋГ·ГЁГ±ГІГЄГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
     TRect rect =GetSelectGridRect();
     if (rect.Left ==1 && rect.Top ==1)
     {
@@ -550,8 +551,8 @@ void __fastcall TCellGrid::ClearSelectRect()
 
 }
 
-void __fastcall TCellGrid::ClearSelectRect(const TRect& rect)
-{// Очистка выделенной области
+void  TCellGrid::ClearSelectRect(const TRect& rect)
+{// ГЋГ·ГЁГ±ГІГЄГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
     TRect rect2 =rect;
 
     if (rect2.Bottom == RowCount-1)
@@ -580,7 +581,7 @@ void __fastcall TCellGrid::ClearSelectRect(const TRect& rect)
     }
 }
 
-void __fastcall TCellGrid::RecalculationEndCell(int Col, int Row)
+void  TCellGrid::RecalculationEndCell(int Col, int Row)
 {
     bool bOK =false;
     if (Col >=EndColRowCell.x)
@@ -604,8 +605,8 @@ void __fastcall TCellGrid::RecalculationEndCell(int Col, int Row)
 
 }
 
-void __fastcall TCellGrid::ClearCell(int Col, int Row)
-{// Очистка выделенной области
+void  TCellGrid::ClearCell(int Col, int Row)
+{// ГЋГ·ГЁГ±ГІГЄГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
 
     if (GetCellSimple(Col,Row))
     {
@@ -633,7 +634,7 @@ void __fastcall TCellGrid::ClearCell(int Col, int Row)
     RecalculationEndCell(Col, Row);
 }
 
-void __fastcall TCellGrid::DelCell(int Col, int Row)
+void  TCellGrid::DelCell(int Col, int Row)
 {
     if (GetCellSimple(Col,Row) !=NULL)
     {
@@ -648,7 +649,7 @@ void __fastcall TCellGrid::DelCell(int Col, int Row)
     }
 }
 
-int __fastcall TCellGrid::DelCellF(int Col, int Row, void * TheItem)
+int  TCellGrid::DelCellF(int Col, int Row, void * TheItem)
 {
     TCell* Cell =  (TCell*)TheItem;
     if (Cell !=NULL && !(Cell->UnionRect !=NULL && !Rect1InRect2(*Cell->UnionRect,Matrix->DelRect)))
@@ -657,14 +658,14 @@ int __fastcall TCellGrid::DelCellF(int Col, int Row, void * TheItem)
     return 0;
 }
 
-void __fastcall TCellGrid::DelAndSetDefaultCellF(const TRect& Rect)
+void  TCellGrid::DelAndSetDefaultCellF(const TRect& Rect)
 {
     Matrix->DelRect =Rect;
     FForAll((TRect)Rect,DelCellF);
 }
 
-void __fastcall TCellGrid::DelAndSetDefaultCell(const TRect& Rect)
-{// Очистка выделенной области
+void  TCellGrid::DelAndSetDefaultCell(const TRect& Rect)
+{// ГЋГ·ГЁГ±ГІГЄГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
     TRect rect2 =Rect;
     if (rect2.Bottom == RowCount-1)
         rect2.Bottom =EndColRowCell.y;
@@ -688,8 +689,8 @@ void __fastcall TCellGrid::DelAndSetDefaultCell(const TRect& Rect)
 
 }
 
-void __fastcall TCellGrid::DelAndSetDefaultCell(int Col, int Row)
-{// Очистка выделенной области
+void  TCellGrid::DelAndSetDefaultCell(int Col, int Row)
+{// ГЋГ·ГЁГ±ГІГЄГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
 
     DelCell(Col,Row);
     if (!(Col ==1 && Row ==1))
@@ -712,24 +713,24 @@ void TCellGrid::Initialize()
         FData = new TSparseList( (RowCount > 256) ? SPALarge : SPASmall );
 }
 
-void* __fastcall TCellGrid::EnsureDataRow(int aRow)
+void*  TCellGrid::EnsureDataRow(int aRow)
 {
     if ( !((TSparseList*)FData)->Items[aRow] )
         ((TSparseList*)FData)->Items[aRow] = new TCellList( (RowCount > 256) ? SPALarge : SPASmall ) ;
     return ((TSparseList*)FData)->Items[aRow];
 }
 
-void __fastcall TCellGrid::SetCell(int aCol, int aRow, TCell* data)
+void  TCellGrid::SetCell(int aCol, int aRow, TCell* data)
 {
     ((TSparseList*)EnsureDataRow(aRow))->Items[aCol] = data;
 }
 
-void __fastcall TCellGrid::SetNewCell(int aCol, int aRow, TCell* data)
+void  TCellGrid::SetNewCell(int aCol, int aRow, TCell* data)
 {
     SetCell(aCol,aRow,data);
 }
 
-TCell* __fastcall TCellGrid::GetCell(int Col, int Row)
+TCell*  TCellGrid::GetCell(int Col, int Row)
 {
     TCell* Cell =GetCellSimple(Col, Row);
     if (Cell != NULL && Cell->UnionRect != NULL)
@@ -737,7 +738,7 @@ TCell* __fastcall TCellGrid::GetCell(int Col, int Row)
     return Cell;
 }
 
-TCell* __fastcall TCellGrid::GetCellSimple(int Col, int Row)
+TCell*  TCellGrid::GetCellSimple(int Col, int Row)
 {
 
     if ( !((TSparseList*)FData)->Items[Row] )
@@ -746,17 +747,17 @@ TCell* __fastcall TCellGrid::GetCellSimple(int Col, int Row)
         return (TCell*)((TSparseList*)EnsureDataRow(Row))->Items[Col];
 }
 
-// ----------- PACKAGE  ------------------
+// -----------   ------------------
 namespace Gridcomponent
 {
-    void __fastcall PACKAGE Register()
+    void   Register()
     {
         TComponentClass classes[1] = {__classid(TCellGrid)};
         RegisterComponents("Samples", classes, 0);
     }
 }
-// ----------- PACKAGE  END ------------------
-void __fastcall TCellGrid::DoModalFormCellParameter()
+// -----------   END ------------------
+void  TCellGrid::DoModalFormCellParameter()
 {
     TCellParameter* CP = new TCellParameter(Application,this);
     CP->ShowModal();
@@ -764,7 +765,7 @@ void __fastcall TCellGrid::DoModalFormCellParameter()
     InvalidateU2();
 }
 
-int __fastcall TCellGrid::GetAlignText(int Col, int Row)
+int  TCellGrid::GetAlignText(int Col, int Row)
 {
     TCell* Cell =GetCellParam(Col,Row);
     int iAlign=0;
@@ -798,7 +799,7 @@ int __fastcall TCellGrid::GetAlignText(int Col, int Row)
     return iAlign;
 }
 
-void __fastcall TCellGrid::GetRectDrawText(int Col, int Row, const AnsiString& Text, TRect& calcrect)
+void  TCellGrid::GetRectDrawText(int Col, int Row, const AnsiString& Text, TRect& calcrect)
 {
     int iAlign=0;
     TCell* Cell =GetCellParam(Col,Row);
@@ -825,31 +826,31 @@ void __fastcall TCellGrid::GetRectDrawText(int Col, int Row, const AnsiString& T
     calcrect =newcalcrect;
 }
 
-TCellFlag* __fastcall TCellGrid::GetParamCell(int Col, int Row)
-{ // Получить ячейку со всеми параметрами
+TCellFlag*  TCellGrid::GetParamCell(int Col, int Row)
+{ // ГЏГ®Г«ГіГ·ГЁГІГј ГїГ·ГҐГ©ГЄГі Г±Г® ГўГ±ГҐГ¬ГЁ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ
     SetAllFlag(gCellFlag,true);
-    if (Col >1 && Row ==1) // СтолбеЦ
+    if (Col >1 && Row ==1) // Г‘ГІГ®Г«ГЎГҐГ–
         gCellFlag->ColWidth =GetColWidths(Col);
-    else if (Col ==1 && Row >1) // СтрокеЦ
+    else if (Col ==1 && Row >1) // Г‘ГІГ°Г®ГЄГҐГ–
         gCellFlag->ColWidth =GetRowHeights(Row);
     else
         gCellFlag->ColWidth =0;
 
-    if (GetCellSimple(Col,Row) !=NULL)// Ячейка Сущ
+    if (GetCellSimple(Col,Row) !=NULL)// ГџГ·ГҐГ©ГЄГ  Г‘ГіГ№
         CopyCell1ToCell2(Col,Row,gCellFlag);
     else
-    {// // Ячейка НЕ Сущ
+    {// // ГџГ·ГҐГ©ГЄГ  ГЌГ… Г‘ГіГ№
 
         CopyCell1ToCell2(Col,Row,gCellFlag);
 
         TCell* Cell11 =GetCellSimple(1,1);
-        // Таблица
+        // Г’Г ГЎГ«ГЁГ¶Г 
         gCellFlag->Line.WidthLeft    =Cell11->Line.WidthLeft;
         gCellFlag->Line.WidthTop     =Cell11->Line.WidthTop;
         gCellFlag->Line.WidthRight   =Cell11->Line.WidthRight;
         gCellFlag->Line.WidthBottom  =Cell11->Line.WidthBottom;
 
-        //Соседние Строки, Столбцы
+        //Г‘Г®Г±ГҐГ¤Г­ГЁГҐ Г‘ГІГ°Г®ГЄГЁ, Г‘ГІГ®Г«ГЎГ¶Г»
         if (GetCellSimple(Col+1,1) !=NULL)// Left
             gCellFlag->Line.WidthRight =GetCellSimple(Col+1,1)->Line.WidthLeft;
 
@@ -863,7 +864,7 @@ TCellFlag* __fastcall TCellGrid::GetParamCell(int Col, int Row)
             gCellFlag->Line.WidthTop =GetCellSimple(1,Row-1)->Line.WidthBottom;
 
         if (GetCellSimple(Col,1) !=NULL)
-        {// Текущие Столбцы
+        {// Г’ГҐГЄГіГ№ГЁГҐ Г‘ГІГ®Г«ГЎГ¶Г»
             TCell* CellCol               =GetCellSimple(Col,1);
             gCellFlag->Line.WidthRight   =CellCol->Line.WidthRight;
             gCellFlag->Line.WidthLeft    =CellCol->Line.WidthLeft;
@@ -871,7 +872,7 @@ TCellFlag* __fastcall TCellGrid::GetParamCell(int Col, int Row)
             gCellFlag->Line.WidthTop     =CellCol->Line.WidthTop;
         }
         else if (GetCellSimple(1,Row) !=NULL)
-        {// Текущие Строки
+        {// Г’ГҐГЄГіГ№ГЁГҐ Г‘ГІГ°Г®ГЄГЁ
             TCell* CellRow               =GetCellSimple(1,Row);
             gCellFlag->Line.WidthRight   =CellRow->Line.WidthRight;
             gCellFlag->Line.WidthLeft    =CellRow->Line.WidthLeft;
@@ -879,7 +880,7 @@ TCellFlag* __fastcall TCellGrid::GetParamCell(int Col, int Row)
             gCellFlag->Line.WidthTop     =CellRow->Line.WidthTop;
         }
 
-        // Соседние ячейки
+        // Г‘Г®Г±ГҐГ¤Г­ГЁГҐ ГїГ·ГҐГ©ГЄГЁ
         if (GetCellSimple(Col+1,Row) !=NULL)// Left
             gCellFlag->Line.WidthRight =GetCellSimple(Col+1,Row)->Line.WidthLeft;
 
@@ -892,7 +893,7 @@ TCellFlag* __fastcall TCellGrid::GetParamCell(int Col, int Row)
         if (GetCellSimple(Col,Row-1) !=NULL)// Top
             gCellFlag->Line.WidthTop =GetCellSimple(Col,Row-1)->Line.WidthBottom;
 
-        // Текущая ячейка
+        // Г’ГҐГЄГіГ№Г Гї ГїГ·ГҐГ©ГЄГ 
         if (GetCellSimple(Col,Row) !=NULL)
         {
             TCell* Cell =GetCellSimple(Col,Row);
@@ -918,50 +919,50 @@ TCellFlag* __fastcall TCellGrid::GetParamCell(int Col, int Row)
     return gCellFlag;
 }
 
-void __fastcall TCellGrid::SetCanvasParameterCell(int Col, int Row)
-{// Установить в Canvas параметры ячейки
+void  TCellGrid::SetCanvasParameterCell(int Col, int Row)
+{// Г“Г±ГІГ Г­Г®ГўГЁГІГј Гў Canvas ГЇГ Г°Г Г¬ГҐГІГ°Г» ГїГ·ГҐГ©ГЄГЁ
     TCell* Cell =GetCellParam(Col,Row);
     Canvas->Font->Name =Cell->FontName;
     Canvas->Font->Size =Cell->CellFlags.FontSize;
     
-    // Стиль шрифта (Обычны=0, Курсив=1, Жирный=2, Жирный курсив=3,
+    // Г‘ГІГЁГ«Гј ГёГ°ГЁГґГІГ  (ГЋГЎГ»Г·Г­Г»=0, ГЉГіГ°Г±ГЁГў=1, Г†ГЁГ°Г­Г»Г©=2, Г†ГЁГ°Г­Г»Г© ГЄГіГ°Г±ГЁГў=3,
     TFontStyles Style;
     switch (Cell->CellFlags.FontStyle)
     {
         case 0:
-        {// Обычный
+        {// ГЋГЎГ»Г·Г­Г»Г©
             Style.Clear();
             break;
         }
         case 1:
-        {// Курсив
+        {// ГЉГіГ°Г±ГЁГў
             Style <<fsItalic;
             break;
         }
         case 2:
-        {// Жирный
+        {// Г†ГЁГ°Г­Г»Г©
             Style <<fsBold;
             break;
         }
         case 3:
-        {// Жирный курсив
+        {// Г†ГЁГ°Г­Г»Г© ГЄГіГ°Г±ГЁГў
             Style <<fsBold <<fsItalic;
             break;
         }
     }
     if (Cell->CellFlags.FontStrikeOut ==1)
-    {// Зачеркнутый шрифт
+    {// Г‡Г Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ
         Style <<fsStrikeOut;
     }
     if (Cell->CellFlags.FontUnderline ==1)
-    {// Подчеркнутый шрифт
+    {// ГЏГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г© ГёГ°ГЁГґГІ
         Style <<fsUnderline;
     }
     Canvas->Font->Style =Style;
 }
 
-void    __fastcall TCellGrid::UseTextWordBreak(int Col, int Row)
-{// Применить перенос по словам
+void     TCellGrid::UseTextWordBreak(int Col, int Row)
+{// ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј ГЇГҐГ°ГҐГ­Г®Г± ГЇГ® Г±Г«Г®ГўГ Г¬
     if (GetCellParam(Col, Row)->CellFlags.TextWordBreak ==1)
     {
         TRect rectMax =GetGridRectToRectPixelNotUnionAndScroll(Col, Row);
@@ -984,7 +985,7 @@ void    __fastcall TCellGrid::UseTextWordBreak(int Col, int Row)
     }
 }
 
-void __fastcall TCellGrid::ShowEditText(int Col, int Row, bool clear)
+void  TCellGrid::ShowEditText(int Col, int Row, bool clear)
 {
     TRect rect=GetGridRectToRectPixelNotUnionAndScroll(Col,Row);
 
@@ -1036,11 +1037,11 @@ void __fastcall TCellGrid::ShowEditText(int Col, int Row, bool clear)
     EditText->SelStart = EditText->Text.Length();
 }
 
-void __fastcall TCellGrid::DoModalFormSection()
+void  TCellGrid::DoModalFormSection()
 {
     TRect AncrCurr = GetAnchorCurrentSort();
 
-// --------- Корректировка если выделены полностью (Строка, Столбец, Таблица)
+// --------- ГЉГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГ  ГҐГ±Г«ГЁ ГўГ»Г¤ГҐГ«ГҐГ­Г» ГЇГ®Г«Г­Г®Г±ГІГјГѕ (Г‘ГІГ°Г®ГЄГ , Г‘ГІГ®Г«ГЎГҐГ¶, Г’Г ГЎГ«ГЁГ¶Г )
     if (AncrCurr.Left ==2 && AncrCurr.Right == ColCount)
         SelectString=true;
     if (AncrCurr.Top ==2 && AncrCurr.Bottom == RowCount)
@@ -1055,12 +1056,12 @@ void __fastcall TCellGrid::DoModalFormSection()
         AncrCurr.Top =1;
         AncrCurr.Left =1;
     }
-// --------- Корректировка если выделены полностью (Строка, Столбец, Таблица) End
+// --------- ГЉГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГ  ГҐГ±Г«ГЁ ГўГ»Г¤ГҐГ«ГҐГ­Г» ГЇГ®Г«Г­Г®Г±ГІГјГѕ (Г‘ГІГ°Г®ГЄГ , Г‘ГІГ®Г«ГЎГҐГ¶, Г’Г ГЎГ«ГЁГ¶Г ) End
 
-    if (AncrCurr.Left ==1 && AncrCurr.Top ==1)// нельзя
+    if (AncrCurr.Left ==1 && AncrCurr.Top ==1)// Г­ГҐГ«ГјГ§Гї
         ShowMessage(MSG_ERR_9);
     else if (AncrCurr.Left ==1)
-    {// Горизонтальная секция
+    {// ГѓГ®Г°ГЁГ§Г®Г­ГІГ Г«ГјГ­Г Гї Г±ГҐГЄГ¶ГЁГї
         bool OK=true;
         for (int y=AncrCurr.Top; y<=AncrCurr.Bottom; y++)
             for (int x=AncrCurr.Left; x<=AncrCurr.Right; x++)
@@ -1074,11 +1075,11 @@ void __fastcall TCellGrid::DoModalFormSection()
             delete SC;
         }
         else
-            ShowMessage("Существует объедененная ячейка \n котороя выходит за границу секции!");
+            ShowMessage("Г‘ГіГ№ГҐГ±ГІГўГіГҐГІ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ  \n ГЄГ®ГІГ®Г°Г®Гї ГўГ»ГµГ®Г¤ГЁГІ Г§Г  ГЈГ°Г Г­ГЁГ¶Гі Г±ГҐГЄГ¶ГЁГЁ!");
 
     }
     else if (AncrCurr.Top ==1)
-    {// Вертикальная секция
+    {// Г‚ГҐГ°ГІГЁГЄГ Г«ГјГ­Г Гї Г±ГҐГЄГ¶ГЁГї
         bool OK=true;
         for (int y=AncrCurr.Top; y<=AncrCurr.Bottom; y++)
             for (int x=AncrCurr.Left; x<=AncrCurr.Right; x++)
@@ -1092,19 +1093,19 @@ void __fastcall TCellGrid::DoModalFormSection()
             delete SC;
         }
         else
-            ShowMessage("Существует объедененная ячейка \n котороя выходит за границу секции!");
+            ShowMessage("Г‘ГіГ№ГҐГ±ГІГўГіГҐГІ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ  \n ГЄГ®ГІГ®Г°Г®Гї ГўГ»ГµГ®Г¤ГЁГІ Г§Г  ГЈГ°Г Г­ГЁГ¶Гі Г±ГҐГЄГ¶ГЁГЁ!");
     }
-    else// нельзя
+    else// Г­ГҐГ«ГјГ§Гї
         ShowMessage(MSG_ERR_9);
 
     InvalidateU2();
 }
 
-void __fastcall TCellGrid::DoModalSelectColor(int Left, int Top)
+void  TCellGrid::DoModalSelectColor(int Left, int Top)
 {
 }
 
-void __fastcall TCellGrid::SetScrollStartCol()
+void  TCellGrid::SetScrollStartCol()
 {
     TGridCoord oldCurren = FCurrent;
     TGridCoord oldAnchor = FAnchor;
@@ -1128,58 +1129,58 @@ void __fastcall TCellGrid::SetScrollStartCol()
     }
 }
 
-void __fastcall TCellGrid::NewCell(int Col, int Row)
+void  TCellGrid::NewCell(int Col, int Row)
 {
-    // - Для определения рабочего ректа где проводились изменения
+    // - Г„Г«Гї Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГї Г°Г ГЎГ®Г·ГҐГЈГ® Г°ГҐГЄГІГ  ГЈГ¤ГҐ ГЇГ°Г®ГўГ®Г¤ГЁГ«ГЁГ±Гј ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї
     if (EndColRowCell.x <Col)
         EndColRowCell.x =Col;
 
     if (EndColRowCell.y <Row)
         EndColRowCell.y =Row;
-    // - Для определения рабочего ректа где проводились изменения END
+    // - Г„Г«Гї Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГї Г°Г ГЎГ®Г·ГҐГЈГ® Г°ГҐГЄГІГ  ГЈГ¤ГҐ ГЇГ°Г®ГўГ®Г¤ГЁГ«ГЁГ±Гј ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї END
 
 
     if ((Col ==1 && Row ==1) ||
         (Col ==0 && Row ==0)
     )
-    { // - Таблица ячейка 1:1
+    { // - Г’Г ГЎГ«ГЁГ¶Г  ГїГ·ГҐГ©ГЄГ  1:1
         SetNewCell(Col,Row, new TCellTab());
         TMyObject* MO =GetCell(Col,Row);
         ((TCellTab*)MO)->ColWidth =DefaultColWidth;
         ((TCellTab*)MO)->RowHeight =DefaultRowHeight;
     }
     else if (Col >1 && Row ==1)
-    { // - Столбец
+    { // - Г‘ГІГ®Г«ГЎГҐГ¶
         SetNewCell(Col,Row, new TCellColRow());
         TMyObject* MO =GetCell(Col,Row);
         ((TCellColRow*)MO)->ColRowWidth =GetColWidths(Col);
     }
     else if (Col ==1 && Row >1)
-    { // - Строка
+    { // - Г‘ГІГ°Г®ГЄГ 
         SetNewCell(Col,Row, new TCellColRow());
         TMyObject* MO =GetCell(Col,Row);
         ((TCellColRow*)MO)->ColRowWidth =GetRowHeights(Row);
     }
     else if (GetCellSimple(Col,Row) !=NULL)
     {
-        throw EMyException("<TCellGrid::NewCell>: Ячейка уже существует.");
+        throw EMyException("<TCellGrid::NewCell>: ГџГ·ГҐГ©ГЄГ  ГіГ¦ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ.");
     }
     else
         SetNewCell(Col,Row, new TCell());
 }
 
-void __fastcall TCellGrid::NewCell(int Col, int Row, TCell* data)
+void  TCellGrid::NewCell(int Col, int Row, TCell* data)
 {
-    // - Для определения рабочего ректа где проводились изменения
+    // - Г„Г«Гї Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГї Г°Г ГЎГ®Г·ГҐГЈГ® Г°ГҐГЄГІГ  ГЈГ¤ГҐ ГЇГ°Г®ГўГ®Г¤ГЁГ«ГЁГ±Гј ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї
     if (EndColRowCell.x <Col)
         EndColRowCell.x =Col;
 
     if (EndColRowCell.y <Row)
         EndColRowCell.y =Row;
-    // - Для определения рабочего ректа где проводились изменения END
+    // - Г„Г«Гї Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГї Г°Г ГЎГ®Г·ГҐГЈГ® Г°ГҐГЄГІГ  ГЈГ¤ГҐ ГЇГ°Г®ГўГ®Г¤ГЁГ«ГЁГ±Гј ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї END
 
     if (GetCellSimple(Col,Row) !=NULL)
-        throw EMyException("<TCellGrid::NewCell>: Ячейка уже существует.");
+        throw EMyException("<TCellGrid::NewCell>: ГџГ·ГҐГ©ГЄГ  ГіГ¦ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ.");
     else
     {
         SetNewCell(Col,Row, (TCell*)data->DynamicType->CreateFunction());
@@ -1187,8 +1188,8 @@ void __fastcall TCellGrid::NewCell(int Col, int Row, TCell* data)
     }
 }
 
-void __fastcall TCellGrid::CopyCell1ToCell2(int Col1, int Row1, int Col2, int Row2)
-{// Копироватьь из Cell1 в Cell2
+void  TCellGrid::CopyCell1ToCell2(int Col1, int Row1, int Col2, int Row2)
+{// ГЉГ®ГЇГЁГ°Г®ГўГ ГІГјГј ГЁГ§ Cell1 Гў Cell2
 
     GetCellSimple(Col2, Row2)->bgColor      =GetCellSimple(Col1, Row1)->bgColor;
     GetCellSimple(Col2, Row2)->LineColorNot =GetCellSimple(Col1, Row1)->LineColorNot;
@@ -1217,8 +1218,8 @@ void __fastcall TCellGrid::CopyCell1ToCell2(int Col1, int Row1, int Col2, int Ro
     }
 }
 
-void __fastcall TCellGrid::CopyCell1ToCell2(int Col,int Row, TCell* Cell2)
-{// Копироватьь из Cell1 в Cell2
+void  TCellGrid::CopyCell1ToCell2(int Col,int Row, TCell* Cell2)
+{// ГЉГ®ГЇГЁГ°Г®ГўГ ГІГјГј ГЁГ§ Cell1 Гў Cell2
 
     TCell* Cell1=GetCellSimple(Col,Row);
     if (Cell1 ==NULL)
@@ -1252,8 +1253,8 @@ void __fastcall TCellGrid::CopyCell1ToCell2(int Col,int Row, TCell* Cell2)
     }
 }
 
-void __fastcall TCellGrid::CopyCell1ToCell2(TCell* Cell1, int Col,int Row)
-{// Копироватьь из Cell1 в Cell2
+void  TCellGrid::CopyCell1ToCell2(TCell* Cell1, int Col,int Row)
+{// ГЉГ®ГЇГЁГ°Г®ГўГ ГІГјГј ГЁГ§ Cell1 Гў Cell2
     TCell* Cell2;
     if (GetCellSimple(Col,Row) ==NULL)
         Cell2 =GetCellParam(Col,Row);
@@ -1288,10 +1289,10 @@ void __fastcall TCellGrid::CopyCell1ToCell2(TCell* Cell1, int Col,int Row)
     }
 }
 
-void __fastcall TCellGrid::NewCellAndSetDefault(int Col, int Row, byte ColRow/*0=Auto, 1=Col, 2=Row*/)
+void  TCellGrid::NewCellAndSetDefault(int Col, int Row, byte ColRow/*0=Auto, 1=Col, 2=Row*/)
 {
     if (GetCell(Col,Row))
-        throw EMyException("<TCellGrid::NewCellAndSetDefault>: Ячейка уже существует.");
+        throw EMyException("<TCellGrid::NewCellAndSetDefault>: ГџГ·ГҐГ©ГЄГ  ГіГ¦ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ.");
 
     if ((Col != 1)||(Row !=1))
     {
@@ -1315,7 +1316,7 @@ void __fastcall TCellGrid::NewCellAndSetDefault(int Col, int Row, byte ColRow/*0
                 }
             }
             else if (ColRow ==1)
-            {// Взять из столбца
+            {// Г‚Г§ГїГІГј ГЁГ§ Г±ГІГ®Г«ГЎГ¶Г 
                 if (GetCell(Col, 1) != NULL)
                 {
                     if (GetCell(Col, Row) != NULL)
@@ -1328,7 +1329,7 @@ void __fastcall TCellGrid::NewCellAndSetDefault(int Col, int Row, byte ColRow/*0
                 }
             }
             else if (ColRow ==2)
-            {// Взять из Строки
+            {// Г‚Г§ГїГІГј ГЁГ§ Г‘ГІГ°Г®ГЄГЁ
                 if (GetCell(1, Row) != NULL)
                 {
                     if (GetCell(Col, Row) != NULL)
@@ -1343,48 +1344,48 @@ void __fastcall TCellGrid::NewCellAndSetDefault(int Col, int Row, byte ColRow/*0
 
         }
         else if ((Col == 1)&&(Row >1))
-        { // Строка
+        { // Г‘ГІГ°Г®ГЄГ 
             NewCell(Col,Row);
             CopyCell1ToCell2(1, 1, Col, Row);
         }
         else if ((Col > 1)&&(Row == 1))
-        { // Столбец
+        { // Г‘ГІГ®Г«ГЎГҐГ¶
             NewCell(Col,Row);
             CopyCell1ToCell2(1, 1, Col, Row);
         }
     }
     else
-        throw EMyException("<TCellGrid::NewCellAndSetDefault>: не предназначена для \n создания ячейки 1:1");
+        throw EMyException("<TCellGrid::NewCellAndSetDefault>: Г­ГҐ ГЇГ°ГҐГ¤Г­Г Г§Г­Г Г·ГҐГ­Г  Г¤Г«Гї \n Г±Г®Г§Г¤Г Г­ГЁГї ГїГ·ГҐГ©ГЄГЁ 1:1");
 }
 
-void __fastcall TCellGrid::NewCellAndSetDefault2(int Col, int Row, byte ColRow/*0=Auto, 1=Col, 2=Row*/)
+void  TCellGrid::NewCellAndSetDefault2(int Col, int Row, byte ColRow/*0=Auto, 1=Col, 2=Row*/)
 {
     if (GetCellSimple(Col,Row))
-        throw EMyException("<TCellGrid::NewCellAndSetDefault>: Ячейка уже существует.");
+        throw EMyException("<TCellGrid::NewCellAndSetDefault>: ГџГ·ГҐГ©ГЄГ  ГіГ¦ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ.");
 
     if (Col != 1 || Row !=1)
     {
         if (Col > 1 && Row >1)
         {
             if (GetCellSimple(1, Row) != NULL && ColRow==2)
-            {// Строки
+            {// Г‘ГІГ°Г®ГЄГЁ
                 NewCell(Col,Row);
                 CopyCell1ToCell2(1, Row, Col, Row);
             }
             if (GetCellSimple(Col, 1) != NULL && ColRow==1)
-            {// Столбцы
+            {// Г‘ГІГ®Г«ГЎГ¶Г»
                 NewCell(Col,Row);
                 CopyCell1ToCell2(Col, 1, Col, Row);
             }
             if (ColRow ==0)
-            {// ячейки
+            {// ГїГ·ГҐГ©ГЄГЁ
                 NewCell(Col,Row);
                 if (GetCellSimple(1, Row) != NULL)
-                {// Строки
+                {// Г‘ГІГ°Г®ГЄГЁ
                     CopyCell1ToCell2(1, Row, Col, Row);
                 }
                 else if (GetCellSimple(Col, 1) != NULL)
-                {// Столбцы
+                {// Г‘ГІГ®Г«ГЎГ¶Г»
                     CopyCell1ToCell2(Col, 1, Col, Row);
                 }
                 else
@@ -1393,8 +1394,8 @@ void __fastcall TCellGrid::NewCellAndSetDefault2(int Col, int Row, byte ColRow/*
                 }
             }
 
-            // Бордюр
-            // Обладает особыми параметрами
+            // ГЃГ®Г°Г¤ГѕГ°
+            // ГЋГЎГ«Г Г¤Г ГҐГІ Г®Г±Г®ГЎГ»Г¬ГЁ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ
             if ((ColRow==1 || ColRow==0) && GetCellSimple(Col-1, 1) !=NULL)
                 GetCellSimple(Col, Row)->Line.WidthLeft =GetCellSimple(Col-1, 1)->Line.WidthRight;
 
@@ -1407,7 +1408,7 @@ void __fastcall TCellGrid::NewCellAndSetDefault2(int Col, int Row, byte ColRow/*
             if ((ColRow==2 || ColRow==0) && GetCellSimple(1, Row+1) !=NULL)
                 GetCellSimple(Col, Row)->Line.WidthBottom =GetCellSimple(1, Row+1)->Line.WidthTop;
 
-            // Существуют
+            // Г‘ГіГ№ГҐГ±ГІГўГіГѕГІ
             if (GetCellSimple(Col-1, Row) !=NULL)
                 GetCellSimple(Col, Row)->Line.WidthLeft =GetCellSimple(Col-1, Row)->Line.WidthRight;
 
@@ -1441,36 +1442,36 @@ void __fastcall TCellGrid::NewCellAndSetDefault2(int Col, int Row, byte ColRow/*
         }
     }
     else
-        throw EMyException("<TCellGrid::NewCellAndSetDefault>: не предназначена для \n создания ячейки 1:1");
+        throw EMyException("<TCellGrid::NewCellAndSetDefault>: Г­ГҐ ГЇГ°ГҐГ¤Г­Г Г§Г­Г Г·ГҐГ­Г  Г¤Г«Гї \n Г±Г®Г§Г¤Г Г­ГЁГї ГїГ·ГҐГ©ГЄГЁ 1:1");
 
 }
 
-void __fastcall TCellGrid::NewCellAndSetParam(int Col, int Row)
+void  TCellGrid::NewCellAndSetParam(int Col, int Row)
 {
     if (GetCellSimple(Col,Row))
-        throw EMyException("<TCellGrid::NewCellAndSetDefault>: Ячейка уже существует.");
+        throw EMyException("<TCellGrid::NewCellAndSetDefault>: ГџГ·ГҐГ©ГЄГ  ГіГ¦ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ.");
 
     if (Col == 1 && Row >1)
-    {// Строка
+    {// Г‘ГІГ°Г®ГЄГ 
         NewCellAndSetDefault2(Col,Row,0);
         for (int i=2; i<=EndColRowCell.x; i++)
             if (GetCell(i,1) !=NULL && GetCell(i,Row) ==NULL)
                 NewCellAndSetDefault2(i,Row,1);
     }
     else if (Col > 1 && Row ==1)
-    {// Столбец
+    {// Г‘ГІГ®Г«ГЎГҐГ¶
         NewCellAndSetDefault2(Col,Row,0);
         for (int i=2; i<=EndColRowCell.y; i++)
             if (GetCell(1,i) !=NULL && GetCell(Col,i) ==NULL)
                 NewCellAndSetDefault2(Col,i,2);
     }
     else if (Col > 1 && Row >1)
-    {// Ячейка
+    {// ГџГ·ГҐГ©ГЄГ 
         NewCellAndSetDefault2(Col,Row,0);
     }
 }
 
-int __fastcall TCellGrid::ProcessCell(int Col, int Row, void * TheItem)
+int  TCellGrid::ProcessCell(int Col, int Row, void * TheItem)
 {
     TCell* Cell =  (TCell*)TheItem;
     if (Cell !=NULL )
@@ -1488,45 +1489,45 @@ int __fastcall TCellGrid::ProcessCell(int Col, int Row, void * TheItem)
     return 0;
 }
 
-void  __fastcall TCellGrid::CopyInBuff(const TRect& rect)
+void   TCellGrid::CopyInBuff(const TRect& rect)
 {
     Matrix->ClearAll();
     Matrix->RectCopy =rect;
     if (rect.Left >1 && rect.Top >1)
-    { // Ячейки
+    { // ГџГ·ГҐГ©ГЄГЁ
         FForAll((TRect)rect,ProcessCell);
         FForAll(TRect(1,rect.Top,1,rect.Bottom),ProcessCell);
         FForAll(TRect(rect.Left,1,rect.Right,1),ProcessCell);
         FForAll(TRect(1,1,1,1),ProcessCell);
     }
     else if (rect.Left ==1 && rect.Top >1)
-    { // Строка
+    { // Г‘ГІГ°Г®ГЄГ 
         FForAll(TRect(1,rect.Top,ColCount,rect.Bottom),ProcessCell);
         FForAll(TRect(1,1,ColCount,1),ProcessCell);
     }
     else if (rect.Left >1 && rect.Top ==1)
-    { // Столбец
+    { // Г‘ГІГ®Г«ГЎГҐГ¶
         FForAll(TRect(rect.Left,1,rect.Right,RowCount),ProcessCell);
         FForAll(TRect(1,1,1,RowCount),ProcessCell);
     }
-    else if (rect.Left ==1 && rect.Top ==1)// Таблица
+    else if (rect.Left ==1 && rect.Top ==1)// Г’Г ГЎГ«ГЁГ¶Г 
         FForAll(TRect(1,1,ColCount,RowCount),ProcessCell);
 }
 
-void  __fastcall TCellGrid::SetListFillingToCopy(const TRect& rect)
+void   TCellGrid::SetListFillingToCopy(const TRect& rect)
 {
     if (ListFilling.Count >0)
         ListFilling.Clear();
     if (ListFilling2.Count >0)
         ListFilling2.Clear();
 
-    if (rect.Left >1 && rect.Top >1) // Ячейки
+    if (rect.Left >1 && rect.Top >1) // ГџГ·ГҐГ©ГЄГЁ
     {
         for (int y=rect.Top; y<=rect.Bottom; y++)
             for (int x=rect.Left; x<=rect.Right; x++)
                 ListFilling.Add(new TPoint(x,y));
     }
-    else if (rect.Left ==1 && rect.Top >1) // Строка
+    else if (rect.Left ==1 && rect.Top >1) // Г‘ГІГ°Г®ГЄГ 
     {
         FForAll(TRect(2,1, ColCount,1),ProcessCellTest);
         for (int y=rect.Top; y<=rect.Bottom; y++)
@@ -1536,7 +1537,7 @@ void  __fastcall TCellGrid::SetListFillingToCopy(const TRect& rect)
 
         FForAll(TRect(1,rect.Top, ColCount,rect.Bottom),CellYes);
     }
-    else if (rect.Left >1 && rect.Top ==1)// Столбец
+    else if (rect.Left >1 && rect.Top ==1)// Г‘ГІГ®Г«ГЎГҐГ¶
     {
         FForAll(TRect(1,2, 1,RowCount),ProcessCellTest);
         for (int x=rect.Left; x<=rect.Right; x++)
@@ -1546,7 +1547,7 @@ void  __fastcall TCellGrid::SetListFillingToCopy(const TRect& rect)
         FForAll(TRect(rect.Left,1, rect.Right,RowCount),CellYes);
 
     }
-    else if (rect.Left ==1 && rect.Top ==1) // Таблица
+    else if (rect.Left ==1 && rect.Top ==1) // Г’Г ГЎГ«ГЁГ¶Г 
         FForAll(TRect(1,1, ColCount,RowCount),ProcessCellTest);
 /*
     AnsiString str;
@@ -1561,7 +1562,7 @@ void  __fastcall TCellGrid::SetListFillingToCopy(const TRect& rect)
 */
 }
 
-int __fastcall TCellGrid::ProcessCellTest(int Col, int Row, void * TheItem)
+int  TCellGrid::ProcessCellTest(int Col, int Row, void * TheItem)
 {
     TCell* Cell =  (TCell*)TheItem;
     if (Cell !=NULL )
@@ -1569,7 +1570,7 @@ int __fastcall TCellGrid::ProcessCellTest(int Col, int Row, void * TheItem)
     return 0;
 }
 
-int __fastcall TCellGrid::CellYes(int Col, int Row, void * TheItem)
+int  TCellGrid::CellYes(int Col, int Row, void * TheItem)
 {
     TCell* Cell =  (TCell*)TheItem;
     if (Cell !=NULL )
@@ -1577,15 +1578,15 @@ int __fastcall TCellGrid::CellYes(int Col, int Row, void * TheItem)
     return 0;
 }
 
-int __fastcall TCellGrid::ProcessCellTest2(int Col, int Row, void * TheItem)
+int  TCellGrid::ProcessCellTest2(int Col, int Row, void * TheItem)
 {
-    //только для строчки или для столбца, после выполнения <ProcessCellTest>
-    //ListFilling2 уже заполнен для столбца строчками, для строчек столбцами
+    //ГІГ®Г«ГјГЄГ® Г¤Г«Гї Г±ГІГ°Г®Г·ГЄГЁ ГЁГ«ГЁ Г¤Г«Гї Г±ГІГ®Г«ГЎГ¶Г , ГЇГ®Г±Г«ГҐ ГўГ»ГЇГ®Г«Г­ГҐГ­ГЁГї <ProcessCellTest>
+    //ListFilling2 ГіГ¦ГҐ Г§Г ГЇГ®Г«Г­ГҐГ­ Г¤Г«Гї Г±ГІГ®Г«ГЎГ¶Г  Г±ГІГ°Г®Г·ГЄГ Г¬ГЁ, Г¤Г«Гї Г±ГІГ°Г®Г·ГҐГЄ Г±ГІГ®Г«ГЎГ¶Г Г¬ГЁ
     TCell* Cell =  (TCell*)TheItem;
     if (Cell != NULL )
     {
         if (Col!=1 && Row!=1)
-            throw EMyException("<TCellGrid::ProcessCellTest2>: должен вызываться только для строчки или для столбца.");
+            throw EMyException("<TCellGrid::ProcessCellTest2>: Г¤Г®Г«Г¦ГҐГ­ ГўГ»Г§Г»ГўГ ГІГјГ±Гї ГІГ®Г«ГјГЄГ® Г¤Г«Гї Г±ГІГ°Г®Г·ГЄГЁ ГЁГ«ГЁ Г¤Г«Гї Г±ГІГ®Г«ГЎГ¶Г .");
         else if (Col == 1)
             for (int i=0; i<ListFilling2.Count; i++)
                 ListFilling.Add( new TPoint(ListFilling2[i].x,Row) );
@@ -1597,53 +1598,53 @@ int __fastcall TCellGrid::ProcessCellTest2(int Col, int Row, void * TheItem)
     return 0;
 }
 
-void  __fastcall TCellGrid::GetCellToTest(const TRect& rect)
+void   TCellGrid::GetCellToTest(const TRect& rect)
 {
     if (ListFilling.Count >0)
         ListFilling.Clear();
     if (ListFilling2.Count >0)
         ListFilling2.Clear();
 
-    if (rect.Left >1 && rect.Top >1) // Ячейки
+    if (rect.Left >1 && rect.Top >1) // ГџГ·ГҐГ©ГЄГЁ
     {
         for (int y=rect.Top; y<=rect.Bottom; y++)
             for (int x=rect.Left; x<=rect.Right; x++)
                 ListFilling.Add(new TPoint(x,y));
     }
-    else if (rect.Left ==1 && rect.Top >1) // Строка
+    else if (rect.Left ==1 && rect.Top >1) // Г‘ГІГ°Г®ГЄГ 
     {
         for (int y=rect.Top; y<=rect.Bottom; y++)
-            ListFilling2.Add(new TPoint(1,y));//вспомогательные
+            ListFilling2.Add(new TPoint(1,y));//ГўГ±ГЇГ®Г¬Г®ГЈГ ГІГҐГ«ГјГ­Г»ГҐ
         for (int i=0; i<ListFilling2.Count; i++)
             ListFilling.Add(new TPoint(ListFilling2[i].x,ListFilling2[i].y));
 
-        FForAll(TRect(2,1, ColCount,1),ProcessCellTest2);//подозрительные в ListFilling
+        FForAll(TRect(2,1, ColCount,1),ProcessCellTest2);//ГЇГ®Г¤Г®Г§Г°ГЁГІГҐГ«ГјГ­Г»ГҐ Гў ListFilling
         ListFilling2.Clear();
-        FForAll(TRect(2,rect.Top, ColCount,rect.Bottom),ProcessCellTest);//существующие в ListFilling2
-        //собираем все в ListFilling
+        FForAll(TRect(2,rect.Top, ColCount,rect.Bottom),ProcessCellTest);//Г±ГіГ№ГҐГ±ГІГўГіГѕГ№ГЁГҐ Гў ListFilling2
+        //Г±Г®ГЎГЁГ°Г ГҐГ¬ ГўГ±ГҐ Гў ListFilling
         for (int i=0; i<ListFilling2.Count; i++)
             ListFilling.Add(new TPoint(ListFilling2[i].x,ListFilling2[i].y));
     }
-    else if (rect.Left >1 && rect.Top ==1)// Столбец
+    else if (rect.Left >1 && rect.Top ==1)// Г‘ГІГ®Г«ГЎГҐГ¶
     {
         for (int x=rect.Left; x<=rect.Right; x++)
-            ListFilling2.Add(new TPoint(x,1));//2 вспомогательные
+            ListFilling2.Add(new TPoint(x,1));//2 ГўГ±ГЇГ®Г¬Г®ГЈГ ГІГҐГ«ГјГ­Г»ГҐ
 
         for (int i=0; i<ListFilling2.Count; i++)
             ListFilling.Add(new TPoint(ListFilling2[i].x,ListFilling2[i].y));
 
-        FForAll(TRect(1,2,1,RowCount),ProcessCellTest2);//подозрительные в ListFilling
+        FForAll(TRect(1,2,1,RowCount),ProcessCellTest2);//ГЇГ®Г¤Г®Г§Г°ГЁГІГҐГ«ГјГ­Г»ГҐ Гў ListFilling
         ListFilling2.Clear();
-        FForAll(TRect(rect.Left,2, rect.Right,RowCount),ProcessCellTest); //существующие в ListFilling2
-        //собираем все в ListFilling
+        FForAll(TRect(rect.Left,2, rect.Right,RowCount),ProcessCellTest); //Г±ГіГ№ГҐГ±ГІГўГіГѕГ№ГЁГҐ Гў ListFilling2
+        //Г±Г®ГЎГЁГ°Г ГҐГ¬ ГўГ±ГҐ Гў ListFilling
         for (int i=0; i<ListFilling2.Count; i++)
             ListFilling.Add(new TPoint(ListFilling2[i].x,ListFilling2[i].y));
     }
-    else if (rect.Left ==1 && rect.Top ==1) // Таблица
+    else if (rect.Left ==1 && rect.Top ==1) // Г’Г ГЎГ«ГЁГ¶Г 
         FForAll(TRect(1,1, ColCount,RowCount),CellYes);
 }
 
-void  __fastcall TCellGrid::PasteBuffInGrid(int Col, int Row)
+void   TCellGrid::PasteBuffInGrid(int Col, int Row)
 {
     int x,y;
     if (Matrix->RectCopy.Left !=0)
@@ -1715,12 +1716,12 @@ void  __fastcall TCellGrid::PasteBuffInGrid(int Col, int Row)
     Matrix->CopyCell =false;
 }
 
-void __fastcall TCellGrid::FForAll(TRect& rect, TMyFunc Func)
+void  TCellGrid::FForAll(TRect& rect, TMyFunc Func)
 {
     ((TSparseList*)FData)->SForAll(rect,Func);
 }
 
-void __fastcall TCellGrid::SetScrollStartRow()
+void  TCellGrid::SetScrollStartRow()
 {
     TGridCoord oldCurren = FCurrent;
     TGridCoord oldAnchor = FAnchor;
@@ -1744,7 +1745,7 @@ void __fastcall TCellGrid::SetScrollStartRow()
     }
 }
 
-void __fastcall TCellGrid::StartTime(TObject *Sender)
+void  TCellGrid::StartTime(TObject *Sender)
 {
     Matrix->ColCount =ColCount;
     Matrix->RowCount =RowCount;
@@ -1760,8 +1761,8 @@ void __fastcall TCellGrid::StartTime(TObject *Sender)
 
 }
 
-void __fastcall TCellGrid::OnTimer(TObject *Sender)
-{// Для обработки скролирования
+void  TCellGrid::OnTimer(TObject *Sender)
+{// Г„Г«Гї Г®ГЎГ°Г ГЎГ®ГІГЄГЁ Г±ГЄГ°Г®Г«ГЁГ°Г®ГўГ Г­ГЁГї
     TGridCoord CellHit1 =MousePosCellMove;
     TGridCoord CellHit2;
     bool InvalidateOk   =false;
@@ -2043,12 +2044,12 @@ void __fastcall TCellGrid::OnTimer(TObject *Sender)
     }
 }
 
-void  __fastcall TCellGrid::InvalidateU2()
+void   TCellGrid::InvalidateU2()
 {
     Invalidate();
 }
 
-void  __fastcall TCellGrid::SelectAllCells()
+void   TCellGrid::SelectAllCells()
 {
     TShiftState ss;
     TRect rect = GetGridRectToRectPixelUnionReal(1,1);
@@ -2059,12 +2060,12 @@ void  __fastcall TCellGrid::SelectAllCells()
     InvalidateU2();
 }
 
-TRect __fastcall TCellGrid::GetSelectGridRect()
-{ // Получить выделенный регион в ячейках
+TRect  TCellGrid::GetSelectGridRect()
+{ // ГЏГ®Г«ГіГ·ГЁГІГј ГўГ»Г¤ГҐГ«ГҐГ­Г­Г»Г© Г°ГҐГЈГЁГ®Г­ Гў ГїГ·ГҐГ©ГЄГ Гµ
 
     TRect RectCellUnionSort =GetAnchorCurrentSort();
     bool SelectColumString =false;
-    // Корректировка если выделены полностью (Строка, Столбец, Таблица)
+    // ГЉГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГ  ГҐГ±Г«ГЁ ГўГ»Г¤ГҐГ«ГҐГ­Г» ГЇГ®Г«Г­Г®Г±ГІГјГѕ (Г‘ГІГ°Г®ГЄГ , Г‘ГІГ®Г«ГЎГҐГ¶, Г’Г ГЎГ«ГЁГ¶Г )
     if (SelectColumn)
     {
         RectCellUnionSort.Top   =1;
@@ -2087,7 +2088,7 @@ TRect __fastcall TCellGrid::GetSelectGridRect()
     }
     else
     {
-        // Корректировка если выделены полностью (Строка, Столбец, Таблица) End
+        // ГЉГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГ  ГҐГ±Г«ГЁ ГўГ»Г¤ГҐГ«ГҐГ­Г» ГЇГ®Г«Г­Г®Г±ГІГјГѕ (Г‘ГІГ°Г®ГЄГ , Г‘ГІГ®Г«ГЎГҐГ¶, Г’Г ГЎГ«ГЁГ¶Г ) End
 
         if ((StartMouseDown.X ==1 && StartMouseDown.Y ==1))
         {
@@ -2142,7 +2143,7 @@ void TCellGrid::UndoRegister(int Col, int Row, TGridRegisterMode RM)
         GetCellSimple(Col,Row)->UndoRegistered = UndoStack.Register(Col,Row,GetCellSimple(Col,Row),RM);
 }
 
-void __fastcall TCellGrid::GetSelectCells(bool AllUnion)
+void  TCellGrid::GetSelectCells(bool AllUnion)
 {
     TRect RectCellUnionSort = GetAnchorCurrentSort();
     if (RectCellUnionSort.Left ==1 && RectCellUnionSort.Top ==1)
@@ -2204,7 +2205,7 @@ void __fastcall TCellGrid::GetSelectCells(bool AllUnion)
         StartX  =AllCell.Left;
         EndX    =AllCell.Right;
 
-    // --------- Корректировка если выделены полностью (Строка, Столбец, Таблица)
+    // --------- ГЉГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГ  ГҐГ±Г«ГЁ ГўГ»Г¤ГҐГ«ГҐГ­Г» ГЇГ®Г«Г­Г®Г±ГІГјГѕ (Г‘ГІГ°Г®ГЄГ , Г‘ГІГ®Г«ГЎГҐГ¶, Г’Г ГЎГ«ГЁГ¶Г )
         if (SelectColumn)
             StartY=1;
         if (SelectString)
@@ -2214,10 +2215,10 @@ void __fastcall TCellGrid::GetSelectCells(bool AllUnion)
             StartY=1;
             StartX=1;
         }
-    // --------- Корректировка если выделены полностью (Строка, Столбец, Таблица) End
+    // --------- ГЉГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГ  ГҐГ±Г«ГЁ ГўГ»Г¤ГҐГ«ГҐГ­Г» ГЇГ®Г«Г­Г®Г±ГІГјГѕ (Г‘ГІГ°Г®ГЄГ , Г‘ГІГ®Г«ГЎГҐГ¶, Г’Г ГЎГ«ГЁГ¶Г ) End
 
         if (StartY == 1 && StartX ==1)
-        {// Применить к Таблице
+        {// ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј ГЄ Г’Г ГЎГ«ГЁГ¶ГҐ
 
             for (int y=StartY; y<=EndY; y++)
                 for (int x=StartX; x<=EndX; x++)
@@ -2225,7 +2226,7 @@ void __fastcall TCellGrid::GetSelectCells(bool AllUnion)
                         ListFilling.Add(new TPoint(x,y));
         }
         else if (StartY == 1 && StartX >1)
-        {// Применить к Столбцу
+        {// ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј ГЄ Г‘ГІГ®Г«ГЎГ¶Гі
             StartX  =RectCellUnionSort.Left;
             EndX    =RectCellUnionSort.Right;
             for (int y=StartY; y<=EndY; y++)
@@ -2254,7 +2255,7 @@ void __fastcall TCellGrid::GetSelectCells(bool AllUnion)
                 }
         }
         else if (StartY > 1 && StartX ==1)
-        {// Применить к Строке
+        {// ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј ГЄ Г‘ГІГ°Г®ГЄГҐ
             StartY  =RectCellUnionSort.Top;
             EndY    =RectCellUnionSort.Bottom;
 
@@ -2283,19 +2284,19 @@ void __fastcall TCellGrid::GetSelectCells(bool AllUnion)
                     }
                 }
         }
-        else// К ячейке
+        else// ГЉ ГїГ·ГҐГ©ГЄГҐ
             for (int y=StartY; y<=EndY; y++)
                 for (int x=StartX; x<=EndX; x++)
                     ListFilling.Add(new TPoint(x,y));
     }
 }
 /*
-void __fastcall TCellGrid::GetSelectCellsColRow()
+void  TCellGrid::GetSelectCellsColRow()
 {
     if (ListFilling.Count >0)
     {
         ListFilling.Clear();
-        throw EMyException("<TCellGrid::GetSelectCellsColRow>: ListFilling не пуст");
+        throw EMyException("<TCellGrid::GetSelectCellsColRow>: ListFilling Г­ГҐ ГЇГіГ±ГІ");
     }
 
     TRect RectCellUnionSort = GetAnchorCurrentSort();
@@ -2319,7 +2320,7 @@ void __fastcall TCellGrid::GetSelectCellsColRow()
     StartX = AllCell.Left;
     EndX = AllCell.Right;
 
-// --------- Корректировка если выделены полностью (Строка, Столбец, Таблица)
+// --------- ГЉГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГ  ГҐГ±Г«ГЁ ГўГ»Г¤ГҐГ«ГҐГ­Г» ГЇГ®Г«Г­Г®Г±ГІГјГѕ (Г‘ГІГ°Г®ГЄГ , Г‘ГІГ®Г«ГЎГҐГ¶, Г’Г ГЎГ«ГЁГ¶Г )
     if (SelectColumn) StartY=1;
     if (SelectString) StartX=1;
     if (SelectTable)
@@ -2327,11 +2328,11 @@ void __fastcall TCellGrid::GetSelectCellsColRow()
         StartY=1;
         StartX=1;
     }
-// --------- Корректировка если выделены полностью (Строка, Столбец, Таблица) End
+// --------- ГЉГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГЄГ  ГҐГ±Г«ГЁ ГўГ»Г¤ГҐГ«ГҐГ­Г» ГЇГ®Г«Г­Г®Г±ГІГјГѕ (Г‘ГІГ°Г®ГЄГ , Г‘ГІГ®Г«ГЎГҐГ¶, Г’Г ГЎГ«ГЁГ¶Г ) End
 
 
     if ((StartY == 1)&&(StartX >1))
-    {// Применить к Столбцу
+    {// ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј ГЄ Г‘ГІГ®Г«ГЎГ¶Гі
         StartX =RectCellUnionSort.Left;
         EndX =RectCellUnionSort.Right;
         ListFilling.Add(new TPoint(StartX-1, EndX+1));
@@ -2351,7 +2352,7 @@ void __fastcall TCellGrid::GetSelectCellsColRow()
         }
     } else
     if ((StartY > 1)&&(StartX ==1))
-    {// Применить к Строке
+    {// ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј ГЄ Г‘ГІГ°Г®ГЄГҐ
         StartY =RectCellUnionSort.Top;
         EndY =RectCellUnionSort.Bottom;
         ListFilling.Add(new TPoint(StartY-1, EndY+1));
@@ -2373,13 +2374,13 @@ void __fastcall TCellGrid::GetSelectCellsColRow()
 }
 */
 
-void __fastcall TCellGrid::ClearListFilling()
-{// Очистка ListFilling
+void  TCellGrid::ClearListFilling()
+{// ГЋГ·ГЁГ±ГІГЄГ  ListFilling
     ListFilling.Clear();
 }
 
-void __fastcall TCellGrid::ClipByEndCell(TRect& rect)
-{// Обзезать Rect по последней сущ ячейке и скорректировать по столбцам
+void  TCellGrid::ClipByEndCell(TRect& rect)
+{// ГЋГЎГ§ГҐГ§Г ГІГј Rect ГЇГ® ГЇГ®Г±Г«ГҐГ¤Г­ГҐГ© Г±ГіГ№ ГїГ·ГҐГ©ГЄГҐ ГЁ Г±ГЄГ®Г°Г°ГҐГЄГІГЁГ°Г®ГўГ ГІГј ГЇГ® Г±ГІГ®Г«ГЎГ¶Г Г¬
     if (rect.Right == ColCount-1)
     {
         rect.Right  =EndColRowCell.x;
@@ -2392,8 +2393,8 @@ void __fastcall TCellGrid::ClipByEndCell(TRect& rect)
     }
 }
 
-void __fastcall TCellGrid::DeleteUnionRect(TCell* Cell)
-{// Удалить всю объедененную ячейку
+void  TCellGrid::DeleteUnionRect(TCell* Cell)
+{// Г“Г¤Г Г«ГЁГІГј ГўГ±Гѕ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГ©ГЄГі
     if (Cell !=NULL && Cell->UnionRect !=NULL)
     {
         TRect rect =*Cell->UnionRect;
@@ -2404,8 +2405,8 @@ void __fastcall TCellGrid::DeleteUnionRect(TCell* Cell)
     }
 }
 
-void __fastcall TCellGrid::DelUnionCell(TCell* Cell)
-{// Удалить всю объедененную ячейку
+void  TCellGrid::DelUnionCell(TCell* Cell)
+{// Г“Г¤Г Г«ГЁГІГј ГўГ±Гѕ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГ©ГЄГі
     if (Cell !=NULL && Cell->UnionRect !=NULL)
     {
         TRect rect =*Cell->UnionRect;
@@ -2418,7 +2419,7 @@ void __fastcall TCellGrid::DelUnionCell(TCell* Cell)
     }
 }
 
-void __fastcall TCellGrid::SetUnionCell(const TRect& rect,bool Test)
+void  TCellGrid::SetUnionCell(const TRect& rect,bool Test)
 {
     TGridCoord oldF =FCurrent;
     TGridCoord oldA =FAnchor;
@@ -2434,8 +2435,8 @@ void __fastcall TCellGrid::SetUnionCell(const TRect& rect,bool Test)
     FAnchor     =oldA;
 }
 
-void __fastcall TCellGrid::SetUnionCell(bool Test)
-{ // Установить объедененную ячейку
+void  TCellGrid::SetUnionCell(bool Test)
+{ // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГ©ГЄГі
     TRect RectCellUnionSort;
     RectCellUnionSort   =GetAnchorCurrentSort();
     RectCellUnionSort   =CalculationRect(RectCellUnionSort);
@@ -2481,7 +2482,7 @@ void __fastcall TCellGrid::SetUnionCell(bool Test)
             }
         if (!OK)
         {
-            ShowMessage("Необходимо чтобы создаваемая ячейка \n находилась в нутри секций или за ее границей");
+            ShowMessage("ГЌГҐГ®ГЎГµГ®Г¤ГЁГ¬Г® Г·ГІГ®ГЎГ» Г±Г®Г§Г¤Г ГўГ ГҐГ¬Г Гї ГїГ·ГҐГ©ГЄГ  \n Г­Г ГµГ®Г¤ГЁГ«Г Г±Гј Гў Г­ГіГІГ°ГЁ Г±ГҐГЄГ¶ГЁГ© ГЁГ«ГЁ Г§Г  ГҐГҐ ГЈГ°Г Г­ГЁГ¶ГҐГ©");
             FixedOK=false;
         }
     }
@@ -2586,29 +2587,29 @@ void __fastcall TCellGrid::SetUnionCell(bool Test)
     InvalidateU2();
 }
 
-bool __fastcall TCellGrid::PointInRect(int Col, int Row,const TRect& Rect)
-{// Находиться ячейка внутри rect
+bool  TCellGrid::PointInRect(int Col, int Row,const TRect& Rect)
+{// ГЌГ ГµГ®Г¤ГЁГІГјГ±Гї ГїГ·ГҐГ©ГЄГ  ГўГ­ГіГІГ°ГЁ rect
     return (Col >=Rect.Left && Col <=Rect.Right && Row >=Rect.Top && Row <=Rect.Bottom);
 }
 
-TRect __fastcall TCellGrid::Zoom(const TRect& rect, int zoom)
-{// Изменить размер rect на величену zoom
+TRect  TCellGrid::Zoom(const TRect& rect, int zoom)
+{// Г€Г§Г¬ГҐГ­ГЁГІГј Г°Г Г§Г¬ГҐГ° rect Г­Г  ГўГҐГ«ГЁГ·ГҐГ­Гі zoom
     TRect ret = rect;
     ZoomAndClipRectToJobRect(ret,zoom);
     return ret;
 }
 
-TGridRect __fastcall TCellGrid::ZoomGrid(const TRect& rect, int zoom)
-{// Изменить размер rect на величену zoom
+TGridRect  TCellGrid::ZoomGrid(const TRect& rect, int zoom)
+{// Г€Г§Г¬ГҐГ­ГЁГІГј Г°Г Г§Г¬ГҐГ° rect Г­Г  ГўГҐГ«ГЁГ·ГҐГ­Гі zoom
     return RectToGridRectType(Zoom(rect, zoom));
 }
 
-TGridRect __fastcall TCellGrid::ZoomGrid(TGridRect& rect, int zoom)
-{// Изменить размер rect на величену zoom
+TGridRect  TCellGrid::ZoomGrid(TGridRect& rect, int zoom)
+{// Г€Г§Г¬ГҐГ­ГЁГІГј Г°Г Г§Г¬ГҐГ° rect Г­Г  ГўГҐГ«ГЁГ·ГҐГ­Гі zoom
     return ZoomGrid(GridRectToRectType(rect), zoom);
 }
 
-void __fastcall TCellGrid::ResizeRow(int Index, int OldSize, int NewSize)
+void  TCellGrid::ResizeRow(int Index, int OldSize, int NewSize)
 {
     if (NewSize <2)
         NewSize =2;
@@ -2638,7 +2639,7 @@ void __fastcall TCellGrid::ResizeRow(int Index, int OldSize, int NewSize)
     TMyCustomGrid::ResizeRow(Index, OldSize, NewSize);
 }
 
-void __fastcall TCellGrid::ResizeCol(int Index, int OldSize, int NewSize)
+void  TCellGrid::ResizeCol(int Index, int OldSize, int NewSize)
 {
     if (NewSize <2)
         NewSize =2;
@@ -2665,8 +2666,8 @@ void __fastcall TCellGrid::ResizeCol(int Index, int OldSize, int NewSize)
     TMyCustomGrid::ResizeCol(Index, OldSize, NewSize);
 }
 
-void __fastcall TCellGrid::ZoomAndClipRectToJobRect(TRect& rect,int zoom)
-{// Изменить размер rect на величену zoom и Ограничение ректа по рабочей зоне
+void  TCellGrid::ZoomAndClipRectToJobRect(TRect& rect,int zoom)
+{// Г€Г§Г¬ГҐГ­ГЁГІГј Г°Г Г§Г¬ГҐГ° rect Г­Г  ГўГҐГ«ГЁГ·ГҐГ­Гі zoom ГЁ ГЋГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГҐ Г°ГҐГЄГІГ  ГЇГ® Г°Г ГЎГ®Г·ГҐГ© Г§Г®Г­ГҐ
     rect.Left -= zoom;
     rect.Top -= zoom;
     rect.Right += zoom;
@@ -2674,8 +2675,8 @@ void __fastcall TCellGrid::ZoomAndClipRectToJobRect(TRect& rect,int zoom)
     ClipRectToJobRect(rect);
 }
 
-void __fastcall TCellGrid::ZoomAndClipRectToJobRect(TGridRect& rect,int zoom)
-{// Изменить размер rect на величену zoom и Ограничение ректа по рабочей зоне
+void  TCellGrid::ZoomAndClipRectToJobRect(TGridRect& rect,int zoom)
+{// Г€Г§Г¬ГҐГ­ГЁГІГј Г°Г Г§Г¬ГҐГ° rect Г­Г  ГўГҐГ«ГЁГ·ГҐГ­Гі zoom ГЁ ГЋГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГҐ Г°ГҐГЄГІГ  ГЇГ® Г°Г ГЎГ®Г·ГҐГ© Г§Г®Г­ГҐ
     rect.Left -= zoom;
     rect.Top -= zoom;
     rect.Right += zoom;
@@ -2684,24 +2685,24 @@ void __fastcall TCellGrid::ZoomAndClipRectToJobRect(TGridRect& rect,int zoom)
     ClipRectToJobRect(rect);
 }
 
-void __fastcall TCellGrid::ClipRectToJobRect(TRect& rect)
-{// Ограничение ректа по рабочей зоне
+void  TCellGrid::ClipRectToJobRect(TRect& rect)
+{// ГЋГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГҐ Г°ГҐГЄГІГ  ГЇГ® Г°Г ГЎГ®Г·ГҐГ© Г§Г®Г­ГҐ
     if (rect.Left <2) rect.Left=2;
     if (rect.Top <2) rect.Top=2;
     if (rect.Right >ColCount-1) rect.Right=ColCount-1;
     if (rect.Bottom >RowCount-1) rect.Bottom=RowCount-1;
 }
 
-void __fastcall TCellGrid::ClipRectToJobRect(TGridRect& rect)
-{// Ограничение ректа по рабочей зоне
+void  TCellGrid::ClipRectToJobRect(TGridRect& rect)
+{// ГЋГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГҐ Г°ГҐГЄГІГ  ГЇГ® Г°Г ГЎГ®Г·ГҐГ© Г§Г®Г­ГҐ
     if (rect.Left <2) rect.Left=2;
     if (rect.Top <2) rect.Top=2;
     if (rect.Right >ColCount-1) rect.Right=ColCount-1;
     if (rect.Bottom >RowCount-1) rect.Bottom=RowCount-1;
 }
 
-TCell* __fastcall TCellGrid::GetCellParam(int Col, int Row)
-{ // Получить параметры ячейки
+TCell*  TCellGrid::GetCellParam(int Col, int Row)
+{ // ГЏГ®Г«ГіГ·ГЁГІГј ГЇГ Г°Г Г¬ГҐГІГ°Г» ГїГ·ГҐГ©ГЄГЁ
     TCell* Cell;
     if (GetCell(Col,Row) !=NULL)
         Cell=GetCell(Col,Row);
@@ -2714,8 +2715,8 @@ TCell* __fastcall TCellGrid::GetCellParam(int Col, int Row)
     return Cell;
 }
 
-TCell* __fastcall TCellGrid::GetCellParamSimple(int Col, int Row)
-{ // Получить параметры ячейки
+TCell*  TCellGrid::GetCellParamSimple(int Col, int Row)
+{ // ГЏГ®Г«ГіГ·ГЁГІГј ГЇГ Г°Г Г¬ГҐГІГ°Г» ГїГ·ГҐГ©ГЄГЁ
     TCell* Cell;
     if (GetCellSimple(Col,Row) !=NULL)
         Cell=GetCellSimple(Col,Row);
@@ -2728,8 +2729,8 @@ TCell* __fastcall TCellGrid::GetCellParamSimple(int Col, int Row)
     return Cell;
 }
 
-int __fastcall TCellGrid::CalcColumnWidthAutoText(int Col, int Row)
-{// Расчет Max ширины столбца по тексту
+int  TCellGrid::CalcColumnWidthAutoText(int Col, int Row)
+{// ГђГ Г±Г·ГҐГІ Max ГёГЁГ°ГЁГ­Г» Г±ГІГ®Г«ГЎГ¶Г  ГЇГ® ГІГҐГЄГ±ГІГі
     int imaxwidth =GetColWidths(Col);
     AnsiString str;
     TRect rectcalc =TRect(0,0, imaxwidth,500);
@@ -2751,8 +2752,8 @@ int __fastcall TCellGrid::CalcColumnWidthAutoText(int Col, int Row)
     return imaxwidth;
 }
 
-int __fastcall TCellGrid::CalcStringHeightAutoText(int Col, int Row)
-{// Расчет Max высоты строки по тексту
+int  TCellGrid::CalcStringHeightAutoText(int Col, int Row)
+{// ГђГ Г±Г·ГҐГІ Max ГўГ»Г±Г®ГІГ» Г±ГІГ°Г®ГЄГЁ ГЇГ® ГІГҐГЄГ±ГІГі
     int imaxwidth =GetRowHeights(Row);
     AnsiString str;
     TRect rectcalc;
@@ -2772,10 +2773,10 @@ int __fastcall TCellGrid::CalcStringHeightAutoText(int Col, int Row)
     return imaxwidth;
 }
 
-void __fastcall TCellGrid::CellGridMouseDown(TObject *Sender,
+void  TCellGrid::CellGridMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
-    // Нажатие кнопки мыши (Обработка левой кнопки нажатие один раз)
+    // ГЌГ Г¦Г ГІГЁГҐ ГЄГ­Г®ГЇГЄГЁ Г¬Г»ГёГЁ (ГЋГЎГ°Г ГЎГ®ГІГЄГ  Г«ГҐГўГ®Г© ГЄГ­Г®ГЇГЄГЁ Г­Г Г¦Г ГІГЁГҐ Г®Г¤ГЁГ­ Г°Г Г§)
     if (Shift.Contains(ssRight))
     {
     }
@@ -2796,7 +2797,7 @@ void __fastcall TCellGrid::CellGridMouseDown(TObject *Sender,
 
 
         int iDeltaBorder =4;
-        // - На границе ячеек
+        // - ГЌГ  ГЈГ°Г Г­ГЁГ¶ГҐ ГїГ·ГҐГҐГЄ
         TRect sortdownup =GetRectCellSort(TRect(StartMouseDown.X,StartMouseDown.Y,MouseUpCoord.X ,MouseUpCoord.Y));
         TRect rectborder =GetUnionRect(
             GetGridRectToRectPixelNotUnionAndScroll(sortdownup.Left,sortdownup.Top),
@@ -2839,9 +2840,9 @@ void __fastcall TCellGrid::CellGridMouseDown(TObject *Sender,
             StartMouseDown.Y            =calcrect.Top;
             MouseUpCoord.X              =calcrect.Right;
             MouseUpCoord.Y              =calcrect.Bottom;
-            if (MouseUpCoord.X ==1) // Столбец
+            if (MouseUpCoord.X ==1) // Г‘ГІГ®Г«ГЎГҐГ¶
                 MouseUpCoord.X =ColCount-1;
-            if (MouseUpCoord.Y ==1) // Строка
+            if (MouseUpCoord.Y ==1) // Г‘ГІГ°Г®ГЄГ 
                 MouseUpCoord.Y =RowCount-1;
 
             FCurrent.X                  =StartMouseDown.X;
@@ -2875,7 +2876,7 @@ void __fastcall TCellGrid::CellGridMouseDown(TObject *Sender,
             else
             {
                 if (CellHit1.X >1 && CellHit1.Y>1)
-                {// При нахождении курсора в области фиксированных ячеек
+                {// ГЏГ°ГЁ Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГЁ ГЄГіГ°Г±Г®Г°Г  Гў Г®ГЎГ«Г Г±ГІГЁ ГґГЁГЄГ±ГЁГ°Г®ГўГ Г­Г­Г»Гµ ГїГ·ГҐГҐГЄ
 
                     if ( CellHit1.Y <FixedRows || CellHit1.X <FixedCols )
                     {
@@ -2968,14 +2969,14 @@ void __fastcall TCellGrid::CellGridMouseDown(TObject *Sender,
                     TRect CurAnc;
                     CurAnc = *GetCell(CellHit1.X,CellHit1.Y)->UnionRect;
                     if (CurAnc.Left ==0)
-                    {// Строки
+                    {// Г‘ГІГ°Г®ГЄГЁ
                         FCurrent.X = 2;
                         FCurrent.Y = CurAnc.Top;
                         FAnchor.X = ColCount;
                         FAnchor.Y = CurAnc.Bottom;
                     }
                     if (CurAnc.Top ==0)
-                    {// Столбцы
+                    {// Г‘ГІГ®Г«ГЎГ¶Г»
                         FCurrent.X = CurAnc.Left;
                         FCurrent.Y = 2;
                         FAnchor.X = CurAnc.Right;
@@ -2995,10 +2996,10 @@ void __fastcall TCellGrid::CellGridMouseDown(TObject *Sender,
     PopupMenuNotMouseUp =false;
 }
 
-void __fastcall TCellGrid::CellGridMouseUp(TObject *Sender,
+void  TCellGrid::CellGridMouseUp(TObject *Sender,
         TMouseButton Button, TShiftState Shift, int X, int Y)
 {
-    // Кнопка мыши отжата (обработка левой)
+    // ГЉГ­Г®ГЇГЄГ  Г¬Г»ГёГЁ Г®ГІГ¦Г ГІГ  (Г®ГЎГ°Г ГЎГ®ГІГЄГ  Г«ГҐГўГ®Г©)
     if (!PopupMenuNotMouseUp)
     {
         if (X >= DrawInfo.Horz.GridBoundary)
@@ -3148,13 +3149,13 @@ void __fastcall TCellGrid::CellGridMouseUp(TObject *Sender,
     }
 }
 
-bool __fastcall TCellGrid::PointInCut(const TPoint& cut, int point)
-{ // точка находиться в промежутке cut
+bool  TCellGrid::PointInCut(const TPoint& cut, int point)
+{ // ГІГ®Г·ГЄГ  Г­Г ГµГ®Г¤ГЁГІГјГ±Гї Гў ГЇГ°Г®Г¬ГҐГ¦ГіГІГЄГҐ cut
     return (point >=cut.x && point <=cut.y);
 }
 
-bool  __fastcall TCellGrid::TestingRectToSelection(TCell* Cell, const TRect RectSelection)
-{// Находиться ли объедененная ячейка  в заданном Recte
+bool   TCellGrid::TestingRectToSelection(TCell* Cell, const TRect RectSelection)
+{// ГЌГ ГµГ®Г¤ГЁГІГјГ±Гї Г«ГЁ Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї ГїГ·ГҐГ©ГЄГ   Гў Г§Г Г¤Г Г­Г­Г®Г¬ Recte
     bool ret =true;
     if (Cell->UnionRect !=NULL)
     {
@@ -3163,9 +3164,9 @@ bool  __fastcall TCellGrid::TestingRectToSelection(TCell* Cell, const TRect Rect
     return ret;
 }
 
-TRect __fastcall TCellGrid::GetAnchorCurrentSort()
+TRect  TCellGrid::GetAnchorCurrentSort()
 {
-    // Получить в Rect Current и Fnchor в отсортированном виде
+    // ГЏГ®Г«ГіГ·ГЁГІГј Гў Rect Current ГЁ Fnchor Гў Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ Г­Г­Г®Г¬ ГўГЁГ¤ГҐ
     TRect rectCell;
     rectCell.Left = FCurrent.X;
     rectCell.Top = FCurrent.Y;
@@ -3185,8 +3186,8 @@ TRect __fastcall TCellGrid::GetAnchorCurrentSort()
     return rectCell;
 }
 
-void __fastcall TCellGrid::SetAnchorCurrentSort()
-{// отсортировать FCurrent и FAnchor
+void  TCellGrid::SetAnchorCurrentSort()
+{// Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј FCurrent ГЁ FAnchor
     int t;
     if (FAnchor.X < FCurrent.X)
     {
@@ -3202,14 +3203,14 @@ void __fastcall TCellGrid::SetAnchorCurrentSort()
     }
 }
 
-TGridRect __fastcall TCellGrid::GetAnchorCurrentSortGrid()
-{// отсортировать FCurrent и FAnchor
+TGridRect  TCellGrid::GetAnchorCurrentSortGrid()
+{// Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј FCurrent ГЁ FAnchor
     return RectToGridRectType(GetAnchorCurrentSort());
 }
 
-TRect __fastcall TCellGrid::GetAnchorCurrentSortPlus()
+TRect  TCellGrid::GetAnchorCurrentSortPlus()
 {
-    // отсортировать FCurrent и FAnchor и zoom на +1 ячейку
+    // Г®ГІГ±Г®Г°ГІГЁГ°Г®ГўГ ГІГј FCurrent ГЁ FAnchor ГЁ zoom Г­Г  +1 ГїГ·ГҐГ©ГЄГі
     TRect ret;
     ret = GetAnchorCurrentSort();
 
@@ -3225,7 +3226,7 @@ TRect __fastcall TCellGrid::GetAnchorCurrentSortPlus()
     return ret;
 }
 
-TRect __fastcall TCellGrid::GetJobAnchorCurrentSort()
+TRect  TCellGrid::GetJobAnchorCurrentSort()
 {
 
     TRect rectCell;
@@ -3247,15 +3248,15 @@ TRect __fastcall TCellGrid::GetJobAnchorCurrentSort()
     return rectCell;
 }
 
-TColor __fastcall TCellGrid::SetColorCursor(TColor& Color)// Установить цвет курсора
+TColor  TCellGrid::SetColorCursor(TColor& Color)// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г¶ГўГҐГІ ГЄГіГ°Г±Г®Г°Г 
 {
     return (TColor)RGB((GetRValue(ColorSelect)+GetRValue(Color))/2,(GetGValue(ColorSelect)+GetGValue(Color))/2,(GetBValue(ColorSelect)+GetBValue(Color))/2);
 }
 
-TRect __fastcall TCellGrid::GetUnionRect(const TRect& rect1,const TRect& rect2)
+TRect  TCellGrid::GetUnionRect(const TRect& rect1,const TRect& rect2)
 {
 
-    // Тоже что и UnionRect только корректно    и в случаях типа (x=1,y=1,x2=1,y2=5)
+    // Г’Г®Г¦ГҐ Г·ГІГ® ГЁ UnionRect ГІГ®Г«ГјГЄГ® ГЄГ®Г°Г°ГҐГЄГІГ­Г®    ГЁ Гў Г±Г«ГіГ·Г ГїГµ ГІГЁГЇГ  (x=1,y=1,x2=1,y2=5)
     TRect rectCellUnion;
     TRect rectsort1;
     TRect rectsort2;
@@ -3289,17 +3290,17 @@ TRect __fastcall TCellGrid::GetUnionRect(const TRect& rect1,const TRect& rect2)
     return rectCellUnion;
 }
 
-TRect __fastcall TCellGrid::GetUnionRect(const TGridRect& rect1,const TGridRect& rect2)
+TRect  TCellGrid::GetUnionRect(const TGridRect& rect1,const TGridRect& rect2)
 {
     return GetUnionRect(GridRectToRectType(rect1), GridRectToRectType(rect2));
 }
 
-TGridRect __fastcall TCellGrid::GetUnionGridRect(const TGridRect& rect1,const TGridRect& rect2)
+TGridRect  TCellGrid::GetUnionGridRect(const TGridRect& rect1,const TGridRect& rect2)
 {
     return RectToGridRectType(GetUnionRect(rect1, rect2));
 }
 
-TRect __fastcall TCellGrid::GridRectToRectType(const TGridRect& rect)
+TRect  TCellGrid::GridRectToRectType(const TGridRect& rect)
 {
     TRect rec;
     rec.Left = rect.Left;
@@ -3309,7 +3310,7 @@ TRect __fastcall TCellGrid::GridRectToRectType(const TGridRect& rect)
     return rec;
 }
 
-TRect __fastcall TCellGrid::GetRectCellSort(const TRect& rect)
+TRect  TCellGrid::GetRectCellSort(const TRect& rect)
 {
     TRect rectCell =rect;
     if (rect.Right < rect.Left)
@@ -3325,7 +3326,7 @@ TRect __fastcall TCellGrid::GetRectCellSort(const TRect& rect)
     return rectCell;
 }
 
-void __fastcall TCellGrid::SetRectCellSort(TRect& rect)
+void  TCellGrid::SetRectCellSort(TRect& rect)
 {
     int t;
     if (rect.Right < rect.Left)
@@ -3342,7 +3343,7 @@ void __fastcall TCellGrid::SetRectCellSort(TRect& rect)
     }
 }
 
-TRect __fastcall TCellGrid::GetRectCellSort(const TGridRect& rect)
+TRect  TCellGrid::GetRectCellSort(const TGridRect& rect)
 {
 
     TRect rectCell;
@@ -3364,7 +3365,7 @@ TRect __fastcall TCellGrid::GetRectCellSort(const TGridRect& rect)
     return rectCell;
 }
 
-TGridRect __fastcall TCellGrid::GetGridRectCellSort(const TGridRect& rect)
+TGridRect  TCellGrid::GetGridRectCellSort(const TGridRect& rect)
 {
     TGridRect rectGirdCell =rect;
     if (rect.Right < rect.Left)
@@ -3380,7 +3381,7 @@ TGridRect __fastcall TCellGrid::GetGridRectCellSort(const TGridRect& rect)
     return rectGirdCell;
 }
 /*
-TGridRect __fastcall TCellGrid::RectToGridRectType(TRect* rect)
+TGridRect  TCellGrid::RectToGridRectType(TRect* rect)
 {
 
     TGridRect ret;
@@ -3391,7 +3392,7 @@ TGridRect __fastcall TCellGrid::RectToGridRectType(TRect* rect)
     return ret;
 }
 */
-TGridRect __fastcall TCellGrid::RectToGridRectType(const TRect& rect)
+TGridRect  TCellGrid::RectToGridRectType(const TRect& rect)
 {
     TGridRect ret;
     ret.Left = rect.Left;
@@ -3402,12 +3403,12 @@ TGridRect __fastcall TCellGrid::RectToGridRectType(const TRect& rect)
 }
 
 
-TRect __fastcall TCellGrid::CalculationRect(const TRect& rect)
-{// Получить рект по координатам
+TRect  TCellGrid::CalculationRect(const TRect& rect)
+{// ГЏГ®Г«ГіГ·ГЁГІГј Г°ГҐГЄГІ ГЇГ® ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ Г¬
     return CalculationRect(rect.Left, rect.Top,rect.Right,rect.Bottom);
 }
 
-TRect __fastcall TCellGrid::CalculationRect(int StartX, int StartY, int EndX, int EndY)
+TRect  TCellGrid::CalculationRect(int StartX, int StartY, int EndX, int EndY)
 {
     TGridCoord start,end;
     start.X =StartX;
@@ -3476,7 +3477,7 @@ void TCellGrid::RecalculateSelection()
         }
         FValidSelectionPlus = Zoom(FValidSelection,1 );
         FValidSelectionMinus = Zoom(FValidSelection,-1 );
-        //запоминаем
+        //Г§Г ГЇГ®Г¬ГЁГ­Г ГҐГ¬
         FCurrent_Mem.X =FCurrent.X;
         FCurrent_Mem.Y =FCurrent.Y;
         FAnchor_Mem.X =FAnchor.X;
@@ -3484,7 +3485,7 @@ void TCellGrid::RecalculateSelection()
     }
 }
 
-TRect __fastcall TCellGrid::CalculationRect(TGridCoord mousestart, TGridCoord mousemove)
+TRect  TCellGrid::CalculationRect(TGridCoord mousestart, TGridCoord mousemove)
 {
     TRect ForUnionRect1;
 
@@ -3525,7 +3526,7 @@ TRect __fastcall TCellGrid::CalculationRect(TGridCoord mousestart, TGridCoord mo
         PosMouseToRect.Right    =mousemove.X;
         PosMouseToRect.Bottom   =mousemove.Y;
 
-        ForUnionRect1 = GetUnionRect(RectAnchorCurrent,PosMouseToRect); // Первоначальный Rect от Anchor & Current & MousePos
+        ForUnionRect1 = GetUnionRect(RectAnchorCurrent,PosMouseToRect); // ГЏГҐГ°ГўГ®Г­Г Г·Г Г«ГјГ­Г»Г© Rect Г®ГІ Anchor & Current & MousePos
         ForUnionRect2 = ForUnionRect1;
         TempRect = ForUnionRect1;
         for (int i=0; i<15; i++)
@@ -3550,7 +3551,7 @@ TRect __fastcall TCellGrid::CalculationRect(TGridCoord mousestart, TGridCoord mo
     return ForUnionRect1;
 }
 
-void __fastcall TCellGrid::WndProc(Messages::TMessage &Message)
+void  TCellGrid::WndProc(Messages::TMessage &Message)
 {
     switch ( Message.Msg )
     {
@@ -3617,7 +3618,7 @@ void __fastcall TCellGrid::WndProc(Messages::TMessage &Message)
     }
 }
 
-void __fastcall TCellGrid::KeyDown(Word &Key, Classes::TShiftState Shift)
+void  TCellGrid::KeyDown(Word &Key, Classes::TShiftState Shift)
 {
 
     TShiftState Emptily;
@@ -3676,7 +3677,7 @@ void __fastcall TCellGrid::KeyDown(Word &Key, Classes::TShiftState Shift)
     }
 }
 
-bool __fastcall TCellGrid::DoMouseWheelLeft(Classes::TShiftState Shift, const Types::TPoint &MousePos)
+bool  TCellGrid::DoMouseWheelLeft(Classes::TShiftState Shift, const Types::TPoint &MousePos)
 {
 
 //    MouseWhellRight=0;
@@ -3751,7 +3752,7 @@ bool __fastcall TCellGrid::DoMouseWheelLeft(Classes::TShiftState Shift, const Ty
     return true;
 }
 
-bool __fastcall TCellGrid::DoMouseWheelUp(Classes::TShiftState Shift, const Types::TPoint &MousePos)
+bool  TCellGrid::DoMouseWheelUp(Classes::TShiftState Shift, const Types::TPoint &MousePos)
 {
     TShiftState Rasshiren;
     Rasshiren.Clear();
@@ -3837,7 +3838,7 @@ bool __fastcall TCellGrid::DoMouseWheelUp(Classes::TShiftState Shift, const Type
     return true;
 }
 
-bool __fastcall TCellGrid::DoMouseWheelRight(Classes::TShiftState Shift, const Types::TPoint &MousePos)
+bool  TCellGrid::DoMouseWheelRight(Classes::TShiftState Shift, const Types::TPoint &MousePos)
 {
 
 //    MouseWhellRight=1;
@@ -3958,7 +3959,7 @@ bool __fastcall TCellGrid::DoMouseWheelRight(Classes::TShiftState Shift, const T
     return true;
 }
 
-bool __fastcall TCellGrid::DoMouseWheelDown(Classes::TShiftState Shift, const Types::TPoint &MousePos)
+bool  TCellGrid::DoMouseWheelDown(Classes::TShiftState Shift, const Types::TPoint &MousePos)
 {
 
     TShiftState Rasshiren;
@@ -4094,7 +4095,7 @@ bool __fastcall TCellGrid::DoMouseWheelDown(Classes::TShiftState Shift, const Ty
     return true;
 }
 
-void __fastcall TCellGrid::ModifyScrollBar(unsigned ScrollBar, unsigned ScrollCode, unsigned Pos, bool UseRightToLeft)
+void  TCellGrid::ModifyScrollBar(unsigned ScrollBar, unsigned ScrollCode, unsigned Pos, bool UseRightToLeft)
 {
 
     if (CursorMoveStarted())
@@ -4143,7 +4144,7 @@ void __fastcall TCellGrid::ModifyScrollBar(unsigned ScrollBar, unsigned ScrollCo
     }
 }
 
-TRect __fastcall TCellGrid::GetGridRectCell(int iCol,int iRow)
+TRect  TCellGrid::GetGridRectCell(int iCol,int iRow)
 {
     TRect ret;
     ret.Left = iCol;
@@ -4152,7 +4153,7 @@ TRect __fastcall TCellGrid::GetGridRectCell(int iCol,int iRow)
     ret.Bottom = iRow;
     TCell* Cell =GetCell(iCol, iRow);
     if (Cell && Cell->UnionRect != NULL)
-    {// объедененная
+    {// Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г Гї
         ret.Left = Cell->UnionRect->Left;
         ret.Top = Cell->UnionRect->Top;
         ret.Right = Cell->UnionRect->Right;
@@ -4161,12 +4162,12 @@ TRect __fastcall TCellGrid::GetGridRectCell(int iCol,int iRow)
     return ret;
 }
 
-void __fastcall TCellGrid::InvalidateRect2(const TRect& rect)
+void  TCellGrid::InvalidateRect2(const TRect& rect)
 {
     InvalidateRect(RectToGridRectType(rect));
 }
 
-void    __fastcall TCellGrid::StartScrollingTimer1(TGridCoord& CellHit1)
+void     TCellGrid::StartScrollingTimer1(TGridCoord& CellHit1)
 {
     if ((DrawInfo.Vert.FirstGridCell != FixedRows)||(DrawInfo.Horz.FirstGridCell != FixedCols))
     if ((StartMouseDown.X >0)&&(StartMouseDown.Y >0)&&
@@ -4204,7 +4205,7 @@ void    __fastcall TCellGrid::StartScrollingTimer1(TGridCoord& CellHit1)
     }
 }
 
-void    __fastcall TCellGrid::StartScrollingTimer2(TGridCoord& CellHit1)
+void     TCellGrid::StartScrollingTimer2(TGridCoord& CellHit1)
 {
 
     if (!(DrawInfo.Vert.FirstGridCell ==FixedRows && DrawInfo.Horz.FirstGridCell ==FixedCols))
@@ -4217,7 +4218,7 @@ void    __fastcall TCellGrid::StartScrollingTimer2(TGridCoord& CellHit1)
         Timer->Enabled = false;
 }
 
-void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
+void  TCellGrid::CellGridMouseMove(TObject *Sender,
       TShiftState Shift, int X, int Y)
 {
     TRect       Rect4;
@@ -4236,7 +4237,7 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
 
     Rect4Union.Left  =-4;
     int iDeltaBorder =4;
-    // - На границе ячеек
+    // - ГЌГ  ГЈГ°Г Г­ГЁГ¶ГҐ ГїГ·ГҐГҐГЄ
     TRect AncCur =GetAnchorCurrentSort();
     if (iMouseDown ==0 && StartMouseDown.Y !=1 && StartMouseDown.X !=1)
         AncCur      =CalculationRect(AncCur);
@@ -4321,17 +4322,17 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
         }
 
         if (iMouseDown == 1)
-        { // Мышь была нажета и происходит движение
-            // - Проверка корректности зоны нахождения мыши
+        { // ГЊГ»ГёГј ГЎГ»Г«Г  Г­Г Г¦ГҐГІГ  ГЁ ГЇГ°Г®ГЁГ±ГµГ®Г¤ГЁГІ Г¤ГўГЁГ¦ГҐГ­ГЁГҐ
+            // - ГЏГ°Г®ГўГҐГ°ГЄГ  ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г±ГІГЁ Г§Г®Г­Г» Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГї Г¬Г»ГёГЁ
             if (X<3)
                 X=3;
             if (Y<3)
                 Y=3;
-            // - Проверка корректности зоны нахождения мыши END
+            // - ГЏГ°Г®ГўГҐГ°ГЄГ  ГЄГ®Г°Г°ГҐГЄГІГ­Г®Г±ГІГЁ Г§Г®Г­Г» Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГї Г¬Г»ГёГЁ END
             MouseX =X;
             MouseY =Y;
             StartScrollingTimer1(CellHit1);
-            // - Если стартовали на Fixed
+            // - Г…Г±Г«ГЁ Г±ГІГ Г°ГІГ®ГўГ Г«ГЁ Г­Г  Fixed
             CellHit1 = MouseCoord(X,Y);
 
             if (StartMouseDown.X == 1)
@@ -4340,7 +4341,7 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
                 CellHit1.Y = 1;
             // - END -
 
-            // - Обработка выделения при скролировании 1
+            // - ГЋГЎГ°Г ГЎГ®ГІГЄГ  ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї ГЇГ°ГЁ Г±ГЄГ°Г®Г«ГЁГ°Г®ГўГ Г­ГЁГЁ 1
             StartScrollingTimer2(CellHit1);
                 if (CellHit1.X <=DrawInfo.Horz.FirstGridCell ||
                     CellHit1.Y <=DrawInfo.Vert.FirstGridCell ||
@@ -4353,7 +4354,7 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
 
             // - END -
 
-            // - Выделение строки, столбца, таблицы
+            // - Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ Г±ГІГ°Г®ГЄГЁ, Г±ГІГ®Г«ГЎГ¶Г , ГІГ ГЎГ«ГЁГ¶Г»
             XM =X;
             YM =Y;
 
@@ -4363,14 +4364,14 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
                 YM=DrawInfo.Vert.GridBoundary-1;
 
             MousePosCellMoveSelect = MouseCoord(XM,YM);
-            // - Выделение строки, столбца, таблицы END
+            // - Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ Г±ГІГ°Г®ГЄГЁ, Г±ГІГ®Г«ГЎГ¶Г , ГІГ ГЎГ«ГЁГ¶Г» END
             CellHit1 =MousePosCellMoveSelect;
 
             MousePosCellMove =CellHit1;
             if (MousePosCellMoveSelect.X >0 && MousePosCellMoveSelect.Y >0)
             {
                 if ((OldCellMouseMove.X != MousePosCellMoveSelect.X)||(OldCellMouseMove.Y != MousePosCellMoveSelect.Y))
-                {//Если позиция мыши изменилась на занчение Cell
+                {//Г…Г±Г«ГЁ ГЇГ®Г§ГЁГ¶ГЁГї Г¬Г»ГёГЁ ГЁГ§Г¬ГҐГ­ГЁГ«Г Г±Гј Г­Г  Г§Г Г­Г·ГҐГ­ГЁГҐ Cell
 
                     Rect4 = CalculationRect(StartMouseDown,MousePosCellMoveSelect);
                     if (StartMouseDown.X ==1 || StartMouseDown.Y ==1)
@@ -4402,14 +4403,14 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
                     FAnchor.X   =Rect4.Right;
                     FAnchor.Y   =Rect4.Bottom;
 
-                    // Ниже для перерисовки определенного ректангла
+                    // ГЌГЁГ¦ГҐ Г¤Г«Гї ГЇГҐГ°ГҐГ°ГЁГ±Г®ГўГЄГЁ Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­Г­Г®ГЈГ® Г°ГҐГЄГІГ Г­ГЈГ«Г 
                     OldRectCurrentAnchorMouseMoveCell.Left      =JobFCurrent.X;
                     OldRectCurrentAnchorMouseMoveCell.Top       =JobFCurrent.Y;
                     OldRectCurrentAnchorMouseMoveCell.Right     =JobFAnchor.X;
                     OldRectCurrentAnchorMouseMoveCell.Bottom    =JobFAnchor.Y;
 
                     Rect4SortOld = GetGridRectCellSort(OldRectCurrentAnchorMouseMoveCell);
-                    // - Обработка выделения при скролировании  2
+                    // - ГЋГЎГ°Г ГЎГ®ГІГЄГ  ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї ГЇГ°ГЁ Г±ГЄГ°Г®Г«ГЁГ°Г®ГўГ Г­ГЁГЁ  2
 
                     if (StartMouseDown.Y > FixedRows && StartMouseDown.X > FixedCols)
                         if ((Timer->Enabled == true)&&
@@ -4422,7 +4423,7 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
                                 (CellHit1.X <=DrawInfo.Horz.FirstGridCell))
                                 FCurrent.X = FixedCols;
 
-                    // - Обработка выделения при скролировании END  2
+                    // - ГЋГЎГ°Г ГЎГ®ГІГЄГ  ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї ГЇГ°ГЁ Г±ГЄГ°Г®Г«ГЁГ°Г®ГўГ Г­ГЁГЁ END  2
 
                     JobFCurrent =FCurrent;
                     JobFAnchor  =FAnchor;
@@ -4439,7 +4440,7 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
                     if (Rect4Draw.Right >DrawInfo.Horz.LastFullVisibleCell+1)
                         Rect4Draw.Right = DrawInfo.Horz.LastFullVisibleCell+1;
 
-                    // - Выделение строки, столбца, таблицы
+                    // - Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ Г±ГІГ°Г®ГЄГЁ, Г±ГІГ®Г«ГЎГ¶Г , ГІГ ГЎГ«ГЁГ¶Г»
                     Rect4 =CalculationRect(StartMouseDown,MousePosCellMoveSelect);
 
                     SelectTable             =false;
@@ -4449,26 +4450,26 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
                     bool NotSelectColumn    =false;
 
                     if ((Rect4.Left ==2)&&(Rect4.Right ==ColCount-1)&&(StartMouseDown.X >1))
-                        SelectString = true;// Выделена строка
+                        SelectString = true;// Г‚Г»Г¤ГҐГ«ГҐГ­Г  Г±ГІГ°Г®ГЄГ 
 
                     if (((Rect4.Left ==3)&&(Rect4.Right ==ColCount-1)&&(StartMouseDown.X >1)) ||
                         ((Rect4.Left ==2)&&(Rect4.Right ==ColCount-2)&&(StartMouseDown.X >1))
                     )
-                        NotSelectString = true;// НЕ Выделена строка
+                        NotSelectString = true;// ГЌГ… Г‚Г»Г¤ГҐГ«ГҐГ­Г  Г±ГІГ°Г®ГЄГ 
 
                     if ((Rect4.Top ==2)&&(Rect4.Bottom ==RowCount-1)&&(StartMouseDown.Y >1))
-                        SelectColumn = true;// Выделен столбец
+                        SelectColumn = true;// Г‚Г»Г¤ГҐГ«ГҐГ­ Г±ГІГ®Г«ГЎГҐГ¶
 
                     if (((Rect4.Top ==3)&&(Rect4.Bottom ==RowCount-1)&&(StartMouseDown.Y >1)) ||
                         ((Rect4.Top ==2)&&(Rect4.Bottom ==RowCount-2)&&(StartMouseDown.Y >1))
                     )
-                        NotSelectColumn = true;// Выделен столбец
+                        NotSelectColumn = true;// Г‚Г»Г¤ГҐГ«ГҐГ­ Г±ГІГ®Г«ГЎГҐГ¶
 
                     if ((Rect4.Left ==1)&&((Rect4.Right ==ColCount-1)||(StartMouseDown.X ==1)))
-                        SelectString = true;// Выделена строка
+                        SelectString = true;// Г‚Г»Г¤ГҐГ«ГҐГ­Г  Г±ГІГ°Г®ГЄГ 
 
                     if ((Rect4.Top ==1)&&((Rect4.Bottom ==RowCount-1)||(StartMouseDown.Y ==1)))
-                        SelectColumn = true;// Выделен столбец
+                        SelectColumn = true;// Г‚Г»Г¤ГҐГ«ГҐГ­ Г±ГІГ®Г«ГЎГҐГ¶
 
                     if (SelectColumn &&
                         SelectString &&
@@ -4476,7 +4477,7 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
                     )
                         SelectTable=true;
 
-                    // - Выделение строки, столбца, таблицы END
+                    // - Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ Г±ГІГ°Г®ГЄГЁ, Г±ГІГ®Г«ГЎГ¶Г , ГІГ ГЎГ«ГЁГ¶Г» END
                     if (GetCell(MousePosCellMoveSelect.X, MousePosCellMoveSelect.Y) && GetCell(MousePosCellMoveSelect.X,MousePosCellMoveSelect.Y)->UnionRect !=NULL)
                     {
                         Rect4Union =*GetCell(MousePosCellMoveSelect.X,MousePosCellMoveSelect.Y)->UnionRect;
@@ -4533,9 +4534,9 @@ void __fastcall TCellGrid::CellGridMouseMove(TObject *Sender,
 
 }
 
-bool __fastcall TCellGrid::SelectAllJobField()
+bool  TCellGrid::SelectAllJobField()
 {
-    // Выделенно все рабочее поле
+    // Г‚Г»Г¤ГҐГ«ГҐГ­Г­Г® ГўГ±ГҐ Г°Г ГЎГ®Г·ГҐГҐ ГЇГ®Г«ГҐ
     bool ret=false;
     if ((FCurrent.X ==2)||(FCurrent.X ==ColCount-1)) ret=true; else ret =false;
     if ((FCurrent.Y ==2)||(FCurrent.Y ==RowCount-1)) ret=true; else ret =false;
@@ -4546,7 +4547,7 @@ bool __fastcall TCellGrid::SelectAllJobField()
     return ret;
 }
 
-TRect __fastcall TCellGrid::GetGridRectToRectPixelNotUnion(int iCol,int iRow)// Возвращает Rect в пикселях
+TRect  TCellGrid::GetGridRectToRectPixelNotUnion(int iCol,int iRow)// Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Rect Гў ГЇГЁГЄГ±ГҐГ«ГїГµ
 {
     TRect ret;
     int top=0;
@@ -4566,7 +4567,7 @@ TRect __fastcall TCellGrid::GetGridRectToRectPixelNotUnion(int iCol,int iRow)// 
     return ret;
 }
 
-void __fastcall TCellGrid::DrawCursorU2(int CurCol, int CurRow, int iLeft,int iTop,int iRight,int iBottom)
+void  TCellGrid::DrawCursorU2(int CurCol, int CurRow, int iLeft,int iTop,int iRight,int iBottom)
 {
     if (!MoveCellBorder)
     {
@@ -4625,7 +4626,7 @@ void __fastcall TCellGrid::DrawCursorU2(int CurCol, int CurRow, int iLeft,int iT
     }
 }
 
-void __fastcall TCellGrid::DrawCursor(const TRect& Rect)
+void  TCellGrid::DrawCursor(const TRect& Rect)
 {
     if (Canvas->Pen->Color != clWhite)
         Canvas->Pen->Color = clWhite;
@@ -4667,7 +4668,7 @@ void __fastcall TCellGrid::DrawCursor(const TRect& Rect)
         Canvas->Pen->Mode = oldMode;
 }
 
-void __fastcall TCellGrid::DrawCursorMove2(int Col, int Row)
+void  TCellGrid::DrawCursorMove2(int Col, int Row)
 {
     if (CurrentMouseCoordTimer.X != Col || CurrentMouseCoordTimer.Y != Row)
     {
@@ -4680,7 +4681,7 @@ void __fastcall TCellGrid::DrawCursorMove2(int Col, int Row)
     }
 }
 
-void __fastcall TCellGrid::DrawCursorMove(int Col, int Row)
+void  TCellGrid::DrawCursorMove(int Col, int Row)
 {
     int iXS =StartMouseDown.X +Col -OldFAnchorBorder.X;
     int iYS =StartMouseDown.Y +Row -OldFAnchorBorder.Y;
@@ -4752,7 +4753,7 @@ void __fastcall TCellGrid::DrawCursorMove(int Col, int Row)
     }
 }
 
-void __fastcall TCellGrid::DrawCursorMove(const TRect& Rect, int Width)
+void  TCellGrid::DrawCursorMove(const TRect& Rect, int Width)
 {
     TColor Color;
     int Spoc =0;
@@ -4791,7 +4792,7 @@ void __fastcall TCellGrid::DrawCursorMove(const TRect& Rect, int Width)
 
 }
 
-TRect __fastcall TCellGrid::GetGridRectToRectPixelNotUnionReal(int iCol,int iRow)// Возвращает Rect в пикселях
+TRect  TCellGrid::GetGridRectToRectPixelNotUnionReal(int iCol,int iRow)// Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Rect Гў ГЇГЁГЄГ±ГҐГ«ГїГµ
 {
     TRect ret;
     int i;
@@ -4810,7 +4811,7 @@ TRect __fastcall TCellGrid::GetGridRectToRectPixelNotUnionReal(int iCol,int iRow
     return ret;
 }
 
-int __fastcall TCellGrid::SumRow(int Start, int End)
+int  TCellGrid::SumRow(int Start, int End)
 {
     int ret=0;
     for (int i=Start; i<= End; i++)
@@ -4819,7 +4820,7 @@ int __fastcall TCellGrid::SumRow(int Start, int End)
     return ret;
 }
 
-int __fastcall TCellGrid::SumCol(int Start, int End)
+int  TCellGrid::SumCol(int Start, int End)
 {
     int ret=0;
     for (int i=Start; i<= End; i++)
@@ -4828,7 +4829,7 @@ int __fastcall TCellGrid::SumCol(int Start, int End)
     return ret;
 }
 
-TRect __fastcall TCellGrid::GetGridRectToRectPixelForBorder(int Col,int Row)
+TRect  TCellGrid::GetGridRectToRectPixelForBorder(int Col,int Row)
 {
     TRect recttemp;
     if (Row >1 && Col >1)
@@ -4902,7 +4903,7 @@ TRect __fastcall TCellGrid::GetGridRectToRectPixelForBorder(int Col,int Row)
     return recttemp;
 }
 
-TRect __fastcall TCellGrid::GetGridRectToRectPixelNotUnionAndScroll(int Col,int Row)
+TRect  TCellGrid::GetGridRectToRectPixelNotUnionAndScroll(int Col,int Row)
 {
     TRect StartRect,EndRect,recttemp;
     TRect StartRectF,EndRectF;
@@ -4913,7 +4914,7 @@ TRect __fastcall TCellGrid::GetGridRectToRectPixelNotUnionAndScroll(int Col,int 
         if (Cell && Cell->UnionRect != NULL)
         {
             int NewColStart,NewRowStart,NewColEnd,NewRowEnd;
-            // получаем регион в ячейках указывающий на объедененную ячеку
+            // ГЇГ®Г«ГіГ·Г ГҐГ¬ Г°ГҐГЈГЁГ®Г­ Гў ГїГ·ГҐГ©ГЄГ Гµ ГіГЄГ Г§Г»ГўГ ГѕГ№ГЁГ© Г­Г  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГЄГі
 
             NewColStart =Cell->UnionRect->Left;
             NewRowStart =Cell->UnionRect->Top;
@@ -4935,7 +4936,7 @@ TRect __fastcall TCellGrid::GetGridRectToRectPixelNotUnionAndScroll(int Col,int 
         if (Cell && Cell->UnionRect != NULL)
         {
             int NewColStart,NewRowStart,NewColEnd,NewRowEnd;
-            // получаем регион в ячейках указывающий на объедененную ячеку
+            // ГЇГ®Г«ГіГ·Г ГҐГ¬ Г°ГҐГЈГЁГ®Г­ Гў ГїГ·ГҐГ©ГЄГ Гµ ГіГЄГ Г§Г»ГўГ ГѕГ№ГЁГ© Г­Г  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГЄГі
             NewColStart =Cell->UnionRect->Left;
             NewRowStart =Cell->UnionRect->Top;
             NewColEnd   =Cell->UnionRect->Right;
@@ -4953,7 +4954,7 @@ TRect __fastcall TCellGrid::GetGridRectToRectPixelNotUnionAndScroll(int Col,int 
     if (Cell && Cell->UnionRect != NULL)
     {
         int NewColStart,NewRowStart,NewColEnd,NewRowEnd;
-        // получаем регион в ячейках указывающий на объедененную ячеку
+        // ГЇГ®Г«ГіГ·Г ГҐГ¬ Г°ГҐГЈГЁГ®Г­ Гў ГїГ·ГҐГ©ГЄГ Гµ ГіГЄГ Г§Г»ГўГ ГѕГ№ГЁГ© Г­Г  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГЄГі
         NewColStart =Cell->UnionRect->Left;
         NewRowStart =Cell->UnionRect->Top;
         NewColEnd   =Cell->UnionRect->Right;
@@ -5040,14 +5041,14 @@ TRect __fastcall TCellGrid::GetGridRectToRectPixelNotUnionAndScroll(int Col,int 
     return recttemp;
 }
 
-TRect __fastcall TCellGrid::GetGridRectToRectPixelUnionReal(int iCol,int iRow)
-{// Возвращает Rect в пикселях в Real и с учетом Union
+TRect  TCellGrid::GetGridRectToRectPixelUnionReal(int iCol,int iRow)
+{// Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ Rect Гў ГЇГЁГЄГ±ГҐГ«ГїГµ Гў Real ГЁ Г± ГіГ·ГҐГІГ®Г¬ Union
     TRect  rect1,rect2,ret,temp;
 
     if (GetCell(iCol,iRow) && (GetCell(iCol,iRow)->UnionRect != NULL))
     {
         int NewColStart,NewRowStart,NewColEnd,NewRowEnd;
-        // получаем регион в ячейках указывающий на объедененную ячеку
+        // ГЇГ®Г«ГіГ·Г ГҐГ¬ Г°ГҐГЈГЁГ®Г­ Гў ГїГ·ГҐГ©ГЄГ Гµ ГіГЄГ Г§Г»ГўГ ГѕГ№ГЁГ© Г­Г  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГЄГі
         temp =*GetCell(iCol,iRow)->UnionRect;
         NewColStart = temp.Left;
         NewRowStart = temp.Top;
@@ -5064,8 +5065,8 @@ TRect __fastcall TCellGrid::GetGridRectToRectPixelUnionReal(int iCol,int iRow)
     return ret;
 }
 
-bool __fastcall TCellGrid::BeEqualRect(const TRect& rect1, const TRect& rect2)
-{// Равняется ли rect1 rect2 тогда OK
+bool  TCellGrid::BeEqualRect(const TRect& rect1, const TRect& rect2)
+{// ГђГ ГўГ­ГїГҐГІГ±Гї Г«ГЁ rect1 rect2 ГІГ®ГЈГ¤Г  OK
     bool ret=false;
     if ((rect1.Left ==rect2.Left)&&
         (rect1.Top ==rect2.Top)&&
@@ -5074,8 +5075,8 @@ bool __fastcall TCellGrid::BeEqualRect(const TRect& rect1, const TRect& rect2)
     return ret;
 }
 
-bool __fastcall TCellGrid::EqualSizeRect(const TRect& rect1, const TRect& rect2)
-{// Равняется ли размеры rect1 rect2
+bool  TCellGrid::EqualSizeRect(const TRect& rect1, const TRect& rect2)
+{// ГђГ ГўГ­ГїГҐГІГ±Гї Г«ГЁ Г°Г Г§Г¬ГҐГ°Г» rect1 rect2
     return (
             (rect1.Right -rect1.Left ==
              rect2.Right -rect2.Left) &&
@@ -5083,8 +5084,8 @@ bool __fastcall TCellGrid::EqualSizeRect(const TRect& rect1, const TRect& rect2)
              rect2.Bottom -rect2.Top));
 }
 
-bool __fastcall TCellGrid::Rect1CrossRect2(const TRect& rect1, const TRect& rect2)
-{// Пересекаються ли rect1 и rect2 тогда OK
+bool  TCellGrid::Rect1CrossRect2(const TRect& rect1, const TRect& rect2)
+{// ГЏГҐГ°ГҐГ±ГҐГЄГ ГѕГІГјГ±Гї Г«ГЁ rect1 ГЁ rect2 ГІГ®ГЈГ¤Г  OK
     bool ret=false;
     if ((rect2.Left >=rect1.Left &&
         rect2.Left <=rect1.Right &&
@@ -5099,8 +5100,8 @@ bool __fastcall TCellGrid::Rect1CrossRect2(const TRect& rect1, const TRect& rect
     return ret;
 }
 
-bool __fastcall TCellGrid::Rect1InRect2(const TRect& rect1, const TRect& rect2)
-{// Внутри ли rect1 rect2 тогда OK
+bool  TCellGrid::Rect1InRect2(const TRect& rect1, const TRect& rect2)
+{// Г‚Г­ГіГІГ°ГЁ Г«ГЁ rect1 rect2 ГІГ®ГЈГ¤Г  OK
     bool ret=false;
     if ((rect1.Left >=rect2.Left)&&
         (rect1.Top >=rect2.Top)&&
@@ -5109,38 +5110,38 @@ bool __fastcall TCellGrid::Rect1InRect2(const TRect& rect1, const TRect& rect2)
     return ret;
 }
 
-void __fastcall TCellGrid::NullRect(TRect& rect1)
+void  TCellGrid::NullRect(TRect& rect1)
 {
-// Установить значение 0 в rect
+// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г§Г­Г Г·ГҐГ­ГЁГҐ 0 Гў rect
     rect1.Left = 0;
     rect1.Top = 0;
     rect1.Right = 0;
     rect1.Bottom = 0;
 }
 
-void __fastcall TCellGrid::NullLine(TCell& Cell)
-{// Установить значение 0 в Line
+void  TCellGrid::NullLine(TCell& Cell)
+{// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г§Г­Г Г·ГҐГ­ГЁГҐ 0 Гў Line
     Cell.Line.WidthLeft =0;
     Cell.Line.WidthTop =0;
     Cell.Line.WidthRight =0;
     Cell.Line.WidthBottom =0;
 }
 
-bool __fastcall TCellGrid::CellBeUnionCell(const TGridCoord& cell)
-{// Являеться ли эта ячейка объедененной
+bool  TCellGrid::CellBeUnionCell(const TGridCoord& cell)
+{// ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г®Г©
     bool ret=false;
     if ((GetCell(cell.X, cell.Y) != NULL)&&(GetCell(cell.X, cell.Y)->UnionRect != NULL)) ret =true;
     return ret;
 }
 
-bool __fastcall TCellGrid::CellBeUnionCell(int Col, int Row)
-{// Являеться ли эта ячейка объедененной
+bool  TCellGrid::CellBeUnionCell(int Col, int Row)
+{// ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­Г®Г©
     bool ret=false;
     if ((GetCell(Col, Row) != NULL)&&(GetCell(Col, Row)->UnionRect != NULL)) ret =true;
     return ret;
 }
 
-bool __fastcall TCellGrid::CellInRect(const TRect& rect, const TGridCoord& cell)
+bool  TCellGrid::CellInRect(const TRect& rect, const TGridCoord& cell)
 {
     bool ret=false;
     if (
@@ -5153,7 +5154,7 @@ bool __fastcall TCellGrid::CellInRect(const TRect& rect, const TGridCoord& cell)
     return ret;
 }
 
-void __fastcall TCellGrid::SetDefaultCell11()
+void  TCellGrid::SetDefaultCell11()
 {
     NewCell(0,0);
     GetCell(0,0)->bgColor = clWhite;

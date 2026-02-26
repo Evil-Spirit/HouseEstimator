@@ -1,14 +1,16 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
         
 #include "UNDO.h"
 #include "CellGrid.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 TGridUndoStack UndoStack;
 
 TGridStateStep::TGridStateStep()
@@ -95,9 +97,9 @@ void TGridUndoSession::RegisterDeletion(const TPoint ColRow, TCell* MRO)
 }
 
 
-//строгое требование:
-//невозможна регистрация дважды
-//исключение повторная регистрация о удалении
+//Г±ГІГ°Г®ГЈГ®ГҐ ГІГ°ГҐГЎГ®ГўГ Г­ГЁГҐ:
+//Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г  Г°ГҐГЈГЁГ±ГІГ°Г Г¶ГЁГї Г¤ГўГ Г¦Г¤Г»
+//ГЁГ±ГЄГ«ГѕГ·ГҐГ­ГЁГҐ ГЇГ®ГўГІГ®Г°Г­Г Гї Г°ГҐГЈГЁГ±ГІГ°Г Г¶ГЁГї Г® ГіГ¤Г Г«ГҐГ­ГЁГЁ
 void TGridUndoSession::ReadCondition()
 {
     MS->Position = 0;
@@ -109,7 +111,7 @@ void TGridUndoSession::ReadCondition()
             CG->DelCell(SSL.Current->ColRow.x,SSL.Current->ColRow.y);
     }
     //---------------------
-    //Важно т.к. адреса совпадают
+    //Г‚Г Г¦Г­Г® ГІ.ГЄ. Г Г¤Г°ГҐГ±Г  Г±Г®ГўГЇГ Г¤Г ГѕГІ
 //    TaskQueue.Clear();
     //---------------------
     /*
@@ -176,7 +178,7 @@ void TGridUndoStack::OpenSession(const AnsiString& SessionName)
 {
     if (Sessions.Count && !Sessions.Last()->Closed)
     {
-        WarningMsg("<TGridUndoStack::OpenSession>: Сессия стека изменений уже открыта");
+        WarningMsg("<TGridUndoStack::OpenSession>: Г‘ГҐГ±Г±ГЁГї Г±ГІГҐГЄГ  ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГ© ГіГ¦ГҐ Г®ГІГЄГ°Г»ГІГ ");
         return;
     }
     RedoStack.Clear();
@@ -193,7 +195,7 @@ void TGridUndoStack::CloseSession()
 {
     if (Sessions.Count && Sessions.Last()->Closed)
     {
-        WarningMsg("<TGridUndoStack::CloseSession>: Сессия стека изменений уже закрыта");
+        WarningMsg("<TGridUndoStack::CloseSession>: Г‘ГҐГ±Г±ГЁГї Г±ГІГҐГЄГ  ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГ© ГіГ¦ГҐ Г§Г ГЄГ°Г»ГІГ ");
         return;
     }
     if (Sessions.Count)
@@ -204,7 +206,7 @@ void TGridUndoStack::BreakSession()
 {
     if (Sessions.Count && Sessions.Last()->Closed)
     {
-        WarningMsg("<TGridUndoStack::BreakSession>: Сессия стека изменений уже закрыта");
+        WarningMsg("<TGridUndoStack::BreakSession>: Г‘ГҐГ±Г±ГЁГї Г±ГІГҐГЄГ  ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГ© ГіГ¦ГҐ Г§Г ГЄГ°Г»ГІГ ");
         return;
     }
     if (Sessions.Count)
@@ -270,14 +272,14 @@ void TGridUndoStack::Undo()
 {
     _TRY_
         Direct_Undo();
-    _ENDTRY_("<TGridUndoStack::Undo>: Отмена не выполнена",);
+    _ENDTRY_("<TGridUndoStack::Undo>: ГЋГІГ¬ГҐГ­Г  Г­ГҐ ГўГ»ГЇГ®Г«Г­ГҐГ­Г ",);
 }
 
 void TGridUndoStack::Redo()
 {
     _TRY_
         Direct_Redo();
-    _ENDTRY_("<TGridUndoStack::Redo>: Возврат отмены не выполнен",);
+    _ENDTRY_("<TGridUndoStack::Redo>: Г‚Г®Г§ГўГ°Г ГІ Г®ГІГ¬ГҐГ­Г» Г­ГҐ ГўГ»ГЇГ®Г«Г­ГҐГ­",);
 }
 
 bool TGridUndoStack::CanUndo()

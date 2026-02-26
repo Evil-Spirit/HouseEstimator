@@ -1,27 +1,29 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
       
 #include "SelectBMPV.h"
 #include "MetaClasses.h"
 #include "MDIBMPSetEditV.h"
 #include "MetaNodeCollectionV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TSelectBMP *SelectBMP;
 //---------------------------------------------------------------------------
-__fastcall TSelectBMP::TSelectBMP(TComponent* Owner)
+ TSelectBMP::TSelectBMP(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TSelectBMP::FormShow(TObject *Sender)
+void  TSelectBMP::FormShow(TObject *Sender)
 {
     CBE->Clear();
     LV->Clear();
@@ -52,14 +54,14 @@ void __fastcall TSelectBMP::FormShow(TObject *Sender)
    Index = -1;
 }
 //---------------------------------------------------------------------------
-void __fastcall TSelectBMP::FormCreate(TObject *Sender)
+void  TSelectBMP::FormCreate(TObject *Sender)
 {
    BMPS = NULL;
    Index = -1;
    Clear = false;
 }
 //---------------------------------------------------------------------------
-void __fastcall TSelectBMP::btOKClick(TObject *Sender)
+void  TSelectBMP::btOKClick(TObject *Sender)
 {
     if ( CBE->ItemIndex==-1 || LV->ItemIndex==-1 )
         return;
@@ -68,12 +70,12 @@ void __fastcall TSelectBMP::btOKClick(TObject *Sender)
     Close();
 }
 //---------------------------------------------------------------------------
-void __fastcall TSelectBMP::btCancelClick(TObject *Sender)
+void  TSelectBMP::btCancelClick(TObject *Sender)
 {
     Close();
 }
 //---------------------------------------------------------------------------
-void __fastcall TSelectBMP::btClearClick(TObject *Sender)
+void  TSelectBMP::btClearClick(TObject *Sender)
 {
     if (Application->MessageBox("Clear?","Confirmation",MB_YESNO)==ID_YES)
     {
@@ -85,7 +87,7 @@ void __fastcall TSelectBMP::btClearClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TSelectBMP::CBEChange(TObject *Sender)
+void  TSelectBMP::CBEChange(TObject *Sender)
 {
     if (CBE->ItemIndex!=-1)
     {

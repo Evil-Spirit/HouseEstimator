@@ -1,18 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MultiElementV.h"
 #include "MDIMultiElementV.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 TClassNode* TMetaMultiElement::StaticType = NULL;
 TClassNode* TMultiElement::StaticType = NULL;
@@ -77,7 +79,7 @@ void TMultiElement::SetMetaObject(TMyRegObject* aMetaObject)
     RegisterNewClass< TElement, TMultiElement >(this,false,&CreateFunction);
     if (typeid(*_Meta)!=typeid(TMetaMultiElement))
     {
-        Application->MessageBox("Îæèäàëîñü MetaMultiElement, ïîëó÷åíî Unknown. Ïðèëîæåíèå ÑÒÎÏ.","Error");
+        Application->MessageBox("ÃŽÃ¦Ã¨Ã¤Ã Ã«Ã®Ã±Ã¼ MetaMultiElement, Ã¯Ã®Ã«Ã³Ã·Ã¥Ã­Ã® Unknown. ÃÃ°Ã¨Ã«Ã®Ã¦Ã¥Ã­Ã¨Ã¥ Ã‘Ã’ÃŽÃ.","Error");
         Application->Terminate();
         return;
     }

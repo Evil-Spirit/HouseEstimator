@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef RenderParamVH
@@ -50,29 +54,29 @@ public:
 	TFieldAboutToChange NeedConstruct;
 	TFieldAboutToChange NeedPositionAngle;*/
 
-	__property TMetaTexture* Texture = {read = GetMetaTex,write = SetMetaTex};
-    __property TMetaMaterial* Material = {read = GetMetaMat,write = SetMetaMat};
-	__property TVisTexture* UseTexture = {read = GetTexture};
-	__property TVisMaterial* UseMaterial = {read = GetMaterial};
+	// __property TMetaTexture* Texture {read=GetMetaTex, write=SetMetaTex}; // [manual migration needed]
+    // __property TMetaMaterial* Material {read=GetMetaMat, write=SetMetaMat}; // [manual migration needed]
+	// __property TVisTexture* UseTexture {read=GetTexture}; // [manual migration needed]
+	// __property TVisMaterial* UseMaterial {read=GetMaterial}; // [manual migration needed]
 
-//	__property TMetaTexture* Textures[int i] = {read = GetMetaTex,write = SetMetaTex};
-//	__property TMetaMaterial* Materials[int i] = {read = GetMetaMat,write = SetMetaMat};
-//	__property TVisTexture* UseTextures[int i] = {read = GetTexture};
-//	__property TVisMaterial* UseMaterials[int i] = {read = GetMaterial};
+// [indexed property - needs manual migration]: //	__property TMetaTexture* Textures[int i] = {read = GetMetaTex,write = SetMetaTex};
+// [indexed property - needs manual migration]: //	__property TMetaMaterial* Materials[int i] = {read = GetMetaMat,write = SetMetaMat};
+// [indexed property - needs manual migration]: //	__property TVisTexture* UseTextures[int i] = {read = GetTexture};
+// [indexed property - needs manual migration]: //	__property TVisMaterial* UseMaterials[int i] = {read = GetMaterial};
 
 	TIntVec TexCenter;
     TIntVec TexAngle;
     TIntVec OverPos;
     TIntVec OverSize;
-    __property bool Enabled = {read = FEnabled,write = SetEnabled};
-    __property bool OverPosMode = {read = FOverPosMode,write = SetOverPosMode};
-    __property bool OverSizeMode = {read = FOverSizeMode,write = SetOverSizeMode};
-    __property bool FLAT2D = {read = FFLAT2D,write = SetFLAT2D};
+    // __property bool Enabled {read=FEnabled, write=SetEnabled}; // [manual migration needed]
+    // __property bool OverPosMode {read=FOverPosMode, write=SetOverPosMode}; // [manual migration needed]
+    // __property bool OverSizeMode {read=FOverSizeMode, write=SetOverSizeMode}; // [manual migration needed]
+    // __property bool FLAT2D {read=FFLAT2D, write=SetFLAT2D}; // [manual migration needed]
 };
 extern COMMONAL_API TClassNode* TRenderParam::StaticType;
 
-//первый полигон всегда общий контур
-//остальные в качестве отделки
+//ГЇГҐГ°ГўГ»Г© ГЇГ®Г«ГЁГЈГ®Г­ ГўГ±ГҐГЈГ¤Г  Г®ГЎГ№ГЁГ© ГЄГ®Г­ГІГіГ°
+//Г®Г±ГІГ Г«ГјГ­Г»ГҐ Гў ГЄГ Г·ГҐГ±ГІГўГҐ Г®ГІГ¤ГҐГ«ГЄГЁ
 class COMMONAL_API TFragmentSettings: public TMyObject{
     int GetPolygonCount();
 //    TIntVec GetLocalP0();
@@ -86,8 +90,8 @@ public:
     virtual ~TFragmentSettings(){};
     /*TMDelLSTList*/TMDelTList<TRenderParam> Parameteres;
     /*TMDelLSTList*/TMDelTList<THoledPolygon> Polygons;
-//    __property TIntVec LocalP0 = {read = GetLocalP0};
-//    __property TIntVec LocalP1 = {read = GetLocalP0};
+// __property TIntVec LocalP0 {read=GetLocalP0}; // [manual migration needed]
+// __property TIntVec LocalP1 {read=GetLocalP0}; // [manual migration needed]
     TIntVec LocalP0;
     TIntVec LocalP1;
     bool IsOutSide;
@@ -96,7 +100,7 @@ public:
     bool ISWALLEND;
     bool ISWALLSTART;
     int FragmentOfPoint(const TIntVec& LocPoint,MBTi USEEPS);
-    __property int PolygonCount = {read = GetPolygonCount};
+    // __property int PolygonCount {read=GetPolygonCount}; // [manual migration needed]
     TRenderParam* GetRenderParam(int i);
     THoledPolygon* GetPolygon(int i);
     void Edit(TComponent *Owner,TWinControl *Parent,void *Data);

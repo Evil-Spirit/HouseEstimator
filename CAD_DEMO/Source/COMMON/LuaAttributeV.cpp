@@ -1,18 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "MTL.h"
 #include "Usefuls.h"
 #include <windows.h>
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LuaAttributeV.h"
 
 //------ ---------------------------------------------------------------------
 
-#pragma package(smart_init)
 TClassNode* TLuaAttribute::StaticType = NULL;
 TClassNode* TLuaAttributeList::StaticType = NULL;
 
@@ -126,7 +128,7 @@ void TLuaAttribute::SetType(int Value)
         case mtVCLObject:
         case mtAnyThing:
         {
-            //-------порядок имеет значение т.к. функция <ToEmpty> использует Type
+            //-------ГЇГ®Г°ГїГ¤Г®ГЄ ГЁГ¬ГҐГҐГІ Г§Г­Г Г·ГҐГ­ГЁГҐ ГІ.ГЄ. ГґГіГ­ГЄГ¶ГЁГї <ToEmpty> ГЁГ±ГЇГ®Г«ГјГ§ГіГҐГІ Type
             ToEmpty();
             FType = Value;
             Aggregative = false;

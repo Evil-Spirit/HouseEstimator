@@ -1,50 +1,52 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "CellGrid.h"
 #include "CellParameterU.h"
 #include "SelectColorU.h"
 #include "ColorComboBoxU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TCellParameter *CellParameter = NULL;
 //---------------------------------------------------------------------------
-    // Текст
+    // Г’ГҐГЄГ±ГІ
     bool ChangeValueType =false;
 
-    // Выравнивание по горизонтали
+    // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ ГЇГ® ГЈГ®Г°ГЁГ§Г®Г­ГІГ Г«ГЁ
     bool ChangeTextHAlign =false;
 
-    // Выравнивание по Вертикали
+    // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ ГЇГ® Г‚ГҐГ°ГІГЁГЄГ Г«ГЁ
     bool ChangeTextVAlign =false;
 
-    // Перенос по словам
+    // ГЏГҐГ°ГҐГ­Г®Г± ГЇГ® Г±Г«Г®ГўГ Г¬
     bool ChangeTextWordBreak =false;
 
-    // Авто размер
+    // ГЂГўГІГ® Г°Г Г§Г¬ГҐГ°
     bool ChangeTypeAutoSize =false;
 
-    // Стиль шрифта
+    // Г‘ГІГЁГ«Гј ГёГ°ГЁГґГІГ 
     bool ChangeFontStyle =false;
 
-    // Размер шрифта
+    // ГђГ Г§Г¬ГҐГ° ГёГ°ГЁГґГІГ 
     bool ChangeFontSize =false;
 
-    // Шрифт
+    // ГГ°ГЁГґГІ
     bool ChangeFontName =false;
 
-    // Шрифт зачеркнутый
+    // ГГ°ГЁГґГІ Г§Г Г·ГҐГ°ГЄГ­ГіГІГ»Г©
     bool ChangeFontStrikeOut =false;
 
-    // Шрифт подчеркнутый
+    // ГГ°ГЁГґГІ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
     bool ChangeFontUnderline =false;
 
-    // Бордюр
+    // ГЃГ®Г°Г¤ГѕГ°
     int iLine_Left =0;
     int iLine_Top =0;
     int iLine_Right =0;
@@ -56,20 +58,20 @@ TCellParameter *CellParameter = NULL;
     bool bLineBorderCenterV =false;
     bool bLineBorderCenterH =false;
 
-    // Цвет Шрифта
+    // Г–ГўГҐГІ ГГ°ГЁГґГІГ 
     bool ChangeFontColor =false;
 
-    // Цвет фона
+    // Г–ГўГҐГІ ГґГ®Г­Г 
     bool ChangeBkColor =false;
 
-    // Цвет фона
+    // Г–ГўГҐГІ ГґГ®Г­Г 
     bool ChangeBkColorNot  =false;
     bool bBkColor=false;
 //----------------------------------------------------------------------------------------
 
 int CALLBACK GetFontToMashine(LOGFONT* lplf, TEXTMETRIC* lptm, DWORD dwType, LPARAM lpData);
 
-__fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGrid)
+ TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGrid)
     : TForm(Owner)
 {
     //---------------------
@@ -103,7 +105,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     btLine2->Tag=-1;
     btLine1->Down = true;
 
-    // Текст
+    // Г’ГҐГЄГ±ГІ
     ChangeValueType =false;
     cbValueType->Items->Add("Text");
     cbValueType->Items->Add("Expression");
@@ -112,7 +114,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     bool bValueType=true;
     unsigned int iValueType;
 
-    // Выравнивание
+    // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ
     cbTextHAlign->Items->Add("Left side");
     cbTextHAlign->Items->Add("Center");
     cbTextHAlign->Items->Add("Right side");
@@ -129,17 +131,17 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     ChangeTextVAlign =false;
     unsigned int iTextVAlign;
 
-    //  Перенос по словам
+    //  ГЏГҐГ°ГҐГ­Г®Г± ГЇГ® Г±Г«Г®ГўГ Г¬
     bool bTextWordBreak=true;
     ChangeTextWordBreak =false;
     unsigned int iTextWordBreak;
 
-    //  Авто размер
+    //  ГЂГўГІГ® Г°Г Г§Г¬ГҐГ°
     bool bTypeAutoSize=true;
     ChangeTypeAutoSize =false;
     unsigned int iTypeAutoSize;
 
-    // Шрифт
+    // ГГ°ГЁГґГІ
     TMDelTList<AnsiString> NameFont;
 
 //    int GetFont = EnumFonts(Canvas->Handle, NULL,(FARPROC)(&GetFontToMashine),(long)(&NameFont));
@@ -154,7 +156,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     int iFontName;
 
 
-    // Стиль Шрифта
+    // Г‘ГІГЁГ«Гј ГГ°ГЁГґГІГ 
     cbFontStyle->Items->Add("Normal");
     cbFontStyle->Items->Add("Italic");
     cbFontStyle->Items->Add("Bold");
@@ -164,7 +166,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     ChangeFontStyle =false;
     unsigned int iFontStyle;
 
-    // Размер
+    // ГђГ Г§Г¬ГҐГ°
     for (int i=6; i<70; i+=2)
     {
         cbFontSize->Items->Add(IntToStr(i));
@@ -174,17 +176,17 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     ChangeFontSize =false;
     unsigned int iFontSize;
 
-    //  Шрифт зачеркнутый
+    //  ГГ°ГЁГґГІ Г§Г Г·ГҐГ°ГЄГ­ГіГІГ»Г©
     bool bFontStrikeOut=true;
     ChangeFontStrikeOut =false;
     unsigned int iFontStrikeOut;
 
-    //  Шрифт подчеркнутый
+    //  ГГ°ГЁГґГІ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
     bool bFontUnderline=true;
     ChangeFontUnderline =false;
     unsigned int iFontUnderline;
 
-    //  Бордюр
+    //  ГЃГ®Г°Г¤ГѕГ°
     iLine_Left =0;
     iLine_Top =0;
     iLine_Right =0;
@@ -196,20 +198,20 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     bLineBorderCenterH =false;
 
 
-    //  Цвет шрифта
+    //  Г–ГўГҐГІ ГёГ°ГЁГґГІГ 
     bool bFontColor=true;
     ChangeFontColor =false;
     TColor tcFontColor;
 
-    //  Цвет фона
+    //  Г–ГўГҐГІ ГґГ®Г­Г 
     bBkColor=true;
     ChangeBkColor =false;
     TColor tcBkColor;
 
-    // Цвет фона
+    // Г–ГўГҐГІ ГґГ®Г­Г 
     ChangeBkColorNot  =false;
 
-//--- Проверка на одинаковое содержимое ячеек
+//--- ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г®Г¤ГЁГ­Г ГЄГ®ГўГ®ГҐ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГҐ ГїГ·ГҐГҐГЄ
 
     CellGrid->GetSelectCells(true);
     int End=CellGrid->ListFilling.Count;
@@ -220,32 +222,32 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     iValueType = Cell00->CellFlags.ValueType;
 
 
-    // Выравнивание
+    // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ
     iTextHAlign =Cell00->CellFlags.TextHAlign;
     iTextVAlign =Cell00->CellFlags.TextVAlign;
 
-    // Переносить по словам
+    // ГЏГҐГ°ГҐГ­Г®Г±ГЁГІГј ГЇГ® Г±Г«Г®ГўГ Г¬
     iTextWordBreak =Cell00->CellFlags.TextWordBreak;
 
-    // Авто размер
+    // ГЂГўГІГ® Г°Г Г§Г¬ГҐГ°
     iTypeAutoSize =Cell00->CellFlags.TypeAutoSize;
 
-    // Стиль текста
+    // Г‘ГІГЁГ«Гј ГІГҐГЄГ±ГІГ 
     iFontStyle =Cell00->CellFlags.FontStyle;
 
-    // Стиль текста
+    // Г‘ГІГЁГ«Гј ГІГҐГЄГ±ГІГ 
     iFontSize =Cell00->CellFlags.FontSize;
 
-    // Имя шрифта
+    // Г€Г¬Гї ГёГ°ГЁГґГІГ 
     sFontName =Cell00->FontName;
 
-    // Шрифт зачеркнутый
+    // ГГ°ГЁГґГІ Г§Г Г·ГҐГ°ГЄГ­ГіГІГ»Г©
     iFontStrikeOut =Cell00->CellFlags.FontStrikeOut;
 
-    // Шрифт подчеркнутый
+    // ГГ°ГЁГґГІ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
     iFontUnderline =Cell00->CellFlags.FontUnderline;
 
-    //  Бордюр
+    //  ГЃГ®Г°Г¤ГѕГ°
     iLine_Left =Cell00->Line.WidthLeft;
     iLine_Top =Cell00->Line.WidthTop;
     iLine_Right =CellEnd->Line.WidthRight;
@@ -262,10 +264,10 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     iLine_CenterV =CellGrid->GetRightBorder(CellGrid->ListFilling[0].x,CellGrid->ListFilling[0].y);
     iLine_CenterH =CellGrid->GetBottomBorder(CellGrid->ListFilling[0].x,CellGrid->ListFilling[0].y);
 
-    //  Цвет шрифта
+    //  Г–ГўГҐГІ ГёГ°ГЁГґГІГ 
     tcFontColor =Cell00->FontColor;
 
-    //  Цвет фона
+    //  Г–ГўГҐГІ ГґГ®Г­Г 
     tcBkColor =Cell00->bgColor;
 
 //-----------------------------
@@ -279,7 +281,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
             bValueType =false;
         }
 
-        // Выравнивание
+        // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ
         if (iTextHAlign !=Cell->CellFlags.TextHAlign)
         {
             bTextHAlign=false;
@@ -289,47 +291,47 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
             bTextVAlign=false;
         }
 
-        // переносить по словам
+        // ГЇГҐГ°ГҐГ­Г®Г±ГЁГІГј ГЇГ® Г±Г«Г®ГўГ Г¬
         if (iTextWordBreak !=Cell->CellFlags.TextWordBreak)
         {
             bTextWordBreak =false;
         }
-        // Авто размер
+        // ГЂГўГІГ® Г°Г Г§Г¬ГҐГ°
         if (iTypeAutoSize !=Cell->CellFlags.TypeAutoSize)
         {
             bTypeAutoSize =false;
         }
 
-        // Стиль текста
+        // Г‘ГІГЁГ«Гј ГІГҐГЄГ±ГІГ 
         if (iFontStyle !=Cell->CellFlags.FontStyle)
         {
             bFontStyle=false;
         }
 
-        // Размер текста
+        // ГђГ Г§Г¬ГҐГ° ГІГҐГЄГ±ГІГ 
         if (iFontSize !=Cell->CellFlags.FontSize)
         {
             bFontSize=false;
         }
 
-        // Имя шрифта
+        // Г€Г¬Гї ГёГ°ГЁГґГІГ 
         if (sFontName !=Cell->FontName)
         {
             bFontName=false;
         }
 
-        // Шрифт зачеркнутый
+        // ГГ°ГЁГґГІ Г§Г Г·ГҐГ°ГЄГ­ГіГІГ»Г©
         if (iFontStrikeOut !=Cell->CellFlags.FontStrikeOut)
         {
             bFontStrikeOut =false;
         }
-        // Шрифт подчеркнутый
+        // ГГ°ГЁГґГІ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
         if (iFontUnderline !=Cell->CellFlags.FontUnderline)
         {
             bFontUnderline =false;
         }
 
-        //  Бордюр
+        //  ГЃГ®Г°Г¤ГѕГ°
         //Top
         if (iLine_Top !=CellGrid->GetTopBorder(CellGrid->ListFilling[i].x,CellGrid->ListFilling[i].y) &&
             CellGrid->ListFilling[i].y ==CellGrid->ListFilling[0].y)
@@ -380,19 +382,19 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
             }
         }
 
-        // Цвет шрифта
+        // Г–ГўГҐГІ ГёГ°ГЁГґГІГ 
         if (tcFontColor !=Cell->FontColor)
         {
             bFontColor =false;
         }
 
-        // Цвет фона
+        // Г–ГўГҐГІ ГґГ®Г­Г 
         if (tcBkColor !=Cell->bgColor)
         {
             bBkColor =false;
         }
     }
-    // Таблица
+    // Г’Г ГЎГ«ГЁГ¶Г 
     if (CellGrid->ListFilling[0].x ==1 &&
         CellGrid->ListFilling[0].y ==1
     )
@@ -408,7 +410,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     else if (CellGrid->ListFilling[0].x >1 &&
         CellGrid->ListFilling[0].y ==1
     )
-    {// Столбец
+    {// Г‘ГІГ®Г«ГЎГҐГ¶
         btLineOne_CenterH->Enabled =false;
         btLineOne_CenterV->Enabled =false;
 
@@ -422,7 +424,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     else if (CellGrid->ListFilling[0].y >1 &&
         CellGrid->ListFilling[0].x ==1
     )
-    {// Строка
+    {// Г‘ГІГ°Г®ГЄГ 
         btLineOne_CenterH->Enabled =false;
         btLineOne_CenterV->Enabled =false;
 
@@ -446,7 +448,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
             bLineBorderCenterV =true;
             bLineBorderCenterH =true;
         }
-        // Строка
+        // Г‘ГІГ°Г®ГЄГ 
         if (CellGrid->ListFilling[0].x ==CellGrid->ListFilling[End-1].x &&
             CellGrid->ListFilling[0].y !=CellGrid->ListFilling[End-1].y
         )
@@ -455,7 +457,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
             btLineOne_CenterV->Enabled =false;
             bLineBorderCenterV =true;
         }
-        // Столбец
+        // Г‘ГІГ®Г«ГЎГҐГ¶
         if (CellGrid->ListFilling[0].x !=CellGrid->ListFilling[End-1].x &&
             CellGrid->ListFilling[0].y ==CellGrid->ListFilling[End-1].y
         )
@@ -469,16 +471,16 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     Cell =NULL;
 
     CellGrid->ClearListFilling();
-//--- Проверка на одинаковое содержимое ячеек
+//--- ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г®Г¤ГЁГ­Г ГЄГ®ГўГ®ГҐ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГҐ ГїГ·ГҐГҐГЄ
 
-    // Текст
+    // Г’ГҐГЄГ±ГІ
     if (bValueType)
     {
         cbValueType->ItemIndex=iValueType;
     } else
         cbValueType->ItemIndex=-1;
 
-    // Выравнивание
+    // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ
     if (bTextHAlign)
     {
         cbTextHAlign->ItemIndex=iTextHAlign;
@@ -491,7 +493,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     } else
         cbTextVAlign->ItemIndex=-1;
 
-    // переносить по словам
+    // ГЇГҐГ°ГҐГ­Г®Г±ГЁГІГј ГЇГ® Г±Г«Г®ГўГ Г¬
     if (bTextWordBreak)
     {
         if (iTextWordBreak ==0)
@@ -501,7 +503,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     } else
         chbTextWordBreak->State = cbGrayed;
 
-    // Авто размер
+    // ГЂГўГІГ® Г°Г Г§Г¬ГҐГ°
     if (bTypeAutoSize)
     {
         if (iTypeAutoSize ==0)
@@ -511,14 +513,14 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     } else
         chbTypeAutoSize->State = cbGrayed;
 
-    // Стиль текста
+    // Г‘ГІГЁГ«Гј ГІГҐГЄГ±ГІГ 
     if (bFontStyle)
     {
         cbFontStyle->ItemIndex=iFontStyle;
     } else
         cbFontStyle->ItemIndex=-1;
 
-    // Размер текста
+    // ГђГ Г§Г¬ГҐГ° ГІГҐГЄГ±ГІГ 
     if (bFontSize)
     {
         bool ok=false;
@@ -538,7 +540,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     } else
         cbFontSize->ItemIndex=-1;
 
-    // Имя шрифта
+    // Г€Г¬Гї ГёГ°ГЁГґГІГ 
     if (bFontName)
     {
         bool ok=false;
@@ -558,7 +560,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     } else
         cbFontName->ItemIndex=-1;
 
-    // Шрифт зачеркнутый
+    // ГГ°ГЁГґГІ Г§Г Г·ГҐГ°ГЄГ­ГіГІГ»Г©
     if (bFontStrikeOut)
     {
         if (iFontStrikeOut ==0)
@@ -568,7 +570,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     } else
         chbFontStrikeOut->State = cbGrayed;
 
-    // Шрифт подчеркнутый
+    // ГГ°ГЁГґГІ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
     if (bFontUnderline)
     {
         if (iFontUnderline ==0)
@@ -578,7 +580,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
     } else
         chbFontUnderline->State = cbGrayed;
 
-    // Цвет шрифта
+    // Г–ГўГҐГІ ГёГ°ГЁГґГІГ 
     if (bFontColor)
     {
         cbFontColor->Color =tcFontColor;
@@ -588,7 +590,7 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
         cbFontColor->Color =clWhite;
     }
 
-    // Цвет фона
+    // Г–ГўГҐГІ ГґГ®Г­Г 
     if (bBkColor)
     {
         cbBkColor->Color =tcBkColor;
@@ -600,26 +602,26 @@ __fastcall TCellParameter::TCellParameter(TComponent* Owner, TCellGrid* _CellGri
 
 }
 //---------------------------------------------------------------------------
-void __fastcall TCellParameter::CanselClick(TObject *Sender)
-{// Отмена
+void  TCellParameter::CanselClick(TObject *Sender)
+{// ГЋГІГ¬ГҐГ­Г 
     Close();
 }
 //---------------------------------------------------------------------------
-void __fastcall TCellParameter::OKClick(TObject *Sender)
+void  TCellParameter::OKClick(TObject *Sender)
 {// OK
     // TypeText
     TCellFlag CF;
     if (cbValueType->ItemIndex != -1 && ChangeValueType)
         CellGrid->SetValueTypeRegion(cbValueType->ItemIndex);
 
-    // Выравнивание
+    // Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ
     if (cbTextHAlign->ItemIndex != -1 && ChangeTextHAlign)
         CellGrid->SetTextHAlignRegion(cbTextHAlign->ItemIndex);
 
     if (cbTextVAlign->ItemIndex != -1 && ChangeTextVAlign)
         CellGrid->SetTextVAlignRegion(cbTextVAlign->ItemIndex);
 
-    // переносить по словам
+    // ГЇГҐГ°ГҐГ­Г®Г±ГЁГІГј ГЇГ® Г±Г«Г®ГўГ Г¬
     if (chbTextWordBreak->State != cbGrayed && ChangeTextWordBreak)
     {
         if (chbTextWordBreak->Checked)
@@ -631,7 +633,7 @@ void __fastcall TCellParameter::OKClick(TObject *Sender)
             CellGrid->SetTextWordBreakRegion(0);
     }
 
-    // Авто размер
+    // ГЂГўГІГ® Г°Г Г§Г¬ГҐГ°
     if (chbTypeAutoSize->State != cbGrayed && ChangeTypeAutoSize)
     {
         if (chbTypeAutoSize->Checked)
@@ -640,11 +642,11 @@ void __fastcall TCellParameter::OKClick(TObject *Sender)
             CellGrid->SetTypeAutoSizeRegion(0);
     }
 
-    // Стиль текста
+    // Г‘ГІГЁГ«Гј ГІГҐГЄГ±ГІГ 
     if (cbFontStyle->ItemIndex != -1 && ChangeFontStyle)
         CellGrid->SetFontStyleRegion(cbFontStyle->ItemIndex);
 
-    // Размер текста
+    // ГђГ Г§Г¬ГҐГ° ГІГҐГЄГ±ГІГ 
     if (cbFontSize->ItemIndex == -1 && cbFontSize->Text.Length()>0 && ChangeFontSize)
     {
         if (ISINTEGER(cbFontSize->Text))
@@ -656,11 +658,11 @@ void __fastcall TCellParameter::OKClick(TObject *Sender)
     else if (cbFontSize->ItemIndex != -1 && ChangeFontSize)
         CellGrid->SetFontSizeRegion(StrToInt(cbFontSize->Items->Strings[cbFontSize->ItemIndex]));
 
-    // Имя шрифта
+    // Г€Г¬Гї ГёГ°ГЁГґГІГ 
     if (cbFontName->ItemIndex != -1 && ChangeFontName)
         CellGrid->SetFontNameRegion(cbFontName->Items->Strings[cbFontName->ItemIndex]);
 
-    // Шрифт зачеркнутый
+    // ГГ°ГЁГґГІ Г§Г Г·ГҐГ°ГЄГ­ГіГІГ»Г©
     if (chbFontStrikeOut->State != cbGrayed && ChangeFontStrikeOut)
     {
         if (chbFontStrikeOut->Checked)
@@ -669,7 +671,7 @@ void __fastcall TCellParameter::OKClick(TObject *Sender)
             CellGrid->SetFontStrikeOutRegion(0);
     }
 
-    // Шрифт подчеркнутый
+    // ГГ°ГЁГґГІ ГЇГ®Г¤Г·ГҐГ°ГЄГ­ГіГІГ»Г©
     if (chbFontUnderline->State != cbGrayed && ChangeFontUnderline)
     {
         if (chbFontUnderline->Checked)
@@ -679,7 +681,7 @@ void __fastcall TCellParameter::OKClick(TObject *Sender)
             CellGrid->SetFontUnderlineRegion(0);
     }
 
-    // Бордюр
+    // ГЃГ®Г°Г¤ГѕГ°
     if (btLineFlood->Tag ==1 || btLineFloodClear->Tag==1)
         CellGrid->SetCellLineFlood(iLine_CenterV,iLine_CenterH,iLine_CenterV,iLine_CenterH);
 
@@ -689,11 +691,11 @@ void __fastcall TCellParameter::OKClick(TObject *Sender)
     if (btLineOne_CenterV->Tag ==1)
         CellGrid->SetCellLineFloodVert(iLine_CenterV);
 
-    // Бордюр обвести
+    // ГЃГ®Г°Г¤ГѕГ° Г®ГЎГўГҐГ±ГІГЁ
     if (btLine->Tag ==1)
         CellGrid->SetCellLine(iLine_Left,iLine_Top,iLine_Right,iLine_Bottom);
 
-    // Бордюр одинарный
+    // ГЃГ®Г°Г¤ГѕГ° Г®Г¤ГЁГ­Г Г°Г­Г»Г©
     if (btLineOne_Top->Tag ==1)
         CellGrid->SetCellLineOne(2,iLine_Top);
 
@@ -706,15 +708,15 @@ void __fastcall TCellParameter::OKClick(TObject *Sender)
     if (btLineOne_Bottom->Tag ==1)
         CellGrid->SetCellLineOne(4,iLine_Bottom);
 
-    // Цвет шрифта
+    // Г–ГўГҐГІ ГёГ°ГЁГґГІГ 
     if (ChangeFontColor)
         CellGrid->SetFontColorRegion(cbFontColor->Color);
 
-    // Цвет фона
+    // Г–ГўГҐГІ ГґГ®Г­Г 
     if (ChangeBkColor)
         CellGrid->SetColorRegion(cbBkColor->Color, 1);
 
-    // Цвет фона нет
+    // Г–ГўГҐГІ ГґГ®Г­Г  Г­ГҐГІ
     if (ChangeBkColorNot)
         CellGrid->SetColorRegion(cbBkColor->Color, 0);
 
@@ -729,7 +731,7 @@ int CALLBACK GetFontToMashine(LOGFONT* lplf, TEXTMETRIC* lptm, DWORD dwType, LPA
     return 1;
 }
 
-void __fastcall TCellParameter::btLineFloodClick(TObject *Sender)
+void  TCellParameter::btLineFloodClick(TObject *Sender)
 {
     int iWidth=0;
 
@@ -775,7 +777,7 @@ void __fastcall TCellParameter::btLineFloodClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::btLine0Click(TObject *Sender)
+void  TCellParameter::btLine0Click(TObject *Sender)
 {
     if ( IS (Sender,__classid(TSpeedButton)) )
     {
@@ -790,7 +792,7 @@ void __fastcall TCellParameter::btLine0Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TCellParameter::btLineClick(TObject *Sender)
+void  TCellParameter::btLineClick(TObject *Sender)
 {
     int iWidth=0;;
 
@@ -827,7 +829,7 @@ void __fastcall TCellParameter::btLineClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::btLineOne_TopClick(TObject *Sender)
+void  TCellParameter::btLineOne_TopClick(TObject *Sender)
 {
     btLineOne_Top->Tag=1;
 
@@ -854,7 +856,7 @@ void __fastcall TCellParameter::btLineOne_TopClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::btLineOne_LeftClick(TObject *Sender)
+void  TCellParameter::btLineOne_LeftClick(TObject *Sender)
 {
     btLineOne_Left->Tag=1;
     if (btLine0->Tag != 1 || iLine_Left !=0)
@@ -882,7 +884,7 @@ void __fastcall TCellParameter::btLineOne_LeftClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::btLineOne_RightClick(TObject *Sender)
+void  TCellParameter::btLineOne_RightClick(TObject *Sender)
 {
     btLineOne_Right->Tag=1;
     if (btLine0->Tag != 1 || iLine_Right !=0)
@@ -910,7 +912,7 @@ void __fastcall TCellParameter::btLineOne_RightClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::btLineOne_BottomClick(TObject *Sender)
+void  TCellParameter::btLineOne_BottomClick(TObject *Sender)
 {
     btLineOne_Bottom->Tag=1;
     if (btLine0->Tag != 1 || iLine_Bottom !=0)
@@ -936,12 +938,12 @@ void __fastcall TCellParameter::btLineOne_BottomClick(TObject *Sender)
     InvalidateU2();
 }
 //---------------------------------------------------------------------------
-void __fastcall TCellParameter::InvalidateU2()
+void  TCellParameter::InvalidateU2()
 {
     imExampleBorder->Invalidate();
 }
 //---------------------------------------------------------------------------
-void __fastcall TCellParameter::imExampleBorderPaint(TObject *Sender)
+void  TCellParameter::imExampleBorderPaint(TObject *Sender)
 {
     int x=7;
     int y=7;
@@ -1113,7 +1115,7 @@ void __fastcall TCellParameter::imExampleBorderPaint(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::btLineOne_CenterHClick(TObject *Sender)
+void  TCellParameter::btLineOne_CenterHClick(TObject *Sender)
 {
     btLineOne_CenterH->Tag=1;
 
@@ -1141,7 +1143,7 @@ void __fastcall TCellParameter::btLineOne_CenterHClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::btLineOne_CenterVClick(TObject *Sender)
+void  TCellParameter::btLineOne_CenterVClick(TObject *Sender)
 {
 
     btLineOne_CenterV->Tag=1;
@@ -1171,7 +1173,7 @@ void __fastcall TCellParameter::btLineOne_CenterVClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::btLineFloodClearClick(TObject *Sender)
+void  TCellParameter::btLineFloodClearClick(TObject *Sender)
 {
     int iWidth=0;
 
@@ -1196,71 +1198,71 @@ void __fastcall TCellParameter::btLineFloodClearClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::cbValueTypeChange(TObject *Sender)
+void  TCellParameter::cbValueTypeChange(TObject *Sender)
 {
     ChangeValueType =true;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::cbTextHAlignChange(TObject *Sender)
+void  TCellParameter::cbTextHAlignChange(TObject *Sender)
 {
     ChangeTextHAlign =true;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::cbTextVAlignChange(TObject *Sender)
+void  TCellParameter::cbTextVAlignChange(TObject *Sender)
 {
     ChangeTextVAlign =true;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::chbTextWordBreakClick(TObject *Sender)
+void  TCellParameter::chbTextWordBreakClick(TObject *Sender)
 {
     ChangeTextWordBreak =true;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::chbTypeAutoSizeClick(TObject *Sender)
+void  TCellParameter::chbTypeAutoSizeClick(TObject *Sender)
 {
     ChangeTypeAutoSize =true;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::cbFontStyleChange(TObject *Sender)
+void  TCellParameter::cbFontStyleChange(TObject *Sender)
 {
     ChangeFontStyle =true;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::cbFontSizeChange(TObject *Sender)
+void  TCellParameter::cbFontSizeChange(TObject *Sender)
 {
     ChangeFontSize =true;    
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::cbFontNameChange(TObject *Sender)
+void  TCellParameter::cbFontNameChange(TObject *Sender)
 {
     ChangeFontName =true;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::chbFontUnderlineClick(TObject *Sender)
+void  TCellParameter::chbFontUnderlineClick(TObject *Sender)
 {
     ChangeFontUnderline =true;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCellParameter::chbFontStrikeOutClick(TObject *Sender)
+void  TCellParameter::chbFontStrikeOutClick(TObject *Sender)
 {
     ChangeFontStrikeOut =true;
 }
 //---------------------------------------------------------------------------
-void __fastcall TCellParameter::FontColorChanged(TObject *Sender)
+void  TCellParameter::FontColorChanged(TObject *Sender)
 {
     ChangeFontColor  =true;
 }
 //---------------------------------------------------------------------------
-void __fastcall TCellParameter::BkColorChanged(TObject *Sender)
+void  TCellParameter::BkColorChanged(TObject *Sender)
 {
     if (cbBkColor->Tag ==1)
     {
@@ -1276,7 +1278,7 @@ void __fastcall TCellParameter::BkColorChanged(TObject *Sender)
     pbBkColor->Invalidate();
 }
 
-void __fastcall TCellParameter::btBkColorNotClick(TObject *Sender)
+void  TCellParameter::btBkColorNotClick(TObject *Sender)
 {
     ChangeBkColor  =false;
     ChangeBkColorNot  =true;
@@ -1284,10 +1286,10 @@ void __fastcall TCellParameter::btBkColorNotClick(TObject *Sender)
     pbBkColor->Invalidate();
 }
 //---------------------------------------------------------------------------
-void __fastcall TCellParameter::pbBkColorPaint(TObject *Sender)
+void  TCellParameter::pbBkColorPaint(TObject *Sender)
 {
 
-    // Цвет фона
+    // Г–ГўГҐГІ ГґГ®Г­Г 
     if (bBkColor)
     {
         pbBkColor->Canvas->Brush->Color =cbBkColor->Color;

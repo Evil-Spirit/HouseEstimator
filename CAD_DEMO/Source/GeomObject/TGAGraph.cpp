@@ -1,7 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "TGAGraph.h"
 #include "TGObject.h"
@@ -550,4 +553,3 @@ void TGAGraph::MinPassByMainsNodes(TGPoint* A, TMTList<TGCut>& way, TMTList<TGPo
     MinPassByMainsNodesRec(A, way, Mains);
 }
 
-#pragma package(smart_init)

@@ -1,17 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "CellGrid.h"
 #include "ColorComboBoxU.h"
 #include "SelectColorU.h"
 #include "CellParameterU.h"
 
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
-void __fastcall TColorComboBox::WndProc(Messages::TMessage &Message)
+void  TColorComboBox::WndProc(Messages::TMessage &Message)
 {
     if (Message.Msg == WM_LBUTTONUP)
     {
@@ -41,11 +43,11 @@ void __fastcall TColorComboBox::WndProc(Messages::TMessage &Message)
         TCustomComboBox::WndProc(Message);
 }
 
-void __fastcall TColorComboBox::AdjustDropDown(void)
+void  TColorComboBox::AdjustDropDown(void)
 {
 }
 
-void __fastcall TColorComboBox::AdjustDropDown2()
+void  TColorComboBox::AdjustDropDown2()
 {
     TPoint point =ClientToScreen(TPoint(0,0));
 
@@ -71,7 +73,7 @@ void __fastcall TColorComboBox::AdjustDropDown2()
     SC->Show();
 }
 
-__fastcall TColorComboBox::TColorComboBox(Classes::TComponent* AOwner, TCellGrid* _CellGrid, TForm* _Form)
+ TColorComboBox::TColorComboBox(Classes::TComponent* AOwner, TCellGrid* _CellGrid, TForm* _Form)
     :TCustomComboBox(AOwner)
 {
    CellGrid =_CellGrid;
@@ -81,13 +83,13 @@ __fastcall TColorComboBox::TColorComboBox(Classes::TComponent* AOwner, TCellGrid
    SC->OnClose = SelectColorClose;
 }
 
-__fastcall TColorComboBox::~TColorComboBox(void)
+ TColorComboBox::~TColorComboBox(void)
 {
     delete SC;
     SC=NULL;
 }
 
-void __fastcall TColorComboBox::SelectColorClose(TObject *Sender,TCloseAction &Action)
+void  TColorComboBox::SelectColorClose(TObject *Sender,TCloseAction &Action)
 {
     if ( Color != SC->GetColor()  ||  SC->bAutoColor )
     {

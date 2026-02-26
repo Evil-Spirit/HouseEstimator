@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "math.h"
 #include "G2DPointCutV.h"
@@ -14,7 +17,6 @@
 
 #include "InfluenceU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 const MBTi PointEPS = 0.01;
 const MBTi CutEps = 0.001;
 TClassNode* T2DGObject::StaticType = NULL;
@@ -547,7 +549,7 @@ TG2DLink* T2DGObject::MakeDistanceLink(TG2DPoint* Point1,TG2DPoint* Point2)
     return FLinks.Last();
 }
 
-void T2DGObject::Clear() // Очистить геометрический обьект
+void T2DGObject::Clear() // ГЋГ·ГЁГ±ГІГЁГІГј ГЈГҐГ®Г¬ГҐГІГ°ГЁГ·ГҐГ±ГЄГЁГ© Г®ГЎГјГҐГЄГІ
 {
     FLinks.Clear();
     TGeomObject::Clear();
@@ -645,7 +647,7 @@ TMTList<TG2DPoint> _Points;
 void T2DGObject::PrepareMoving(TG2DPoint* Point)
 {
     if (pFlowInfo)
-        throw EMyException("<T2DGObject::PrepareMoving>: текущая операция позиционирования не заверешена.");
+        throw EMyException("<T2DGObject::PrepareMoving>: ГІГҐГЄГіГ№Г Гї Г®ГЇГҐГ°Г Г¶ГЁГї ГЇГ®Г§ГЁГ¶ГЁГ®Г­ГЁГ°Г®ГўГ Г­ГЁГї Г­ГҐ Г§Г ГўГҐГ°ГҐГёГҐГ­Г .");
     pFlowInfo = new TFlowInfo();
     pFlowInfo->Owner = this;
     pFlowInfo->Point = Point;

@@ -1,17 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 //
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "Object.h"
 #include "MyViewV.h"
 
 #include "GeomObjV.h"
 #include "Triangulation.h"
-#include <Math.hpp>
 #include <stdlib.h>
 //#include "MyImportV.h"
 #include "Convert.h"
@@ -20,7 +22,6 @@
 
 #include "MarkForm.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "VisComp"
 #pragma link "VisMat"
 #pragma link "VisTex"
@@ -42,7 +43,7 @@ int select = 0;
 TIntVec Ang;
 //---------------------------------------------------------------------------
 TMyView* MyView;
-__fastcall TForm1::TForm1(TComponent* Owner)
+ TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
 {
 	MyView =  new TMyView(this);
@@ -61,7 +62,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 }//---------------------------------------------------------------------------
 
 
-// Äëÿ ïðîâåðêè CutConsistsPoint
+// Ã„Ã«Ã¿ Ã¯Ã°Ã®Ã¢Ã¥Ã°ÃªÃ¨ CutConsistsPoint
 AnsiString intToClass(int a)
 {
 	AnsiString temp;
@@ -374,7 +375,7 @@ void TForm1::EdMoMo(TObject *sender, TShiftState Shift, int x, int y)
 	MyView->View->RenderScene();
 }
 */
-// Ïðîâåðêà !!!!!!!!!!!!!!!!!!!!!!!!!!
+// ÃÃ°Ã®Ã¢Ã¥Ã°ÃªÃ  !!!!!!!!!!!!!!!!!!!!!!!!!!
 /*
 void TForm1::EdMoMo(TObject *sender, TShiftState Shift, int x, int y)
 {
@@ -758,7 +759,7 @@ MBTi Epsilon1 = 0.005;
 MBTi Epsilon2 = GET_CEPS(0.005);
 MBTi Epsilon3 = 0.005;
 
-void __fastcall TForm1::FormCreate(TObject *Sender)
+void  TForm1::FormCreate(TObject *Sender)
 {
 	VCO->Init();
 }
@@ -781,7 +782,7 @@ void TForm1::RefreshView()
 */		
 	MyView->View->RenderScene();
 }
-void __fastcall TForm1::Load1Click(TObject *Sender)
+void  TForm1::Load1Click(TObject *Sender)
 {
 	if (OpenDialog1->Execute())
 	{
@@ -798,14 +799,14 @@ void __fastcall TForm1::Load1Click(TObject *Sender)
 			delete MSL;
 		} else
 		{
-			ErrorMsg("Íåèçâåñòíûé ôîðìàò ôàéëà!");
+			ErrorMsg("ÃÃ¥Ã¨Ã§Ã¢Ã¥Ã±Ã²Ã­Ã»Ã© Ã´Ã®Ã°Ã¬Ã Ã² Ã´Ã Ã©Ã«Ã !");
 		}
 		RefreshView();
 	}
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Save1Click(TObject *Sender)
+void  TForm1::Save1Click(TObject *Sender)
 {
 	SaveDialog1->FileName = ChangeFileExt(ExtractFileName(OpenDialog1->FileName), ".gob");
 	if (SaveDialog1->Execute())
@@ -818,7 +819,7 @@ void __fastcall TForm1::Save1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Convert1Click(TObject *Sender)
+void  TForm1::Convert1Click(TObject *Sender)
 {
 	if (Form2->ShowModal() == mrOk)
 		if (OpenDialog2->Execute())
@@ -826,20 +827,20 @@ void __fastcall TForm1::Convert1Click(TObject *Sender)
 			{
 				if (ExtractFileExt(OpenDialog2->Files->operator[](i)).LowerCase() == ".sgo")
 				{
-					/*StatusBar1->Panels->operator [](0)->Text = "Îòêðûòèå...";
+					/*StatusBar1->Panels->operator [](0)->Text = "ÃŽÃ²ÃªÃ°Ã»Ã²Ã¨Ã¥...";
 					LoadGeometry(OpenDialog2->Files->operator[](i), VCO);
 
 					if (Form2->CheckBox2->Checked)
 						MyView->View->RenderScene();
 
-					StatusBar1->Panels->operator [](0)->Text = "Êîíâåðòàöèÿ...";
+					StatusBar1->Panels->operator [](0)->Text = "ÃŠÃ®Ã­Ã¢Ã¥Ã°Ã²Ã Ã¶Ã¨Ã¿...";
 					obj[select].FromPrimitiveObj(VCO);
 
 					if (Form2->CheckBox2->Checked)
 						RefreshView();            
 					if (Form2->CheckBox1->Checked)
 					{
-						StatusBar1->Panels->operator [](0)->Text = "Îïòèìèçàöèÿ...";
+						StatusBar1->Panels->operator [](0)->Text = "ÃŽÃ¯Ã²Ã¨Ã¬Ã¨Ã§Ã Ã¶Ã¨Ã¿...";
 						MBTi Epsilon1;
 						MBTi Epsilon2;
 						MBTi Epsilon3;
@@ -872,7 +873,7 @@ void __fastcall TForm1::Convert1Click(TObject *Sender)
 					if (Form2->CheckBox2->Checked)
 						RefreshView();            
 					
-					StatusBar1->Panels->operator [](0)->Text = "Ñîõðàíåíèå...";
+					StatusBar1->Panels->operator [](0)->Text = "Ã‘Ã®ÃµÃ°Ã Ã­Ã¥Ã­Ã¨Ã¥...";
 
 					TMemoryStream* MSS = new TMemoryStream();
 					obj[select].WriteData(MSS);
@@ -883,14 +884,14 @@ void __fastcall TForm1::Convert1Click(TObject *Sender)
 					*/
 				} else
 				{
-					ErrorMsg("Íåïðàâèëüíûé èëè íåèçâåñòíûé ôîðìàò ôàéëà!");
+					ErrorMsg("ÃÃ¥Ã¯Ã°Ã Ã¢Ã¨Ã«Ã¼Ã­Ã»Ã© Ã¨Ã«Ã¨ Ã­Ã¥Ã¨Ã§Ã¢Ã¥Ã±Ã²Ã­Ã»Ã© Ã´Ã®Ã°Ã¬Ã Ã² Ã´Ã Ã©Ã«Ã !");
 				}
 			}
 }
 
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Optimize1Click(TObject *Sender)
+void  TForm1::Optimize1Click(TObject *Sender)
 {
 	if (Form2->ShowModal() == mrOk)
 	{
@@ -931,14 +932,14 @@ void __fastcall TForm1::Optimize1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::objClear1Click(TObject *Sender)
+void  TForm1::objClear1Click(TObject *Sender)
 {
 	obj[select].Clear();
 	RefreshView();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::objSpiltByPlane1Click(TObject *Sender)
+void  TForm1::objSpiltByPlane1Click(TObject *Sender)
 {
 	TIntVec n, o;
 	Form3->Caption = "Normal";
@@ -960,7 +961,7 @@ void __fastcall TForm1::objSpiltByPlane1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::objSliceByPlane1Click(TObject *Sender)
+void  TForm1::objSliceByPlane1Click(TObject *Sender)
 {
 	TIntVec n, o;
 	Form3->Caption = "Normal";
@@ -983,14 +984,14 @@ void __fastcall TForm1::objSliceByPlane1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::objSolidCheck1Click(TObject *Sender)
+void  TForm1::objSolidCheck1Click(TObject *Sender)
 {
 	obj[select].SolidCheck();
 	RefreshView();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::obj1Click(TObject *Sender)
+void  TForm1::obj1Click(TObject *Sender)
 {
 	obj[select].SolidFix();
 	RefreshView();
@@ -998,7 +999,7 @@ void __fastcall TForm1::obj1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::DetectHolesAtAll1Click(TObject *Sender)
+void  TForm1::DetectHolesAtAll1Click(TObject *Sender)
 {
 	obj[select].DetectHolesAtAll(Epsilon2, Epsilon3);
 	RefreshView();
@@ -1008,13 +1009,13 @@ void __fastcall TForm1::DetectHolesAtAll1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::RefreshView1Click(TObject *Sender)
+void  TForm1::RefreshView1Click(TObject *Sender)
 {
 	RefreshView();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::CrossCutsAtAll1Click(TObject *Sender)
+void  TForm1::CrossCutsAtAll1Click(TObject *Sender)
 {
 	obj[select].CrossCutsAtAll(Epsilon2, Epsilon3);
 	RefreshView();
@@ -1025,14 +1026,14 @@ void __fastcall TForm1::CrossCutsAtAll1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::WeldPointsAtAll1Click(TObject *Sender)
+void  TForm1::WeldPointsAtAll1Click(TObject *Sender)
 {
 	obj[select].WeldPointsAtAll(Epsilon3);	
 //	RefreshView();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Info1Click(TObject *Sender)
+void  TForm1::Info1Click(TObject *Sender)
 {
 	InfoMsg("Vertexes	= " + IntToStr(obj[select].VertexCount) + "\n" + 
 			"Cuts		= " + IntToStr(obj[select].CutsCount) + "\n" +
@@ -1041,7 +1042,7 @@ void __fastcall TForm1::Info1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::Extrude1Click(TObject *Sender)
+void  TForm1::Extrude1Click(TObject *Sender)
 {
 	Form3->Caption = "Direction";
 	Form3->Default = TIntVec(0,0,10);
@@ -1052,7 +1053,7 @@ void __fastcall TForm1::Extrude1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Square1Click(TObject *Sender)
+void  TForm1::Square1Click(TObject *Sender)
 {
 	Form3->Caption = "Rectangle";
 	Form3->Default = TIntVec(10,10,0);
@@ -1062,7 +1063,7 @@ void __fastcall TForm1::Square1Click(TObject *Sender)
 	RefreshView();
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Pyramid1Click(TObject *Sender)
+void  TForm1::Pyramid1Click(TObject *Sender)
 {
 	Form3->Caption = "Pyramid";
 	Form3->Default = TIntVec(10,10,5);
@@ -1074,7 +1075,7 @@ void __fastcall TForm1::Pyramid1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::Circle1Click(TObject *Sender)
+void  TForm1::Circle1Click(TObject *Sender)
 {
 	Form3->Caption = "Circle";
 	Form3->Default = TIntVec(10,8,0);
@@ -1085,7 +1086,7 @@ void __fastcall TForm1::Circle1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Ring1Click(TObject *Sender)
+void  TForm1::Ring1Click(TObject *Sender)
 {
 	Form3->Caption = "Ring";
 	Form3->Default = TIntVec(4,6,8);
@@ -1096,7 +1097,7 @@ void __fastcall TForm1::Ring1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::HoledRing1Click(TObject *Sender)
+void  TForm1::HoledRing1Click(TObject *Sender)
 {
 	Form3->Caption = MSG_1;
 	Form3->Default = TIntVec(4,6,8);
@@ -1107,21 +1108,21 @@ void __fastcall TForm1::HoledRing1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::SyncronizePolygonsWises1Click(TObject *Sender)
+void  TForm1::SyncronizePolygonsWises1Click(TObject *Sender)
 {
 	obj[select].SynchronizePolygonsWises();
 	RefreshView();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Triangulate1Click(TObject *Sender)
+void  TForm1::Triangulate1Click(TObject *Sender)
 {
 	obj[select].Triangulate();	
 	RefreshView();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::HoledXRing1Click(TObject *Sender)
+void  TForm1::HoledXRing1Click(TObject *Sender)
 {
 	Form3->Caption = MSG_2;
 	Form3->Default = TIntVec(4,6,8);
@@ -1132,14 +1133,14 @@ void __fastcall TForm1::HoledXRing1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::CalculateNormals1Click(TObject *Sender)
+void  TForm1::CalculateNormals1Click(TObject *Sender)
 {
 	obj[select].CalculateNormals();	
 	RefreshView();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Rotate1Click(TObject *Sender)
+void  TForm1::Rotate1Click(TObject *Sender)
 {
 	Form3->Caption = "Angles";
 	Form3->Default = n;
@@ -1159,14 +1160,14 @@ void __fastcall TForm1::Rotate1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::N11Click(TObject *Sender)
+void  TForm1::N11Click(TObject *Sender)
 {
 	select = 0;
 	Menu->Items->Items[4]->Items[0]->Checked = true;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::N21Click(TObject *Sender)
+void  TForm1::N21Click(TObject *Sender)
 {
 	select = 1;
 	Menu->Items->Items[4]->Items[1]->Checked = true;
@@ -1174,7 +1175,7 @@ void __fastcall TForm1::N21Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::AB1Click(TObject *Sender)
+void  TForm1::AB1Click(TObject *Sender)
 {
 	TGeomObject temp;
 	obj[0].SolidObjectsBoolean(gbA_XOR_B, obj[1], temp);
@@ -1184,7 +1185,7 @@ void __fastcall TForm1::AB1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::AB2Click(TObject *Sender)
+void  TForm1::AB2Click(TObject *Sender)
 {
 //	int start = GetTickCount();
 	TGeomObject temp;
@@ -1203,7 +1204,7 @@ void __fastcall TForm1::AB2Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::BA1Click(TObject *Sender)
+void  TForm1::BA1Click(TObject *Sender)
 {
 	TGeomObject temp;
 	obj[0].SolidObjectsBoolean(gbB_MINUS_A, obj[1], temp);
@@ -1213,7 +1214,7 @@ void __fastcall TForm1::BA1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::AB3Click(TObject *Sender)
+void  TForm1::AB3Click(TObject *Sender)
 {
 	TGeomObject temp;
 	obj[0].SolidObjectsBoolean(gbA_AND_B, obj[1], temp);
@@ -1223,7 +1224,7 @@ void __fastcall TForm1::AB3Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Clear1Click(TObject *Sender)
+void  TForm1::Clear1Click(TObject *Sender)
 {
 	for (int i=0;i<2;i++)
 		obj[i].Clear();
@@ -1232,7 +1233,7 @@ void __fastcall TForm1::Clear1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Move1Click(TObject *Sender)
+void  TForm1::Move1Click(TObject *Sender)
 {
 	Form3->Caption = "Direction";
 	Form3->Default = TIntVec(1,0,0);
@@ -1243,7 +1244,7 @@ void __fastcall TForm1::Move1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Points1Click(TObject *Sender)
+void  TForm1::Points1Click(TObject *Sender)
 {
 	if (construct & coPOINTS)
 		construct &= ~coPOINTS;
@@ -1253,7 +1254,7 @@ void __fastcall TForm1::Points1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Cuts1Click(TObject *Sender)
+void  TForm1::Cuts1Click(TObject *Sender)
 {
 	if (construct & coCUTS)
 		construct &= ~coCUTS;
@@ -1263,7 +1264,7 @@ void __fastcall TForm1::Cuts1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Polygons1Click(TObject *Sender)
+void  TForm1::Polygons1Click(TObject *Sender)
 {
 	if (construct & coPOLYGONS)
 		construct &= ~coPOLYGONS;
@@ -1273,7 +1274,7 @@ void __fastcall TForm1::Polygons1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Normals1Click(TObject *Sender)
+void  TForm1::Normals1Click(TObject *Sender)
 {
 	if (construct & coNORMALS)
 		construct &= ~coNORMALS;
@@ -1283,7 +1284,7 @@ void __fastcall TForm1::Normals1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Holes1Click(TObject *Sender)
+void  TForm1::Holes1Click(TObject *Sender)
 {
 	if (construct & coPOLYGONHOLES)
 		construct &= ~coPOLYGONHOLES;
@@ -1293,7 +1294,7 @@ void __fastcall TForm1::Holes1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::ScaleTo1Click(TObject *Sender)
+void  TForm1::ScaleTo1Click(TObject *Sender)
 {
 	Form3->Caption = "Dimensions";
 	Form3->Default = TIntVec(10,0,0);
@@ -1304,14 +1305,14 @@ void __fastcall TForm1::ScaleTo1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::FreeUnused1Click(TObject *Sender)
+void  TForm1::FreeUnused1Click(TObject *Sender)
 {
 	obj[select].FreeUnused(fuAll);
 	RefreshView();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Mark2Click(TObject *Sender)
+void  TForm1::Mark2Click(TObject *Sender)
 {
 	Menu->Items->Items[6]->Items[6]->Checked = true;
 	render = rtMARK;
@@ -1319,7 +1320,7 @@ void __fastcall TForm1::Mark2Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Classify1Click(TObject *Sender)
+void  TForm1::Classify1Click(TObject *Sender)
 {
 	Menu->Items->Items[6]->Items[7]->Checked = true;
 	render = rtCLASSIFY;
@@ -1327,7 +1328,7 @@ void __fastcall TForm1::Classify1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Error1Click(TObject *Sender)
+void  TForm1::Error1Click(TObject *Sender)
 {
 	Menu->Items->Items[6]->Items[8]->Checked = true;
 	render = rtERROR;
@@ -1335,7 +1336,7 @@ void __fastcall TForm1::Error1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Smooth1Click(TObject *Sender)
+void  TForm1::Smooth1Click(TObject *Sender)
 {
 	Menu->Items->Items[6]->Items[9]->Checked = true;
 	render = rtSMOOTH;
@@ -1343,7 +1344,7 @@ void __fastcall TForm1::Smooth1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Color1Click(TObject *Sender)
+void  TForm1::Color1Click(TObject *Sender)
 {
 	Menu->Items->Items[6]->Items[10]->Checked = true;
 	render = rtCOLOR;
@@ -1351,7 +1352,7 @@ void __fastcall TForm1::Color1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Point1Click(TObject *Sender)
+void  TForm1::Point1Click(TObject *Sender)
 {
 	if (Form4->ShowModal() != mrOk)
 		return;
@@ -1371,7 +1372,7 @@ void __fastcall TForm1::Point1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Cut1Click(TObject *Sender)
+void  TForm1::Cut1Click(TObject *Sender)
 {
 	if (Form4->ShowModal() != mrOk)
 		return;
@@ -1391,7 +1392,7 @@ void __fastcall TForm1::Cut1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Polygon1Click(TObject *Sender)
+void  TForm1::Polygon1Click(TObject *Sender)
 {
 	if (Form4->ShowModal() != mrOk)
 		return;
@@ -1411,7 +1412,7 @@ void __fastcall TForm1::Polygon1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::ClearMarks1Click(TObject *Sender)
+void  TForm1::ClearMarks1Click(TObject *Sender)
 {
 	for (int i=0;i<obj[select].VertexCount;i++)
 		obj[select].GetVertex(i).Tag = gfFALSE;
@@ -1423,7 +1424,7 @@ void __fastcall TForm1::ClearMarks1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::SavePolygonAsFigure1Click(TObject *Sender)
+void  TForm1::SavePolygonAsFigure1Click(TObject *Sender)
 {
 	if (Form4->ShowModal() != mrOk)
 		return;
@@ -1445,7 +1446,7 @@ void __fastcall TForm1::SavePolygonAsFigure1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::SaveObjectAsFigure1Click(TObject *Sender)
+void  TForm1::SaveObjectAsFigure1Click(TObject *Sender)
 {
 	if (Form4->ShowModal() != mrOk)
 		return;
@@ -1473,7 +1474,7 @@ void __fastcall TForm1::SaveObjectAsFigure1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::PolygonPlaceOnPlane1Click(TObject *Sender)
+void  TForm1::PolygonPlaceOnPlane1Click(TObject *Sender)
 {
 	if (Form4->ShowModal() != mrOk)
 		return;
@@ -1496,7 +1497,7 @@ void __fastcall TForm1::PolygonPlaceOnPlane1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 MBTi AngX1, AngY1, AngZ1;
-void __fastcall TForm1::TransformToPlane1Click(TObject *Sender)
+void  TForm1::TransformToPlane1Click(TObject *Sender)
 {
 	if (Form4->ShowModal() != mrOk)
 		return;
@@ -1520,7 +1521,7 @@ void __fastcall TForm1::TransformToPlane1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 //obj.SavePolygonAsFigure(1, AnsiString("C:\\(WORK)\\Config_\\BIN\\Attributes\\Import.gob"))
 
-void __fastcall TForm1::CalculateZEps1Click(TObject *Sender)
+void  TForm1::CalculateZEps1Click(TObject *Sender)
 {
 	TGeomObject go;
 	go.Assign(&obj[select]);
@@ -1554,7 +1555,7 @@ void __fastcall TForm1::CalculateZEps1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::CalculateDeflection1Click(TObject *Sender)
+void  TForm1::CalculateDeflection1Click(TObject *Sender)
 {
 	if (Form4->ShowModal() != mrOk)
 		return;
@@ -1583,7 +1584,7 @@ void __fastcall TForm1::CalculateDeflection1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::ClearAllFlags1Click(TObject *Sender)
+void  TForm1::ClearAllFlags1Click(TObject *Sender)
 {
 	obj[select].FillPolygonsFlags(flALL, gfFALSE);
 	obj[select].FillCutsFlags(flALL, gfFALSE);
@@ -1592,14 +1593,14 @@ void __fastcall TForm1::ClearAllFlags1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::FixCuts1Click(TObject *Sender)
+void  TForm1::FixCuts1Click(TObject *Sender)
 {
 	obj[select].GeometryFix(gfxPOINTSINCUTS);
 	RefreshView();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::ResIntop1Click(TObject *Sender)
+void  TForm1::ResIntop1Click(TObject *Sender)
 {
 	TGeomObject temp;
 	obj[0].SolidObjectsBoolean(gbA_AND_B, obj[1], temp);
@@ -1607,7 +1608,7 @@ void __fastcall TForm1::ResIntop1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::SliceByPlaneNoSplit1Click(TObject *Sender)
+void  TForm1::SliceByPlaneNoSplit1Click(TObject *Sender)
 {
 	TIntVec n, o;
 	Form3->Caption = "Normal";
@@ -1630,7 +1631,7 @@ void __fastcall TForm1::SliceByPlaneNoSplit1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::InvertNormals1Click(TObject *Sender)
+void  TForm1::InvertNormals1Click(TObject *Sender)
 {
 	for (int i=0;i<obj[select].PolygonsCount;i++)		
 		obj[select].GetPolygon(i).Invert();
@@ -1638,7 +1639,7 @@ void __fastcall TForm1::InvertNormals1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Cut2Click(TObject *Sender)
+void  TForm1::Cut2Click(TObject *Sender)
 {
 	TIntVec a, b;
 	Form3->Caption = "A";
@@ -1660,7 +1661,7 @@ void __fastcall TForm1::Cut2Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Polygonize1Click(TObject *Sender)
+void  TForm1::Polygonize1Click(TObject *Sender)
 {
 	TMTList <TGCut> cuts;
 	TMDelTList <TMTList <TGCut> > res;
@@ -1675,7 +1676,7 @@ void __fastcall TForm1::Polygonize1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Plane1Click(TObject *Sender)
+void  TForm1::Plane1Click(TObject *Sender)
 {
 	TIntVec n, o, s;
 
@@ -1704,7 +1705,7 @@ void __fastcall TForm1::Plane1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::GeometryFixCrossCuts1Click(TObject *Sender)
+void  TForm1::GeometryFixCrossCuts1Click(TObject *Sender)
 {
 	TMTList <TGCut> cuts;
 
@@ -1725,7 +1726,7 @@ void __fastcall TForm1::GeometryFixCrossCuts1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Contourize1Click(TObject *Sender)
+void  TForm1::Contourize1Click(TObject *Sender)
 {
 	TMTList <TGCut> cuts;
 	TMTList <TGCut> contour;
@@ -1744,7 +1745,7 @@ void __fastcall TForm1::Contourize1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::RemoveBranches1Click(TObject *Sender)
+void  TForm1::RemoveBranches1Click(TObject *Sender)
 {
 	obj[select].StructureFix(sfxREMOVE_BRANCHES | sfxREMOVE_REPEATED);
 	obj[select].FreeUnused(fuPoints);
@@ -1753,7 +1754,7 @@ void __fastcall TForm1::RemoveBranches1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::FindBasePoints1Click(TObject *Sender)
+void  TForm1::FindBasePoints1Click(TObject *Sender)
 {
 	if (obj[select].PolygonsCount)
 	{	
@@ -1768,7 +1769,7 @@ void __fastcall TForm1::FindBasePoints1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Cuts2Click(TObject *Sender)
+void  TForm1::Cuts2Click(TObject *Sender)
 {
 	obj[select].Clear();
 	for (int i=0;i<100;i++)
@@ -1784,7 +1785,7 @@ void __fastcall TForm1::Cuts2Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::PolygonizeBridgesRemove1Click(TObject *Sender)
+void  TForm1::PolygonizeBridgesRemove1Click(TObject *Sender)
 {
 	obj[select].StructureFix(sfxREMOVE_BRIDGES_BY_POLYGONIZE);
 	obj[select].FreeUnused(fuPoints);
@@ -1793,7 +1794,7 @@ void __fastcall TForm1::PolygonizeBridgesRemove1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::ContourizeBridgesRemove1Click(TObject *Sender)
+void  TForm1::ContourizeBridgesRemove1Click(TObject *Sender)
 {
 	obj[select].StructureFix(sfxREMOVE_BRIDGES_BY_CONTOURIZE);
 	obj[select].FreeUnused(fuPoints);
@@ -1802,7 +1803,7 @@ void __fastcall TForm1::ContourizeBridgesRemove1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Analytical1Click(TObject *Sender)
+void  TForm1::Analytical1Click(TObject *Sender)
 {
 /*
     long int TmpTicks = GetTickCount();
@@ -1832,7 +1833,7 @@ void __fastcall TForm1::Analytical1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::RotateTimer1Click(TObject *Sender)
+void  TForm1::RotateTimer1Click(TObject *Sender)
 {
     if ( Timer1->Enabled )
     {
@@ -1859,7 +1860,7 @@ void __fastcall TForm1::RotateTimer1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Timer1Timer(TObject *Sender)
+void  TForm1::Timer1Timer(TObject *Sender)
 {
 //    obj[1].TransformRotate(Ang, ZEROINTVEC);
     obj[1].TransformRotate(TIntVec(random(90), random(90), random(90)), ZEROINTVEC);

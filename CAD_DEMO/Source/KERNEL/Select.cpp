@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 //---------------------------------------------------------------------------
 #include "VisPrimitiveObj.hpp"
@@ -15,7 +18,6 @@
 #include "..\GeomObject\TGPrimitive.h"
 #include "..\GeomObject\Misc.h"
 
-#pragma package(smart_init)
 
 TVisPrimitiveObj *TSelection::RotationTool = NULL;
 TVisPrimitiveObj *TSelection::UpDownTool = NULL;

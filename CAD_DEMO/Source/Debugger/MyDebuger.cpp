@@ -1,12 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <basepch.h>
-#pragma hdrstop
-USEFORM("..\LuaEnv\LuaEditorV.cpp", FLuaEditor);
-USEFORM("..\LuaEnv\MDILuaEditorV.cpp", MDILuaEditor);
-USEFORM("..\LuaEnv\OutPutV.cpp", OutPut);
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 
 //   Package source.

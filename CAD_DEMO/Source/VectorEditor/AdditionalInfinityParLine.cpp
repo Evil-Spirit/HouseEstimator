@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <Poligon.h>
-#pragma hdrstop
 #include "MyEdit.h"
 #include "math.h"
 #include "EditorV.h"
@@ -131,7 +134,7 @@ AnsiString TAdditionalInfinityParLine::OnHint()
     if (ExecutedId == 0 && PerLine)
     {
         MBTi Angle = AngleRadOX(Point1, Point2);
-        return " Óãîë: "+FloatToStrF(Angle*180/M_PI, ffGeneral, 4, EditorXD->Grid.Precision)+" grad.";
+        return " Ã“Ã£Ã®Ã«: "+FloatToStrF(Angle*180/M_PI, ffGeneral, 4, EditorXD->Grid.Precision)+" grad.";
     }
     if (ExecutedId == 3)
     {
@@ -143,8 +146,7 @@ AnsiString TAdditionalInfinityParLine::OnHint()
 //        int ICC = IsLinesCrossedExactly(Point1, Point2, V1, V2, V);
         MBTi d = sqrtDC(fabs(fabs(pow(Point.x - V.x, 2))+fabs(pow(Point.y - V.y, 2))));
         MBTi Angle = AngleRadOX(Point, Point+D);
-        return " Óãîë: "+FloatToStrF(Angle*180/M_PI, ffGeneral, 4, EditorXD->Grid.Precision)+"      Ñìåùåíèå: "+FloatToStrF(d, ffGeneral, 4, EditorXD->Grid.Precision);
+        return " Ã“Ã£Ã®Ã«: "+FloatToStrF(Angle*180/M_PI, ffGeneral, 4, EditorXD->Grid.Precision)+"      Ã‘Ã¬Ã¥Ã¹Ã¥Ã­Ã¨Ã¥: "+FloatToStrF(d, ffGeneral, 4, EditorXD->Grid.Precision);
     }
     return "";
 }
-#pragma package(smart_init)

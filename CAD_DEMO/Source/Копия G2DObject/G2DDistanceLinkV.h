@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef G2DDistanceLinkVH
@@ -21,7 +25,7 @@ public:
     virtual ~TDistanceLink();
     __property TG2DPoint* Client0 = {read = GetPoint,write = SetPoint,index = 0};
     __property TG2DPoint* Client1 = {read = GetPoint,write = SetPoint,index = 1};
-    __property MBTi Distance = {read = FDistance,write = SetDistance};
+    // __property MBTi Distance {read=FDistance, write=SetDistance}; // [manual migration needed]
     virtual void Render(TVisView* aView);
 
     virtual bool HaveLinked(const TMTList<TG2DPoint>& PointList,const TG2DPoint* Point);

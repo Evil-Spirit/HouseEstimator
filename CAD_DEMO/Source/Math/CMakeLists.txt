@@ -16,6 +16,8 @@ add_library(MathAL STATIC
 
 target_include_directories(MathAL PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}"
+    # MatrixV.cpp uses Usefuls.h and MTL.h from COMMON
+    "${CMAKE_CURRENT_SOURCE_DIR}/../COMMON"
 )
 
 target_link_libraries(MathAL PUBLIC

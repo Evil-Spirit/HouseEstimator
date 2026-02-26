@@ -1,15 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "MTL.h"
 #include "Usefuls.h"
 #include <windows.h>
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "DelegateEventV.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)

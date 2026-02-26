@@ -1,15 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef G2DGeomVH
 #define G2DGeomVH
 //---------------------------------------------------------------------------
-const MBTf MBTf_EPS = 0.0000000001; //10^(-10)  для расчетов с чисто MBTf
-const MBTf THRESHOLD_EPS = 0.0000001; //10^(-7) точность граничная для MBTi и MBTf
-const MBTi MBTi_EXACT_EPS = 0.00001; //10^(-5) наиболее низкий EPS для MBTi
+const MBTf MBTf_EPS = 0.0000000001; //10^(-10)  Г¤Г«Гї Г°Г Г±Г·ГҐГІГ®Гў Г± Г·ГЁГ±ГІГ® MBTf
+const MBTf THRESHOLD_EPS = 0.0000001; //10^(-7) ГІГ®Г·Г­Г®Г±ГІГј ГЈГ°Г Г­ГЁГ·Г­Г Гї Г¤Г«Гї MBTi ГЁ MBTf
+const MBTi MBTi_EXACT_EPS = 0.00001; //10^(-5) Г­Г ГЁГЎГ®Г«ГҐГҐ Г­ГЁГ§ГЄГЁГ© EPS Г¤Г«Гї MBTi
 
 const MBTf MBTf_MIN = -MaxSingle;
 const MBTf MBTf_MAX = MaxSingle;
-const int MaxDivisionCount = 360; // макс число разбиений при поиске области определения полярной функции
+const int MaxDivisionCount = 360; // Г¬Г ГЄГ± Г·ГЁГ±Г«Г® Г°Г Г§ГЎГЁГҐГ­ГЁГ© ГЇГ°ГЁ ГЇГ®ГЁГ±ГЄГҐ Г®ГЎГ«Г Г±ГІГЁ Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГї ГЇГ®Г«ГїГ°Г­Г®Г© ГґГіГ­ГЄГ¶ГЁГЁ
 const MBTi Accuracy_Booster = 1/100;
 
 MBTi COMMONAL_API LengthFromPointToLine(const TIntVec& Point,const TIntVec& Line1,const TIntVec& Line2);
@@ -74,8 +78,8 @@ private:
 public:
     TMFunction(){};
     ~TMFunction(){};
-    virtual TIntVec CalcPolarValue(MBTf arg)const {throw EMyException("<TMFunction::CalcPolarValue>: нет реализации.");};
-    virtual MBTf CalcValue(MBTf arg) const {throw EMyException("<TMFunction::CalcPolarValue>: нет реализации.");};
+    virtual TIntVec CalcPolarValue(MBTf arg)const {throw EMyException("<TMFunction::CalcPolarValue>: Г­ГҐГІ Г°ГҐГ Г«ГЁГ§Г Г¶ГЁГЁ.");};
+    virtual MBTf CalcValue(MBTf arg) const {throw EMyException("<TMFunction::CalcPolarValue>: Г­ГҐГІ Г°ГҐГ Г«ГЁГ§Г Г¶ГЁГЁ.");};
     virtual void ToGeomObject(TGeomObject* GO,MBTi a0,MBTi a1,int Count);
 };
 

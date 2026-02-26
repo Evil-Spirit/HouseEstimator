@@ -1,12 +1,14 @@
-#include <vcl.h>                           
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"  
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "math.h"                                    
-#pragma hdrstop
 
 #include "GeomObjV.h"
-#pragma package(smart_init)
 
 TClassNode* TGCut::StaticType = NULL;
 
@@ -99,7 +101,7 @@ bool TGCut::Equal(const TGCut& other) const
 }
 
 
-//SameDIrection работает при условии, что CanConnect() != NULL
+//SameDIrection Г°Г ГЎГ®ГІГ ГҐГІ ГЇГ°ГЁ ГіГ±Г«Г®ГўГЁГЁ, Г·ГІГ® CanConnect() != NULL
 bool TGCut::SameDirection(const TGCut &cut) const
 {
 	return Src == cut.Dst || Dst == cut.Src;
@@ -179,7 +181,7 @@ TGPoint *TGCut::GetAnotherPoint(const TGCut &c) const
 		return Src;
 	if (!c.ConsistsPoint(Dst)) 
 		return Dst;
-	throw EMyException("<TGCut::GetNonCommonPointWith>: нет связи с данным отрезком");		
+	throw EMyException("<TGCut::GetNonCommonPointWith>: Г­ГҐГІ Г±ГўГїГ§ГЁ Г± Г¤Г Г­Г­Г»Г¬ Г®ГІГ°ГҐГ§ГЄГ®Г¬");		
 }
 
 TGPoint *TGCut::GetAnotherPoint(const TGPoint* Point) const
@@ -188,7 +190,7 @@ TGPoint *TGCut::GetAnotherPoint(const TGPoint* Point) const
 		return Dst;
 	else if (Dst == Point)
 		return Src;
-	throw EMyException("<TGCut::GetAnotherPoint>: нет такой точки");		
+	throw EMyException("<TGCut::GetAnotherPoint>: Г­ГҐГІ ГІГ ГЄГ®Г© ГІГ®Г·ГЄГЁ");		
 }
 /*
 TGPolygon *TGCut::GetAnotherPolygon(TGPolygon* Plane)
@@ -197,6 +199,6 @@ TGPolygon *TGCut::GetAnotherPolygon(TGPolygon* Plane)
 		return Right;
 	else if (Right == Plane)
 		return Left;
-	throw EMyException("<TGCut::GetAnotherPolygon>: нет такой плоскости");		
+	throw EMyException("<TGCut::GetAnotherPolygon>: Г­ГҐГІ ГІГ ГЄГ®Г© ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ");		
 }
 */ 

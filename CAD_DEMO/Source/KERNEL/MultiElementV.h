@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MultiElementVH
@@ -45,7 +49,7 @@ public:
     void DeleteOne(int typeindex,int index);
     void Clear();
     virtual void StandartCreateView();
-    __property int MetaPartCount = {read = GetMetaPartCount};
+    // __property int MetaPartCount {read=GetMetaPartCount}; // [manual migration needed]
     TElement *GetPart(int i,int j);
     int CountOf(int type);
     bool CheckFields();

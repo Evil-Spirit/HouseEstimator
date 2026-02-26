@@ -1,21 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMetaRoomV.h"
 #include "MDIElementSelectV.h"
 #include "RoomV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIElementV"
 #pragma resource "*.dfm"
 TMDIMetaRoom *MDIMetaRoom;
 //---------------------------------------------------------------------------
-__fastcall TMDIMetaRoom::TMDIMetaRoom(TComponent* Owner,TMetaRoom *M)
+ TMDIMetaRoom::TMDIMetaRoom(TComponent* Owner,TMetaRoom *M)
     : TMDIElement(Owner,M)
 {
 }
@@ -57,7 +59,7 @@ bool TMDIMetaRoom::MNChecked()
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDIMetaRoom::tbtAddClick(TObject *Sender)
+void  TMDIMetaRoom::tbtAddClick(TObject *Sender)
 {
     TMetaElement *MN = (TMetaElement *)SelectNode(TMetaElement::StaticType,true,true,NULL);
     if (MN&&MN!=MetaNode)
@@ -66,7 +68,7 @@ void __fastcall TMDIMetaRoom::tbtAddClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIMetaRoom::tbtDelClick(TObject *Sender)
+void  TMDIMetaRoom::tbtDelClick(TObject *Sender)
 {
     if (LV->Selected)
     {

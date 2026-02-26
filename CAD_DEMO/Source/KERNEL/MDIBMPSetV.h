@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIBMPSetVH
 #define MDIBMPSetVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaNodeV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIBMPSet : public TMDIMetaNode
 {
@@ -22,7 +21,7 @@ public:		// User declarations
     virtual void MNApply();
     virtual void SETUP();
 
-    __fastcall TMDIBMPSet(TComponent* Owner,TBMPSet *N);
+     TMDIBMPSet(TComponent* Owner,TBMPSet *N);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIBMPSet *MDIBMPSet;

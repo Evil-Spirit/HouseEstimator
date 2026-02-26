@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef AddLuaVarVH
 #define AddLuaVarVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class COMMONAL_API TAddLuaVar : public TForm
 {
@@ -23,11 +24,11 @@ __published:	// IDE-managed Components
     TEdit *eComment;
     TLabel *Label3;
     TEdit *eMeter;
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall FormShow(TObject *Sender);
-    void __fastcall btOKClick(TObject *Sender);
-    void __fastcall btCancelClick(TObject *Sender);
-    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+    void  FormCreate(TObject *Sender);
+    void  FormShow(TObject *Sender);
+    void  btOKClick(TObject *Sender);
+    void  btCancelClick(TObject *Sender);
+    void  FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 public:		// User declarations
     int VarType;
@@ -36,7 +37,7 @@ public:		// User declarations
     AnsiString Comment;
     AnsiString Meter;
 bool OK;
-    __fastcall TAddLuaVar(TComponent* Owner);
+     TAddLuaVar(TComponent* Owner);
 };
 bool COMMONAL_API VariantNameOK(const AnsiString& Name);
 //---------------------------------------------------------------------------

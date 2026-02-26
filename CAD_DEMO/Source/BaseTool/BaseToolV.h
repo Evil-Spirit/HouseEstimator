@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef BaseToolVH
@@ -10,7 +14,7 @@
 #include "LuaAttributeV.h"
 
 
-//Переходы
+//ГЏГҐГ°ГҐГµГ®Г¤Г»
 const int Mouse_Down    = 0;
 const int Mouse_Up      = 1;
 const int Mouse_Move    = 2;
@@ -24,19 +28,19 @@ const AnsiString CharEvent[6] = {"Mouse_Down",
                                  "Key_Down",
                                  "Key_Up",
                                  "EXIT"};
-//Типы блоков
+//Г’ГЁГЇГ» ГЎГ«Г®ГЄГ®Гў
 const int btNone = 0;
 const int Control = 1;
 const int btMenu = 2;
-//Типы формы
+//Г’ГЁГЇГ» ГґГ®Г°Г¬Г»
 const int NoneForm = 0;
 const int ToolFormOnly = 1;
 const int ToolAndCustomForms = 2;
-//Тип функчий содержащих исполняемый код блока схемы
-typedef void  (__closure *TCommands)();
-typedef bool (__closure *TCondition)();
+//Г’ГЁГЇ ГґГіГ­ГЄГ·ГЁГ© Г±Г®Г¤ГҐГ°Г¦Г Г№ГЁГµ ГЁГ±ГЇГ®Г«Г­ГїГҐГ¬Г»Г© ГЄГ®Г¤ ГЎГ«Г®ГЄГ  Г±ГµГҐГ¬Г»
+typedef void  ( *TCommands)();
+typedef bool ( *TCondition)();
 
-typedef void (__closure *TChangeCursorPos)();
+typedef void ( *TChangeCursorPos)();
 
 class TBindedGoEdit;
 class TBindedBlockEdit;
@@ -95,8 +99,8 @@ public:
     TGo(int _Event, const WORD &_Key, int _NextBlockId);
     virtual ~TGo(){};
     int Event;
-    __property WORD Key = { read = GetKey, write = SetKey };
-    __property TMouseButton MouseButton = { read = GetMB, write = SetMB };
+    // __property WORD Key {read=GetKey, write=SetKey}; // [manual migration needed]
+    // __property TMouseButton MouseButton {read=GetMB, write=SetMB}; // [manual migration needed]
     int NextBlockId;
 };
 
@@ -111,7 +115,7 @@ public:
     TStateBlock();
     TStateBlock(TCommands _Commands, int _Id, int _ExexutedEvent, int _Type, AnsiString _Description);
     TCommands Commands;
-    __property int ExecutedEvent = {read = FExexutedEvent, write = FExexutedEvent};
+    // __property int ExecutedEvent {read=FExexutedEvent, write=FExexutedEvent}; // [manual migration needed]
     virtual ~TStateBlock(){};
 };
 
@@ -147,7 +151,7 @@ private:
     TMTList< TMTList<TGo> > ToolCommands;
     void GetToolCommands(TMTList<TGo>* _GOS);
     void FillMenu();
-    void __fastcall MenuClick(TObject *Sender);
+    void  MenuClick(TObject *Sender);
     void ExecuteCommand(int _Index);
 protected:
     void ProcessEscapeCommands();
@@ -155,7 +159,7 @@ protected:
     int FindIndexFromId(int Id);
     TCommands EscCommands;
     TMDelTList<TBaseBlock> Blocks;
-    __property int ExecutedId = {read = FExecutedId};
+    // __property int ExecutedId {read=FExecutedId}; // [manual migration needed]
     void AddGoToBlockId(int Id, int NextBlockId);
     void AddGoToBlockId(int Id, int NextBlockId, const int Event, TMouseButton MouseButton);
     void AddGoToBlockId(int Id, int NextBlockId, const int Event, const WORD& Key);

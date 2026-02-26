@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
         
 #include "UNDO.h"
 #include "World.h"
@@ -11,7 +14,6 @@
 #include "TasksQueueV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 TUndoStack UndoStack;
 
 TStateStep::TStateStep()
@@ -91,9 +93,9 @@ void TUndoSession::RegisterDeletion(TUnit* MRO)
 }
 
 
-//строгое требование:
-//невозможна регистрация дважды
-//исключение повторная регистрация о удалении 
+//Г±ГІГ°Г®ГЈГ®ГҐ ГІГ°ГҐГЎГ®ГўГ Г­ГЁГҐ:
+//Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г  Г°ГҐГЈГЁГ±ГІГ°Г Г¶ГЁГї Г¤ГўГ Г¦Г¤Г»
+//ГЁГ±ГЄГ«ГѕГ·ГҐГ­ГЁГҐ ГЇГ®ГўГІГ®Г°Г­Г Гї Г°ГҐГЈГЁГ±ГІГ°Г Г¶ГЁГї Г® ГіГ¤Г Г«ГҐГ­ГЁГЁ 
 void TUndoSession::ReadCondition()
 {
     MS->Position = 0;
@@ -106,7 +108,7 @@ void TUndoSession::ReadCondition()
             delete Sender;
     }
     //---------------------
-    //Важно т.к. адреса совпадают
+    //Г‚Г Г¦Г­Г® ГІ.ГЄ. Г Г¤Г°ГҐГ±Г  Г±Г®ГўГЇГ Г¤Г ГѕГІ
     TaskQueue.Clear();
     //---------------------
     for (bool OK = SSL.Start();OK;OK = SSL.Next() )

@@ -1,21 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIVectorEditV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma link "SimpleEditV"
 #pragma resource "*.dfm"
 TMDIVECEDIT *MDIVECEDIT;
 TIntVec IntVec;
 //---------------------------------------------------------------------------
-__fastcall TMDIVECEDIT::TMDIVECEDIT(TComponent* Owner,TControl *_Parent,TMyObject *_Obj,const AnsiString& _Text,void *_Data)
+ TMDIVECEDIT::TMDIVECEDIT(TComponent* Owner,TControl *_Parent,TMyObject *_Obj,const AnsiString& _Text,void *_Data)
     : TMDISimpleEdit(Owner,_Parent,_Obj,_Text,_Data)
 {
 }
@@ -27,7 +29,7 @@ void TMDIVECEDIT::SETUP()
 	A[2]=Edit3;
 }
 
-//Освежить
+//ГЋГ±ГўГҐГ¦ГЁГІГј
 void TMDIVECEDIT::Refresh()
 {
 	IntVec = *((TIntVec *)(Obj->GetFieldAddress(L->Caption)));
@@ -35,7 +37,7 @@ void TMDIVECEDIT::Refresh()
 		A[i]->Text = MBTiToStr(RoundTo(IntVec.a[i],UserRound));
 }
 
-///значение
+///Г§Г­Г Г·ГҐГ­ГЁГҐ
 void *TMDIVECEDIT::Value()
 {
 	if (CustomChecked()==false)
@@ -45,7 +47,7 @@ void *TMDIVECEDIT::Value()
 	return(&IntVec);
 }
 
-//Применить
+//ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј
 bool TMDIVECEDIT::CustomChecked()
 {
 	for (int i=0;i<3;i++)
@@ -54,7 +56,7 @@ bool TMDIVECEDIT::CustomChecked()
 	return(true);
 }
 
-void __fastcall TMDIVECEDIT::Edit1Change(TObject *Sender)
+void  TMDIVECEDIT::Edit1Change(TObject *Sender)
 {
 	TIntVec *Vec= ((TIntVec *)(Obj->GetFieldAddress(L->Caption)));
 	if(!IS_FLOAT(Edit1->Text) || !IsProportional->Checked)
@@ -72,7 +74,7 @@ void __fastcall TMDIVECEDIT::Edit1Change(TObject *Sender)
 
 
 
-void __fastcall TMDIVECEDIT::Edit2Change(TObject *Sender)
+void  TMDIVECEDIT::Edit2Change(TObject *Sender)
 {
 	TIntVec *Vec= ((TIntVec *)(Obj->GetFieldAddress(L->Caption)));
 	if(!IS_FLOAT(Edit2->Text) || !IsProportional->Checked)
@@ -88,7 +90,7 @@ void __fastcall TMDIVECEDIT::Edit2Change(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIVECEDIT::Edit3Change(TObject *Sender)
+void  TMDIVECEDIT::Edit3Change(TObject *Sender)
 {
 	TIntVec *Vec= ((TIntVec *)(Obj->GetFieldAddress(L->Caption)));
 	if(!IS_FLOAT(Edit3->Text) || !IsProportional->Checked)

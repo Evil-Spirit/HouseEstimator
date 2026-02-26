@@ -1,14 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ConvertH
 #define ConvertH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
-#include <Buttons.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TForm2 : public TForm
 {
@@ -22,13 +21,13 @@ __published:	// IDE-managed Components
 	TCheckBox *CheckBox2;
 	TCheckBox *CheckBox3;
 	TCheckBox *CheckBox4;
-	void __fastcall CheckBox1Click(TObject *Sender);
+	void  CheckBox1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-	__fastcall TForm2(TComponent* Owner);
+	 TForm2(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm2 *Form2;
+extern  TForm2 *Form2;
 //---------------------------------------------------------------------------
 #endif
 

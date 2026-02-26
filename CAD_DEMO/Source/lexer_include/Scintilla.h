@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 // Scintilla source code edit control
 /** @file Scintilla.h
  ** Interface to the edit control.

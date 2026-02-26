@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef PoligonH
@@ -42,8 +46,8 @@ public:
     virtual ~TLCut();
     TMyObject* CreateFunction();
     int Tag;
-    __property TLPoint* Src = {read = FSrc,write = SetSrc};
-    __property TLPoint* Dst = {read = FDst,write = SetDst};
+    // __property TLPoint* Src {read=FSrc, write=SetSrc}; // [manual migration needed]
+    // __property TLPoint* Dst {read=FDst, write=SetDst}; // [manual migration needed]
     bool ConsistsDstAndSrc(TLPoint* R1,TLPoint* R2);
 };
 
@@ -73,8 +77,8 @@ protected:
 public:
     __int16 Tag;
     __int16 Tag2;
-    __property TIntVec* Points[int index] = {read = GetPoint};
-    __property TIntVec* CyclePoints[int index] = {read = GetCyclePoint};
+// [indexed property - needs manual migration]:     __property TIntVec* Points[int index] = {read = GetPoint};
+// [indexed property - needs manual migration]:     __property TIntVec* CyclePoints[int index] = {read = GetCyclePoint};
     TPolygon();
     TPolygon(TMDelTList<TIntVec>* PNTS);
     TPolygon(TMTList<TIntVec>* PNTS);

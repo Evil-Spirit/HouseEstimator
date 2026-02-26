@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMetaMaterialV.h"
 #include "World.h"
@@ -12,7 +15,6 @@
 #include "MySupportV.h"
 #include "AUIV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 #pragma link "MDIMetaNodeV"
 #pragma link "VisMat"
@@ -22,7 +24,7 @@
 #pragma resource "*.dfm"
 TMDIMetaMaterial *MDIMetaMaterial;
 //---------------------------------------------------------------------------
-__fastcall TMDIMetaMaterial::TMDIMetaMaterial(TComponent* Owner,TMetaMaterial *MM)
+ TMDIMetaMaterial::TMDIMetaMaterial(TComponent* Owner,TMetaMaterial *MM)
     : TMDIMetaNode(Owner,MM)
 {
 }
@@ -95,7 +97,7 @@ void TMDIMetaMaterial::KILL()
     delete VISM;
     delete VisBox;
 }
-void __fastcall TMDIMetaMaterial::FormActivate(TObject *Sender)
+void  TMDIMetaMaterial::FormActivate(TObject *Sender)
 {
     AUI.ActivateView(TV);
 }

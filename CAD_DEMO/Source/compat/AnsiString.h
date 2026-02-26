@@ -112,6 +112,14 @@ public:
         return (idx < 0) ? 0 : idx + 1;
     }
 
+    // AnsiCompare: case-sensitive comparison (returns 0 if equal, <0 if less, >0 if greater)
+    int AnsiCompare(const AnsiString& other) const {
+        return d_.compare(other.d_, Qt::CaseSensitive);
+    }
+    int AnsiCompareIC(const AnsiString& other) const {
+        return d_.compare(other.d_, Qt::CaseInsensitive);
+    }
+
     AnsiString UpperCase() const { return AnsiString(d_.toUpper()); }
     AnsiString LowerCase() const { return AnsiString(d_.toLower()); }
     AnsiString Trim()      const { return AnsiString(d_.trimmed()); }
@@ -133,6 +141,13 @@ public:
     // -----------------------------------------------------------------------
     const QString& toQString() const { return d_; }
     QString&       toQString()       { return d_; }
+
+    // -----------------------------------------------------------------------
+    // Static helpers (Borland class methods)
+    // -----------------------------------------------------------------------
+    static AnsiString StringOfChar(char c, int count) {
+        return AnsiString(QString(count, QChar(c)));
+    }
 
 private:
     QString          d_;
@@ -191,3 +206,8 @@ inline AnsiString Format(const char* fmt, ...) {
 
 // Borland-style NULL string check
 inline bool EmptyStr(const AnsiString& s) { return s.IsEmpty(); }
+
+// Borland string fill helper
+inline AnsiString StringOfChar(char c, int count) {
+    return AnsiString(QString(count, QChar(c)));
+}

@@ -1,21 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMyTextureModesListV.h"
 #include "MDIMyTextureModesV.h"
 #include "MetaClasses.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma resource "*.dfm"
 TMDIMyTextureModesList *MDIMyTextureModesList;
 //---------------------------------------------------------------------------
-__fastcall TMDIMyTextureModesList::TMDIMyTextureModesList(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDIMyTextureModesList::TMDIMyTextureModesList(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }
@@ -72,7 +74,7 @@ void TMDIMyTextureModesList::KILL()
   delete COPY;
 }
 
-void __fastcall TMDIMyTextureModesList::tbtAddClick(TObject *Sender)
+void  TMDIMyTextureModesList::tbtAddClick(TObject *Sender)
 {
     COPY->TEXMODES.Add( new TMyTextureModes() );
     COPY->TEXMODES.Last()->Mode = tmCeil;
@@ -104,7 +106,7 @@ bool TMDIMyTextureModesList::Checked()
     return CheckCurrent(false);
 }
 
-void __fastcall TMDIMyTextureModesList::LVClick(TObject *Sender)
+void  TMDIMyTextureModesList::LVClick(TObject *Sender)
 {
     if (!LV->Selected)
         return;
@@ -118,7 +120,7 @@ void __fastcall TMDIMyTextureModesList::LVClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIMyTextureModesList::tbtDelClick(TObject *Sender)
+void  TMDIMyTextureModesList::tbtDelClick(TObject *Sender)
 {
   if (!LV->Selected)
     return;

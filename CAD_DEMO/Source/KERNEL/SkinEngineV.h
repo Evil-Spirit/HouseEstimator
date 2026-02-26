@@ -1,9 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef SkinEngineVH
 #define SkinEngineVH
 
-#include "SUISkinEngine.hpp"
+#include "compat/SUISkinEngine.hpp"
 
 #define SkinEngine GetSkinEngine()
 #define SkinFlie GetSkinFile()

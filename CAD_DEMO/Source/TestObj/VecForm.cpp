@@ -1,22 +1,24 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "VecForm.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm3 *Form3;
 //---------------------------------------------------------------------------
-__fastcall TForm3::TForm3(TComponent* Owner)
+ TForm3::TForm3(TComponent* Owner)
 	: TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm3::AcceptClick(TObject *Sender)
+void  TForm3::AcceptClick(TObject *Sender)
 {
 	if (IS_FLOAT(EditX->Text))
 		Vector.x = StrToMBTi(EditX->Text);
@@ -29,7 +31,7 @@ void __fastcall TForm3::AcceptClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm3::FormClose(TObject *Sender, TCloseAction &Action)
+void  TForm3::FormClose(TObject *Sender, TCloseAction &Action)
 {
 //	Vector = Default;	
 }

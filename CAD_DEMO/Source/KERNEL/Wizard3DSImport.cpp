@@ -1,8 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <math.h>
-#pragma hdrstop
 
 #include "Wizard3DSImport.h"
 #include "MDI3DV.h"
@@ -11,7 +14,6 @@
 #include "CustomElementV.h"
 #include "MyGL.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TfrmWizard3DSImport *frmWizard3DSImport;
 //---------------------------------------------------------------------------
@@ -60,7 +62,7 @@ TVisPrimitiveObj* TfrmWizard3DSImport::ImportFile(AnsiString filename, std::vect
 	return Result;
 }
 //---------------------------------------------------------------------------
-__fastcall TfrmWizard3DSImport::TfrmWizard3DSImport(TComponent* Owner)
+ TfrmWizard3DSImport::TfrmWizard3DSImport(TComponent* Owner)
 	: TForm(Owner)
 {
 	VisNode = NULL;
@@ -85,7 +87,7 @@ float TfrmWizard3DSImport::MaterialMatch(TVisMaterial *mat1, TVisMaterial *mat2,
 	return difference;
 }
 //---------------------------------------------------------------------------
-int __fastcall TfrmWizard3DSImport::Import(AnsiString fileName)
+int  TfrmWizard3DSImport::Import(AnsiString fileName)
 {
 	int i;
 	FILE *f = NULL;
@@ -161,12 +163,12 @@ void TfrmWizard3DSImport::Restructure()
 	}
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmWizard3DSImport::pcStepsChange(TObject *Sender)
+void  TfrmWizard3DSImport::pcStepsChange(TObject *Sender)
 {
 	this->Caption = "Import 3DS scene - step " + IntToStr(pcSteps->ActivePageIndex + 1);
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmWizard3DSImport::SyncObjectsList()
+void  TfrmWizard3DSImport::SyncObjectsList()
 {
 	int i;
 
@@ -188,7 +190,7 @@ void __fastcall TfrmWizard3DSImport::SyncObjectsList()
 	lvObjectsList->OnChange = lvObjectsListChange;
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmWizard3DSImport::SyncMaterialsList()
+void  TfrmWizard3DSImport::SyncMaterialsList()
 {
 	int i;
 
@@ -210,7 +212,7 @@ void __fastcall TfrmWizard3DSImport::SyncMaterialsList()
 	lvMaterials->OnChange = lvMaterialsChange;
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmWizard3DSImport::SyncObjects()
+void  TfrmWizard3DSImport::SyncObjects()
 {
 	int i, j;
 
@@ -232,7 +234,7 @@ void __fastcall TfrmWizard3DSImport::SyncObjects()
 	TV->View->InvalidateGL();
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmWizard3DSImport::SyncMaterials()
+void  TfrmWizard3DSImport::SyncMaterials()
 {
 	int i, j, k;
 
@@ -262,12 +264,12 @@ void __fastcall TfrmWizard3DSImport::SyncMaterials()
 	TV->View->InvalidateGL();
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmWizard3DSImport::FormCreate(TObject *Sender)
+void  TfrmWizard3DSImport::FormCreate(TObject *Sender)
 {
 	ResultObject = new TVisPrimitiveObj(NULL);
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmWizard3DSImport::FormDestroy(TObject *Sender)
+void  TfrmWizard3DSImport::FormDestroy(TObject *Sender)
 {
 	int i;
 	for(i = 0; i < Objects.size(); i ++)
@@ -336,7 +338,7 @@ void TfrmWizard3DSImport::FinishImport()
 	ModalResult = mrOk;
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmWizard3DSImport::btnNextClick(TObject *Sender)
+void  TfrmWizard3DSImport::btnNextClick(TObject *Sender)
 {
 	int aP = pcSteps->ActivePageIndex;
 	if(aP < 2)
@@ -377,14 +379,14 @@ void TfrmWizard3DSImport::PrepareRenderer()
 	TV->CameraEngine.ViewAll(TV->_3DCamera );
 }
 //---------------------------------------------------------------------------
-void __fastcall TfrmWizard3DSImport::lvObjectsListChange(TObject *Sender,
+void  TfrmWizard3DSImport::lvObjectsListChange(TObject *Sender,
 	  TListItem *Item, TItemChange Change)
 {
 	SyncObjects();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmWizard3DSImport::btnPrevClick(TObject *Sender)
+void  TfrmWizard3DSImport::btnPrevClick(TObject *Sender)
 {
 	int aP = pcSteps->ActivePageIndex;
 	if(aP > 0)
@@ -399,7 +401,7 @@ void __fastcall TfrmWizard3DSImport::btnPrevClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmWizard3DSImport::btnRestoreClick(TObject *Sender)
+void  TfrmWizard3DSImport::btnRestoreClick(TObject *Sender)
 {
 	if(!lvMaterials->Selected)
 		return;
@@ -410,7 +412,7 @@ void __fastcall TfrmWizard3DSImport::btnRestoreClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmWizard3DSImport::btnFindClick(TObject *Sender)
+void  TfrmWizard3DSImport::btnFindClick(TObject *Sender)
 {
 	float percent, bestMatch = 100, match;
 	TMetaMaterial *bestMaterial = NULL, *current;
@@ -474,7 +476,7 @@ void __fastcall TfrmWizard3DSImport::btnFindClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmWizard3DSImport::btnReplaceClick(TObject *Sender)
+void  TfrmWizard3DSImport::btnReplaceClick(TObject *Sender)
 {
 	if(!lvMaterials->Selected)
 		return;
@@ -486,7 +488,7 @@ void __fastcall TfrmWizard3DSImport::btnReplaceClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmWizard3DSImport::lvMaterialsChange(TObject *Sender,
+void  TfrmWizard3DSImport::lvMaterialsChange(TObject *Sender,
       TListItem *Item, TItemChange Change)
 {
 	//SyncMaterials();	

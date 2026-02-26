@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef DynamicCastH
@@ -27,7 +31,7 @@ T* MyCast(TMyObject* Obj)
         return (T*)Obj;
     else
     {
-        AnsiString Str = "Объект класса <";
+        AnsiString Str = "ГЋГЎГєГҐГЄГІ ГЄГ«Г Г±Г±Г  <";
         Str = Str + Obj->DynamicType->Name;
         Str = Str + AnsiString("> Could not convert to <");
         Str = Str + T::StaticType->Name + AnsiString(">");

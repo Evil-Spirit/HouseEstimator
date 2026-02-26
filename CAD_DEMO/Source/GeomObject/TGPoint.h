@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 #ifndef TGPointH
 #define TGPointH
 #include "TGUnitV.h"
@@ -24,41 +28,41 @@ public:
 	TGPoint();
 	TGPoint(const TIntVec &);
 
-	// Отрезки точки
+	// ГЋГІГ°ГҐГ§ГЄГЁ ГІГ®Г·ГЄГЁ
 	 const TGCut &GetCut(int index) const;
 	 TGCut &GetCut(int index);													
-	__property TGCut& Cuts[int] = {read = GetCut};
+// [indexed property - needs manual migration]: 	__property TGCut& Cuts[int] = {read = GetCut};
 
-	// Колличество отрезков точки
+	// ГЉГ®Г«Г«ГЁГ·ГҐГ±ГІГўГ® Г®ГІГ°ГҐГ§ГЄГ®Гў ГІГ®Г·ГЄГЁ
 	int GetCutsCount() const;															
-	__property int CutsCount = {read = GetCutsCount};
+	// __property int CutsCount {read=GetCutsCount}; // [manual migration needed]
 
-	// Замкнутость точки по замкнутости отрезков точки
+	// Г‡Г Г¬ГЄГ­ГіГІГ®Г±ГІГј ГІГ®Г·ГЄГЁ ГЇГ® Г§Г Г¬ГЄГ­ГіГІГ®Г±ГІГЁ Г®ГІГ°ГҐГ§ГЄГ®Гў ГІГ®Г·ГЄГЁ
 	bool GetClosed() const;															
-	__property bool Closed = {read = GetClosed};
+	// __property bool Closed {read=GetClosed}; // [manual migration needed]
 
-	// Флаги точки
-	__property TGeomFlags Flags = {read = FFlags, write = FFlags};
+	// Г”Г«Г ГЈГЁ ГІГ®Г·ГЄГЁ
+	// __property TGeomFlags Flags {read=FFlags, write=FFlags}; // [manual migration needed]
 
-	// Тэг пользователя
+	// Г’ГЅГЈ ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї
 	int Tag;
 	int Index;
 
-	// Координаты точки
+	// ГЉГ®Г®Г°Г¤ГЁГ­Г ГІГ» ГІГ®Г·ГЄГЁ
 	TChangeVec Point;
 
-	TGCut *GetTurnRightCut(bool MarkedOnly = false) const;				// Отрезок, самый поворачивающий направо относительно OY
-	TGCut *GetTurnLeftCut(bool MarkedOnly = false) const;				// Отрезок, самый поворачивающий налево относительно OY
+	TGCut *GetTurnRightCut(bool MarkedOnly = false) const;				// ГЋГІГ°ГҐГ§Г®ГЄ, Г±Г Г¬Г»Г© ГЇГ®ГўГ®Г°Г Г·ГЁГўГ ГѕГ№ГЁГ© Г­Г ГЇГ°Г ГўГ® Г®ГІГ­Г®Г±ГЁГІГҐГ«ГјГ­Г® OY
+	TGCut *GetTurnLeftCut(bool MarkedOnly = false) const;				// ГЋГІГ°ГҐГ§Г®ГЄ, Г±Г Г¬Г»Г© ГЇГ®ГўГ®Г°Г Г·ГЁГўГ ГѕГ№ГЁГ© Г­Г Г«ГҐГўГ® Г®ГІГ­Г®Г±ГЁГІГҐГ«ГјГ­Г® OY
 
-	TGCut *GetTurnRightCut(TGCut *cut,bool MarkedOnly = false) const;	// Отрезок, самый поворачивающий направо относительно дргугого отрезка
-	TGCut *GetTurnLeftCut(TGCut *cut,bool MarkedOnly = false) const;	// Отрезок, самый поворачивающий налево относительно дргугого отрезка
+	TGCut *GetTurnRightCut(TGCut *cut,bool MarkedOnly = false) const;	// ГЋГІГ°ГҐГ§Г®ГЄ, Г±Г Г¬Г»Г© ГЇГ®ГўГ®Г°Г Г·ГЁГўГ ГѕГ№ГЁГ© Г­Г ГЇГ°Г ГўГ® Г®ГІГ­Г®Г±ГЁГІГҐГ«ГјГ­Г® Г¤Г°ГЈГіГЈГ®ГЈГ® Г®ГІГ°ГҐГ§ГЄГ 
+	TGCut *GetTurnLeftCut(TGCut *cut,bool MarkedOnly = false) const;	// ГЋГІГ°ГҐГ§Г®ГЄ, Г±Г Г¬Г»Г© ГЇГ®ГўГ®Г°Г Г·ГЁГўГ ГѕГ№ГЁГ© Г­Г Г«ГҐГўГ® Г®ГІГ­Г®Г±ГЁГІГҐГ«ГјГ­Г® Г¤Г°ГЈГіГЈГ®ГЈГ® Г®ГІГ°ГҐГ§ГЄГ 
 	TGCut *GetAnotherCut(const TGCut *cut, bool MarkedOnly);
 	bool Equals(const TGPoint &other);
 
-	void Cache();			// Кэшировать
-	void Restore();			// Взять из кэша
+	void Cache();			// ГЉГЅГёГЁГ°Г®ГўГ ГІГј
+	void Restore();			// Г‚Г§ГїГІГј ГЁГ§ ГЄГЅГёГ 
 
-	bool Used() const;		// Использованность
+	bool Used() const;		// Г€Г±ГЇГ®Г«ГјГ§Г®ГўГ Г­Г­Г®Г±ГІГј
 	
 //--------------------------------------------------------
 	void Changed(void* Field);

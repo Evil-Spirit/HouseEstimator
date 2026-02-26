@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "Label3DV.h"
 #include "AUIV.h"
@@ -13,7 +16,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 TClassNode* TMetaLabel3D::StaticType = NULL;
 TClassNode* TLabel3D::StaticType = NULL;
 
@@ -58,7 +60,7 @@ TMetaLabel3D::TMetaLabel3D()
     RegisterNewClass< TElement, TLabel3D >(this,false,&CreateFunction);
     if (typeid(*_Meta)!=typeid(TMetaLabel3D))
     {
-        Application->MessageBox("Îæèäàëîñü TMetaLabel3D, ïîëó÷åíî Unknown. Ïðèëîæåíèå ÑÒÎÏ.","Error");
+        Application->MessageBox("ÃŽÃ¦Ã¨Ã¤Ã Ã«Ã®Ã±Ã¼ TMetaLabel3D, Ã¯Ã®Ã«Ã³Ã·Ã¥Ã­Ã® Unknown. ÃÃ°Ã¨Ã«Ã®Ã¦Ã¥Ã­Ã¨Ã¥ Ã‘Ã’ÃŽÃ.","Error");
         Application->Terminate();
         return;
     }

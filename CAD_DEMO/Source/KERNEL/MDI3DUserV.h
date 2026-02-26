@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDI3DUserVH
 #define MDI3DUserVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "VisAttr.hpp"
 #include "VisCam.hpp"
 #include "VisCanvasView.hpp"
@@ -20,13 +21,10 @@
 #include "VisView.hpp"
 #include "VisLabel.hpp"
 #include "VisTimer.hpp"
-#include <ExtCtrls.hpp>
-#include <Menus.hpp>
-#include <Dialogs.hpp>
 
 
 #include "MDI3DV.h"
-#include "SUISkinEngine.hpp"
+#include "compat/SUISkinEngine.hpp"
 //---------------------------------------------------------------------------
 class TMyControls;
 class COMMONAL_API TMDI3DUser : public TMDI3D
@@ -36,11 +34,11 @@ __published:	// IDE-managed Components
     TLabel *Label1;
     TLabel *Label2;
     TSaveDialog *SaveDialog1;
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall mEditClick(TObject *Sender);
-    void __fastcall mEditFragmentsClick(TObject *Sender);
-    void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
+    void  FormDestroy(TObject *Sender);
+    void  FormCreate(TObject *Sender);
+    void  mEditClick(TObject *Sender);
+    void  mEditFragmentsClick(TObject *Sender);
+    void  FormCloseQuery(TObject *Sender, bool &CanClose);
 private:	// User declarations
 protected:
   virtual void SetMode(TMetaMyMode *nMode);
@@ -51,7 +49,7 @@ public:		// User declarations
     virtual void CustomMouseUp(TMouseButton Button,TShiftState Shift,int X,int Y);
     virtual void CustomKeyDown(WORD &Key,TShiftState Shift);
     virtual void CustomKeyUp(WORD &Key,TShiftState Shift);
-    __fastcall TMDI3DUser(TComponent* Owner,TMainTree* MT);//,const AnsiString& Name,bool load);
+     TMDI3DUser(TComponent* Owner,TMainTree* MT);//,const AnsiString& Name,bool load);
 
     TMyControls* ControlCenter;
 
@@ -60,7 +58,7 @@ public:		// User declarations
     int Epsilon;
 
     TObject* Obj;
-    bool Process_Save_Project();//возвращает истина если ответ не cancel
+    bool Process_Save_Project();//ГўГ®Г§ГўГ°Г Г№Г ГҐГІ ГЁГ±ГІГЁГ­Г  ГҐГ±Г«ГЁ Г®ГІГўГҐГІ Г­ГҐ cancel
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDI3DUser *MDI3DUser;

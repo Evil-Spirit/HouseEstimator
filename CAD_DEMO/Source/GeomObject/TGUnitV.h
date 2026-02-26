@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef TGUnitVH
@@ -57,12 +61,12 @@ public:
     virtual ~TGUnit();
     static TClassNode* StaticType;
     TMyObject* CreateFunction();
-    __property int LinksCount = {read = GetLinksCount};
+    // __property int LinksCount {read=GetLinksCount}; // [manual migration needed]
     TGBaseLink& GetLink(int index);
     const TGBaseLink& GetLink(int index) const;
     int Remove( TGBaseLink* aGLink);
     int Add( TGBaseLink* aGLink);
-    __property bool Fixed = {read = GetFixed, write = SetFixed};
+    // __property bool Fixed {read=GetFixed, write=SetFixed}; // [manual migration needed]
 
 };
 extern COMMONAL_API TClassNode* TGUnit::StaticType;

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef TGCutH
@@ -26,61 +30,61 @@ private:
 	};
 
 	
-	TMTList <TGPolygon>  FPlane;			// Плоскости
+	TMTList <TGPolygon>  FPlane;			// ГЏГ«Г®Г±ГЄГ®Г±ГІГЁ
 
-	__property TGPolygon* FLeft = {read = GetPlane, write = SetPlane, index = 0};	// Левая 
-	__property TGPolygon* FRight = {read = GetPlane, write = SetPlane, index = 1};	// Правая
+	__property TGPolygon* FLeft = {read = GetPlane, write = SetPlane, index = 0};	// Г‹ГҐГўГ Гї 
+	__property TGPolygon* FRight = {read = GetPlane, write = SetPlane, index = 1};	// ГЏГ°Г ГўГ Гї
 
-	void SetPlane(int index, TGPolygon* aPlane);		// Установить плоскость
-	const TGPolygon *GetPlane(int index) const;			// Взять плоскость
+	void SetPlane(int index, TGPolygon* aPlane);		// Г“Г±ГІГ Г­Г®ГўГЁГІГј ГЇГ«Г®Г±ГЄГ®Г±ГІГј
+	const TGPolygon *GetPlane(int index) const;			// Г‚Г§ГїГІГј ГЇГ«Г®Г±ГЄГ®Г±ГІГј
 
-	void AddPlane(TGPolygon *plane);					// Добавить плоскость
-	int RemovePlane(TGPolygon *plane);					// Удалить плоскость
-	TGeomFlags FFlags;									// Геометрические флаги
+	void AddPlane(TGPolygon *plane);					// Г„Г®ГЎГ ГўГЁГІГј ГЇГ«Г®Г±ГЄГ®Г±ГІГј
+	int RemovePlane(TGPolygon *plane);					// Г“Г¤Г Г«ГЁГІГј ГЇГ«Г®Г±ГЄГ®Г±ГІГј
+	TGeomFlags FFlags;									// ГѓГҐГ®Г¬ГҐГІГ°ГЁГ·ГҐГ±ГЄГЁГҐ ГґГ«Г ГЈГЁ
 
 	TBBox FBBox;
 	const TBBox &GetBBox();
 
 protected:
-	void SetPoint(int index, TGPoint* Value);			// Задать точку
+	void SetPoint(int index, TGPoint* Value);			// Г‡Г Г¤Г ГІГј ГІГ®Г·ГЄГі
 public:
 
 	__property const TBBox &BBox = {read = GetBBox};
 	TGCut();
 
-	bool Smooth;	// Сглаженность грани
-	int Tag;		// Тэг пользователя
+	bool Smooth;	// Г‘ГЈГ«Г Г¦ГҐГ­Г­Г®Г±ГІГј ГЈГ°Г Г­ГЁ
+	int Tag;		// Г’ГЅГЈ ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї
 	int Index;
 	
-	bool GetClosed() const;						   	// Замкнутость с точки зрения примыкающих полигонов
-	__property bool Closed = {read = GetClosed};
-	__property TGeomFlags Flags = {read = FFlags, write = FFlags}; 	// Флаги отрезка
+	bool GetClosed() const;						   	// Г‡Г Г¬ГЄГ­ГіГІГ®Г±ГІГј Г± ГІГ®Г·ГЄГЁ Г§Г°ГҐГ­ГЁГї ГЇГ°ГЁГ¬Г»ГЄГ ГѕГ№ГЁГµ ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
+	// __property bool Closed {read=GetClosed}; // [manual migration needed]
+	// __property TGeomFlags Flags {read=FFlags, write=FFlags}; // [manual migration needed]
 
-	__property TGPoint* Src = {read = FPoint[0],write = SetPoint,index = 0};	// Начало
-	__property TGPoint* Dst = {read = FPoint[1],write = SetPoint,index = 1};	// Конец
+	__property TGPoint* Src = {read = FPoint[0],write = SetPoint,index = 0};	// ГЌГ Г·Г Г«Г®
+	__property TGPoint* Dst = {read = FPoint[1],write = SetPoint,index = 1};	// ГЉГ®Г­ГҐГ¶
 
 	__property TGPolygon* Left = {read = GetPlane,  index = 0};
 	__property TGPolygon* Right = {read = GetPlane,  index = 1};
 	
-/*************************************** Вспомагательные функции ******************************************************/
+/*************************************** Г‚Г±ГЇГ®Г¬Г ГЈГ ГІГҐГ«ГјГ­Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ ******************************************************/
 
-/**/bool IsOneFreeSide() const;						// Свободная сторона с точки зрения примыкающих полигонов
-	bool Equals(const TGCut& other) const;			// Аналогичность отрезков
+/**/bool IsOneFreeSide() const;						// Г‘ГўГ®ГЎГ®Г¤Г­Г Гї Г±ГІГ®Г°Г®Г­Г  Г± ГІГ®Г·ГЄГЁ Г§Г°ГҐГ­ГЁГї ГЇГ°ГЁГ¬Г»ГЄГ ГѕГ№ГЁГµ ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
+	bool Equals(const TGCut& other) const;			// ГЂГ­Г Г«Г®ГЈГЁГ·Г­Г®Г±ГІГј Г®ГІГ°ГҐГ§ГЄГ®Гў
 	
-	bool ConsistsDstAndSrc(const TGPoint* R1, const TGPoint* R2) const;	// Содержание обеих точек
-	bool ConsistsPoint(const TGPoint* Point) const;						// Содержание точки
+	bool ConsistsDstAndSrc(const TGPoint* R1, const TGPoint* R2) const;	// Г‘Г®Г¤ГҐГ°Г¦Г Г­ГЁГҐ Г®ГЎГҐГЁГµ ГІГ®Г·ГҐГЄ
+	bool ConsistsPoint(const TGPoint* Point) const;						// Г‘Г®Г¤ГҐГ°Г¦Г Г­ГЁГҐ ГІГ®Г·ГЄГЁ
 
 
 	bool Used() const;
 
-	TGPoint *CanConnect(const TGCut &cut) const;			// Возможность состыковки отрезков
-	TGPoint *GetAnotherPoint(const TGCut &c) const;			// Взять точку отрезка, не граничную с другим отрезком.
-	TGPoint *GetAnotherPoint(const TGPoint* Point) const;	// Взять другую точку отрезка
+	TGPoint *CanConnect(const TGCut &cut) const;			// Г‚Г®Г§Г¬Г®Г¦Г­Г®Г±ГІГј Г±Г®Г±ГІГ»ГЄГ®ГўГЄГЁ Г®ГІГ°ГҐГ§ГЄГ®Гў
+	TGPoint *GetAnotherPoint(const TGCut &c) const;			// Г‚Г§ГїГІГј ГІГ®Г·ГЄГі Г®ГІГ°ГҐГ§ГЄГ , Г­ГҐ ГЈГ°Г Г­ГЁГ·Г­ГіГѕ Г± Г¤Г°ГіГЈГЁГ¬ Г®ГІГ°ГҐГ§ГЄГ®Г¬.
+	TGPoint *GetAnotherPoint(const TGPoint* Point) const;	// Г‚Г§ГїГІГј Г¤Г°ГіГЈГіГѕ ГІГ®Г·ГЄГі Г®ГІГ°ГҐГ§ГЄГ 
 
-	void Cache();			// Кэшировать
-	void Restore();			// Взять из кэша
+	void Cache();			// ГЉГЅГёГЁГ°Г®ГўГ ГІГј
+	void Restore();			// Г‚Г§ГїГІГј ГЁГ§ ГЄГЅГёГ 
 	
-/************************** Системное ******************************************************/
+/************************** Г‘ГЁГ±ГІГҐГ¬Г­Г®ГҐ ******************************************************/
 	static TClassNode* StaticType;
 	TMyObject* CreateFunction();
 	void Assign(TMyObject* MO);

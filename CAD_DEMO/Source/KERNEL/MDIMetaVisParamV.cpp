@@ -1,21 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMetaVisParamV.h"
 #include "MDIObjectEditV.h"
 #include "MDIPointerEditV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIMetaNodeV"
 #pragma resource "*.dfm"
 TMDIMetaVisParam *MDIMetaVisParam;
 //---------------------------------------------------------------------------
-__fastcall TMDIMetaVisParam::TMDIMetaVisParam(TComponent* Owner,TMetaVisParam *N)
+ TMDIMetaVisParam::TMDIMetaVisParam(TComponent* Owner,TMetaVisParam *N)
     : TMDIMetaNode(Owner,N)
 {
 }

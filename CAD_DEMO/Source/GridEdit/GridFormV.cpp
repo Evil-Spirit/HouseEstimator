@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include<vcl.h>
 
@@ -5,7 +9,6 @@
 #include "MTL.h"
 #include "MyTemplates.h"
 
-#pragma hdrstop
 
 #include "GridFormV.h"
 #include "CellGrid.h"
@@ -16,7 +19,6 @@
 #include "ToolBarCellGrid.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "CellGrid"
 #pragma resource "*.dfm"
 TGridForm *GridForm;
@@ -25,7 +27,7 @@ TGridForm *GridForm;
 //---------------------------------------------------------------------------
 int CALLBACK GetFontToMashine(LOGFONT* lplf, TEXTMETRIC* lptm, DWORD dwType, LPARAM lpData);
 
-__fastcall TGridForm::TGridForm(TComponent* Owner)
+ TGridForm::TGridForm(TComponent* Owner)
     : TForm(Owner)
 {
 
@@ -63,12 +65,12 @@ __fastcall TGridForm::TGridForm(TComponent* Owner)
     CellGrid1->StartVisible =true;
 }
 //---------------------------------------------------------------------------
-void __fastcall TGridForm::CellGrid1DrawCell(TObject *Sender, int ACol,
+void  TGridForm::CellGrid1DrawCell(TObject *Sender, int ACol,
       int ARow, TRect &Rect, TGridDrawState State)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TGridForm::StringGrid1DrawCell(TObject *Sender, int ACol,
+void  TGridForm::StringGrid1DrawCell(TObject *Sender, int ACol,
       int ARow, TRect &Rect, TGridDrawState State)
 {
     if ((ACol>0)&&(ARow>0))
@@ -78,7 +80,7 @@ void __fastcall TGridForm::StringGrid1DrawCell(TObject *Sender, int ACol,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGridForm::Button5Click(TObject *Sender)
+void  TGridForm::Button5Click(TObject *Sender)
 {
     int Start = GetTickCount();
     for (int i=0; i<100; i++)
@@ -91,19 +93,19 @@ void __fastcall TGridForm::Button5Click(TObject *Sender)
     CellGrid1->Invalidate();
 }
 //---------------------------------------------------------------------------
-void __fastcall TGridForm::FormActivate(TObject *Sender)
+void  TGridForm::FormActivate(TObject *Sender)
 {
 
     if (CellGrid1 !=NULL && !CellGrid1->Focused )
         ::SetFocus(CellGrid1->Handle);
 }
 //---------------------------------------------------------------------------
-void __fastcall TGridForm::Button8Click(TObject *Sender)
+void  TGridForm::Button8Click(TObject *Sender)
 {
     CellGrid1->DoModalFormSection();
 }
 //---------------------------------------------------------------------------
-void __fastcall TGridForm::Button1Click(TObject *Sender)
+void  TGridForm::Button1Click(TObject *Sender)
 {
     if (CellGrid1 !=NULL)
     {
@@ -148,7 +150,7 @@ TCellGrid* FindGrid()
         return (TCellGrid*)ComponentExists(__classid(TCellGrid),Application->MainForm);
 }
 
-void __fastcall TGridForm::ApplicationEvents1Idle(TObject *Sender,
+void  TGridForm::ApplicationEvents1Idle(TObject *Sender,
       bool &Done)
 {
 
@@ -165,7 +167,7 @@ void __fastcall TGridForm::ApplicationEvents1Idle(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGridForm::Button2Click(TObject *Sender)
+void  TGridForm::Button2Click(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -177,7 +179,7 @@ void __fastcall TGridForm::Button2Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGridForm::Button3Click(TObject *Sender)
+void  TGridForm::Button3Click(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -190,7 +192,7 @@ void __fastcall TGridForm::Button3Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TGridForm::Button4Click(TObject *Sender)
+void  TGridForm::Button4Click(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -202,7 +204,7 @@ void __fastcall TGridForm::Button4Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGridForm::Button6Click(TObject *Sender)
+void  TGridForm::Button6Click(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -216,7 +218,7 @@ void __fastcall TGridForm::Button6Click(TObject *Sender)
 
 bool focus=false;
 int iIndex=0;
-void __fastcall TGridForm::Button9Click(TObject *Sender)
+void  TGridForm::Button9Click(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -227,7 +229,7 @@ void __fastcall TGridForm::Button9Click(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TGridForm::EditCutExecute(TObject *Sender)
+void  TGridForm::EditCutExecute(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -238,7 +240,7 @@ void __fastcall TGridForm::EditCutExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGridForm::EditCopyExecute(TObject *Sender)
+void  TGridForm::EditCopyExecute(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -248,7 +250,7 @@ void __fastcall TGridForm::EditCopyExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGridForm::EditPasteExecute(TObject *Sender)
+void  TGridForm::EditPasteExecute(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -267,7 +269,7 @@ void __fastcall TGridForm::EditPasteExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGridForm::EditSelectAllExecute(TObject *Sender)
+void  TGridForm::EditSelectAllExecute(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -277,7 +279,7 @@ void __fastcall TGridForm::EditSelectAllExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGridForm::EditDeleteExecute(TObject *Sender)
+void  TGridForm::EditDeleteExecute(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -287,7 +289,7 @@ void __fastcall TGridForm::EditDeleteExecute(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TGridForm::EditClearExecute(TObject *Sender)
+void  TGridForm::EditClearExecute(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -298,7 +300,7 @@ void __fastcall TGridForm::EditClearExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGridForm::EditFormatCellExecute(TObject *Sender)
+void  TGridForm::EditFormatCellExecute(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)
@@ -309,7 +311,7 @@ void __fastcall TGridForm::EditFormatCellExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TGridForm::Button7Click(TObject *Sender)
+void  TGridForm::Button7Click(TObject *Sender)
 {
     if (CellGrid1->FixedCols ==2)
     {
@@ -323,7 +325,7 @@ void __fastcall TGridForm::Button7Click(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TGridForm::Button10Click(TObject *Sender)
+void  TGridForm::Button10Click(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     int Start;
@@ -335,7 +337,7 @@ void __fastcall TGridForm::Button10Click(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TGridForm::PopupMenuCellGridPopup(TObject *Sender)
+void  TGridForm::PopupMenuCellGridPopup(TObject *Sender)
 {
     TCellGrid* CellGrid1 =FindGrid();
     if (CellGrid1 !=NULL)

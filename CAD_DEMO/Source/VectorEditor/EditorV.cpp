@@ -1,15 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "math.h"
 #include <Poligon.h>
 #include "EditorV.h"
 
-#include "Controls.hpp"
 //---------------------------------------------------------------------------
 #include "ProgramPropertyV.h"
 #include "ParamEnteringV.h"
@@ -37,7 +39,6 @@
 #include "G2DAngleLinkV.h"
 #include "G2DGeomV.h"
 
-#pragma package(smart_init)
 #pragma link "VisAttr"
 #pragma link "VisCam"
 #pragma link "VisCanvasView"
@@ -67,7 +68,7 @@ MBTi EPSAngleMIN = M_PI/18;
 T2DGObject TestObj1;
 T2DGObject TestObj2;
 
-__fastcall TEditor2D::TEditor2D(TComponent* Owner)
+ TEditor2D::TEditor2D(TComponent* Owner)
     :TForm(Owner)
 {
     FInvalidated = false;
@@ -358,14 +359,14 @@ TIntVec TEditor2D::ProjectToScreen(const TIntVec& Vv)
     return  P;
 }*/
 
-void __fastcall TEditor2D::FormShow(TObject *Sender)
+void  TEditor2D::FormShow(TObject *Sender)
 {
     if (MyView == NULL)
         return;
     ::SetFocus(MyView->Handle);
 }
 
-void __fastcall TEditor2D::PopupMenuItemClick(TObject *Sender)
+void  TEditor2D::PopupMenuItemClick(TObject *Sender)
 {
     if ( Sender->ClassType() == __classid(TMenuItem) )
     {
@@ -378,17 +379,17 @@ void __fastcall TEditor2D::PopupMenuItemClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TEditor2D::ActionExecute(TObject *Sender)
+void  TEditor2D::ActionExecute(TObject *Sender)
 {
-    //Без этого action not enabled
+    //ГЃГҐГ§ ГЅГІГ®ГЈГ® action not enabled
     int i = 0;
-    //Без этого появляется ворнинг
+    //ГЃГҐГ§ ГЅГІГ®ГЈГ® ГЇГ®ГїГўГ«ГїГҐГІГ±Гї ГўГ®Г°Г­ГЁГ­ГЈ
     if (i) i++;
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TEditor2D::ALExecute(TBasicAction *Action, bool &Handled)
+void  TEditor2D::ALExecute(TBasicAction *Action, bool &Handled)
 {
     MyControls.Exit(this);
     MyControls.ActiveList = Action->Tag ;
@@ -396,7 +397,7 @@ void __fastcall TEditor2D::ALExecute(TBasicAction *Action, bool &Handled)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::TBPropertyClick(TObject *Sender)
+void  TEditor2D::TBPropertyClick(TObject *Sender)
 {
     ProgramProperty->ShowModal();
 }
@@ -588,7 +589,7 @@ void TEditor2D::EditorMouseMove(TObject *Sender, TShiftState Shift,
     TestObj2.PointPen.Color = clRed;
     TestObj2.RibPen.Color = clRed;
 
-    //база
+    //ГЎГ Г§Г 
     TIntVec Point1 = TIntVec(-1,0,0);
     TIntVec Point2 = TIntVec(1,0,0);
     MBTi Angl1 = 112.5;
@@ -687,7 +688,7 @@ void TEditor2D::EditorMouseMove(TObject *Sender, TShiftState Shift,
     //Sk1 = PointOfLineOnCut(GP->Point,GP1->Point,c1);
     //TestObj1.AddPoint( Sk1 );
     //---------------------------------------------------------------
-    //генерация петли
+    //ГЈГҐГ­ГҐГ°Г Г¶ГЁГї ГЇГҐГІГ«ГЁ
     TestObj1.Delete(Link);
     TestObj1.Delete(Cut1);
     TestObj1.Delete(Cut2);
@@ -723,7 +724,7 @@ void TEditor2D::EditorMouseMove(TObject *Sender, TShiftState Shift,
 
 
 
-void __fastcall TEditor2D::TBViewAllClick(TObject *Sender)
+void  TEditor2D::TBViewAllClick(TObject *Sender)
 {
     TIntVec AllBB[2];
     AllBB[0] = TIntVec(1<<20,1<<20,1<<20);
@@ -743,9 +744,9 @@ void __fastcall TEditor2D::TBViewAllClick(TObject *Sender)
 
 
 
-void __fastcall TEditor2D::ALUpdate(TBasicAction *_Action, bool &Handled)
+void  TEditor2D::ALUpdate(TBasicAction *_Action, bool &Handled)
 {
-    //без проверки
+    //ГЎГҐГ§ ГЇГ°Г®ГўГҐГ°ГЄГЁ
     TAction* Action = (TAction*)_Action;
 //    Action->AutoCheck = true;
     int ind = Action->Tag;
@@ -761,7 +762,7 @@ void __fastcall TEditor2D::ALUpdate(TBasicAction *_Action, bool &Handled)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::TBZoomAddClick(TObject *Sender)
+void  TEditor2D::TBZoomAddClick(TObject *Sender)
 {
     MyView->A = TIntVec(*MyView->View->Camera->LA_LookAt);
     MyView->PlaneN = ( MyView->A - TIntVec(*MyView->View->Camera->LA_Position) ).Normalize();
@@ -774,7 +775,7 @@ void __fastcall TEditor2D::TBZoomAddClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::TBZoomSubClick(TObject *Sender)
+void  TEditor2D::TBZoomSubClick(TObject *Sender)
 {
     MyView->A = TIntVec(*MyView->View->Camera->LA_LookAt);
     MyView->PlaneN = ( MyView->A - TIntVec(*MyView->View->Camera->LA_Position) ).Normalize();
@@ -788,7 +789,7 @@ void __fastcall TEditor2D::TBZoomSubClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TEditor2D::FormResize(TObject *Sender)
+void  TEditor2D::FormResize(TObject *Sender)
 {
     Grid.Attr.ReBuild = true;
 }

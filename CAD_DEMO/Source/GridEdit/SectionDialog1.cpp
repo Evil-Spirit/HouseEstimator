@@ -1,27 +1,29 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "CellGrid.h"
 #include "SectionDialog1.h"
 
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TSectionDialog *SectionDialog;
 //---------------------------------------------------------------------------
-__fastcall TSectionDialog::TSectionDialog(TComponent* Owner,TCellGrid* _CellGrid)
+ TSectionDialog::TSectionDialog(TComponent* Owner,TCellGrid* _CellGrid)
     : TForm(Owner)
 {
     CellGrid = _CellGrid;
 
     TRect AncrCurr = CellGrid->GetAnchorCurrentSort();
 
-// --------- Êîððåêòèðîâêà åñëè âûäåëåíû ïîëíîñòüþ (Ñòðîêà, Ñòîëáåö, Òàáëèöà)
+// --------- ÃŠÃ®Ã°Ã°Ã¥ÃªÃ²Ã¨Ã°Ã®Ã¢ÃªÃ  Ã¥Ã±Ã«Ã¨ Ã¢Ã»Ã¤Ã¥Ã«Ã¥Ã­Ã» Ã¯Ã®Ã«Ã­Ã®Ã±Ã²Ã¼Ã¾ (Ã‘Ã²Ã°Ã®ÃªÃ , Ã‘Ã²Ã®Ã«Ã¡Ã¥Ã¶, Ã’Ã Ã¡Ã«Ã¨Ã¶Ã )
     if (CellGrid->SelectColumn) AncrCurr.Top =1;
     if (CellGrid->SelectString) AncrCurr.Left =1;
     if (CellGrid->SelectTable)
@@ -29,25 +31,25 @@ __fastcall TSectionDialog::TSectionDialog(TComponent* Owner,TCellGrid* _CellGrid
         AncrCurr.Top =1;
         AncrCurr.Left =1;
     }
-// --------- Êîððåêòèðîâêà åñëè âûäåëåíû ïîëíîñòüþ (Ñòðîêà, Ñòîëáåö, Òàáëèöà) End
+// --------- ÃŠÃ®Ã°Ã°Ã¥ÃªÃ²Ã¨Ã°Ã®Ã¢ÃªÃ  Ã¥Ã±Ã«Ã¨ Ã¢Ã»Ã¤Ã¥Ã«Ã¥Ã­Ã» Ã¯Ã®Ã«Ã­Ã®Ã±Ã²Ã¼Ã¾ (Ã‘Ã²Ã°Ã®ÃªÃ , Ã‘Ã²Ã®Ã«Ã¡Ã¥Ã¶, Ã’Ã Ã¡Ã«Ã¨Ã¶Ã ) End
 
     if (AncrCurr.Left ==1)
-    {// Ãîðèçîíòàëüíàÿ ñåêöèÿ
+    {// ÃƒÃ®Ã°Ã¨Ã§Ã®Ã­Ã²Ã Ã«Ã¼Ã­Ã Ã¿ Ã±Ã¥ÃªÃ¶Ã¨Ã¿
         Edit1->Text = "Line " + IntToStr(AncrCurr.Top);
     } else
     if (AncrCurr.Top ==1)
-    {// Âåðòèêàëüíàÿ ñåêöèÿ
+    {// Ã‚Ã¥Ã°Ã²Ã¨ÃªÃ Ã«Ã¼Ã­Ã Ã¿ Ã±Ã¥ÃªÃ¶Ã¨Ã¿
         Edit1->Text = "Column " + IntToStr(AncrCurr.Left);
     }
 
 }
 //---------------------------------------------------------------------------
-void __fastcall TSectionDialog::Button2Click(TObject *Sender)
+void  TSectionDialog::Button2Click(TObject *Sender)
 {
 Close();
 }
 //---------------------------------------------------------------------------
-void __fastcall TSectionDialog::Button1Click(TObject *Sender)
+void  TSectionDialog::Button1Click(TObject *Sender)
 {
     TRect AncrCurr = CellGrid->GetAnchorCurrentSort();
     int StartX =AncrCurr.Left;
@@ -55,7 +57,7 @@ void __fastcall TSectionDialog::Button1Click(TObject *Sender)
     int EndX =AncrCurr.Right;
     int EndY =AncrCurr.Bottom;
 
-// --------- Êîððåêòèðîâêà åñëè âûäåëåíû ïîëíîñòüþ (Ñòðîêà, Ñòîëáåö, Òàáëèöà)
+// --------- ÃŠÃ®Ã°Ã°Ã¥ÃªÃ²Ã¨Ã°Ã®Ã¢ÃªÃ  Ã¥Ã±Ã«Ã¨ Ã¢Ã»Ã¤Ã¥Ã«Ã¥Ã­Ã» Ã¯Ã®Ã«Ã­Ã®Ã±Ã²Ã¼Ã¾ (Ã‘Ã²Ã°Ã®ÃªÃ , Ã‘Ã²Ã®Ã«Ã¡Ã¥Ã¶, Ã’Ã Ã¡Ã«Ã¨Ã¶Ã )
     if (CellGrid->SelectColumn) AncrCurr.Top =1;
     if (CellGrid->SelectString) AncrCurr.Left =1;
     if (CellGrid->SelectTable)
@@ -63,7 +65,7 @@ void __fastcall TSectionDialog::Button1Click(TObject *Sender)
         AncrCurr.Top =1;
         AncrCurr.Left =1;
     }
-// --------- Êîððåêòèðîâêà åñëè âûäåëåíû ïîëíîñòüþ (Ñòðîêà, Ñòîëáåö, Òàáëèöà) End
+// --------- ÃŠÃ®Ã°Ã°Ã¥ÃªÃ²Ã¨Ã°Ã®Ã¢ÃªÃ  Ã¥Ã±Ã«Ã¨ Ã¢Ã»Ã¤Ã¥Ã«Ã¥Ã­Ã» Ã¯Ã®Ã«Ã­Ã®Ã±Ã²Ã¼Ã¾ (Ã‘Ã²Ã°Ã®ÃªÃ , Ã‘Ã²Ã®Ã«Ã¡Ã¥Ã¶, Ã’Ã Ã¡Ã«Ã¨Ã¶Ã ) End
     StartX =AncrCurr.Left;
     StartY =AncrCurr.Top;
 
@@ -71,7 +73,7 @@ void __fastcall TSectionDialog::Button1Click(TObject *Sender)
 
     if (Edit1->Text.Length() >0)
     if (AncrCurr.Left ==1)
-    {// Ãîðèçîíòàëüíàÿ ñåêöèÿ
+    {// ÃƒÃ®Ã°Ã¨Ã§Ã®Ã­Ã²Ã Ã«Ã¼Ã­Ã Ã¿ Ã±Ã¥ÃªÃ¶Ã¨Ã¿
         int x=0;
         bool BeSection = false;
         bool BeSection2 = false;
@@ -81,7 +83,7 @@ void __fastcall TSectionDialog::Button1Click(TObject *Sender)
             if (CellGrid->GetCellSimple(x,y) != NULL) BeSection2 = true;
 
             if (BeSection2)
-            {// Ñåêöèÿ ñóùåñòâóåò è å¸ íàäî óäàëèòü
+            {// Ã‘Ã¥ÃªÃ¶Ã¨Ã¿ Ã±Ã³Ã¹Ã¥Ã±Ã²Ã¢Ã³Ã¥Ã² Ã¨ Ã¥Â¸ Ã­Ã Ã¤Ã® Ã³Ã¤Ã Ã«Ã¨Ã²Ã¼
                 BeSection2 = false;
                 int Start =CellGrid->GetCell(x,y)->UnionRect->Top;
                 int End =CellGrid->GetCell(x,y)->UnionRect->Bottom;
@@ -117,7 +119,7 @@ void __fastcall TSectionDialog::Button1Click(TObject *Sender)
         for (int y=StartY; y<=EndY; y++)
         {
             if (y == StartY)
-            {// Ñîçäàòü ñåêöèþ
+            {// Ã‘Ã®Ã§Ã¤Ã Ã²Ã¼ Ã±Ã¥ÃªÃ¶Ã¨Ã¾
 
                 if (CellGrid->GetCellSimple(x,y) == NULL) CellGrid->NewCell(x,y);
                 if (CellGrid->GetCellSimple(x,y)->UnionRect == NULL) CellGrid->GetCellSimple(x,y)->UnionRect = new TRect();
@@ -137,7 +139,7 @@ void __fastcall TSectionDialog::Button1Click(TObject *Sender)
         }
     } else
     if (AncrCurr.Top ==1)
-    {// Âåðòèêàëüíàÿ ñåêöèÿ
+    {// Ã‚Ã¥Ã°Ã²Ã¨ÃªÃ Ã«Ã¼Ã­Ã Ã¿ Ã±Ã¥ÃªÃ¶Ã¨Ã¿
         int y=0;
         bool BeSection = false;
         bool BeSection2 = false;
@@ -147,7 +149,7 @@ void __fastcall TSectionDialog::Button1Click(TObject *Sender)
             if (CellGrid->GetCellSimple(x,y) != NULL) BeSection2 = true;
 
             if (BeSection2)
-            {// Ñåêöèÿ ñóùåñòâóåò è å¸ íàäî óäàëèòü
+            {// Ã‘Ã¥ÃªÃ¶Ã¨Ã¿ Ã±Ã³Ã¹Ã¥Ã±Ã²Ã¢Ã³Ã¥Ã² Ã¨ Ã¥Â¸ Ã­Ã Ã¤Ã® Ã³Ã¤Ã Ã«Ã¨Ã²Ã¼
                 BeSection2 = false;
                 int Start =CellGrid->GetCell(x,y)->UnionRect->Left;
                 int End =CellGrid->GetCell(x,y)->UnionRect->Right;

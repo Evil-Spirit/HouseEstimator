@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 #include "MyEdit.h"
 #include "math.h"
 #include "EditorV.h"
@@ -100,8 +103,7 @@ AnsiString TAdditionalInfinityLine::OnHint()
     if (ExecutedId == 2)
     {
         MBTi Angle = AngleRadOX(Point, EditorXD->MyCursor.Position);
-        return " Óãîë: "+FloatToStrF(Angle*180/M_PI, ffGeneral, 4, EditorXD->Grid.Precision);
+        return " Ã“Ã£Ã®Ã«: "+FloatToStrF(Angle*180/M_PI, ffGeneral, 4, EditorXD->Grid.Precision);
     }
     return "";
 }
-#pragma package(smart_init)

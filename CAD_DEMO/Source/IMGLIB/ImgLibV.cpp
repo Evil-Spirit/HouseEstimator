@@ -1,11 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "ImgLibV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 //ImageLibrary->ActionImages
 //ImageLibrary->ilStandart
@@ -14,13 +16,13 @@
 //ImageLibrary->BlocksImageList
 TImageLibrary *ImageLibrary = NULL;
 //---------------------------------------------------------------------------
-__fastcall TImageLibrary::TImageLibrary(TComponent* Owner)
+ TImageLibrary::TImageLibrary(TComponent* Owner)
     : TDataModule(Owner)
 {
     ImageLibrary = this;     
 }
 //---------------------------------------------------------------------------
-void __fastcall TImageLibrary::DataModuleDestroy(TObject *Sender)
+void  TImageLibrary::DataModuleDestroy(TObject *Sender)
 {
     ImageLibrary = NULL;
 }

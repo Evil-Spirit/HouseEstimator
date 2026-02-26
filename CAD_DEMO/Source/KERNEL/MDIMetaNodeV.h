@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMetaNodeVH
@@ -5,13 +9,8 @@
 //---------------------------------------------------------------------------
 #include "MetaClasses.h"
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MyMDIChildV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIMetaNode : public TMyMDIChild
 {
@@ -39,15 +38,15 @@ __published:	// IDE-managed Components
     TImage *Image2;
     TLabel *lGUID;
     TEdit *eGUID;
-    void __fastcall btOKClick(TObject *Sender);
-    void __fastcall btCancelClick(TObject *Sender);
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall Image2Click(TObject *Sender);
-    void __fastcall Image2DblClick(TObject *Sender);
+    void  btOKClick(TObject *Sender);
+    void  btCancelClick(TObject *Sender);
+    void  FormDestroy(TObject *Sender);
+    void  Image2Click(TObject *Sender);
+    void  Image2DblClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     TMetaNode *MetaNode;
-    __fastcall TMDIMetaNode(TComponent* Owner,TMetaNode *N);
+     TMDIMetaNode(TComponent* Owner,TMetaNode *N);
     virtual void MNRefresh();
     virtual void MNApply();
     virtual bool MNChecked();

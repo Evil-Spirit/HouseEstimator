@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyGL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <Poligon.h>
-#pragma hdrstop
 #include "MyEdit.h"
 #include "math.h"
 #include "EditorV.h"
@@ -878,14 +881,13 @@ void TSelect::OnRender()
 AnsiString TSelect::OnHint()
 {
     if (ExecutedId == 2)
-        return " ("+FloatToStrF(Point1.x, ffGeneral, 4, Sender->Grid.Precision)+"; "+FloatToStrF(Point1.y, ffGeneral, 4, Sender->Grid.Precision)+")  ("+FloatToStrF(Point2.x, ffGeneral, 4, Sender->Grid.Precision)+"; "+FloatToStrF(Point2.y, ffGeneral, 4, Sender->Grid.Precision)+")    Øèðèíà: "+FloatToStrF(fabs(Point2.x - Point1.x), ffGeneral, 4, Sender->Grid.Precision)+" Âûñîòà: "+FloatToStrF(fabs(Point2.y - Point1.y), ffGeneral, 4, Sender->Grid.Precision);
+        return " ("+FloatToStrF(Point1.x, ffGeneral, 4, Sender->Grid.Precision)+"; "+FloatToStrF(Point1.y, ffGeneral, 4, Sender->Grid.Precision)+")  ("+FloatToStrF(Point2.x, ffGeneral, 4, Sender->Grid.Precision)+"; "+FloatToStrF(Point2.y, ffGeneral, 4, Sender->Grid.Precision)+")    Ã˜Ã¨Ã°Ã¨Ã­Ã : "+FloatToStrF(fabs(Point2.x - Point1.x), ffGeneral, 4, Sender->Grid.Precision)+" Ã‚Ã»Ã±Ã®Ã²Ã : "+FloatToStrF(fabs(Point2.y - Point1.y), ffGeneral, 4, Sender->Grid.Precision);
     if (ExecutedId == 15 || ExecutedId == 17)
         return " ("+FloatToStrF(SelectedMF->RotateCenter.x, ffGeneral, 4, Sender->Grid.Precision)+"; "+FloatToStrF(SelectedMF->RotateCenter.y, ffGeneral, 4, Sender->Grid.Precision)+")";
     if (ExecutedId == 19)
     {
         MBTi Angle = AngleRad(UIP.NewCursorPos,SelectedMF->RotateCenter,FirstVector);
-        return " ("+FloatToStrF(SelectedMF->RotateCenter.x, ffGeneral, 4, Sender->Grid.Precision)+"; "+FloatToStrF(SelectedMF->RotateCenter.y, ffGeneral, 4, Sender->Grid.Precision)+")      Óãîë: "+FloatToStrF(Angle*180/M_PI, ffGeneral, 4, Sender->Grid.Precision);
+        return " ("+FloatToStrF(SelectedMF->RotateCenter.x, ffGeneral, 4, Sender->Grid.Precision)+"; "+FloatToStrF(SelectedMF->RotateCenter.y, ffGeneral, 4, Sender->Grid.Precision)+")      Ã“Ã£Ã®Ã«: "+FloatToStrF(Angle*180/M_PI, ffGeneral, 4, Sender->Grid.Precision);
     }
     return "";
 }
-#pragma package(smart_init)

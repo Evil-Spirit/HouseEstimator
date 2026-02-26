@@ -1,6 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 
 #include "Usefuls.h"
 #include "MTL.h"
@@ -12,25 +16,23 @@
 #include "VCLSCILEXERV.h"
 
 
-#pragma hdrstop
 
 #include "DebugerU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TDebuger *Debuger;
 //---------------------------------------------------------------------------
-// Конструктор и деструктор для TVariables
+// ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГЁ Г¤ГҐГ±ГІГ°ГіГЄГІГ®Г° Г¤Г«Гї TVariables
 //---------------------------------------------------------------------------
 
-__fastcall TVariables::TVariables() : TObject()
+ TVariables::TVariables() : TObject()
 {
     Name = new TStringList;
     Type = new TStringList;
     Value = new TStringList;
 };
 
-__fastcall TVariables::~TVariables()
+ TVariables::~TVariables()
 {
     delete Name;
     delete Type;
@@ -38,14 +40,14 @@ __fastcall TVariables::~TVariables()
     delete this;
 }
 
-int __fastcall TVariables::Total()
+int  TVariables::Total()
 {
     return Name->Count;
 }
 //---------------------------------------------------------------------------
-// Конструктор и деструктор TDebuger
+// ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГЁ Г¤ГҐГ±ГІГ°ГіГЄГІГ®Г° TDebuger
 //---------------------------------------------------------------------------
-__fastcall TDebuger::TDebuger(TComponent* Owner)
+ TDebuger::TDebuger(TComponent* Owner)
     : TForm(Owner)
 {
     hThread = NULL;
@@ -53,7 +55,7 @@ __fastcall TDebuger::TDebuger(TComponent* Owner)
     LuaAllOpen();
 }
 //---------------------------------------------------------------------------
-__fastcall TDebuger::~TDebuger()
+ TDebuger::~TDebuger()
 {
     delete this->Local;
     delete this->Global;
@@ -62,9 +64,9 @@ __fastcall TDebuger::~TDebuger()
 //    delete this->Editor;
 }
 //---------------------------------------------------------------------------
-//Процедуры и функции вне класса TDebuger
+//ГЏГ°Г®Г¶ГҐГ¤ГіГ°Г» ГЁ ГґГіГ­ГЄГ¶ГЁГЁ ГўГ­ГҐ ГЄГ«Г Г±Г±Г  TDebuger
 //---------------------------------------------------------------------------
-int __fastcall DebugFunc( LPVOID lpParam )
+int  DebugFunc( LPVOID lpParam )
 {   DWORD i=0;
     while ((Debuger->bDebug)&&(Debuger->hThread))
     {
@@ -81,21 +83,21 @@ void hooker(lua_State *l,lua_Debug *lua_d)
     SuspendThread(Debuger->hThread);
 }
 //---------------------------------------------------------------------------
-//Методы класса TDebuger
+//ГЊГҐГІГ®Г¤Г» ГЄГ«Г Г±Г±Г  TDebuger
 //---------------------------------------------------------------------------
-void __fastcall TDebuger::ExitItemClick(TObject *Sender)
+void  TDebuger::ExitItemClick(TObject *Sender)
 {
     this->Close();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebuger::TraceInItemClick(TObject *Sender)
+void  TDebuger::TraceInItemClick(TObject *Sender)
 {
     ResumeThread(hThread);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebuger::StartItemClick(TObject *Sender)
+void  TDebuger::StartItemClick(TObject *Sender)
 {
     DWORD dwThrdParam = 1;
     unsigned int dwThreadId;
@@ -111,7 +113,7 @@ void __fastcall TDebuger::StartItemClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebuger::DebugItemClick(TObject *Sender)
+void  TDebuger::DebugItemClick(TObject *Sender)
 {
     TraceInItem->Enabled = this->bDebug;
     CloseItem->Enabled = this->bDebug;
@@ -119,14 +121,14 @@ void __fastcall TDebuger::DebugItemClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebuger::StackItemClick(TObject *Sender)
+void  TDebuger::StackItemClick(TObject *Sender)
 {
     if (this->StackWnd!=NULL) this->StackWnd->WindowState=wsNormal;
     else this->StackWnd = new TStackWindow(Debuger);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebuger::LocalItemClick(TObject *Sender)
+void  TDebuger::LocalItemClick(TObject *Sender)
 {
     if (this->Local!=NULL) this->Local->WindowState=wsNormal;
     else
@@ -137,7 +139,7 @@ void __fastcall TDebuger::LocalItemClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebuger::GlobalItemClick(TObject *Sender)
+void  TDebuger::GlobalItemClick(TObject *Sender)
 {
     if (this->Global!=NULL) this->Global->WindowState=wsNormal;
     else
@@ -148,13 +150,13 @@ void __fastcall TDebuger::GlobalItemClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebuger::CloseItemClick(TObject *Sender)
+void  TDebuger::CloseItemClick(TObject *Sender)
 {
     this->bDebug = false;
     if (hThread) ResumeThread(hThread);
 }
 //---------------------------------------------------------------------------
-//Невизуальные функции
+//ГЌГҐГўГЁГ§ГіГ Г«ГјГ­Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ
 //---------------------------------------------------------------------------
 TVariable *TDebuger::GetGlobalValue(lua_State *l,AnsiString Name)
 {

@@ -1,10 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <basepch.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 USEFORM("ImgLibV.cpp", ImageLibrary); /* TDataModule: File Type */
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 
 //   Package source.

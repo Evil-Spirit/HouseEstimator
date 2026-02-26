@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MyTemplates.h"
 #include "MTL.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "ToolBarU.h"
 #include "DialogEditorToolsU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 
 TToolBarForm *ToolBarF = NULL;
 //---------------------------------------------------------------------------
-__fastcall TToolBarForm::TToolBarForm(TComponent* Owner) : TForm(Owner)
+ TToolBarForm::TToolBarForm(TComponent* Owner) : TForm(Owner)
 {
     Dialog = NULL;
 //    ToolBarF = this;

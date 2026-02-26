@@ -56,6 +56,8 @@
 #include <QOpenGLWidget>
 #include <QPrintDialog>
 #include <QPrinter>
+#include <QTextStream>
+#include <QFile>
 #include <cstdarg>
 
 // ---------------------------------------------------------------------------
@@ -118,9 +120,19 @@ static const TColor clHighlightText = 0xFFFFFF;
 
 // ---------------------------------------------------------------------------
 // TRect / TPoint / TSize
+// In VisIT_stubs.hpp we define lightweight structs; here we extend them
+// to also alias Qt types where convenient.
 // ---------------------------------------------------------------------------
-typedef QRect  TRect;
-typedef QPoint TPoint;
+// TPoint and TRect already defined in VisIT_stubs.hpp (included via compat).
+// Provide QPoint/QRect conversion helpers.
+#ifndef TPOINT_DEFINED
+#  define TPOINT_DEFINED
+struct TPoint { int x, y; TPoint(int _x=0,int _y=0):x(_x),y(_y){} };
+#endif
+#ifndef TRECT_DEFINED
+#  define TRECT_DEFINED
+struct TRect { int left,top,right,bottom; TRect(int l=0,int t=0,int r=0,int b=0):left(l),top(t),right(r),bottom(b){} int Width() const{return right-left;} int Height() const{return bottom-top;} };
+#endif
 typedef QSize  TSize;
 
 // ---------------------------------------------------------------------------
@@ -143,6 +155,9 @@ public:
     void Strings(int i, const AnsiString& v) { replace(i, v.toQString()); }
     AnsiString operator[](int i) const { return AnsiString(at(i)); }
     AnsiString Text() const          { return AnsiString(join('\n')); }
+    // CommaText: Borland property - get/set as comma-separated string
+    AnsiString CommaText() const     { return AnsiString(join(',')); }
+    void CommaText(const AnsiString& s) { clear(); for (auto& p : s.toQString().split(',')) append(p.trimmed()); }
     void SaveToFile(const AnsiString& fn) const {
         QFile f(fn.toQString());
         if (f.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -210,7 +225,7 @@ static const int mrNo     = 7;
 // ---------------------------------------------------------------------------
 // TApplication stub
 // ---------------------------------------------------------------------------
-class TApplication {
+class TApplication : public QObject {
 public:
     TApplication() : MainForm(nullptr) {}
     void ShowException(std::exception* e) {
@@ -246,6 +261,12 @@ class EAbort       : public Exception { public: using Exception::Exception; };
 class EAccessViolation : public Exception { public: using Exception::Exception; };
 class EOutOfMemory : public Exception { public: using Exception::Exception; };
 class EInvalidCast : public Exception { public: using Exception::Exception; };
+
+// ---------------------------------------------------------------------------
+// TClass – Borland metaclass type (maps to std::type_info for type checking)
+// ---------------------------------------------------------------------------
+#include <typeinfo>
+typedef const std::type_info TClass;
 
 // ---------------------------------------------------------------------------
 // TObject – base class for VCL objects

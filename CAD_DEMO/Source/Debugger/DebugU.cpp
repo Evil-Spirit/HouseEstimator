@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "MyRegTreeV.h"
-#pragma hdrstop
 
 #include "LuaModuleV.h"
 #include "LuaStationV.h"
@@ -32,14 +35,14 @@ TLuaModule* LM = NULL;
 
 PROCESS_INFORMATION pi;
 
-void __fastcall InitDebug()
+void  InitDebug()
 {   
     AllGVars->Clear();
     AllLVars->Clear();
     AllStack->Clear();
 }
 
-void __fastcall CloseDebug()
+void  CloseDebug()
 {
     if (DebugMode!=DBGMODE_STOP)
     {
@@ -62,7 +65,7 @@ void __fastcall CloseDebug()
     TerminateProcess(pi.hProcess,0);
 }
 
-void __fastcall RunProcess(AnsiString appName, AnsiString appCmdLine)
+void  RunProcess(AnsiString appName, AnsiString appCmdLine)
 {
     if (FileMap)
     {
@@ -94,7 +97,7 @@ void __fastcall RunProcess(AnsiString appName, AnsiString appCmdLine)
 }
 
 //---------------------------------------------------------------------------
-__fastcall TDebugForm::TDebugForm(TComponent *Owner)
+ TDebugForm::TDebugForm(TComponent *Owner)
 	: TForm(Owner)
 {
     TLuaStation();
@@ -108,13 +111,13 @@ __fastcall TDebugForm::TDebugForm(TComponent *Owner)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::FormCreate(TObject *Sender)
+void  TDebugForm::FormCreate(TObject *Sender)
 {
     InitDebug();
     RunProcess("pConfig.exe"," DEBUG INIT");
 }
 //---------------------------------------------------------------------------
-__fastcall TDebugForm::~TDebugForm()
+ TDebugForm::~TDebugForm()
 {
     CloseDebug();
     if (GlobalVars) delete GlobalVars;
@@ -130,7 +133,7 @@ __fastcall TDebugForm::~TDebugForm()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::OnTreeDblClick(TObject *Sender)
+void  TDebugForm::OnTreeDblClick(TObject *Sender)
 {
     TMyRegObject *Data = NULL;
     TTreeNode *Item = ((TTreeView*)Sender)->Selected;
@@ -148,7 +151,7 @@ void __fastcall TDebugForm::OnTreeDblClick(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::OnBrkpntDblClick(TObject *Sender)
+void  TDebugForm::OnBrkpntDblClick(TObject *Sender)
 {
     TListView *List = (TListView*)Sender;
     TListItem *Item = List->Selected;
@@ -165,71 +168,71 @@ void __fastcall TDebugForm::OnBrkpntDblClick(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::ViewStackUpdate(TObject *Sender)
+void  TDebugForm::ViewStackUpdate(TObject *Sender)
 {
     StackViewItem->Checked=((StackWnd)&&(StackWnd->Visible));
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::StartItemUpdate(TObject *Sender)
+void  TDebugForm::StartItemUpdate(TObject *Sender)
 {
    StartItem->Enabled=((DebugMode==DBGMODE_STOP)||(DebugMode==DBGMODE_PAUSE));
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebugForm::StopItemUpdate(TObject *Sender)
+void  TDebugForm::StopItemUpdate(TObject *Sender)
 {
     StopItem->Enabled=(DebugMode!=DBGMODE_STOP);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebugForm::TraceInItemUpdate(TObject *Sender)
+void  TDebugForm::TraceInItemUpdate(TObject *Sender)
 {
     TraceInItem->Enabled=((DebugMode==DBGMODE_STOP)||(DebugMode==DBGMODE_PAUSE));
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::PauseItemUpdate(TObject *Sender)
+void  TDebugForm::PauseItemUpdate(TObject *Sender)
 {
     PauseItem->Enabled=((DebugMode!=DBGMODE_STOP)&&(DebugMode!=DBGMODE_PAUSE));
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::StepOverItemUpdate(TObject *Sender)
+void  TDebugForm::StepOverItemUpdate(TObject *Sender)
 {
     StepOverItem->Enabled=(DebugMode==DBGMODE_PAUSE);
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::FindItemUpdate(TObject *Sender)
+void  TDebugForm::FindItemUpdate(TObject *Sender)
 {
     FindModule1->Enabled=(AllTree->MyTree);
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::ShowTreeItemUpdate(TObject *Sender)
+void  TDebugForm::ShowTreeItemUpdate(TObject *Sender)
 {
     ShowMdlsTree->Enabled=(AllTree->MyTree);
     ShowMdlsTree->Checked=((AllTree->MyTree)&&(TreeWnd)&&(TreeWnd->Active));
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::ShowBrkpntItemUpdate(TObject *Sender)
+void  TDebugForm::ShowBrkpntItemUpdate(TObject *Sender)
 {
     ShowBreakpoints->Enabled=(AllTree->MyTree);
     ShowBreakpoints->Checked=((BreakPointsWnd)&&(BreakPointsWnd->Visible));
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::ViewLocalVarsUpdate(TObject *Sender)
+void  TDebugForm::ViewLocalVarsUpdate(TObject *Sender)
 {
     LocalVariableItem->Checked=((LocalVars)&&(LocalVars->Visible));
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::ViewGlobalVarsUpdate(TObject *Sender)
+void  TDebugForm::ViewGlobalVarsUpdate(TObject *Sender)
 {
     GlobalVariableItem->Checked=((GlobalVars)&&(GlobalVars->Visible));
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::WatchItemUpdate(TObject *Sender)
+void  TDebugForm::WatchItemUpdate(TObject *Sender)
 {
     WatchViewItem->Checked=((WatchWnd)&&(WatchWnd->Visible));
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::WatchItemExecute(TObject *Sender)
+void  TDebugForm::WatchItemExecute(TObject *Sender)
 {
     if (!WatchWnd)
     {
@@ -259,7 +262,7 @@ void __fastcall TDebugForm::WatchItemExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebugForm::ViewStackExecute(TObject *Sender)
+void  TDebugForm::ViewStackExecute(TObject *Sender)
 {
     if (!StackViewItem->Checked)
     {
@@ -278,7 +281,7 @@ void __fastcall TDebugForm::ViewStackExecute(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::ViewLocalVarsExecute(TObject *Sender)
+void  TDebugForm::ViewLocalVarsExecute(TObject *Sender)
 {
     if (!LocalVariableItem->Checked)
     {
@@ -296,7 +299,7 @@ void __fastcall TDebugForm::ViewLocalVarsExecute(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::ViewGlobalVarsExecute(TObject *Sender)
+void  TDebugForm::ViewGlobalVarsExecute(TObject *Sender)
 {
     if (!GlobalVariableItem->Checked)
     {
@@ -316,12 +319,12 @@ void __fastcall TDebugForm::ViewGlobalVarsExecute(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::StopItemExecute(TObject *Sender)
+void  TDebugForm::StopItemExecute(TObject *Sender)
 {
     CloseDebug();
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::TraceInItemExecute(TObject *Sender)
+void  TDebugForm::TraceInItemExecute(TObject *Sender)
 {
     if (DebugMode!=DBGMODE_STOP)
         PostThreadMessage(ApplHnd,WM_USER,MSG_TRACEIN,0);
@@ -333,18 +336,18 @@ void __fastcall TDebugForm::TraceInItemExecute(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::StepOverItemExecute(TObject *Sender)
+void  TDebugForm::StepOverItemExecute(TObject *Sender)
 {
     PostThreadMessage(ApplHnd,WM_USER,MSG_STEPOVER,0);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebugForm::PauseItemExecute(TObject *Sender)
+void  TDebugForm::PauseItemExecute(TObject *Sender)
 {
     PostThreadMessage(ApplHnd,WM_USER,MSG_PAUSE,0);
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::StartItemExecute(TObject *Sender)
+void  TDebugForm::StartItemExecute(TObject *Sender)
 {
     if (DebugMode==DBGMODE_STOP)
     {
@@ -355,13 +358,13 @@ void __fastcall TDebugForm::StartItemExecute(TObject *Sender)
         PostThreadMessage(ApplHnd,WM_USER,MSG_RESUME,0);
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::FindItemExecute(TObject *Sender)
+void  TDebugForm::FindItemExecute(TObject *Sender)
 {
     FndDialog->Execute();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebugForm::ShowTreeItemExecute(TObject *Sender)
+void  TDebugForm::ShowTreeItemExecute(TObject *Sender)
 {
     if (!ShowMdlsTree->Checked)
     {
@@ -378,7 +381,7 @@ void __fastcall TDebugForm::ShowTreeItemExecute(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::UpdateBreakpoints(TObject *Sender)
+void  TDebugForm::UpdateBreakpoints(TObject *Sender)
 {
     TClassNode *Node = TLuaModule::StaticType;
     if (BreakPointsWnd)
@@ -399,7 +402,7 @@ void __fastcall TDebugForm::UpdateBreakpoints(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::UpdateWatches(TObject *Sender)
+void  TDebugForm::UpdateWatches(TObject *Sender)
 {
     if (WatchWnd)
     {
@@ -415,7 +418,7 @@ void __fastcall TDebugForm::UpdateWatches(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::ShowBrkpntItemExecute(TObject *Sender)
+void  TDebugForm::ShowBrkpntItemExecute(TObject *Sender)
 {
     if (!BreakPointsWnd)
     {
@@ -442,9 +445,9 @@ void __fastcall TDebugForm::ShowBrkpntItemExecute(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-//Процедура чтения информации
+//ГЏГ°Г®Г¶ГҐГ¤ГіГ°Г  Г·ГІГҐГ­ГЁГї ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГЁ
 //---------------------------------------------------------------------------
-void __fastcall StateRead(int Line)
+void  StateRead(int Line)
 {
     bool bCurrent=false;
     TMDelTList<AnsiString> ModuleName;
@@ -521,7 +524,7 @@ void ReccurentAddChilds(TLuaRegObject *Root)
     }
 }
 //---------------------------------------------------------------------------
-//Обработчик событий окна
+//ГЋГЎГ°Г ГЎГ®ГІГ·ГЁГЄ Г±Г®ГЎГ»ГІГЁГ© Г®ГЄГ­Г 
 //---------------------------------------------------------------------------
 
 void _fastcall TDebugForm::WndProc(Messages::TMessage &Message)
@@ -619,12 +622,12 @@ void _fastcall TDebugForm::WndProc(Messages::TMessage &Message)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TDebugForm::FormClose(TObject *Sender, TCloseAction &Action)
+void  TDebugForm::FormClose(TObject *Sender, TCloseAction &Action)
 {
     Action=caFree;
 }
 //---------------------------------------------------------------------------
-void __fastcall TDebugForm::FndDialogFind(TObject *Sender)
+void  TDebugForm::FndDialogFind(TObject *Sender)
 {
     TFindDialog *Dlg = (TFindDialog*)Sender;
     if (!AllTree->MyTree)
@@ -647,13 +650,13 @@ void __fastcall TDebugForm::FndDialogFind(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDebugForm::EvaluteModify1Click(TObject *Sender)
+void  TDebugForm::EvaluteModify1Click(TObject *Sender)
 {
     AnsiString Text = InputBox("Quick evaluate", "Inpute code", "");
     if (Text!="") Inspect(Text);
 }
 
-void __fastcall TDebugForm::Button1Click(TObject *Sender)
+void  TDebugForm::Button1Click(TObject *Sender)
 {
     ApplHnd=GetWindowThreadProcessId(FindWindow("TConfig","3D House Estimator"),NULL);
     if (!ApplHnd) InfoMsg("Window not found!");

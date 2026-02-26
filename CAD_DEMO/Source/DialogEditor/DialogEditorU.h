@@ -1,10 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef DialogEditorUH
 #define DialogEditorUH
-#include <ActnList.hpp>
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <ImgList.hpp>
+#include "compat/vcl_qt.h"
 #include <BaseToolV.h>
 
 class TPropObject;
@@ -69,11 +70,11 @@ public:
     TRect Rects[8];
     bool Changed;
     void DrawSelection();
-    __property TForm* Form = {read = FForm, write = SetForm};
-    __property TWinControl* WC = {read = FWC, write = SetWC};
-    __property int VCLChildCount = {read = GetVCLChildCount};
-    __property TVCLEditorElement* VCLParent = {read = GetVCLParent,write = SetVCLParent};
-    __property TVCLEditorElement* VCLChild[int] = {read = GetVCLChild};
+    // __property TForm* Form {read=FForm, write=SetForm}; // [manual migration needed]
+    // __property TWinControl* WC {read=FWC, write=SetWC}; // [manual migration needed]
+    // __property int VCLChildCount {read=GetVCLChildCount}; // [manual migration needed]
+    // __property TVCLEditorElement* VCLParent {read=GetVCLParent, write=SetVCLParent}; // [manual migration needed]
+// [indexed property - needs manual migration]:     __property TVCLEditorElement* VCLChild[int] = {read = GetVCLChild};
 
     TVCLEditorElement();
     virtual ~TVCLEditorElement();
@@ -97,38 +98,38 @@ class TDialogEditorF : public TForm
 __published:	// IDE-managed Components
     TActionList *AL;
     TImageList *ImageList;
-    void __fastcall ALExecute(TBasicAction *Action, bool &Handled);
-    void __fastcall ApplicationEventsActionUpdate(TBasicAction *Action,
+    void  ALExecute(TBasicAction *Action, bool &Handled);
+    void  ApplicationEventsActionUpdate(TBasicAction *Action,
           bool &Handled);
-    void __fastcall AllKeyDown(TObject *Sender, WORD &Key,
+    void  AllKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
-    void __fastcall AllKeyUp(TObject *Sender, WORD &Key,
+    void  AllKeyUp(TObject *Sender, WORD &Key,
           TShiftState Shift);
-    void __fastcall AllMouseDown(TObject *Sender, TMouseButton Button,
+    void  AllMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall AllMouseMove(TObject *Sender, TShiftState Shift,
+    void  AllMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
-    void __fastcall AllMouseUp(TObject *Sender, TMouseButton Button,
+    void  AllMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall MaskPaint(TObject *Sender);
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall FormPaint(TObject *Sender);
-    void __fastcall Action1Execute(TObject *Sender);
-    void __fastcall FormActivate(TObject *Sender);
+    void  MaskPaint(TObject *Sender);
+    void  FormDestroy(TObject *Sender);
+    void  FormPaint(TObject *Sender);
+    void  Action1Execute(TObject *Sender);
+    void  FormActivate(TObject *Sender);
 
 private:
     int FGridStep;
     bool FGrid;
-    void __fastcall MyObjectChanged(TObject *Sender);
+    void  MyObjectChanged(TObject *Sender);
 public:
     TMyControls DialogTools;
     TVCLEditorElement Head;
     TMTList<TVCLEditorElement> Selected;
     TMTList<TRect> BorderFrame;
     bool Change;
-    __fastcall TDialogEditorF(TComponent* Owner);
-    __property bool Grid = {read = FGrid, write = FGrid};
-    __property int GridStep = {read = FGridStep, write = FGridStep};
+     TDialogEditorF(TComponent* Owner);
+    // __property bool Grid {read=FGrid, write=FGrid}; // [manual migration needed]
+    // __property int GridStep {read=FGridStep, write=FGridStep}; // [manual migration needed]
     void DrawGrid();
     void DrawSelection(void* Sender);
     TVCLEditorElement* GetVCLEdEl(TWinControl* WC);
@@ -138,6 +139,6 @@ public:
     TObjectInspectorF *ObjInspector;
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TDialogEditorF *DialogEditorF;
+extern  TDialogEditorF *DialogEditorF;
 //---------------------------------------------------------------------------
 #endif

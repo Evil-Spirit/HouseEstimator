@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "G2DApproxCalcV.h"
 #include "G2DPointCutV.h"
@@ -13,7 +16,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 int SIGN(MBTf Value,MBTf EPS)
 {
     if ( Value>EPS )
@@ -91,7 +93,7 @@ void TEquation::FindDerivativeRoot(MBTf X0,MBTf X1,TMDelTList<MBTf>& X,int Level
     {
         CheckPoints.Add( new MBTf(X0) );
         CheckPoints.Add( new MBTf(X1) );
-        //return;//корней нет
+        //return;//ГЄГ®Г°Г­ГҐГ© Г­ГҐГІ
     }
     else
     {

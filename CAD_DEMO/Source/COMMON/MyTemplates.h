@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
@@ -14,7 +18,7 @@
 const AnsiString aTargetGUID = AnsiString("TargetGUID");
 
 template <class T>
-class /*PACKAGE*/ TPointer :public TMyObject {
+class /**/ TPointer :public TMyObject {
 private:
 #ifdef GetOldBase
     int ID;
@@ -25,13 +29,21 @@ private:
     void SetAdr(T* newAdr);
     const AnsiString& GetTargetGUID() const;
 public:
-    static /*PACKAGE*/ TClassNode* StaticType;
+    static /**/ TClassNode* StaticType;
     TMyObject* CreateFunction();
     TPointer();
     TPointer(T *adr);
     virtual ~TPointer(){};
-    __property T* ADR = {read = FAdr,write = SetAdr};
-    __property const AnsiString& TargetGUID = {read = GetTargetGUID};
+    T* GetAdrProp() const { return FAdr; }
+    void SetAdrProp(T* v) { FAdr = v; }
+    const AnsiString& GetTargetGUIDProp() const { return GetTargetGUID(); }
+#ifdef _MSC_VER
+    __declspec(property(get=GetAdrProp, put=SetAdrProp)) T* ADR;
+    __declspec(property(get=GetTargetGUIDProp)) const AnsiString& TargetGUID;
+#else
+    // GCC: use SetAdrProp/GetAdrProp or direct FAdr access
+    #define ADR FAdr
+#endif
     bool CheckFields();
     virtual void LookingTo(TMyObject * Target,TMTList<TMyObject>& OBJL) const;
     const std::type_info & Type() const {return typeid(T);}
@@ -95,7 +107,7 @@ void TPointer<T>::SetAdr(T* newAdr)
     if (FAdr)
     {
         ((TMyObject*)FAdr)->GenerateGUIDIfNeed();
-        FTargetGUID = ((TMyObject*)FAdr)->GUID;
+        FTargetGUID = ((TMyObject*)FAdr)->GetGUIDProp();
     }
     else
         FTargetGUID = AnsiString();
@@ -119,7 +131,7 @@ template <class T>
 void TPointer<T>::LookingTo(TMyObject*Target,TMTList<TMyObject>& OBJL) const
 {
     if ( Target->Is( TMyObject::StaticType ) )
-        if ( !((TMyObject*)Target)->GUID.IsEmpty() && (FTargetGUID == ((TMyObject*)Target)->GUID) )
+        if ( !((TMyObject*)Target)->GetGUIDProp().IsEmpty() && (FTargetGUID == ((TMyObject*)Target)->GetGUIDProp()) )
 //            if ( ID == ((TMyRegObject*)Target)->ID)
                 OBJL.Add((TMyObject*)this);
 /*    if ( Target->Is( TMyRegObject::StaticType ) )
@@ -151,7 +163,7 @@ public:
     void Delete(int i);
     T* GetObject(int i);
     virtual void Clear();
-    __property int Count = {read = GetCount};
+    // __property int Count {read=GetCount}; // [manual migration needed]
     bool Enabled;
     void Process();
 };

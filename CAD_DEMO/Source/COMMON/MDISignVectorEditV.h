@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDISignVectorEditVH
 #define MDISignVectorEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
 #include "SimpleEditV.h"
 //---------------------------------------------------------------------------
@@ -21,8 +22,8 @@ __published:	// IDE-managed Components
     TLabel *Label3;
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMDISIGNVECEDIT(TComponent* Owner);
-__fastcall TMDISIGNVECEDIT(TComponent* Owner,TControl *_Parent,TMyObject *_Obj,const AnsiString& _Text,void *_Data);
+     TMDISIGNVECEDIT(TComponent* Owner);
+ TMDISIGNVECEDIT(TComponent* Owner,TControl *_Parent,TMyObject *_Obj,const AnsiString& _Text,void *_Data);
 void Refresh();
 void *Value();
 void SETUP();

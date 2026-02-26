@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef SeparationAreaViewH
@@ -11,7 +15,7 @@ private:
     TIntVec Point;
     TEditor2D* GetSender(){return (TEditor2D*)UIP.Sender;};
 public:
-    __property TEditor2D* Sender = {read = GetSender };
+    // __property TEditor2D* Sender {read=GetSender}; // [manual migration needed]
     TSeparationAreaView();
     virtual ~TSeparationAreaView(){};
     void State1(){};

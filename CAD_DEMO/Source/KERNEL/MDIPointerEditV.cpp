@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIPointerEditV.h"
 #include "MetaNodeCollectionV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma resource "*.dfm"
 TMDIPointerEdit *MDIPointerEdit;
 //---------------------------------------------------------------------------
-__fastcall TMDIPointerEdit::TMDIPointerEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDIPointerEdit::TMDIPointerEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }
@@ -82,7 +84,7 @@ bool TMDIPointerEdit::Checked_NotEmpty()
 }
 
 
-void __fastcall TMDIPointerEdit::CBEChange(TObject *Sender)
+void  TMDIPointerEdit::CBEChange(TObject *Sender)
 {
     if (Change)
         Change(this);    

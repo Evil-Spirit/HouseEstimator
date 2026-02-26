@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LuaModuleV.h"
 #include "LuaStationV.h"
@@ -15,7 +18,6 @@
 
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------
 void Inspect(AnsiString Data, HANDLE hnd)
@@ -35,7 +37,7 @@ void Inspect(AnsiString Data, HANDLE hnd)
 
 }
 
-void __fastcall TDbgInspector::UpdateInspector(TObject *Sender)
+void  TDbgInspector::UpdateInspector(TObject *Sender)
 {
     FileMap->Position=0;
     TMDelTList<TLuaVariable> Vars;
@@ -47,7 +49,7 @@ void __fastcall TDbgInspector::UpdateInspector(TObject *Sender)
     Vars.Clear();
 }
 //---------------------------------------------------------------------------
-__fastcall TDbgInspector::TDbgInspector(TComponent* Owner)
+ TDbgInspector::TDbgInspector(TComponent* Owner)
     : TForm(Owner)
 {
     AnsiString ColHeader="Name,Type,Value";
@@ -56,7 +58,7 @@ __fastcall TDbgInspector::TDbgInspector(TComponent* Owner)
     OnUpdate=UpdateInspector;
 }
 //---------------------------------------------------------------------------
-void __fastcall TDbgInspector::WndProc(Messages::TMessage &Message)
+void  TDbgInspector::WndProc(Messages::TMessage &Message)
 {
     if ((Message.Msg==WM_USER)&&(Message.WParam==MSG_UPDATE))
         TDbgInspector::OnUpdate(this);
@@ -73,7 +75,7 @@ void TDbgInspector::SetMethods(bool State)
     Sheet2->TabVisible=State;
 };
 //---------------------------------------------------------------------------
-void __fastcall TDbgInspector::Clear()
+void  TDbgInspector::Clear()
 {
     DataWatch1->RowCount=2;
     DataWatch1->Rows[2]->Clear();
@@ -82,7 +84,7 @@ void __fastcall TDbgInspector::Clear()
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TDbgInspector::ShowProperty(AnsiString Name,TMDelTList<TLuaVariable> *Vars)
+void  TDbgInspector::ShowProperty(AnsiString Name,TMDelTList<TLuaVariable> *Vars)
 {
     VariableName->Text=Name;
     Clear();
@@ -152,7 +154,7 @@ void __fastcall TDbgInspector::ShowProperty(AnsiString Name,TMDelTList<TLuaVaria
     }
 }
 
-void __fastcall TDbgInspector::FormResize(TObject *Sender)
+void  TDbgInspector::FormResize(TObject *Sender)
 {
     VariableName->Width=ClientWidth;
     Sheets->Top=ClientRect.Top+VariableName->Height;
@@ -166,7 +168,7 @@ void __fastcall TDbgInspector::FormResize(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TDbgInspector::DataWatch1DblClick(TObject *Sender)
+void  TDbgInspector::DataWatch1DblClick(TObject *Sender)
 {
     TStringGrid *Parent = (TStringGrid*)Sender;
     int Index=Parent->Selection.Top;
@@ -190,7 +192,7 @@ void __fastcall TDbgInspector::DataWatch1DblClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TDbgInspector::VariableNameKeyDown(TObject *Sender,
+void  TDbgInspector::VariableNameKeyDown(TObject *Sender,
       WORD &Key, TShiftState Shift)
 {
     if (Key==VK_RETURN) Inspect(VariableName->Text,this->Handle);
@@ -217,7 +219,7 @@ void UpdateAllInspectors()
 //---------------------------------------------------------------------------
 
 
-void __fastcall TDbgInspector::FormClose(TObject *Sender,
+void  TDbgInspector::FormClose(TObject *Sender,
       TCloseAction &Action)
 {
     Action=caFree;    

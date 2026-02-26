@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "FloatingV.h"
 #include "BaseDockSiteFormV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "BaseFormV"
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------
-__fastcall TFloatForm::TFloatForm(TComponent* Owner)
+ TFloatForm::TFloatForm(TComponent* Owner)
     : TBaseForm(Owner)
 {
     NeedToResize = true;
@@ -96,7 +98,7 @@ void TFloatForm::SetDefaultSize(int aDefaultSize)
     TBDockHeight = FDefaultSize;
 }
 
-void __fastcall TFloatForm::FormEndDock(TObject *Sender, TObject *Target,
+void  TFloatForm::FormEndDock(TObject *Sender, TObject *Target,
       int X, int Y)
 {
     if (!Parent)
@@ -130,25 +132,25 @@ int TFloatForm::GetParentDockIndex(TWinControl* aParent)
 	if ( !IS(aParent,__classid(TPanel)) )
     {
     	AnsiString ClassParent = aParent->ClassName();
-//    	ErrorMsg(AnsiString("<TFloatForm::GetParentDockIndex>: не допустимый класс родителя плавающей формы - <")+ClassParent+AnsiString(">."));
+//    	ErrorMsg(AnsiString("<TFloatForm::GetParentDockIndex>: Г­ГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г»Г© ГЄГ«Г Г±Г± Г°Г®Г¤ГЁГІГҐГ«Гї ГЇГ«Г ГўГ ГѕГ№ГҐГ© ГґГ®Г°Г¬Г» - <")+ClassParent+AnsiString(">."));
 		return -1;
     }
     if ( !((TPanel*)aParent)->Parent )
     {
-//    	ErrorMsg(AnsiString("<TFloatForm::GetParentDockIndex>: родительская панель не имеет родителя."));
+//    	ErrorMsg(AnsiString("<TFloatForm::GetParentDockIndex>: Г°Г®Г¤ГЁГІГҐГ«ГјГ±ГЄГ Гї ГЇГ Г­ГҐГ«Гј Г­ГҐ ГЁГ¬ГҐГҐГІ Г°Г®Г¤ГЁГІГҐГ«Гї."));
 		return -1;
     }
     if ( !IS(((TPanel*)aParent)->Parent,__classid(TBaseDockSiteForm)) )
     {
     	AnsiString ClassParent = ((TPanel*)aParent)->Parent->ClassName();
-//    	ErrorMsg(AnsiString("<TFloatForm::GetParentDockIndex>: не допустимый класс dock-site формы - <")+ClassParent+AnsiString(">.") );
+//    	ErrorMsg(AnsiString("<TFloatForm::GetParentDockIndex>: Г­ГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г»Г© ГЄГ«Г Г±Г± dock-site ГґГ®Г°Г¬Г» - <")+ClassParent+AnsiString(">.") );
 		return -1;
     }
     return  ((TBaseDockSiteForm*)((TPanel*)aParent)->Parent)->DockIndex;
 }
 
 
-void __fastcall TFloatForm::WndProc(Messages::TMessage &Message)
+void  TFloatForm::WndProc(Messages::TMessage &Message)
 {
 	switch( Message.Msg )
     {
@@ -167,7 +169,7 @@ void __fastcall TFloatForm::WndProc(Messages::TMessage &Message)
                 FormEndDock(NULL,NULL,0,0);
                 //FormPaint(Sender);
             }
-        }//break; переход на WM_PAINT
+        }//break; ГЇГҐГ°ГҐГµГ®Г¤ Г­Г  WM_PAINT
     	case WM_PAINT:
         {
             if (NeedToResize)

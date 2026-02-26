@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIConfigVH
@@ -5,18 +9,9 @@
 //---------------------------------------------------------------------------
 #include "MetaClasses.h"
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MyMDIChildV.h"
-#include <ComCtrls.hpp>
-#include <ImgList.hpp>
-#include <ToolWin.hpp>
-#include <ActnList.hpp>
-#include <Menus.hpp>
-#include <Dialogs.hpp>
-#include "SUISkinEngine.hpp"
+#include "compat/SUISkinEngine.hpp"
 //---------------------------------------------------------------------------
 
 class TMDIConfig : public TMyMDIChild
@@ -59,33 +54,33 @@ __published:	// IDE-managed Components
     TToolButton *ToolButton9;
     TOpenDialog *OD;
     TSaveDialog *SD;
-    void __fastcall NewExecute(TObject *Sender);
-    void __fastcall EditExecute(TObject *Sender);
-    void __fastcall DelExecute(TObject *Sender);
-    void __fastcall tvTechnologyDeletion(TObject *Sender, TTreeNode *Node);
-    void __fastcall NewFolExecute(TObject *Sender);
-    void __fastcall tvTechnologyStartDrag(TObject *Sender,
+    void  NewExecute(TObject *Sender);
+    void  EditExecute(TObject *Sender);
+    void  DelExecute(TObject *Sender);
+    void  tvTechnologyDeletion(TObject *Sender, TTreeNode *Node);
+    void  NewFolExecute(TObject *Sender);
+    void  tvTechnologyStartDrag(TObject *Sender,
           TDragObject *&DragObject);
-    void __fastcall tvTechnologyDragOver(TObject *Sender, TObject *Source,
+    void  tvTechnologyDragOver(TObject *Sender, TObject *Source,
           int X, int Y, TDragState State, bool &Accept);
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall tvTechnologyDragDrop(TObject *Sender, TObject *Source,
+    void  FormDestroy(TObject *Sender);
+    void  tvTechnologyDragDrop(TObject *Sender, TObject *Source,
           int X, int Y);
-    void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
-    void __fastcall tvTechnologyMouseDown(TObject *Sender,
+    void  FormCloseQuery(TObject *Sender, bool &CanClose);
+    void  tvTechnologyMouseDown(TObject *Sender,
           TMouseButton Button, TShiftState Shift, int X, int Y);
-    void __fastcall UpActionExecute(TObject *Sender);
-    void __fastcall DownActionExecute(TObject *Sender);
-    void __fastcall NewCopyExecute(TObject *Sender);
-    void __fastcall ExportHereExecute(TObject *Sender);
-    void __fastcall ImportHereExecute(TObject *Sender);
-	void __fastcall tvTechnologyDblClick(TObject *Sender);
+    void  UpActionExecute(TObject *Sender);
+    void  DownActionExecute(TObject *Sender);
+    void  NewCopyExecute(TObject *Sender);
+    void  ExportHereExecute(TObject *Sender);
+    void  ImportHereExecute(TObject *Sender);
+	void  tvTechnologyDblClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMDIConfig(TComponent* Owner);
+     TMDIConfig(TComponent* Owner);
     TMTList<TMetaNode> *MNL;
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMDIConfig *MDIConfig;
+extern  TMDIConfig *MDIConfig;
 //---------------------------------------------------------------------------
 #endif

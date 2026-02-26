@@ -1,24 +1,26 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "CellGrid.h"
 #include "OffsetCellU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TOffsetCell *OffsetCell;
 //---------------------------------------------------------------------------
-__fastcall TOffsetCell::TOffsetCell(TComponent* Owner, TMGrid* _Grid)
+ TOffsetCell::TOffsetCell(TComponent* Owner, TMGrid* _Grid)
     : TForm(Owner)
 {
     Grid =_Grid;
 }
 //---------------------------------------------------------------------------
-void __fastcall TOffsetCell::Button1Click(TObject *Sender)
+void  TOffsetCell::Button1Click(TObject *Sender)
 {
     if (rbTopOffset->Checked )
         Grid->iOffsetCell =0;
@@ -28,7 +30,7 @@ void __fastcall TOffsetCell::Button1Click(TObject *Sender)
     Close();
 }
 //---------------------------------------------------------------------------
-void __fastcall TOffsetCell::Button2Click(TObject *Sender)
+void  TOffsetCell::Button2Click(TObject *Sender)
 {
     Grid->iOffsetCell =-1;
     Close();

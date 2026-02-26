@@ -1,21 +1,22 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef SectionIn1H
 #define SectionIn1H
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TSectionIn : public TForm
 {
 __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
-    __fastcall TSectionIn(TComponent* Owner);
+     TSectionIn(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TSectionIn *SectionIn;
+extern  TSectionIn *SectionIn;
 //---------------------------------------------------------------------------
 #endif

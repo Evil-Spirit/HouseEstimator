@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MetaToolVH
@@ -28,7 +32,7 @@ class COMMONAL_API TToolControlList {
     void SetActiveIndex(int aValue);
 public:
     TMTList<TMetaTool> Tools;
-    __property int ActiveIndex = {read = FActiveIndex,write = SetActiveIndex};
+    // __property int ActiveIndex {read=FActiveIndex, write=SetActiveIndex}; // [manual migration needed]
     //----------------------------------
     TToolControlList();
     virtual ~TToolControlList();

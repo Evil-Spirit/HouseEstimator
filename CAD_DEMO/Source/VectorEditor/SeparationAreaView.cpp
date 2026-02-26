@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 #include "MyEdit.h"
 #include "math.h"
 #include "EditorV.h"
@@ -245,7 +248,7 @@ AnsiString TSeparationAreaView::OnHint()
     {
         TIntVec Point1 = Point;
         TIntVec Point2 = EditorXD->MyCursor.Position;
-        return " ("+FloatToStrF(Point1.x, ffGeneral, 4, EditorXD->Grid.Precision)+", "+FloatToStrF(Point1.y, ffGeneral, 4, EditorXD->Grid.Precision)+")  ("+FloatToStrF(Point2.x, ffGeneral, 4, EditorXD->Grid.Precision)+", "+FloatToStrF(Point2.y, ffGeneral, 4, EditorXD->Grid.Precision)+")    Øèðèíà: "+FloatToStrF(fabs(Point2.x - Point1.x), ffGeneral, 4, EditorXD->Grid.Precision)+" Âûñîòà: "+FloatToStrF(fabs(Point2.y - Point1.y), ffGeneral, 4, EditorXD->Grid.Precision);
+        return " ("+FloatToStrF(Point1.x, ffGeneral, 4, EditorXD->Grid.Precision)+", "+FloatToStrF(Point1.y, ffGeneral, 4, EditorXD->Grid.Precision)+")  ("+FloatToStrF(Point2.x, ffGeneral, 4, EditorXD->Grid.Precision)+", "+FloatToStrF(Point2.y, ffGeneral, 4, EditorXD->Grid.Precision)+")    Ã˜Ã¨Ã°Ã¨Ã­Ã : "+FloatToStrF(fabs(Point2.x - Point1.x), ffGeneral, 4, EditorXD->Grid.Precision)+" Ã‚Ã»Ã±Ã®Ã²Ã : "+FloatToStrF(fabs(Point2.y - Point1.y), ffGeneral, 4, EditorXD->Grid.Precision);
     }
     return "";
 }
@@ -270,4 +273,3 @@ void TSeparationAllView::Action()
         }
     Area(EditorXD, EditorXD->MyView, EditorXD->MyView->ProjectToScreen(AllBB[0]), EditorXD->MyView->ProjectToScreen(AllBB[1]), false);
 }
-#pragma package(smart_init)

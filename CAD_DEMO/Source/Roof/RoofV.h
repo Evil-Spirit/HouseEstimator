@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef RoofV
@@ -78,30 +82,30 @@ public:
 	};
 	virtual ~TPreTriangle(){};
 
-	TGPoint* TruePointLeft;				//левая точка из уже принятых
-	TGPoint* TruePointRight;				//правая точка из уже принятых
-	TGPoint* CrossPointLeft;				//левая точка пересечения
-	TGPoint* CrossPointRight;			//правая точка пересечения
+	TGPoint* TruePointLeft;				//Г«ГҐГўГ Гї ГІГ®Г·ГЄГ  ГЁГ§ ГіГ¦ГҐ ГЇГ°ГЁГ­ГїГІГ»Гµ
+	TGPoint* TruePointRight;				//ГЇГ°Г ГўГ Гї ГІГ®Г·ГЄГ  ГЁГ§ ГіГ¦ГҐ ГЇГ°ГЁГ­ГїГІГ»Гµ
+	TGPoint* CrossPointLeft;				//Г«ГҐГўГ Гї ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
+	TGPoint* CrossPointRight;			//ГЇГ°Г ГўГ Гї ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 
-	MBTi Length;							//значение веса или критерия
-	MBTi Criteria;							//значение веса или критерия
+	MBTi Length;							//Г§Г­Г Г·ГҐГ­ГЁГҐ ГўГҐГ±Г  ГЁГ«ГЁ ГЄГ°ГЁГІГҐГ°ГЁГї
+	MBTi Criteria;							//Г§Г­Г Г·ГҐГ­ГЁГҐ ГўГҐГ±Г  ГЁГ«ГЁ ГЄГ°ГЁГІГҐГ°ГЁГї
 
 
-	int Plane;								//текущая плоскость
-	TMDelTList<int>	Planes;					//текущая плоскость
+	int Plane;								//ГІГҐГЄГіГ№Г Гї ГЇГ«Г®Г±ГЄГ®Г±ГІГј
+	TMDelTList<int>	Planes;					//ГІГҐГЄГіГ№Г Гї ГЇГ«Г®Г±ГЄГ®Г±ГІГј
 	int Slope;
 
-	bool iAmNotBad;							//Я не плохой
-	bool yesIAm;                            //Я злой!
-	bool IAmTriangle;                            //Я злой!
+	bool iAmNotBad;							//Гџ Г­ГҐ ГЇГ«Г®ГµГ®Г©
+	bool yesIAm;                            //Гџ Г§Г«Г®Г©!
+	bool IAmTriangle;                            //Гџ Г§Г«Г®Г©!
 	
 
 /**/
 
-	bool IAmBadLeft(TPreTriangle* Left);	//является ли хуже слева
-	bool IAmBadRight(TPreTriangle* Right);	//является ли хуже справа
+	bool IAmBadLeft(TPreTriangle* Left);	//ГїГўГ«ГїГҐГІГ±Гї Г«ГЁ ГµГіГ¦ГҐ Г±Г«ГҐГўГ 
+	bool IAmBadRight(TPreTriangle* Right);	//ГїГўГ«ГїГҐГІГ±Гї Г«ГЁ ГµГіГ¦ГҐ Г±ГЇГ°Г ГўГ 
 
-	void CalcScatProject(TPreTriangle *left, TPreTriangle *right);	//рассчитать критерий
+	void CalcScatProject(TPreTriangle *left, TPreTriangle *right);	//Г°Г Г±Г±Г·ГЁГІГ ГІГј ГЄГ°ГЁГІГҐГ°ГЁГ©
 	void amIEvil();							//
 
 	void Assign(TMyObject* Obj)
@@ -128,14 +132,14 @@ public:
 
 TClassNode* TPreTriangle::StaticType = NULL;
 
-//граница двух коллинеарных плоскостей
+//ГЈГ°Г Г­ГЁГ¶Г  Г¤ГўГіГµ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»Гµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
 
 class TCollinearEdge{
 public:
 	TCollinearEdge(){};
 	virtual ~TCollinearEdge(){};
 
-	//точки из точек пересечения плоскостей лежашие на границе 
+	//ГІГ®Г·ГЄГЁ ГЁГ§ ГІГ®Г·ГҐГЄ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ© Г«ГҐГ¦Г ГёГЁГҐ Г­Г  ГЈГ°Г Г­ГЁГ¶ГҐ 
 	TMTList<TGPoint> COMMON;
 	TMTList<TGPoint> sepPoint;
 
@@ -146,34 +150,34 @@ class TCollinearEdge{
 public:
 	TCollinearEdge(){};
 	virtual ~TCollinearEdge(){};
-	//задана граница как прямая  (точка и нормаль)
+	//Г§Г Г¤Г Г­Г  ГЈГ°Г Г­ГЁГ¶Г  ГЄГ ГЄ ГЇГ°ГїГ¬Г Гї  (ГІГ®Г·ГЄГ  ГЁ Г­Г®Г°Г¬Г Г«Гј)
 
-	//точки из точек пересечения плоскостей лежашие на границе 
+	//ГІГ®Г·ГЄГЁ ГЁГ§ ГІГ®Г·ГҐГЄ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ© Г«ГҐГ¦Г ГёГЁГҐ Г­Г  ГЈГ°Г Г­ГЁГ¶ГҐ 
 	TMTList<TRoofPoint> COMMON;
 };
 */
 
-//группа коллинеарности
-//объединяет несколько коллинеарных плоскостей
-//задает границы их разделения
-//поскольку если хотя бы одна плоскость из коллинеарных
-//проходит через заданную точку то и все остальные также проходят
-//поэтому такие точки разделены в смысле границ коллинеарных плоскостей
+//ГЈГ°ГіГЇГЇГ  ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г®Г±ГІГЁ
+//Г®ГЎГєГҐГ¤ГЁГ­ГїГҐГІ Г­ГҐГ±ГЄГ®Г«ГјГЄГ® ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»Гµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+//Г§Г Г¤Г ГҐГІ ГЈГ°Г Г­ГЁГ¶Г» ГЁГµ Г°Г Г§Г¤ГҐГ«ГҐГ­ГЁГї
+//ГЇГ®Г±ГЄГ®Г«ГјГЄГі ГҐГ±Г«ГЁ ГµГ®ГІГї ГЎГ» Г®Г¤Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГј ГЁГ§ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»Гµ
+//ГЇГ°Г®ГµГ®Г¤ГЁГІ Г·ГҐГ°ГҐГ§ Г§Г Г¤Г Г­Г­ГіГѕ ГІГ®Г·ГЄГі ГІГ® ГЁ ГўГ±ГҐ Г®Г±ГІГ Г«ГјГ­Г»ГҐ ГІГ ГЄГ¦ГҐ ГЇГ°Г®ГµГ®Г¤ГїГІ
+//ГЇГ®ГЅГІГ®Г¬Гі ГІГ ГЄГЁГҐ ГІГ®Г·ГЄГЁ Г°Г Г§Г¤ГҐГ«ГҐГ­Г» Гў Г±Г¬Г»Г±Г«ГҐ ГЈГ°Г Г­ГЁГ¶ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»Гµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
 class TCollinearGroup{
 public:
 	TCollinearGroup(){};
 	virtual ~TCollinearGroup(){};
-	//список границ коллинеарности
+	//Г±ГЇГЁГ±Г®ГЄ ГЈГ°Г Г­ГЁГ¶ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г®Г±ГІГЁ
 	TMDelTList<TCollinearEdge> Edges;
-	//список номеров плоскостей
+	//Г±ГЇГЁГ±Г®ГЄ Г­Г®Г¬ГҐГ°Г®Гў ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
 	TMDelTList<int> indices;
-	//вставить точку - метод интерфейса разделения точек
+	//ГўГ±ГІГ ГўГЁГІГј ГІГ®Г·ГЄГі - Г¬ГҐГІГ®Г¤ ГЁГ­ГІГҐГ°ГґГҐГ©Г±Г  Г°Г Г§Г¤ГҐГ«ГҐГ­ГЁГї ГІГ®Г·ГҐГЄ
 	void InsertPoint(TMDelTList<int> &PntPlane, TGPoint* Pnt,MBTi USEEPS);
-	//являются ли две коллинеарные плоскости соседними
+	//ГїГўГ«ГїГѕГІГ±Гї Г«ГЁ Г¤ГўГҐ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»ГҐ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ Г±Г®Г±ГҐГ¤Г­ГЁГ¬ГЁ
 	bool IsNeigh(int i1,int i2);
-	//инициализировать границы коллинеарных плоскостей
-	//если заданы плоскости
-	//точки и нормали плоскостей переданы в качестве аргументов
+	//ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°Г®ГўГ ГІГј ГЈГ°Г Г­ГЁГ¶Г» ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»Гµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+	//ГҐГ±Г«ГЁ Г§Г Г¤Г Г­Г» ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+	//ГІГ®Г·ГЄГЁ ГЁ Г­Г®Г°Г¬Г Г«ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ© ГЇГҐГ°ГҐГ¤Г Г­Г» Гў ГЄГ Г·ГҐГ±ГІГўГҐ Г Г°ГЈГіГ¬ГҐГ­ГІГ®Гў
 	void Init(TMTList<TIntVec>& Vert,TMTList<TIntVec>& Norm);
 };
 
@@ -181,24 +185,24 @@ class  TRoof : public TGeomObject
 {
 	friend class TCollinearGroup;
 	public:
-	TMDelTList< TMDelTList< TMTList<TGPoint> > > PntCube;//КУБ точек пересечения трех плоскостей
-	TMDelTList< TMDelTList<TIntVec> > DirMatrix; //Матрица направлений линий пересечения для каждых двух плоскостей
-	TMDelTList< TMDelTList<TIntVec> > OrgMatrix; //Матрица точек на линиях пересечения
+	TMDelTList< TMDelTList< TMTList<TGPoint> > > PntCube;//ГЉГ“ГЃ ГІГ®Г·ГҐГЄ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї ГІГ°ГҐГµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+	TMDelTList< TMDelTList<TIntVec> > DirMatrix; //ГЊГ ГІГ°ГЁГ¶Г  Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГ© Г«ГЁГ­ГЁГ© ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї Г¤Г«Гї ГЄГ Г¦Г¤Г»Гµ Г¤ГўГіГµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+	TMDelTList< TMDelTList<TIntVec> > OrgMatrix; //ГЊГ ГІГ°ГЁГ¶Г  ГІГ®Г·ГҐГЄ Г­Г  Г«ГЁГ­ГЁГїГµ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 	TMDelTList< TMDelTList<int> > PntPlane;
 
-	TMTList<TIntVec> p_Normal;  //нормали для входных плоскостей
-	TMTList<TIntVec> p_Origin;  //точки на плоскостях
+	TMTList<TIntVec> p_Normal;  //Г­Г®Г°Г¬Г Г«ГЁ Г¤Г«Гї ГўГµГ®Г¤Г­Г»Гµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+	TMTList<TIntVec> p_Origin;  //ГІГ®Г·ГЄГЁ Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГїГµ
 
-	TMDelTList< TMDelTList<int> > p_Roof;  //нормали для входных плоскостей
+	TMDelTList< TMDelTList<int> > p_Roof;  //Г­Г®Г°Г¬Г Г«ГЁ Г¤Г«Гї ГўГµГ®Г¤Г­Г»Гµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
 
-	TMTList<int> p_Slope;  //скаты
-	TMTList<int> p_Plane;  //плоскости
+	TMTList<int> p_Slope;  //Г±ГЄГ ГІГ»
+	TMTList<int> p_Plane;  //ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
 
 	TMDelTList<TPreTriangle> PRE_TRI;
 
 	TMDelTList< TMTList<TGCut> > POLY;
 
-	TMDelTList< bool > Convex; //выпуклость точек контура
+	TMDelTList< bool > Convex; //ГўГ»ГЇГіГЄГ«Г®Г±ГІГј ГІГ®Г·ГҐГЄ ГЄГ®Г­ГІГіГ°Г 
 
 public:
 

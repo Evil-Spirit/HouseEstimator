@@ -1,24 +1,26 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIVisibleSelectFloorV.h"
 #include "World.h"          
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TMDIVisibleSelectFloor *MDIVisibleSelectFloor;
 //---------------------------------------------------------------------------
-__fastcall TMDIVisibleSelectFloor::TMDIVisibleSelectFloor(TComponent* Owner)
+ TMDIVisibleSelectFloor::TMDIVisibleSelectFloor(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIVisibleSelectFloor::FormCreate(TObject *Sender)
+void  TMDIVisibleSelectFloor::FormCreate(TObject *Sender)
 {
     TClient3D* Client = World->ActiveClient;
     LB->Clear();
@@ -47,12 +49,12 @@ void __fastcall TMDIVisibleSelectFloor::FormCreate(TObject *Sender)
     rbActualAndClick(this);
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIVisibleSelectFloor::rbActualAndClick(TObject *Sender)
+void  TMDIVisibleSelectFloor::rbActualAndClick(TObject *Sender)
 {
     LB->Enabled = (rbActualAnd->Checked);
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIVisibleSelectFloor::btOKClick(TObject *Sender)
+void  TMDIVisibleSelectFloor::btOKClick(TObject *Sender)
 {
     TClient3D* Active = World->ActiveClient;
     if (!Active)
@@ -72,7 +74,7 @@ void __fastcall TMDIVisibleSelectFloor::btOKClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIVisibleSelectFloor::FormClose(TObject *Sender,
+void  TMDIVisibleSelectFloor::FormClose(TObject *Sender,
       TCloseAction &Action)
 {
     Action = caFree;    

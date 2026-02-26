@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 // main_qt.cpp – Qt application entry point replacing Borland's WinMain.
 // This file provides the standard Qt main() that initialises QApplication,
 // creates the main MDI window, and enters the event loop.

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
                
 #ifndef LuaAttributeVH
@@ -35,12 +39,12 @@ public:
     //---------------------------------
     TLuaAttribute();
     virtual ~TLuaAttribute();
-    __property bool Aggregative = {read = GetAggregative,write = SetAggregative};
-    __property AnsiString VALUE = {read = FCurValue,write = SetVALUE};
-    __property void* Value = {read = NewGetValue,write = NewSetValue};
-    __property void* Object = {read = NewGetObject,write = NewSetObject};
-    __property int Type = {read = FType,write = SetType};
-    __property AnsiString ObjectTypeName = {read = FObjectTypeName,write = SetObjectTypeName};
+    // __property bool Aggregative {read=GetAggregative, write=SetAggregative}; // [manual migration needed]
+    // __property AnsiString VALUE {read=FCurValue, write=SetVALUE}; // [manual migration needed]
+    // __property void* Value {read=NewGetValue, write=NewSetValue}; // [manual migration needed]
+    // __property void* Object {read=NewGetObject, write=NewSetObject}; // [manual migration needed]
+    // __property int Type {read=FType, write=SetType}; // [manual migration needed]
+    // __property AnsiString ObjectTypeName {read=FObjectTypeName, write=SetObjectTypeName}; // [manual migration needed]
 
     AnsiString Meter;
     void ToEmpty();
@@ -95,8 +99,8 @@ public:
     char* GetAttributeName(int index);
     int GetAttributeIndex(char* Name);
     void Clear();
-    __property int AttributeCount = { read = GetAttributeCount };
-    __property int AttributeICount = { read = GetAttributeICount };
+    // __property int AttributeCount {read=GetAttributeCount}; // [manual migration needed]
+    // __property int AttributeICount {read=GetAttributeICount}; // [manual migration needed]
     virtual bool CheckFields();
 };
 
