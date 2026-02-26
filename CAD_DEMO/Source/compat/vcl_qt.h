@@ -479,6 +479,48 @@ static const TShiftState ssMiddle = 32u;
 // ---------------------------------------------------------------------------
 typedef QFrame       TPanel;
 typedef QFrame       TBevel;
+// VCL widget wrapper classes with Borland-style property aliases
+// These provide Caption, ItemIndex, Text, etc. as VCL used them.
+
+class TLabel : public QLabel {
+public:
+    explicit TLabel(QWidget* p = nullptr) : QLabel(p) {}
+    AnsiString Caption;
+    void _syncCaption() { setText(Caption.toQString()); }
+};
+
+class TEdit : public QLineEdit {
+public:
+    explicit TEdit(QWidget* p = nullptr) : QLineEdit(p) {}
+    AnsiString Text;
+    void _syncText() { QLineEdit::setText(Text.toQString()); }
+};
+
+class TButton : public QPushButton {
+public:
+    explicit TButton(QWidget* p = nullptr) : QPushButton(p) {}
+    AnsiString Caption;
+    void _syncCaption() { setText(Caption.toQString()); }
+};
+typedef TButton TBitBtn;
+
+class TComboBox : public QComboBox {
+public:
+    explicit TComboBox(QWidget* p = nullptr) : QComboBox(p) {}
+    int ItemIndex = -1;
+};
+
+typedef QCheckBox    TCheckBox;
+typedef QRadioButton TRadioButton;
+typedef QSpinBox     TSpinEdit;
+typedef QTableWidget TStringGrid;
+typedef QTableWidget TDrawGrid;
+typedef QListView    TListView;
+typedef QTreeWidget  TTreeView;
+typedef QGroupBox    TGroupBox;
+typedef QTabWidget   TPageControl;
+typedef QTabWidget   TTabControl;
+typedef QWidget      TTabSheet;
 typedef QScrollBar   TScrollBar;
 typedef QStatusBar   TStatusBar;
 typedef QSplitter    TSplitter;

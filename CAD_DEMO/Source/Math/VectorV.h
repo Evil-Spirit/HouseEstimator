@@ -72,6 +72,8 @@ public:
 	using TInt3d::y;
 	using TInt3d::z;
 	using TInt3d::fa;
+	// 'a' is a Borland __property a[] alias; expose fa as 'a' for compatibility
+	MBTi (&a)[3] = fa;
 	// GCC/Clang: provide subscript operator for fa[] array access
 	// (Borland __property a[int] is not available; use operator[] instead)
 	MBTi& operator[](int i)       { return fa[i]; }

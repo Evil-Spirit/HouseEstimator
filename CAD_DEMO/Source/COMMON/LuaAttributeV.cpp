@@ -158,7 +158,7 @@ void TLuaAttribute::LoadData(FILE *F)
         if ( Aggregative )
         {
             Object = Create_Default_Constructor(ObjectTypeName);
-            ((TMyObject*)Object)->LoadData(F);
+            ((TMyObject*)(void*)Object)->LoadData(F);
         }
         else
             Object = NULL;
@@ -173,7 +173,7 @@ void TLuaAttribute::ReadData(TMemoryStream *MS)
         if ( Aggregative )
         {
             Object = Create_Default_Constructor(ObjectTypeName);
-            ((TMyObject*)Object)->ReadData(MS);
+            ((TMyObject*)(void*)Object)->ReadData(MS);
         }
         else
             Object = NULL;
@@ -188,7 +188,7 @@ void TLuaAttribute::Assign(TMyObject *MS)
         if (Aggregative)
         {
             Object = Create_Default_Constructor(ObjectTypeName);
-            ((TMyObject*)Object)->Assign( (TMyObject*)((TLuaAttribute*)MS)->Object );
+            ((TMyObject*)(void*)Object)->Assign( (TMyObject*)(void*)((TLuaAttribute*)MS)->Object );
         }
         else
         {
@@ -400,7 +400,7 @@ bool TLuaAttribute::CheckFields()
     if (!TMyObject::CheckFields())
         return false;
     FCurValue = FVALUE;
-    return !Object || !Aggregative || Type != mtMyObject || ((TMyObject*)Object)->CheckFields();
+    return !Object || !Aggregative || Type != mtMyObject || ((TMyObject*)(void*)Object)->CheckFields();
 }
 
 AnsiString TLuaAttribute::ExcelValue(int Digit)
@@ -464,7 +464,7 @@ int TLuaAttributeList::GetAttributeIndex(char* _name)
     return -1;            
 }
 
-char* TLuaAttributeList::GetAttributeName(int index)
+const char* TLuaAttributeList::GetAttributeName(int index)
 {
     return VarList->Items[index]->Name.c_str();
 }
@@ -531,13 +531,13 @@ TLuaAttribute* TLuaAttributeList::AddAttribute(int type,char* _name)
 void* TLuaAttributeList::GetAttributeValue(char* _name)
 {
     TLuaAttribute* Attribute = GetAttribute(_name);
-    return (Attribute != NULL) ? Attribute->Value : NULL;
+    return (Attribute != NULL) ? (void*)Attribute->Value : nullptr;
 }
 
 void* TLuaAttributeList::GetAttributeIValue(int index)
 {
     TLuaAttribute* Attribute = GetAttributeI(index);
-    return (Attribute != NULL) ? Attribute->Value : NULL;
+    return (Attribute != NULL) ? (void*)Attribute->Value : nullptr;
 }
 
 void TLuaAttributeList::SetAttributeIValue(int index,void* Value)

@@ -13,7 +13,7 @@
 
 //----------------
 //-----------------
-const MaxPanelCount=10;
+const int MaxPanelCount=10;
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIObjectEdit : public TBaseForm
 {

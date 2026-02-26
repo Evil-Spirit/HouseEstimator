@@ -43,14 +43,23 @@ public:
     struct _AggregProxy {
         TLuaAttribute* const _o;
         explicit _AggregProxy(TLuaAttribute* o) noexcept : _o(o) {}
+        _AggregProxy& operator=(const _AggregProxy&) = default;
         operator bool() const { return _o->GetAggregative(); }
         _AggregProxy& operator=(bool v) { _o->SetAggregative(v); return *this; }
     } Aggregative{this};
     // __property AnsiString VALUE {read=FCurValue, write=SetVALUE}; // replaced by:
+    AnsiString& VALUE = FCurValue;
     // __property void* Value {read=NewGetValue, write=NewSetValue}; // replaced by:
+    struct _ValProxy {
+        TLuaAttribute* const _o;
+        explicit _ValProxy(TLuaAttribute* o) noexcept : _o(o) {}
+        _ValProxy& operator=(const _ValProxy&) = default;
+        operator void*() const { return _o->NewGetValue(); }
+        _ValProxy& operator=(void* v) { _o->NewSetValue(v); return *this; }
+    } Value{this};
     // __property void* Object {read=NewGetObject, write=NewSetObject}; // replaced by:
     struct _ObjProxy {
-        TLuaAttribute* const _o;
+        TLuaAttribute* _o;
         explicit _ObjProxy(TLuaAttribute* o) noexcept : _o(o) {}
         operator void*() const { return _o->NewGetObject(); }
         _ObjProxy& operator=(void* v) { _o->NewSetObject(v); return *this; }
@@ -59,6 +68,7 @@ public:
     struct _TypeProxy {
         TLuaAttribute* const _o;
         explicit _TypeProxy(TLuaAttribute* o) noexcept : _o(o) {}
+        _TypeProxy& operator=(const _TypeProxy&) = default;
         operator int() const { return _o->FType; }
         bool operator==(int x) const { return _o->FType == x; }
         bool operator!=(int x) const { return _o->FType != x; }
@@ -68,8 +78,11 @@ public:
     struct _OTNProxy {
         TLuaAttribute* const _o;
         explicit _OTNProxy(TLuaAttribute* o) noexcept : _o(o) {}
+        _OTNProxy& operator=(const _OTNProxy&) = default;
         operator AnsiString() const { return _o->FObjectTypeName; }
         bool operator==(const AnsiString& s) const { return _o->FObjectTypeName == s; }
+        bool operator!=(const AnsiString& s) const { return _o->FObjectTypeName != s; }
+        bool IsEmpty() const { return _o->FObjectTypeName.IsEmpty(); }
         _OTNProxy& operator=(const AnsiString& v) { _o->SetObjectTypeName(v); return *this; }
     } ObjectTypeName{this};
 
