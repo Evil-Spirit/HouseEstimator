@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SelectBorder</class>
+  <widget class="QWidget" name="SelectBorder">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>115</width>
+        <height>86</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>SelectBorder</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>115</width>
+          <height>86</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+      <widget class="QToolBar" name="ToolBar1">
+        <property name="geometry">
+          <rect>
+            <x>12</x>
+            <y>8</y>
+            <width>95</width>
+            <height>70</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>ToolBar1</string>
+        </property>
+        <widget class="QWidget" name="ToolButton1">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton1</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton2">
+          <property name="geometry">
+            <rect>
+              <x>23</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton2</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton4">
+          <property name="geometry">
+            <rect>
+              <x>46</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton4</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton5">
+          <property name="geometry">
+            <rect>
+              <x>69</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton5</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton6">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>22</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton6</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton7">
+          <property name="geometry">
+            <rect>
+              <x>23</x>
+              <y>22</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton7</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton8">
+          <property name="geometry">
+            <rect>
+              <x>46</x>
+              <y>22</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton8</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton9">
+          <property name="geometry">
+            <rect>
+              <x>69</x>
+              <y>22</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton9</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton10">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>44</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton10</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton11">
+          <property name="geometry">
+            <rect>
+              <x>23</x>
+              <y>44</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton11</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton12">
+          <property name="geometry">
+            <rect>
+              <x>46</x>
+              <y>44</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton12</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="ToolButton13">
+          <property name="geometry">
+            <rect>
+              <x>69</x>
+              <y>44</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolButton13</string>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

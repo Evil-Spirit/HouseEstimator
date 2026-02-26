@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIArchiVarsEdit</class>
+  <widget class="QWidget" name="MDIArchiVarsEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>533</width>
+        <height>150</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIArchiVarsEdit</string>
+    </property>
+    <widget class="QLabel" name="LBL">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+      <property name="visible">
+        <bool>false</bool>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label8">
+      <property name="geometry">
+        <rect>
+          <x>272</x>
+          <y>16</y>
+          <width>145</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Связка Платформы и Этажа</string>
+      </property>
+      <property name="text">
+        <string>Связка Платформы и Этажа</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label7">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>16</y>
+          <width>53</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Ландшафт</string>
+      </property>
+      <property name="text">
+        <string>Ландшафт</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label5">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>80</y>
+          <width>94</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Платформа Этажа</string>
+      </property>
+      <property name="text">
+        <string>Платформа Этажа</string>
+      </property>
+    </widget>
+    <widget class="QFrame" name="AFirstPlatform">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>96</y>
+          <width>250</width>
+          <height>41</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>AFirstPlatform</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="ADefaultLand">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>32</y>
+          <width>250</width>
+          <height>41</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>ADefaultLand</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="APlatform_Land">
+      <property name="geometry">
+        <rect>
+          <x>272</x>
+          <y>32</y>
+          <width>250</width>
+          <height>41</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>APlatform_Land</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

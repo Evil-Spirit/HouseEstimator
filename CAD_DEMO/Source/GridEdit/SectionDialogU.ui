@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SectionDialog</class>
+  <widget class="QWidget" name="SectionDialog">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>307</width>
+        <height>108</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Идентификатор секции</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <widget class="QLineEdit" name="Edit1">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>16</y>
+          <width>193</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button1">
+      <property name="geometry">
+        <rect>
+          <x>216</x>
+          <y>16</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button2">
+      <property name="geometry">
+        <rect>
+          <x>216</x>
+          <y>48</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Отмена</string>
+      </property>
+      <property name="text">
+        <string>Отмена</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

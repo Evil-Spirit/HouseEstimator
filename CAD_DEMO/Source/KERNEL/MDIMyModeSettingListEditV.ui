@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMyModeSettingListEdit</class>
+  <widget class="QWidget" name="MDIMyModeSettingListEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>669</width>
+        <height>385</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMyModeSettingListEdit</string>
+    </property>
+    <widget class="QTreeWidget" name="LV">
+      <property name="geometry">
+        <rect>
+          <x>509</x>
+          <y>16</y>
+          <width>100</width>
+          <height>341</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QFrame" name="SSS">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>505</width>
+          <height>385</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alLeft → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QToolBar" name="ToolBar1">
+      <property name="geometry">
+        <rect>
+          <x>510</x>
+          <y>359</y>
+          <width>86</width>
+          <height>19</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>ToolBar1</string>
+      </property>
+      <widget class="QWidget" name="tbtAdd">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Add</string>
+        </property>
+      </widget>
+      <widget class="QWidget" name="tbtDel">
+        <property name="geometry">
+          <rect>
+            <x>43</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Delete</string>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QCheckBox" name="IsDefault">
+      <property name="geometry">
+        <rect>
+          <x>512</x>
+          <y>0</y>
+          <width>145</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Default</string>
+      </property>
+      <property name="text">
+        <string>Default</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

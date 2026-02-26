@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ToolForm</class>
+  <widget class="QWidget" name="ToolForm">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>147</width>
+        <height>178</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>ToolForm</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <widget class="QFrame" name="pCoordinates">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>147</width>
+          <height>89</height>
+        </rect>
+      </property>
+      <property name="font">
+        <font>
+          <family>MS Sans Serif</family>
+          <pointsize>12</pointsize>
+        </font>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+      <widget class="QToolButton" name="bDecD">
+        <property name="geometry">
+          <rect>
+            <x>6</x>
+            <y>7</y>
+            <width>15</width>
+            <height>30</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+      </widget>
+      <widget class="QToolButton" name="bPolD">
+        <property name="geometry">
+          <rect>
+            <x>6</x>
+            <y>48</y>
+            <width>15</width>
+            <height>30</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label1">
+        <property name="geometry">
+          <rect>
+            <x>26</x>
+            <y>6</y>
+            <width>16</width>
+            <height>16</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>x :</string>
+        </property>
+        <property name="text">
+          <string>x :</string>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>9</pointsize>
+            <bold>true</bold>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label2">
+        <property name="geometry">
+          <rect>
+            <x>25</x>
+            <y>23</y>
+            <width>17</width>
+            <height>16</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>y :</string>
+        </property>
+        <property name="text">
+          <string>y :</string>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>9</pointsize>
+            <bold>true</bold>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label3">
+        <property name="geometry">
+          <rect>
+            <x>28</x>
+            <y>47</y>
+            <width>14</width>
+            <height>16</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>r :</string>
+        </property>
+        <property name="text">
+          <string>r :</string>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>9</pointsize>
+            <bold>true</bold>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label4">
+        <property name="geometry">
+          <rect>
+            <x>24</x>
+            <y>64</y>
+            <width>18</width>
+            <height>16</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>a :</string>
+        </property>
+        <property name="text">
+          <string>a :</string>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>9</pointsize>
+            <bold>true</bold>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLineEdit" name="eDecX">
+        <property name="geometry">
+          <rect>
+            <x>42</x>
+            <y>5</y>
+            <width>100</width>
+            <height>19</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>8</pointsize>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLineEdit" name="ePolR">
+        <property name="geometry">
+          <rect>
+            <x>42</x>
+            <y>46</y>
+            <width>100</width>
+            <height>19</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>8</pointsize>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLineEdit" name="eDecY">
+        <property name="geometry">
+          <rect>
+            <x>42</x>
+            <y>23</y>
+            <width>100</width>
+            <height>19</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>8</pointsize>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLineEdit" name="ePolA">
+        <property name="geometry">
+          <rect>
+            <x>42</x>
+            <y>64</y>
+            <width>100</width>
+            <height>19</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>8</pointsize>
+          </font>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="pCustom">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>89</y>
+          <width>147</width>
+          <height>89</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

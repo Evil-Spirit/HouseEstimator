@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIViewSettings</class>
+  <widget class="QWidget" name="MDIViewSettings">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>413</width>
+        <height>240</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIViewSettings</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QGroupBox" name="GroupBox1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>413</width>
+          <height>97</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>2D Mode</string>
+      </property>
+      <property name="text">
+        <string>2D Mode</string>
+      </property>
+      <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+      <widget class="QLabel" name="Label1">
+        <property name="geometry">
+          <rect>
+            <x>9</x>
+            <y>20</y>
+            <width>87</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Background color:</string>
+        </property>
+        <property name="text">
+          <string>Background color:</string>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label2">
+        <property name="geometry">
+          <rect>
+            <x>48</x>
+            <y>60</y>
+            <width>48</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Grid color:</string>
+        </property>
+        <property name="text">
+          <string>Grid color:</string>
+        </property>
+      </widget>
+      <widget class="QFrame" name="shBackColor2d">
+        <property name="geometry">
+          <rect>
+            <x>101</x>
+            <y>16</y>
+            <width>65</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="shNetColor2d">
+        <property name="geometry">
+          <rect>
+            <x>101</x>
+            <y>56</y>
+            <width>65</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QRadioButton" name="rbPoints2d">
+        <property name="geometry">
+          <rect>
+            <x>240</x>
+            <y>24</y>
+            <width>113</width>
+            <height>17</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>rbPoints2d</string>
+        </property>
+        <property name="text">
+          <string>rbPoints2d</string>
+        </property>
+      </widget>
+      <widget class="QRadioButton" name="rbLines2d">
+        <property name="geometry">
+          <rect>
+            <x>240</x>
+            <y>56</y>
+            <width>113</width>
+            <height>17</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>rbLines2d</string>
+        </property>
+        <property name="text">
+          <string>rbLines2d</string>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QGroupBox" name="GroupBox2">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>97</y>
+          <width>413</width>
+          <height>97</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>3D Mode</string>
+      </property>
+      <property name="text">
+        <string>3D Mode</string>
+      </property>
+      <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+      <widget class="QLabel" name="Label3">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>20</y>
+            <width>87</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Background color:</string>
+        </property>
+        <property name="text">
+          <string>Background color:</string>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label4">
+        <property name="geometry">
+          <rect>
+            <x>47</x>
+            <y>60</y>
+            <width>48</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Grid color:</string>
+        </property>
+        <property name="text">
+          <string>Grid color:</string>
+        </property>
+      </widget>
+      <widget class="QFrame" name="shBackColor3d">
+        <property name="geometry">
+          <rect>
+            <x>101</x>
+            <y>16</y>
+            <width>65</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="shNetColor3d">
+        <property name="geometry">
+          <rect>
+            <x>101</x>
+            <y>56</y>
+            <width>65</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QRadioButton" name="rbPoints3d">
+        <property name="geometry">
+          <rect>
+            <x>240</x>
+            <y>24</y>
+            <width>113</width>
+            <height>17</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>rbPoints2d</string>
+        </property>
+        <property name="text">
+          <string>rbPoints2d</string>
+        </property>
+      </widget>
+      <widget class="QRadioButton" name="rbLines3d">
+        <property name="geometry">
+          <rect>
+            <x>240</x>
+            <y>56</y>
+            <width>113</width>
+            <height>17</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>rbLines2d</string>
+        </property>
+        <property name="text">
+          <string>rbLines2d</string>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="btOK">
+      <property name="geometry">
+        <rect>
+          <x>120</x>
+          <y>208</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btCancel">
+      <property name="geometry">
+        <rect>
+          <x>208</x>
+          <y>208</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Отмена</string>
+      </property>
+      <property name="text">
+        <string>Отмена</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

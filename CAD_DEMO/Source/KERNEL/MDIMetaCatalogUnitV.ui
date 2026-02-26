@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMetaCatalogUnit</class>
+  <widget class="QWidget" name="MDIMetaCatalogUnit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1</width>
+        <height>1</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMetaCatalogUnit</string>
+    </property>
+    <widget class="QTabWidget" name="PCNode">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QWidget" name="tsMain">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <widget class="QLabel" name="Label1">
+          <property name="geometry">
+            <rect>
+              <x>88</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsAdvancedSuper">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <widget class="QFrame" name="ASSOCIATED">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>176</y>
+              <width>289</width>
+              <height>41</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ASSOCIATED</string>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

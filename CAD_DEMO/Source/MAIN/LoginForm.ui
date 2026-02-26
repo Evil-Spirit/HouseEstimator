@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>frmLogin</class>
+  <widget class="QWidget" name="frmLogin">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>411</width>
+        <height>275</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Login</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QLabel" name="Image1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>411</width>
+          <height>275</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QLabel" name="Label1">
+      <property name="geometry">
+        <rect>
+          <x>72</x>
+          <y>149</y>
+          <width>83</width>
+          <height>16</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>User Name:</string>
+      </property>
+      <property name="text">
+        <string>User Name:</string>
+      </property>
+      <property name="font">
+        <font>
+          <family>MS Sans Serif</family>
+          <pointsize>9</pointsize>
+          <bold>true</bold>
+        </font>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label2">
+      <property name="geometry">
+        <rect>
+          <x>72</x>
+          <y>189</y>
+          <width>73</width>
+          <height>16</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Password:</string>
+      </property>
+      <property name="text">
+        <string>Password:</string>
+      </property>
+      <property name="font">
+        <font>
+          <family>MS Sans Serif</family>
+          <pointsize>9</pointsize>
+          <bold>true</bold>
+        </font>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btnOK">
+      <property name="geometry">
+        <rect>
+          <x>224</x>
+          <y>241</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btnCancel">
+      <property name="geometry">
+        <rect>
+          <x>320</x>
+          <y>241</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Cancel</string>
+      </property>
+      <property name="text">
+        <string>Cancel</string>
+      </property>
+    </widget>
+    <widget class="QLineEdit" name="edtName">
+      <property name="geometry">
+        <rect>
+          <x>72</x>
+          <y>165</y>
+          <width>241</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+    </widget>
+    <widget class="QLineEdit" name="edtPassword">
+      <property name="geometry">
+        <rect>
+          <x>72</x>
+          <y>205</y>
+          <width>241</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

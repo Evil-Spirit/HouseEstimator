@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>OutPut</class>
+  <widget class="QWidget" name="OutPut">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>603</width>
+        <height>128</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>OutPut</string>
+    </property>
+    <!-- vcl-FormStyle: fsStayOnTop → setWindowFlag(Qt::WindowStaysOnTopHint) -->
+    <widget class="QTreeWidget" name="LV">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>300</width>
+          <height>101</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Наименование</string>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

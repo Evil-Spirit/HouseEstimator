@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ProgBar</class>
+  <widget class="QWidget" name="ProgBar">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>378</width>
+        <height>84</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>ProgBar</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <!-- vcl-FormStyle: fsStayOnTop → setWindowFlag(Qt::WindowStaysOnTopHint) -->
+    <widget class="QLabel" name="Main">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>37</y>
+          <width>23</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Main</string>
+      </property>
+      <property name="text">
+        <string>Main</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Detail">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>53</y>
+          <width>27</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Detail</string>
+      </property>
+      <property name="text">
+        <string>Detail</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="lProcessName">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>8</y>
+          <width>103</width>
+          <height>16</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>lProcessName</string>
+      </property>
+      <property name="text">
+        <string>lProcessName</string>
+      </property>
+      <property name="font">
+        <font>
+          <family>MS Sans Serif</family>
+          <pointsize>9</pointsize>
+          <bold>true</bold>
+        </font>
+      </property>
+    </widget>
+    <widget class="QProgressBar" name="Progress">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>69</y>
+          <width>361</width>
+          <height>12</height>
+        </rect>
+      </property>
+      <property name="minimum">
+        <number>0</number>
+      </property>
+      <property name="maximum">
+        <number>100</number>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

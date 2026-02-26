@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>BaseDockSiteForm</class>
+  <widget class="QMainWindow" name="BaseDockSiteForm">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>685</width>
+        <height>381</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>BaseDockSiteForm</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <widget class="QSplitter" name="spltrRight">
+      <property name="geometry">
+        <rect>
+          <x>650</x>
+          <y>0</y>
+          <width>3</width>
+          <height>314</height>
+        </rect>
+      </property>
+      <property name="visible">
+        <bool>false</bool>
+      </property>
+      <!-- vcl-align: alRight → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QSplitter" name="spltrBottom">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>314</y>
+          <width>677</width>
+          <height>3</height>
+        </rect>
+      </property>
+      <property name="visible">
+        <bool>false</bool>
+      </property>
+      <!-- vcl-align: alBottom → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QSplitter" name="spltrLeft">
+      <property name="geometry">
+        <rect>
+          <x>25</x>
+          <y>0</y>
+          <width>3</width>
+          <height>314</height>
+        </rect>
+      </property>
+      <property name="visible">
+        <bool>false</bool>
+      </property>
+    </widget>
+    <widget class="QFrame" name="pnlRightSide">
+      <property name="geometry">
+        <rect>
+          <x>653</x>
+          <y>0</y>
+          <width>24</width>
+          <height>314</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+      <!-- vcl-align: alRight → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QFrame" name="pnlBottomSide">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>317</y>
+          <width>677</width>
+          <height>18</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+      <!-- vcl-align: alBottom → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QFrame" name="pnlLeftSide">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>25</width>
+          <height>314</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+      <!-- vcl-align: alLeft → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QStatusBar" name="StatusBar">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>335</y>
+          <width>677</width>
+          <height>19</height>
+        </rect>
+      </property>
+      <property name="visible">
+        <bool>false</bool>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

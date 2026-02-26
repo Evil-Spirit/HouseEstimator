@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ToolBarForm</class>
+  <widget class="QWidget" name="ToolBarForm">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>398</width>
+        <height>58</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>ToolBarForm</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsSizeToolWin → set windowFlags Qt::Tool in constructor -->
+    <!-- vcl-FormStyle: fsStayOnTop → setWindowFlag(Qt::WindowStaysOnTopHint) -->
+    <widget class="QToolBar" name="ToolBar">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>390</width>
+          <height>31</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>ToolBar</string>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

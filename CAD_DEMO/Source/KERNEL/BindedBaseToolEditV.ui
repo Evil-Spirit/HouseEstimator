@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>BindedBaseToolEdit</class>
+  <widget class="QWidget" name="BindedBaseToolEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>604</width>
+        <height>406</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>BindedBaseToolEdit</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <widget class="QSplitter" name="Splitter1">
+      <property name="geometry">
+        <rect>
+          <x>209</x>
+          <y>0</y>
+          <width>8</width>
+          <height>406</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QFrame" name="pBlocks">
+      <property name="geometry">
+        <rect>
+          <x>217</x>
+          <y>0</y>
+          <width>387</width>
+          <height>406</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QGroupBox" name="GroupBox1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>209</width>
+          <height>406</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Blocks</string>
+      </property>
+      <property name="text">
+        <string>Blocks</string>
+      </property>
+      <!-- vcl-align: alLeft → arrange in a Qt layout manager -->
+      <widget class="QFrame" name="Panel2">
+        <property name="geometry">
+          <rect>
+            <x>2</x>
+            <y>15</y>
+            <width>110</width>
+            <height>389</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Panel2</string>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+        </property>
+        <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+        <widget class="QTreeWidget" name="lvBlocks">
+          <property name="geometry">
+            <rect>
+              <x>4</x>
+              <y>4</y>
+              <width>200</width>
+              <height>381</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Name</string>
+          </property>
+          <property name="font">
+            <font>
+              <family>MS Sans Serif</family>
+              <pointsize>8</pointsize>
+            </font>
+          </property>
+          <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+        </widget>
+      </widget>
+      <widget class="QFrame" name="Panel3">
+        <property name="geometry">
+          <rect>
+            <x>112</x>
+            <y>15</y>
+            <width>95</width>
+            <height>389</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+        </property>
+        <!-- vcl-align: alRight → arrange in a Qt layout manager -->
+        <widget class="QToolBar" name="ToolBar">
+          <property name="geometry">
+            <rect>
+              <x>9</x>
+              <y>9</y>
+              <width>58</width>
+              <height>44</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolBar1</string>
+          </property>
+          <widget class="QWidget" name="tbNew">
+            <property name="geometry">
+              <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>New</string>
+            </property>
+          </widget>
+          <widget class="QWidget" name="tbDelete">
+            <property name="geometry">
+              <rect>
+                <x>0</x>
+                <y>22</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>Delete</string>
+            </property>
+          </widget>
+        </widget>
+        <widget class="QPushButton" name="Button1">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>104</y>
+              <width>73</width>
+              <height>25</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>EditRender</string>
+          </property>
+          <property name="text">
+            <string>EditRender</string>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QMenu" name="pmBlocksTypes">
+      <property name="geometry">
+        <rect>
+          <x>160</x>
+          <y>80</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QAction" name="spmStateBlock">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>State</string>
+        </property>
+      </widget>
+      <widget class="QAction" name="spmActionBlock">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Action</string>
+        </property>
+      </widget>
+      <widget class="QAction" name="spmConditionalBlock">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Conditional</string>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

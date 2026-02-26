@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMyModeSettingsEdit</class>
+  <widget class="QWidget" name="MDIMyModeSettingsEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>446</width>
+        <height>396</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMyModeSettingsEdit</string>
+    </property>
+    <widget class="QLabel" name="Label2">
+      <property name="geometry">
+        <rect>
+          <x>20</x>
+          <y>316</y>
+          <width>116</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Position correction mode</string>
+      </property>
+      <property name="text">
+        <string>Position correction mode</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label1">
+      <property name="geometry">
+        <rect>
+          <x>20</x>
+          <y>247</y>
+          <width>99</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Size correction mode</string>
+      </property>
+      <property name="text">
+        <string>Size correction mode</string>
+      </property>
+    </widget>
+    <widget class="QFrame" name="OverSize">
+      <property name="geometry">
+        <rect>
+          <x>11</x>
+          <y>270</y>
+          <width>302</width>
+          <height>36</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OverSize</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="OverPos">
+      <property name="geometry">
+        <rect>
+          <x>11</x>
+          <y>334</y>
+          <width>302</width>
+          <height>36</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OverPos</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QCheckBox" name="cbRender">
+      <property name="geometry">
+        <rect>
+          <x>24</x>
+          <y>371</y>
+          <width>73</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Visible</string>
+      </property>
+      <property name="text">
+        <string>Visible</string>
+      </property>
+    </widget>
+    <widget class="QComboBox" name="cbOverSize">
+      <property name="geometry">
+        <rect>
+          <x>168</x>
+          <y>243</y>
+          <width>145</width>
+          <height>19</height>
+        </rect>
+      </property>
+      <item>
+        <property name="text">
+          <string>&lt;None&gt;</string>
+        </property>
+      </item>
+      <item>
+        <property name="text">
+          <string>Add</string>
+        </property>
+      </item>
+      <item>
+        <property name="text">
+          <string>Replace</string>
+        </property>
+      </item>
+    </widget>
+    <widget class="QComboBox" name="cbOverPos">
+      <property name="geometry">
+        <rect>
+          <x>168</x>
+          <y>309</y>
+          <width>145</width>
+          <height>19</height>
+        </rect>
+      </property>
+      <item>
+        <property name="text">
+          <string>&lt;None&gt;</string>
+        </property>
+      </item>
+      <item>
+        <property name="text">
+          <string>Add</string>
+        </property>
+      </item>
+      <item>
+        <property name="text">
+          <string>Replace</string>
+        </property>
+      </item>
+    </widget>
+    <widget class="QCheckBox" name="cbFLAT_2D">
+      <property name="geometry">
+        <rect>
+          <x>104</x>
+          <y>371</y>
+          <width>73</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Flat</string>
+      </property>
+      <property name="text">
+        <string>Flat</string>
+      </property>
+    </widget>
+    <widget class="QTabWidget" name="pcMatTex">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>446</width>
+          <height>233</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+      <widget class="QWidget" name="MAT">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Materials</string>
+        </property>
+      </widget>
+      <widget class="QWidget" name="TEX">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Textures</string>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

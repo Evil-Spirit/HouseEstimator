@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SelectBMP</class>
+  <widget class="QWidget" name="SelectBMP">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>457</width>
+        <height>458</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>SelectBMP</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QTreeWidget" name="LV">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>40</y>
+          <width>347</width>
+          <height>408</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="CBE">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>8</y>
+          <width>348</width>
+          <height>22</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btOK">
+      <property name="geometry">
+        <rect>
+          <x>372</x>
+          <y>8</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btCancel">
+      <property name="geometry">
+        <rect>
+          <x>372</x>
+          <y>40</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Cancel</string>
+      </property>
+      <property name="text">
+        <string>Cancel</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btClear">
+      <property name="geometry">
+        <rect>
+          <x>372</x>
+          <y>72</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Clear</string>
+      </property>
+      <property name="text">
+        <string>Clear</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

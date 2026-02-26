@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>StringListEditor</class>
+  <widget class="QWidget" name="StringListEditor">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>482</width>
+        <height>338</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>String List Editor</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QFrame" name="MainPanel">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>8</y>
+          <width>465</width>
+          <height>281</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <widget class="QTextEdit" name="MainMemo">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>8</y>
+            <width>449</width>
+            <height>265</height>
+          </rect>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="OK">
+      <property name="geometry">
+        <rect>
+          <x>296</x>
+          <y>304</y>
+          <width>81</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Cancel">
+      <property name="geometry">
+        <rect>
+          <x>384</x>
+          <y>304</y>
+          <width>89</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Cancel</string>
+      </property>
+      <property name="text">
+        <string>Cancel</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

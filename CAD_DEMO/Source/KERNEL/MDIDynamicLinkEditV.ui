@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIDynamicLinkEdit</class>
+  <widget class="QWidget" name="MDIDynamicLinkEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>508</width>
+        <height>396</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIDynamicLinkEdit</string>
+    </property>
+    <widget class="QTabWidget" name="PCNode">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>500</width>
+          <height>328</height>
+        </rect>
+      </property>
+      <widget class="QWidget" name="tsAttributes">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <widget class="QSplitter" name="Splitter2">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>121</y>
+              <width>492</width>
+              <height>1</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QFrame" name="Attributes">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>492</width>
+              <height>121</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+        <widget class="QFrame" name="TB">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>124</y>
+              <width>492</width>
+              <height>176</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="TabSheet1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Link</string>
+        </property>
+        <widget class="QGroupBox" name="GroupBox9">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>104</y>
+              <width>281</width>
+              <height>65</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Object</string>
+          </property>
+          <property name="text">
+            <string>Object</string>
+          </property>
+          <widget class="QWidget" name="cbeElements">
+            <property name="geometry">
+              <rect>
+                <x>8</x>
+                <y>24</y>
+                <width>265</width>
+                <height>22</height>
+              </rect>
+            </property>
+          </widget>
+        </widget>
+        <widget class="QGroupBox" name="GroupBox10">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>32</y>
+              <width>281</width>
+              <height>65</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Link</string>
+          </property>
+          <property name="text">
+            <string>Link</string>
+          </property>
+          <widget class="QWidget" name="cbeLinks">
+            <property name="geometry">
+              <rect>
+                <x>8</x>
+                <y>24</y>
+                <width>265</width>
+                <height>22</height>
+              </rect>
+            </property>
+          </widget>
+        </widget>
+        <widget class="QCheckBox" name="cbNeeded">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>8</y>
+              <width>145</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Mandatory link</string>
+          </property>
+          <property name="text">
+            <string>Mandatory link</string>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>328</y>
+          <width>500</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

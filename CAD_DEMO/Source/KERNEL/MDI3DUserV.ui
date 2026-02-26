@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDI3DUser</class>
+  <widget class="QWidget" name="MDI3DUser">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>466</width>
+        <height>360</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDI3DUser</string>
+    </property>
+    <!-- vcl-FormStyle: fsMDIChild → use QMdiSubWindow -->
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>8</y>
+          <width>129</width>
+          <height>33</height>
+        </rect>
+      </property>
+      <property name="visible">
+        <bool>false</bool>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+      <widget class="QLabel" name="Label1">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>8</y>
+            <width>64</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Число узлов</string>
+        </property>
+        <property name="text">
+          <string>Число узлов</string>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label2">
+        <property name="geometry">
+          <rect>
+            <x>88</x>
+            <y>8</y>
+            <width>3</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="Panel2">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>458</width>
+          <height>333</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <widget class="QWidget" name="View">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>456</width>
+            <height>331</height>
+          </rect>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QWidget" name="_3DCamera">
+      <property name="geometry">
+        <rect>
+          <x>88</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Attr3D">
+      <property name="geometry">
+        <rect>
+          <x>88</x>
+          <y>168</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Light0">
+      <property name="geometry">
+        <rect>
+          <x>48</x>
+          <y>168</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Light1">
+      <property name="geometry">
+        <rect>
+          <x>120</x>
+          <y>136</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="DiscInvisible">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="MaterialInvisible">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="_2DCamera">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Attr2D">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

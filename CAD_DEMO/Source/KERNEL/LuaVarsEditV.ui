@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>Buttons</class>
+  <widget class="QToolBar" name="Buttons">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>58</width>
+        <height>66</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Buttons</string>
+    </property>
+    <widget class="QWidget" name="tbtAdd">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Add</string>
+      </property>
+    </widget>
+    <widget class="QWidget" name="tbtEdit">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>22</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Edit</string>
+      </property>
+    </widget>
+    <widget class="QWidget" name="tbtDel">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>44</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Delete</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

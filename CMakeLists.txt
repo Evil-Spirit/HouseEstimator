@@ -9,6 +9,19 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
+# Help AUTOUIC locate the generated .ui files (from DFM→UI conversion).
+# Each module subdirectory contains .ui files alongside the source files.
+set(CMAKE_AUTOUIC_SEARCH_PATHS
+    "${CMAKE_SOURCE_DIR}/CAD_DEMO/Source/MAIN"
+    "${CMAKE_SOURCE_DIR}/CAD_DEMO/Source/KERNEL"
+    "${CMAKE_SOURCE_DIR}/CAD_DEMO/Source/COMMON"
+    "${CMAKE_SOURCE_DIR}/CAD_DEMO/Source/LuaEnv"
+    "${CMAKE_SOURCE_DIR}/CAD_DEMO/Source/GridEdit"
+    "${CMAKE_SOURCE_DIR}/CAD_DEMO/Source/ObjectInspector"
+    "${CMAKE_SOURCE_DIR}/CAD_DEMO/Source/Sample"
+    "${CMAKE_SOURCE_DIR}/CAD_DEMO/Source/TestObj"
+)
+
 # ---------------------------------------------------------------------------
 # Qt discovery – prefer Qt6, fall back to Qt5
 # ---------------------------------------------------------------------------

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMetaMyMode</class>
+  <widget class="QWidget" name="MDIMetaMyMode">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1</width>
+        <height>1</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMetaMyMode</string>
+    </property>
+    <widget class="QTabWidget" name="PCNode">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QWidget" name="tsMain">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <widget class="QLabel" name="Label1">
+          <property name="geometry">
+            <rect>
+              <x>87</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+        <widget class="QLabel" name="indLabel">
+          <property name="geometry">
+            <rect>
+              <x>105</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+        <widget class="QLabel" name="LabelDescription">
+          <property name="geometry">
+            <rect>
+              <x>45</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lGUID">
+          <property name="geometry">
+            <rect>
+              <x>89</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsMode">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Mode</string>
+        </property>
+        <widget class="QLabel" name="lCAM">
+          <property name="geometry">
+            <rect>
+              <x>32</x>
+              <y>24</y>
+              <width>36</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Camera</string>
+          </property>
+          <property name="text">
+            <string>Camera</string>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbCAM">
+          <property name="geometry">
+            <rect>
+              <x>80</x>
+              <y>20</y>
+              <width>145</width>
+              <height>19</height>
+            </rect>
+          </property>
+          <item>
+            <property name="text">
+              <string>Orthographic</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>Perspective</string>
+            </property>
+          </item>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

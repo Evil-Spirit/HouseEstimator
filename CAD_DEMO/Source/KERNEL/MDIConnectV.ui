@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIConnect</class>
+  <widget class="QWidget" name="MDIConnect">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>451</width>
+        <height>371</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIConnect</string>
+    </property>
+    <widget class="QTabWidget" name="PCNode">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>443</width>
+          <height>303</height>
+        </rect>
+      </property>
+      <widget class="QWidget" name="tsMain">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <widget class="QLabel" name="lMetaLinkType">
+          <property name="geometry">
+            <rect>
+              <x>74</x>
+              <y>124</y>
+              <width>35</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Режим</string>
+          </property>
+          <property name="text">
+            <string>Режим</string>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="mnDescription">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbMetaLinkType">
+          <property name="geometry">
+            <rect>
+              <x>120</x>
+              <y>120</y>
+              <width>201</width>
+              <height>19</height>
+            </rect>
+          </property>
+          <item>
+            <property name="text">
+              <string>( #1054#1073#1083#1072#1089#1090#1100</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>(1) -</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>#1058#1086#1095#1082#1072</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>(2)</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>#1058#1086#1095#1082#1072</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>(1) -</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>#1058#1086#1095#1082#1072</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>(2)</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>#1051#1080#1085#1080#1103</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>(1) -</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>#1051#1080#1085#1080#1103</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>(2)</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>#1057#1090#1077#1085#1072</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>(1) -</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>#1057#1090#1077#1085#1072</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>(2)</string>
+            </property>
+          </item>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsAttributes">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <widget class="QSplitter" name="Splitter2">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>435</width>
+              <height>1</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QFrame" name="Attributes">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>435</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+        <widget class="QFrame" name="TB">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>435</width>
+              <height>143</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsAngle">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Angle</string>
+        </property>
+        <widget class="QFrame" name="Angle">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>8</y>
+              <width>329</width>
+              <height>217</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ANGLE</string>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsExtended">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Additional</string>
+        </property>
+        <widget class="QCheckBox" name="cbHoleCreated">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>88</y>
+              <width>113</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Aperture-Link</string>
+          </property>
+          <property name="text">
+            <string>Aperture-Link</string>
+          </property>
+        </widget>
+        <widget class="QGroupBox" name="gblcm">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>8</y>
+              <width>409</width>
+              <height>49</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>LinkChangeMode</string>
+          </property>
+          <property name="text">
+            <string>LinkChangeMode</string>
+          </property>
+          <widget class="QComboBox" name="cblcmX">
+            <property name="geometry">
+              <rect>
+                <x>16</x>
+                <y>16</y>
+                <width>89</width>
+                <height>21</height>
+              </rect>
+            </property>
+            <item>
+              <property name="text">
+                <string>Auto</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Minus</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Zero</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Plus</string>
+              </property>
+            </item>
+          </widget>
+          <widget class="QComboBox" name="cblcmY">
+            <property name="geometry">
+              <rect>
+                <x>160</x>
+                <y>16</y>
+                <width>89</width>
+                <height>21</height>
+              </rect>
+            </property>
+            <item>
+              <property name="text">
+                <string>Auto</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Minus</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Zero</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Plus</string>
+              </property>
+            </item>
+          </widget>
+          <widget class="QComboBox" name="cblcmZ">
+            <property name="geometry">
+              <rect>
+                <x>304</x>
+                <y>16</y>
+                <width>89</width>
+                <height>21</height>
+              </rect>
+            </property>
+            <item>
+              <property name="text">
+                <string>Auto</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Minus</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Zero</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Plus</string>
+              </property>
+            </item>
+          </widget>
+        </widget>
+        <widget class="QCheckBox" name="cbClient">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>112</y>
+              <width>97</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Target-Link</string>
+          </property>
+          <property name="text">
+            <string>Target-Link</string>
+          </property>
+        </widget>
+        <widget class="QGroupBox" name="GroupBox1">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>192</y>
+              <width>409</width>
+              <height>65</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Target</string>
+          </property>
+          <property name="text">
+            <string>Target</string>
+          </property>
+          <widget class="QLabel" name="Label2">
+            <property name="geometry">
+              <rect>
+                <x>16</x>
+                <y>16</y>
+                <width>31</width>
+                <height>13</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>Object</string>
+            </property>
+            <property name="text">
+              <string>Object</string>
+            </property>
+          </widget>
+          <widget class="QLabel" name="Label3">
+            <property name="geometry">
+              <rect>
+                <x>248</x>
+                <y>16</y>
+                <width>31</width>
+                <height>13</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>Target</string>
+            </property>
+            <property name="text">
+              <string>Target</string>
+            </property>
+          </widget>
+          <widget class="QComboBox" name="cbNormal0">
+            <property name="geometry">
+              <rect>
+                <x>16</x>
+                <y>36</y>
+                <width>145</width>
+                <height>21</height>
+              </rect>
+            </property>
+            <item>
+              <property name="text">
+                <string>Normal vector X</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Normal vector Y</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Normal vector Z</string>
+              </property>
+            </item>
+          </widget>
+          <widget class="QComboBox" name="cbNormal1">
+            <property name="geometry">
+              <rect>
+                <x>248</x>
+                <y>36</y>
+                <width>145</width>
+                <height>21</height>
+              </rect>
+            </property>
+            <item>
+              <property name="text">
+                <string>Normal vector X</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Normal vector Y</string>
+              </property>
+            </item>
+            <item>
+              <property name="text">
+                <string>Normal vector Z</string>
+              </property>
+            </item>
+          </widget>
+        </widget>
+        <widget class="QGroupBox" name="GroupBox2">
+          <property name="geometry">
+            <rect>
+              <x>328</x>
+              <y>64</y>
+              <width>97</width>
+              <height>129</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Priority</string>
+          </property>
+          <property name="text">
+            <string>Priority</string>
+          </property>
+          <widget class="QSpinBox" name="UpDown1">
+            <property name="geometry">
+              <rect>
+                <x>49</x>
+                <y>24</y>
+                <width>15</width>
+                <height>21</height>
+              </rect>
+            </property>
+            <property name="minimum">
+              <number>0</number>
+            </property>
+            <property name="maximum">
+              <number>100</number>
+            </property>
+          </widget>
+          <widget class="QLineEdit" name="ePriority">
+            <property name="geometry">
+              <rect>
+                <x>16</x>
+                <y>24</y>
+                <width>33</width>
+                <height>21</height>
+              </rect>
+            </property>
+            <property name="text">
+              <string>0</string>
+            </property>
+          </widget>
+        </widget>
+        <widget class="QCheckBox" name="cbControl">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>64</y>
+              <width>113</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Сontrol</string>
+          </property>
+          <property name="text">
+            <string>Сontrol</string>
+          </property>
+        </widget>
+        <widget class="QCheckBox" name="cbWallLink">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>136</y>
+              <width>113</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Wall link</string>
+          </property>
+          <property name="text">
+            <string>Wall link</string>
+          </property>
+        </widget>
+        <widget class="QGroupBox" name="rgTransMode">
+          <property name="geometry">
+            <rect>
+              <x>176</x>
+              <y>64</y>
+              <width>145</width>
+              <height>121</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Transformation mode</string>
+          </property>
+          <property name="text">
+            <string>Transformation mode</string>
+          </property>
+        </widget>
+        <widget class="QCheckBox" name="cbRunOnStop">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>160</y>
+              <width>121</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Not snap</string>
+          </property>
+          <property name="text">
+            <string>Not snap</string>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="TabSheet1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Snap</string>
+        </property>
+        <widget class="QFrame" name="EPS">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>48</y>
+              <width>313</width>
+              <height>217</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>EPS</string>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsNew">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Step</string>
+        </property>
+        <widget class="QFrame" name="STEP">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>435</width>
+              <height>113</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>STEP</string>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+          </property>
+          <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>303</y>
+          <width>443</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

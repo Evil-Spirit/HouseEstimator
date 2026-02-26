@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>TreeWindow</class>
+  <widget class="QWidget" name="TreeWindow">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>244</width>
+        <height>182</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>TreeWindow</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsToolWindow → set windowFlags Qt::Tool in constructor -->
+    <!-- vcl-FormStyle: fsStayOnTop → setWindowFlag(Qt::WindowStaysOnTopHint) -->
+    <widget class="QTreeWidget" name="Tree">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>244</width>
+          <height>182</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

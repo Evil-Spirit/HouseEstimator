@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>Logo</class>
+  <widget class="QWidget" name="Logo">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>500</width>
+        <height>314</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Logo</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <widget class="QLabel" name="Image1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>500</width>
+          <height>314</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+    </widget>
+    <widget class="QTimer" name="Timer1">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>8</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="enabled">
+        <bool>false</bool>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

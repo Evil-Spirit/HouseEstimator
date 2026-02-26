@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIObjectEdit</class>
+  <widget class="QWidget" name="MDIObjectEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>240</width>
+        <height>79</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIObjectEdit</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <widget class="QLabel" name="LBL">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>0</y>
+          <width>19</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>LBL</string>
+      </property>
+      <property name="text">
+        <string>LBL</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

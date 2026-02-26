@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIEpsEdit</class>
+  <widget class="QWidget" name="MDIEpsEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1</width>
+        <height>160</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIEpsEdit</string>
+    </property>
+    <widget class="QFrame" name="POSEPS">
+      <property name="geometry">
+        <rect>
+          <x>6</x>
+          <y>16</y>
+          <width>290</width>
+          <height>45</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>POSEPS</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="ANGLEEPS">
+      <property name="geometry">
+        <rect>
+          <x>6</x>
+          <y>64</y>
+          <width>290</width>
+          <height>45</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>ANGLEEPS</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="SIZEEPS">
+      <property name="geometry">
+        <rect>
+          <x>6</x>
+          <y>112</y>
+          <width>290</width>
+          <height>45</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>SIZEEPS</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

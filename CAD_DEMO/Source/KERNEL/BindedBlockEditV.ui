@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>BindedBlockEdit</class>
+  <widget class="QWidget" name="BindedBlockEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>416</width>
+        <height>316</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>BindedBlockEdit</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <widget class="QSplitter" name="Splitter1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>161</y>
+          <width>416</width>
+          <height>8</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QFrame" name="pBlockEdit">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>416</width>
+          <height>161</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+      <widget class="QFrame" name="Panel1">
+        <property name="geometry">
+          <rect>
+            <x>276</x>
+            <y>1</y>
+            <width>139</width>
+            <height>159</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+        </property>
+        <!-- vcl-align: alRight → arrange in a Qt layout manager -->
+        <widget class="QLabel" name="lNameSB">
+          <property name="geometry">
+            <rect>
+              <x>40</x>
+              <y>6</y>
+              <width>56</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Block name</string>
+          </property>
+          <property name="text">
+            <string>Block name</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lExecutedEvent">
+          <property name="geometry">
+            <rect>
+              <x>15</x>
+              <y>115</y>
+              <width>69</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Execute event</string>
+          </property>
+          <property name="text">
+            <string>Execute event</string>
+          </property>
+        </widget>
+        <widget class="QToolBar" name="ToolBar1">
+          <property name="geometry">
+            <rect>
+              <x>18</x>
+              <y>46</y>
+              <width>58</width>
+              <height>66</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolBar1</string>
+          </property>
+          <widget class="QWidget" name="tbNew">
+            <property name="geometry">
+              <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>New</string>
+            </property>
+          </widget>
+          <widget class="QWidget" name="tbEdit">
+            <property name="geometry">
+              <rect>
+                <x>0</x>
+                <y>22</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>Edit</string>
+            </property>
+          </widget>
+          <widget class="QWidget" name="tbDelete">
+            <property name="geometry">
+              <rect>
+                <x>0</x>
+                <y>44</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>Delete</string>
+            </property>
+          </widget>
+        </widget>
+        <widget class="QComboBox" name="cbExEvent">
+          <property name="geometry">
+            <rect>
+              <x>17</x>
+              <y>128</y>
+              <width>105</width>
+              <height>21</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="eName">
+          <property name="geometry">
+            <rect>
+              <x>17</x>
+              <y>19</y>
+              <width>105</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string>Block</string>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QGroupBox" name="GroupBox1">
+        <property name="geometry">
+          <rect>
+            <x>1</x>
+            <y>1</y>
+            <width>275</width>
+            <height>159</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Switch to</string>
+        </property>
+        <property name="text">
+          <string>Switch to</string>
+        </property>
+        <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+        <widget class="QFrame" name="Panel2">
+          <property name="geometry">
+            <rect>
+              <x>2</x>
+              <y>15</y>
+              <width>271</width>
+              <height>142</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Panel2</string>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+          </property>
+          <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+          <widget class="QTreeWidget" name="lvNextBlock">
+            <property name="geometry">
+              <rect>
+                <x>4</x>
+                <y>4</y>
+                <width>263</width>
+                <height>134</height>
+              </rect>
+            </property>
+            <property name="font">
+              <font>
+                <family>MS Sans Serif</family>
+                <pointsize>8</pointsize>
+              </font>
+            </property>
+            <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+          </widget>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="pLuaModuleEdit">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>169</y>
+          <width>416</width>
+          <height>147</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

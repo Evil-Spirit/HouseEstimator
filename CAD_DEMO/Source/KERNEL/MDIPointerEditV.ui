@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIPointerEdit</class>
+  <widget class="QWidget" name="MDIPointerEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>226</width>
+        <height>35</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIPointerEdit</string>
+    </property>
+    <widget class="QWidget" name="CBE">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>9</y>
+          <width>209</width>
+          <height>22</height>
+        </rect>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

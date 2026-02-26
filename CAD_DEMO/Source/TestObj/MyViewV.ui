@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MyView</class>
+  <widget class="QWidget" name="MyView">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>497</width>
+        <height>299</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MyView</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <widget class="QWidget" name="View">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>497</width>
+          <height>299</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QWidget" name="VisAttributes">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>96</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="VisLight">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>128</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="VisOrtCam">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>160</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="VisPerspCam">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>192</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="VisLight1">
+      <property name="geometry">
+        <rect>
+          <x>72</x>
+          <y>160</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="enabled">
+        <bool>false</bool>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

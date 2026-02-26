@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MyView</class>
+  <widget class="QWidget" name="MyView">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>696</width>
+        <height>480</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MyView</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

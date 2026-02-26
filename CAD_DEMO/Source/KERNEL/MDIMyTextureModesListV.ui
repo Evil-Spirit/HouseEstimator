@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMyTextureModesList</class>
+  <widget class="QWidget" name="MDIMyTextureModesList">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>571</width>
+        <height>315</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMyTextureModesList</string>
+    </property>
+    <widget class="QToolBar" name="ToolBar1">
+      <property name="geometry">
+        <rect>
+          <x>409</x>
+          <y>290</y>
+          <width>86</width>
+          <height>19</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>ToolBar1</string>
+      </property>
+      <widget class="QWidget" name="tbtAdd">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Add</string>
+        </property>
+      </widget>
+      <widget class="QWidget" name="tbtDel">
+        <property name="geometry">
+          <rect>
+            <x>43</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Delete</string>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="SSS">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>404</width>
+          <height>315</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alLeft → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QTreeWidget" name="LV">
+      <property name="geometry">
+        <rect>
+          <x>410</x>
+          <y>9</y>
+          <width>100</width>
+          <height>278</height>
+        </rect>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>Global</class>
+  <widget class="QWidget" name="Global">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>310</width>
+        <height>175</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Type</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsToolWindow → set windowFlags Qt::Tool in constructor -->
+    <!-- vcl-FormStyle: fsMDIChild → use QMdiSubWindow -->
+    <widget class="QTreeWidget" name="List">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>310</width>
+          <height>175</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Name</string>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

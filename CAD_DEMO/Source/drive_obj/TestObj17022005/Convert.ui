@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>Form2</class>
+  <widget class="QWidget" name="Form2">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>282</width>
+        <height>234</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Параметры конвертирования</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QCheckBox" name="CheckBox1">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>8</y>
+          <width>129</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Оптимизировать</string>
+      </property>
+      <property name="text">
+        <string>Оптимизировать</string>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Edit1">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>48</y>
+          <width>137</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="enabled">
+        <bool>false</bool>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Edit2">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>88</y>
+          <width>137</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="enabled">
+        <bool>false</bool>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Edit3">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>128</y>
+          <width>137</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="enabled">
+        <bool>false</bool>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="BitBtn1">
+      <property name="geometry">
+        <rect>
+          <x>176</x>
+          <y>8</y>
+          <width>97</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Конвертировать</string>
+      </property>
+      <property name="text">
+        <string>Конвертировать</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="BitBtn2">
+      <property name="geometry">
+        <rect>
+          <x>176</x>
+          <y>40</y>
+          <width>97</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Отменить</string>
+      </property>
+      <property name="text">
+        <string>Отменить</string>
+      </property>
+    </widget>
+    <widget class="QCheckBox" name="CheckBox2">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>160</y>
+          <width>113</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Визуализировать</string>
+      </property>
+      <property name="text">
+        <string>Визуализировать</string>
+      </property>
+    </widget>
+    <widget class="QCheckBox" name="CheckBox3">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>184</y>
+          <width>121</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Определять дырки</string>
+      </property>
+      <property name="text">
+        <string>Определять дырки</string>
+      </property>
+    </widget>
+    <widget class="QCheckBox" name="CheckBox4">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>208</y>
+          <width>129</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Пересекать</string>
+      </property>
+      <property name="text">
+        <string>Пересекать</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

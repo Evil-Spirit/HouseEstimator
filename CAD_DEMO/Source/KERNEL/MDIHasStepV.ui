@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIHasStep</class>
+  <widget class="QWidget" name="MDIHasStep">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>313</width>
+        <height>111</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIHasStep</string>
+    </property>
+    <widget class="QFrame" name="BaseStep">
+      <property name="geometry">
+        <rect>
+          <x>3</x>
+          <y>14</y>
+          <width>302</width>
+          <height>36</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>BaseStep</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="DefMulti">
+      <property name="geometry">
+        <rect>
+          <x>3</x>
+          <y>54</y>
+          <width>302</width>
+          <height>36</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>DefMulti</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QCheckBox" name="cbHard">
+      <property name="geometry">
+        <rect>
+          <x>3</x>
+          <y>92</y>
+          <width>65</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Pronouncedly</string>
+      </property>
+      <property name="text">
+        <string>Pronouncedly</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDISimpleEdit</class>
+  <widget class="QWidget" name="MDISimpleEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>310</width>
+        <height>70</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDISimpleEdit</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <widget class="QLabel" name="L">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>0</y>
+          <width>6</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>L</string>
+      </property>
+      <property name="text">
+        <string>L</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

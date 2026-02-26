@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMyTextureModes</class>
+  <widget class="QWidget" name="MDIMyTextureModes">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>226</width>
+        <height>167</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMyTextureModes</string>
+    </property>
+    <widget class="QLabel" name="LBL">
+      <property name="geometry">
+        <rect>
+          <x>200</x>
+          <y>8</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+      <property name="visible">
+        <bool>false</bool>
+      </property>
+    </widget>
+    <widget class="QLabel" name="lMode">
+      <property name="geometry">
+        <rect>
+          <x>3</x>
+          <y>8</y>
+          <width>47</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Apply to...</string>
+      </property>
+      <property name="text">
+        <string>Apply to...</string>
+      </property>
+    </widget>
+    <widget class="QComboBox" name="cbMode">
+      <property name="geometry">
+        <rect>
+          <x>80</x>
+          <y>4</y>
+          <width>113</width>
+          <height>19</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QGroupBox" name="gbMinMax">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>32</y>
+          <width>226</width>
+          <height>135</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Decorating options</string>
+      </property>
+      <property name="text">
+        <string>Decorating options</string>
+      </property>
+      <!-- vcl-align: alBottom → arrange in a Qt layout manager -->
+      <widget class="QLabel" name="Label1">
+        <property name="geometry">
+          <rect>
+            <x>16</x>
+            <y>24</y>
+            <width>95</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Upper limit by height</string>
+        </property>
+        <property name="text">
+          <string>Upper limit by height</string>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label2">
+        <property name="geometry">
+          <rect>
+            <x>16</x>
+            <y>72</y>
+            <width>95</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Lower limit by height</string>
+        </property>
+        <property name="text">
+          <string>Lower limit by height</string>
+        </property>
+      </widget>
+      <widget class="QLineEdit" name="edZMax">
+        <property name="geometry">
+          <rect>
+            <x>16</x>
+            <y>40</y>
+            <width>121</width>
+            <height>21</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string>edZMax</string>
+        </property>
+      </widget>
+      <widget class="QLineEdit" name="edZMin">
+        <property name="geometry">
+          <rect>
+            <x>16</x>
+            <y>88</y>
+            <width>121</width>
+            <height>21</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string>Edit1</string>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

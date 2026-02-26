@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SelectColor</class>
+  <widget class="QWidget" name="SelectColor">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>142</width>
+        <height>110</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>SelectColor</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <!-- vcl-FormStyle: fsStayOnTop → setWindowFlag(Qt::WindowStaysOnTopHint) -->
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>142</width>
+          <height>110</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+      <widget class="QFrame" name="CL11">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>24</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL21">
+        <property name="geometry">
+          <rect>
+            <x>24</x>
+            <y>24</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL31">
+        <property name="geometry">
+          <rect>
+            <x>40</x>
+            <y>24</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL41">
+        <property name="geometry">
+          <rect>
+            <x>56</x>
+            <y>24</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL51">
+        <property name="geometry">
+          <rect>
+            <x>72</x>
+            <y>24</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL61">
+        <property name="geometry">
+          <rect>
+            <x>88</x>
+            <y>24</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL71">
+        <property name="geometry">
+          <rect>
+            <x>104</x>
+            <y>24</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL81">
+        <property name="geometry">
+          <rect>
+            <x>120</x>
+            <y>24</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL12">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>40</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL13">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>56</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL14">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>72</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL15">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>88</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL22">
+        <property name="geometry">
+          <rect>
+            <x>24</x>
+            <y>40</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL23">
+        <property name="geometry">
+          <rect>
+            <x>24</x>
+            <y>56</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL24">
+        <property name="geometry">
+          <rect>
+            <x>24</x>
+            <y>72</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL25">
+        <property name="geometry">
+          <rect>
+            <x>24</x>
+            <y>88</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL32">
+        <property name="geometry">
+          <rect>
+            <x>40</x>
+            <y>40</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL33">
+        <property name="geometry">
+          <rect>
+            <x>40</x>
+            <y>56</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL34">
+        <property name="geometry">
+          <rect>
+            <x>40</x>
+            <y>72</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL35">
+        <property name="geometry">
+          <rect>
+            <x>40</x>
+            <y>88</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL42">
+        <property name="geometry">
+          <rect>
+            <x>56</x>
+            <y>40</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL43">
+        <property name="geometry">
+          <rect>
+            <x>56</x>
+            <y>56</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL44">
+        <property name="geometry">
+          <rect>
+            <x>56</x>
+            <y>72</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL45">
+        <property name="geometry">
+          <rect>
+            <x>56</x>
+            <y>88</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL52">
+        <property name="geometry">
+          <rect>
+            <x>72</x>
+            <y>40</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL53">
+        <property name="geometry">
+          <rect>
+            <x>72</x>
+            <y>56</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL54">
+        <property name="geometry">
+          <rect>
+            <x>72</x>
+            <y>72</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL55">
+        <property name="geometry">
+          <rect>
+            <x>72</x>
+            <y>88</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL62">
+        <property name="geometry">
+          <rect>
+            <x>88</x>
+            <y>40</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL63">
+        <property name="geometry">
+          <rect>
+            <x>88</x>
+            <y>56</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL64">
+        <property name="geometry">
+          <rect>
+            <x>88</x>
+            <y>72</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL65">
+        <property name="geometry">
+          <rect>
+            <x>88</x>
+            <y>88</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL72">
+        <property name="geometry">
+          <rect>
+            <x>104</x>
+            <y>40</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL73">
+        <property name="geometry">
+          <rect>
+            <x>104</x>
+            <y>56</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL74">
+        <property name="geometry">
+          <rect>
+            <x>104</x>
+            <y>72</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL75">
+        <property name="geometry">
+          <rect>
+            <x>104</x>
+            <y>88</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL82">
+        <property name="geometry">
+          <rect>
+            <x>120</x>
+            <y>40</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL83">
+        <property name="geometry">
+          <rect>
+            <x>120</x>
+            <y>56</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL84">
+        <property name="geometry">
+          <rect>
+            <x>120</x>
+            <y>72</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="CL85">
+        <property name="geometry">
+          <rect>
+            <x>120</x>
+            <y>88</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="GetColors">
+        <property name="geometry">
+          <rect>
+            <x>121</x>
+            <y>8</y>
+            <width>14</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="visible">
+          <bool>false</bool>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="shAutoColor">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>8</y>
+            <width>10</width>
+            <height>10</height>
+          </rect>
+        </property>
+        <property name="visible">
+          <bool>false</bool>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QFrame" name="AutoFontColor">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>8</y>
+            <width>126</width>
+            <height>14</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Авто</string>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

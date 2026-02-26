@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MainMenuF</class>
+  <widget class="QWidget" name="MainMenuF">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>126</width>
+        <height>41</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Menu</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsSizeToolWin → set windowFlags Qt::Tool in constructor -->
+    <widget class="QMenuBar" name="MainMenu">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QAction" name="mmView">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>View</string>
+        </property>
+        <widget class="QAction" name="mmObjectInspector">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Object Inspector</string>
+          </property>
+        </widget>
+        <widget class="QAction" name="mmObjectTreeView">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Object TreeView</string>
+          </property>
+        </widget>
+        <widget class="QAction" name="mmToolBar">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolBar</string>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>
