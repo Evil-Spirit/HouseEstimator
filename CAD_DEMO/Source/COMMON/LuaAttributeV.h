@@ -26,7 +26,7 @@ private:
     void* NewGetValue();
     //-----------------------------------
     void NewSetValue(void* aNewValue);
-    char* GetCharValue();
+    const char* GetCharValue();
     void SetCharValue(char* NewValue);
     bool FAggregativeFlag;
     void SetAggregative(bool _Value);
@@ -35,16 +35,43 @@ private:
 public:
     //---------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //---------------------------------
     TLuaAttribute();
     virtual ~TLuaAttribute();
-    // __property bool Aggregative {read=GetAggregative, write=SetAggregative}; // [manual migration needed]
-    // __property AnsiString VALUE {read=FCurValue, write=SetVALUE}; // [manual migration needed]
-    // __property void* Value {read=NewGetValue, write=NewSetValue}; // [manual migration needed]
-    // __property void* Object {read=NewGetObject, write=NewSetObject}; // [manual migration needed]
-    // __property int Type {read=FType, write=SetType}; // [manual migration needed]
-    // __property AnsiString ObjectTypeName {read=FObjectTypeName, write=SetObjectTypeName}; // [manual migration needed]
+    // __property bool Aggregative {read=GetAggregative, write=SetAggregative}; // replaced by proxy:
+    struct _AggregProxy {
+        TLuaAttribute* const _o;
+        explicit _AggregProxy(TLuaAttribute* o) noexcept : _o(o) {}
+        operator bool() const { return _o->GetAggregative(); }
+        _AggregProxy& operator=(bool v) { _o->SetAggregative(v); return *this; }
+    } Aggregative{this};
+    // __property AnsiString VALUE {read=FCurValue, write=SetVALUE}; // replaced by:
+    // __property void* Value {read=NewGetValue, write=NewSetValue}; // replaced by:
+    // __property void* Object {read=NewGetObject, write=NewSetObject}; // replaced by:
+    struct _ObjProxy {
+        TLuaAttribute* const _o;
+        explicit _ObjProxy(TLuaAttribute* o) noexcept : _o(o) {}
+        operator void*() const { return _o->NewGetObject(); }
+        _ObjProxy& operator=(void* v) { _o->NewSetObject(v); return *this; }
+    } Object{this};
+    // __property int Type {read=FType, write=SetType}; // replaced by:
+    struct _TypeProxy {
+        TLuaAttribute* const _o;
+        explicit _TypeProxy(TLuaAttribute* o) noexcept : _o(o) {}
+        operator int() const { return _o->FType; }
+        bool operator==(int x) const { return _o->FType == x; }
+        bool operator!=(int x) const { return _o->FType != x; }
+        _TypeProxy& operator=(int v) { _o->SetType(v); return *this; }
+    } Type{this};
+    // __property AnsiString ObjectTypeName {read=FObjectTypeName, write=SetObjectTypeName}; // replaced by:
+    struct _OTNProxy {
+        TLuaAttribute* const _o;
+        explicit _OTNProxy(TLuaAttribute* o) noexcept : _o(o) {}
+        operator AnsiString() const { return _o->FObjectTypeName; }
+        bool operator==(const AnsiString& s) const { return _o->FObjectTypeName == s; }
+        _OTNProxy& operator=(const AnsiString& v) { _o->SetObjectTypeName(v); return *this; }
+    } ObjectTypeName{this};
 
     AnsiString Meter;
     void ToEmpty();
@@ -52,8 +79,8 @@ public:
     bool EqualTo(const AnsiString& Another,int Digit);
     bool IsEmpty();
     void AddData(const AnsiString& Data);
-    char* GetLuaValueRoundTo(int Digit);
-    char* GetLuaStrType();
+    const char* GetLuaValueRoundTo(int Digit);
+    const char* GetLuaStrType();
     AnsiString ValueRoundTo(int Digit);
     AnsiString ExcelValue(int Digit);
 
@@ -65,7 +92,6 @@ public:
     virtual bool CheckFields();
 };
 
-extern COMMONAL_API TClassNode* TLuaAttribute::StaticType;
 
 class COMMONAL_API TLuaAttributeList : public TMyObject {
 private:
@@ -74,7 +100,7 @@ private:
 public:
     //---------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //---------------------------------
     TMDelTList<TLuaAttribute>* VarList;
     TMDelTList<TLuaAttribute>* IndexList;
@@ -96,7 +122,7 @@ public:
     void DeleteAttributeI(int index);
     void DeleteAttribute(char* Name);
 
-    char* GetAttributeName(int index);
+    const char* GetAttributeName(int index);
     int GetAttributeIndex(char* Name);
     void Clear();
     // __property int AttributeCount {read=GetAttributeCount}; // [manual migration needed]
@@ -104,7 +130,6 @@ public:
     virtual bool CheckFields();
 };
 
-extern COMMONAL_API TClassNode* TLuaAttributeList::StaticType;
 
 
 #endif

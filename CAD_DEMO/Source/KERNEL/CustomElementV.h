@@ -38,7 +38,7 @@ protected:
 public:
 	//----------------------------------
 	static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	//----------------------------------
 
     // __property TVisPrimitiveObj* VisObject {read=GetVisObject}; // [manual migration needed]
@@ -50,7 +50,6 @@ public:
     virtual void SaveData(FILE *F) const;
     virtual void WriteData(TMemoryStream *MS) const;
 };
-extern TClassNode* COMMONAL_API TCustomMetaElement::StaticType;
 
 
 class COMMONAL_API TCustomElement : public TElement{
@@ -66,7 +65,7 @@ public:
 	void TexturePrimitive(TVisPrimitiveObj* Obj,TVisPrimitiveArray* Array,TRenderParam& RP, int Index = 0);
 	//----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TCustomElement();
     virtual ~TCustomElement();
@@ -75,7 +74,6 @@ public:
     virtual TVisRender *MyRender(){return(OBJ);};
     bool CheckFields();
 };
-extern TClassNode* COMMONAL_API TCustomElement::StaticType;
 
 void UnpackMaterials(TVisPrimitiveObj *CO,
 					 TMDelTList< TPointer<TMetaMaterial> >& MaterialRefs,

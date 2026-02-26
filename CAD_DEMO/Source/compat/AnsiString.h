@@ -3,6 +3,7 @@
 // Provides the AnsiString API used throughout the project, backed by QString.
 
 #include <QString>
+#include <cstdio>
 #include <QByteArray>
 #include <string>
 #include <stdexcept>
@@ -25,6 +26,14 @@ public:
     AnsiString(char c)            : d_(QString(QChar(c))) {}
     AnsiString(const AnsiString&) = default;
     AnsiString(AnsiString&&)      = default;
+    // Borland format constructor: AnsiString("format %d", value, ...)
+    // Template requires at least two args to avoid ambiguity with (const char*).
+    template<typename T, typename... Rest>
+    AnsiString(const char* fmt, T first, Rest... rest) {
+        char buf[2048];
+        snprintf(buf, sizeof(buf), fmt, first, rest...);
+        d_ = QString::fromLatin1(buf);
+    }
     AnsiString& operator=(const AnsiString&) = default;
     AnsiString& operator=(AnsiString&&)      = default;
     AnsiString& operator=(const char* s)     { d_ = s ? QString::fromLatin1(s) : QString(); return *this; }

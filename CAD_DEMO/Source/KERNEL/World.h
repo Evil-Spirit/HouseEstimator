@@ -38,7 +38,7 @@ private:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     //Z - ïîëîæåíèÿ ýòàæà
     TFloor();
@@ -59,7 +59,6 @@ public:
     bool Visible;
     // __property TElement* FirstElement {read=GetFirstElement}; // [manual migration needed]
 };
-extern COMMONAL_API TClassNode* TFloor::StaticType;
 
 class COMMONAL_API TFloorInfo {
 public:
@@ -110,7 +109,7 @@ public:
     //---------------------------------------------------------------------------
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     void EditActiveFloor();
     bool load;
@@ -185,7 +184,6 @@ public:
 
 };
 
-extern COMMONAL_API TClassNode* TMainTree::StaticType;
 
 bool COMMONAL_API GoDriver(TElement * Source,TElement* FloorElement=NULL);
 

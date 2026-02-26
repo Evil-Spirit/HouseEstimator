@@ -17,7 +17,7 @@ public:
     virtual ~TMetaArchitectElement(){};
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
 };
 TClassNode* TMetaArchitectElement::StaticType = NULL;
@@ -30,7 +30,7 @@ public:
     virtual ~TArchitectElement(){};
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     void HoleInMeFor(TElement* El, TPolygon* Hole);
 };

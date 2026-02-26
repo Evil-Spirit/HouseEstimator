@@ -47,7 +47,7 @@ class TGo;
 class TBaseBlock : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TBaseBlock();
     virtual ~TBaseBlock(){};
     int Id;
@@ -59,7 +59,7 @@ TClassNode* TBaseBlock::StaticType = NULL;
 class TGo : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGo(){};
     TGo(int _Event, TMouseButton _MouseButton, int _NextBlockId);
     TGo(int _Event, const WORD &_Key, int _NextBlockId);
@@ -77,7 +77,7 @@ private:
     int FExexutedEvent;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TStateBlock(){};
     TStateBlock(TCommands _Commands, int _Id, int _ExexutedEvent);
     TCommands Commands;
@@ -90,7 +90,7 @@ TClassNode* TStateBlock::StaticType = NULL;
 class TActionBlock : public TBaseBlock{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TActionBlock(){};
     TActionBlock(TCommands _Commands, int _Id);
     TCommands Commands;
@@ -102,7 +102,7 @@ TClassNode* TActionBlock::StaticType = NULL;
 class TConditionalBlock : public TBaseBlock{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TConditionalBlock(){};
     TConditionalBlock(TCondition _Condition, int _Id);
     TCondition Condition;
@@ -141,7 +141,7 @@ protected:
     virtual AnsiString OnHint(){return "";};
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     int ImageId;
     TBaseTool();
     virtual ~TBaseTool();
@@ -162,7 +162,7 @@ class TMyControls : public TMyObject{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TMyControls();
     virtual ~TMyControls(){};
     TMDelTList< TMDelTList<TBaseTool> > Matrix;

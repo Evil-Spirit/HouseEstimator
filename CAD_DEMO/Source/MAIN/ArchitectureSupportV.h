@@ -18,7 +18,7 @@ class TArchitectSupport : public TMySupport {
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TArchitectSupport();
     ~TArchitectSupport(){};

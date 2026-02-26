@@ -49,7 +49,7 @@ private:
     void UpdateNewCursorPos();
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 
     TDialogBaseTool();
     virtual ~TDialogBaseTool();
@@ -70,48 +70,44 @@ public:
     virtual void MouseUp(void* _Sender, TMouseButton Button, TShiftState Shift, const TIntVec& CursorPosition);
 };
 
-extern COMMONAL_API TClassNode* TDialogBaseTool::StaticType;
 
 class COMMONAL_API TBindedStateBlock : public TStateBlock{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TBindedStateBlock();
     TBindedStateBlock(AnsiString _Name, TCommands _Commands, int _Id, int _ExexutedEvent);
     virtual ~TBindedStateBlock(){};
     virtual void Edit(TComponent *Owner, TWinControl *Parent, void *Data);
 };
 
-extern COMMONAL_API TClassNode* TBindedStateBlock::StaticType;
 
 
 class COMMONAL_API TBindedActionBlock : public TActionBlock{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TBindedActionBlock();
     TBindedActionBlock(AnsiString _Name, TCommands _Commands, int _Id);
     virtual ~TBindedActionBlock(){};
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
 
-extern COMMONAL_API TClassNode* TBindedActionBlock::StaticType;
 
 
 class COMMONAL_API TBindedConditionalBlock : public TConditionalBlock{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TBindedConditionalBlock();
     TBindedConditionalBlock(AnsiString _Name, TCondition _Condition, int _Id);
     virtual ~TBindedConditionalBlock(){};
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
 
-extern COMMONAL_API TClassNode* TBindedConditionalBlock::StaticType;
 
 class COMMONAL_API TBindedBaseTool : public TDialogBaseTool{
 private:
@@ -121,7 +117,7 @@ private:
     char* GetExecutedName();
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 
     TBindedBaseTool();
     virtual ~TBindedBaseTool(){};
@@ -154,7 +150,6 @@ public:
     TLuaAttribute Attribute;
 };
 
-extern COMMONAL_API TClassNode* TBindedBaseTool::StaticType;
 
 extern COMMONAL_API TBindedBaseTool* CurrentTool;
 //------------------------MainTools-----------------------

@@ -24,10 +24,9 @@ public:
     TBaseContainer();
     ~TBaseContainer(){};
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 };
 
-extern COMMONAL_API TClassNode* TBaseContainer::StaticType;
 
 template <class T>
 class TContainer : public TBaseContainer{
@@ -37,7 +36,7 @@ public:
     TContainer();
     ~TContainer(){};
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------TMDelLSTList
     virtual int Add(T* It){return -1;};
     virtual void Clear(){};

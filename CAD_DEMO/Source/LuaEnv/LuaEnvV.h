@@ -30,7 +30,7 @@ class COMMONAL_API TLuaVariable : public TMyObject
 {
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TLuaVariable();
     virtual ~TLuaVariable();
     AnsiString Name,Type,Value;
@@ -42,7 +42,7 @@ class COMMONAL_API TLuaRegObject :public TMyRegObject
 {
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TLuaRegObject();
     virtual ~TLuaRegObject();
     TMDelTList<TLuaModule> Modules;

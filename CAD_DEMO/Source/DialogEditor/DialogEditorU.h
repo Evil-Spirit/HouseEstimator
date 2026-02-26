@@ -20,7 +20,7 @@ class TMyProp : public TMyObject
 {
     public:
     //-------------------------------
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     static TClassNode* StaticType;
     //-------------------------------
     AnsiString FName;
@@ -29,14 +29,13 @@ class TMyProp : public TMyObject
     ~TMyProp();
 };
 
-extern TClassNode* TMyProp::StaticType;
 
 //---------------------------------------------------------------------------
 class TMyPropObject : public TMyProp
 {
     public:
     //-------------------------------
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     static TClassNode* StaticType;
     //-------------------------------
     TObject* FObject;
@@ -48,7 +47,6 @@ class TMyPropObject : public TMyProp
     ~TMyPropObject();
 };
 
-extern TClassNode* TMyPropObject::StaticType;
 
 //---------------------------------------------------------------------------
 class TVCLEditorElement : public TMyRegObject

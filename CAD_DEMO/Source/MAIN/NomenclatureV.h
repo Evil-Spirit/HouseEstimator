@@ -20,7 +20,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TNomenclature();
     TNomenclature(TMetaNode *_Parent,int _ID,const AnsiString& _Name);

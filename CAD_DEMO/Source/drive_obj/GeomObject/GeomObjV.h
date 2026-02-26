@@ -281,7 +281,7 @@ public:
 //--------------------------------------------------------
 	void Changed(void* Field);
 	static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	void Assign(TMyObject* MO);
 //--------------------------------------------------------
 	virtual ~TGPoint();
@@ -320,7 +320,6 @@ class TGPolygon;
 class TGeomObject;
 
 
-extern COMMONAL_API TClassNode* TGPoint::StaticType;
 
 //////////////////
 //	TGCut		//
@@ -393,12 +392,11 @@ public:
 	
 /************************** Ñèñòåìíîå ******************************************************/
 	static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	void Assign(TMyObject* MO);
 /*******************************************************************************************/
 	virtual ~TGCut();
 };
-extern COMMONAL_API TClassNode* TGCut::StaticType;
 
 //////////////////
 //	TGPolygon	//
@@ -498,13 +496,12 @@ public:
 	
 /*********************************** Ñèñòåìíûå ***********************************************************/
 	static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	void Assign(TMyObject* MO);
 
 	virtual ~TGPolygon();
 };
 
-extern COMMONAL_API TClassNode* TGPolygon::StaticType;
 /*TGPolygon*/
 
 ///////////////////////
@@ -839,7 +836,7 @@ public:
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	static TClassNode* StaticType;
 	void Assign(TMyObject* MO);
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	void SaveData(FILE *F) const;
 	void LoadData(FILE *F);
 	void WriteData(TMemoryStream *MS) const;
@@ -851,7 +848,6 @@ public:
 	TCreateFunction CreatePointFunction;
 	TCreateFunction CreatePolygonFunction;
 };
-extern COMMONAL_API TClassNode* TGeomObject::StaticType;
 
 class COMMONAL_API TGTriangulate {
 private:

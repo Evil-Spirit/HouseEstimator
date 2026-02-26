@@ -24,14 +24,13 @@ class TLCut;
 class COMMONAL_API TLPoint : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TLPoint();
     virtual ~TLPoint();
     TIntVec Point;
     TMTList<TLCut> Cuts;
 };
 
-extern COMMONAL_API TClassNode* TLPoint::StaticType;
 
 
 class COMMONAL_API TLCut : public TMyObject{
@@ -44,14 +43,13 @@ public:
     static TClassNode* StaticType;
     TLCut();
     virtual ~TLCut();
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     int Tag;
     // __property TLPoint* Src {read=FSrc, write=SetSrc}; // [manual migration needed]
     // __property TLPoint* Dst {read=FDst, write=SetDst}; // [manual migration needed]
     bool ConsistsDstAndSrc(TLPoint* R1,TLPoint* R2);
 };
 
-extern COMMONAL_API TClassNode* TLCut::StaticType;
 
 
 const int pcrlNONE=0;
@@ -85,7 +83,7 @@ public:
     virtual ~TPolygon();
     //---------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //---------------------------------
 
     virtual void Invert(){Vertex->Invert();};
@@ -131,7 +129,6 @@ public:
     TIntVec AnyPoint(MBTi STEP);
     void ExtrudeRib(int index,MBTi Value,MBTi USEEPS);
 };
-extern COMMONAL_API TClassNode* TPolygon::StaticType;
 
 const AnsiString aHoles = AnsiString("Holes");
 
@@ -142,7 +139,7 @@ public:
     virtual ~THoledPolygon();
     //---------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //---------------------------------
 
     /*TMDelLSTList*/TMDelTList < TPolygon > *Holes;
@@ -165,6 +162,5 @@ public:
     bool Valid(MBTi USEEPS);
 };
 
-extern COMMONAL_API TClassNode* THoledPolygon::StaticType;
 
 #endif

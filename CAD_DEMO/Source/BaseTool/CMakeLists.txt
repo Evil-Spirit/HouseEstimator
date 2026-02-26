@@ -16,6 +16,7 @@ else()
 
     target_include_directories(BaseTool PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../LuaEnv"
     )
 
     target_link_libraries(BaseTool PUBLIC

@@ -18,7 +18,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaRoom(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TMetaRoom();
@@ -43,7 +43,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TRoom();
     virtual ~TRoom();

@@ -314,6 +314,7 @@ public:
     TVisVector BBoxMin;
     TVisVector BBoxMax;
     TVisPrimitiveObj() {}
+    explicit TVisPrimitiveObj(void* /*unused*/) {}
     virtual ~TVisPrimitiveObj() {}
     virtual void Rebuild() {}
 };

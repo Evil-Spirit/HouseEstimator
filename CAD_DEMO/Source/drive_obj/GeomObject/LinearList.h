@@ -33,7 +33,7 @@ protected:
 public:		
 	static TClassNode* StaticType;
 	TLList();
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	virtual ~TLList();
 
 	//acessing routin

@@ -86,13 +86,12 @@ public:
 	
 /************************** Ñèñòåìíîå ******************************************************/
 	static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	void Assign(TMyObject* MO);
 /*******************************************************************************************/
 	virtual ~TGCut();
 };
 
-extern COMMONAL_API TClassNode* TGCut::StaticType;
 
 #endif
 

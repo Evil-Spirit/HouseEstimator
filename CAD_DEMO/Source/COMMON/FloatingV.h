@@ -49,14 +49,19 @@ private:	// User declarations
     void	SetDockIndex(int aDockIndex);
     int 	GetParentDockIndex(TWinControl* Parent);
 protected:
-    // __property int AL {read=FAL, write=SetAL}; // [manual migration needed]
-    // __property bool Fixed {read=FFixed, write=SetFixed}; // [manual migration needed]
-    // __property int FixedSize {read=FFixedSize, write=SetFixedSize}; // [manual migration needed]
+    // __property int AL {read=FAL, write=SetAL}; // replaced by:
+    int& AL = FAL;
+    // __property bool Fixed {read=FFixed, write=SetFixed}; // replaced by:
+    bool& Fixed = FFixed;
+    // __property int FixedSize {read=FFixedSize, write=SetFixedSize}; // replaced by:
+    int& FixedSize = FFixedSize;
     virtual void OnMyResize(){};
-    // __property int DefaultSize {read=FDefaultSize, write=SetDefaultSize}; // [manual migration needed]
-	virtual void  WndProc(Messages::TMessage &Message);
+    // __property int DefaultSize {read=FDefaultSize, write=SetDefaultSize}; // replaced by:
+    int& DefaultSize = FDefaultSize;
+    virtual void WndProc(Messages::TMessage& /*Message*/) {}
 public:		// User declarations
-    // __property int DockIndex {read=FDockIndex, write=SetDockIndex}; // [manual migration needed]
+    // __property int DockIndex {read=FDockIndex, write=SetDockIndex}; // replaced by:
+    int& DockIndex = FDockIndex;
      TFloatForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------

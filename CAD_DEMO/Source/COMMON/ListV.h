@@ -49,7 +49,7 @@ protected:
 public:
     static /**/ TClassNode* StaticType;
     TMTList();
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 	virtual ~TMTList();
 
     //acessing routin
@@ -79,6 +79,39 @@ public:
 // [indexed property - needs manual migration]:     __property T* Items[int i] = {read = GetItem,write = SetItem};
 // [indexed property - needs manual migration]:     __property T* CycleItems[int i] = {read = GetCycleItem};
     // __property int Count {read=FCount}; // [manual migration needed]
+
+    // ---------------------------------------------------------------------------
+    // Property compatibility shims (replace Borland __property syntax)
+    // ---------------------------------------------------------------------------
+    // Count: read-only proxy for FCount
+    struct _CountProxy {
+        int* const _p;
+        explicit _CountProxy(int* p) noexcept : _p(p) {}
+        operator int() const noexcept { return *_p; }
+        bool operator==(int x) const noexcept { return *_p == x; }
+        bool operator!=(int x) const noexcept { return *_p != x; }
+        bool operator<(int x) const noexcept { return *_p < x; }
+        bool operator<=(int x) const noexcept { return *_p <= x; }
+        bool operator>(int x) const noexcept { return *_p > x; }
+        bool operator>=(int x) const noexcept { return *_p >= x; }
+        int operator-(int x) const noexcept { return *_p - x; }
+        int operator+(int x) const noexcept { return *_p + x; }
+        friend int operator-(int x, const _CountProxy& c) noexcept { return x - *c._p; }
+        friend int operator+(int x, const _CountProxy& c) noexcept { return x + *c._p; }
+    } Count{&FCount};
+
+    // Items: indexed proxy for GetItem / SetItem
+    struct _ItemsProxy {
+        TMTList<T>* const _owner;
+        explicit _ItemsProxy(TMTList<T>* o) noexcept : _owner(o) {}
+        T* operator[](int i) const { return _owner->GetItem(i); }
+    } Items{this};
+
+    // Current: proxy for GetCurrent
+    T* Current() { return GetCurrent(); }
+    const T* Current() const { return GetCurrent(); }
+    // ---------------------------------------------------------------------------
+
     //ïîñëåäîâàòåëüíûé äîñòóï
     bool Next() const;
     bool Prev() const;
@@ -145,7 +178,7 @@ void TMTList<T>::AboutToChangeSimpleType()
 {
     int mt = GetSimpleType();
     if ( mt != mtIntVec && mt < mtMyObject)
-        AboutToChange(this);
+        this->AboutToChange(this);
 }
 
 
@@ -158,7 +191,7 @@ TMyObject* TMTList<T>::CreateFunction()
 template <class T>
 void TMTList<T>::RealClear()
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     while(FCount)
         RealDelete(0);
 }
@@ -166,7 +199,7 @@ void TMTList<T>::RealClear()
 template <class T>
 void TMTList<T>::RealDelete(int idx)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     Direct_Iterate(idx);
     KillValue(FCurrent->Data);
     DeleteCurrent();
@@ -176,7 +209,7 @@ void TMTList<T>::RealDelete(int idx)
 template <class T>
 void TMTList<T>::Sort(TMyCompareProc Proc)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     int InsertIndex;
     for(int i=1;i<FCount;i++)
     {
@@ -294,7 +327,7 @@ bool TMTList<T>::End() const
 template <class T>
 void TMTList<T>::Assign (  TMyObject* MO)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     if ( MO)//  typeid(*MO) == typeid(TMTList<T>)
         //|| typeid(*MO) == typeid(TMDelTList<T>) )
   //      || typeid(*MO) == typeid(TMDelLSTList<T>))
@@ -311,7 +344,7 @@ void TMTList<T>::Assign (  TMyObject* MO)
 template <class T>
 TMTList<T>& TMTList<T>::operator= (TMTList<T>& ML)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     Assign(&ML);
     return *this;
 }
@@ -335,7 +368,7 @@ bool TMTList<T>::Same ( const TMTList<T> *L) const
 template <class T>
 void TMTList<T>::Invert()
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     TMTList<T> *L = new TMTList<T>();
     L->Assign(this);
     Clear();
@@ -361,7 +394,7 @@ TMTList<T>::TMTList()
 template <class T>
 void TMTList<T>::AddFirst(T* It)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     TMListItem<T>* LI = new TMListItem<T>();
     LI->Data = It;
     LI->Prev = NULL;
@@ -377,7 +410,7 @@ void TMTList<T>::AddFirst(T* It)
 template <class T>
 int TMTList<T>::Add(T* It)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     //RegisterItem(Item);
     if (FCount==0)
     {
@@ -564,7 +597,7 @@ const T& TMTList<T>::operator [](int i) const
 template <class T>
 void TMTList<T>::SetItem(int idx, T* newit)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     Direct_Iterate(idx);
     FCurrent->Data = newit;
 }
@@ -572,7 +605,7 @@ void TMTList<T>::SetItem(int idx, T* newit)
 template <class T>
 void TMTList<T>::Delete(int idx)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     Direct_Iterate(idx);
     DeleteCurrent();
 }
@@ -635,7 +668,7 @@ bool TMTList<T>::Exists(const T* It) const
 template <class T>
 void TMTList<T>::Clear()
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     if (FCount)
     {
         Direct_DoFirst();
@@ -647,7 +680,7 @@ void TMTList<T>::Clear()
 template <class T>
 void TMTList<T>::Insert(int index,T* Item)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     if (FCount == 0 || index == FCount)
         Add(Item);
     else
@@ -693,7 +726,7 @@ bool TMTList<T>::Find(const T* It) const
 template <class T>
 int TMTList<T>::Remove( T* Item)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     if (Find(Item))
     {
         int result = FCurrentIndex;
@@ -740,7 +773,7 @@ const T* TMTList<T>::First() const
 template <class T>
 void TMTList<T>::Exchange(int i1,int i2)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
   TMListItem<T> *P1;
   TMListItem<T> *P2;
   T* P0;
@@ -759,7 +792,7 @@ void TMTList<T>::Exchange(int i1,int i2)
 template <class T>
 void TMTList<T>::Move(int ifrom,int idest)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
   T* P0;
   P0 = GetItem(ifrom);
   DeleteCurrent();

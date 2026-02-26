@@ -258,7 +258,7 @@ public:
 ////////////
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	static TClassNode* StaticType;
 
 	void Assign(TMyObject* MO);

@@ -43,7 +43,7 @@ public:
 
 	//----------------------------------
 	static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	//----------------------------------
 	TPointer<TMetaMyMode> MODE;
 	int Tag;
@@ -73,7 +73,6 @@ public:
     // __property bool OverSizeMode {read=FOverSizeMode, write=SetOverSizeMode}; // [manual migration needed]
     // __property bool FLAT2D {read=FFLAT2D, write=SetFLAT2D}; // [manual migration needed]
 };
-extern COMMONAL_API TClassNode* TRenderParam::StaticType;
 
 //ïåðâûé ïîëèãîí âñåãäà îáùèé êîíòóð
 //îñòàëüíûå â êà÷åñòâå îòäåëêè
@@ -84,7 +83,7 @@ class COMMONAL_API TFragmentSettings: public TMyObject{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TFragmentSettings();
     virtual ~TFragmentSettings(){};
@@ -105,6 +104,5 @@ public:
     THoledPolygon* GetPolygon(int i);
     void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
-extern COMMONAL_API TClassNode* TFragmentSettings::StaticType;
 
 #endif

@@ -16,7 +16,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaMultiElement(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TMetaMultiElement();
@@ -34,7 +34,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TVisNode *VFIRST;
     TVisNode *VTRANS;

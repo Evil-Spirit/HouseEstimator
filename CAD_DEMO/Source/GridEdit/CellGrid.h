@@ -33,7 +33,7 @@ class COMMONAL_API TCell : public TMyObject{
 // Ðàáîòà ñ ÿ÷åéêîé
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     void Assign(TMyObject* MO);
     bool UndoRegistered;
 
@@ -78,13 +78,12 @@ public:
     void SaveData(FILE *F) const ;
     void LoadData(FILE *F);
 };
-extern COMMONAL_API TClassNode* TCell::StaticType;
 
 class COMMONAL_API TCellFlag : public TCell{
 // Ðàáîòà ñ ñòðîêàìè ñòàëáöàìè
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TCellFlag();
 
     int Col;
@@ -119,30 +118,27 @@ public:
     bool f_TextWordBreak;
     bool f_TextHeightAuto;
 };
-extern COMMONAL_API TClassNode* TCellFlag::StaticType;
 
 class COMMONAL_API TCellColRow : public TCell{
 // Ðàáîòà ñ ñòðîêàìè ñòàëáöàìè
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TCellColRow();
     ~TCellColRow();
     int ColRowWidth;
 };
-extern COMMONAL_API TClassNode* TCellColRow::StaticType;
 
 class COMMONAL_API TCellTab : public TCell{
 // Ðàáîòà ñ ÿ÷åéêîé
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TCellTab();
     ~TCellTab();
     int ColWidth;
     int RowHeight;
 };
-extern COMMONAL_API TClassNode* TCellTab::StaticType;
 
 
 class COMMONAL_API TCellList : public TSparseList {
@@ -618,7 +614,7 @@ class COMMONAL_API TMGrid : public TMyObject {
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TMGrid();
     ~TMGrid();
 
@@ -640,7 +636,6 @@ public:
     void  dPasteToCellGrid(TCellGrid* CellGrid, int DeltaX, int DeltaY);// âñïîìîãàòåëüíûå äëÿ óäàíåíèÿ
 };
 
-extern COMMONAL_API TClassNode* TMGrid::StaticType;
 extern COMMONAL_API TMGrid MClipBoard;
 //---------------------------------------------------------------------------
 class COMMONAL_API TCellMatrix : public TMyDrawGrid  {

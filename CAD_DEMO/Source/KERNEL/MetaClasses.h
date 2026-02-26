@@ -91,7 +91,7 @@ class COMMONAL_API THasStep :public TMyObject{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	//----------------------------------
     THasStep();
     virtual ~THasStep(){};
@@ -101,7 +101,6 @@ public:
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
     virtual bool CheckFields();
 };
-extern COMMONAL_API TClassNode* THasStep::StaticType;
 
 class COMMONAL_API THasAngle :public TMyObject {
 private:
@@ -112,7 +111,7 @@ private:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     THasAngle();
     virtual ~THasAngle(){};
@@ -123,7 +122,6 @@ public:
     void Edit(TComponent *Owner,TWinControl *Parent,void *Data);    
     bool Valid(const TIntVec& Angle);    
 };
-extern COMMONAL_API TClassNode* THasAngle::StaticType;
 
 class COMMONAL_API THasSize : public TMyObject {
 private:
@@ -136,7 +134,7 @@ private:
 public:
 	//----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     THasSize();
     virtual ~THasSize(){};
@@ -149,7 +147,6 @@ public:
     bool Valid(const TIntVec& Size);
     void Validate(TIntVec& Size);
 };
-extern COMMONAL_API TClassNode* THasSize::StaticType;
 
 
 //LinkChangeMode
@@ -164,7 +161,7 @@ class COMMONAL_API TMetaEps : public TMyObject{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
     //----------------------------------
     TMetaEps();
     virtual ~TMetaEps(){};
@@ -175,7 +172,6 @@ public:
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 
 };
-extern COMMONAL_API TClassNode* TMetaEps::StaticType;
 
 const mltAreaPoint=0;
 const mltPointPoint=1;
@@ -191,7 +187,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
 	bool ReadOnly;
 	bool IsNew;
@@ -209,7 +205,6 @@ public:
     virtual void GetImage(bool Small,bool Masked,Graphics::TBitmap* bmp,Graphics::TBitmap* mask);
     TMetaNode& operator = (TMetaNode& MN);
 };
-extern COMMONAL_API TClassNode* TMetaNode::StaticType;
 
 //---------------------------TMetaLink-------------------------
 //TransformationMode
@@ -244,7 +239,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaLink(TMetaNode *_Parent,int _ID,const AnsiString& _Name);
     TMetaLink();
@@ -276,7 +271,6 @@ public:
 //    bool RouterLink;
     bool RunLinkModule(TElement* Target,TElement* Source,TLINKPATTERN& SL,bool TransFormSize);
 };
-extern COMMONAL_API TClassNode* TMetaLink::StaticType;
 
 //---------------------------HaveMaterial-------------------------
 class COMMONAL_API TMyColor :public TMyObject {
@@ -290,20 +284,19 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     // __property TColor Color {read=GetColor, write=SetColor}; // [manual migration needed]
     // __property GLfloat Alpha {read=GetAlpha, write=SetAlpha}; // [manual migration needed]
     TMyColor();
     virtual ~TMyColor(){};
 };
-extern COMMONAL_API TClassNode* TMyColor::StaticType;
 
 class COMMONAL_API TMetaMaterial : public TMetaNode {
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMyColor Ambient;
     TMyColor Diffuse;
@@ -320,7 +313,6 @@ public:
     int Face;
 };
 
-extern COMMONAL_API TClassNode* TMetaMaterial::StaticType;
 
 const int camPerspective=1;
 const int camOrthographic=0;
@@ -329,7 +321,7 @@ class COMMONAL_API TMetaMyMode :public TMetaNode{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     int CAM;
     TMetaMyMode(TMetaNode *Parent, int _ID, const AnsiString& _Name);
@@ -338,7 +330,6 @@ public:
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
 
-extern COMMONAL_API TClassNode* TMetaMyMode::StaticType;
 
 class COMMONAL_API TBMPSet : public TMetaNode{
 protected:
@@ -350,7 +341,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     // __property TImageList* IL {read=GetIL}; // [manual migration needed]
     virtual void SaveData(FILE *F) const;
@@ -366,7 +357,6 @@ public:
     virtual void Assign(TMyObject* Obj);
 };
 
-extern COMMONAL_API TClassNode* TBMPSet::StaticType;
 
 //StandartImages
 const int siSOPOS = 0;
@@ -381,7 +371,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TPointer<TBMPSet> BMPSet;
     // __property int Index {read=GetIndex, write=SetIndex}; // [manual migration needed]
@@ -396,14 +386,13 @@ public:
     void Assign(TMyObject* MO);
 };
 
-extern COMMONAL_API TClassNode* TBMPPointer::StaticType;
 
 class COMMONAL_API TMyTextureFlags :  public TMyObject {
 protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMyTextureFlags();
     virtual ~TMyTextureFlags(){};
@@ -414,7 +403,6 @@ public:
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
 
-extern COMMONAL_API TClassNode* TMyTextureFlags::StaticType;
 
      //TMyTextureFlagsObject
 //TTextureMode
@@ -434,7 +422,7 @@ class COMMONAL_API TMyTextureModes :  public TMyObject {
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMyTextureModes();
     virtual ~TMyTextureModes(){};
@@ -444,13 +432,12 @@ public:
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
 
-extern COMMONAL_API TClassNode* TMyTextureModes::StaticType;
 
 class COMMONAL_API TMyTextureModesList : public TMyObject{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
   TMyTextureModesList();
   virtual ~TMyTextureModesList(){};
@@ -458,7 +445,6 @@ public:
   TMDelTList<TMyTextureModes> TEXMODES;
   virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
-extern COMMONAL_API TClassNode* TMyTextureModesList::StaticType;
 
 class COMMONAL_API TMetaTexture : public TMetaNode {
 protected:
@@ -468,7 +454,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     // __property GLfloat Alpha {read=GetAlpha, write=SetAlpha}; // [manual migration needed]
     int Mode;
@@ -489,7 +475,6 @@ public:
     MBTi RealSizeX;
     MBTi RealSizeY;
 };
-extern COMMONAL_API TClassNode* TMetaTexture::StaticType;
 
 void COMMONAL_API ApplyMipMaps(TVisTexture *VT,const TPointer<TBMPSet> &MipMaps);
 
@@ -498,7 +483,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaVisParam();
     TMetaVisParam(TMetaNode *_Parent,int _ID,const AnsiString& _Name);
@@ -508,7 +493,6 @@ public:
     TMyTextureModesList TML;
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
-extern COMMONAL_API TClassNode* TMetaVisParam::StaticType;
 
 const int omNone=0;
 const int omAdd=1;
@@ -518,7 +502,7 @@ class COMMONAL_API TMyModeSettings :public TMyObject{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
   TMyModeSettings();
   virtual ~TMyModeSettings(){};
@@ -534,13 +518,12 @@ public:
   bool FLAT_2D;
   virtual void Edit(TComponent *_Owner,TWinControl *Parent,void *Data);
 };
-extern COMMONAL_API TClassNode* TMyModeSettings::StaticType;
 
 class COMMONAL_API TMyModeSettingList : public TMyObject{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
   TMyModeSettingList();
   virtual ~TMyModeSettingList();
@@ -549,7 +532,6 @@ public:
   TMyModeSettings* FindByMode(TMetaMyMode * MMM);
   virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
-extern COMMONAL_API TClassNode* TMyModeSettingList::StaticType;
 
 
 
@@ -564,7 +546,7 @@ private:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMDelTList< TPointer<TMetaTool> >& Tools;
     TMDelTList< TPointer<TMetaTool> >& CreateTools;
@@ -572,7 +554,6 @@ public:
     virtual ~TMyActionSettings();
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
-extern COMMONAL_API TClassNode* TMyActionSettings::StaticType;
 
 
 extern  COMMONAL_API bool TechnologyCheckPass;
@@ -583,7 +564,7 @@ class COMMONAL_API TCanExistCheck :public TMyObject{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TCanExistCheck();
     virtual ~TCanExistCheck();
@@ -591,7 +572,6 @@ public:
     bool TechCheck(TElement *El,AnsiString& Str);
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
-extern COMMONAL_API TClassNode* TCanExistCheck::StaticType;
 
 class TFloor;
 class COMMONAL_API TMetaElement : public TMetaNode{
@@ -601,7 +581,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TPointer<TMetaMaterial> MAT;
     TPointer<TMetaTexture> TEX;
@@ -638,7 +618,6 @@ public:
     bool IsLight;
     TMetaElement& operator = (TMetaElement& ME);
 };
-extern COMMONAL_API TClassNode* TMetaElement::StaticType;
 
 class COMMONAL_API TDynamicLink : public TMetaNode{
 private:
@@ -655,7 +634,7 @@ public:
     TPointer<TMetaLink> ML;
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TDynamicLink(TMetaElement *_Parent,int _ID,const AnsiString& _Name);
     TDynamicLink();
@@ -673,12 +652,10 @@ public:
     virtual bool CheckFields();
     virtual bool UsedTrigger(int Trigger);
 };
-extern COMMONAL_API TClassNode* TDynamicLink::StaticType;
 
 
 extern COMMONAL_API TImageList *ILDefault;
 extern COMMONAL_API TVisMaterial *MaterialDefault;
-extern COMMONAL_API Graphics::TBitmap *BMPDef;
 
 extern COMMONAL_API TLinkInfo* curLinkInfo;
 

@@ -20,7 +20,7 @@ public:
     MBTi Perpendicular_Offset/*m*/;
     MBTi Leg_Offset /*pixels*/;
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TDistanceLink();
     virtual ~TDistanceLink();
     __property TG2DPoint* Client0 = {read = GetPoint,write = SetPoint,index = 0};
@@ -36,5 +36,4 @@ public:
 	bool CanUpdateList(TMTList<TG2DPoint>& PointList);
 };
 
-extern COMMONAL_API TClassNode* TDistanceLink::StaticType;
 #endif

@@ -37,8 +37,10 @@ const int NoneForm = 0;
 const int ToolFormOnly = 1;
 const int ToolAndCustomForms = 2;
 //Òèï ôóíê÷èé ñîäåðæàùèõ èñïîëíÿåìûé êîä áëîêà ñõåìû
-typedef void  ( *TCommands)();
-typedef bool ( *TCondition)();
+// Changed from raw function pointer to std::function to support member function closures
+#include <functional>
+typedef std::function<void()>  TCommands;
+typedef std::function<bool()>  TCondition;
 
 typedef void ( *TChangeCursorPos)();
 
@@ -51,7 +53,7 @@ class COMMONAL_API TUserInterfaceParam : public TMyObject{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 
     TUserInterfaceParam();
     virtual ~TUserInterfaceParam(){};
@@ -65,7 +67,6 @@ public:
     void Changed(void* Field);
 };
 
-extern COMMONAL_API TClassNode* TUserInterfaceParam::StaticType;
 
 class TGo;
 
@@ -73,7 +74,7 @@ class TLuaModule;
 class COMMONAL_API TBaseBlock : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TLuaModule LuaModule;
     TBaseBlock();
     virtual ~TBaseBlock();
@@ -83,7 +84,6 @@ public:
     TMDelTList<TGo> GOS;
 };
 
-extern COMMONAL_API TClassNode* TBaseBlock::StaticType;
 
 class COMMONAL_API TGo : public TMyObject{
     void SetKey(WORD _Key);
@@ -93,57 +93,56 @@ class COMMONAL_API TGo : public TMyObject{
     int FKey, FMouseButton;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGo();
     TGo(int _Event, TMouseButton _MouseButton, int _NextBlockId);
     TGo(int _Event, const WORD &_Key, int _NextBlockId);
     virtual ~TGo(){};
     int Event;
-    // __property WORD Key {read=GetKey, write=SetKey}; // [manual migration needed]
-    // __property TMouseButton MouseButton {read=GetMB, write=SetMB}; // [manual migration needed]
+    // __property WORD Key {read=GetKey, write=SetKey}; // replaced by:
+    int& Key = FKey;
+    // __property TMouseButton MouseButton {read=GetMB, write=SetMB}; // replaced by:
+    int& MouseButton = FMouseButton;
     int NextBlockId;
 };
 
-extern COMMONAL_API TClassNode* TGo::StaticType;
 
 class COMMONAL_API TStateBlock : public TBaseBlock{
 private:
     int FExexutedEvent;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TStateBlock();
     TStateBlock(TCommands _Commands, int _Id, int _ExexutedEvent, int _Type, AnsiString _Description);
     TCommands Commands;
-    // __property int ExecutedEvent {read=FExexutedEvent, write=FExexutedEvent}; // [manual migration needed]
+    // __property int ExecutedEvent {read=FExexutedEvent, write=FExexutedEvent}; // replaced by:
+    int& ExecutedEvent = FExexutedEvent;
     virtual ~TStateBlock(){};
 };
 
-extern COMMONAL_API TClassNode* TStateBlock::StaticType;
 
 class COMMONAL_API TActionBlock : public TBaseBlock{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TActionBlock();
     TActionBlock(TCommands _Commands, int _Id, int _Type, AnsiString _Description);
     TCommands Commands;
     virtual ~TActionBlock(){};
 };
 
-extern COMMONAL_API TClassNode* TActionBlock::StaticType;
 
 class COMMONAL_API TConditionalBlock : public TBaseBlock{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TConditionalBlock();
     TConditionalBlock(TCondition _Condition, int _Id, int _Type, AnsiString _Description);
     TCondition Condition;
     virtual ~TConditionalBlock(){};
 };
 
-extern COMMONAL_API TClassNode* TConditionalBlock::StaticType;
 
 class COMMONAL_API TBaseTool : public TMyObject{
 private:
@@ -159,7 +158,8 @@ protected:
     int FindIndexFromId(int Id);
     TCommands EscCommands;
     TMDelTList<TBaseBlock> Blocks;
-    // __property int ExecutedId {read=FExecutedId}; // [manual migration needed]
+    // __property int ExecutedId {read=FExecutedId}; // replaced by:
+    int& ExecutedId = FExecutedId;
     void AddGoToBlockId(int Id, int NextBlockId);
     void AddGoToBlockId(int Id, int NextBlockId, const int Event, TMouseButton MouseButton);
     void AddGoToBlockId(int Id, int NextBlockId, const int Event, const WORD& Key);
@@ -179,7 +179,7 @@ public:
     TVisPrimitiveObj* SnapCursor;
 
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     int ImageId;
     TBaseTool();
     virtual ~TBaseTool();
@@ -201,13 +201,12 @@ public:
     virtual AnsiString Hint(void* Sender);
 };
 
-extern COMMONAL_API TClassNode* TBaseTool::StaticType;
 
 class COMMONAL_API TMyControls : public TMyObject{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TMyControls();
     virtual ~TMyControls(){};
     TMDelTList< TMTList<TBaseTool> > Matrix;
@@ -224,7 +223,6 @@ public:
     AnsiString Hint(void* Sender);
 };
 
-extern COMMONAL_API TClassNode* TMyControls::StaticType;
 
 extern COMMONAL_API bool LuaConditionResult;
 //---------------------------------------------------------------------------

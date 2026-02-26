@@ -16,7 +16,7 @@ class COMMONAL_API TMetaTool : public TMetaNode {
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TBindedBaseTool& BindedTool;
     TMetaTool();
@@ -24,7 +24,6 @@ public:
     virtual ~TMetaTool();
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
-extern COMMONAL_API TClassNode* TMetaTool::StaticType;
 
 class COMMONAL_API TToolControlList {
     int FActiveIndex;

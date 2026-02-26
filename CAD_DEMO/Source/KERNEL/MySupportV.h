@@ -11,7 +11,7 @@ class COMMONAL_API TMySupport : public TMyObject {
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMySupport();
     virtual ~TMySupport(){};
@@ -24,7 +24,6 @@ public:
     virtual void ReadContextMetaData(TMemoryStream *MS){};
 };
 
-extern COMMONAL_API TClassNode* TMySupport::StaticType;
 
 class TMetaLink;
 class TMetaElement;
@@ -45,7 +44,7 @@ public:
     bool inited;
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TKernelSupport();
     ~TKernelSupport(){};
@@ -87,7 +86,6 @@ public:
     void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
 
-extern COMMONAL_API TClassNode* TKernelSupport::StaticType;
 
 
 

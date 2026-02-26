@@ -19,7 +19,7 @@ class COMMONAL_API TMyProp : public TMyObject
 {
     public:
     //-------------------------------
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     static TClassNode* StaticType;
     //-------------------------------
     AnsiString FName;
@@ -29,14 +29,13 @@ class COMMONAL_API TMyProp : public TMyObject
     virtual ~TMyProp();
 };
 
-extern COMMONAL_API TClassNode* TMyProp::StaticType;
 
 //---------------------------------------------------------------------------
 class COMMONAL_API TMyPropObject : public TMyProp
 {
     public:
     //-------------------------------
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     static TClassNode* StaticType;
     //-------------------------------
     TMyPropObject* Parent;
@@ -54,7 +53,6 @@ class COMMONAL_API TMyPropObject : public TMyProp
     virtual ~TMyPropObject();
 };
 
-extern COMMONAL_API TClassNode* TMyPropObject::StaticType;
 
 //---------------------------------------------------------------------------
 class COMMONAL_API TMyComponent : public TMyPropObject {
@@ -63,7 +61,7 @@ private:
     void InitObject(int _ClassId);
 public:
     //-------------------------------
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     static TClassNode* StaticType;
     //-------------------------------
 
@@ -72,14 +70,13 @@ public:
   // __property int ClassId {read=FClassId, write=InitObject}; // [manual migration needed]
 };
 
-extern COMMONAL_API TClassNode* TMyComponent::StaticType;
 
 //---------------------------------------------------------------------------
 class COMMONAL_API TMyWinControl : public TMyComponent
 {
     public:
     //-------------------------------
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     static TClassNode* StaticType;
     //-------------------------------
     TMDelTList <TMyWinControl> MyControls;
@@ -87,7 +84,6 @@ class COMMONAL_API TMyWinControl : public TMyComponent
     virtual ~TMyWinControl();
 };
 
-extern COMMONAL_API TClassNode* TMyWinControl::StaticType;
 
 //---------------------------------------------------------------------------
 class COMMONAL_API TMyDialog : public TMyObject
@@ -99,7 +95,7 @@ class COMMONAL_API TMyDialog : public TMyObject
 
     public:
     //-------------------------------
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     static TClassNode* StaticType;
     //-------------------------------
     TMyWinControl Root;
@@ -110,7 +106,6 @@ class COMMONAL_API TMyDialog : public TMyObject
     TForm* CreateForm();
 };
 
-extern COMMONAL_API TClassNode* TMyDialog::StaticType;
 extern COMMONAL_API TMyDialog* CurDialog;
 extern COMMONAL_API void BindComponentRecursive(int index,TComponent* Component);
 extern COMMONAL_API void BindForm(TForm* Form);

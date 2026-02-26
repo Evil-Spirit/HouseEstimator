@@ -15,14 +15,13 @@ class TRedCut;
 class  TRedPoint : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TRedPoint();
     virtual ~TRedPoint(){};
     TChangeVec Point;
     TMTList<TRedCut> Cuts;
 };
 
-extern  TClassNode* TRedPoint::StaticType;
 
 //îòðåçîê
 class  TRedCut : public TMyObject{
@@ -32,14 +31,13 @@ class  TRedCut : public TMyObject{
     void SetDst(TRedPoint* Value);
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TRedCut();
     virtual ~TRedCut();
     // __property TRedPoint* Src {read=FSrc, write=SetSrc}; // [manual migration needed]
     // __property TRedPoint* Dst {read=FDst, write=SetDst}; // [manual migration needed]
 };
 
-extern  TClassNode* TRedCut::StaticType;
 
 class  TMyFigure : public TMyObject{
 protected:
@@ -54,7 +52,7 @@ protected:
     void SetLineWidth(int ALineWidth);
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     // __property TColor Color {read=FColor, write=SetColor}; // [manual migration needed]
     // __property int LineWidth {read=FLineWidth, write=SetLineWidth}; // [manual migration needed]
     TChangeVec RotateCenter;
@@ -86,7 +84,6 @@ public:
     virtual void AboutToChange(void* Sender);
 };
 
-extern  TClassNode* TMyFigure::StaticType;
 
 class  TCustomFigure : public TMyFigure{
 protected:
@@ -97,7 +94,7 @@ protected:
     void IndicesToCuts(TMDelTList<int>& CutPointIndices);
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TCustomFigure();
     virtual ~TCustomFigure(){};
 
@@ -130,7 +127,6 @@ public:
     virtual void Assign(TMyObject* MO);
 };
 
-extern  TClassNode* TCustomFigure::StaticType;
 
 class  TInfinityLine : public TMyFigure{
 private:
@@ -138,7 +134,7 @@ private:
     TRedCut RedCut;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TInfinityLine();
     virtual ~TInfinityLine(){};
     void Render(TMyView* aView);
@@ -156,7 +152,6 @@ public:
 //    virtual void ProcessCreateView();
 };
 
-extern  TClassNode* TInfinityLine::StaticType;
 
 struct TEditorColors {
     TColor Additional;
@@ -176,7 +171,7 @@ struct TEditorLineWidth{
 class  TEditorAttributes : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TEditorAttributes();
     virtual ~TEditorAttributes(){};
     bool Snap;
@@ -189,7 +184,6 @@ public:
     TEditorLineWidth LinesWidth;
 };
 
-extern  TClassNode* TEditorAttributes::StaticType;
 
 struct TGridColors{
     TColor OSI;
@@ -206,7 +200,7 @@ struct TGridLineWidth{
 class  TGridAttributes : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGridAttributes();
     virtual ~TGridAttributes(){};
     bool Snap;
@@ -224,12 +218,11 @@ public:
     bool Minimal;
 };
 
-extern  TClassNode* TGridAttributes::StaticType;
 
 class  TGrid : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGrid();
     virtual ~TGrid();
     int Precision;
@@ -242,7 +235,6 @@ public:
     void Render(TMyView* aView);
 };
 
-extern  TClassNode* TGrid::StaticType;
 
 class TSelected{
 public:

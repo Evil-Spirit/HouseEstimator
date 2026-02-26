@@ -20,7 +20,7 @@ public:
     static /**/ TClassNode* StaticType;
     TMDelTList();
 	virtual ~TMDelTList();
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //add-remove routine
     virtual int Add(T* It);
     virtual void Insert(int index,T* Item);
@@ -163,7 +163,7 @@ template <class T>
 int TMDelTList<T>::Remove( T* it)
 {
     this->AboutToChange(this);
-    if (Find(it))
+    if (this->Find(it))
     {
         int result = this->FCurrentIndex;
         UnRegisterItem(this->FCurrent->Data);

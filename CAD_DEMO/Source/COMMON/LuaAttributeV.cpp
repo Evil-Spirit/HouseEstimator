@@ -68,7 +68,7 @@ bool TLuaAttribute::GetAggregative() const
     return FAggregativeFlag && Type == mtMyObject; 
 }
 
-char* TLuaAttribute::GetLuaStrType()
+const char* TLuaAttribute::GetLuaStrType()
 {
     switch (Type)
     {
@@ -99,12 +99,12 @@ TLuaAttribute::~TLuaAttribute()
     ToEmpty();
 }
 
-char* TLuaAttribute::GetCharValue()
+const char* TLuaAttribute::GetCharValue()
 {
     return FCurValue.c_str();
 }
 
-char* TLuaAttribute::GetLuaValueRoundTo(int Digit)
+const char* TLuaAttribute::GetLuaValueRoundTo(int Digit)
 {
     AnsiString* NewAnsi = new AnsiString(ValueRoundTo(Digit));
     Garbage.AddStr(NewAnsi);

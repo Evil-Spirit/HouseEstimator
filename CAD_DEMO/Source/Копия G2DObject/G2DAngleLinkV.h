@@ -26,7 +26,7 @@ public:
     MBTi LabelRadius;
     MBTi LabelAngle_Param;
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TAngleLink();
     virtual ~TAngleLink();
     __property TGCut* Client0 = {read = GetCut,write = SetCut,index = 0};
@@ -42,6 +42,5 @@ public:
     virtual bool IsLinked(TG2DPoint* GPoint1,TG2DPoint* GPoint2);
 };
 
-extern COMMONAL_API TClassNode* TAngleLink::StaticType;
 extern TMTList<TG2DPoint> ____PointList; 
 #endif

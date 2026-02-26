@@ -67,13 +67,12 @@ public:
 //--------------------------------------------------------
 	void Changed(void* Field);
 	static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	void Assign(TMyObject* MO);
 //--------------------------------------------------------
 	virtual ~TGPoint();
 };
 
-extern COMMONAL_API TClassNode* TGPoint::StaticType;
 
 #endif
 

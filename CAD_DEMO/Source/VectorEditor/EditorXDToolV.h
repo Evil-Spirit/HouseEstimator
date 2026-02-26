@@ -17,17 +17,16 @@ private:
     void setEditorXD(TEditor2D* EXD);
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     // __property TEditor2D* EditorXD {read=getEditorXD, write=setEditorXD}; // [manual migration needed]
 };
 
-extern  TClassNode* TEditorXDTool::StaticType;
 
 class  TMyEditorControls : public TMyControls{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     void MouseMove(void* Sender, TShiftState Shift, const TIntVec& CursorPosition);
     void MouseDown(void* Sender, TMouseButton Button, TShiftState Shift, const TIntVec& CursorPosition);
     void MouseUp(void* Sender, TMouseButton Button, TShiftState Shift, const TIntVec& CursorPosition);
@@ -35,6 +34,5 @@ public:
     void KeyUp(void* Sender, WORD &Key, TShiftState Shift);
 };
 
-extern  TClassNode* TMyEditorControls::StaticType;
 
 #endif

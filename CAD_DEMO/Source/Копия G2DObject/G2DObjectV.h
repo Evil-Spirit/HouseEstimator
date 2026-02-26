@@ -25,7 +25,7 @@ protected:
     TMDelTList< TPointer<TG2DLink> > FLinks;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TG2DCut(){};
     virtual ~TG2DCut(){};
 };
@@ -44,7 +44,7 @@ public:
     TG2DLink();
     virtual ~TG2DLink();
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 	TGeomFlags FFlags;
     virtual bool UpdatePointRule(TG2DPoint* GPoint){throw EMyException("<TG2DLink::IsBestToUpdate>: Not implemented.");};
     virtual bool IsBestToUpdate(TG2DPoint* GPoint){throw EMyException("<TG2DLink::IsBestToUpdate>: Not implemented.");};
@@ -58,7 +58,6 @@ public:
     TG2DPoint* ReadyToUpdate(const TMTList<TG2DPoint>& PointList);
 };
 
-extern COMMONAL_API TClassNode* TG2DLink::StaticType;
 
 TG2DLink* CreateAngleLink(TG2DCut* Cut1,TG2DCut* Cut2,TAngleLinkSector AngleLinkSector);
 TG2DLink* CreateDistanceLink(TG2DPoint* Point1,TG2DPoint* Point2);
@@ -83,7 +82,7 @@ protected:
 public:
     //-------------------Standart-----------------------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     T2DGObject();
     virtual ~T2DGObject();
     //--------------------Ïàðàìåòðû ïðîðèñîâêè----------------------------------
@@ -146,7 +145,6 @@ public:
     //-------------------------------------------- ----------------------------
 };
 
-extern COMMONAL_API TClassNode* T2DGObject::StaticType;
 
 extern TMTList<TG2DPoint> _Points;
 

@@ -30,7 +30,7 @@ private:
     const AnsiString& GetTargetGUID() const;
 public:
     static /**/ TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TPointer();
     TPointer(T *adr);
     virtual ~TPointer(){};

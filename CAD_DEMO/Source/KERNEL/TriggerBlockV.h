@@ -74,7 +74,7 @@ public:
     virtual ~TTriggerBlock();
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     void SetName(const AnsiString &newName);
     /*TMDelLSTList*/TMDelTList<TLuaModule> *Modules;
@@ -89,7 +89,6 @@ public:
     virtual bool CheckFields();
     // __property AnsiString Name {read=FName, write=SetName}; // [manual migration needed]
 };
-extern COMMONAL_API TClassNode* TTriggerBlock::StaticType;
 bool COMMONAL_API RunForm(TLuaModule* LM);
 
 

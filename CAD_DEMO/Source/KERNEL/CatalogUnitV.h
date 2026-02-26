@@ -15,7 +15,7 @@ private:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaCatalogUnit(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TMetaCatalogUnit();
@@ -26,7 +26,6 @@ public:
     virtual void GetImage(bool Small,bool Masked,Graphics::TBitmap* bmp,Graphics::TBitmap* mask);
 };
 
-extern COMMONAL_API TClassNode* TMetaCatalogUnit::StaticType;
 
 #endif
  

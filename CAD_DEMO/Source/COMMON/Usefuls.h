@@ -138,7 +138,7 @@ public:
     void GenerateGUIDIfNeed();
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     virtual void KillFunction();
     //----------------------------------
     TClassNode* DynamicType;
@@ -162,7 +162,10 @@ public:
     const AnsiString& GetGUID_()         const { return FGUID; }
     TMyObject*        GetMyObjectParent_() const { return FMyObjectParent; }
 #else
-    // GCC/Clang: provide public member accessors usable via setter/getter pattern
+    // GCC/Clang: expose Name, GUID, MyObjectParent as public property shims
+    AnsiString& Name           = FName;
+    AnsiString& GUID           = FGUID;
+    TMyObject*& MyObjectParent = FMyObjectParent;
     TMyObject*& _GetMyObjParentRef() { return FMyObjectParent; }
     AnsiString& _GetNameRef()        { return FName; }
 #endif
@@ -222,7 +225,6 @@ public:
 
     bool Is(const TClassNode* ClassNode) const;
 };
-extern COMMONAL_API TClassNode* TMyObject::StaticType;
 COMMONAL_API TMyObject* FindByGUID(const AnsiString& GUID);
 
 class COMMONAL_API EMyException : public Exception{
@@ -269,7 +271,16 @@ public:
 #ifdef _MSC_VER
     __declspec(property(get=GetNameProp)) AnsiString Name;
 #else
-    // GCC: use GetName() to access name property
+    // GCC: proxy struct that allows cn->Name to implicitly convert to AnsiString
+    struct _NameProxy {
+        const TClassNode* const _owner;
+        explicit _NameProxy(const TClassNode* o) noexcept : _owner(o) {}
+        operator AnsiString() const { return _owner->GetNameProp(); }
+        bool operator==(const AnsiString& s) const { return _owner->GetNameProp() == s; }
+        bool operator!=(const AnsiString& s) const { return _owner->GetNameProp() != s; }
+        bool operator==(const char* s) const { return _owner->GetNameProp() == AnsiString(s); }
+        bool operator!=(const char* s) const { return _owner->GetNameProp() != AnsiString(s); }
+    } Name{this};
 #endif
     bool Virtual;
 
@@ -396,7 +407,7 @@ protected:
 public:
     //--------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //--------------------------------
 //    bool DoNotReg;
     TTreeNode *TN;
@@ -444,7 +455,6 @@ public:
     int GetAttributeIndex(char* _name);
 };
 
-extern COMMONAL_API TClassNode* TMyRegObject::StaticType;
 //---------------------------------------
 
 class TMDelTList<AnsiString>;

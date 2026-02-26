@@ -36,7 +36,9 @@ class TIntVec;
 class TBoolVec;
 class TMBTRect;
 
+#ifndef COMMONAL_API
 #define COMMONAL_API Q_DECL_EXPORT
+#endif
 
 COMMONAL_API bool ISINTEGER(const AnsiString& Str);
 //COMMONAL_API bool ISFLOAT(const AnsiString&);

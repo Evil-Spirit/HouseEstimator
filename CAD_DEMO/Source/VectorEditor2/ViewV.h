@@ -24,7 +24,7 @@ class TEditor2D;
 class TMyCursor : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TVisPrimitiveObj* VCO;
     TMyCursor();
 //    TMyCursor(bool _Visible, MBTi _SizeCursor);

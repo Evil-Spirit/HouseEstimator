@@ -23,7 +23,7 @@ private:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     // __property int UImageIndex {read=FUImageIndex, write=SetUImageIndex}; // [manual migration needed]
     // __property bool Enabled {read=FEnabled, write=SetEnabled}; // [manual migration needed]
@@ -38,7 +38,7 @@ class TMetaActionList : public TMetaNode{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaActionList();
     TMetaActionList(TMetaNode *_Parent,int _ID,const AnsiString& _Name);
@@ -63,7 +63,7 @@ private:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaAction();
     TMetaAction(TMetaNode *_Parent,int _ID,const AnsiString& _Name);
@@ -86,7 +86,7 @@ class TMetaMenuItem : public TMetaUI{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaMenuItem();
     TMetaMenuItem(TMetaNode *_Parent,int _ID,const AnsiString& _Name);

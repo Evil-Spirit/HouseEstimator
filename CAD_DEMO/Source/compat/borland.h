@@ -19,6 +19,14 @@
 #  ifndef __cdecl
      // MSVC/GCC already define __cdecl, but guard anyway
 #  endif
+
+// Borland IDE visibility sections: map to standard C++ equivalents
+#  ifndef __published
+#    define __published public
+#  endif
+#  ifndef __automated
+#    define __automated public
+#  endif
 #endif
 
 // ---------------------------------------------------------------------------

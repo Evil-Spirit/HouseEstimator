@@ -115,14 +115,13 @@ public:
 	
 /*********************************** Ñèñòåìíûå ***********************************************************/
 	static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	void Assign(TMyObject* MO);
 /*********************************** Ñèñòåìíûå ***********************************************************/
 
 	virtual ~TGPolygon();
 };
 
-extern COMMONAL_API TClassNode* TGPolygon::StaticType;
 
 #endif
 

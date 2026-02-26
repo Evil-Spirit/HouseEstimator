@@ -38,7 +38,7 @@ public:
     TGBaseLink();
     virtual ~TGBaseLink();
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     __property TGUnit* Client0 = {read = GetClient,write = SetClient,index = 0};
     __property TGUnit* Client1 = {read = GetClient,write = SetClient,index = 1};
     virtual void Render(TVisView* aView){};
@@ -47,7 +47,6 @@ public:
     bool Visible;
 };
 
-extern COMMONAL_API TClassNode* TGBaseLink::StaticType;
 
 class COMMONAL_API TGUnit : public TMyObject {
 protected:
@@ -60,7 +59,7 @@ public:
     TGUnit();
     virtual ~TGUnit();
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     // __property int LinksCount {read=GetLinksCount}; // [manual migration needed]
     TGBaseLink& GetLink(int index);
     const TGBaseLink& GetLink(int index) const;
@@ -69,7 +68,6 @@ public:
     // __property bool Fixed {read=GetFixed, write=SetFixed}; // [manual migration needed]
 
 };
-extern COMMONAL_API TClassNode* TGUnit::StaticType;
 
 AnsiString COMMONAL_API MBTiToStrF(MBTi Value,int Precision);
 #endif

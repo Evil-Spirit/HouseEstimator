@@ -12,7 +12,9 @@
 
 //---------------------------------------------------------------------------
 
+#ifndef COMMONAL_API
 #define COMMONAL_API Q_DECL_EXPORT
+#endif
 
 typedef float MBTi;
 typedef double MBTf;

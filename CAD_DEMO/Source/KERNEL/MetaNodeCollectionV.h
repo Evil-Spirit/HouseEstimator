@@ -28,7 +28,7 @@ public:
     TMDelTList<TMySupport> Supports;
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaNodeCollection();
     virtual ~TMetaNodeCollection(){};
@@ -59,9 +59,7 @@ public:
     AnsiString SelectClassIfNeed(const AnsiString& VirtualClass );
 };
 
-extern COMMONAL_API TQuickList TMetaNodeCollection::TypesToEdit;
 
-extern COMMONAL_API TClassNode* TMetaNodeCollection::StaticType;
 
 extern COMMONAL_API TMetaNodeCollection *MetaNodeCollection;
 

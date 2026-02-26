@@ -31,7 +31,7 @@ struct TEditorLineWidth{
 class  TEditorAttributes : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TEditorAttributes();
     virtual ~TEditorAttributes(){};
     bool Snap;
@@ -44,7 +44,6 @@ public:
     TEditorLineWidth LinesWidth;
 };
 
-extern  TClassNode* TEditorAttributes::StaticType;
 
 struct TGridColors{
     TColor OSI;
@@ -61,7 +60,7 @@ struct TGridLineWidth{
 class  TGridAttributes : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGridAttributes();
     virtual ~TGridAttributes(){};
     bool Snap;
@@ -79,12 +78,11 @@ public:
     bool Minimal;
 };
 
-extern  TClassNode* TGridAttributes::StaticType;
 
 class  TGrid : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGrid();
     virtual ~TGrid();
     int Precision;
@@ -97,7 +95,6 @@ public:
     void Render(TMyView* aView);
 };
 
-extern  TClassNode* TGrid::StaticType;
 
 class TG2DLink;
 class TGPoint;

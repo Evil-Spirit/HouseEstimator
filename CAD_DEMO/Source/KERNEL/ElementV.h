@@ -50,11 +50,10 @@ public:
     TUnit();
     virtual ~TUnit(){};
     bool CheckFields();
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     void SynchronizeAttributes();
 };
 
-extern COMMONAL_API TClassNode* TUnit::StaticType;
 
 class COMMONAL_API T3DScopeMem{
 public:
@@ -83,7 +82,7 @@ class COMMONAL_API THoleClient: public TMyObject{
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     THoleClient(TPolygon* Hole,TElement* El);
     THoleClient();
@@ -92,7 +91,6 @@ public:
     TPointer<TElement> Client;
 };
 
-extern COMMONAL_API TClassNode* THoleClient::StaticType;
 
 class TElementPoints;
 
@@ -141,7 +139,7 @@ public:
     void Changed(void* Sender);
 //-----------Register Routine-----------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     virtual void KillFunction();
 //-----------Translation Rotation Scaling Projection Routine-----------------
     TChangeVec AbsSize;
@@ -273,8 +271,6 @@ public:
     TElement& operator =(TElement& MO);
 };
 
-extern COMMONAL_API TClassNode* TElement::StaticType;
-extern COMMONAL_API __int64     TElement::TotalCount;
 
 
 class COMMONAL_API TLink : public TUnit {
@@ -295,7 +291,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TLink(TMetaNode *_Meta,TElement *Target,TElement *Source,const TIntVec &AbsCrossPoint);
     TLink();
@@ -339,7 +335,6 @@ public:
 
     TLink& operator =(TLink& MO);
 };
-extern COMMONAL_API TClassNode* TLink::StaticType;
 
 
 TLink* COMMONAL_API CreateLink(TElement* EL0,TElement* EL1,TDynamicLink* DynamicLink,const TIntVec& AbsPoint);

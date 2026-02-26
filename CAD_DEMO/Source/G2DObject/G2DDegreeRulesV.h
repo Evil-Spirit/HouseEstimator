@@ -15,7 +15,7 @@ protected:
     virtual TIntVec GetPoint() const;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TDegreeRule();
     ~TDegreeRule(){};
     TG2DPoint* GPoint;
@@ -26,7 +26,6 @@ public:
         throw EMyException("<TDegreeRule::SwitchPointToPoint>: Íåðåàëèçîâàíî â êëàññàõ íàñëåäíèêàõ.");
     };
 };
-extern COMMONAL_API TClassNode* TDegreeRule::StaticType;
 
 class COMMONAL_API TCircleDegreeRule  : public TDegreeRule{
 protected:
@@ -34,13 +33,12 @@ protected:
     MBTi FRadius;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TCircleDegreeRule();
     ~TCircleDegreeRule(){};
     // __property MBTi Radius {read=GetRadius, write=FRadius}; // [manual migration needed]
 };
 
-extern COMMONAL_API TClassNode* TCircleDegreeRule::StaticType;
 
 class COMMONAL_API TLineDegreeRule  : public TDegreeRule{
 protected:
@@ -48,7 +46,7 @@ protected:
     virtual TIntVec GetDirection() const;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TLineDegreeRule();
     ~TLineDegreeRule(){};
     TG2DPoint* GPX_SRC;
@@ -61,13 +59,12 @@ public:
     // __property TIntVec Direction {read=GetDirection}; // [manual migration needed]
     void SwitchPointToPoint(TG2DPoint* FromPoint,TG2DPoint* ToPoint,TG2DPoint* TargetPoint);
 };
-extern COMMONAL_API TClassNode* TLineDegreeRule::StaticType;
 
 class COMMONAL_API TLimaconDegreeRule : public TDegreeRule{
 protected:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TLimaconDegreeRule();
     virtual ~TLimaconDegreeRule(){};
 	TG2DPoint* SkP1;
@@ -79,7 +76,6 @@ public:
     void InitPascalLimacon();
 };
 
-extern COMMONAL_API TClassNode* TLimaconDegreeRule::StaticType;
 
 
 class COMMONAL_API TCircleDegreeOfAngle  : public TCircleDegreeRule{
@@ -88,7 +84,7 @@ protected:
     virtual MBTi GetRadius() const;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TG2DPoint* GPX_DST;
     TG2DPoint* GPY_DST;
     MBTi Angle;
@@ -96,7 +92,6 @@ public:
     ~TCircleDegreeOfAngle(){};
 };
 
-extern COMMONAL_API TClassNode* TCircleDegreeOfAngle::StaticType;
 
 
 

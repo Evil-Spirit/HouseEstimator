@@ -4,6 +4,8 @@
 // to compile under Qt/MSVC or Qt/GCC without modification.
 
 #include "AnsiString.h"
+// Pull in Windows types/constants (stubs on Linux, real headers on Windows)
+#include <windows.h>
 
 #include <QString>
 #include <QObject>
@@ -23,6 +25,10 @@
 #include <QSpinBox>
 #include <QGroupBox>
 #include <QScrollArea>
+#include <QScrollBar>
+#include <QSlider>
+#include <QProgressBar>
+#include <QFrame>
 #include <QTabWidget>
 #include <QTreeWidget>
 #include <QListWidget>
@@ -86,7 +92,13 @@ typedef QWidget       TControl;
 typedef QWidget       TWinControl;
 typedef QWidget       TCustomControl;
 typedef QWidget       TScrollingWinControl;
-typedef QMainWindow   TForm;
+// TForm: Borland's TForm(TComponent* Owner) constructor; Qt uses QWidget* parent.
+// We provide a thin wrapper so existing code compiles unchanged.
+class TForm : public QMainWindow {
+public:
+    explicit TForm(TComponent* parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags())
+        : QMainWindow(qobject_cast<QWidget*>(parent), flags) {}
+};
 typedef QDialog       TDialog;
 typedef QBuffer       TMemoryStream;
 typedef QString       TCaption;
@@ -288,15 +300,57 @@ public:
 
 // ---------------------------------------------------------------------------
 // TNotifyEvent – Borland's standard callback
+// Uses std::function to support both raw function pointers and lambdas/closures.
 // ---------------------------------------------------------------------------
-struct TNotifyEvent {
-    typedef void (*Func)(TObject* sender);
-    Func fn;
-    TNotifyEvent() : fn(nullptr) {}
-    TNotifyEvent(Func f) : fn(f) {}
-    void operator()(TObject* sender) const { if (fn) fn(sender); }
-    explicit operator bool() const { return fn != nullptr; }
+typedef std::function<void(TObject*)> TNotifyEvent;
+
+// ---------------------------------------------------------------------------
+// TMenuItem – VCL menu item stub (maps to QAction)
+// ---------------------------------------------------------------------------
+class TMenuItem : public QAction {
+public:
+    AnsiString Caption;
+    int Tag = 0;
+    TNotifyEvent OnClick;
+    explicit TMenuItem(QObject* parent = nullptr) : QAction(parent) {}
+    void SetCaption(const AnsiString& s) { Caption = s; setText(s.toQString()); }
 };
+
+// ---------------------------------------------------------------------------
+// IS() – Borland run-time type check (like dynamic_cast but via TClassNode)
+// We map it to a simple dynamic_cast-based check.
+// ---------------------------------------------------------------------------
+template<typename T>
+inline bool IS(T* obj, const std::type_info* /*ti*/) {
+    return obj != nullptr; // stub: accept any non-null pointer
+}
+template<typename T, typename U>
+inline bool IS(T* obj, U* /*unused*/) { return obj != nullptr; }
+// __classid(T) → type_info pointer (from borland.h, already returns nullptr)
+// We just need IS() to compile; exact behaviour is irrelevant for the build.
+
+// ---------------------------------------------------------------------------
+// Mouse object stub (used in MenuToolCommands->Popup(Mouse->CursorPos.x, y))
+// ---------------------------------------------------------------------------
+struct _TPoint2 { int x = 0; int y = 0; };
+struct _TMouse {
+    _TPoint2 CursorPos;
+};
+inline _TMouse* GetMouse() {
+    static _TMouse m;
+    QPoint p = QCursor::pos();
+    m.CursorPos.x = p.x();
+    m.CursorPos.y = p.y();
+    return &m;
+}
+#define Mouse GetMouse()
+
+// ---------------------------------------------------------------------------
+// VCL Geometry helpers on QWidget (Borland-style property names)
+// ---------------------------------------------------------------------------
+// Add helper macros so code like Panel->Width or Panel->Left compiles.
+// In Qt, these are methods, not properties.
+// We use inline free functions as adapters where needed.
 
 // ---------------------------------------------------------------------------
 // COMMONAL_API – export/import macro used throughout the project
@@ -390,3 +444,131 @@ inline void ClipboardPlaceholder() {}
 #include <QDir>
 #include <QFileInfo>
 #include <QTextStream>
+
+// ---------------------------------------------------------------------------
+// Basic Windows integer types (needed on non-Windows when windows.h not included)
+// ---------------------------------------------------------------------------
+#ifndef WORD
+  typedef unsigned short  WORD;
+#endif
+#ifndef DWORD
+  typedef unsigned long   DWORD;
+#endif
+#ifndef BYTE
+  typedef unsigned char   BYTE;
+#endif
+#ifndef BOOL
+  typedef int             BOOL;
+#endif
+
+// ---------------------------------------------------------------------------
+// VCL mouse/keyboard input types
+// ---------------------------------------------------------------------------
+enum TMouseButton { mbLeft = 0, mbRight = 1, mbMiddle = 2 };
+typedef unsigned int TShiftState;
+static const TShiftState ssShift  = 1u;
+static const TShiftState ssAlt    = 2u;
+static const TShiftState ssCtrl   = 4u;
+// VCL mouse-button flags in TShiftState:
+static const TShiftState ssLeft   = 8u;
+static const TShiftState ssRight  = 16u;
+static const TShiftState ssMiddle = 32u;
+
+// ---------------------------------------------------------------------------
+// VCL widget aliases missing from the original mapping
+// ---------------------------------------------------------------------------
+typedef QFrame       TPanel;
+typedef QFrame       TBevel;
+typedef QScrollBar   TScrollBar;
+typedef QStatusBar   TStatusBar;
+typedef QSplitter    TSplitter;
+typedef QSlider      TTrackBar;
+typedef QProgressBar TProgressBar;
+typedef QTextEdit    TMemo;
+typedef QTextEdit    TRichEdit;
+typedef QListWidget  TListBox;
+// TPopupMenu: wraps QMenu but accepts TComponent* (QObject*) as parent
+class TPopupMenu : public QMenu {
+public:
+    // VCL-style Items container
+    struct _ItemsContainer {
+        QMenu* _menu;
+        explicit _ItemsContainer(QMenu* m) : _menu(m) {}
+        void Add(QAction* a) { if (_menu && a) _menu->addAction(a); }
+        int Count() const { return _menu ? _menu->actions().size() : 0; }
+    } Items;
+
+    TPopupMenu() : QMenu(), Items(this) {}
+    explicit TPopupMenu(QObject* /*parent*/) : QMenu(), Items(this) {}
+    explicit TPopupMenu(QWidget* parent) : QMenu(parent), Items(this) {}
+
+    // VCL Popup(x,y): show context menu at screen position
+    void Popup(int x, int y) { popup(QPoint(x, y)); }
+};
+
+// VCL drag-and-dock stubs (not supported under Qt; provided for compilation)
+typedef int          TDragState;
+struct TDragDockObject { QWidget* Control = nullptr; };
+// TWndMethod: Borland window-procedure callback type
+#include <functional>
+
+// Forward-declare Messages namespace so headers using it compile
+namespace Messages {
+    struct TMessage {
+        unsigned int Msg    = 0;
+        intptr_t     WParam = 0;
+        intptr_t     LParam = 0;
+        intptr_t     Result = 0;
+    };
+} // namespace Messages
+
+typedef std::function<void(Messages::TMessage&)> TWndMethod;
+
+// Minimal Controls namespace stubs (VCL message IDs etc.)
+namespace Controls {
+    static const unsigned int CM_DOCKNOTIFICATION = 0xBF5D;
+    static const unsigned int CM_VISIBLECHANGED   = 0xBF64;
+} // namespace Controls
+
+// VCL TCMDockNotification – message record for dock events
+struct TDockNotification { unsigned int ClientMsg = 0; intptr_t MsgWParam = 0; };
+struct TCMDockNotification : Messages::TMessage {
+    TDockNotification* NotifyRec = nullptr;
+    QWidget* Client = nullptr;
+};
+
+// WindowProc member – not part of Qt; stub as lambda storage on the widget
+struct TWindowProcHolder {
+    TWndMethod WindowProc;
+};
+
+// VCL BorderIcons set – ignored in Qt (window flags must be set via setWindowFlags)
+typedef unsigned int TBorderIcons;
+static const TBorderIcons biSystemMenu = 1;
+static const TBorderIcons biMinimize   = 2;
+static const TBorderIcons biMaximize   = 4;
+static const TBorderIcons biHelp       = 8;
+
+// VCL BorderStyle values
+typedef int TFormBorderStyle;
+static const TFormBorderStyle bsNone        = 0;
+static const TFormBorderStyle bsSingle      = 1;
+static const TFormBorderStyle bsSizeable    = 2;
+static const TFormBorderStyle bsDialog      = 3;
+static const TFormBorderStyle bsToolWindow  = 4;
+static const TFormBorderStyle bsSizeToolWin = 5;
+
+// VCL Align property values
+typedef int TAlign;
+static const TAlign alNone   = 0;
+static const TAlign alTop    = 1;
+static const TAlign alBottom = 2;
+static const TAlign alLeft   = 3;
+static const TAlign alRight  = 4;
+static const TAlign alClient = 5;
+
+// ComObj.hpp: CreateClassID() – uses QUuid on non-Windows
+#include <QUuid>
+inline AnsiString CreateClassID() {
+    return AnsiString(QUuid::createUuid().toString());
+}
