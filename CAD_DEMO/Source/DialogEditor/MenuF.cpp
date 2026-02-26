@@ -1,38 +1,40 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MyTemplates.h"
 #include "MTL.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "MenuF.h"
 #include "MyDialogEditU.h"
 #include "ToolBarU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 
 TMainMenuF *MenuF = NULL;
 //---------------------------------------------------------------------------
-__fastcall TMainMenuF::TMainMenuF(TComponent* Owner) : TForm(Owner)
+ TMainMenuF::TMainMenuF(TComponent* Owner) : TForm(Owner)
 {
 //    MenuF = this;
     Show();
 }
 //---------------------------------------------------------------------------
-void __fastcall TMainMenuF::mmObjectInspectorClick(TObject *Sender)
+void  TMainMenuF::mmObjectInspectorClick(TObject *Sender)
 {
     ObjInspector->Show();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainMenuF::mmObjectTreeViewClick(TObject *Sender)
+void  TMainMenuF::mmObjectTreeViewClick(TObject *Sender)
 {
 //    TreeView->Show();
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TMainMenuF::mmToolBarClick(TObject *Sender)
+void  TMainMenuF::mmToolBarClick(TObject *Sender)
 {
     ToolBarF->Show();
 }

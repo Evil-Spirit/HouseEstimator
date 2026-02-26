@@ -1,14 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //----------------------------------------------------------------------------
 #ifndef MyMDIChildVH
 #define MyMDIChildVH
 //----------------------------------------------------------------------------
-#include <Controls.hpp>
-#include <Forms.hpp>
-#include <Graphics.hpp>
-#include <Classes.hpp>
+#include "compat/vcl_qt.h"
 #include <Windows.hpp>
-#include <System.hpp>
-#include <StdCtrls.hpp>
 #include "BaseDockSiteFormV.h"
 #include "FloatingV.h"
 #include "BaseFormV.h"
@@ -16,13 +15,13 @@
 class COMMONAL_API TMyMDIChild : public TBaseForm
 {
 __published:
-	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-    void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
+	void  FormClose(TObject *Sender, TCloseAction &Action);
+    void  FormCloseQuery(TObject *Sender, bool &CanClose);
 private:
     bool fload;
 public:
-	virtual __fastcall TMyMDIChild(TComponent *Owner);
-	virtual __fastcall TMyMDIChild(TComponent *Owner,const AnsiString& Caption,bool load);
+	virtual  TMyMDIChild(TComponent *Owner);
+	virtual  TMyMDIChild(TComponent *Owner,const AnsiString& Caption,bool load);
 };
 
 extern COMMONAL_API TMyMDIChild* MyMDIChild;

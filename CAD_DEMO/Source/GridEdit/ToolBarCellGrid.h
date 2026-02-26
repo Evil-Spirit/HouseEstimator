@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef SectionDialogUH
 #define SectionDialogUH
@@ -42,48 +46,48 @@ public:		// User declarations
     TSelectColor* SFontColor;
     TSelectBorder* SBorder;
 
-    //Этот toolbar должен всегда иметь родительскую форму
+    //ГќГІГ®ГІ toolbar Г¤Г®Г«Г¦ГҐГ­ ГўГ±ГҐГЈГ¤Г  ГЁГ¬ГҐГІГј Г°Г®Г¤ГЁГІГҐГ«ГјГ±ГЄГіГѕ ГґГ®Г°Г¬Гі
 
-    __fastcall TToolBarCellGrid(TComponent* Owner,TWinControl* aParent);
+     TToolBarCellGrid(TComponent* Owner,TWinControl* aParent);
 
-    void __fastcall PopupMenuBgColorPopup(TObject *Sender);
-    void __fastcall PopupMenuFontColorPopup(TObject *Sender);
-    void __fastcall PopupMenuBorderPopup(TObject *Sender);
+    void  PopupMenuBgColorPopup(TObject *Sender);
+    void  PopupMenuFontColorPopup(TObject *Sender);
+    void  PopupMenuBorderPopup(TObject *Sender);
 
-    void __fastcall SelectBgColorClose(TObject *Sender,TCloseAction &Action);
-    void __fastcall SelectFontColorClose(TObject *Sender,TCloseAction &Action);
-    void __fastcall SelectBorderClose(TObject *Sender,TCloseAction &Action);
+    void  SelectBgColorClose(TObject *Sender,TCloseAction &Action);
+    void  SelectFontColorClose(TObject *Sender,TCloseAction &Action);
+    void  SelectBorderClose(TObject *Sender,TCloseAction &Action);
 
-    void __fastcall SetColorIcoTollBar(TColor Color,int Index);
-    void __fastcall SetBorderIcoToToolBar(int Index);
+    void  SetColorIcoTollBar(TColor Color,int Index);
+    void  SetBorderIcoToToolBar(int Index);
 
-    void __fastcall tb_BgColorClick(TObject *Sender);
-    void __fastcall tb_FontColorClick(TObject *Sender);
-    void __fastcall tb_BorderClick(TObject *Sender);
+    void  tb_BgColorClick(TObject *Sender);
+    void  tb_FontColorClick(TObject *Sender);
+    void  tb_BorderClick(TObject *Sender);
 
-    void __fastcall cbFontNameChange(TObject *Sender);
-    void __fastcall cbFontSizeChange(TObject *Sender);
+    void  cbFontNameChange(TObject *Sender);
+    void  cbFontSizeChange(TObject *Sender);
 
-    void __fastcall tb_jClick(TObject *Sender);
-    void __fastcall tb_kClick(TObject *Sender);
-    void __fastcall tb_chClick(TObject *Sender);
+    void  tb_jClick(TObject *Sender);
+    void  tb_kClick(TObject *Sender);
+    void  tb_chClick(TObject *Sender);
 
-    void __fastcall tb_LeftHClick(TObject *Sender);
-    void __fastcall tb_CenterHClick(TObject *Sender);
-    void __fastcall tb_RightHClick(TObject *Sender);
+    void  tb_LeftHClick(TObject *Sender);
+    void  tb_CenterHClick(TObject *Sender);
+    void  tb_RightHClick(TObject *Sender);
 
-    void __fastcall tb_UnionClick(TObject *Sender);
-    void __fastcall tb_VisOneClick(TObject *Sender);
+    void  tb_UnionClick(TObject *Sender);
+    void  tb_VisOneClick(TObject *Sender);
 
-    //Создание или присвоение новых указателей
-    void __fastcall NewFormBgColor(TCellGrid* CellGrid1);
-    void __fastcall NewFormFontColor(TCellGrid* CellGrid1);
-    void __fastcall NewFormBorder(TCellGrid* CellGrid1);
+    //Г‘Г®Г§Г¤Г Г­ГЁГҐ ГЁГ«ГЁ ГЇГ°ГЁГ±ГўГ®ГҐГ­ГЁГҐ Г­Г®ГўГ»Гµ ГіГЄГ Г§Г ГІГҐГ«ГҐГ©
+    void  NewFormBgColor(TCellGrid* CellGrid1);
+    void  NewFormFontColor(TCellGrid* CellGrid1);
+    void  NewFormBorder(TCellGrid* CellGrid1);
 
-    void __fastcall FillFontName(TCellGrid* CellGrid1);
-    //Создание или присвоение новых указателей END
+    void  FillFontName(TCellGrid* CellGrid1);
+    //Г‘Г®Г§Г¤Г Г­ГЁГҐ ГЁГ«ГЁ ГЇГ°ГЁГ±ГўГ®ГҐГ­ГЁГҐ Г­Г®ГўГ»Гµ ГіГЄГ Г§Г ГІГҐГ«ГҐГ© END
 
-    void __fastcall SetDownToolBar(TCellGrid* CellGrid1); // Установить нажатие иконок ToolBar в соответствии с выделенной областью
+    void  SetDownToolBar(TCellGrid* CellGrid1); // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г­Г Г¦Г ГІГЁГҐ ГЁГЄГ®Г­Г®ГЄ ToolBar Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГЁ Г± ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГјГѕ
 };
 //---------------------------------------------------------------------------
 //extern COMMONAL_API TToolBarCellGrid *ToolBarCellGrid;

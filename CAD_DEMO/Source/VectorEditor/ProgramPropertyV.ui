@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ProgramProperty</class>
+  <widget class="QWidget" name="ProgramProperty">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>328</width>
+        <height>382</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>ProgramProperty</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QTabWidget" name="PC">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>8</y>
+          <width>329</width>
+          <height>337</height>
+        </rect>
+      </property>
+      <widget class="QWidget" name="pSnap">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Улавливание</string>
+        </property>
+        <widget class="QLabel" name="Label1">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>112</y>
+              <width>133</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Область улавливания (pix)</string>
+          </property>
+          <property name="text">
+            <string>Область улавливания (pix)</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lSnapStep">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>144</y>
+              <width>174</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Кратность сетки для улавливания</string>
+          </property>
+          <property name="text">
+            <string>Кратность сетки для улавливания</string>
+          </property>
+        </widget>
+        <widget class="QCheckBox" name="cbSnapOn">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>16</y>
+              <width>89</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Улавливать</string>
+          </property>
+          <property name="text">
+            <string>Улавливать</string>
+          </property>
+        </widget>
+        <widget class="QCheckBox" name="cbAdditionalSnapOn">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>40</y>
+              <width>241</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Улавливать по вспомогательным линям</string>
+          </property>
+          <property name="text">
+            <string>Улавливать по вспомогательным линям</string>
+          </property>
+        </widget>
+        <widget class="QCheckBox" name="cbMyFigureSnapOn">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>64</y>
+              <width>233</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Улавливать по контуру</string>
+          </property>
+          <property name="text">
+            <string>Улавливать по контуру</string>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="eSnapValue">
+          <property name="geometry">
+            <rect>
+              <x>264</x>
+              <y>112</y>
+              <width>41</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string>10</string>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="eSnapStep">
+          <property name="geometry">
+            <rect>
+              <x>264</x>
+              <y>144</y>
+              <width>41</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string>2</string>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="pGrid">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Сетка</string>
+        </property>
+        <widget class="QLabel" name="lGridStep">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>40</y>
+              <width>69</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Шаг сетки (м)</string>
+          </property>
+          <property name="text">
+            <string>Шаг сетки (м)</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lMultiplier">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>72</y>
+              <width>154</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Кратность большей сетки (pix)</string>
+          </property>
+          <property name="text">
+            <string>Кратность большей сетки (pix)</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lSwitchEpsilon">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>104</y>
+              <width>163</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Минимальная ячейка сетки (pix)</string>
+          </property>
+          <property name="text">
+            <string>Минимальная ячейка сетки (pix)</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lZoomLimit">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>136</y>
+              <width>116</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Предел увеличения (м)</string>
+          </property>
+          <property name="text">
+            <string>Предел увеличения (м)</string>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="eStep">
+          <property name="geometry">
+            <rect>
+              <x>256</x>
+              <y>40</y>
+              <width>41</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string>0,1</string>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="eMultiplier">
+          <property name="geometry">
+            <rect>
+              <x>256</x>
+              <y>72</y>
+              <width>41</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string>10</string>
+          </property>
+        </widget>
+        <widget class="QCheckBox" name="cbGridOn">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>8</y>
+              <width>81</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Сетка вкл</string>
+          </property>
+          <property name="text">
+            <string>Сетка вкл</string>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="eSwitchEpsilon">
+          <property name="geometry">
+            <rect>
+              <x>256</x>
+              <y>104</y>
+              <width>41</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string>10</string>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="eZoomLimit">
+          <property name="geometry">
+            <rect>
+              <x>256</x>
+              <y>136</y>
+              <width>41</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string>9999</string>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="pColors">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Цвета</string>
+        </property>
+        <widget class="QLabel" name="lGridMINColor">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>16</y>
+              <width>79</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Меньшая сетка</string>
+          </property>
+          <property name="text">
+            <string>Меньшая сетка</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lGridMAXColor">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>48</y>
+              <width>77</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Большая сетка</string>
+          </property>
+          <property name="text">
+            <string>Большая сетка</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lGridOSIColor">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>80</y>
+              <width>76</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Оси координат</string>
+          </property>
+          <property name="text">
+            <string>Оси координат</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lAdditionalColor">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>112</y>
+              <width>126</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Вспомогательные линии</string>
+          </property>
+          <property name="text">
+            <string>Вспомогательные линии</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lMyFiguresColor">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>144</y>
+              <width>75</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Линии контура</string>
+          </property>
+          <property name="text">
+            <string>Линии контура</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lSelectedColor">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>176</y>
+              <width>98</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Выделенные линии</string>
+          </property>
+          <property name="text">
+            <string>Выделенные линии</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lBackGroundColor">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>240</y>
+              <width>23</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Фон</string>
+          </property>
+          <property name="text">
+            <string>Фон</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lCursor">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>272</y>
+              <width>36</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Курсор</string>
+          </property>
+          <property name="text">
+            <string>Курсор</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lLinesFixid">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>208</y>
+              <width>118</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Фиксированные линии</string>
+          </property>
+          <property name="text">
+            <string>Фиксированные линии</string>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbGridMIN">
+          <property name="geometry">
+            <rect>
+              <x>160</x>
+              <y>16</y>
+              <width>145</width>
+              <height>22</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbGridMAX">
+          <property name="geometry">
+            <rect>
+              <x>160</x>
+              <y>48</y>
+              <width>145</width>
+              <height>22</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbGridOSI">
+          <property name="geometry">
+            <rect>
+              <x>160</x>
+              <y>80</y>
+              <width>145</width>
+              <height>22</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbAdditional">
+          <property name="geometry">
+            <rect>
+              <x>160</x>
+              <y>112</y>
+              <width>145</width>
+              <height>22</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbMyFigures">
+          <property name="geometry">
+            <rect>
+              <x>160</x>
+              <y>144</y>
+              <width>145</width>
+              <height>22</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbSelected">
+          <property name="geometry">
+            <rect>
+              <x>160</x>
+              <y>176</y>
+              <width>145</width>
+              <height>22</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbBackGround">
+          <property name="geometry">
+            <rect>
+              <x>160</x>
+              <y>240</y>
+              <width>145</width>
+              <height>22</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbCursor">
+          <property name="geometry">
+            <rect>
+              <x>160</x>
+              <y>272</y>
+              <width>145</width>
+              <height>22</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QComboBox" name="cbFixid">
+          <property name="geometry">
+            <rect>
+              <x>160</x>
+              <y>208</y>
+              <width>145</width>
+              <height>22</height>
+            </rect>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="bOk">
+      <property name="geometry">
+        <rect>
+          <x>48</x>
+          <y>352</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="bCancel">
+      <property name="geometry">
+        <rect>
+          <x>200</x>
+          <y>352</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Отмена</string>
+      </property>
+      <property name="text">
+        <string>Отмена</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

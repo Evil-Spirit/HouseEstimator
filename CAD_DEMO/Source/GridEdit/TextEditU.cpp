@@ -1,20 +1,22 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "CellGrid.h"
 #include "TextEditU.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-const AnsiString _ABC = AnsiString("`~-+=!@#.,?|*/%$¹;:()[]{} 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÂÃÄÅ¨ÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäå¸æçèéêëìíîïğñòóôõö÷øùúûüışÿ");
+const AnsiString _ABC = AnsiString("`~-+=!@#.,?|*/%$Â¹;:()[]{} 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÃ€ÃÃ‚ÃƒÃ„Ã…Â¨Ã†Ã‡ÃˆÃ‰ÃŠÃ‹ÃŒÃÃÃÃÃ‘Ã’Ã“Ã”Ã•Ã–Ã—Ã˜Ã™ÃšÃ›ÃœÃÃÃŸÃ Ã¡Ã¢Ã£Ã¤Ã¥Â¸Ã¦Ã§Ã¨Ã©ÃªÃ«Ã¬Ã­Ã®Ã¯Ã°Ã±Ã²Ã³Ã´ÃµÃ¶Ã·Ã¸Ã¹ÃºÃ»Ã¼Ã½Ã¾Ã¿");
 // ----------- TEditText ------------------
 
-__fastcall TEditText::TEditText(Classes::TComponent* Owner, TCellGrid* _CellGrid):
+ TEditText::TEditText(Classes::TComponent* Owner, TCellGrid* _CellGrid):
     TRichEdit(Owner)
 {
     CellGrid =_CellGrid;
@@ -30,7 +32,7 @@ __fastcall TEditText::TEditText(Classes::TComponent* Owner, TCellGrid* _CellGrid
     OnKeyDown = KeyDownRich;
     OnExit = ExitRich;
 }
-void __fastcall TEditText::ExitRich(TObject* Sender)
+void  TEditText::ExitRich(TObject* Sender)
 {
     if (CellGrid->GetCell(CellGrid->CurrentEditCol, CellGrid->CurrentEditRow) !=NULL &&
         CellGrid->GetCell(CellGrid->CurrentEditCol, CellGrid->CurrentEditRow)->UnionRect !=NULL)
@@ -67,8 +69,8 @@ void __fastcall TEditText::ExitRich(TObject* Sender)
     ::SetFocus(CellGrid->Handle);
 }
 
-AnsiString __fastcall TEditText::FormatMultiLine(const AnsiString Text, const TRect& rect)
-{// ğàçáèòü òåêñò ÷òîáû ïîäõîäèë ïî øèğèíå
+AnsiString  TEditText::FormatMultiLine(const AnsiString Text, const TRect& rect)
+{// Ã°Ã Ã§Ã¡Ã¨Ã²Ã¼ Ã²Ã¥ÃªÃ±Ã² Ã·Ã²Ã®Ã¡Ã» Ã¯Ã®Ã¤ÃµÃ®Ã¤Ã¨Ã« Ã¯Ã® Ã¸Ã¨Ã°Ã¨Ã­Ã¥
     AnsiString str, str2;
     TRect rectcalc =rect;
     int iWidth =rect.Right -rect.Left;
@@ -88,7 +90,7 @@ AnsiString __fastcall TEditText::FormatMultiLine(const AnsiString Text, const TR
     return str;
 }
 
-void __fastcall TEditText::WndProc(Messages::TMessage &Message)
+void  TEditText::WndProc(Messages::TMessage &Message)
 {
     switch ( Message.Msg )
     {
@@ -131,7 +133,7 @@ void __fastcall TEditText::WndProc(Messages::TMessage &Message)
     };
 }
 
-bool __fastcall TEditText::IsPrintSymbol(const char& Key)
+bool  TEditText::IsPrintSymbol(const char& Key)
 {
     bool ret=false;
     int iLength =_ABC.Length();
@@ -143,8 +145,8 @@ bool __fastcall TEditText::IsPrintSymbol(const char& Key)
     return ret;
 }
 
-void __fastcall TEditText::KeyDownRich(TObject* Sender, Word &Key, TShiftState Shift)
-{// îáğàáîò÷èê êëàâèàòóğû
+void  TEditText::KeyDownRich(TObject* Sender, Word &Key, TShiftState Shift)
+{// Ã®Ã¡Ã°Ã Ã¡Ã®Ã²Ã·Ã¨Ãª ÃªÃ«Ã Ã¢Ã¨Ã Ã²Ã³Ã°Ã»
     if (Key ==VK_TAB)
     {
         Visible = false;

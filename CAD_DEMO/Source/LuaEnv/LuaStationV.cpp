@@ -1,18 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LuaStationV.h"
 #include "LuaModuleV.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 TLuaStation LuaStation;
 
 void RegisterLuaEnv()
@@ -78,7 +80,7 @@ void TLuaStation::FindInAllModules(const AnsiString& Text, TFindOptions FO)
     AnsiString TextToFind;
     if (!FO.Contains(frMatchCase))
         FindText = FindText.LowerCase();
-    StdOut("Поиск во всех модулях",true);
+    StdOut("ГЏГ®ГЁГ±ГЄ ГўГ® ГўГ±ГҐГµ Г¬Г®Г¤ГіГ«ГїГµ",true);
     AnsiString TEXT_;
     for (int i=0;i<LMS->Count;i++)
     {

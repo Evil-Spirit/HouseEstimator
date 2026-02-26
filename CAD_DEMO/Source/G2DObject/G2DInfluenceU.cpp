@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "G2DInfluenceU.h"
 #include "math.h"
@@ -16,7 +19,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 bool IsLinkCompleted(TMTList<TG2DPoint>& Skeleton,TG2DPoint* Point,bool UseFixed,TMTList<TG2DLink>& Links)
 {
@@ -282,7 +284,7 @@ bool FindAngleEdgesAndLinkedGroupsRec(TG2DCut* NotCut,TG2DCut* Cut,TFlowInfo& Fl
             Was_AngleLink = NotCut || (!NotCut && LinkCount>=2);
             if ( ElseCut->Flags.Mark == gfTRUE )
             {
-                ErrorMsg("<FindAngleTreeRec>: Эскиз переопределен.");
+                ErrorMsg("<FindAngleTreeRec>: ГќГ±ГЄГЁГ§ ГЇГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­.");
                 return false;
             }
             bool res = FindAngleEdgesAndLinkedGroupsRec(Cut,ElseCut,FlowInfo,index);
@@ -327,8 +329,8 @@ bool FindAngleEdges(TFlowInfo& FlowInfo)
                 ElseCuts.Delete(i--);
     }
 
-	//объединение связных отрезков
-    // список < списков < Скелетонов<        > > >
+	//Г®ГЎГєГҐГ¤ГЁГ­ГҐГ­ГЁГҐ Г±ГўГїГ§Г­Г»Гµ Г®ГІГ°ГҐГ§ГЄГ®Гў
+    // Г±ГЇГЁГ±Г®ГЄ < Г±ГЇГЁГ±ГЄГ®Гў < Г‘ГЄГҐГ«ГҐГІГ®Г­Г®Гў<        > > >
     TMDelTList< TMTList < TMTList< TG2DPoint > > > GroupSkeletons;
     for (int i=0; i<FlowInfo.LinkedGroupOfCuts.Count; i++)
     {
@@ -362,7 +364,7 @@ bool FindAngleEdges(TFlowInfo& FlowInfo)
     for (int i=0;i<FlowInfo.Skeletons.Count;i++)
         SkeletonLegs.Add( new TMDelTList< TMTList<TG2DCut> > );
 
-	//нахождение ножек скелетона
+	//Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГҐ Г­Г®Г¦ГҐГЄ Г±ГЄГҐГ«ГҐГІГ®Г­Г 
     for (int i1=0;i1<FlowInfo.LinkedGroupOfCuts.Count;i1++)
 	    for (int s1=0;s1<GroupSkeletons[i1].Count;s1++)
         {
@@ -471,7 +473,7 @@ bool UpdateSkeletonAndSequenceIfNeed(
     TMTList<TG2DPoint>& Skeleton = FlowInfo.Skeletons[index];
     TMTList<TG2DPoint>& Sequence = FlowInfo.InfluenceSequence;
 //    if ( Rules.Count == 3 )
-  //  	throw EMyException("UpdateSkeletonAndSequenceIfNeed: переопределен.");
+  //  	throw EMyException("UpdateSkeletonAndSequenceIfNeed: ГЇГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­.");
     if (MSP.Items[0] && MSP.Items[1])
         return true;
     if (MSP.Items[0] == GPoint || MSP.Items[1] == GPoint)
@@ -529,7 +531,7 @@ bool Ensure_Not_Skeleton_Links(TG2DPoint* GPoint,TFlowInfo& FlowInfo)
                 IsFindedLink = true;
                 if ( NewGPoint->Rules.Count + UpdateLinks.Count > 2 )
                 {
-                    ErrorMsg("<ProcessAddPointToSequence>: Эскиз переопределен.");
+                    ErrorMsg("<ProcessAddPointToSequence>: ГќГ±ГЄГЁГ§ ГЇГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­.");
                     return false;
                 }
 
@@ -547,8 +549,8 @@ bool Ensure_Not_Skeleton_Links(TG2DPoint* GPoint,TFlowInfo& FlowInfo)
         }
     }
 
-    //если <обе точки принадлежат одному скелетону> И <число степеней свободы скелетона == одна> тогда
-        // создаем связку
+    //ГҐГ±Г«ГЁ <Г®ГЎГҐ ГІГ®Г·ГЄГЁ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г ГІ Г®Г¤Г­Г®Г¬Гі Г±ГЄГҐГ«ГҐГІГ®Г­Гі> Г€ <Г·ГЁГ±Г«Г® Г±ГІГҐГЇГҐГ­ГҐГ© Г±ГўГ®ГЎГ®Г¤Г» Г±ГЄГҐГ«ГҐГІГ®Г­Г  == Г®Г¤Г­Г > ГІГ®ГЈГ¤Г 
+        // Г±Г®Г§Г¤Г ГҐГ¬ Г±ГўГїГ§ГЄГі
     for (int i=0;i<FlowInfo.NotSkeletonLinks.Count;i++)
     {
         TMTList<TG2DPoint> FreePoints;
@@ -563,7 +565,7 @@ bool Ensure_Not_Skeleton_Links(TG2DPoint* GPoint,TFlowInfo& FlowInfo)
                 index = i;
         if ( index != -1 && SkeletonHasLessThanOneLevel(index,FlowInfo) )
         {
-            //создаем связку
+            //Г±Г®Г§Г¤Г ГҐГ¬ Г±ГўГїГ§ГЄГі
             TG2DPoint* UpdatedPoint = ( FlowInfo.NotSkeletonLinks[i].IsBestToUpdate( &FreePoints[0] ) ) ? &FreePoints[0] : &FreePoints[1];
             TG2DPoint* SwitchedPoint = (UpdatedPoint == &FreePoints[1]) ? &FreePoints[0] : &FreePoints[1];
             FlowInfo.NotSkeletonLinks[i].UpdatePointRule( UpdatedPoint );
@@ -586,8 +588,8 @@ bool ProcessAddPointToSequence(TG2DPoint* GPoint,TFlowInfo& FlowInfo)
     {
         FlowInfo.InfluenceSequence.Add(GPoint);
     }
-    //повторного наложения ограничений не будет т.к. в UpdateSkeletonAndSequenceIfNeed
-    //проверяется
+    //ГЇГ®ГўГІГ®Г°Г­Г®ГЈГ® Г­Г Г«Г®Г¦ГҐГ­ГЁГї Г®ГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГ© Г­ГҐ ГЎГіГ¤ГҐГІ ГІ.ГЄ. Гў UpdateSkeletonAndSequenceIfNeed
+    //ГЇГ°Г®ГўГҐГ°ГїГҐГІГ±Гї
     for (int i=0;i<FlowInfo.Skeletons.Count;i++)
         if ( FlowInfo.Skeletons[i].IndexOf(GPoint) != -1 )
             if ( !UpdateSkeletonAndSequenceIfNeed(GPoint,FlowInfo,i) )
@@ -674,15 +676,15 @@ bool CreateInfluenceSequence(TG2DPoint* MainPoint,TFlowInfo& FlowInfo)
                     TotalPoints.Add(&FreePoints[j]);
         }
         TG2DPoint* BestPoint = NULL;
-        //все точки плохие
-        //если берем одну из плохих точек внутри скелетона,
-        //то лучше уже с rules
+        //ГўГ±ГҐ ГІГ®Г·ГЄГЁ ГЇГ«Г®ГµГЁГҐ
+        //ГҐГ±Г«ГЁ ГЎГҐГ°ГҐГ¬ Г®Г¤Г­Гі ГЁГ§ ГЇГ«Г®ГµГЁГµ ГІГ®Г·ГҐГЄ ГўГ­ГіГІГ°ГЁ Г±ГЄГҐГ«ГҐГІГ®Г­Г ,
+        //ГІГ® Г«ГіГ·ГёГҐ ГіГ¦ГҐ Г± rules
         for (int k=0;k<TotalPoints.Count && !BestPoint;k++)
             if ( !CheckPointOnEdgeCuts (&TotalPoints[k],FlowInfo) )
                 BestPoint = &TotalPoints[k];
         if (!BestPoint)
         {
-            //ищем скелетон
+            //ГЁГ№ГҐГ¬ Г±ГЄГҐГ«ГҐГІГ®Г­
             for (int k=0;k<TotalPoints.Count && !BestPoint;k++)
                 if ( !BestPoint || BestPoint->Rules.Count<TotalPoints[k].Rules.Count )
                     BestPoint = &TotalPoints[k];
@@ -690,14 +692,14 @@ bool CreateInfluenceSequence(TG2DPoint* MainPoint,TFlowInfo& FlowInfo)
         Result = Result && ProcessAddPointToSequence( BestPoint ,FlowInfo);
     }        
     //-------------------Apply else-free points in Skeletons--------------------
-    //фиксация скелетонов
+    //ГґГЁГЄГ±Г Г¶ГЁГї Г±ГЄГҐГ«ГҐГІГ®Г­Г®Гў
     while ( !Is_Skeletons_Fixed(FlowInfo) )
     {
         for (int i=0;i<FlowInfo.MSPS.Count;i++)
             for (int j=0;j<FlowInfo.Skeletons[i].Count;j++)
                 if (    FlowInfo.Skeletons[i][j].Rules.Count<2 &&
                         FlowInfo.InfluenceSequence.IndexOf( &FlowInfo.Skeletons[i][j] )==-1 /*&&
-                        !CheckPointOnEdgeCuts (&FlowInfo.Skeletons[i][j],FlowInfo) лишнее т.к. связок уже нет*/ )
+                        !CheckPointOnEdgeCuts (&FlowInfo.Skeletons[i][j],FlowInfo) Г«ГЁГёГ­ГҐГҐ ГІ.ГЄ. Г±ГўГїГ§Г®ГЄ ГіГ¦ГҐ Г­ГҐГІ*/ )
                     Result = Result && ProcessAddPointToSequence( &FlowInfo.Skeletons[i][j] ,FlowInfo);
     }
     //---------------------------------------------------

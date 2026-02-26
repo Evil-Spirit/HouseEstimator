@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef LuaModuleVH
@@ -39,7 +43,7 @@ public:
     virtual ~TLuaModule();
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMemoryStream *MS;
     AnsiString CODE;
@@ -64,7 +68,6 @@ public:
     int OldLine;
 
 };
-extern COMMONAL_API TClassNode* TLuaModule::StaticType;
 
 COMMONAL_API bool RUN_LUA(const AnsiString& Code);
 COMMONAL_API bool RUN_TEXT(TLuaModule *LM);

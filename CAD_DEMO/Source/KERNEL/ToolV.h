@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ToolVH
@@ -8,13 +12,12 @@ class TMyTool : public TMetaNode {
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TBindedBaseTool BindedTool;
     TMyTool();
     virtual ~TMyTool();
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
-extern COMMONAL_API TClassNode* TMyTool::StaticType;
 
 #endif

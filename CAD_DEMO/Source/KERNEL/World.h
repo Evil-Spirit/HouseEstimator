@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef WorldH
@@ -34,12 +38,12 @@ private:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
-    //Z - положения этажа
+    //Z - ГЇГ®Г«Г®Г¦ГҐГ­ГЁГї ГЅГІГ Г¦Г 
     TFloor();
     virtual ~TFloor();
-    MBTi AbsZ;//высота над уровнем пола
+    MBTi AbsZ;//ГўГ»Г±Г®ГІГ  Г­Г Г¤ ГіГ°Г®ГўГ­ГҐГ¬ ГЇГ®Г«Г 
     MBTi Height;
     MBTi Up_Lost;
     MBTi Down_Lost;
@@ -53,9 +57,8 @@ public:
     void Remove(TElement *CHTO);
     void Clear();
     bool Visible;
-    __property TElement* FirstElement = {read = GetFirstElement};
+    // __property TElement* FirstElement {read=GetFirstElement}; // [manual migration needed]
 };
-extern COMMONAL_API TClassNode* TFloor::StaticType;
 
 class COMMONAL_API TFloorInfo {
 public:
@@ -106,12 +109,12 @@ public:
     //---------------------------------------------------------------------------
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     void EditActiveFloor();
     bool load;
-    __property int ModeIndex = {read = FModeIndex};
-    __property int PrevModeIndex = {read = FPrevModeIndex};
+    // __property int ModeIndex {read=FModeIndex}; // [manual migration needed]
+    // __property int PrevModeIndex {read=FPrevModeIndex}; // [manual migration needed]
     bool FloorDeleted();
     bool IsFloorElement(TElement* El);
     bool AskedToSave;
@@ -120,8 +123,8 @@ public:
     void RegisterClient(TMDI3D* aView);
     void UnRegisterClient(TMDI3D* aView);
     TClient3D* FindClient(TMDI3D* aView);
-    __property TClient3D* ActiveClient = {read = GetActiveClient};
-    __property int ActiveIndex = {read = GetActiveIndex, write = SetActiveIndex};
+    // __property TClient3D* ActiveClient {read=GetActiveClient}; // [manual migration needed]
+    // __property int ActiveIndex {read=GetActiveIndex, write=SetActiveIndex}; // [manual migration needed]
 
 
 
@@ -135,8 +138,8 @@ public:
     /*TMDelLSTList*/TMDelTList<TPointer<TElement> > *SERVICE;
     int FloorOf(TElement* El);
     int FloorOfUseDriver(TElement* El);
-    __property TFloor* ActiveFloor = {read = GetActiveFloor};
-    //Z - положения этажа
+    // __property TFloor* ActiveFloor {read=GetActiveFloor}; // [manual migration needed]
+    //Z - ГЇГ®Г«Г®Г¦ГҐГ­ГЁГї ГЅГІГ Г¦Г 
     void SelectAllLinks(TElement *Element, TMTList<TLink> *LL);
     void WriteFile(const AnsiString& FileName);
     void ReadFile(const AnsiString& FileName);
@@ -167,7 +170,7 @@ public:
     void RemoveFloor(int index);
     int IndexOfFloor(TFloor* Floor);
     //--------------------------------------------------------------------------
-    __property int FloorCount = {read = GetFloorCount};
+    // __property int FloorCount {read=GetFloorCount}; // [manual migration needed]
     TFloor* GetFloor(int i);
 //    bool SelectByClassName(int Floor,char* classname,bool childs);
     bool SelectByMetaElement(int Floor,TMetaElement* MetaElement,TMTList<TElement>* LST);
@@ -181,7 +184,6 @@ public:
 
 };
 
-extern COMMONAL_API TClassNode* TMainTree::StaticType;
 
 bool COMMONAL_API GoDriver(TElement * Source,TElement* FloorElement=NULL);
 

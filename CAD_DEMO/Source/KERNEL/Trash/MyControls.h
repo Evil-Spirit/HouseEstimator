@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MyControlsH
@@ -110,7 +114,7 @@ protected:
 public:
     virtual bool AllowMultiple(){return false;};
     virtual bool CorrectSettings(TSelectMode SM,TShiftState SS){return false;};
-    __property int Mode = {read = FMode,write = SetMode};
+    // __property int Mode {read=FMode, write=SetMode}; // [manual migration needed]
     virtual bool Object_OK(){return false;};
     TMyControls();
     virtual ~TMyControls(){};

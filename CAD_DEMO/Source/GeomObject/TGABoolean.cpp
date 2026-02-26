@@ -1,6 +1,9 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#pragma hdrstop
 
 #include "TGABoolean.h"
 #include "TGObject.h"
@@ -13,7 +16,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 #define PEPS_2	go.PEPS
 #define PEPS	go.PEPS
@@ -30,12 +32,12 @@ class TGIntPoint
 public:
 	bool used; //mark
 
-	TIntVec		Point;	//геом. точка
+	TIntVec		Point;	//ГЈГҐГ®Г¬. ГІГ®Г·ГЄГ 
 
-	TGCut		*Cut;   //пара
+	TGCut		*Cut;   //ГЇГ Г°Г 
 	TGPolygon	*Poly;
 
-	TGPoint 	*Target;	//искомая точка 
+	TGPoint 	*Target;	//ГЁГ±ГЄГ®Г¬Г Гї ГІГ®Г·ГЄГ  
 
 	TGIntPoint()
 	{
@@ -44,7 +46,7 @@ public:
 		Cut		= NULL;
 	}
 
-	TGIntPoint(const TGIntPoint &point) //копирование
+	TGIntPoint(const TGIntPoint &point) //ГЄГ®ГЇГЁГ°Г®ГўГ Г­ГЁГҐ
 	{
 		Target	= point.Target;
 		Poly	= point.Poly;
@@ -53,7 +55,7 @@ public:
 		used	= point.used;
 	}
 
-	TGIntPoint(const TIntVec &point, TGCut *cut, TGPolygon *poly) //создание
+	TGIntPoint(const TIntVec &point, TGCut *cut, TGPolygon *poly) //Г±Г®Г§Г¤Г Г­ГЁГҐ
 	{
 		Target	= NULL;
 		Poly	= poly;
@@ -107,17 +109,17 @@ struct TPolySlot
 bool TGABoolean::PlanePolygonIntersect(TGPolygon *plane, TGPolygon *p, TMDelTList <TGIntPoint> &cps)
 {
 	cps.Clear();
-	// Разрезаем отрезки плоскостью другого полигона
+	// ГђГ Г§Г°ГҐГ§Г ГҐГ¬ Г®ГІГ°ГҐГ§ГЄГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГјГѕ Г¤Г°ГіГЈГ®ГЈГ® ГЇГ®Г«ГЁГЈГ®Г­Г 
 	for (int i=0;i<p->FCuts.Count;i++)
 	{
 		TIntVec it;
 		if (PlaneCutCross(plane->Normal, plane->Origin, p->FCuts[i].Src->Point, p->FCuts[i].Dst->Point, it, PEPS))
 			cps.Add(new TGIntPoint(it, p->FCuts.Items[i], plane));
 	}
-	//Разрезаем дырки полигона плоскостью другого полигона
+	//ГђГ Г§Г°ГҐГ§Г ГҐГ¬ Г¤Г»Г°ГЄГЁ ГЇГ®Г«ГЁГЈГ®Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГјГѕ Г¤Г°ГіГЈГ®ГЈГ® ГЇГ®Г«ГЁГЈГ®Г­Г 
 	for (int i=0;i<p->FHoles.Count;i++)
 	{
-		// Разрезаем отрезки дырки
+		// ГђГ Г§Г°ГҐГ§Г ГҐГ¬ Г®ГІГ°ГҐГ§ГЄГЁ Г¤Г»Г°ГЄГЁ
 		for (int j=0;j<p->FHoles[i].FCuts.Count;j++)
 		{
 			TIntVec it;
@@ -202,8 +204,8 @@ bool TGABoolean::IntersectPolygons(TGPolygon *p1, TGPolygon *p2, TMDelTList <TGI
 	{
 		if (cps.Items[i] == cps.Items[i+1])	
 			continue;
-		// Принадлежность отрезков полигонам
-		// Эпсилон принадлежности должен быть в несколько раз меньше эпсилона точек
+		// ГЏГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГј Г®ГІГ°ГҐГ§ГЄГ®Гў ГЇГ®Г«ГЁГЈГ®Г­Г Г¬
+		// ГќГЇГ±ГЁГ«Г®Г­ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГЁ Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Гў Г­ГҐГ±ГЄГ®Г«ГјГЄГ® Г°Г Г§ Г¬ГҐГ­ГјГёГҐ ГЅГЇГ±ГЁГ«Г®Г­Г  ГІГ®Г·ГҐГЄ
 		TIntVec mid = (cps[i].Point + cps[i+1].Point)/2.0;
 
 #define PEPS_D2 PEPS/2
@@ -213,7 +215,7 @@ bool TGABoolean::IntersectPolygons(TGPolygon *p1, TGPolygon *p2, TMDelTList <TGI
 		int ah = pp1->PointInPolygon_UseHoles2d( mid, PEPS_D2);
 		int ah2 = pp2->PointInPolygon_UseHoles2d( mid, PEPS_D2);
 
-		// Если отрезок принадлежит обоим полигонам, добавляем общий отрезок
+		// Г…Г±Г«ГЁ Г®ГІГ°ГҐГ§Г®ГЄ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г®ГЎГ®ГЁГ¬ ГЇГ®Г«ГЁГЈГ®Г­Г Г¬, Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г®ГЎГ№ГЁГ© Г®ГІГ°ГҐГ§Г®ГЄ
 		if ((a == pipINSIDE || a == pipBOUNDARY) && (a2 == pipINSIDE || a2 == pipBOUNDARY))
 		{
 			if (ah2 != pipOUTSIDE)
@@ -269,26 +271,26 @@ void TGABoolean::Operation(TGBoolean op, TGeomObject &obj, TGeomObject &result)
 /**/int ttStart = GetTickCount();
 
 ////////////////
-//	Данные
+//	Г„Г Г­Г­Г»ГҐ
 ////////////////
 
-	// Соотвестствие полигонов и отрезков пересечения
+	// Г‘Г®Г®ГІГўГҐГ±ГІГ±ГІГўГЁГҐ ГЇГ®Г«ГЁГЈГ®Г­Г®Гў ГЁ Г®ГІГ°ГҐГ§ГЄГ®Гў ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 	TMDelTList < TPolySlot > pl1; 
 	TMDelTList < TPolySlot > pl2; 
 
-	// отрезки пересечения
+	// Г®ГІГ°ГҐГ§ГЄГЁ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 //	TMDelTList <TGIntCut>  split1;
 //	TMDelTList <TGIntCut>  split2;
-	// точки пересечения
+	// ГІГ®Г·ГЄГЁ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 	TMDelTList <TGIntPoint>  splitPnt;
 
-	// Обьект, в котором производятся пересечения полигонов
+	// ГЋГЎГјГҐГЄГІ, Гў ГЄГ®ГІГ®Г°Г®Г¬ ГЇГ°Г®ГЁГ§ГўГ®Г¤ГїГІГ±Гї ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
 //	TGeomObject temp;
-	// Обьект - хранилище отрезков шва пересечения обьектов
+	// ГЋГЎГјГҐГЄГІ - ГµГ°Г Г­ГЁГ«ГЁГ№ГҐ Г®ГІГ°ГҐГ§ГЄГ®Гў ГёГўГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї Г®ГЎГјГҐГЄГІГ®Гў
 //	TGeomObject intersection;
 
 ///////////////
-// Подготовка
+// ГЏГ®Г¤ГЈГ®ГІГ®ГўГЄГ 
 ///////////////
 
 	result.Clear();
@@ -297,7 +299,7 @@ void TGABoolean::Operation(TGBoolean op, TGeomObject &obj, TGeomObject &result)
 //	result.assign(this);
 //	result.append(obj);
 
-	// Инициализируем списки соответствия
+	// Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°ГіГҐГ¬ Г±ГЇГЁГ±ГЄГЁ Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГї
 	result.Append(go);
 	
 	for (int i=0;i<result.FPolygons.Count;i++)
@@ -316,14 +318,14 @@ void TGABoolean::Operation(TGBoolean op, TGeomObject &obj, TGeomObject &result)
 	}
 
 ///////////////////////////	
-//	Настройка обьектов
+//	ГЌГ Г±ГІГ°Г®Г©ГЄГ  Г®ГЎГјГҐГЄГІГ®Гў
 ///////////////////////////	
 
-	//	Отключение привязок точек в temp
-	//	Тем не менее, привязка шва к отрезку будет осуществляться внутри функции SliceCutByPlane2d
+	//	ГЋГІГЄГ«ГѕГ·ГҐГ­ГЁГҐ ГЇГ°ГЁГўГїГ§Г®ГЄ ГІГ®Г·ГҐГЄ Гў temp
+	//	Г’ГҐГ¬ Г­ГҐ Г¬ГҐГ­ГҐГҐ, ГЇГ°ГЁГўГїГ§ГЄГ  ГёГўГ  ГЄ Г®ГІГ°ГҐГ§ГЄГі ГЎГіГ¤ГҐГІ Г®Г±ГіГ№ГҐГ±ГІГўГ«ГїГІГјГ±Гї ГўГ­ГіГІГ°ГЁ ГґГіГ­ГЄГ¶ГЁГЁ SliceCutByPlane2d
 //	temp.SnapPoints = false;
 
-	//	Включение опции улавливания шва по шву по критерию наиболее ближних точек
+	//	Г‚ГЄГ«ГѕГ·ГҐГ­ГЁГҐ Г®ГЇГ¶ГЁГЁ ГіГ«Г ГўГ«ГЁГўГ Г­ГЁГї ГёГўГ  ГЇГ® ГёГўГі ГЇГ® ГЄГ°ГЁГІГҐГ°ГЁГѕ Г­Г ГЁГЎГ®Г«ГҐГҐ ГЎГ«ГЁГ¦Г­ГЁГµ ГІГ®Г·ГҐГЄ
 //	intersection.SnapPointsToNearest = true;
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
@@ -333,7 +335,7 @@ void TGABoolean::Operation(TGBoolean op, TGeomObject &obj, TGeomObject &result)
 //	result.StructureFix(sfxREMOVE_BRANCHES);
 //	return;
 //////////////////	
-// Пересечение
+// ГЏГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГҐ
 //////////////////
 
 /**/TimeForPrepare = GetTickCount() - ttStart;
@@ -350,7 +352,7 @@ void TGABoolean::Operation(TGBoolean op, TGeomObject &obj, TGeomObject &result)
 /**/ttStart = GetTickCount();
 		
 //////////////////
-// Обьединение
+// ГЋГЎГјГҐГ¤ГЁГ­ГҐГ­ГЁГҐ
 //////////////////
 	TMTList<TGPoint> splPnt;
 	TMTList <TGPoint> resPnt;
@@ -404,8 +406,8 @@ void TGABoolean::Operation(TGBoolean op, TGeomObject &obj, TGeomObject &result)
 	}
 //	result.RegisterCutPointers(&sCuts);
 //	result.UnRegisterCutPointers(&sCuts);
-	//раньше used означал точка касается отрезков рассечения
-	//used теперь имеет смысл "mark"
+	//Г°Г Г­ГјГёГҐ used Г®Г§Г­Г Г·Г Г« ГІГ®Г·ГЄГ  ГЄГ Г±Г ГҐГІГ±Гї Г®ГІГ°ГҐГ§ГЄГ®Гў Г°Г Г±Г±ГҐГ·ГҐГ­ГЁГї
+	//used ГІГҐГЇГҐГ°Гј ГЁГ¬ГҐГҐГІ Г±Г¬Г»Г±Г« "mark"
 	
 	for (int i=0;i<splitPnt.Count;i++)
 		splitPnt[i].used = false;                                   

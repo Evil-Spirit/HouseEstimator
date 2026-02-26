@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef PoligonH
@@ -20,14 +24,13 @@ class TLCut;
 class COMMONAL_API TLPoint : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TLPoint();
     virtual ~TLPoint();
     TIntVec Point;
     TMTList<TLCut> Cuts;
 };
 
-extern COMMONAL_API TClassNode* TLPoint::StaticType;
 
 
 class COMMONAL_API TLCut : public TMyObject{
@@ -40,14 +43,13 @@ public:
     static TClassNode* StaticType;
     TLCut();
     virtual ~TLCut();
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     int Tag;
-    __property TLPoint* Src = {read = FSrc,write = SetSrc};
-    __property TLPoint* Dst = {read = FDst,write = SetDst};
+    // __property TLPoint* Src {read=FSrc, write=SetSrc}; // [manual migration needed]
+    // __property TLPoint* Dst {read=FDst, write=SetDst}; // [manual migration needed]
     bool ConsistsDstAndSrc(TLPoint* R1,TLPoint* R2);
 };
 
-extern COMMONAL_API TClassNode* TLCut::StaticType;
 
 
 const int pcrlNONE=0;
@@ -73,15 +75,15 @@ protected:
 public:
     __int16 Tag;
     __int16 Tag2;
-    __property TIntVec* Points[int index] = {read = GetPoint};
-    __property TIntVec* CyclePoints[int index] = {read = GetCyclePoint};
+// [indexed property - needs manual migration]:     __property TIntVec* Points[int index] = {read = GetPoint};
+// [indexed property - needs manual migration]:     __property TIntVec* CyclePoints[int index] = {read = GetCyclePoint};
     TPolygon();
     TPolygon(TMDelTList<TIntVec>* PNTS);
     TPolygon(TMTList<TIntVec>* PNTS);
     virtual ~TPolygon();
     //---------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //---------------------------------
 
     virtual void Invert(){Vertex->Invert();};
@@ -127,7 +129,6 @@ public:
     TIntVec AnyPoint(MBTi STEP);
     void ExtrudeRib(int index,MBTi Value,MBTi USEEPS);
 };
-extern COMMONAL_API TClassNode* TPolygon::StaticType;
 
 const AnsiString aHoles = AnsiString("Holes");
 
@@ -138,7 +139,7 @@ public:
     virtual ~THoledPolygon();
     //---------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //---------------------------------
 
     /*TMDelLSTList*/TMDelTList < TPolygon > *Holes;
@@ -161,6 +162,5 @@ public:
     bool Valid(MBTi USEEPS);
 };
 
-extern COMMONAL_API TClassNode* THoledPolygon::StaticType;
 
 #endif

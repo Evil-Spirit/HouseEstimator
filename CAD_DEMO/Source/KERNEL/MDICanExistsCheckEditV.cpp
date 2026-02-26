@@ -1,21 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDICanExistsCheckEditV.h"
 //#include "MDIConfigV.h"
 #include "MetaClasses.h"
 #include "MDIElementSelectV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma resource "*.dfm"
 TMDICanExistsCheckEdit *MDICanExistsCheckEdit;
 //---------------------------------------------------------------------------
-__fastcall TMDICanExistsCheckEdit::TMDICanExistsCheckEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDICanExistsCheckEdit::TMDICanExistsCheckEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }
@@ -121,7 +123,7 @@ void TMDICanExistsCheckEdit::KILL()
     delete ELSE;
 }                                                                       
 
-void __fastcall TMDICanExistsCheckEdit::N1Click(TObject *Sender)
+void  TMDICanExistsCheckEdit::N1Click(TObject *Sender)
 {
     if (!TV->Selected)
         return;
@@ -146,7 +148,7 @@ void __fastcall TMDICanExistsCheckEdit::N1Click(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDICanExistsCheckEdit::N4Click(TObject *Sender)
+void  TMDICanExistsCheckEdit::N4Click(TObject *Sender)
 {
     if (!TV->Selected)
         return;
@@ -159,7 +161,7 @@ void __fastcall TMDICanExistsCheckEdit::N4Click(TObject *Sender)
     TV->Selected = IT;
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDICanExistsCheckEdit::TVMouseDown(TObject *Sender,
+void  TMDICanExistsCheckEdit::TVMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     if (Button == mbRight)
@@ -173,7 +175,7 @@ void __fastcall TMDICanExistsCheckEdit::TVMouseDown(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDICanExistsCheckEdit::N3Click(TObject *Sender)
+void  TMDICanExistsCheckEdit::N3Click(TObject *Sender)
 {
     if (!TV->Selected)
         return;

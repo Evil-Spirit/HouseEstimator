@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 // Borland C++ Builder
 // Copyright (c) 1995, 2002 by Borland Software Corporation
 // All rights reserved
@@ -11,7 +15,7 @@
 #pragma option push -w-
 #pragma option push -Vx
 #include <SysInit.hpp>	// Pascal unit
-#include <System.hpp>	// Pascal unit
+#include "compat/vcl_qt.h"
 
 //-- user supplied -----------------------------------------------------------
 namespace Types
@@ -51,10 +55,10 @@ namespace Types
     bool operator !=(const TRect& rc) const 
     {  return !(rc==*this); }
  
-       __property LONG Left    = { read=left,   write=left   }; 
-       __property LONG Top     = { read=top,       write=top }; 
-       __property LONG Right   = { read=right,  write=right  }; 
-       __property LONG Bottom  = { read=bottom, write=bottom }; 
+       // __property LONG Left {read=left, write=left}; // [manual migration needed]
+       // __property LONG Top {read=top, write=top}; // [manual migration needed]
+       // __property LONG Right {read=right, write=right}; // [manual migration needed]
+       // __property LONG Bottom {read=bottom, write=bottom}; // [manual migration needed]
   };
 } /* namespace Types */ ;
 
@@ -86,13 +90,13 @@ typedef Shortint TValueRelationship;
 static const Shortint LessThanValue = 0xffffffff;
 static const Shortint EqualsValue = 0x0;
 static const Shortint GreaterThanValue = 0x1;
-extern PACKAGE bool __fastcall EqualRect(const TRect &R1, const TRect &R2);
-extern PACKAGE bool __fastcall PtInRect(const TRect &Rect, const TPoint &P);
-extern PACKAGE bool __fastcall IntersectRect(/* out */ TRect &Rect, const TRect &R1, const TRect &R2);
-extern PACKAGE bool __fastcall UnionRect(/* out */ TRect &Rect, const TRect &R1, const TRect &R2);
-extern PACKAGE bool __fastcall IsRectEmpty(const TRect &Rect);
-extern PACKAGE bool __fastcall OffsetRect(TRect &Rect, int DX, int DY);
-extern PACKAGE TPoint __fastcall CenterPoint(const TRect &Rect);
+extern  bool  EqualRect(const TRect &R1, const TRect &R2);
+extern  bool  PtInRect(const TRect &Rect, const TPoint &P);
+extern  bool  IntersectRect(/* out */ TRect &Rect, const TRect &R1, const TRect &R2);
+extern  bool  UnionRect(/* out */ TRect &Rect, const TRect &R1, const TRect &R2);
+extern  bool  IsRectEmpty(const TRect &Rect);
+extern  bool  OffsetRect(TRect &Rect, int DX, int DY);
+extern  TPoint  CenterPoint(const TRect &Rect);
 
 }	/* namespace Types */
 using namespace Types;

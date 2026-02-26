@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 #include "MyEdit.h"
 #include "math.h"
 #include "EditorV.h"
@@ -218,7 +221,6 @@ void TAdditionalBox::OnRender()
 AnsiString TAdditionalBox::OnHint()
 {
     if (ExecutedId == 2)
-        return " ("+FloatToStrF(Point.x, ffGeneral	, 4, UIP.Sender->Grid.Precision)+"; "+FloatToStrF(Point.y, ffGeneral, 4, UIP.Sender->Grid.Precision)+")  ("+FloatToStrF(UIP.Sender->MyCursor.Position.x, ffGeneral, 4, UIP.Sender->Grid.Precision)+"; "+FloatToStrF(UIP.Sender->MyCursor.Position.y, ffGeneral, 4, UIP.Sender->Grid.Precision)+")    Øèðèíà: "+FloatToStrF(fabs(UIP.Sender->MyCursor.Position.x - Point.x), ffGeneral, 4, UIP.Sender->Grid.Precision)+" Âûñîòà: "+FloatToStrF(fabs(UIP.Sender->MyCursor.Position.y - Point.y), ffGeneral, 4, UIP.Sender->Grid.Precision);
+        return " ("+FloatToStrF(Point.x, ffGeneral	, 4, UIP.Sender->Grid.Precision)+"; "+FloatToStrF(Point.y, ffGeneral, 4, UIP.Sender->Grid.Precision)+")  ("+FloatToStrF(UIP.Sender->MyCursor.Position.x, ffGeneral, 4, UIP.Sender->Grid.Precision)+"; "+FloatToStrF(UIP.Sender->MyCursor.Position.y, ffGeneral, 4, UIP.Sender->Grid.Precision)+")    Ã˜Ã¨Ã°Ã¨Ã­Ã : "+FloatToStrF(fabs(UIP.Sender->MyCursor.Position.x - Point.x), ffGeneral, 4, UIP.Sender->Grid.Precision)+" Ã‚Ã»Ã±Ã®Ã²Ã : "+FloatToStrF(fabs(UIP.Sender->MyCursor.Position.y - Point.y), ffGeneral, 4, UIP.Sender->Grid.Precision);
     return "";
 }
-#pragma package(smart_init)

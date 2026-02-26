@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //----------------------------------------------------------------------------
 #ifndef DebugUH
 #define DebugUH
@@ -16,10 +20,7 @@
 #include <vcl\SysUtils.hpp>
 #include <vcl\Windows.hpp>
 #include <vcl\System.hpp>
-#include <ActnList.hpp>
-#include <ImgList.hpp>
-#include <StdActns.hpp>
-#include <ToolWin.hpp>
+#include "compat/vcl_qt.h"
 
 extern "C"
 {
@@ -98,45 +99,45 @@ __published:
     TMenuItem *ShowBreakpoints;
     TAction *ShowBrkpntItem;
     TButton *Button1;
-    void __fastcall StartItemUpdate(TObject *Sender);
-    void __fastcall StopItemUpdate(TObject *Sender);
-    void __fastcall TraceInItemUpdate(TObject *Sender);
-    void __fastcall PauseItemUpdate(TObject *Sender);
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall StepOverItemUpdate(TObject *Sender);
-    void __fastcall StopItemExecute(TObject *Sender);
-    void __fastcall PauseItemExecute(TObject *Sender);
-    void __fastcall TraceInItemExecute(TObject *Sender);
-    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-    void __fastcall StepOverItemExecute(TObject *Sender);
-    void __fastcall FndDialogFind(TObject *Sender);
-    void __fastcall FindItemExecute(TObject *Sender);
-    void __fastcall FindItemUpdate(TObject *Sender);
-    void __fastcall ShowTreeItemExecute(TObject *Sender);
-    void __fastcall ShowTreeItemUpdate(TObject *Sender);
-    void __fastcall OnTreeDblClick(TObject *Sender);
-    void __fastcall OnBrkpntDblClick(TObject *Sender);
-    void __fastcall StartItemExecute(TObject *Sender);
-    void __fastcall ShowBrkpntItemExecute(TObject *Sender);
-    void __fastcall ShowBrkpntItemUpdate(TObject *Sender);
-    void __fastcall ViewStackExecute(TObject *Sender);
-    void __fastcall ViewStackUpdate(TObject *Sender);
-    void __fastcall ViewLocalVarsExecute(TObject *Sender);
-    void __fastcall ViewLocalVarsUpdate(TObject *Sender);
-    void __fastcall ViewGlobalVarsUpdate(TObject *Sender);
-    void __fastcall ViewGlobalVarsExecute(TObject *Sender);
-    void __fastcall EvaluteModify1Click(TObject *Sender);
-    void __fastcall WatchItemExecute(TObject *Sender);
-    void __fastcall WatchItemUpdate(TObject *Sender);
-    void __fastcall Button1Click(TObject *Sender);
+    void  StartItemUpdate(TObject *Sender);
+    void  StopItemUpdate(TObject *Sender);
+    void  TraceInItemUpdate(TObject *Sender);
+    void  PauseItemUpdate(TObject *Sender);
+    void  FormCreate(TObject *Sender);
+    void  StepOverItemUpdate(TObject *Sender);
+    void  StopItemExecute(TObject *Sender);
+    void  PauseItemExecute(TObject *Sender);
+    void  TraceInItemExecute(TObject *Sender);
+    void  FormClose(TObject *Sender, TCloseAction &Action);
+    void  StepOverItemExecute(TObject *Sender);
+    void  FndDialogFind(TObject *Sender);
+    void  FindItemExecute(TObject *Sender);
+    void  FindItemUpdate(TObject *Sender);
+    void  ShowTreeItemExecute(TObject *Sender);
+    void  ShowTreeItemUpdate(TObject *Sender);
+    void  OnTreeDblClick(TObject *Sender);
+    void  OnBrkpntDblClick(TObject *Sender);
+    void  StartItemExecute(TObject *Sender);
+    void  ShowBrkpntItemExecute(TObject *Sender);
+    void  ShowBrkpntItemUpdate(TObject *Sender);
+    void  ViewStackExecute(TObject *Sender);
+    void  ViewStackUpdate(TObject *Sender);
+    void  ViewLocalVarsExecute(TObject *Sender);
+    void  ViewLocalVarsUpdate(TObject *Sender);
+    void  ViewGlobalVarsUpdate(TObject *Sender);
+    void  ViewGlobalVarsExecute(TObject *Sender);
+    void  EvaluteModify1Click(TObject *Sender);
+    void  WatchItemExecute(TObject *Sender);
+    void  WatchItemUpdate(TObject *Sender);
+    void  Button1Click(TObject *Sender);
 
 private:
-    void __fastcall UpdateBreakpoints(TObject *Sender);
-    void __fastcall UpdateWatches(TObject *Sender);
+    void  UpdateBreakpoints(TObject *Sender);
+    void  UpdateWatches(TObject *Sender);
 public:
-	virtual __fastcall TDebugForm(TComponent *Owner);
-    void __fastcall WndProc(Messages::TMessage &Message);
-    __fastcall ~TDebugForm();
+	virtual  TDebugForm(TComponent *Owner);
+    void  WndProc(Messages::TMessage &Message);
+     ~TDebugForm();
     TGlobal *GlobalVars,*LocalVars,*BreakPointsWnd, *WatchWnd;
     TStackWindow *StackWnd, *TreeWnd;
     //sOldPosition OldPosition;

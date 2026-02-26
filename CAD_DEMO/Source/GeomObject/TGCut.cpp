@@ -1,12 +1,14 @@
-#include <vcl.h>                           
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"  
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "math.h"                                    
-#pragma hdrstop
 
 #include "TGObject.h"
-#pragma package(smart_init)
 
 TClassNode* TGCut::StaticType = NULL;
 
@@ -63,7 +65,7 @@ TGCut::~TGCut()
 void TGCut::Assign(TMyObject* MO)
 {
 	if (!MO->Is(TGCut::StaticType) )
-		throw EMyException("+°øñúð úþÿø¨þòðýø ");
+		throw EMyException("+Â°Ã¸Ã±ÃºÃ° ÃºÃ¾Ã¿Ã¸Â¨Ã¾Ã²Ã°Ã½Ã¸Â ");
 
 	TMyObject::Assign((TMyObject *)MO);
 
@@ -172,7 +174,7 @@ TGPoint *TGCut::GetAnotherPoint(const TGCut &c) const
 		return Src;
 	if (!c.ConsistsPoint(Dst)) 
 		return Dst;
-	throw EMyException("<TGCut::GetAnotherPoint>: ýõª ¸ò ÷ø ¸ ôðýývü þª¨õ÷úþü");		
+	throw EMyException("<TGCut::GetAnotherPoint>: Ã½ÃµÂª Â¸Ã²Â Ã·Ã¸ Â¸ Ã´Ã°Ã½Ã½vÃ¼ Ã¾ÂªÂ¨ÃµÃ·ÃºÃ¾Ã¼");		
 }
 
 TGPoint *TGCut::GetAnotherPoint(const TGPoint* Point) const
@@ -181,7 +183,7 @@ TGPoint *TGCut::GetAnotherPoint(const TGPoint* Point) const
 		return Dst;
 	else if (Dst == Point)
 		return Src;
-	throw EMyException("<TGCut::GetAnotherPoint>: ýõª ªðúþù ªþ¢úø");		
+	throw EMyException("<TGCut::GetAnotherPoint>: Ã½ÃµÂª ÂªÃ°ÃºÃ¾Ã¹ ÂªÃ¾Â¢ÃºÃ¸");		
 }
 /*
 TGPolygon *TGCut::GetAnotherPolygon(TGPolygon* Plane)
@@ -190,7 +192,7 @@ TGPolygon *TGCut::GetAnotherPolygon(TGPolygon* Plane)
 		return Right;
 	else if (Right == Plane)
 		return Left;
-	throw EMyException("<TGCut::GetAnotherPolygon>: ýõª ªðúþù ÿûþ¸úþ¸ªø");		
+	throw EMyException("<TGCut::GetAnotherPolygon>: Ã½ÃµÂª ÂªÃ°ÃºÃ¾Ã¹ Ã¿Ã»Ã¾Â¸ÃºÃ¾Â¸ÂªÃ¸");		
 }
 */ 
 

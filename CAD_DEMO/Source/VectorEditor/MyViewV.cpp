@@ -1,13 +1,15 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "MyViewV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "VisCanvasView"
 #pragma link "VisClass"
 #pragma link "VisView"
@@ -21,7 +23,7 @@
 #include "math.h"
 TMyView* __MyView;
 //---------------------------------------------------------------------------
-__fastcall TMyView::TMyView(TComponent* Owner)
+ TMyView::TMyView(TComponent* Owner)
     : TForm(Owner)
 {
     A = TIntVec(0,0,0);
@@ -82,7 +84,7 @@ TIntVec TMyView::ProjectToScreen(const TIntVec& Vv)
     return Res;
 }
 
-void __fastcall TMyView::ViewRender(TVisView *aView)
+void  TMyView::ViewRender(TVisView *aView)
 {
 //    if (EditorControls == NULL)
   //      return;
@@ -92,7 +94,7 @@ void __fastcall TMyView::ViewRender(TVisView *aView)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMyView::ViewMouseWheel(TObject *Sender, TShiftState Shift,
+void  TMyView::ViewMouseWheel(TObject *Sender, TShiftState Shift,
       int WheelDelta, TPoint &MousePos, bool &Handled)
 {
 //    if (EditorControls == NULL)
@@ -111,7 +113,7 @@ void __fastcall TMyView::ViewMouseWheel(TObject *Sender, TShiftState Shift,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMyView::ViewMouseDown(TObject *Sender,
+void  TMyView::ViewMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
 //    if (EditorControls == NULL)
@@ -122,7 +124,7 @@ void __fastcall TMyView::ViewMouseDown(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMyView::ViewMouseUp(TObject *Sender, TMouseButton Button,
+void  TMyView::ViewMouseUp(TObject *Sender, TMouseButton Button,
       TShiftState Shift, int X, int Y)
 {
 //    if (EditorControls == NULL)
@@ -131,7 +133,7 @@ void __fastcall TMyView::ViewMouseUp(TObject *Sender, TMouseButton Button,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMyView::ViewKeyDown(TObject *Sender, WORD &Key,
+void  TMyView::ViewKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
 //    if (EditorControls == NULL)
@@ -159,7 +161,7 @@ void __fastcall TMyView::ViewKeyDown(TObject *Sender, WORD &Key,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMyView::ViewKeyUp(TObject *Sender, WORD &Key,
+void  TMyView::ViewKeyUp(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
 //    if (EditorControls == NULL)
@@ -168,14 +170,14 @@ void __fastcall TMyView::ViewKeyUp(TObject *Sender, WORD &Key,
 }
 //---------------------------------------------------------------------------
 
-/*void __fastcall TMyView::Resize(TObject *Sender)
+/*void  TMyView::Resize(TObject *Sender)
 {
     Grid.Attr.ReBuild = true;
     View->InvalidateGL();
 }*/
 //---------------------------------------------------------------------------
 
-void __fastcall TMyView::ViewMouseMove(TObject *Sender, TShiftState Shift,
+void  TMyView::ViewMouseMove(TObject *Sender, TShiftState Shift,
       int X, int Y)
 {
 //    if (EditorControls == NULL)
@@ -241,25 +243,25 @@ MBTi TMyView::Factor(int Pixels)
 }
 
 
-void __fastcall TMyView::IdleActionExecute(TObject *Sender)
+void  TMyView::IdleActionExecute(TObject *Sender)
 {
     CameraAction = 0;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMyView::MoveActionExecute(TObject *Sender)
+void  TMyView::MoveActionExecute(TObject *Sender)
 {
     CameraAction = 1;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMyView::RotateActionExecute(TObject *Sender)
+void  TMyView::RotateActionExecute(TObject *Sender)
 {
     CameraAction = 2;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMyView::ActionListUpdate(TBasicAction *Action,
+void  TMyView::ActionListUpdate(TBasicAction *Action,
       bool &Handled)
 {
     if (Action == IdleAction)

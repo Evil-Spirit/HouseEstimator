@@ -1,21 +1,22 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ProgramPropertyH
 #define ProgramPropertyH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
-    __fastcall TForm1(TComponent* Owner);
+     TForm1(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm1 *Form1;
+extern  TForm1 *Form1;
 //---------------------------------------------------------------------------
 #endif

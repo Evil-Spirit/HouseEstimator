@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MyRegTreeVH
@@ -14,7 +18,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     void RecurrentFillTreeView(TMyRegObject *Node,TTreeView *TreeView);
     TMyRegObject *Head;
@@ -32,6 +36,5 @@ public:
     void WriteData(TMemoryStream *MS) const;
     void ReadData(TMemoryStream *MS);
 };
-extern COMMONAL_API TClassNode* TMyRegTree::StaticType;
 
 #endif

@@ -1,21 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMetaMenuItemV.h"
 #include "MDIPointerEditV.h"
 #include "UI.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIMetaUIV"
 #pragma resource "*.dfm"
 TMDIMetaMenuItem *MDIMetaMenuItem;
 //---------------------------------------------------------------------------
-__fastcall TMDIMetaMenuItem::TMDIMetaMenuItem(TComponent* Owner,TMetaNode *N)
+ TMDIMetaMenuItem::TMDIMetaMenuItem(TComponent* Owner,TMetaNode *N)
     : TMDIMetaUI(Owner,N)
 {
 }

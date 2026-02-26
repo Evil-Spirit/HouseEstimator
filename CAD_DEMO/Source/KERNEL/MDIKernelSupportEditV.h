@@ -1,14 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIKernelSupportEditVH
 #define MDIKernelSupportEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TKernelSupport;
 class COMMONAL_API TMDIKernelSupportEdit : public TMDIObjectEdit
@@ -36,7 +36,7 @@ public:		// User declarations
     virtual void Apply();
     virtual  bool Checked();
     virtual void SETUP();
-    __fastcall TMDIKernelSupportEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+     TMDIKernelSupportEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
     TKernelSupport* MNC();
 };
 //---------------------------------------------------------------------------

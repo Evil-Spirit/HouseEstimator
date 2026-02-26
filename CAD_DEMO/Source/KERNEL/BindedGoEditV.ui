@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>BindedGoEdit</class>
+  <widget class="QWidget" name="BindedGoEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>215</width>
+        <height>140</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>BindedGoEdit</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsSingle → set windowFlags Qt::MSWindowsFixedSizeDialogHint in constructor -->
+    <widget class="QLabel" name="lEvent">
+      <property name="geometry">
+        <rect>
+          <x>12</x>
+          <y>40</y>
+          <width>34</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Event :</string>
+      </property>
+      <property name="text">
+        <string>Event :</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="lKey">
+      <property name="geometry">
+        <rect>
+          <x>12</x>
+          <y>72</y>
+          <width>51</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Клавиша :</string>
+      </property>
+      <property name="text">
+        <string>Клавиша :</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="lMouseButton">
+      <property name="geometry">
+        <rect>
+          <x>12</x>
+          <y>72</y>
+          <width>71</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Mouse button :</string>
+      </property>
+      <property name="text">
+        <string>Mouse button :</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="lNextBlock">
+      <property name="geometry">
+        <rect>
+          <x>12</x>
+          <y>10</y>
+          <width>50</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Switch to :</string>
+      </property>
+      <property name="text">
+        <string>Switch to :</string>
+      </property>
+    </widget>
+    <widget class="QComboBox" name="cbEvent">
+      <property name="geometry">
+        <rect>
+          <x>96</x>
+          <y>40</y>
+          <width>105</width>
+          <height>19</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QLineEdit" name="eKey">
+      <property name="geometry">
+        <rect>
+          <x>96</x>
+          <y>72</y>
+          <width>105</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>Press key...</string>
+      </property>
+    </widget>
+    <widget class="QComboBox" name="cbMouseButton">
+      <property name="geometry">
+        <rect>
+          <x>96</x>
+          <y>72</y>
+          <width>105</width>
+          <height>19</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QComboBox" name="cbNextBlock">
+      <property name="geometry">
+        <rect>
+          <x>96</x>
+          <y>8</y>
+          <width>105</width>
+          <height>19</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="bOk">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>104</y>
+          <width>73</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="bCancel">
+      <property name="geometry">
+        <rect>
+          <x>120</x>
+          <y>104</y>
+          <width>73</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Cancel</string>
+      </property>
+      <property name="text">
+        <string>Cancel</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

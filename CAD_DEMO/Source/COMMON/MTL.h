@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MTLH
@@ -25,14 +29,16 @@ const AnsiString StrTypes[9] = {    AnsiString("Integer"),    AnsiString("Folat"
 const AnsiString DIGITS = AnsiString("1234567890");
 const AnsiString DELIMS = AnsiString(".,");
 const AnsiString _ABC_ = AnsiString("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
-const AnsiString RUS_ABC_ = AnsiString("ΐΑΒΓΔΕ¨ΖΗΘΙΚΛΜΝΞΟΠΡÒΣΤΥΦΧΨΩΪΫάέήίΰαβγδεΈζηθικλμνξοπρςστυφχψωϊϋόύώÿ");
+const AnsiString RUS_ABC_ = AnsiString("Γ€ΓΓ‚ΓƒΓ„Γ…Β¨Γ†Γ‡ΓΓ‰ΓΓ‹ΓΓΓΓΓΓ‘Γ’Γ“Γ”Γ•Γ–Γ—ΓΓ™ΓΓ›ΓΓΓΓΓ Γ΅ΓΆΓ£Γ¤Γ¥ΒΈΓ¦Γ§Γ¨Γ©ΓªΓ«Γ¬Γ­Γ®Γ―Γ°Γ±Γ²Γ³Γ΄ΓµΓ¶Γ·ΓΈΓΉΓΊΓ»ΓΌΓ½ΓΎΓΏ");
 const AnsiString ERR_SYM = AnsiString("/\b\"\?:*<>|@");
 
 class TIntVec;
 class TBoolVec;
 class TMBTRect;
 
-#define COMMONAL_API __declspec(package)
+#ifndef COMMONAL_API
+#define COMMONAL_API Q_DECL_EXPORT
+#endif
 
 COMMONAL_API bool ISINTEGER(const AnsiString& Str);
 //COMMONAL_API bool ISFLOAT(const AnsiString&);
@@ -56,7 +62,7 @@ COMMONAL_API AnsiString MBTiToStr(MBTi mbti);
 
 COMMONAL_API TIntVec ToIntVec(const TVisMathVector &rhs);
 //--------------------------------------------
-//rhs ηΰδΰν β μεςπΰυ πεησλόςΰς β μμ
+//rhs Γ§Γ Γ¤Γ Γ­ ΓΆ Γ¬Γ¥Γ²Γ°Γ Γµ Γ°Γ¥Γ§Γ³Γ«ΓΌΓ²Γ Γ² ΓΆ Γ¬Γ¬
 COMMONAL_API AnsiString ToBoolVecStr(const TBoolVec& Vec);
 
 COMMONAL_API AnsiString VecToStrFormat(const TIntVec& Vec);

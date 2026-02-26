@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef NomenclatureVH
@@ -16,7 +20,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TNomenclature();
     TNomenclature(TMetaNode *_Parent,int _ID,const AnsiString& _Name);
@@ -36,9 +40,9 @@ public:
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
     virtual bool UsedTrigger(int Trigger);
     TPointer<TMetaElement> PME;
-    __property TMetaElement* Associated = {read = GetAssociated};
-    __property double SavePrice = {read = FSavePrice,write = SetSavePrice};
-    __property double SaveWeight = {read = FSaveWeight,write = SetSaveWeight};
+    // __property TMetaElement* Associated {read=GetAssociated}; // [manual migration needed]
+    // __property double SavePrice {read=FSavePrice, write=SetSavePrice}; // [manual migration needed]
+    // __property double SaveWeight {read=FSaveWeight, write=SetSaveWeight}; // [manual migration needed]
 //    /*TMDelLSTList*/TMDelTList< TPointer<TNomenclature> > PEOPLE;
 //    /*TMDelLSTList*/TMDelTList< TPointer<TNomenclature> > VEHICLES;
 

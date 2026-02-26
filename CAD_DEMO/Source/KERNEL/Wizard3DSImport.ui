@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>Panel1</class>
+  <widget class="QFrame" name="Panel1">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>596</width>
+        <height>550</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Panel1</string>
+    </property>
+    <widget class="QFrame" name="Renderer">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>596</width>
+          <height>509</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QFrame" name="Panel2">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>509</y>
+          <width>596</width>
+          <height>41</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alBottom → arrange in a Qt layout manager -->
+      <widget class="QPushButton" name="btnNext">
+        <property name="geometry">
+          <rect>
+            <x>513</x>
+            <y>8</y>
+            <width>75</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Next &gt;&gt;</string>
+        </property>
+        <property name="text">
+          <string>Next &gt;&gt;</string>
+        </property>
+      </widget>
+      <widget class="QPushButton" name="btnPrev">
+        <property name="geometry">
+          <rect>
+            <x>433</x>
+            <y>8</y>
+            <width>75</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>&lt;&lt; Prev</string>
+        </property>
+        <property name="text">
+          <string>&lt;&lt; Prev</string>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

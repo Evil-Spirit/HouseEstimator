@@ -1,12 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef StringListEditorFH
 #define StringListEditorFH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TStringListEditor : public TForm
 {
@@ -15,14 +15,14 @@ class TStringListEditor : public TForm
     TButton *OK;
     TButton *Cancel;
     TMemo *MainMemo;
-    void __fastcall OKClick(TObject *Sender);
-    void __fastcall CancelClick(TObject *Sender);
+    void  OKClick(TObject *Sender);
+    void  CancelClick(TObject *Sender);
     public:
-    __fastcall TStringListEditor(TComponent* Owner);
+     TStringListEditor(TComponent* Owner);
 };
 
 //---------------------------------------------------------------------------
-extern PACKAGE TStringListEditor *StringListEditor;
+extern  TStringListEditor *StringListEditor;
 //---------------------------------------------------------------------------
 #endif
 //---------------------------------------------------------------------------

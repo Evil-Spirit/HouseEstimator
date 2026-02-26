@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIElementV.h"
 #include "MDITVV.h"
@@ -24,14 +27,13 @@
 #include "AUIV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIMetaNodeV"
 
 #pragma resource "*.dfm"
 TMDIElement *MDIElement;
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-__fastcall TMDIElement::TMDIElement(TComponent* Owner,TMetaElement *N)
+ TMDIElement::TMDIElement(TComponent* Owner,TMetaElement *N)
     : TMDIMetaNode(Owner,N)
 {
 }
@@ -155,20 +157,20 @@ bool TMDIElement::MNChecked()
 
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIElement::FormActivate(TObject *Sender)
+void  TMDIElement::FormActivate(TObject *Sender)
 {
     AUI.ActivateView(TV);
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDIElement::FormCreate(TObject *Sender)
+void  TMDIElement::FormCreate(TObject *Sender)
 {
     Element = NULL;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIElement::bShowClick(TObject *Sender)
+void  TMDIElement::bShowClick(TObject *Sender)
 {
     if (MNChecked())
     {
@@ -179,7 +181,7 @@ void __fastcall TMDIElement::bShowClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDIElement::btGenClick(TObject *Sender)
+void  TMDIElement::btGenClick(TObject *Sender)
 {
     Graphics::TBitmap* bmp = new Graphics::TBitmap();
     bmp->HandleType = bmDIB;
@@ -199,7 +201,7 @@ void __fastcall TMDIElement::btGenClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIElement::Button2Click(TObject *Sender)
+void  TMDIElement::Button2Click(TObject *Sender)
 {
     Graphics::TBitmap* bmp = new Graphics::TBitmap();
     bmp->HandleType = bmDIB;

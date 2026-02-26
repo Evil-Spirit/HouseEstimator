@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDITVVH
 #define MDITVVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDI3DV.h"
 #include "VisAttr.hpp"
 #include "VisCam.hpp"
@@ -21,14 +22,9 @@
 #include "VisPrimitiveObj.hpp"
 #include "VisShape.hpp"
 #include "VisTex.hpp"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
-#include <ToolWin.hpp>
 #include "VisCntrl.hpp"
 #include "VisTimer.hpp"
 #include "ElementV.h"
-#include <Menus.hpp>
-#include <ImgList.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDITV : public TMDI3D
 {
@@ -42,21 +38,21 @@ __published:	// IDE-managed Components
     TLabel *Label1;
     TLabel *Label2;
     TLabel *Label3;
-    void __fastcall ViewMouseDown(TObject *Sender, TMouseButton Button,
+    void  ViewMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall FormShow(TObject *Sender);
-  void __fastcall tbPlusMouseUp(TObject *Sender, TMouseButton Button,
+    void  FormShow(TObject *Sender);
+  void  tbPlusMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-  void __fastcall tbMinusMouseDown(TObject *Sender, TMouseButton Button,
+  void  tbMinusMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-  void __fastcall _TimerTimer(TObject *Sender);
-    void __fastcall ViewResize(TObject *Sender);
-    void __fastcall ToolButton1Click(TObject *Sender);
+  void  _TimerTimer(TObject *Sender);
+    void  ViewResize(TObject *Sender);
+    void  ToolButton1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
   void CustomRender(TVisCustomView *);
   TElement *EL;
-    __fastcall TMDITV(TComponent* Owner,TWinControl *Parent,TMainTree* MT);
+     TMDITV(TComponent* Owner,TWinControl *Parent,TMainTree* MT);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDITV *MDITV;

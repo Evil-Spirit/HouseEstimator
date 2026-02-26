@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef CreateObjectLinesH
@@ -13,7 +17,7 @@ private:
     T2DGObject* MO;
     TEditor2D* GetSender(){return (TEditor2D*)UIP.Sender;};
 public:
-    __property TEditor2D* Sender = {read = GetSender };
+    // __property TEditor2D* Sender {read=GetSender}; // [manual migration needed]
     TCreateObjectLines();
     virtual ~TCreateObjectLines(){};
     void State1();

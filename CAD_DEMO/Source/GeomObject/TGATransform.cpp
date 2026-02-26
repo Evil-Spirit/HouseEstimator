@@ -1,7 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "TGATransform.h"
 #include "TGObject.h"
@@ -10,7 +13,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 void TGATransform::Rotate(const TIntVec &angle, const TIntVec &center)
 {

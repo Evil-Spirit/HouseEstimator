@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef MyEditH
 #define MyEditH
@@ -27,7 +31,7 @@ struct TEditorLineWidth{
 class TEditorAttributes : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TEditorAttributes();
     virtual ~TEditorAttributes(){};
     bool Snap;
@@ -57,7 +61,7 @@ struct TGridLineWidth{
 class TGridAttributes : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGridAttributes();
     virtual ~TGridAttributes(){};
     bool Snap;
@@ -79,7 +83,7 @@ TClassNode* TGridAttributes::StaticType = NULL;
 class TGrid : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGrid();
     virtual ~TGrid();
     int Precision;

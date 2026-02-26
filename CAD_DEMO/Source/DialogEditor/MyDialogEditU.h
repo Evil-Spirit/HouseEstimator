@@ -1,17 +1,16 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef MyDialogEditUH
 #define MyDialogEditUH
-#include <ActnList.hpp>
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <ImgList.hpp>
+#include "compat/vcl_qt.h"
 
 #include "BaseToolV.h"
 #include "ObjectInspectorU.hpp"
 #include "TreeViewF.h"
 #include "MenuF.h"
-#include <StdCtrls.hpp>
-#include <ComCtrls.hpp>
 //---------------------------------------------------------------------------
 const long ListValue=255;
 
@@ -41,23 +40,23 @@ class TMyDesigner : public IDesignerHook
     virtual ULONG __stdcall Release();
     virtual ULONG __stdcall AddRef();
     virtual HRESULT __stdcall QueryInterface(const GUID &IID, void **ppv);
-  	virtual void __fastcall Modified();
-  	virtual void __fastcall Notification(TPersistent* AnObject, TOperation Operation);
-    virtual TCustomForm* __fastcall GetCustomForm();
-  	virtual void __fastcall SetCustomForm(TCustomForm* Value);
-  	virtual bool __fastcall GetIsControl();
-  	virtual void __fastcall SetIsControl(bool Value);
-  	virtual bool __fastcall IsDesignMsg(Controls::TControl* Sender, Messages::TMessage &Message);
-	  virtual void __fastcall PaintGrid();
-  	virtual void __fastcall ValidateRename(Classes::TComponent* AComponent, const AnsiString CurName, const AnsiString NewName);
-  	virtual AnsiString __fastcall UniqueName(const AnsiString BaseName);
-	  virtual Classes::TComponent* __fastcall GetRoot();
-   __property bool IsControl = {read = GetIsControl, write = SetIsControl};
-   __property TCustomForm* Form = {read = GetCustomForm, write = SetCustomForm};
+  	virtual void  Modified();
+  	virtual void  Notification(TPersistent* AnObject, TOperation Operation);
+    virtual TCustomForm*  GetCustomForm();
+  	virtual void  SetCustomForm(TCustomForm* Value);
+  	virtual bool  GetIsControl();
+  	virtual void  SetIsControl(bool Value);
+  	virtual bool  IsDesignMsg(Controls::TControl* Sender, Messages::TMessage &Message);
+	  virtual void  PaintGrid();
+  	virtual void  ValidateRename(Classes::TComponent* AComponent, const AnsiString CurName, const AnsiString NewName);
+  	virtual AnsiString  UniqueName(const AnsiString BaseName);
+	  virtual Classes::TComponent*  GetRoot();
+   // __property bool IsControl {read=GetIsControl, write=SetIsControl}; // [manual migration needed]
+   // __property TCustomForm* Form {read=GetCustomForm, write=SetCustomForm}; // [manual migration needed]
 };
 
 //---------------------------------------------------------------------------
-class PACKAGE TVCLEditorElement : public TMyRegObject
+class  TVCLEditorElement : public TMyRegObject
 {
     private:
     int GetVCLChildCount();
@@ -74,11 +73,11 @@ class PACKAGE TVCLEditorElement : public TMyRegObject
     public:
     TRect Rects[8];
     bool Changed;
-    __property TWinControl* Control = {read = FControl, write = SetControl};
-    __property TComponent* Component = {read = FComponent, write = SetComponent};
-    __property int VCLChildCount = {read = GetVCLChildCount};
-    __property TVCLEditorElement* VCLParent = {read = GetVCLParent,write = SetVCLParent};
-    __property TVCLEditorElement* VCLChild[int] = {read = GetVCLChild};
+    // __property TWinControl* Control {read=FControl, write=SetControl}; // [manual migration needed]
+    // __property TComponent* Component {read=FComponent, write=SetComponent}; // [manual migration needed]
+    // __property int VCLChildCount {read=GetVCLChildCount}; // [manual migration needed]
+    // __property TVCLEditorElement* VCLParent {read=GetVCLParent, write=SetVCLParent}; // [manual migration needed]
+// [indexed property - needs manual migration]:     __property TVCLEditorElement* VCLChild[int] = {read = GetVCLChild};
     TVCLEditorElement();
     virtual ~TVCLEditorElement();
     TPoint LocalToParent(TWinControl* WinControl, const TPoint& Point);
@@ -92,34 +91,34 @@ class PACKAGE TVCLEditorElement : public TMyRegObject
 };
 
 //---------------------------------------------------------------------------
-class PACKAGE TMyDialogEdit : public TForm
+class  TMyDialogEdit : public TForm
 {
   __published:
     TActionList *AL;
     TImageList *ImageList;
-    void __fastcall ALExecute(TBasicAction *Action, bool &Handled);
-    void __fastcall ApplicationEventsActionUpdate(TBasicAction *Action, bool &Handled);
-    void __fastcall ActionExecute(TObject *Sender);
-    void __fastcall FormActivate(TObject *Sender);
-    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-    void __fastcall FormResize(TObject *Sender);
-    void __fastcall FormKeyDown(TObject *Sender, WORD &Key,TShiftState Shift);
+    void  ALExecute(TBasicAction *Action, bool &Handled);
+    void  ApplicationEventsActionUpdate(TBasicAction *Action, bool &Handled);
+    void  ActionExecute(TObject *Sender);
+    void  FormActivate(TObject *Sender);
+    void  FormClose(TObject *Sender, TCloseAction &Action);
+    void  FormResize(TObject *Sender);
+    void  FormKeyDown(TObject *Sender, WORD &Key,TShiftState Shift);
 
     private:
     int FGridStep;
     bool FGrid;
-    void __fastcall MyObjectChanged(TObject *Sender);
+    void  MyObjectChanged(TObject *Sender);
     void SetInterface();
     void SetOIRecurs(TVCLEditorElement *_Head, TMyWinControl *_Root);
     TMyDesigner MyDesigner;
     TMyDialog* FMyDialog;
 
     public:
-    __fastcall TMyDialogEdit(TComponent* Owner, TWinControl *Parent, TMyDialog *MyDialog);
-    __fastcall virtual ~TMyDialogEdit();
+     TMyDialogEdit(TComponent* Owner, TWinControl *Parent, TMyDialog *MyDialog);
+     virtual ~TMyDialogEdit();
     bool ReDraw;
-    __property bool Grid = {read = FGrid, write = FGrid};
-    __property int GridStep = {read = FGridStep, write = FGridStep};
+    // __property bool Grid {read=FGrid, write=FGrid}; // [manual migration needed]
+    // __property int GridStep {read=FGridStep, write=FGridStep}; // [manual migration needed]
     TVCLEditorElement* Head;
     TMTList<TVCLEditorElement> Selected;
     TMTList<TRect> BorderFrame;
@@ -134,7 +133,7 @@ class PACKAGE TMyDialogEdit : public TForm
     void DrawSelection(int Index, TVCLEditorElement* _Object);
     void InvalidateSelection();
     void ClearSelection();
-    virtual void __fastcall WndProc(TMessage &Message);
+    virtual void  WndProc(TMessage &Message);
     void DeleteSelectedItems();
     void DeletePage();
     void AddPage();
@@ -150,26 +149,26 @@ class COMMONAL_API TEvents
     TEvents(){};
     ~TEvents(){};
     TForm* Owner;
-    void __fastcall MyOnClick(TObject* Sender);
-    void __fastcall MyOnContextPopup(TObject *Sender, TPoint &MousePos, bool &Handled);
-    void __fastcall MyOnDragDrop(TObject *Sender, TObject *Source, int X, int Y);
-    void __fastcall MyOnDragOver(TObject *Sender, TObject *Source, int X, int Y, TDragState State, bool &Accept);
-    void __fastcall MyOnEndDock(TObject *Sender, TObject *Target, int X, int Y);
-    void __fastcall MyOnEndDrag(TObject *Sender, TObject *Target, int X, int Y);
-    void __fastcall MyOnEnter(TObject *Sender);
-    void __fastcall MyOnExit(TObject *Sender);
-    void __fastcall MyOnKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
-    void __fastcall MyOnKeyPress(TObject *Sender, char &Key);
-    void __fastcall MyOnKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
-    void __fastcall MyOnMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
-    void __fastcall MyOnMouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
-    void __fastcall MyOnMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
-    void __fastcall MyOnStartDock(TObject *Sender, TDragDockObject *&DragObject);
-    void __fastcall MyOnStartDrag(TObject *Sender, TDragObject *&DragObject);
+    void  MyOnClick(TObject* Sender);
+    void  MyOnContextPopup(TObject *Sender, TPoint &MousePos, bool &Handled);
+    void  MyOnDragDrop(TObject *Sender, TObject *Source, int X, int Y);
+    void  MyOnDragOver(TObject *Sender, TObject *Source, int X, int Y, TDragState State, bool &Accept);
+    void  MyOnEndDock(TObject *Sender, TObject *Target, int X, int Y);
+    void  MyOnEndDrag(TObject *Sender, TObject *Target, int X, int Y);
+    void  MyOnEnter(TObject *Sender);
+    void  MyOnExit(TObject *Sender);
+    void  MyOnKeyDown(TObject *Sender, WORD &Key, TShiftState Shift);
+    void  MyOnKeyPress(TObject *Sender, char &Key);
+    void  MyOnKeyUp(TObject *Sender, WORD &Key, TShiftState Shift);
+    void  MyOnMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
+    void  MyOnMouseMove(TObject *Sender, TShiftState Shift, int X, int Y);
+    void  MyOnMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
+    void  MyOnStartDock(TObject *Sender, TDragDockObject *&DragObject);
+    void  MyOnStartDrag(TObject *Sender, TDragObject *&DragObject);
 };
 
 //---------------------------------------------------------------------------
-extern PACKAGE TMyDialogEdit *MyDialogEdit;
+extern  TMyDialogEdit *MyDialogEdit;
 //---------------------------------------------------------------------------
 #endif
 //---------------------------------------------------------------------------

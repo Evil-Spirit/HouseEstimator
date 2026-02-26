@@ -1,17 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef BindedGoEditVH
 #define BindedGoEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
+#include "compat/vcl_qt.h"
 class TBaseBlock;
 class TGo;
 //---------------------------------------------------------------------------
-class PACKAGE TBindedGoEdit : public TForm
+class  TBindedGoEdit : public TForm
 {
 __published:	// IDE-managed Components
     TLabel *lEvent;
@@ -24,25 +24,25 @@ __published:	// IDE-managed Components
     TLabel *lNextBlock;
     TButton *bOk;
     TButton *bCancel;
-    void __fastcall eKeyKeyDown(TObject *Sender, WORD &Key,
+    void  eKeyKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
-    void __fastcall eKeyChange(TObject *Sender);
-    void __fastcall bOkClick(TObject *Sender);
-    void __fastcall bCancelClick(TObject *Sender);
-    void __fastcall cbEventChange(TObject *Sender);
-//    void __fastcall bOkClick(TObject *Sender);
+    void  eKeyChange(TObject *Sender);
+    void  bOkClick(TObject *Sender);
+    void  bCancelClick(TObject *Sender);
+    void  cbEventChange(TObject *Sender);
+//    void  bOkClick(TObject *Sender);
 private:	// User declarations
     TGo* FObj;
     TMDelTList<int> MyBlocksIds;
     int FBlockType;
 public:		// User declarations
-    __fastcall TBindedGoEdit(TComponent* Owner, TGo *Obj, const TMDelTList<AnsiString>& BlocksNames, TMDelTList<int>& BlocksIds, int BlockType);
+     TBindedGoEdit(TComponent* Owner, TGo *Obj, const TMDelTList<AnsiString>& BlocksNames, TMDelTList<int>& BlocksIds, int BlockType);
     int flag;
     bool Checked();
     void Apply();
     void Refresh();
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TBindedGoEdit *BindedGoEdit;
+extern  TBindedGoEdit *BindedGoEdit;
 //---------------------------------------------------------------------------
 #endif

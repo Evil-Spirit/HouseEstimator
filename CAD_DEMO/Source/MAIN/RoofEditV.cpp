@@ -1,7 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "RoofEditV.h"
 #include "RoofV.h"
@@ -13,7 +16,6 @@
 #include "UI.h"
 #include "MetaNodeCollectionV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 
 int iSide;
@@ -409,7 +411,7 @@ class TMyRoofSide : public TRoofSide
 			template_->generate(*this, templParams);
 	}
 public:
-	__property RoofTemplate* templ = {read = template_, write = setT};
+	// __property RoofTemplate* templ {read=template_, write=setT}; // [manual migration needed]
 
 	MBTi				templParams[5];
 
@@ -695,7 +697,7 @@ void TRoofForm::UpdateSide(int nextSide, int nextPlane)
 	}
 }
 //---------------------------------------------------------------------------
-__fastcall TRoofForm::TRoofForm(TComponent* Owner)
+ TRoofForm::TRoofForm(TComponent* Owner)
 	: TForm(Owner)
 {
 	TElementViewer1 = new TElementViewer(Panel1);
@@ -731,7 +733,7 @@ void EditRoof(TElement *el)
 	delete RoofForm;
 }
 
-void __fastcall TRoofForm::edWallPrevClick(TObject *Sender)
+void  TRoofForm::edWallPrevClick(TObject *Sender)
 {
 	SaveSide();
 	UpdateSide(iSide - 1, iPlane);
@@ -739,7 +741,7 @@ void __fastcall TRoofForm::edWallPrevClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TRoofForm::edWallNextClick(TObject *Sender)
+void  TRoofForm::edWallNextClick(TObject *Sender)
 {
 	SaveSide();
 	UpdateSide(iSide + 1, iPlane);
@@ -747,7 +749,7 @@ void __fastcall TRoofForm::edWallNextClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TRoofForm::edSlopePrevClick(TObject *Sender)
+void  TRoofForm::edSlopePrevClick(TObject *Sender)
 {
 	SaveSide();
 	UpdateSide(iSide, iPlane - 1);
@@ -755,7 +757,7 @@ void __fastcall TRoofForm::edSlopePrevClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TRoofForm::edSlopeNextClick(TObject *Sender)
+void  TRoofForm::edSlopeNextClick(TObject *Sender)
 {
 	SaveSide();
 	UpdateSide(iSide, iPlane + 1);
@@ -763,7 +765,7 @@ void __fastcall TRoofForm::edSlopeNextClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TRoofForm::Button9Click(TObject *Sender)
+void  TRoofForm::Button9Click(TObject *Sender)
 {
 	if (iSide == -1)
 		return;
@@ -837,9 +839,10 @@ void update(TMultiElement *Element)
     for i=0, NEW_HP.Vertex.Count-1 do
         for j=0, table.getn(Set[indices[i]].Plane) do
             if ((Set[indices[i] ].Plane[j].fronton == 0) and GO:GetPolygon(indx).Tag ~= 255) then
-                local El = Element:AddOnly(IND_COVER); --‰Ó·‡‚ËÎË
+                local El = Element:AddOnly(IND_COVER); --√§√Æ√°√†√¢√®√´√®
 */
-//        for ( int i = 0; i < Element->HP->Vertex->Count; i++ ) {
+
+//        for ( int i = 0; i < Element->HP->Vertex->Count; i++ ) {
   //      }
 		Element->SetAttributeValue("select", IntToStr(RoofSet.Roof[iSide].templ != NULL).c_str());
 		for (int i=0; i<Element->CountOf(IND_COVER);i++)
@@ -914,13 +917,13 @@ void apply(TElement *Element)
 }
 
 
-void __fastcall TRoofForm::Button2Click(TObject *Sender)
+void  TRoofForm::Button2Click(TObject *Sender)
 {
 	apply(TElementViewer1->ShowElement);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TRoofForm::Button8Click(TObject *Sender)
+void  TRoofForm::Button8Click(TObject *Sender)
 {
 	if (iSide == -1)
 		return;
@@ -939,7 +942,7 @@ void __fastcall TRoofForm::Button8Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TRoofForm::Button1Click(TObject *Sender)
+void  TRoofForm::Button1Click(TObject *Sender)
 {
 	TElementViewer1->ShowElement->SetAttributeValue("edit_mode", "0");
 	apply(TElementViewer1->ShowElement);
@@ -947,7 +950,7 @@ void __fastcall TRoofForm::Button1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TRoofForm::TabSheet7ContextPopup(TObject *Sender,
+void  TRoofForm::TabSheet7ContextPopup(TObject *Sender,
 	  TPoint &MousePos, bool &Handled)
 {
 	applyTemplate(NULL);
@@ -955,7 +958,7 @@ void __fastcall TRoofForm::TabSheet7ContextPopup(TObject *Sender,
 //---------------------------------------------------------------------------
 
 
-void __fastcall TRoofForm::PageControl1Change(TObject *Sender)
+void  TRoofForm::PageControl1Change(TObject *Sender)
 {
 	if (PageControl1->ActivePageIndex != 6 )
 		applyTemplate(Templates.Items[PageControl1->ActivePageIndex]);
@@ -977,7 +980,7 @@ void __fastcall TRoofForm::PageControl1Change(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TRoofForm::Button3Click(TObject *Sender)
+void  TRoofForm::Button3Click(TObject *Sender)
 {
 	TElementViewer1->ShowElement->SetAttributeValue("edit_mode", "0");
 	RoofSet = BeforeEditSet;

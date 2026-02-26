@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef PlatformVH
@@ -9,7 +13,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaPlatform(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TMetaPlatform();
@@ -28,7 +32,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TPlatform();
     virtual ~TPlatform();

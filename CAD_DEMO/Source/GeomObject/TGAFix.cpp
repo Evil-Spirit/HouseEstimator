@@ -1,7 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "TGAFix.h"
 #include "TGObject.h"
@@ -10,7 +13,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 bool TGAFix::Branches(TMTList<TGCut> &cuts)
 {
@@ -66,7 +68,7 @@ bool TGAFix::Branches(TMTList<TGCut> &cuts)
 	return ret;	
 }
 
-bool TGAFix::Repeated(TMTList<TGCut> &cuts, bool atall) //TODO: сделать полное удаление повторных по флaгу
+bool TGAFix::Repeated(TMTList<TGCut> &cuts, bool atall) //TODO: Г±Г¤ГҐГ«Г ГІГј ГЇГ®Г«Г­Г®ГҐ ГіГ¤Г Г«ГҐГ­ГЁГҐ ГЇГ®ГўГІГ®Г°Г­Г»Гµ ГЇГ® ГґГ«aГЈГі
 {
 	bool ret = false;
 	for (int i=0;i<cuts.Count;i++)
@@ -163,7 +165,7 @@ void TGAFix::SynchronizeNormalsRecursive(TGPolygon *p)
 				TGCut *pCut = p->FCuts.CycleItems[ i + 1];
 				TGCut *oCut = o->FCuts.CycleItems[ o->FCuts.IndexOf(p->FCuts.Items[i]) + 1];
 				if (!pCut || !oCut)
-					throw EMyException("<SynchronizePolygonsWisesRecursive> : ўЄю-Єю эх Єръ!");
+					throw EMyException("<SynchronizePolygonsWisesRecursive> : ВўВЄГѕ-ВЄГѕ ГЅГµ ВЄГ°Гє!");
 				if ( (pCut->CanConnect(*oCut)!=NULL) + (p->FParent!=NULL + o->FParent!=NULL == 1) == 1)
 					o->Invert();
 				SynchronizeNormalsRecursive(o);

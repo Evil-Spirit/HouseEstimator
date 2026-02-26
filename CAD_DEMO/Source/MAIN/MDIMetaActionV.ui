@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMetaAction</class>
+  <widget class="QWidget" name="MDIMetaAction">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1</width>
+        <height>1</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMetaAction</string>
+    </property>
+    <widget class="QTabWidget" name="PCNode">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QWidget" name="tsAction">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Picture Index</string>
+        </property>
+        <widget class="QLabel" name="StaticText1">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>64</y>
+              <width>153</width>
+              <height>49</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>For adding module use method</string>
+          </property>
+          <property name="text">
+            <string>For adding module use method</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="cbeUserImage">
+          <property name="geometry">
+            <rect>
+              <x>112</x>
+              <y>24</y>
+              <width>57</width>
+              <height>22</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QCheckBox" name="cbEnabled">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>16</y>
+              <width>89</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Enabled</string>
+          </property>
+          <property name="text">
+            <string>Enabled</string>
+          </property>
+        </widget>
+        <widget class="QCheckBox" name="cbVisible">
+          <property name="geometry">
+            <rect>
+              <x>16</x>
+              <y>40</y>
+              <width>89</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Visible</string>
+          </property>
+          <property name="text">
+            <string>Visible</string>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

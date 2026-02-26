@@ -1,11 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "check2.h"
 //#include "RMetaData.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)

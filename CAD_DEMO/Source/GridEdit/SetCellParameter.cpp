@@ -1,16 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
-#include <Math.hpp>
 #include "CellGrid.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
-void __fastcall TCellGrid::SetVisibleSectionLeft(bool Visible)
+void  TCellGrid::SetVisibleSectionLeft(bool Visible)
 {
     if (Visible)
         SetColWidths(0,60);
@@ -20,7 +21,7 @@ void __fastcall TCellGrid::SetVisibleSectionLeft(bool Visible)
     InvalidateU2();
 }
 
-void __fastcall TCellGrid::SetVisibleSectionTop(bool Visible)
+void  TCellGrid::SetVisibleSectionTop(bool Visible)
 {
     if (Visible)
         SetRowHeights(0,20);
@@ -30,7 +31,7 @@ void __fastcall TCellGrid::SetVisibleSectionTop(bool Visible)
     InvalidateU2();
 }
 
-bool __fastcall TCellGrid::GetVisibleOfficialMargin()
+bool  TCellGrid::GetVisibleOfficialMargin()
 {
     bool bol;
     if (GetColWidths(1) == 0)
@@ -40,7 +41,7 @@ bool __fastcall TCellGrid::GetVisibleOfficialMargin()
     return bol;
 }
 
-void __fastcall TCellGrid::SetVisibleOfficialMargin(bool Visible)
+void  TCellGrid::SetVisibleOfficialMargin(bool Visible)
 {
     if (Visible)
     {
@@ -78,20 +79,20 @@ void __fastcall TCellGrid::SetVisibleOfficialMargin(bool Visible)
     InvalidateU2();
 }
 
-bool __fastcall TCellGrid::GetVisibleSectionLeft()
+bool  TCellGrid::GetVisibleSectionLeft()
 {
     bool bol;
     if (GetColWidths(0) == 0) bol = false; else bol = true;
     return bol;
 }
 
-bool __fastcall TCellGrid::GetVisibleSectionTop()
+bool  TCellGrid::GetVisibleSectionTop()
 {
     return (GetRowHeights(0) != 0);
 }
 
-bool __fastcall TCellGrid::ParamCellCompare(TCell* Cell, TCellFlag* CellFlag)
-{// Праверка нужных параметров
+bool  TCellGrid::ParamCellCompare(TCell* Cell, TCellFlag* CellFlag)
+{// ГЏГ°Г ГўГҐГ°ГЄГ  Г­ГіГ¦Г­Г»Гµ ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў
     bool IsEqual = true;
     if (IsEqual && CellFlag->f_UnionCell)
         IsEqual = false;
@@ -137,7 +138,7 @@ bool __fastcall TCellGrid::ParamCellCompare(TCell* Cell, TCellFlag* CellFlag)
     return IsEqual;
 }
 
-void __fastcall TCellGrid::SetAllFlag(TCellFlag* CellFlag, bool Set)
+void  TCellGrid::SetAllFlag(TCellFlag* CellFlag, bool Set)
 {
     CellFlag->UnionCell.Left    =0;
     CellFlag->UnionCell.Top     =0;
@@ -174,8 +175,8 @@ void __fastcall TCellGrid::SetAllFlag(TCellFlag* CellFlag, bool Set)
     CellFlag->f_SetUnion        =Set;
 }
 
-void __fastcall TCellGrid::AssignParamCell(TCellFlag* CellFlag, int Col, int Row)
-{// Копирование параметров
+void  TCellGrid::AssignParamCell(TCellFlag* CellFlag, int Col, int Row)
+{// ГЉГ®ГЇГЁГ°Г®ГўГ Г­ГЁГҐ ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў
 
     TCell* Cell =GetCellSimple(Col,Row);
 //    Cell->Is( TCellTab::StaticType )
@@ -273,8 +274,8 @@ void __fastcall TCellGrid::AssignParamCell(TCellFlag* CellFlag, int Col, int Row
     }
 }
 
-void __fastcall TCellGrid::CopyFlag1ToFlag2(TCellFlag* CellFlag1, TCellFlag* CellFlag2)
-{// Праверка нужных параметров
+void  TCellGrid::CopyFlag1ToFlag2(TCellFlag* CellFlag1, TCellFlag* CellFlag2)
+{// ГЏГ°Г ГўГҐГ°ГЄГ  Г­ГіГ¦Г­Г»Гµ ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў
 
     CellFlag2->ColWidth =CellFlag1->ColWidth;
 
@@ -383,9 +384,9 @@ void __fastcall TCellGrid::CopyFlag1ToFlag2(TCellFlag* CellFlag1, TCellFlag* Cel
     }
 }
 
-void __fastcall TCellGrid::SetFlagCell(int Col, int Row, TCellFlag* CellFlag)
+void  TCellGrid::SetFlagCell(int Col, int Row, TCellFlag* CellFlag)
 {
-    //рекурсия
+    //Г°ГҐГЄГіГ°Г±ГЁГї
     TCell* Cell =GetCellParamSimple(Col,Row);
     if ( !ParamCellCompare(Cell, CellFlag) )
     {
@@ -408,26 +409,26 @@ void __fastcall TCellGrid::SetFlagCell(int Col, int Row, TCellFlag* CellFlag)
         }
     */    
 
-    if (Col ==1 && Row ==1)// Установка к таблице
+    if (Col ==1 && Row ==1)// Г“Г±ГІГ Г­Г®ГўГЄГ  ГЄ ГІГ ГЎГ«ГЁГ¶ГҐ
     {
         SetFlagRect(TRect(2,1,EndColRowCell.x,1), CellFlag);
         SetFlagRect(TRect(1,2,1,EndColRowCell.y), CellFlag);
     }
-    else if (Col >1 && Row ==1)// Столбцу
+    else if (Col >1 && Row ==1)// Г‘ГІГ®Г«ГЎГ¶Гі
         SetFlagRect(TRect(Col,2,Col,EndColRowCell.y), CellFlag);
-    else if (Col ==1 && Row >1)// Строке
+    else if (Col ==1 && Row >1)// Г‘ГІГ°Г®ГЄГҐ
         SetFlagRect(TRect(2,Row,EndColRowCell.x,Row), CellFlag);
 }
 
-void __fastcall TCellGrid::SetFlagRect(const TRect& SetRectCell, TCellFlag* CellFlag)
-{// Установить Цвет Шрифта выделенной области
+void  TCellGrid::SetFlagRect(const TRect& SetRectCell, TCellFlag* CellFlag)
+{// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г–ГўГҐГІ ГГ°ГЁГґГІГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
     for (int Col=SetRectCell.Left; Col<=SetRectCell.Right; Col++)
         for (int Row=SetRectCell.Top; Row<=SetRectCell.Bottom; Row++)
             SetFlagCell(Col,Row,CellFlag);
 }
 
-void __fastcall TCellGrid::UseTextWordBreakRegion()
-{ // Применить перенос по словам к выделенной области
+void  TCellGrid::UseTextWordBreakRegion()
+{ // ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј ГЇГҐГ°ГҐГ­Г®Г± ГЇГ® Г±Г«Г®ГўГ Г¬ ГЄ ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
     GetSelectCells(true);
     int End=ListFilling.Count;
 
@@ -435,44 +436,44 @@ void __fastcall TCellGrid::UseTextWordBreakRegion()
         (ListFilling[0].x == 1 && ListFilling[0].y >1)||
         (ListFilling[0].x > 1 && ListFilling[0].y >1)
     )
-    { // Применить (ячейке, строке, столбцу)
+    { // ГЏГ°ГЁГ¬ГҐГ­ГЁГІГј (ГїГ·ГҐГ©ГЄГҐ, Г±ГІГ°Г®ГЄГҐ, Г±ГІГ®Г«ГЎГ¶Гі)
         for (int i=0; i<End; i++)
             if (GetCell(ListFilling[i].x,ListFilling[i].y) != NULL)
                 UseTextWordBreak(ListFilling[i].x,ListFilling[i].y);
     }
 }
 
-void __fastcall TCellGrid::SetFontColorRegion(TColor FontColor)
-{ // Установить Цвет Шрифта выделенной области
+void  TCellGrid::SetFontColorRegion(TColor FontColor)
+{ // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г–ГўГҐГІ ГГ°ГЁГґГІГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
     SetAllFlag(gCellFlag, false);
     gCellFlag->FontColor    =FontColor;
     gCellFlag->f_FontColor  =true;
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetFontSizeRegion(int FontSize)
-{ // Установить размер Шрифта выделенной области
+void  TCellGrid::SetFontSizeRegion(int FontSize)
+{ // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г°Г Г§Г¬ГҐГ° ГГ°ГЁГґГІГ  ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
     SetAllFlag(gCellFlag, false);
     gCellFlag->CellFlags.FontSize   =FontSize;
     gCellFlag->f_FontSize           =true;
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetNotChangeParamRegion(const TRect& rectcopy)
-{ // Создать ячейку и заполнить
+void  TCellGrid::SetNotChangeParamRegion(const TRect& rectcopy)
+{ // Г‘Г®Г§Г¤Г ГІГј ГїГ·ГҐГ©ГЄГі ГЁ Г§Г ГЇГ®Г«Г­ГЁГІГј
     SetAllFlag(gCellFlag, false);
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetFontNameRegion(AnsiString FontName)
-{ // Установить Шрифт выделенной области
+void  TCellGrid::SetFontNameRegion(AnsiString FontName)
+{ // Г“Г±ГІГ Г­Г®ГўГЁГІГј ГГ°ГЁГґГІ ГўГ»Г¤ГҐГ«ГҐГ­Г­Г®Г© Г®ГЎГ«Г Г±ГІГЁ
     SetAllFlag(gCellFlag, false);
     gCellFlag->FontName     =FontName;
     gCellFlag->f_FontName   =true;
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetFontUnderlineRegion(int FontUnderline)
+void  TCellGrid::SetFontUnderlineRegion(int FontUnderline)
 {
     SetAllFlag(gCellFlag, false);
     gCellFlag->CellFlags.FontUnderline  =FontUnderline;
@@ -480,7 +481,7 @@ void __fastcall TCellGrid::SetFontUnderlineRegion(int FontUnderline)
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetFontStrikeOutRegion(int FontStrikeOut)
+void  TCellGrid::SetFontStrikeOutRegion(int FontStrikeOut)
 {
     SetAllFlag(gCellFlag, false);
     gCellFlag->CellFlags.FontStrikeOut  =FontStrikeOut;
@@ -488,7 +489,7 @@ void __fastcall TCellGrid::SetFontStrikeOutRegion(int FontStrikeOut)
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetFontStyleRegion(int FontStyle)
+void  TCellGrid::SetFontStyleRegion(int FontStyle)
 {
     SetAllFlag(gCellFlag, false);
     gCellFlag->CellFlags.FontStyle  =FontStyle;
@@ -496,48 +497,48 @@ void __fastcall TCellGrid::SetFontStyleRegion(int FontStyle)
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetTextWordBreakRegion(int TextWordBreak)
-{// Установить авто размер строки по тексту (Not=0, Auto=1)
+void  TCellGrid::SetTextWordBreakRegion(int TextWordBreak)
+{// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г ГўГІГ® Г°Г Г§Г¬ГҐГ° Г±ГІГ°Г®ГЄГЁ ГЇГ® ГІГҐГЄГ±ГІГі (Not=0, Auto=1)
     SetAllFlag(gCellFlag, false);
     gCellFlag->CellFlags.TextWordBreak  =TextWordBreak;
     gCellFlag->f_TextWordBreak          =true;
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetTypeAutoSizeRegion(int TypeAutoSize)
-{// Установить авто размер строки по тексту (Not=0, Auto=1)
+void  TCellGrid::SetTypeAutoSizeRegion(int TypeAutoSize)
+{// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г ГўГІГ® Г°Г Г§Г¬ГҐГ° Г±ГІГ°Г®ГЄГЁ ГЇГ® ГІГҐГЄГ±ГІГі (Not=0, Auto=1)
     SetAllFlag(gCellFlag, false);
     gCellFlag->CellFlags.TypeAutoSize   =TypeAutoSize;
     gCellFlag->f_TypeAutoSize           =true;
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetTextHAlignRegion(int TextHAlign)
-{// Установить Выравнивание текста по горизонтали (Left=0, Center=1, Right=2)
+void  TCellGrid::SetTextHAlignRegion(int TextHAlign)
+{// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ ГІГҐГЄГ±ГІГ  ГЇГ® ГЈГ®Г°ГЁГ§Г®Г­ГІГ Г«ГЁ (Left=0, Center=1, Right=2)
     SetAllFlag(gCellFlag, false);
     gCellFlag->CellFlags.TextHAlign     =TextHAlign;
     gCellFlag->f_TextHAlign             =true;
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetTextVAlignRegion(int TextVAlign)
-{// Установить Выравнивание текста по вертикали (Left=0, Center=1, Right=2)
+void  TCellGrid::SetTextVAlignRegion(int TextVAlign)
+{// Г“Г±ГІГ Г­Г®ГўГЁГІГј Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ ГІГҐГЄГ±ГІГ  ГЇГ® ГўГҐГ°ГІГЁГЄГ Г«ГЁ (Left=0, Center=1, Right=2)
     SetAllFlag(gCellFlag, false);
     gCellFlag->CellFlags.TextVAlign     =TextVAlign;
     gCellFlag->f_TextVAlign             =true;
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetValueTypeRegion(int ValueType)
-{ // Установить Тип Значения (текст =0, выражение =1, шаблон =2)
+void  TCellGrid::SetValueTypeRegion(int ValueType)
+{ // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г’ГЁГЇ Г‡Г­Г Г·ГҐГ­ГЁГї (ГІГҐГЄГ±ГІ =0, ГўГ»Г°Г Г¦ГҐГ­ГЁГҐ =1, ГёГ ГЎГ«Г®Г­ =2)
     SetAllFlag(gCellFlag, false);
     gCellFlag->CellFlags.ValueType  =ValueType;
     gCellFlag->f_ValueType          =true;
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetColorRegion(TColor Color, bool FlagLineColor)
-{ // Установить цвет
+void  TCellGrid::SetColorRegion(TColor Color, bool FlagLineColor)
+{ // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г¶ГўГҐГІ
     SetAllFlag(gCellFlag, false);
     gCellFlag->bgColor          =Color;
     gCellFlag->f_bgColor        =true;
@@ -546,7 +547,7 @@ void __fastcall TCellGrid::SetColorRegion(TColor Color, bool FlagLineColor)
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetCellLineOne(/*1=Left, 2=Top, 3=Right, 4=Bottom*/int Border, int WidthLine)
+void  TCellGrid::SetCellLineOne(/*1=Left, 2=Top, 3=Right, 4=Bottom*/int Border, int WidthLine)
 {
     SetAllFlag(gCellFlag, false);
     switch (Border)
@@ -575,7 +576,7 @@ void __fastcall TCellGrid::SetCellLineOne(/*1=Left, 2=Top, 3=Right, 4=Bottom*/in
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetCellLine(int WidthLeft, int WidthTop, int WidthRight, int WidthBottom)
+void  TCellGrid::SetCellLine(int WidthLeft, int WidthTop, int WidthRight, int WidthBottom)
 {
     SetAllFlag(gCellFlag, false);
     gCellFlag->Line.WidthLeft   =WidthLeft;
@@ -589,7 +590,7 @@ void __fastcall TCellGrid::SetCellLine(int WidthLeft, int WidthTop, int WidthRig
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetCellLineFlood(int WidthLeft, int WidthTop, int WidthRight, int WidthBottom)
+void  TCellGrid::SetCellLineFlood(int WidthLeft, int WidthTop, int WidthRight, int WidthBottom)
 {
     SetAllFlag(gCellFlag, false);
     gCellFlag->Line.WidthLeft   =WidthLeft;
@@ -604,8 +605,8 @@ void __fastcall TCellGrid::SetCellLineFlood(int WidthLeft, int WidthTop, int Wid
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetCellLineFloodVert(int WidthLine)
-{ // Заполнить вертикальными линиями
+void  TCellGrid::SetCellLineFloodVert(int WidthLine)
+{ // Г‡Г ГЇГ®Г«Г­ГЁГІГј ГўГҐГ°ГІГЁГЄГ Г«ГјГ­Г»Г¬ГЁ Г«ГЁГ­ГЁГїГ¬ГЁ
     SetAllFlag(gCellFlag, false);
     gCellFlag->Line.WidthRight  =WidthLine;
     gCellFlag->f_WidthRight     =true;
@@ -613,7 +614,7 @@ void __fastcall TCellGrid::SetCellLineFloodVert(int WidthLine)
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetCellLineFloodHorz(int WidthLine)
+void  TCellGrid::SetCellLineFloodHorz(int WidthLine)
 {
     SetAllFlag(gCellFlag, false);
     gCellFlag->Line.WidthBottom  =WidthLine;
@@ -622,8 +623,8 @@ void __fastcall TCellGrid::SetCellLineFloodHorz(int WidthLine)
     SetParam(GetSelectGridRect(),gCellFlag);
 }
 
-void __fastcall TCellGrid::SetParam(const TRect& rect,TCellFlag* CellFlag)
-{ // Заполнить матрицу и применяет ее для ректа
+void  TCellGrid::SetParam(const TRect& rect,TCellFlag* CellFlag)
+{ // Г‡Г ГЇГ®Г«Г­ГЁГІГј Г¬Г ГІГ°ГЁГ¶Гі ГЁ ГЇГ°ГЁГ¬ГҐГ­ГїГҐГІ ГҐГҐ Г¤Г«Гї Г°ГҐГЄГІГ 
 
     if (!CellFlag->f_Flood &&
             CellFlag->f_WidthLeft &&
@@ -633,7 +634,7 @@ void __fastcall TCellGrid::SetParam(const TRect& rect,TCellFlag* CellFlag)
             rect.Top >1 &&
             rect.Left >1
     )
-    {// Обвести
+    {// ГЋГЎГўГҐГ±ГІГЁ
         SetCellBorder(rect,
             CellFlag->Line.WidthLeft,
             CellFlag->Line.WidthTop,
@@ -648,7 +649,7 @@ void __fastcall TCellGrid::SetParam(const TRect& rect,TCellFlag* CellFlag)
             rect.Top >1 &&
             rect.Left >1
     )
-    {// Вертикальная заливка
+    {// Г‚ГҐГ°ГІГЁГЄГ Г«ГјГ­Г Гї Г§Г Г«ГЁГўГЄГ 
         SetCellBorderFloodVert(rect, CellFlag->Line.WidthRight);
     }
     else if (CellFlag->f_Flood &&
@@ -659,7 +660,7 @@ void __fastcall TCellGrid::SetParam(const TRect& rect,TCellFlag* CellFlag)
             rect.Top >1 &&
             rect.Left >1
     )
-    {// Горизонтальная заливка
+    {// ГѓГ®Г°ГЁГ§Г®Г­ГІГ Г«ГјГ­Г Гї Г§Г Г«ГЁГўГЄГ 
         SetCellBorderFloodHorz(rect, CellFlag->Line.WidthBottom);
     }
     else if (!CellFlag->f_Flood &&
@@ -676,7 +677,7 @@ void __fastcall TCellGrid::SetParam(const TRect& rect,TCellFlag* CellFlag)
             !CellFlag->f_WidthBottom
         )
     )
-    {// Одинарные линии
+    {// ГЋГ¤ГЁГ­Г Г°Г­Г»ГҐ Г«ГЁГ­ГЁГЁ
         if (CellFlag->f_WidthLeft && rect.Left >1)
             SetCellBorderOne(rect,1, CellFlag->Line.WidthLeft);
         if (CellFlag->f_WidthTop && rect.Top >1)
@@ -740,8 +741,8 @@ void __fastcall TCellGrid::SetParam(const TRect& rect,TCellFlag* CellFlag)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TCellGrid::SetCellBorder(const TRect& Rect, int WidthLeft, int WidthTop, int WidthRight, int WidthBottom)
-{// Нижний уровень для SetCellLine
+void  TCellGrid::SetCellBorder(const TRect& Rect, int WidthLeft, int WidthTop, int WidthRight, int WidthBottom)
+{// ГЌГЁГ¦Г­ГЁГ© ГіГ°Г®ГўГҐГ­Гј Г¤Г«Гї SetCellLine
     Matrix->ClearAll();
     Matrix->NewCell(1,1);
     CopyCell1ToCell2(1,1,Matrix->GetCellSimple(1,1));
@@ -802,8 +803,8 @@ void __fastcall TCellGrid::SetCellBorder(const TRect& Rect, int WidthLeft, int W
     SetAllFlag(gCellFlag, false);
 }
 
-void __fastcall TCellGrid::SetCellBorderFloodVert(const TRect& Rect, int WidthLine)
-{ // Заполнить вертикальными линиями
+void  TCellGrid::SetCellBorderFloodVert(const TRect& Rect, int WidthLine)
+{ // Г‡Г ГЇГ®Г«Г­ГЁГІГј ГўГҐГ°ГІГЁГЄГ Г«ГјГ­Г»Г¬ГЁ Г«ГЁГ­ГЁГїГ¬ГЁ
     Matrix->ClearAll();
     Matrix->NewCell(1,1);
     CopyCell1ToCell2(1,1,Matrix->GetCellSimple(1,1));
@@ -845,8 +846,8 @@ void __fastcall TCellGrid::SetCellBorderFloodVert(const TRect& Rect, int WidthLi
     SetAllFlag(gCellFlag, false);
 }
 
-void __fastcall TCellGrid::SetCellBorderFloodHorz(const TRect& Rect, int WidthLine)
-{ // Установить объедененную ячейку
+void  TCellGrid::SetCellBorderFloodHorz(const TRect& Rect, int WidthLine)
+{ // Г“Г±ГІГ Г­Г®ГўГЁГІГј Г®ГЎГєГҐГ¤ГҐГ­ГҐГ­Г­ГіГѕ ГїГ·ГҐГ©ГЄГі
     Matrix->ClearAll();
     Matrix->NewCell(1,1);
     CopyCell1ToCell2(1,1,Matrix->GetCellSimple(1,1));
@@ -888,8 +889,8 @@ void __fastcall TCellGrid::SetCellBorderFloodHorz(const TRect& Rect, int WidthLi
     SetAllFlag(gCellFlag, false);
 }
 
-void __fastcall TCellGrid::SetCellBorderOne(const TRect& Rect ,int Border, int WidthLine)
-{// Нижний уровень для SetCellLineOne
+void  TCellGrid::SetCellBorderOne(const TRect& Rect ,int Border, int WidthLine)
+{// ГЌГЁГ¦Г­ГЁГ© ГіГ°Г®ГўГҐГ­Гј Г¤Г«Гї SetCellLineOne
     Matrix->ClearAll();
     Matrix->NewCell(1,1);
     CopyCell1ToCell2(1,1,Matrix->GetCellSimple(1,1));

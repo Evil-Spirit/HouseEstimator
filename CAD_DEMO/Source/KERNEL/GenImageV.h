@@ -1,14 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef GenImageVH
 #define GenImageVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
-#include <Dialogs.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 
 class TBMPSet;
@@ -32,20 +31,20 @@ __published:	// IDE-managed Components
     TButton *btOK;
     TColorDialog *ColorDialog1;
     TCheckBox *cbAntiAliasingLine;
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall sColorMouseDown(TObject *Sender, TMouseButton Button,
+    void  FormDestroy(TObject *Sender);
+    void  sColorMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall btGenClick(TObject *Sender);
-    void __fastcall ImageMouseDown(TObject *Sender, TMouseButton Button,
+    void  btGenClick(TObject *Sender);
+    void  ImageMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TGenImage(TComponent* Owner,TMDITV* _TV,Graphics::TBitmap* bmp,Graphics::TBitmap* mask);
+     TGenImage(TComponent* Owner,TMDITV* _TV,Graphics::TBitmap* bmp,Graphics::TBitmap* mask);
     TMDITV* TV;
     Graphics::TBitmap* bmp;
     Graphics::TBitmap* mask;
     TPointer<TBMPSet> *BMPS;
-    void __fastcall OnLISTChange(TObject *Sender);
+    void  OnLISTChange(TObject *Sender);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TGenImage *GenImage;

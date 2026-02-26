@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef EditorXDToolVH
@@ -7,23 +11,22 @@
 
 class TEditor2D;
 
-class PACKAGE TEditorXDTool : public TBaseTool{
+class  TEditorXDTool : public TBaseTool{
 private:
     TEditor2D* getEditorXD();
     void setEditorXD(TEditor2D* EXD);
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
-    __property TEditor2D* EditorXD = {read = getEditorXD, write = setEditorXD};
+    static TMyObject* CreateFunction();
+    // __property TEditor2D* EditorXD {read=getEditorXD, write=setEditorXD}; // [manual migration needed]
 };
 
-extern PACKAGE TClassNode* TEditorXDTool::StaticType;
 
-class PACKAGE TMyEditorControls : public TMyControls{
+class  TMyEditorControls : public TMyControls{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     void MouseMove(void* Sender, TShiftState Shift, const TIntVec& CursorPosition);
     void MouseDown(void* Sender, TMouseButton Button, TShiftState Shift, const TIntVec& CursorPosition);
     void MouseUp(void* Sender, TMouseButton Button, TShiftState Shift, const TIntVec& CursorPosition);
@@ -31,6 +34,5 @@ public:
     void KeyUp(void* Sender, WORD &Key, TShiftState Shift);
 };
 
-extern PACKAGE TClassNode* TMyEditorControls::StaticType;
 
 #endif

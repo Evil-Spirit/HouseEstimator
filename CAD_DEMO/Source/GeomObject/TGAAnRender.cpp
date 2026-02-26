@@ -1,7 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #include "math.h"
-#pragma hdrstop
 
 #include "TGAAnRender.h"
 
@@ -12,7 +15,6 @@
 #include "TGObject.h"
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 const MBTi CrossEPS = 0.000000001;
 const MBTi UpDownEPS = 0.00001;//pochti not used
 const MBTi EqualEPS = 0.0000001;//pochti not used

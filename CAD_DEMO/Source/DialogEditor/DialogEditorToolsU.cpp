@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MyTemplates.h"
 #include "MTL.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include<math.h>
-#pragma hdrstop
 
 #include "DialogEditorToolsU.h"
 #include "ObjectInspectorU.hpp"
@@ -16,10 +19,10 @@ TCreateTool::TCreateTool(int _ClassId)
 {
     ImageId = _ClassId-1;
     ClassId = _ClassId;
-    AddStateBlock(ctState1_WaitingMouseDown, WaitingMouseDown, Mouse_Move, btNone, "Ожидание нажатия клавиши для определения места для создания нового объекта на форме.");
-    AddStateBlock(ctState2_SelectBorderFrame, SelectBorderFrame, Mouse_Move, btNone, "Выбор границ объекта.");
-    AddActionBlock(ctAction1_GetCoords, GetCoords, btNone, "Определение начальных координат.");
-    AddActionBlock(ctAction2_CreateObject, CreateObject, btMenu, "Создание объекта: Создание TVCLEditorElement, влючающего создание TComponent и соответствующей ему формы (для не являющихся TWinControl). Добавление объекта в ObjectTree и в ObjectInspector.");
+    AddStateBlock(ctState1_WaitingMouseDown, WaitingMouseDown, Mouse_Move, btNone, "ГЋГ¦ГЁГ¤Г Г­ГЁГҐ Г­Г Г¦Г ГІГЁГї ГЄГ«Г ГўГЁГёГЁ Г¤Г«Гї Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГї Г¬ГҐГ±ГІГ  Г¤Г«Гї Г±Г®Г§Г¤Г Г­ГЁГї Г­Г®ГўГ®ГЈГ® Г®ГЎГєГҐГЄГІГ  Г­Г  ГґГ®Г°Г¬ГҐ.");
+    AddStateBlock(ctState2_SelectBorderFrame, SelectBorderFrame, Mouse_Move, btNone, "Г‚Г»ГЎГ®Г° ГЈГ°Г Г­ГЁГ¶ Г®ГЎГєГҐГЄГІГ .");
+    AddActionBlock(ctAction1_GetCoords, GetCoords, btNone, "ГЋГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ Г­Г Г·Г Г«ГјГ­Г»Гµ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІ.");
+    AddActionBlock(ctAction2_CreateObject, CreateObject, btMenu, "Г‘Г®Г§Г¤Г Г­ГЁГҐ Г®ГЎГєГҐГЄГІГ : Г‘Г®Г§Г¤Г Г­ГЁГҐ TVCLEditorElement, ГўГ«ГѕГ·Г ГѕГ№ГҐГЈГ® Г±Г®Г§Г¤Г Г­ГЁГҐ TComponent ГЁ Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГҐГ© ГҐГ¬Гі ГґГ®Г°Г¬Г» (Г¤Г«Гї Г­ГҐ ГїГўГ«ГїГѕГ№ГЁГµГ±Гї TWinControl). Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г®ГЎГєГҐГЄГІГ  Гў ObjectTree ГЁ Гў ObjectInspector.");
     AddGoToBlockId(WaitingMouseDown, GetCoords, Mouse_Down, mbLeft);
     AddGoToBlockId(GetCoords, SelectBorderFrame);
     AddGoToBlockId(SelectBorderFrame, CreateObject, Mouse_Up, mbLeft);
@@ -139,25 +142,25 @@ TSelectTool::TSelectTool(int _ClassId)
     ClassId=_ClassId;
     //State: (Add Block)
     //-----------------------------------------------------------------------
-    AddStateBlock(stState1_WaitingFirstAction, WaitingFirstAction, Mouse_Move, btNone, "Ожидание клика мыши, или нажатия клавиши.");
-    AddStateBlock(stState2_WaitingMouseUpClickForSelect, WaitingMouseUpClickForSelect, Mouse_Move, btMenu, "Выделение: Ожидание 'MouseUp', чтобы сформировать границы выделения.");
-    AddStateBlock(stState3_DragControls, DragControls, Mouse_Move, btMenu, "Перетаскивание: перетаскивание созданных объектов на форме пока не 'MouseUp'.");
-    AddStateBlock(stState4_WaitingMouseUpClickForReSize, WaitingMouseUpClickForReSize, Mouse_Move, btMenu, "Изменение размера: Ожидание 'MouseUp', чтобы свормировать новые границы объекта.");
+    AddStateBlock(stState1_WaitingFirstAction, WaitingFirstAction, Mouse_Move, btNone, "ГЋГ¦ГЁГ¤Г Г­ГЁГҐ ГЄГ«ГЁГЄГ  Г¬Г»ГёГЁ, ГЁГ«ГЁ Г­Г Г¦Г ГІГЁГї ГЄГ«Г ГўГЁГёГЁ.");
+    AddStateBlock(stState2_WaitingMouseUpClickForSelect, WaitingMouseUpClickForSelect, Mouse_Move, btMenu, "Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ: ГЋГ¦ГЁГ¤Г Г­ГЁГҐ 'MouseUp', Г·ГІГ®ГЎГ» Г±ГґГ®Г°Г¬ГЁГ°Г®ГўГ ГІГј ГЈГ°Г Г­ГЁГ¶Г» ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї.");
+    AddStateBlock(stState3_DragControls, DragControls, Mouse_Move, btMenu, "ГЏГҐГ°ГҐГІГ Г±ГЄГЁГўГ Г­ГЁГҐ: ГЇГҐГ°ГҐГІГ Г±ГЄГЁГўГ Г­ГЁГҐ Г±Г®Г§Г¤Г Г­Г­Г»Гµ Г®ГЎГєГҐГЄГІГ®Гў Г­Г  ГґГ®Г°Г¬ГҐ ГЇГ®ГЄГ  Г­ГҐ 'MouseUp'.");
+    AddStateBlock(stState4_WaitingMouseUpClickForReSize, WaitingMouseUpClickForReSize, Mouse_Move, btMenu, "Г€Г§Г¬ГҐГ­ГҐГ­ГЁГҐ Г°Г Г§Г¬ГҐГ°Г : ГЋГ¦ГЁГ¤Г Г­ГЁГҐ 'MouseUp', Г·ГІГ®ГЎГ» Г±ГўГ®Г°Г¬ГЁГ°Г®ГўГ ГІГј Г­Г®ГўГ»ГҐ ГЈГ°Г Г­ГЁГ¶Г» Г®ГЎГєГҐГЄГІГ .");
     //Condition: (Add Block)
     //-----------------------------------------------------------------------
-    AddConditionalBlock(stCondition1_IfShiftPressed, IfShiftPressed, btNone, "Проверка на нажатие клавиши 'Shift'.");
-    AddConditionalBlock(stCondition2_IfMouseOnBorder, IfMouseOnBorder, btNone, "Проверка позиции мыши на границе объекта, для определения: Изменение размера, или Перетаскивание.");
-    AddConditionalBlock(stCondition3_IfMouseOnControl, IfMouseOnControl, btNone, "Проверка позиции мыши на объекте, для определения: Выделение, или Перетаскивание.");
-    AddConditionalBlock(stCondition4_IfShiftOnControl, IfShiftOnControl, btNone, "Проверка на нажатие клавиши 'Shift' при позиции мыши 'На объекте'.");
-    AddConditionalBlock(stCondition5_IfShiftOnSelection, IfShiftOnSelection, btNone, "Проверка на нажатие клавиши 'Shift' при позиции мыши 'На выделении'.");
+    AddConditionalBlock(stCondition1_IfShiftPressed, IfShiftPressed, btNone, "ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г­Г Г¦Г ГІГЁГҐ ГЄГ«Г ГўГЁГёГЁ 'Shift'.");
+    AddConditionalBlock(stCondition2_IfMouseOnBorder, IfMouseOnBorder, btNone, "ГЏГ°Г®ГўГҐГ°ГЄГ  ГЇГ®Г§ГЁГ¶ГЁГЁ Г¬Г»ГёГЁ Г­Г  ГЈГ°Г Г­ГЁГ¶ГҐ Г®ГЎГєГҐГЄГІГ , Г¤Г«Гї Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГї: Г€Г§Г¬ГҐГ­ГҐГ­ГЁГҐ Г°Г Г§Г¬ГҐГ°Г , ГЁГ«ГЁ ГЏГҐГ°ГҐГІГ Г±ГЄГЁГўГ Г­ГЁГҐ.");
+    AddConditionalBlock(stCondition3_IfMouseOnControl, IfMouseOnControl, btNone, "ГЏГ°Г®ГўГҐГ°ГЄГ  ГЇГ®Г§ГЁГ¶ГЁГЁ Г¬Г»ГёГЁ Г­Г  Г®ГЎГєГҐГЄГІГҐ, Г¤Г«Гї Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГї: Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ, ГЁГ«ГЁ ГЏГҐГ°ГҐГІГ Г±ГЄГЁГўГ Г­ГЁГҐ.");
+    AddConditionalBlock(stCondition4_IfShiftOnControl, IfShiftOnControl, btNone, "ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г­Г Г¦Г ГІГЁГҐ ГЄГ«Г ГўГЁГёГЁ 'Shift' ГЇГ°ГЁ ГЇГ®Г§ГЁГ¶ГЁГЁ Г¬Г»ГёГЁ 'ГЌГ  Г®ГЎГєГҐГЄГІГҐ'.");
+    AddConditionalBlock(stCondition5_IfShiftOnSelection, IfShiftOnSelection, btNone, "ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г­Г Г¦Г ГІГЁГҐ ГЄГ«Г ГўГЁГёГЁ 'Shift' ГЇГ°ГЁ ГЇГ®Г§ГЁГ¶ГЁГЁ Г¬Г»ГёГЁ 'ГЌГ  ГўГ»Г¤ГҐГ«ГҐГ­ГЁГЁ'.");
     //Active: (Add Block)
     //-----------------------------------------------------------------------
-    AddActionBlock(stActive_SelectClickControl, SelectClickControl, btNone, "Определение Control'а по клику.");
-    AddActionBlock(stActiveStart_StartTool, StartTool, btNone, "Очистка экрана, перерисовка Grid на новом цикле действия SelectTool.");
-    AddActionBlock(stActive2_ReactionOnButtonClick, ReactionOnButtonClick, btMenu, "KeyPressed: Определение нажатия клавиш 'Ctrl', 'Shift', или 'Delete' для выбора соответсвующего действия. Исполнение выбранного действия.");
-    AddActionBlock(stActive3_SelectControls, SelectControls, btNone, "Выбор выделенных объектов - добавление их в соответствующие списки выделения.");
-    AddActionBlock(stActive4_DeleteControlFromList, DeleteControlFromList, btNone, "Удаление объекта из списков выделения.");
-    AddActionBlock(stActive5_InsertControlToList, InsertControlToList, btNone, "Добавление объекта в списки выделения.");
+    AddActionBlock(stActive_SelectClickControl, SelectClickControl, btNone, "ГЋГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ Control'Г  ГЇГ® ГЄГ«ГЁГЄГі.");
+    AddActionBlock(stActiveStart_StartTool, StartTool, btNone, "ГЋГ·ГЁГ±ГІГЄГ  ГЅГЄГ°Г Г­Г , ГЇГҐГ°ГҐГ°ГЁГ±Г®ГўГЄГ  Grid Г­Г  Г­Г®ГўГ®Г¬ Г¶ГЁГЄГ«ГҐ Г¤ГҐГ©Г±ГІГўГЁГї SelectTool.");
+    AddActionBlock(stActive2_ReactionOnButtonClick, ReactionOnButtonClick, btMenu, "KeyPressed: ГЋГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ Г­Г Г¦Г ГІГЁГї ГЄГ«Г ГўГЁГё 'Ctrl', 'Shift', ГЁГ«ГЁ 'Delete' Г¤Г«Гї ГўГ»ГЎГ®Г°Г  Г±Г®Г®ГІГўГҐГІГ±ГўГіГѕГ№ГҐГЈГ® Г¤ГҐГ©Г±ГІГўГЁГї. Г€Г±ГЇГ®Г«Г­ГҐГ­ГЁГҐ ГўГ»ГЎГ°Г Г­Г­Г®ГЈГ® Г¤ГҐГ©Г±ГІГўГЁГї.");
+    AddActionBlock(stActive3_SelectControls, SelectControls, btNone, "Г‚Г»ГЎГ®Г° ГўГ»Г¤ГҐГ«ГҐГ­Г­Г»Гµ Г®ГЎГєГҐГЄГІГ®Гў - Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГЁГµ Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГЁГҐ Г±ГЇГЁГ±ГЄГЁ ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї.");
+    AddActionBlock(stActive4_DeleteControlFromList, DeleteControlFromList, btNone, "Г“Г¤Г Г«ГҐГ­ГЁГҐ Г®ГЎГєГҐГЄГІГ  ГЁГ§ Г±ГЇГЁГ±ГЄГ®Гў ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї.");
+    AddActionBlock(stActive5_InsertControlToList, InsertControlToList, btNone, "Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г®ГЎГєГҐГЄГІГ  Гў Г±ГЇГЁГ±ГЄГЁ ГўГ»Г¤ГҐГ«ГҐГ­ГЁГї.");
     //State: (Go to Block)
     //-----------------------------------------------------------------------
     AddGoToBlockId(WaitingFirstAction, SelectClickControl, Mouse_Down, mbLeft);
@@ -633,5 +636,4 @@ void TSelectTool::stActive5_InsertControlToList()
 }
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------

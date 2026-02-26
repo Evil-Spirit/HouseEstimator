@@ -1,7 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "Misc.h"
 #include "TGCut.h"
@@ -12,7 +15,6 @@
 #include "Triangulation.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 TIntVec GetToPlaneAnglesXZ(const TIntVec &n)
 {

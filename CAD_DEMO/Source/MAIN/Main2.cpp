@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "Main2.h"
 #include "About.h"
@@ -54,7 +57,6 @@
 //---------------------------------------------------------------------------
 #pragma link "VisTimer"
 
-#pragma package(smart_init)
 #pragma link "BaseDockSiteFormV"
 #pragma resource "*.dfm"
 
@@ -63,7 +65,7 @@ TConfig1 *Config1;
 
 //---------------------------------------------------------------------------
 
-__fastcall TConfig1::TConfig1(TComponent *Owner)
+ TConfig1::TConfig1(TComponent *Owner)
 	: TBaseDockSiteForm(Owner)
 {
 }
@@ -73,7 +75,7 @@ TMDI3D* FindMDI3D()
     return ((TMDI3D*)ComponentExists(__classid(TMDI3D)));
 }
 
-void __fastcall TConfig1::FileNew1Execute(TObject *Sender)
+void  TConfig1::FileNew1Execute(TObject *Sender)
 {
     #if !defined(INTERNET_VER) && !defined(TRADE_VER)
     TMDIConfig *MDIC;
@@ -101,13 +103,13 @@ void __fastcall TConfig1::FileNew1Execute(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TConfig1::HelpAbout1Execute(TObject *Sender)
+void  TConfig1::HelpAbout1Execute(TObject *Sender)
 {
 	AboutBox->ShowModal();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::FileExit1Execute(TObject *Sender)
+void  TConfig1::FileExit1Execute(TObject *Sender)
 {
 	Close();
 }
@@ -116,7 +118,7 @@ void __fastcall TConfig1::FileExit1Execute(TObject *Sender)
 
 
 
-void __fastcall TConfig1::ScrollerMouseDown(TObject *Sender,
+void  TConfig1::ScrollerMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     if (Y>X)
@@ -134,7 +136,7 @@ void __fastcall TConfig1::ScrollerMouseDown(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::ScrollerMouseUp(TObject *Sender,
+void  TConfig1::ScrollerMouseUp(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     MainTimer->Tag=0;
@@ -170,7 +172,7 @@ TMenuItem *MIByAction(int _TagAction)
 }
 
 
-void __fastcall TConfig1::FormCreate(TObject *Sender)
+void  TConfig1::FormCreate(TObject *Sender)
 {
     // change wnd procs for the docking panels
     OldLeftDockWndProc = pnlLeftSide->WindowProc;
@@ -206,15 +208,15 @@ void __fastcall TConfig1::FormCreate(TObject *Sender)
     SetMaxTexture(4);
 
     new TProgBar(Application);
-    //инициализация информации о классах и библиотеках
+    //ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГЁ Г® ГЄГ«Г Г±Г±Г Гµ ГЁ ГЎГЁГЎГ«ГЁГ®ГІГҐГЄГ Гµ
     RegisterKernel();
 //    RegisterBaseTool();
     RegisterArchitecture();
-    /* TODO : выключена инициализация Actions */
+    /* TODO : ГўГ»ГЄГ«ГѕГ·ГҐГ­Г  ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї Actions */
 
     
 //    InitActions();
-    //Создание основных объектов
+    //Г‘Г®Г§Г¤Г Г­ГЁГҐ Г®Г±Г­Г®ГўГ­Г»Гµ Г®ГЎГєГҐГЄГІГ®Гў
     //------------------------------------------------
     LuaEnvMode = AnsiString(GetCommandLineA()).Pos("DEBUG")!=0;
 
@@ -312,10 +314,10 @@ void __fastcall TConfig1::FormCreate(TObject *Sender)
     RegisterMainTools();
 }
 //---------------------------------------------------------------------------
-void __fastcall TConfig1::FormDestroy(TObject *Sender)
+void  TConfig1::FormDestroy(TObject *Sender)
 {
     //-----------------------------------
-// /* TODO : там где select terminate там intexplorer->terminate */   Select->Terminate();
+// /* TODO : ГІГ Г¬ ГЈГ¤ГҐ select terminate ГІГ Г¬ intexplorer->terminate */   Select->Terminate();
     //-----------------------------------
     delete IntExplorer;
     IntExplorer = NULL;
@@ -325,7 +327,7 @@ void __fastcall TConfig1::FormDestroy(TObject *Sender)
 //    delete Select;
     delete LN;
     delete MetaNodeCollection;
-    //инициализация информации о классах
+    //ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГЁ Г® ГЄГ«Г Г±Г±Г Гµ
 //    FreeActions();
     //---------------------
     //close LUA
@@ -333,7 +335,7 @@ void __fastcall TConfig1::FormDestroy(TObject *Sender)
     LuaAllClose();
 }
 //---------------------------------------------------------------------------
-void __fastcall TConfig1::ConfiguratorExecute(TObject *Sender)
+void  TConfig1::ConfiguratorExecute(TObject *Sender)
 {
     #if !defined(INTERNET_VER) && !defined(TRADE_VER)
   if (!ComponentExists(__classid(TMDIConfig)))
@@ -358,7 +360,7 @@ void __fastcall TConfig1::ConfiguratorExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::ToolButton15Click(TObject *Sender)
+void  TConfig1::ToolButton15Click(TObject *Sender)
 {
     for (int i=0;i<MDIChildCount;i++)
     {
@@ -377,13 +379,13 @@ void __fastcall TConfig1::ToolButton15Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::ToolButton16Click(TObject *Sender)
+void  TConfig1::ToolButton16Click(TObject *Sender)
 {
     if (AUI.ActiveView)
         AUI.CameraEngine.ViewAll(AUI.ActiveView->View->Camera);
 }
 //---------------------------------------------------------------------------
-void __fastcall TConfig1::mfNewClick(TObject *Sender)
+void  TConfig1::mfNewClick(TObject *Sender)
 {
     int index = World->ActiveIndex+1;
     UndoStack.OpenSession("Add floor above actual");
@@ -391,14 +393,14 @@ void __fastcall TConfig1::mfNewClick(TObject *Sender)
     UndoStack.CloseSession();
 }
 //---------------------------------------------------------------------------
-bool TConfig1::Process_Save_Project()//возвращает истина если ответ не cancel
+bool TConfig1::Process_Save_Project()//ГўГ®Г§ГўГ°Г Г№Г ГҐГІ ГЁГ±ГІГЁГ­Г  ГҐГ±Г«ГЁ Г®ГІГўГҐГІ Г­ГҐ cancel
 {
 //-------------
     _TRY_
 //-------------
     if (!World)
         return false;
-    switch(Application->MessageBox( (AnsiString("Сохранить изменения в проекте: ")+World->Name+AnsiString("?")).c_str(),"Confirmation",MB_YESNOCANCEL))
+    switch(Application->MessageBox( (AnsiString("Г‘Г®ГµГ°Г Г­ГЁГІГј ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї Гў ГЇГ°Г®ГҐГЄГІГҐ: ")+World->Name+AnsiString("?")).c_str(),"Confirmation",MB_YESNOCANCEL))
     {
         case 0:
         case IDCANCEL:
@@ -419,12 +421,12 @@ bool TConfig1::Process_Save_Project()//возвращает истина если ответ не cancel
             return false;
     }
 //---------------------
-    _ENDTRY_("<TConfig::Process_Save_Project>: Ошибка при записи файла",return (Application->MessageBox("Ошибка при записи файла, закрыть все равно?","Confirmation",MB_YESNO) == IDYES););
+    _ENDTRY_("<TConfig::Process_Save_Project>: ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ Г§Г ГЇГЁГ±ГЁ ГґГ Г©Г«Г ",return (Application->MessageBox("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ Г§Г ГЇГЁГ±ГЁ ГґГ Г©Г«Г , Г§Г ГЄГ°Г»ГІГј ГўГ±ГҐ Г°Г ГўГ­Г®?","Confirmation",MB_YESNO) == IDYES););
 //---------------------
 
 }
 
-void __fastcall TConfig1::FileSaveAs1Execute(TObject *Sender)
+void  TConfig1::FileSaveAs1Execute(TObject *Sender)
 {
     //-----------
     _TRY_
@@ -484,11 +486,11 @@ void __fastcall TConfig1::FileSaveAs1Execute(TObject *Sender)
             break;
           }
         }
-    _ENDTRY_("<TConfig::FileSaveAs1Execute>: Ошибка при записи файла",);
+    _ENDTRY_("<TConfig::FileSaveAs1Execute>: ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ Г§Г ГЇГЁГ±ГЁ ГґГ Г©Г«Г ",);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::FileOpen1Execute(TObject *Sender)
+void  TConfig1::FileOpen1Execute(TObject *Sender)
 {
 //    ShowClasses();
     _TRY_
@@ -503,19 +505,19 @@ void __fastcall TConfig1::FileOpen1Execute(TObject *Sender)
         if (!ComponentExists(__classid(TMDI3DUser)))
             new TMDI3DUser(Application,World);
 
-    _ENDTRY_("<TConfig::FileOpen1Execute>: Ошибка при открытии файла",);
+    _ENDTRY_("<TConfig::FileOpen1Execute>: ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ Г®ГІГЄГ°Г»ГІГЁГЁ ГґГ Г©Г«Г ",);
 //    ShowClasses();    
 }
 
-void __fastcall TConfig1::btCheckClick(TObject *Sender)
-{   /* TODO : Здесь исправить TluaEditor */
+void  TConfig1::btCheckClick(TObject *Sender)
+{   /* TODO : Г‡Г¤ГҐГ±Гј ГЁГ±ГЇГ°Г ГўГЁГІГј TluaEditor */
     TWinControl* F= Screen->ActiveControl;
     if (F&&F->ClassType()==__classid(TSciLexer))
         StdOut(CheckSintax(((TSciLexer*)F)->Text),true);
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TConfig1::mCountClick(TObject *Sender)
+void  TConfig1::mCountClick(TObject *Sender)
 {
 
     TQuickList QL;
@@ -537,14 +539,14 @@ void __fastcall TConfig1::mCountClick(TObject *Sender)
     Application->MainForm->Tile();
 }
 //---------------------------------------------------------------------------
-void __fastcall TConfig1::mWorkCountClick(TObject *Sender)
+void  TConfig1::mWorkCountClick(TObject *Sender)
 {
     AnsiString Str;
     if (!World->TechCheck(Str))
     {
         if (!Str.IsEmpty())
             ShowMessage(Str);
-        ShowMessage("Проверка на соответствие технологии незавершена.");
+        ShowMessage("ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГҐ ГІГҐГµГ­Г®Г«Г®ГЈГЁГЁ Г­ГҐГ§Г ГўГҐГ°ГёГҐГ­Г .");
         return;
     }
 
@@ -577,7 +579,7 @@ int Mes(char *Text,char* Caption)
     return Application->MessageBox(Text,Caption,MB_OK);
 };
 
-void __fastcall TConfig1::PrintDlg1Accept(TObject *Sender)
+void  TConfig1::PrintDlg1Accept(TObject *Sender)
 {
     if (!Config->ActiveMDIChild)        
         return;
@@ -652,21 +654,21 @@ void __fastcall TConfig1::PrintDlg1Accept(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::PrintDlg1BeforeExecute(TObject *Sender)
+void  TConfig1::PrintDlg1BeforeExecute(TObject *Sender)
 {
     PrintDlg1->Dialog->Options.Clear();
 }
 //---------------------------------------------------------------------------
                                       
 
-void __fastcall TConfig1::ToolButton12MouseDown(TObject *Sender,
+void  TConfig1::ToolButton12MouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
   MainTimer->Tag = ((TWinControl*)Sender)->Tag;
   MainTimer->Enabled = true;
 }
 //---------------------------------------------------------------------------
-void __fastcall TConfig1::cbFloorsCloseUp(TObject *Sender)
+void  TConfig1::cbFloorsCloseUp(TObject *Sender)
 {
     if (World && cbFloors->ItemIndex != World->ActiveIndex)
         World->SetActiveFloor(cbFloors->ItemIndex);
@@ -676,9 +678,9 @@ void __fastcall TConfig1::cbFloorsCloseUp(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TConfig1::miModeClick(TObject *Sender)
+void  TConfig1::miModeClick(TObject *Sender)
 {
-  /* TODO : Переключение режимов не работает */  
+  /* TODO : ГЏГҐГ°ГҐГЄГ«ГѕГ·ГҐГ­ГЁГҐ Г°ГҐГ¦ГЁГ¬Г®Гў Г­ГҐ Г°Г ГЎГ®ГІГ ГҐГІ */  
   if ( !AUI.ActiveView || !AUI.ActiveWorld)
     return;
 
@@ -696,7 +698,7 @@ void __fastcall TConfig1::miModeClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::AppMessage(TMsg& AMessage, bool& Handled)
+void  TConfig1::AppMessage(TMsg& AMessage, bool& Handled)
 {
     if (ProgBar && ProgBar->Visible && AMessage.message != WM_PAINT)
     {
@@ -724,7 +726,7 @@ void __fastcall TConfig1::AppMessage(TMsg& AMessage, bool& Handled)
     }  */
 }
 
-void __fastcall TConfig1::AppActionUpdate(Classes::TBasicAction* Action, bool &Handled)
+void  TConfig1::AppActionUpdate(Classes::TBasicAction* Action, bool &Handled)
 {
     if (Action == SearchFindNext1)
         if (SearchFind1->Dialog->FindText.IsEmpty())
@@ -826,7 +828,7 @@ void __fastcall TConfig1::AppActionUpdate(Classes::TBasicAction* Action, bool &H
     if (World)
         if (ActiveMDIChild && IS(ActiveMDIChild,__classid(TMDI3DUser)))
         {
-            ActiveMDIChild->Caption = World->AskedToSave ? World->Name : World->Name + AnsiString(" (Изменен)");
+            ActiveMDIChild->Caption = World->AskedToSave ? World->Name : World->Name + AnsiString(" (Г€Г§Г¬ГҐГ­ГҐГ­)");
         }
 
 /*    if (!Handled)
@@ -843,7 +845,7 @@ void __fastcall TConfig1::AppActionUpdate(Classes::TBasicAction* Action, bool &H
     }*/
 }
 
-void __fastcall TConfig1::AppActionExecute(Classes::TBasicAction* Action, bool &Handled)
+void  TConfig1::AppActionExecute(Classes::TBasicAction* Action, bool &Handled)
 {
     HWND hwnd = GetActiveWindow();
     if (hwnd == SearchFind1->Dialog->Handle)
@@ -942,7 +944,7 @@ int FindLuaText(TSciLexer *mdile,TFindDialog *Dialog)
     return FoundAt;
 }
 
-void __fastcall TConfig1::SearchFind1FindDialogFind(TObject *Sender)
+void  TConfig1::SearchFind1FindDialogFind(TObject *Sender)
 {
     if ( !Screen->ActiveControl || !IS (Screen->ActiveControl,__classid(TSciLexer)) )
         return;
@@ -962,7 +964,7 @@ void __fastcall TConfig1::SearchFind1FindDialogFind(TObject *Sender)
     int FoundAt = FindLuaText(mdile,Dialog);
     if (FoundAt ==-1)
     {
-        Mes("Поиск в модуле завершен.");
+        Mes("ГЏГ®ГЁГ±ГЄ Гў Г¬Г®Г¤ГіГ«ГҐ Г§Г ГўГҐГ°ГёГҐГ­.");
         return;
     }
 }
@@ -977,7 +979,7 @@ void ToggleToolBar(TToolBar *TB, bool Status)
     TB->Invalidate();
 }
 //---------------------------------------------------------------------------
-void __fastcall TConfig1::AppIdle(TObject *Sender, bool &Done)
+void  TConfig1::AppIdle(TObject *Sender, bool &Done)
 {
     lua_setgcthreshold (_LUA_, 0);
     Garbage.Clear();
@@ -1043,7 +1045,7 @@ void __fastcall TConfig1::AppIdle(TObject *Sender, bool &Done)
     Done = true;
 }
 
-void __fastcall TConfig1::SearchReplace1ReplaceDialogReplace(
+void  TConfig1::SearchReplace1ReplaceDialogReplace(
       TObject *Sender)
 {
     if ( !Screen->ActiveControl || !IS (Screen->ActiveControl,__classid(TSciLexer)) )
@@ -1055,7 +1057,7 @@ void __fastcall TConfig1::SearchReplace1ReplaceDialogReplace(
     int endsel = mdile->SendEditor(SCI_GETSELECTIONEND);
     if (startsel == endsel)
     {
-        ShowMessage(AnsiString("Не выделен текст для замены."));
+        ShowMessage(AnsiString("ГЌГҐ ГўГ»Г¤ГҐГ«ГҐГ­ ГІГҐГЄГ±ГІ Г¤Г«Гї Г§Г Г¬ГҐГ­Г»."));
         return;
     }
     if (SearchReplace1->Dialog->Options.Contains(frReplace) || SearchReplace1->Dialog->Options.Contains(frReplaceAll))
@@ -1068,7 +1070,7 @@ void __fastcall TConfig1::SearchReplace1ReplaceDialogReplace(
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::MainTimerTimer(TObject *Sender)
+void  TConfig1::MainTimerTimer(TObject *Sender)
 {
     if ( ActiveMDIChild && IS(ActiveMDIChild,__classid(TMDI3D)))
     {
@@ -1104,21 +1106,21 @@ void __fastcall TConfig1::MainTimerTimer(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::FindAllDialogFind(TObject *Sender)
+void  TConfig1::FindAllDialogFind(TObject *Sender)
 {
     LuaStation.FindInAllModules(FindAllDialog->FindText,FindAllDialog->Options);
     FindAllDialog->CloseDialog();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::SearchAllModulesExecute(TObject *Sender)
+void  TConfig1::SearchAllModulesExecute(TObject *Sender)
 {
     FindAllDialog->Execute();
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TConfig1::mShowElTreeClick(TObject *Sender)
+void  TConfig1::mShowElTreeClick(TObject *Sender)
 {
 //    MDIFloorControl->Show();
     if (World)
@@ -1147,7 +1149,7 @@ TMenuItem* NewMenuItem(const AnsiString& Caption,int ImageIndex,TComponent* Owne
     return MI;
 }
 
-void __fastcall TConfig1::miFloorsClick(TObject *Sender)
+void  TConfig1::miFloorsClick(TObject *Sender)
 {
     MActualFloor->Clear();
     if (World->Head)
@@ -1164,26 +1166,26 @@ void __fastcall TConfig1::miFloorsClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TConfig1::N10Click(TObject *Sender)
+void  TConfig1::N10Click(TObject *Sender)
 {
-    UndoStack.OpenSession("Добавить этаж сверху");
+    UndoStack.OpenSession("Г„Г®ГЎГ ГўГЁГІГј ГЅГІГ Г¦ Г±ГўГҐГ°ГµГі");
     World->AddFloor();
     UndoStack.CloseSession();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::N5Click(TObject *Sender)
+void  TConfig1::N5Click(TObject *Sender)
 {
     if (World->Floors.Count==1)
         return;
-    UndoStack.OpenSession("Удалить актуальный этаж");
+    UndoStack.OpenSession("Г“Г¤Г Г«ГЁГІГј Г ГЄГІГіГ Г«ГјГ­Г»Г© ГЅГІГ Г¦");
     World->RemoveFloor(World->ActiveIndex);
     UndoStack.CloseSession();
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TConfig1::MActualFloorClick(TObject *Sender)
+void  TConfig1::MActualFloorClick(TObject *Sender)
 {
     TComponent* WC = (TComponent*)Sender;
     World->SetActiveFloor(WC->Tag);
@@ -1192,7 +1194,7 @@ void __fastcall TConfig1::MActualFloorClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TConfig1::N11Click(TObject *Sender)
+void  TConfig1::N11Click(TObject *Sender)
 {
     (new TMDIVisibleSelectFloor(Application))->ShowModal();
     AUI.InvalidateView();
@@ -1201,7 +1203,7 @@ void __fastcall TConfig1::N11Click(TObject *Sender)
 
 
 
-void __fastcall TConfig1::FormClose(TObject *Sender, TCloseAction &Action)
+void  TConfig1::FormClose(TObject *Sender, TCloseAction &Action)
 {
     if (World && !World->AskedToSave && !Config->Process_Save_Project())
         Action = caNone;
@@ -1219,7 +1221,7 @@ void __fastcall TConfig1::FormClose(TObject *Sender, TCloseAction &Action)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::LuaExecute(TObject *Sender)
+void  TConfig1::LuaExecute(TObject *Sender)
 {
     TMTList<TMyRegObject> LST;
     MetaNodeCollection->SelectByCT(NULL,TMetaAction::StaticType,&LST,true,true);
@@ -1239,7 +1241,7 @@ void __fastcall TConfig1::LuaExecute(TObject *Sender)
         }
 }
 
-void __fastcall TConfig1::ViewNetExecute(TObject *Sender)
+void  TConfig1::ViewNetExecute(TObject *Sender)
 {
     if (World)
         World->RenderNet = !World->RenderNet;
@@ -1247,7 +1249,7 @@ void __fastcall TConfig1::ViewNetExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::ViewLandExecute(TObject *Sender)
+void  TConfig1::ViewLandExecute(TObject *Sender)
 {
     if (World)
         World->RenderLand = !World->RenderLand;
@@ -1256,7 +1258,7 @@ void __fastcall TConfig1::ViewLandExecute(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TConfig1::tbCatalogClick(TObject *Sender)
+void  TConfig1::tbCatalogClick(TObject *Sender)
 {
 //    IntExplorer->Visible = !IntExplorer->Visible;
 }
@@ -1307,27 +1309,27 @@ void ReFillPolygon(TPolygon& P,TQuickList* Inner)
 
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::AdvTextureExecute(TObject *Sender)
+void  TConfig1::AdvTextureExecute(TObject *Sender)
 {
     AUI.AdvancedTexturing = !AUI.AdvancedTexturing;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::AdvTextureUpdate(TObject *Sender)
+void  TConfig1::AdvTextureUpdate(TObject *Sender)
 {
     AdvTexture->Checked = AUI.AdvancedTexturing;
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TConfig1::mSimpleCountClick(TObject *Sender)
+void  TConfig1::mSimpleCountClick(TObject *Sender)
 {
     AnsiString Str;
     if (!World->TechCheck(Str))
     {
         if (!Str.IsEmpty())
             ShowMessage(Str);
-        ShowMessage("Проверка на соответствие технологии незавершена.");
+        ShowMessage("ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГҐ ГІГҐГµГ­Г®Г«Г®ГЈГЁГЁ Г­ГҐГ§Г ГўГҐГ°ГёГҐГ­Г .");
         return;
     }
 
@@ -1353,7 +1355,7 @@ void __fastcall TConfig1::mSimpleCountClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::pnlLeftSideDockOver(TObject *Sender,
+void  TConfig1::pnlLeftSideDockOver(TObject *Sender,
       TDragDockObject *Source, int X, int Y, TDragState State,
       bool &Accept)
 {
@@ -1372,7 +1374,7 @@ void __fastcall TConfig1::pnlLeftSideDockOver(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::pnlLeftSideDockDrop(TObject *Sender,
+void  TConfig1::pnlLeftSideDockDrop(TObject *Sender,
       TDragDockObject *Source, int X, int Y)
 {
     spltrLeft->Visible = true;
@@ -1384,7 +1386,7 @@ void __fastcall TConfig1::pnlLeftSideDockDrop(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::pnlRightSideDockDrop(TObject *Sender,
+void  TConfig1::pnlRightSideDockDrop(TObject *Sender,
       TDragDockObject *Source, int X, int Y)
 {
   spltrRight->Visible = true;
@@ -1396,7 +1398,7 @@ void __fastcall TConfig1::pnlRightSideDockDrop(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::pnlBottomSideDockDrop(TObject *Sender,
+void  TConfig1::pnlBottomSideDockDrop(TObject *Sender,
       TDragDockObject *Source, int X, int Y)
 {
     spltrBottom->Visible = true;
@@ -1408,7 +1410,7 @@ void __fastcall TConfig1::pnlBottomSideDockDrop(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::pnlLeftSideUnDock(TObject *Sender,
+void  TConfig1::pnlLeftSideUnDock(TObject *Sender,
       TControl *Client, TWinControl *NewTarget, bool &Allow)
 {
     if (pnlLeftSide->VisibleDockClientCount == 1)
@@ -1419,7 +1421,7 @@ void __fastcall TConfig1::pnlLeftSideUnDock(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::pnlRightSideUnDock(TObject *Sender,
+void  TConfig1::pnlRightSideUnDock(TObject *Sender,
       TControl *Client, TWinControl *NewTarget, bool &Allow)
 {
     if (pnlRightSide->VisibleDockClientCount == 1)
@@ -1430,7 +1432,7 @@ void __fastcall TConfig1::pnlRightSideUnDock(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::pnlBottomSideUnDock(TObject *Sender,
+void  TConfig1::pnlBottomSideUnDock(TObject *Sender,
       TControl *Client, TWinControl *NewTarget, bool &Allow)
 {
     if (pnlBottomSide->VisibleDockClientCount == 1)
@@ -1441,7 +1443,7 @@ void __fastcall TConfig1::pnlBottomSideUnDock(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-void __fastcall TConfig1::LeftDockWindowProc(Messages::TMessage &Message)
+void  TConfig1::LeftDockWindowProc(Messages::TMessage &Message)
 {
     OldLeftDockWndProc(Message);
     if (Message.Msg == Controls::CM_DOCKNOTIFICATION)
@@ -1452,7 +1454,7 @@ void __fastcall TConfig1::LeftDockWindowProc(Messages::TMessage &Message)
     }
 }
 
-void __fastcall TConfig1::RightDockWindowProc(Messages::TMessage &Message)
+void  TConfig1::RightDockWindowProc(Messages::TMessage &Message)
 {
     OldRightDockWndProc(Message);
     if (Message.Msg == Controls::CM_DOCKNOTIFICATION)
@@ -1463,7 +1465,7 @@ void __fastcall TConfig1::RightDockWindowProc(Messages::TMessage &Message)
     }
 }
 
-void __fastcall TConfig1::BottomDockWindowProc(Messages::TMessage &Message)
+void  TConfig1::BottomDockWindowProc(Messages::TMessage &Message)
 {
     OldBottomDockWndProc(Message);
     if (Message.Msg == Controls::CM_DOCKNOTIFICATION)
@@ -1474,7 +1476,7 @@ void __fastcall TConfig1::BottomDockWindowProc(Messages::TMessage &Message)
     }
 }
 
-void __fastcall TConfig1::ControlVisibilityChanged(TPanel* DockTarget,TControl* Control,bool Visible)
+void  TConfig1::ControlVisibilityChanged(TPanel* DockTarget,TControl* Control,bool Visible)
 {
     // all removed
     if (DockTarget->VisibleDockClientCount == 0)
@@ -1511,7 +1513,7 @@ void __fastcall TConfig1::ControlVisibilityChanged(TPanel* DockTarget,TControl* 
         }
     }
 }
-void __fastcall TConfig1::pnlBottomSideResize(TObject *Sender)
+void  TConfig1::pnlBottomSideResize(TObject *Sender)
 {
     StatusBar1->Top = pnlBottomSide->Top + pnlBottomSide->Height;
 //            pnlBottomSide->Top = spltrBottom->Top+spltrBottom->Height;
@@ -1519,7 +1521,7 @@ void __fastcall TConfig1::pnlBottomSideResize(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TConfig1::FormShow(TObject *Sender)
+void  TConfig1::FormShow(TObject *Sender)
 {
     if ( IntExplorer )
     {
@@ -1531,7 +1533,7 @@ void __fastcall TConfig1::FormShow(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TConfig1::FileDigitalSaveExecute(TObject *Sender)
+void  TConfig1::FileDigitalSaveExecute(TObject *Sender)
 {
     #if !defined(INTERNET_VER) && !defined(TRADE_VER)
     TMDIConfig* mdic = (TMDIConfig*)ComponentExists(__classid(TMDIConfig));

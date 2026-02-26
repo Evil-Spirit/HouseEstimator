@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 /*
 ** Lua binding: z_VisIt
 ** Generated automatically by tolua++-1.0.3 on 12/16/04 19:15:52.
@@ -13,11 +17,10 @@
 /* Exported function */
 TOLUA_API int  tolua_z_VisIt_open (lua_State* tolua_S);
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"                 
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 #include "VisPrimitiveObj.hpp"
 #include "VisClass.hpp"
 #include "VisAttr.hpp"

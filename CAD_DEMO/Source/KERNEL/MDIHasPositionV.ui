@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIPosition</class>
+  <widget class="QWidget" name="MDIPosition">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>307</width>
+        <height>182</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIPosition</string>
+    </property>
+    <widget class="QFrame" name="STEP">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>307</width>
+          <height>113</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>STEP</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+      <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QFrame" name="PLOW">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>130</y>
+          <width>145</width>
+          <height>40</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>PLOW</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="PHI">
+      <property name="geometry">
+        <rect>
+          <x>156</x>
+          <y>130</y>
+          <width>145</width>
+          <height>40</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>PHI</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>AddLuaVar</class>
+  <widget class="QWidget" name="AddLuaVar">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>348</width>
+        <height>235</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>AddLuaVar</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <widget class="QLabel" name="lName">
+      <property name="geometry">
+        <rect>
+          <x>32</x>
+          <y>16</y>
+          <width>28</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Name</string>
+      </property>
+      <property name="text">
+        <string>Name</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="lType">
+      <property name="geometry">
+        <rect>
+          <x>32</x>
+          <y>48</y>
+          <width>24</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Type</string>
+      </property>
+      <property name="text">
+        <string>Type</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label1">
+      <property name="geometry">
+        <rect>
+          <x>32</x>
+          <y>80</y>
+          <width>53</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Initial value</string>
+      </property>
+      <property name="text">
+        <string>Initial value</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label2">
+      <property name="geometry">
+        <rect>
+          <x>32</x>
+          <y>112</y>
+          <width>53</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Description</string>
+      </property>
+      <property name="text">
+        <string>Description</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label3">
+      <property name="geometry">
+        <rect>
+          <x>32</x>
+          <y>144</y>
+          <width>47</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Meter unit</string>
+      </property>
+      <property name="text">
+        <string>Meter unit</string>
+      </property>
+    </widget>
+    <widget class="QComboBox" name="cbVarType">
+      <property name="geometry">
+        <rect>
+          <x>112</x>
+          <y>44</y>
+          <width>201</width>
+          <height>19</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QLineEdit" name="eVarName">
+      <property name="geometry">
+        <rect>
+          <x>112</x>
+          <y>12</y>
+          <width>201</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+    </widget>
+    <widget class="QLineEdit" name="eVarVal">
+      <property name="geometry">
+        <rect>
+          <x>112</x>
+          <y>76</y>
+          <width>201</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btOK">
+      <property name="geometry">
+        <rect>
+          <x>64</x>
+          <y>175</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btCancel">
+      <property name="geometry">
+        <rect>
+          <x>192</x>
+          <y>175</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Cancel</string>
+      </property>
+      <property name="text">
+        <string>Cancel</string>
+      </property>
+    </widget>
+    <widget class="QLineEdit" name="eComment">
+      <property name="geometry">
+        <rect>
+          <x>112</x>
+          <y>108</y>
+          <width>201</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+    </widget>
+    <widget class="QLineEdit" name="eMeter">
+      <property name="geometry">
+        <rect>
+          <x>112</x>
+          <y>140</y>
+          <width>201</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef UNDOH
@@ -34,7 +38,7 @@ public:
     virtual ~TGridUndoSession();
     void Open(const AnsiString& aName);
     void Close();
-    __property bool Closed = {read = FClosed};
+    // __property bool Closed {read=FClosed}; // [manual migration needed]
     void RegisterChanges(const TPoint ColRow, TCell* MRO);
     void RegisterCreation(const TPoint ColRow, TCell* MRO);
     void RegisterDeletion(const TPoint ColRow, TCell* MRO);

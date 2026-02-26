@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MainToolsVH
@@ -29,13 +33,13 @@ private:
 	TIntVec SetCursorDec(MBTi DecX, MBTi DecY, bool SetMouse);
     TIntVec DecExit(bool SetMouse);
     TIntVec PolExit(bool SetMouse);
-    void __fastcall eDecKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift);
-    void __fastcall eDecExit(TObject* _Sender);
-    void __fastcall ePolKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift);
-    void __fastcall ePolExit(TObject* _Sender);
+    void  eDecKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift);
+    void  eDecExit(TObject* _Sender);
+    void  ePolKeyDown(TObject* _Sender, WORD &Key, TShiftState Shift);
+    void  ePolExit(TObject* _Sender);
 
-    void __fastcall bDecDClick(TObject *_Sender);
-    void __fastcall bPolDClick(TObject *_Sender);
+    void  bDecDClick(TObject *_Sender);
+    void  bPolDClick(TObject *_Sender);
 
     TMDI3D* GetTMDI3D();
 
@@ -45,16 +49,16 @@ private:
     void UpdateNewCursorPos();
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 
     TDialogBaseTool();
     virtual ~TDialogBaseTool();
     int FormType;
     TToolForm* ToolForm;
     TMTList<TForm> Forms;
-//    __property TIntVec Center = {read = GetCenter, write = SetCenter};
-//    __property TIntVec CurrentPoint = {read = GetCurrentPoint, write = SetCurrentPoint};
-    __property TMDI3D* Sender = { read = GetTMDI3D };
+// __property TIntVec Center {read=GetCenter, write=SetCenter}; // [manual migration needed]
+// __property TIntVec CurrentPoint {read=GetCurrentPoint, write=SetCurrentPoint}; // [manual migration needed]
+    // __property TMDI3D* Sender {read=GetTMDI3D}; // [manual migration needed]
 
 	TChangeVec A;
     TChangeVec PlaneN;
@@ -66,48 +70,44 @@ public:
     virtual void MouseUp(void* _Sender, TMouseButton Button, TShiftState Shift, const TIntVec& CursorPosition);
 };
 
-extern COMMONAL_API TClassNode* TDialogBaseTool::StaticType;
 
 class COMMONAL_API TBindedStateBlock : public TStateBlock{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TBindedStateBlock();
     TBindedStateBlock(AnsiString _Name, TCommands _Commands, int _Id, int _ExexutedEvent);
     virtual ~TBindedStateBlock(){};
     virtual void Edit(TComponent *Owner, TWinControl *Parent, void *Data);
 };
 
-extern COMMONAL_API TClassNode* TBindedStateBlock::StaticType;
 
 
 class COMMONAL_API TBindedActionBlock : public TActionBlock{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TBindedActionBlock();
     TBindedActionBlock(AnsiString _Name, TCommands _Commands, int _Id);
     virtual ~TBindedActionBlock(){};
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
 
-extern COMMONAL_API TClassNode* TBindedActionBlock::StaticType;
 
 
 class COMMONAL_API TBindedConditionalBlock : public TConditionalBlock{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TBindedConditionalBlock();
     TBindedConditionalBlock(AnsiString _Name, TCondition _Condition, int _Id);
     virtual ~TBindedConditionalBlock(){};
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
 };
 
-extern COMMONAL_API TClassNode* TBindedConditionalBlock::StaticType;
 
 class COMMONAL_API TBindedBaseTool : public TDialogBaseTool{
 private:
@@ -117,7 +117,7 @@ private:
     char* GetExecutedName();
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 
     TBindedBaseTool();
     virtual ~TBindedBaseTool(){};
@@ -143,14 +143,13 @@ public:
 
     AnsiString KeyToStr(WORD Key);
     char* KeyToStrChar(WORD Key);
-    __property char* ExecutedName = { read = GetExecutedName };
+    // __property char* ExecutedName {read=GetExecutedName}; // [manual migration needed]
 
     TLuaModule RenderLuaModule;
     virtual void OnRender();
     TLuaAttribute Attribute;
 };
 
-extern COMMONAL_API TClassNode* TBindedBaseTool::StaticType;
 
 extern COMMONAL_API TBindedBaseTool* CurrentTool;
 //------------------------MainTools-----------------------

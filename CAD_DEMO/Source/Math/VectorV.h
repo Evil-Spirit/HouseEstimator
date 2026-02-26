@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef VectorVH
@@ -8,7 +12,9 @@
 
 //---------------------------------------------------------------------------
 
-#define COMMONAL_API __declspec(package)
+#ifndef COMMONAL_API
+#define COMMONAL_API Q_DECL_EXPORT
+#endif
 
 typedef float MBTi;
 typedef double MBTf;
@@ -28,9 +34,9 @@ struct COMMONAL_API TInt3d
 		};
 		struct
 		{
-			MBTi fx;
-			MBTi fy;
-			MBTi fz;
+			MBTi x;
+			MBTi y;
+			MBTi z;
 		};
 	};
 };
@@ -42,6 +48,9 @@ protected:
 	virtual void SetZ(MBTi az);
 	virtual void SetA(int i,MBTi aa);
 	MBTi GetA(int i) const;
+	MBTi GetX() const { return x; }
+	MBTi GetY() const { return y; }
+	MBTi GetZ() const { return z; }
 public:
 	TIntVec();
 	virtual ~TIntVec(){};
@@ -51,10 +60,29 @@ public:
 	TIntVec(const TVisMathVector &rhs);
 	TIntVec(const TVisVector &rhs);
 
-	__property MBTi x = {read = fx,write = SetX};
-	__property MBTi y = {read = fy,write = SetY};
-	__property MBTi z = {read = fz,write = SetZ};
-	__property MBTi a[int] = {read = GetA,write = SetA};
+#ifdef _MSC_VER
+	// MSVC property extension: enables obj.x / obj.x = v syntax
+	__declspec(property(get=GetX, put=SetX)) MBTi x;
+	__declspec(property(get=GetY, put=SetY)) MBTi y;
+	__declspec(property(get=GetZ, put=SetZ)) MBTi z;
+	__declspec(property(get=GetA, put=SetA)) MBTi a[];
+#else
+	// GCC/Clang: promote private base members to public for direct x/y/z access
+	using TInt3d::x;
+	using TInt3d::y;
+	using TInt3d::z;
+	using TInt3d::fa;
+	// 'a' is a Borland __property a[] alias; expose fa as 'a' for compatibility
+	MBTi (&a)[3] = fa;
+	// GCC/Clang: provide subscript operator for fa[] array access
+	// (Borland __property a[int] is not available; use operator[] instead)
+	MBTi& operator[](int i)       { return fa[i]; }
+	MBTi  operator[](int i) const { return fa[i]; }
+#endif
+
+	// Cross-platform subscript operator for fa[] (always available)
+	MBTi GetFa(int i) const { return fa[i]; }
+	void SetFa(int i, MBTi v) { fa[i] = v; }
 
 	virtual TIntVec & operator = (const TVisMathVector &rhs);
 	virtual TIntVec & operator = (const TVisVector &rhs);
@@ -91,7 +119,7 @@ public:
 
 	MBTi Length() const;
 	MBTi Length2D() const;
-	//соответствует TIntVec(x,y,0)*TIntVec(0,0,1);
+	//Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГҐГІ TIntVec(x,y,0)*TIntVec(0,0,1);
 	TIntVec Perpendicular2D() const;
 
 	int intX() const;

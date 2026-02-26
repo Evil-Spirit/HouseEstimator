@@ -1,13 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef LuaUniFormVH
 #define LuaUniFormVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "QuckList.h"
 
 class TElement;
@@ -29,13 +29,13 @@ __published:	// IDE-managed Components
     TPanel *Panel3;
     TPanel *Panel4;
     TPanel *Panel5;
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall btOKClick(TObject *Sender);
-    void __fastcall btCancelClick(TObject *Sender);
-    void __fastcall btApplyClick(TObject *Sender);
-    void __fastcall FormActivate(TObject *Sender);
+    void  FormCreate(TObject *Sender);
+    void  FormClose(TObject *Sender, TCloseAction &Action);
+    void  FormDestroy(TObject *Sender);
+    void  btOKClick(TObject *Sender);
+    void  btCancelClick(TObject *Sender);
+    void  btApplyClick(TObject *Sender);
+    void  FormActivate(TObject *Sender);
 private:	// User declarations
     TPanel* FPanels[5];
 public:		// User declarations
@@ -46,7 +46,7 @@ public:		// User declarations
     TElement *Element;
     TMainTree *MT;
 
-    __fastcall TLuaUniForm(TComponent* Owner,TLuaModule* _Module);
+     TLuaUniForm(TComponent* Owner,TLuaModule* _Module);
 
     TWinControl* GetPanel(int PanelIndex);
     void SetPageCountForPanel(int PanelIndex, int PageCount);
@@ -54,9 +54,9 @@ public:		// User declarations
     void SetCaption(char* Caption);
     void SetPageCaption(int PanelIndex,int PageIndex,char* Caption);
 
-    //метаэлемент для показа если нет то пропустить
+    //Г¬ГҐГІГ ГЅГ«ГҐГ¬ГҐГ­ГІ Г¤Г«Гї ГЇГ®ГЄГ Г§Г  ГҐГ±Г«ГЁ Г­ГҐГІ ГІГ® ГЇГ°Г®ГЇГіГ±ГІГЁГІГј
     TElement* ShowElement;
-    //метаэлемент для показа если нет то пропустить
+    //Г¬ГҐГІГ ГЅГ«ГҐГ¬ГҐГ­ГІ Г¤Г«Гї ГЇГ®ГЄГ Г§Г  ГҐГ±Г«ГЁ Г­ГҐГІ ГІГ® ГЇГ°Г®ГЇГіГ±ГІГЁГІГј
     TMetaElement* ShowMetaElement;
     void Start();
     bool ShowView();
@@ -66,7 +66,7 @@ public:		// User declarations
     bool AutoAlign;
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TLuaUniForm *LuaUniForm;
+extern  TLuaUniForm *LuaUniForm;
 //---------------------------------------------------------------------------
 #endif
  

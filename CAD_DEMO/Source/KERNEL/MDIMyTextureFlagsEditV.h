@@ -1,14 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMyTextureFlagsEditVH
 #define MDIMyTextureFlagsEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
-#include <ExtCtrls.hpp>
 #include "VisTex.hpp"
 #include "MetaClasses.h"
 //---------------------------------------------------------------------------
@@ -26,7 +26,7 @@ virtual void Refresh();
 virtual void Apply();
 virtual  bool Checked();
     virtual void SETUP();
-    __fastcall TMDIMyTextureFlagsEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+     TMDIMyTextureFlagsEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIMyTextureFlagsEdit *MDIMyTextureFlagsEdit;

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>GenImage</class>
+  <widget class="QWidget" name="GenImage">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>544</width>
+        <height>278</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>GenImage</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QLabel" name="Label1">
+      <property name="geometry">
+        <rect>
+          <x>138</x>
+          <y>80</y>
+          <width>31</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Width:</string>
+      </property>
+      <property name="text">
+        <string>Width:</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label2">
+      <property name="geometry">
+        <rect>
+          <x>138</x>
+          <y>104</y>
+          <width>34</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Height:</string>
+      </property>
+      <property name="text">
+        <string>Height:</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="lWidth">
+      <property name="geometry">
+        <rect>
+          <x>202</x>
+          <y>80</y>
+          <width>6</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>0</string>
+      </property>
+      <property name="text">
+        <string>0</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="lHeight">
+      <property name="geometry">
+        <rect>
+          <x>202</x>
+          <y>104</y>
+          <width>6</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>0</string>
+      </property>
+      <property name="text">
+        <string>0</string>
+      </property>
+    </widget>
+    <widget class="QFrame" name="sColor">
+      <property name="geometry">
+        <rect>
+          <x>82</x>
+          <y>80</y>
+          <width>41</width>
+          <height>33</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label5">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>88</y>
+          <width>58</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Background</string>
+      </property>
+      <property name="text">
+        <string>Background</string>
+      </property>
+    </widget>
+    <widget class="QFrame" name="LIST">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>16</y>
+          <width>249</width>
+          <height>49</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>LIST</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>275</x>
+          <y>8</y>
+          <width>260</width>
+          <height>260</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <widget class="QLabel" name="Image">
+        <property name="geometry">
+          <rect>
+            <x>1</x>
+            <y>1</y>
+            <width>105</width>
+            <height>105</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="btGen">
+      <property name="geometry">
+        <rect>
+          <x>176</x>
+          <y>240</y>
+          <width>89</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Generate</string>
+      </property>
+      <property name="text">
+        <string>Generate</string>
+      </property>
+      <property name="enabled">
+        <bool>false</bool>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btCancel">
+      <property name="geometry">
+        <rect>
+          <x>88</x>
+          <y>240</y>
+          <width>81</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Cancel</string>
+      </property>
+      <property name="text">
+        <string>Cancel</string>
+      </property>
+    </widget>
+    <widget class="QCheckBox" name="cbAA">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>128</y>
+          <width>97</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Anti-aliasing</string>
+      </property>
+      <property name="text">
+        <string>Anti-aliasing</string>
+      </property>
+    </widget>
+    <widget class="QCheckBox" name="cbSmooth">
+      <property name="geometry">
+        <rect>
+          <x>120</x>
+          <y>128</y>
+          <width>97</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Smooth</string>
+      </property>
+      <property name="text">
+        <string>Smooth</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btOK">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>240</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+      <property name="enabled">
+        <bool>false</bool>
+      </property>
+    </widget>
+    <widget class="QCheckBox" name="cbAntiAliasingLine">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>152</y>
+          <width>153</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Anti-aliasing lines</string>
+      </property>
+      <property name="text">
+        <string>Anti-aliasing lines</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

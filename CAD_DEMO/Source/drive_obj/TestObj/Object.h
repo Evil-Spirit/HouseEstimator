@@ -1,21 +1,18 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ObjectH
 #define ObjectH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "VisPrimitiveObj.hpp"
 #include "VisView.hpp"
 #include "VisComp.hpp"
 #include "VisMat.hpp"
-#include <Menus.hpp>
-#include <Dialogs.hpp>
-#include <ComCtrls.hpp>
 #include "VisTex.hpp"
-#include <ExtCtrls.hpp>
 class TGeomObject;
 #include "GeomObjV.h"
 //---------------------------------------------------------------------------
@@ -120,84 +117,84 @@ __published:	// IDE-managed Components
     TMenuItem *Analytical1;
     TMenuItem *RotateTimer1;
     TTimer *Timer1;
-	void __fastcall FormCreate(TObject *Sender);
-	void __fastcall Load1Click(TObject *Sender);
-	void __fastcall Save1Click(TObject *Sender);
-	void __fastcall Optimize1Click(TObject *Sender);
-	void __fastcall objClear1Click(TObject *Sender);
-	void __fastcall objSpiltByPlane1Click(TObject *Sender);
-	void __fastcall objSliceByPlane1Click(TObject *Sender);
-	void __fastcall objSolidCheck1Click(TObject *Sender);
-	void __fastcall obj1Click(TObject *Sender);
-	void __fastcall Convert1Click(TObject *Sender);
-	void __fastcall DetectHolesAtAll1Click(TObject *Sender);
-	void __fastcall RefreshView1Click(TObject *Sender);
-	void __fastcall CrossCutsAtAll1Click(TObject *Sender);
-	void __fastcall WeldPointsAtAll1Click(TObject *Sender);
-	void __fastcall Info1Click(TObject *Sender);
-	void __fastcall Extrude1Click(TObject *Sender);
-	void __fastcall Square1Click(TObject *Sender);
-	void __fastcall Circle1Click(TObject *Sender);
-	void __fastcall Ring1Click(TObject *Sender);
-	void __fastcall HoledRing1Click(TObject *Sender);
-	void __fastcall SyncronizePolygonsWises1Click(TObject *Sender);
-	void __fastcall Triangulate1Click(TObject *Sender);
-	void __fastcall HoledXRing1Click(TObject *Sender);
-	void __fastcall CalculateNormals1Click(TObject *Sender);
-	void __fastcall Rotate1Click(TObject *Sender);
-	void __fastcall N11Click(TObject *Sender);
-	void __fastcall N21Click(TObject *Sender);
-	void __fastcall AB1Click(TObject *Sender);
-	void __fastcall AB2Click(TObject *Sender);
-	void __fastcall BA1Click(TObject *Sender);
-	void __fastcall AB3Click(TObject *Sender);
-	void __fastcall Clear1Click(TObject *Sender);
-	void __fastcall Move1Click(TObject *Sender);
-	void __fastcall Points1Click(TObject *Sender);
-	void __fastcall Cuts1Click(TObject *Sender);
-	void __fastcall Polygons1Click(TObject *Sender);
-	void __fastcall Normals1Click(TObject *Sender);
-	void __fastcall Holes1Click(TObject *Sender);
-	void __fastcall ScaleTo1Click(TObject *Sender);
-	void __fastcall FreeUnused1Click(TObject *Sender);
-	void __fastcall Pyramid1Click(TObject *Sender);
-	void __fastcall Point1Click(TObject *Sender);
-	void __fastcall Mark2Click(TObject *Sender);
-	void __fastcall Classify1Click(TObject *Sender);
-	void __fastcall Error1Click(TObject *Sender);
-	void __fastcall Smooth1Click(TObject *Sender);
-	void __fastcall Color1Click(TObject *Sender);
-	void __fastcall Cut1Click(TObject *Sender);
-	void __fastcall Polygon1Click(TObject *Sender);
-	void __fastcall ClearMarks1Click(TObject *Sender);
-	void __fastcall SavePolygonAsFigure1Click(TObject *Sender);
-	void __fastcall SaveObjectAsFigure1Click(TObject *Sender);
-	void __fastcall PolygonPlaceOnPlane1Click(TObject *Sender);
-	void __fastcall TransformToPlane1Click(TObject *Sender);
-	void __fastcall CalculateZEps1Click(TObject *Sender);
-	void __fastcall CalculateDeflection1Click(TObject *Sender);
-	void __fastcall ClearAllFlags1Click(TObject *Sender);
-	void __fastcall FixCuts1Click(TObject *Sender);
-	void __fastcall ResIntop1Click(TObject *Sender);
-	void __fastcall SliceByPlaneNoSplit1Click(TObject *Sender);
-	void __fastcall InvertNormals1Click(TObject *Sender);
-	void __fastcall Cut2Click(TObject *Sender);
-	void __fastcall Polygonize1Click(TObject *Sender);
-	void __fastcall Plane1Click(TObject *Sender);
-	void __fastcall GeometryFixCrossCuts1Click(TObject *Sender);
-	void __fastcall Contourize1Click(TObject *Sender);
-	void __fastcall RemoveBranches1Click(TObject *Sender);
-	void __fastcall FindBasePoints1Click(TObject *Sender);
-	void __fastcall Cuts2Click(TObject *Sender);
-	void __fastcall PolygonizeBridgesRemove1Click(TObject *Sender);
-	void __fastcall ContourizeBridgesRemove1Click(TObject *Sender);
-    void __fastcall Analytical1Click(TObject *Sender);
-    void __fastcall RotateTimer1Click(TObject *Sender);
-    void __fastcall Timer1Timer(TObject *Sender);
+	void  FormCreate(TObject *Sender);
+	void  Load1Click(TObject *Sender);
+	void  Save1Click(TObject *Sender);
+	void  Optimize1Click(TObject *Sender);
+	void  objClear1Click(TObject *Sender);
+	void  objSpiltByPlane1Click(TObject *Sender);
+	void  objSliceByPlane1Click(TObject *Sender);
+	void  objSolidCheck1Click(TObject *Sender);
+	void  obj1Click(TObject *Sender);
+	void  Convert1Click(TObject *Sender);
+	void  DetectHolesAtAll1Click(TObject *Sender);
+	void  RefreshView1Click(TObject *Sender);
+	void  CrossCutsAtAll1Click(TObject *Sender);
+	void  WeldPointsAtAll1Click(TObject *Sender);
+	void  Info1Click(TObject *Sender);
+	void  Extrude1Click(TObject *Sender);
+	void  Square1Click(TObject *Sender);
+	void  Circle1Click(TObject *Sender);
+	void  Ring1Click(TObject *Sender);
+	void  HoledRing1Click(TObject *Sender);
+	void  SyncronizePolygonsWises1Click(TObject *Sender);
+	void  Triangulate1Click(TObject *Sender);
+	void  HoledXRing1Click(TObject *Sender);
+	void  CalculateNormals1Click(TObject *Sender);
+	void  Rotate1Click(TObject *Sender);
+	void  N11Click(TObject *Sender);
+	void  N21Click(TObject *Sender);
+	void  AB1Click(TObject *Sender);
+	void  AB2Click(TObject *Sender);
+	void  BA1Click(TObject *Sender);
+	void  AB3Click(TObject *Sender);
+	void  Clear1Click(TObject *Sender);
+	void  Move1Click(TObject *Sender);
+	void  Points1Click(TObject *Sender);
+	void  Cuts1Click(TObject *Sender);
+	void  Polygons1Click(TObject *Sender);
+	void  Normals1Click(TObject *Sender);
+	void  Holes1Click(TObject *Sender);
+	void  ScaleTo1Click(TObject *Sender);
+	void  FreeUnused1Click(TObject *Sender);
+	void  Pyramid1Click(TObject *Sender);
+	void  Point1Click(TObject *Sender);
+	void  Mark2Click(TObject *Sender);
+	void  Classify1Click(TObject *Sender);
+	void  Error1Click(TObject *Sender);
+	void  Smooth1Click(TObject *Sender);
+	void  Color1Click(TObject *Sender);
+	void  Cut1Click(TObject *Sender);
+	void  Polygon1Click(TObject *Sender);
+	void  ClearMarks1Click(TObject *Sender);
+	void  SavePolygonAsFigure1Click(TObject *Sender);
+	void  SaveObjectAsFigure1Click(TObject *Sender);
+	void  PolygonPlaceOnPlane1Click(TObject *Sender);
+	void  TransformToPlane1Click(TObject *Sender);
+	void  CalculateZEps1Click(TObject *Sender);
+	void  CalculateDeflection1Click(TObject *Sender);
+	void  ClearAllFlags1Click(TObject *Sender);
+	void  FixCuts1Click(TObject *Sender);
+	void  ResIntop1Click(TObject *Sender);
+	void  SliceByPlaneNoSplit1Click(TObject *Sender);
+	void  InvertNormals1Click(TObject *Sender);
+	void  Cut2Click(TObject *Sender);
+	void  Polygonize1Click(TObject *Sender);
+	void  Plane1Click(TObject *Sender);
+	void  GeometryFixCrossCuts1Click(TObject *Sender);
+	void  Contourize1Click(TObject *Sender);
+	void  RemoveBranches1Click(TObject *Sender);
+	void  FindBasePoints1Click(TObject *Sender);
+	void  Cuts2Click(TObject *Sender);
+	void  PolygonizeBridgesRemove1Click(TObject *Sender);
+	void  ContourizeBridgesRemove1Click(TObject *Sender);
+    void  Analytical1Click(TObject *Sender);
+    void  RotateTimer1Click(TObject *Sender);
+    void  Timer1Timer(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	TVisPrimitiveObj* VCO;
-	__fastcall TForm1(TComponent* Owner);
+	 TForm1(TComponent* Owner);
 	void CustomRender(TVisView* aView);
 	void ConstructVCO(TGeomObject* GO, TConstructFlags co);
 	void ConstructVCO();
@@ -206,7 +203,7 @@ public:		// User declarations
 	TIntVec o,n;
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm1 *Form1;
+extern  TForm1 *Form1;
 //---------------------------------------------------------------------------
 #endif
 

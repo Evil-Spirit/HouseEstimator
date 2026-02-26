@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef InfinityLineVH
@@ -8,7 +12,7 @@
 class COMMONAL_API TInfinityLine : public T2DGObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 
     TInfinityLine();
     virtual ~TInfinityLine(){};
@@ -16,5 +20,4 @@ public:
 //    void Render(TEditor2D* aView);
 };
 
-extern COMMONAL_API TClassNode* TInfinityLine::StaticType;
 #endif

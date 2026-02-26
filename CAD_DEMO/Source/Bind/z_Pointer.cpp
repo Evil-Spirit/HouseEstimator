@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 /*
 ** Lua binding: z_Pointer
 ** Generated automatically by tolua++-1.0.3 on 12/09/04 19:36:20.
@@ -13,11 +17,10 @@
 /* Exported function */
 TOLUA_API int  tolua_z_Pointer_open (lua_State* tolua_S);
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"                 
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 #include "ElementV.h"
 /* function to release collected object via destructor */
 #ifdef __cplusplus

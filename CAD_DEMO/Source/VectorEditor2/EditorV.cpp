@@ -1,15 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "math.h"
 #include <Poligon.h>
 #include "EditorV.h"
 
-#include "Controls.hpp"
 //---------------------------------------------------------------------------
 #include "G2DObjectV.h"
 #include "ProgramPropertyV.h"
@@ -28,7 +30,6 @@
 #include "CreateObjectLinesFixidV.h"*/
 #include "BaseToolV.h"
 
-#pragma package(smart_init)
 #pragma link "VisAttr"
 #pragma link "VisCam"
 #pragma link "VisCanvasView"
@@ -50,7 +51,7 @@
 TEditor2D *Editor2D;
 MBTi PZOOM = 0.01;
 
-__fastcall TEditor2D::TEditor2D(TComponent* Owner)
+ TEditor2D::TEditor2D(TComponent* Owner)
     :TForm(Owner)
 {
     View->DrawValues = TVisDrawValues()<<dvRed<<dvGreen<<dvBlue<<dvAlpha;
@@ -299,7 +300,7 @@ void TEditor2D::TestGrid(const TIntVec &V1,const TIntVec &V2)
             Grid.Attr.ChangeMaxToMin = true;
 }
 
-void __fastcall TEditor2D::ViewRender(TVisView *aView)
+void  TEditor2D::ViewRender(TVisView *aView)
 {
     VisAttributes1->Render(aView);
     VisLight1->Render(aView);
@@ -394,7 +395,7 @@ TIntVec TEditor2D::ProjectToScreen(const TIntVec& Vv)
     return  P;
 }
 
-void __fastcall TEditor2D::ViewClick(TObject *Sender)
+void  TEditor2D::ViewClick(TObject *Sender)
 {
 //    MainCF.AddCut(ScreenToProject(random(View->Width),random(View->Height)),ScreenToProject(random(View->Width),random(View->Height)));
 ////    TPoint P = ScreenToClient(Mouse->CursorPos);
@@ -402,7 +403,7 @@ void __fastcall TEditor2D::ViewClick(TObject *Sender)
 //    View->InvalidateGL();
 }
 //---------------------------------------------------------------------------
-void __fastcall TEditor2D::ViewMouseWheel(TObject *Sender,
+void  TEditor2D::ViewMouseWheel(TObject *Sender,
       TShiftState Shift, int WheelDelta, TPoint &MousePos, bool &Handled)
 {
     if (Grid.Attr.Step > Grid.Attr.ZoomLimit && WheelDelta<0)
@@ -427,12 +428,12 @@ void __fastcall TEditor2D::ViewMouseWheel(TObject *Sender,
 
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::FormShow(TObject *Sender)
+void  TEditor2D::FormShow(TObject *Sender)
 {
     ::SetFocus(View->Handle);
 }
 
-void __fastcall TEditor2D::ViewMouseDown(TObject *Sender,
+void  TEditor2D::ViewMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     MyCursor.Position = ScreenToProject(TIntVec(X,Y,MyCursor.Position.z));
@@ -447,7 +448,7 @@ void __fastcall TEditor2D::ViewMouseDown(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::ViewMouseUp(TObject *Sender,
+void  TEditor2D::ViewMouseUp(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     MyCursor.Position.x = ScreenToProject(TIntVec(X,Y,0)).x;
@@ -456,7 +457,7 @@ void __fastcall TEditor2D::ViewMouseUp(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::ViewKeyDown(TObject *Sender, WORD &Key,
+void  TEditor2D::ViewKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
     if (Key == VK_F2)
@@ -551,7 +552,7 @@ void __fastcall TEditor2D::ViewKeyDown(TObject *Sender, WORD &Key,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::ViewKeyUp(TObject *Sender, WORD &Key,
+void  TEditor2D::ViewKeyUp(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
     MyControls.KeyUp(Editor2D, Key, Shift);
@@ -562,7 +563,7 @@ void __fastcall TEditor2D::ViewKeyUp(TObject *Sender, WORD &Key,
 
 
 
-void __fastcall TEditor2D::PopupMenuItemClick(TObject *Sender)
+void  TEditor2D::PopupMenuItemClick(TObject *Sender)
 {
     if ( Sender->ClassType() == __classid(TMenuItem) )
     {
@@ -574,10 +575,10 @@ void __fastcall TEditor2D::PopupMenuItemClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::ApplicationEventsActionUpdate(
+void  TEditor2D::ApplicationEventsActionUpdate(
       TBasicAction *_Action, bool &Handled)
 {
-    //áåç ïðîâåðêè
+    //Ã¡Ã¥Ã§ Ã¯Ã°Ã®Ã¢Ã¥Ã°ÃªÃ¨
     TAction* Action = (TAction*)_Action;
     int ind = Action->Tag;
         Action->ImageIndex =
@@ -591,31 +592,31 @@ void __fastcall TEditor2D::ApplicationEventsActionUpdate(
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::ActionExecute(TObject *Sender)
+void  TEditor2D::ActionExecute(TObject *Sender)
 {
-    //Áåç ýòîãî action not enabled
+    //ÃÃ¥Ã§ Ã½Ã²Ã®Ã£Ã® action not enabled
     int i = 0;
-    //Áåç ýòîãî ïîÿâëÿåòñÿ âîðíèíã
+    //ÃÃ¥Ã§ Ã½Ã²Ã®Ã£Ã® Ã¯Ã®Ã¿Ã¢Ã«Ã¿Ã¥Ã²Ã±Ã¿ Ã¢Ã®Ã°Ã­Ã¨Ã­Ã£
     if (i) i++;
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TEditor2D::ALExecute(TBasicAction *Action, bool &Handled)
+void  TEditor2D::ALExecute(TBasicAction *Action, bool &Handled)
 {
     MyControls.Exit(Editor2D);
     MyControls.ActiveList = Action->Tag ;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::ViewResize(TObject *Sender)
+void  TEditor2D::ViewResize(TObject *Sender)
 {
     Grid.Attr.ReBuild = true;
     View->InvalidateGL();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::ViewMouseMove(TObject *Sender,
+void  TEditor2D::ViewMouseMove(TObject *Sender,
       TShiftState Shift, int X, int Y)
 {
     TPoint P(X,Y);
@@ -647,7 +648,7 @@ void __fastcall TEditor2D::ViewMouseMove(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::ToolButton1Click(TObject *Sender)
+void  TEditor2D::ToolButton1Click(TObject *Sender)
 {
     ProgramProperty->ShowModal();
 }

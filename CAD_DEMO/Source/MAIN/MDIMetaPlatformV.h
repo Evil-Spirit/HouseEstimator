@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMetaPlatformVH
 #define MDIMetaPlatformVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIElementV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMetaPlatform;
 class TMDIMetaPlatform : public TMDIElement
@@ -18,15 +17,15 @@ __published:	// IDE-managed Components
     TTabSheet *tsPlatform;
     TCheckBox *cbFirst;
     TCheckBox *cbLand;
-    void __fastcall cbFirstClick(TObject *Sender);
-    void __fastcall cbLandClick(TObject *Sender);
+    void  cbFirstClick(TObject *Sender);
+    void  cbLandClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     virtual void MNRefresh();
     virtual void MNApply();
-    __fastcall TMDIMetaPlatform(TComponent* Owner,TMetaPlatform *M);
+     TMDIMetaPlatform(TComponent* Owner,TMetaPlatform *M);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMDIMetaPlatform *MDIMetaPlatform;
+extern  TMDIMetaPlatform *MDIMetaPlatform;
 //---------------------------------------------------------------------------
 #endif

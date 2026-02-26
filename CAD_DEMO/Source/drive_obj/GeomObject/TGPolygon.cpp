@@ -1,15 +1,17 @@
-#include <vcl.h>                           
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"  
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "math.h"                                    
-#pragma hdrstop
 
 #include "GeomObjV.h"
 
 #include "MYGL.h"
 #include "Poligon.h"
-#pragma package(smart_init)
 
 TClassNode* TGPolygon::StaticType = NULL;
 
@@ -44,7 +46,7 @@ TGPolygon::TGPolygon()
 TGPolygon::TGPolygon(TMTList <TGCut> &cuts)
 {
 	if (cuts.Count<3)
-		throw EMyException ("<TGeomObject::AddPolygon> недостаточно данных!");
+		throw EMyException ("<TGeomObject::AddPolygon> Г­ГҐГ¤Г®Г±ГІГ ГІГ®Г·Г­Г® Г¤Г Г­Г­Г»Гµ!");
 
 	RegisterNewClass< TGUnit, TGPolygon >(this, false, &CreateFunction);
 	RegisterField(&Tag, &aPOLYTAG, mtInt);
@@ -59,7 +61,7 @@ TGPolygon::TGPolygon(TMTList <TGCut> &cuts)
 	FNormal		= TIntVec(0,0,1);
 	for (int i=0;i<cuts.Count;i++)
 		if (AddCut(cuts.Items[i]) == grERROR)
-			ErrorMsg("<TGPolygon::TGPolygon> невозможно добавить отрезок!");
+			ErrorMsg("<TGPolygon::TGPolygon> Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г® Г¤Г®ГЎГ ГўГЁГІГј Г®ГІГ°ГҐГ§Г®ГЄ!");
 }
 
 void TGPolygon::Assign(TMyObject* MO)
@@ -114,15 +116,15 @@ int TGPolygon::AddCut(TGCut* Cut)
 {
 /*	if (Closed)
 	{
-		throw EMyException("<TGPolygon::AddCut> добавление отрезка в замкнутый полигон");
+		throw EMyException("<TGPolygon::AddCut> Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ  Гў Г§Г Г¬ГЄГ­ГіГІГ»Г© ГЇГ®Г«ГЁГЈГ®Г­");
 		return grERROR;
 	}	
 */
 	if (!Cut)
-		throw EMyException("<TGPolygon::AddCut> невозможно добавить NULL");
+		throw EMyException("<TGPolygon::AddCut> Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г® Г¤Г®ГЎГ ГўГЁГІГј NULL");
 		
 	if (FCuts.IndexOf(Cut) != -1)
-		throw EMyException("<TGPolygon::AddCut> невозможно добавить существующий отрезок!");
+		throw EMyException("<TGPolygon::AddCut> Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г® Г¤Г®ГЎГ ГўГЁГІГј Г±ГіГ№ГҐГ±ГІГўГіГѕГ№ГЁГ© Г®ГІГ°ГҐГ§Г®ГЄ!");
 //		return grERROR;
 
 	int ret = grERROR;
@@ -138,7 +140,7 @@ int TGPolygon::AddCut(TGCut* Cut)
 	bool canConnectToBegin	= ( Cut->CanConnect(FCuts[0]) != NULL)/* && !Cut->Equal(FCuts[0])*/;
 	bool canConnectToEnd	= ( Cut->CanConnect(*FCuts.Last())!= NULL)/* && !Cut->Equal(*FCuts.Last())*/;
 
-    // Сначала нужно Проверить конец - чтобы не получить инверсии отрезков.
+    // Г‘Г­Г Г·Г Г«Г  Г­ГіГ¦Г­Г® ГЏГ°Г®ГўГҐГ°ГЁГІГј ГЄГ®Г­ГҐГ¶ - Г·ГІГ®ГЎГ» Г­ГҐ ГЇГ®Г«ГіГ·ГЁГІГј ГЁГ­ГўГҐГ°Г±ГЁГЁ Г®ГІГ°ГҐГ§ГЄГ®Гў.
 	if ( canConnectToEnd)
 	{
 		FCuts.Add(Cut);
@@ -199,7 +201,7 @@ bool TGPolygon::FindBasisPoints(TMTList<TGPoint> &points)
 			MBTi b = (p2->Point-p0->Point).Length();
 			MBTi c = (p2->Point-p1->Point).Length();
 //			if (a<PEPS || b<PEPS)
-//				throw EMyException("<TGPolygon::FindBasisPoints> - плохой полигон!");
+//				throw EMyException("<TGPolygon::FindBasisPoints> - ГЇГ«Г®ГµГ®Г© ГЇГ®Г«ГЁГЈГ®Г­!");
 			MBTi k = fabs(sqr(c)-sqr(a)-sqr(b))/sqr(a*b);
 			if (!bestP1 || !bestP2 || min_k>k)
 			{
@@ -227,7 +229,7 @@ bool TGPolygon::CalculatePlane()
 	TMTList<TGPoint> basis;
 
 	if (!FindBasisPoints(basis))
-		throw EMyException("<TGPolygon::CalculatePlane> Невозможно рассчитать нормаль!");
+		throw EMyException("<TGPolygon::CalculatePlane> ГЌГҐГўГ®Г§Г¬Г®Г¦Г­Г® Г°Г Г±Г±Г·ГЁГІГ ГІГј Г­Г®Г°Г¬Г Г«Гј!");
 	FNormal = VectorP(basis[2].Point - basis[0].Point,  basis[1].Point - basis[0].Point).Normalize();
 
 /*	TIntVec normal;
@@ -315,7 +317,7 @@ void TGPolygon::RemoveCut(TGCut *cut)
 	if ( cut->RemovePlane(this) != -1 )
 		FCuts.Remove(cut);
 	else
-		throw EMyException("TGPolygon::RemoveCut : отрезок в полигоне не знает о нем.");
+		throw EMyException("TGPolygon::RemoveCut : Г®ГІГ°ГҐГ§Г®ГЄ Гў ГЇГ®Г«ГЁГЈГ®Г­ГҐ Г­ГҐ Г§Г­Г ГҐГІ Г® Г­ГҐГ¬.");
 }
 
 void TGPolygon::DeleteCut(int index)
@@ -325,7 +327,7 @@ void TGPolygon::DeleteCut(int index)
 	if ( FCuts.Items[index]->RemovePlane( this ) != -1 )
 		FCuts.Delete(index);
 	else
-		throw EMyException("TGPolygon::DeleteCut : отрезок в полигоне не знает о нем.");
+		throw EMyException("TGPolygon::DeleteCut : Г®ГІГ°ГҐГ§Г®ГЄ Гў ГЇГ®Г«ГЁГЈГ®Г­ГҐ Г­ГҐ Г§Г­Г ГҐГІ Г® Г­ГҐГ¬.");
 
 }
 
@@ -410,7 +412,7 @@ TGPolygon *TGPolygon::AddHole(TMTList<TGCut> &cuts)
 	}
 
 	if (!p->Closed)
-		throw EMyException ("<TGeomObject::AddPolygon> добавлен незамкнутый полигон-дырка!");
+		throw EMyException ("<TGeomObject::AddPolygon> Г¤Г®ГЎГ ГўГ«ГҐГ­ Г­ГҐГ§Г Г¬ГЄГ­ГіГІГ»Г© ГЇГ®Г«ГЁГЈГ®Г­-Г¤Г»Г°ГЄГ !");
 
 	p->FNormal = Normal;
 //	p->CalculatePlane();
@@ -545,7 +547,7 @@ bool TGPolygon::DetectSelfHoles()
 /*	for (int k=0;k<Count;k++)
 		for (int l=k+1;l<Count;l++)
 			if (&GetPoint(k) == &GetPoint(l))
-				throw EMyException("<TGeomObject::SolidCheck> : полигон содержит одинаковые вершины!");
+				throw EMyException("<TGeomObject::SolidCheck> : ГЇГ®Г«ГЁГЈГ®Г­ Г±Г®Г¤ГҐГ°Г¦ГЁГІ Г®Г¤ГЁГ­Г ГЄГ®ГўГ»ГҐ ГўГҐГ°ГёГЁГ­Г»!");
 */
 
 	for (int k=0;k<Count;k++)

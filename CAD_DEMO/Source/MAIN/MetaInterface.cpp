@@ -1,13 +1,15 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MetaInterface.h"
 
-#pragma package(smart_init)
 
 //---------------------------------------------------------------------------
 TMyObject* TMetaCommonIF::CreateFunction()

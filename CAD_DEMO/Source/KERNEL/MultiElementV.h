@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MultiElementVH
@@ -12,7 +16,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaMultiElement(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TMetaMultiElement();
@@ -21,7 +25,6 @@ public:
     virtual void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
     bool IsSizer;
 };
-extern COMMONAL_API TClassNode* TMetaMultiElement::StaticType;
 
 class COMMONAL_API TMultiElement : public TElement{
 protected:
@@ -30,7 +33,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TVisNode *VFIRST;
     TVisNode *VTRANS;
@@ -45,7 +48,7 @@ public:
     void DeleteOne(int typeindex,int index);
     void Clear();
     virtual void StandartCreateView();
-    __property int MetaPartCount = {read = GetMetaPartCount};
+    // __property int MetaPartCount {read=GetMetaPartCount}; // [manual migration needed]
     TElement *GetPart(int i,int j);
     int CountOf(int type);
     bool CheckFields();
@@ -56,7 +59,6 @@ public:
     virtual void ProcessTexturing();
     void SetMetaObject(TMyRegObject* aMetaObject);
 };
-extern COMMONAL_API TClassNode* TMultiElement::StaticType;
 
 
 #endif

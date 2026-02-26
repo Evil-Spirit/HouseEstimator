@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LuaModuleV.h"
 #include "LuaStationV.h"
@@ -14,20 +17,19 @@
 #include "InspectorMain.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 //---------------------------------------------------------------------------
-__fastcall TGlobal::TGlobal(TComponent* Owner)
+ TGlobal::TGlobal(TComponent* Owner)
     : TFloatForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-__fastcall TGlobal::~TGlobal()
+ TGlobal::~TGlobal()
 {
     List->Free();
 }
 //---------------------------------------------------------------------------
-void __fastcall TGlobal::ViewVars(TMDelTList<TLuaVariable>* Vars)
+void  TGlobal::ViewVars(TMDelTList<TLuaVariable>* Vars)
 {
     TListItem *Item;
     List->Clear();
@@ -50,7 +52,7 @@ void __fastcall TGlobal::ViewVars(TMDelTList<TLuaVariable>* Vars)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGlobal::ListDblClick(TObject *Sender)
+void  TGlobal::ListDblClick(TObject *Sender)
 {
     TListItem *Item;
     Item=((TListView*)(Sender))->ItemFocused;
@@ -69,7 +71,7 @@ void __fastcall TGlobal::ListDblClick(TObject *Sender)
             delete Var;
             return;
         }
-        Var->Value=InputBox("Èçìåíåíèå ïåðåìåííîé", "Ââåäèòå íîâîå çíà÷åíèå",Item->SubItems[0][1]);
+        Var->Value=InputBox("ÃˆÃ§Ã¬Ã¥Ã­Ã¥Ã­Ã¨Ã¥ Ã¯Ã¥Ã°Ã¥Ã¬Ã¥Ã­Ã­Ã®Ã©", "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã­Ã®Ã¢Ã®Ã¥ Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¥",Item->SubItems[0][1]);
         FileMap->Position=0;
         //filedat=fopen("Exchange.dat","w+");
         Var->WriteData(FileMap);
@@ -84,19 +86,19 @@ void __fastcall TGlobal::ListDblClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TGlobal::FormClose(TObject *Sender, TCloseAction &Action)
+void  TGlobal::FormClose(TObject *Sender, TCloseAction &Action)
 {
     Action=caHide;
 }
 //---------------------------------------------------------------------------
-void __fastcall TGlobal::WndProc(Messages::TMessage &Message)
+void  TGlobal::WndProc(Messages::TMessage &Message)
 {
     if ((Message.Msg==WM_USER)&&(Message.WParam==MSG_UPDATE))
         TGlobal::OnUpdate(this);
     TForm::WndProc(Message);
 }
 //---------------------------------------------------------------------------
-void __fastcall TGlobal::Evaluate(TObject *Sender)
+void  TGlobal::Evaluate(TObject *Sender)
 {   
     AnsiString Text;
     TListItem *Item = NULL;
@@ -118,37 +120,37 @@ void __fastcall TGlobal::Evaluate(TObject *Sender)
     PostThreadMessage(ApplHnd,WM_USER,MSG_EVALUATE,0);
 }
 //---------------------------------------------------------------------------
-void __fastcall TGlobal::DelItemUpdate(TObject *Sender)
+void  TGlobal::DelItemUpdate(TObject *Sender)
 {
     ((TAction*)Sender)->Enabled=List->ItemFocused;
 }
 //---------------------------------------------------------------------------
-void __fastcall TGlobal::EditItemUpdate(TObject *Sender)
+void  TGlobal::EditItemUpdate(TObject *Sender)
 {
     TListItem *Item = List->ItemFocused;
     ((TAction*)Sender)->Enabled=Item;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGlobal::ClearItemUpdate(TObject *Sender)
+void  TGlobal::ClearItemUpdate(TObject *Sender)
 {
     ((TAction*)Sender)->Enabled=List->Items->Count>0;
 }
 //---------------------------------------------------------------------------
-void __fastcall TGlobal::InspectItemUpdate(TObject *Sender)
+void  TGlobal::InspectItemUpdate(TObject *Sender)
 {
     InspectItem->Enabled=List->ItemFocused;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGlobal::EditItemExecute(TObject *Sender)
+void  TGlobal::EditItemExecute(TObject *Sender)
 {
     TListItem *Item = List->ItemFocused;
     if (!Item)
     {
         AddItemExecute(Sender);return;
     }
-    AnsiString Code = InputBox("Editing watch","Ââåäèòå watch:",Item->Caption);
+    AnsiString Code = InputBox("Editing watch","Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ watch:",Item->Caption);
     if (Code!="")
     {
         Item->Caption=Code;
@@ -157,20 +159,20 @@ void __fastcall TGlobal::EditItemExecute(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TGlobal::DelItemExecute(TObject *Sender)
+void  TGlobal::DelItemExecute(TObject *Sender)
 {
     TListItem *Item = List->ItemFocused;
     if (Item) Item->Delete();
 }
 //---------------------------------------------------------------------------
-void __fastcall TGlobal::ClearItemExecute(TObject *Sender)
+void  TGlobal::ClearItemExecute(TObject *Sender)
 {
     List->Items->Clear();
 }
 //---------------------------------------------------------------------------
-void __fastcall TGlobal::AddItemExecute(TObject *Sender)
+void  TGlobal::AddItemExecute(TObject *Sender)
 {
-    AnsiString Code = InputBox("Adding watch","Ââåäèòå watch:","");
+    AnsiString Code = InputBox("Adding watch","Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ watch:","");
     if (Code!="")
     {
         TListItem *Item = List->Items->Add();
@@ -180,14 +182,14 @@ void __fastcall TGlobal::AddItemExecute(TObject *Sender)
     }
 }
 //---------------------------------------------------------------------------
-void __fastcall TGlobal::InspectItemExecute(TObject *Sender)
+void  TGlobal::InspectItemExecute(TObject *Sender)
 {
     TListItem *Item = List->ItemFocused;
     Inspect(Item->Caption);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGlobal::ListKeyDown(TObject *Sender, WORD &Key,
+void  TGlobal::ListKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
     TListItem *Item = List->ItemFocused;

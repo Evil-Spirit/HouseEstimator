@@ -1,22 +1,24 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMetaNodeV.h"
 #include "LuaVarsEditV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MyMDIChildV"
 #pragma resource "*.dfm"
 TMDIMetaNode *MDIMetaNode;
 //---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
-__fastcall TMDIMetaNode::TMDIMetaNode(TComponent* Owner,TMetaNode *N)
+ TMDIMetaNode::TMDIMetaNode(TComponent* Owner,TMetaNode *N)
     : TMyMDIChild(Owner)
 {
     for (int i=0;i<cbeImageSelect->Images->Count;i++)
@@ -77,7 +79,7 @@ bool TMDIMetaNode::MNChecked()
 }
 
 
-void __fastcall TMDIMetaNode::btOKClick(TObject *Sender)
+void  TMDIMetaNode::btOKClick(TObject *Sender)
 {
     MetaNode->ReadOnly = false;
     if ( MNChecked() )
@@ -94,12 +96,12 @@ void __fastcall TMDIMetaNode::btOKClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIMetaNode::btCancelClick(TObject *Sender)
+void  TMDIMetaNode::btCancelClick(TObject *Sender)
 {
     Close();    
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIMetaNode::FormDestroy(TObject *Sender)
+void  TMDIMetaNode::FormDestroy(TObject *Sender)
 {
     delete BMPPointer;
     delete SmallBMPPointer;
@@ -109,14 +111,14 @@ void __fastcall TMDIMetaNode::FormDestroy(TObject *Sender)
 
 
 
-void __fastcall TMDIMetaNode::Image2Click(TObject *Sender)
+void  TMDIMetaNode::Image2Click(TObject *Sender)
 {
     BMPPointer->Select();
     BMPPointer->GetBitmap(Image1->Picture->Bitmap);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIMetaNode::Image2DblClick(TObject *Sender)
+void  TMDIMetaNode::Image2DblClick(TObject *Sender)
 {
     SmallBMPPointer->Select();
     SmallBMPPointer->GetBitmap(Image2->Picture->Bitmap);

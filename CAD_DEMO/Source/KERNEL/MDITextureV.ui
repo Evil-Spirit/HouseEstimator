@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDITexture</class>
+  <widget class="QWidget" name="MDITexture">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>400</width>
+        <height>203</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDITexture</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-FormStyle: fsStayOnTop → setWindowFlag(Qt::WindowStaysOnTopHint) -->
+    <widget class="QLabel" name="Label1">
+      <property name="geometry">
+        <rect>
+          <x>128</x>
+          <y>13</y>
+          <width>60</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>ENV_MODE</string>
+      </property>
+      <property name="text">
+        <string>ENV_MODE</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label2">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>149</y>
+          <width>64</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>MAG FILTER</string>
+      </property>
+      <property name="text">
+        <string>MAG FILTER</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label3">
+      <property name="geometry">
+        <rect>
+          <x>208</x>
+          <y>149</y>
+          <width>60</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>MIN FILTER</string>
+      </property>
+      <property name="text">
+        <string>MIN FILTER</string>
+      </property>
+    </widget>
+    <widget class="QGroupBox" name="GRAmbient">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>32</y>
+          <width>89</width>
+          <height>73</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Ambient</string>
+      </property>
+      <property name="text">
+        <string>Ambient</string>
+      </property>
+      <widget class="QFrame" name="Blend">
+        <property name="geometry">
+          <rect>
+            <x>16</x>
+            <y>16</y>
+            <width>57</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+      </widget>
+      <widget class="QSlider" name="BlendA">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>48</y>
+            <width>73</width>
+            <height>17</height>
+          </rect>
+        </property>
+        <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="minimum">
+          <number>0</number>
+        </property>
+        <property name="maximum">
+          <number>1000</number>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QSlider" name="Alpha">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>112</y>
+          <width>73</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="minimum">
+        <number>0</number>
+      </property>
+      <property name="maximum">
+        <number>1000</number>
+      </property>
+    </widget>
+    <widget class="QGroupBox" name="GroupBox1">
+      <property name="geometry">
+        <rect>
+          <x>96</x>
+          <y>32</y>
+          <width>97</width>
+          <height>105</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Rotation</string>
+      </property>
+      <property name="text">
+        <string>Rotation</string>
+      </property>
+      <widget class="QSlider" name="RotX">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>16</y>
+            <width>17</width>
+            <height>81</height>
+          </rect>
+        </property>
+        <property name="orientation">
+          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="minimum">
+          <number>0</number>
+        </property>
+        <property name="maximum">
+          <number>360</number>
+        </property>
+      </widget>
+      <widget class="QSlider" name="RotY">
+        <property name="geometry">
+          <rect>
+            <x>36</x>
+            <y>16</y>
+            <width>23</width>
+            <height>82</height>
+          </rect>
+        </property>
+        <property name="orientation">
+          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="minimum">
+          <number>0</number>
+        </property>
+        <property name="maximum">
+          <number>360</number>
+        </property>
+      </widget>
+      <widget class="QSlider" name="RotZ">
+        <property name="geometry">
+          <rect>
+            <x>64</x>
+            <y>16</y>
+            <width>23</width>
+            <height>82</height>
+          </rect>
+        </property>
+        <property name="orientation">
+          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="minimum">
+          <number>0</number>
+        </property>
+        <property name="maximum">
+          <number>360</number>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QComboBox" name="CBE">
+      <property name="geometry">
+        <rect>
+          <x>192</x>
+          <y>8</y>
+          <width>193</width>
+          <height>22</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QGroupBox" name="GroupBox2">
+      <property name="geometry">
+        <rect>
+          <x>192</x>
+          <y>32</y>
+          <width>97</width>
+          <height>105</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Scale</string>
+      </property>
+      <property name="text">
+        <string>Scale</string>
+      </property>
+      <widget class="QSlider" name="ScaX">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>16</y>
+            <width>17</width>
+            <height>82</height>
+          </rect>
+        </property>
+        <property name="orientation">
+          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="minimum">
+          <number>-500</number>
+        </property>
+        <property name="maximum">
+          <number>500</number>
+        </property>
+      </widget>
+      <widget class="QSlider" name="ScaY">
+        <property name="geometry">
+          <rect>
+            <x>40</x>
+            <y>16</y>
+            <width>17</width>
+            <height>82</height>
+          </rect>
+        </property>
+        <property name="orientation">
+          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="minimum">
+          <number>-500</number>
+        </property>
+        <property name="maximum">
+          <number>500</number>
+        </property>
+      </widget>
+      <widget class="QSlider" name="ScaZ">
+        <property name="geometry">
+          <rect>
+            <x>71</x>
+            <y>16</y>
+            <width>17</width>
+            <height>82</height>
+          </rect>
+        </property>
+        <property name="orientation">
+          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="minimum">
+          <number>-500</number>
+        </property>
+        <property name="maximum">
+          <number>500</number>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QGroupBox" name="GroupBox3">
+      <property name="geometry">
+        <rect>
+          <x>288</x>
+          <y>32</y>
+          <width>97</width>
+          <height>105</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Position</string>
+      </property>
+      <property name="text">
+        <string>Position</string>
+      </property>
+      <widget class="QSlider" name="PosX">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>16</y>
+            <width>17</width>
+            <height>82</height>
+          </rect>
+        </property>
+        <property name="orientation">
+          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="minimum">
+          <number>-500</number>
+        </property>
+        <property name="maximum">
+          <number>500</number>
+        </property>
+      </widget>
+      <widget class="QSlider" name="PosY">
+        <property name="geometry">
+          <rect>
+            <x>40</x>
+            <y>16</y>
+            <width>17</width>
+            <height>82</height>
+          </rect>
+        </property>
+        <property name="orientation">
+          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="minimum">
+          <number>-500</number>
+        </property>
+        <property name="maximum">
+          <number>500</number>
+        </property>
+      </widget>
+      <widget class="QSlider" name="PosZ">
+        <property name="geometry">
+          <rect>
+            <x>72</x>
+            <y>16</y>
+            <width>17</width>
+            <height>82</height>
+          </rect>
+        </property>
+        <property name="orientation">
+          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="minimum">
+          <number>-500</number>
+        </property>
+        <property name="maximum">
+          <number>500</number>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QComboBox" name="cbMAG">
+      <property name="geometry">
+        <rect>
+          <x>71</x>
+          <y>144</y>
+          <width>114</width>
+          <height>22</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QComboBox" name="cbMIN">
+      <property name="geometry">
+        <rect>
+          <x>271</x>
+          <y>144</y>
+          <width>114</width>
+          <height>22</height>
+        </rect>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

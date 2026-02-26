@@ -1,18 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "MTL.h"
 #include "Usefuls.h"
 #include <windows.h>
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LuaAttributeV.h"
 
 //------ ---------------------------------------------------------------------
 
-#pragma package(smart_init)
 TClassNode* TLuaAttribute::StaticType = NULL;
 TClassNode* TLuaAttributeList::StaticType = NULL;
 
@@ -66,7 +68,7 @@ bool TLuaAttribute::GetAggregative() const
     return FAggregativeFlag && Type == mtMyObject; 
 }
 
-char* TLuaAttribute::GetLuaStrType()
+const char* TLuaAttribute::GetLuaStrType()
 {
     switch (Type)
     {
@@ -97,12 +99,12 @@ TLuaAttribute::~TLuaAttribute()
     ToEmpty();
 }
 
-char* TLuaAttribute::GetCharValue()
+const char* TLuaAttribute::GetCharValue()
 {
     return FCurValue.c_str();
 }
 
-char* TLuaAttribute::GetLuaValueRoundTo(int Digit)
+const char* TLuaAttribute::GetLuaValueRoundTo(int Digit)
 {
     AnsiString* NewAnsi = new AnsiString(ValueRoundTo(Digit));
     Garbage.AddStr(NewAnsi);
@@ -126,7 +128,7 @@ void TLuaAttribute::SetType(int Value)
         case mtVCLObject:
         case mtAnyThing:
         {
-            //-------порядок имеет значение т.к. функция <ToEmpty> использует Type
+            //-------ГЇГ®Г°ГїГ¤Г®ГЄ ГЁГ¬ГҐГҐГІ Г§Г­Г Г·ГҐГ­ГЁГҐ ГІ.ГЄ. ГґГіГ­ГЄГ¶ГЁГї <ToEmpty> ГЁГ±ГЇГ®Г«ГјГ§ГіГҐГІ Type
             ToEmpty();
             FType = Value;
             Aggregative = false;
@@ -156,7 +158,7 @@ void TLuaAttribute::LoadData(FILE *F)
         if ( Aggregative )
         {
             Object = Create_Default_Constructor(ObjectTypeName);
-            ((TMyObject*)Object)->LoadData(F);
+            ((TMyObject*)(void*)Object)->LoadData(F);
         }
         else
             Object = NULL;
@@ -171,7 +173,7 @@ void TLuaAttribute::ReadData(TMemoryStream *MS)
         if ( Aggregative )
         {
             Object = Create_Default_Constructor(ObjectTypeName);
-            ((TMyObject*)Object)->ReadData(MS);
+            ((TMyObject*)(void*)Object)->ReadData(MS);
         }
         else
             Object = NULL;
@@ -186,7 +188,7 @@ void TLuaAttribute::Assign(TMyObject *MS)
         if (Aggregative)
         {
             Object = Create_Default_Constructor(ObjectTypeName);
-            ((TMyObject*)Object)->Assign( (TMyObject*)((TLuaAttribute*)MS)->Object );
+            ((TMyObject*)(void*)Object)->Assign( (TMyObject*)(void*)((TLuaAttribute*)MS)->Object );
         }
         else
         {
@@ -398,7 +400,7 @@ bool TLuaAttribute::CheckFields()
     if (!TMyObject::CheckFields())
         return false;
     FCurValue = FVALUE;
-    return !Object || !Aggregative || Type != mtMyObject || ((TMyObject*)Object)->CheckFields();
+    return !Object || !Aggregative || Type != mtMyObject || ((TMyObject*)(void*)Object)->CheckFields();
 }
 
 AnsiString TLuaAttribute::ExcelValue(int Digit)
@@ -462,7 +464,7 @@ int TLuaAttributeList::GetAttributeIndex(char* _name)
     return -1;            
 }
 
-char* TLuaAttributeList::GetAttributeName(int index)
+const char* TLuaAttributeList::GetAttributeName(int index)
 {
     return VarList->Items[index]->Name.c_str();
 }
@@ -529,13 +531,13 @@ TLuaAttribute* TLuaAttributeList::AddAttribute(int type,char* _name)
 void* TLuaAttributeList::GetAttributeValue(char* _name)
 {
     TLuaAttribute* Attribute = GetAttribute(_name);
-    return (Attribute != NULL) ? Attribute->Value : NULL;
+    return (Attribute != NULL) ? (void*)Attribute->Value : nullptr;
 }
 
 void* TLuaAttributeList::GetAttributeIValue(int index)
 {
     TLuaAttribute* Attribute = GetAttributeI(index);
-    return (Attribute != NULL) ? Attribute->Value : NULL;
+    return (Attribute != NULL) ? (void*)Attribute->Value : nullptr;
 }
 
 void TLuaAttributeList::SetAttributeIValue(int index,void* Value)

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //-----------------------------------------------------------------------------
 #ifndef VCL2H
 #define VCL2H
@@ -300,7 +304,7 @@ class TChangeLink : public TObject
     public:
 	virtual ~TChangeLink();
 	void Change();
-	//__property Classes::TNotifyEvent OnChange = {read=FOnChange, write=FOnChange};
+	// __property Classes::TNotifyEvent OnChange {read=FOnChange, write=FOnChange}; // [manual migration needed]
 	TCustomImageList* Sender;
     TChangeLink();
 };
@@ -431,7 +435,7 @@ class TBasicActionLink : public TObject
 	virtual bool Execute(TComponent* AComponent = (TComponent*)(0x0));
 	virtual bool Update();
 	TBasicAction* Action;
-    //	__property TNotifyEvent OnChange = {read=FOnChange, write=FOnChange};
+    // __property TNotifyEvent OnChange {read=FOnChange, write=FOnChange}; // [manual migration needed]
 };
 
 //-- TPersistent --------------------------------------------------------------
@@ -487,8 +491,8 @@ class TCanvas : public TPersistent
 	TPoint PenPos;
 	TColor Pixels[LUA_N][LUA_N];
 	int TextFlags;
-	//__property Classes::TNotifyEvent OnChange = {read=FOnChange, write=FOnChange};
-	//__property Classes::TNotifyEvent OnChanging = {read=FOnChanging, write=FOnChanging};
+	// __property Classes::TNotifyEvent OnChange {read=FOnChange, write=FOnChange}; // [manual migration needed]
+	// __property Classes::TNotifyEvent OnChanging {read=FOnChanging, write=FOnChanging}; // [manual migration needed]
 	TBrush* Brush;
 	int CopyMode;
 	TFont* Font;
@@ -526,8 +530,8 @@ class TPicture : public TInterfacedPersistent
     TIcon* Icon;
 	TMetafile* Metafile;
 	tolua_readonly int Width;
-	//__property Classes::TNotifyEvent OnChange = {read=FOnChange, write=FOnChange};
-	//__property TProgressEvent OnProgress = {read=FOnProgress, write=FOnProgress};
+	// __property Classes::TNotifyEvent OnChange {read=FOnChange, write=FOnChange}; // [manual migration needed]
+	// __property TProgressEvent OnProgress {read=FOnProgress, write=FOnProgress}; // [manual migration needed]
 	operator IStreamPersist*();
 };
 
@@ -546,8 +550,8 @@ class TGraphic : public TInterfacedPersistent
 	bool PaletteModified;
 	bool Transparent;
 	int Width;
-	//__property Classes::TNotifyEvent OnChange = {read=FOnChange, write=FOnChange};
-	//__property TProgressEvent OnProgress = {read=FOnProgress, write=FOnProgress};
+	// __property Classes::TNotifyEvent OnChange {read=FOnChange, write=FOnChange}; // [manual migration needed]
+	// __property TProgressEvent OnProgress {read=FOnProgress, write=FOnProgress}; // [manual migration needed]
     virtual ~TGraphic();
 	operator IStreamPersist*();
 };
@@ -617,7 +621,7 @@ class TGraphicsObject : public TPersistent
 {
     public:
 	bool HandleAllocated();
-	//__property Classes::TNotifyEvent OnChange = {read=FOnChange, write=FOnChange};
+	// __property Classes::TNotifyEvent OnChange {read=FOnChange, write=FOnChange}; // [manual migration needed]
 	PRTLCriticalSection OwnerCriticalSection;
 	virtual ~TGraphicsObject();
 	TGraphicsObject();
@@ -745,7 +749,7 @@ class TSizeConstraints : public TPersistent
 	TConstraintSize MinHeight;
 	TConstraintSize MinWidth;
 	virtual ~TSizeConstraints();
-	//__property Classes::TNotifyEvent OnChange = {read=FOnChange, write=FOnChange};
+	// __property Classes::TNotifyEvent OnChange {read=FOnChange, write=FOnChange}; // [manual migration needed]
 };
 
 //-- TComponent ---------------------------------------------------------------
@@ -820,9 +824,9 @@ class TMenuItem : public TComponent
 	TShortCut ShortCut;
 	bool Visible;
 	//__property Classes::TNotifyEvent OnClick = {read=FOnClick, write=FOnClick, stored=IsOnClickStored};
-	//__property TMenuDrawItemEvent OnDrawItem = {read=FOnDrawItem, write=FOnDrawItem};
-	//__property TAdvancedMenuDrawItemEvent OnAdvancedDrawItem = {read=FOnAdvancedDrawItem, write=FOnAdvancedDrawItem};
-	//__property TMenuMeasureItemEvent OnMeasureItem = {read=FOnMeasureItem, write=FOnMeasureItem};
+	// __property TMenuDrawItemEvent OnDrawItem {read=FOnDrawItem, write=FOnDrawItem}; // [manual migration needed]
+	// __property TAdvancedMenuDrawItemEvent OnAdvancedDrawItem {read=FOnAdvancedDrawItem, write=FOnAdvancedDrawItem}; // [manual migration needed]
+	// __property TMenuMeasureItemEvent OnMeasureItem {read=FOnMeasureItem, write=FOnMeasureItem}; // [manual migration needed]
 };
 
 //-- TMenu --------------------------------------------------------------------
@@ -862,7 +866,7 @@ class TPopupMenu : public TMenu
 	THelpContext HelpContext;
 	TMenuAnimation MenuAnimation;
 	TTrackButton TrackButton;
-	//__property Classes::TNotifyEvent OnPopup = {read=FOnPopup, write=FOnPopup};
+	// __property Classes::TNotifyEvent OnPopup {read=FOnPopup, write=FOnPopup}; // [manual migration needed]
 };
 
 //-- TMainMenu ----------------------------------------------------------------
@@ -896,7 +900,7 @@ class TCustomImageList : public TComponent
 	void DrawOverlay(TCanvas* Canvas, int X, int Y, int ImageIndex, TOverlay Overlay, TDrawingStyle ADrawingStyle, TImageType AImageType, bool Enabled = true);
 	bool FileLoad(TResType ResType, const AnsiString Name, TColor MaskColor);
 	bool GetBitmap(int Index, Graphics::TBitmap* Image);
-	virtual TPoint __fastcall GetHotSpot();
+	virtual TPoint  GetHotSpot();
 	void GetIcon(int Index, TIcon* Image);
 	void GetIcon(int Index, TIcon* Image, TDrawingStyle ADrawingStyle, TImageType AImageType);
 	bool GetResource(TResType ResType, const AnsiString Name, int Width, TLoadResources LoadFlags, TColor MaskColor);
@@ -926,7 +930,7 @@ class TCustomImageList : public TComponent
 	bool Masked;
 	bool ShareImages;
 	int Width;
-	//__property Classes::TNotifyEvent OnChange = {read=FOnChange, write=FOnChange};
+	// __property Classes::TNotifyEvent OnChange {read=FOnChange, write=FOnChange}; // [manual migration needed]
 };
 
 //-- TBasicAction -------------------------------------------------------------
@@ -943,8 +947,8 @@ class TBasicAction : public TComponent
 	void UnRegisterChanges(TBasicActionLink* Value);
 	virtual bool Update();
     TComponent* ActionComponent;
-	//__property TNotifyEvent OnExecute = {read=FOnExecute, write=SetOnExecute};
-	//__property TNotifyEvent OnUpdate = {read=FOnUpdate, write=FOnUpdate};
+	// __property TNotifyEvent OnExecute {read=FOnExecute, write=SetOnExecute}; // [manual migration needed]
+	// __property TNotifyEvent OnUpdate {read=FOnUpdate, write=FOnUpdate}; // [manual migration needed]
 };
 
 //-- TControl -----------------------------------------------------------------
@@ -1056,7 +1060,7 @@ class TImage : public TGraphicControl
 	__property OnMouseDown ;
 	__property OnMouseMove ;
 	__property OnMouseUp ;
-	__property Graphics::TProgressEvent OnProgress = {read=FOnProgress, write=FOnProgress};
+	// __property Graphics::TProgressEvent OnProgress {read=FOnProgress, write=FOnProgress}; // [manual migration needed]
 	__property OnStartDock ;
 	__property OnStartDrag ;
 */
@@ -1547,7 +1551,7 @@ class TScrollBar : public TWinControl
 	TScrollBarInc SmallChange;
     /*
 	__property OnContextPopup ;
-	__property Classes::TNotifyEvent OnChange = {read=FOnChange, write=FOnChange};
+	// __property Classes::TNotifyEvent OnChange {read=FOnChange, write=FOnChange}; // [manual migration needed]
 	__property OnDragDrop ;
 	__property OnDragOver ;
 	__property OnEndDock ;
@@ -1557,7 +1561,7 @@ class TScrollBar : public TWinControl
 	__property OnKeyDown ;
 	__property OnKeyPress ;
 	__property OnKeyUp ;
-	__property TScrollEvent OnScroll = {read=FOnScroll, write=FOnScroll};
+	// __property TScrollEvent OnScroll {read=FOnScroll, write=FOnScroll}; // [manual migration needed]
 	__property OnStartDock ;
 	__property OnStartDrag ;
     */

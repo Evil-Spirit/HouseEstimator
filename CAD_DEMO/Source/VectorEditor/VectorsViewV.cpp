@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "VectorsViewV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TMyView *MyView;
 //---------------------------------------------------------------------------
-__fastcall TMyView::TMyView(TComponent* Owner)
+ TMyView::TMyView(TComponent* Owner)
     : TForm(Owner)
 {
 }
-/*void __fastcall TEditor2D::Render(TVisView *aView)
+/*void  TEditor2D::Render(TVisView *aView)
 {
     VisAttributes1->Render(aView);
     VisLight1->Render(aView);
@@ -85,7 +87,7 @@ TIntVec TEditor2D::ProjectToScreen(const TIntVec& Vv)
     return Res;
 }
 
-void __fastcall TEditor2D::MouseWheel(TObject *Sender,
+void  TEditor2D::MouseWheel(TObject *Sender,
       TShiftState Shift, int WheelDelta, TPoint &MousePos, bool &Handled)
 {
     if (Grid.Attr.Step > Grid.Attr.ZoomLimit && WheelDelta<0)
@@ -105,7 +107,7 @@ void __fastcall TEditor2D::MouseWheel(TObject *Sender,
     VisOrtCam->Transformation->Translation->incY(V1.y);
     Grid.Attr.ReBuild = true;
 }
-void __fastcall TEditor2D::MouseDown(TObject *Sender,
+void  TEditor2D::MouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     MyCursor.Position = ScreenToProject(TIntVec(X,Y,MyCursor.Position.z));
@@ -120,7 +122,7 @@ void __fastcall TEditor2D::MouseDown(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::MouseUp(TObject *Sender,
+void  TEditor2D::MouseUp(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     MyCursor.Position.x = ScreenToProject(TIntVec(X,Y,0)).x;
@@ -129,7 +131,7 @@ void __fastcall TEditor2D::MouseUp(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::KeyDown(TObject *Sender, WORD &Key,
+void  TEditor2D::KeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
     if (Key == VK_F2)
@@ -156,7 +158,7 @@ void __fastcall TEditor2D::KeyDown(TObject *Sender, WORD &Key,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEditor2D::KeyUp(TObject *Sender, WORD &Key,
+void  TEditor2D::KeyUp(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
     MyControls.KeyUp(Editor2D, Key, Shift);

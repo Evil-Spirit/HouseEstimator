@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "G2DApproxCalcV.h"
 #include "G2DGeomV.h"
@@ -14,7 +17,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 int SIGN(MBTf Value,MBTf EPS)
 {
     if ( Value>EPS )
@@ -82,7 +84,7 @@ void Dihotomia(TDihotomiaFunc Func,MBTf X0,MBTf X1,int Level,TMDelTList< TMTwinE
 void TEquation::FindDerivativeRoot(MBTf X0,MBTf X1,TMDelTList< TMTwinElement<bool,MBTf> >& Roots,int Level,MBTf EPS)
 {
     if ( Level >= GetLevel() )
-        throw EMyException("<TEquation::FindDerivativeRoot>: недопустимый уровень");
+        throw EMyException("<TEquation::FindDerivativeRoot>: Г­ГҐГ¤Г®ГЇГіГ±ГІГЁГ¬Г»Г© ГіГ°Г®ГўГҐГ­Гј");
     if ( Level == GetLevel()-1 )
     {
 		Dihotomia(&Derivative,X0,X1,Level,Roots,EPS);
@@ -135,7 +137,7 @@ void TEquation::FindRoots(MBTf X0,MBTf X1,TMDelTList<MBTf>& X,MBTf EPS,bool Clea
     }
     catch(EMyException& MyExc)
     {
-        ErrorMsg("<TEquation::FindRoots>: Произошла ошибка при нахождении корней.");
+        ErrorMsg("<TEquation::FindRoots>: ГЏГ°Г®ГЁГ§Г®ГёГ«Г  Г®ГёГЁГЎГЄГ  ГЇГ°ГЁ Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГЁ ГЄГ®Г°Г­ГҐГ©.");
     }
 
 }

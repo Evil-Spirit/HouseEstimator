@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ConverterForm</class>
+  <widget class="QWidget" name="ConverterForm">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>695</width>
+        <height>397</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>ConverterForm</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <widget class="QSplitter" name="Splitter1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>153</y>
+          <width>687</width>
+          <height>8</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QTextEdit" name="RichEdit1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>687</width>
+          <height>153</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QTextEdit" name="RichEdit2">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>161</y>
+          <width>687</width>
+          <height>168</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>329</y>
+          <width>687</width>
+          <height>41</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+      <!-- vcl-align: alBottom → arrange in a Qt layout manager -->
+      <widget class="QPushButton" name="Button1">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>8</y>
+            <width>75</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Convert</string>
+        </property>
+        <property name="text">
+          <string>Convert</string>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

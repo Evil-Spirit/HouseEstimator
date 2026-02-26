@@ -1,14 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MarkFormH
 #define MarkFormH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <Buttons.hpp>
-#include <ExtCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "MTL.h"
 
 //---------------------------------------------------------------------------
@@ -20,15 +19,15 @@ __published:	// IDE-managed Components
 	TRadioButton *RadioButton1;
 	TRadioButton *RadioButton2;
 	TLabeledEdit *LabeledEdit1;
-	void __fastcall AcceptClick(TObject *Sender);
+	void  AcceptClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	int selection;
 	int value;
-	__fastcall TForm4(TComponent* Owner);
+	 TForm4(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm4 *Form4;
+extern  TForm4 *Form4;
 //---------------------------------------------------------------------------
 #endif
 

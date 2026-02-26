@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDITV</class>
+  <widget class="QWidget" name="MDITV">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>268</width>
+        <height>284</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDITV</string>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <widget class="QFrame" name="Panel2">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>268</width>
+          <height>258</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <widget class="QWidget" name="View">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>266</width>
+            <height>256</height>
+          </rect>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="pViewButtons">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>258</y>
+          <width>268</width>
+          <height>26</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alBottom → arrange in a Qt layout manager -->
+      <widget class="QLabel" name="Label1">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>8</y>
+            <width>3</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>8</pointsize>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label2">
+        <property name="geometry">
+          <rect>
+            <x>64</x>
+            <y>8</y>
+            <width>3</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>8</pointsize>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label3">
+        <property name="geometry">
+          <rect>
+            <x>216</x>
+            <y>8</y>
+            <width>32</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Label1</string>
+        </property>
+        <property name="text">
+          <string>Label1</string>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>8</pointsize>
+          </font>
+        </property>
+      </widget>
+      <widget class="QToolBar" name="tbViewButtons">
+        <property name="geometry">
+          <rect>
+            <x>204</x>
+            <y>2</y>
+            <width>62</width>
+            <height>22</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>tbViewButtons</string>
+        </property>
+        <!-- vcl-align: alRight → arrange in a Qt layout manager -->
+        <widget class="QWidget" name="tbPlus">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>tbPlus</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="tbMinus">
+          <property name="geometry">
+            <rect>
+              <x>31</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>tbMinus</string>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QWidget" name="_3DCamera">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>104</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Attr3D">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Light1">
+      <property name="geometry">
+        <rect>
+          <x>32</x>
+          <y>32</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Light0">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>32</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="DiscInvisible">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>104</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="enabled">
+        <bool>false</bool>
+      </property>
+    </widget>
+    <widget class="QWidget" name="MaterialInvisible">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>136</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="_2DCamera">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>104</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="Attr2D">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="VisNode">
+      <property name="geometry">
+        <rect>
+          <x>120</x>
+          <y>72</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QTimer" name="_Timer">
+      <property name="geometry">
+        <rect>
+          <x>48</x>
+          <y>176</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="enabled">
+        <bool>false</bool>
+      </property>
+    </widget>
+    <widget class="QWidget" name="VisTexture1">
+      <property name="geometry">
+        <rect>
+          <x>120</x>
+          <y>104</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

@@ -1,21 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMultiElementV.h"
 #include "MultiElementV.h"
 #include "MDIElementSelectV.h"
 #include "MDIPointerListEditV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIElementV"
 #pragma resource "*.dfm"
 TMDIMultiElement *MDIMultiElement;
 //---------------------------------------------------------------------------
-__fastcall TMDIMultiElement::TMDIMultiElement(TComponent* Owner,TMetaMultiElement *MN)
+ TMDIMultiElement::TMDIMultiElement(TComponent* Owner,TMetaMultiElement *MN)
     : TMDIElement(Owner,MN)
 {
 

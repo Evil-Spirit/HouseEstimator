@@ -1,10 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 
 #include "MetaPlatformV.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)

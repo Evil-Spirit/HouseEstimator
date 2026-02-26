@@ -1,13 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef TreeFormVH
 #define TreeFormVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "MyTemplates.h"
 #include "Usefuls.h"
 #include "FloatingV.h"
@@ -25,9 +25,9 @@ __published:	// IDE-managed Components
     TTreeView *Tree;
 private:	// User declarations
 public:		// User declarations
-    __fastcall TTreeWindow(TComponent* Owner);
+     TTreeWindow(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-//extern PACKAGE TStackWindow *StackWindow;
+//extern  TStackWindow *StackWindow;
 //---------------------------------------------------------------------------
 #endif

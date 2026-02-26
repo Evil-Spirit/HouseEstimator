@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>AboutBox</class>
+  <widget class="QWidget" name="AboutBox">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>298</width>
+        <height>138</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>About ...</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>8</y>
+          <width>281</width>
+          <height>81</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <widget class="QLabel" name="ProductName">
+        <property name="geometry">
+          <rect>
+            <x>64</x>
+            <y>16</y>
+            <width>163</width>
+            <height>20</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>3D House Estimator</string>
+        </property>
+        <property name="text">
+          <string>3D House Estimator</string>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>12</pointsize>
+            <bold>true</bold>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Version">
+        <property name="geometry">
+          <rect>
+            <x>64</x>
+            <y>40</y>
+            <width>102</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Demo Edition ver. 1.0</string>
+        </property>
+        <property name="text">
+          <string>Demo Edition ver. 1.0</string>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>8</pointsize>
+          </font>
+        </property>
+      </widget>
+      <widget class="QLabel" name="Label3">
+        <property name="geometry">
+          <rect>
+            <x>160</x>
+            <y>64</y>
+            <width>116</width>
+            <height>13</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>www.sibcomponent.com</string>
+        </property>
+        <property name="text">
+          <string>www.sibcomponent.com</string>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="OKButton">
+      <property name="geometry">
+        <rect>
+          <x>224</x>
+          <y>106</y>
+          <width>65</width>
+          <height>23</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

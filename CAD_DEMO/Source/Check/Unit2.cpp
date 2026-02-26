@@ -1,15 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "Unit2.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TfNextBlock *fNextBlock;
 //---------------------------------------------------------------------------
-__fastcall TfNextBlock::TfNextBlock(TComponent* Owner)
+ TfNextBlock::TfNextBlock(TComponent* Owner)
     : TForm(Owner)
 {
 }

@@ -1,17 +1,15 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMetaTextureVH
 #define MDIMetaTextureVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaNodeV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 #include "MDITextureV.h"
-#include <Buttons.hpp>
 #include "MDITVV.h"
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIMetaTexture : public TMDIMetaNode
@@ -30,9 +28,9 @@ __published:	// IDE-managed Components
     TLabel *Label4;
     TEdit *edRealSizeY;
     TLabel *Label5;
-    void __fastcall BitBtn1Click(TObject *Sender);
-    void __fastcall FormActivate(TObject *Sender);
-  void __fastcall Button1Click(TObject *Sender);
+    void  BitBtn1Click(TObject *Sender);
+    void  FormActivate(TObject *Sender);
+  void  Button1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     virtual void SETUP();
@@ -48,7 +46,7 @@ public:		// User declarations
     TVisBox *VisBox;
     void KILL();
     TPointer<TBMPSet>* BMPS;
-    __fastcall TMDIMetaTexture(TComponent* Owner,TMetaTexture *MM);
+     TMDIMetaTexture(TComponent* Owner,TMetaTexture *MM);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIMetaTexture *MDIMetaTexture;

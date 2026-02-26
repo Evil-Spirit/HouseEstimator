@@ -1,28 +1,29 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDI2DVH
 #define MDI2DVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MyMDIChildV.h"
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDI2D : public TMyMDIChild
 {
 __published:	// IDE-managed Components
-  void __fastcall FormShow(TObject *Sender);
-    void __fastcall FormMouseWheel(TObject *Sender, TShiftState Shift,
+  void  FormShow(TObject *Sender);
+    void  FormMouseWheel(TObject *Sender, TShiftState Shift,
           int WheelDelta, TPoint &MousePos, bool &Handled);
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall FormDestroy(TObject *Sender);
+    void  FormCreate(TObject *Sender);
+    void  FormDestroy(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMDI2D(TComponent* Owner);
+     TMDI2D(TComponent* Owner);
     Graphics::TBitmap * BMP;
     TDrawView *DrawView;
-    virtual void __fastcall AppMessage(TMsg& AMessage, bool& Handled);
+    virtual void  AppMessage(TMsg& AMessage, bool& Handled);
 };
 extern COMMONAL_API TMDI2D* ConditionDV;
 

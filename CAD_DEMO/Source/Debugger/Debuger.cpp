@@ -1,11 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------
-USEFORM("DebugU.cpp", DebugForm);
-USEFORM("GlobalMain.cpp", Global);
-USEFORM("StackMain.cpp", StackWindow);
-USEFORM("InspectorMain.cpp", DbgInspector);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

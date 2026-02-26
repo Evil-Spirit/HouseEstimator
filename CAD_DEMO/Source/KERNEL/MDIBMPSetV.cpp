@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIBMPSetV.h"
 #include "MDIBMPSetEditV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIMetaNodeV"
 #pragma resource "*.dfm"
 TMDIBMPSet *MDIBMPSet;
 //---------------------------------------------------------------------------
-__fastcall TMDIBMPSet::TMDIBMPSet(TComponent* Owner,TBMPSet *N)
+ TMDIBMPSet::TMDIBMPSet(TComponent* Owner,TBMPSet *N)
     : TMDIMetaNode(Owner,N)
 {
 }

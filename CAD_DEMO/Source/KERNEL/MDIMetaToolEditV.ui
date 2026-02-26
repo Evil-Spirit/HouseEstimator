@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMetaToolEdit</class>
+  <widget class="QWidget" name="MDIMetaToolEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1</width>
+        <height>1</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMetaToolEdit</string>
+    </property>
+    <widget class="QTabWidget" name="PCNode">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QWidget" name="tsMetaTool">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Tools</string>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

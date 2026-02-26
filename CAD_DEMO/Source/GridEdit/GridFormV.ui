@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>GridForm</class>
+  <widget class="QWidget" name="GridForm">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>756</width>
+        <height>523</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>GridForm</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <widget class="QLabel" name="Label1">
+      <property name="geometry">
+        <rect>
+          <x>232</x>
+          <y>454</y>
+          <width>32</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Label1</string>
+      </property>
+      <property name="text">
+        <string>Label1</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label2">
+      <property name="geometry">
+        <rect>
+          <x>232</x>
+          <y>470</y>
+          <width>32</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Label2</string>
+      </property>
+      <property name="text">
+        <string>Label2</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label3">
+      <property name="geometry">
+        <rect>
+          <x>328</x>
+          <y>470</y>
+          <width>32</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Label3</string>
+      </property>
+      <property name="text">
+        <string>Label3</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label4">
+      <property name="geometry">
+        <rect>
+          <x>376</x>
+          <y>470</y>
+          <width>32</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Label4</string>
+      </property>
+      <property name="text">
+        <string>Label4</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button5">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>440</y>
+          <width>57</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Test</string>
+      </property>
+      <property name="text">
+        <string>Test</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button8">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>464</y>
+          <width>89</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Вкл/Выкл секцию</string>
+      </property>
+      <property name="text">
+        <string>Вкл/Выкл секцию</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button1">
+      <property name="geometry">
+        <rect>
+          <x>424</x>
+          <y>463</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Del CellGrid</string>
+      </property>
+      <property name="text">
+        <string>Del CellGrid</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button2">
+      <property name="geometry">
+        <rect>
+          <x>512</x>
+          <y>463</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Save</string>
+      </property>
+      <property name="text">
+        <string>Save</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button3">
+      <property name="geometry">
+        <rect>
+          <x>592</x>
+          <y>464</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Load</string>
+      </property>
+      <property name="text">
+        <string>Load</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button4">
+      <property name="geometry">
+        <rect>
+          <x>512</x>
+          <y>431</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>SaveText</string>
+      </property>
+      <property name="text">
+        <string>SaveText</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button6">
+      <property name="geometry">
+        <rect>
+          <x>592</x>
+          <y>431</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>LoadText</string>
+      </property>
+      <property name="text">
+        <string>LoadText</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button9">
+      <property name="geometry">
+        <rect>
+          <x>64</x>
+          <y>440</y>
+          <width>57</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Test2</string>
+      </property>
+      <property name="text">
+        <string>Test2</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button7">
+      <property name="geometry">
+        <rect>
+          <x>312</x>
+          <y>440</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Fixed</string>
+      </property>
+      <property name="text">
+        <string>Fixed</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button10">
+      <property name="geometry">
+        <rect>
+          <x>128</x>
+          <y>440</y>
+          <width>57</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Test3</string>
+      </property>
+      <property name="text">
+        <string>Test3</string>
+      </property>
+    </widget>
+    <widget class="QWidget" name="ApplicationEvents1">
+      <property name="geometry">
+        <rect>
+          <x>32</x>
+          <y>88</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QMenu" name="PopupMenuCellGrid">
+      <property name="geometry">
+        <rect>
+          <x>80</x>
+          <y>224</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QAction" name="Cut1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Вырезать</string>
+        </property>
+        <property name="toolTip">
+          <string>Cut|Cuts the selection and puts it on the Clipboard</string>
+        </property>
+      </widget>
+      <widget class="QAction" name="Copy1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QAction" name="Paste1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Вставить</string>
+        </property>
+        <property name="toolTip">
+          <string>Paste|Inserts Clipboard contents</string>
+        </property>
+      </widget>
+      <widget class="QAction" name="Delete1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QAction" name="SelectAll1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QAction" name="N1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QAction" name="N2">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

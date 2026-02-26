@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMetaNode</class>
+  <widget class="QWidget" name="MDIMetaNode">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>661</width>
+        <height>369</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMetaNode</string>
+    </property>
+    <widget class="QTabWidget" name="PCNode">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>653</width>
+          <height>301</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+      <widget class="QWidget" name="tsMain">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Main</string>
+        </property>
+        <widget class="QLabel" name="Label1">
+          <property name="geometry">
+            <rect>
+              <x>89</x>
+              <y>91</y>
+              <width>28</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Name</string>
+          </property>
+          <property name="text">
+            <string>Name</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="indLabel">
+          <property name="geometry">
+            <rect>
+              <x>106</x>
+              <y>28</y>
+              <width>11</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ID</string>
+          </property>
+          <property name="text">
+            <string>ID</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="LabelDescription">
+          <property name="geometry">
+            <rect>
+              <x>46</x>
+              <y>123</y>
+              <width>71</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>End user name</string>
+          </property>
+          <property name="text">
+            <string>End user name</string>
+          </property>
+        </widget>
+        <widget class="QLabel" name="lGUID">
+          <property name="geometry">
+            <rect>
+              <x>90</x>
+              <y>60</y>
+              <width>27</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>GUID</string>
+          </property>
+          <property name="text">
+            <string>GUID</string>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="mnName">
+          <property name="geometry">
+            <rect>
+              <x>120</x>
+              <y>88</y>
+              <width>233</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="METAID">
+          <property name="geometry">
+            <rect>
+              <x>120</x>
+              <y>24</y>
+              <width>113</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+        <widget class="QWidget" name="cbeImageSelect">
+          <property name="geometry">
+            <rect>
+              <x>240</x>
+              <y>24</y>
+              <width>113</width>
+              <height>22</height>
+            </rect>
+          </property>
+          <property name="enabled">
+            <bool>false</bool>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="mnDescription">
+          <property name="geometry">
+            <rect>
+              <x>120</x>
+              <y>120</y>
+              <width>233</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+        <widget class="QLineEdit" name="eGUID">
+          <property name="geometry">
+            <rect>
+              <x>120</x>
+              <y>56</y>
+              <width>233</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsAttributes">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Attributes</string>
+        </property>
+        <widget class="QSplitter" name="Splitter2">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>129</y>
+              <width>645</width>
+              <height>3</height>
+            </rect>
+          </property>
+          <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+        </widget>
+        <widget class="QFrame" name="Attributes">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>645</width>
+              <height>129</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Attributes</string>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+          </property>
+          <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+        </widget>
+        <widget class="QFrame" name="TB">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>132</y>
+              <width>645</width>
+              <height>141</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>TB</string>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+          </property>
+          <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsAdvancedSuper">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Advanced</string>
+        </property>
+        <widget class="QFrame" name="Bevel1">
+          <property name="geometry">
+            <rect>
+              <x>8</x>
+              <y>32</y>
+              <width>130</width>
+              <height>130</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+        <widget class="QLabel" name="Image1">
+          <property name="geometry">
+            <rect>
+              <x>9</x>
+              <y>33</y>
+              <width>128</width>
+              <height>128</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+        <widget class="QFrame" name="Bevel2">
+          <property name="geometry">
+            <rect>
+              <x>152</x>
+              <y>32</y>
+              <width>34</width>
+              <height>34</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+        <widget class="QLabel" name="Image2">
+          <property name="geometry">
+            <rect>
+              <x>153</x>
+              <y>33</y>
+              <width>32</width>
+              <height>32</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>301</y>
+          <width>653</width>
+          <height>41</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alBottom → arrange in a Qt layout manager -->
+      <widget class="QPushButton" name="btOK">
+        <property name="geometry">
+          <rect>
+            <x>16</x>
+            <y>8</y>
+            <width>75</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>OK</string>
+        </property>
+        <property name="text">
+          <string>OK</string>
+        </property>
+      </widget>
+      <widget class="QPushButton" name="btCancel">
+        <property name="geometry">
+          <rect>
+            <x>104</x>
+            <y>8</y>
+            <width>75</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Cancel</string>
+        </property>
+        <property name="text">
+          <string>Cancel</string>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

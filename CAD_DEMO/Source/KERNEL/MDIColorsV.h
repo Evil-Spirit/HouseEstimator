@@ -1,16 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIColorsVH
 #define MDIColorsVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MyMDIChildV.h"
-#include <ComCtrls.hpp>
-#include <Dialogs.hpp>
-#include <ExtCtrls.hpp>
 #include "VisCanvasView.hpp"
 #include "VisClass.hpp"
 #include "VisComp.hpp"
@@ -38,9 +36,9 @@ __published:	// IDE-managed Components
     TTrackBar *Shininess;
     TGroupBox *GroupBox1;
     TComboBox *cbFace;
-    void __fastcall AmbientMouseDown(TObject *Sender, TMouseButton Button,
+    void  AmbientMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall ShininessChange(TObject *Sender);
+    void  ShininessChange(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 TVisRender *VisRender;
@@ -48,7 +46,7 @@ TVisView *VisView;
 void ToForm();
 void Apply();
 bool Creating;
-    __fastcall TMDIColors(TComponent* Owner,TVisRender *_VisRender,TVisView *_VisView,TWinControl *_Parent=NULL);
+     TMDIColors(TComponent* Owner,TVisRender *_VisRender,TVisView *_VisView,TWinControl *_Parent=NULL);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIColors *MDIColors;

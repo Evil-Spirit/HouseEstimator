@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMetaActionList</class>
+  <widget class="QWidget" name="MDIMetaActionList">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1</width>
+        <height>1</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMetaActionList</string>
+    </property>
+    <widget class="QTabWidget" name="PCNode">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QWidget" name="tsAction">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Список Картинок</string>
+        </property>
+        <widget class="QLabel" name="Label3">
+          <property name="geometry">
+            <rect>
+              <x>24</x>
+              <y>24</y>
+              <width>66</width>
+              <height>13</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>List Of Picture</string>
+          </property>
+          <property name="text">
+            <string>List Of Picture</string>
+          </property>
+        </widget>
+        <widget class="QFrame" name="BMPSet">
+          <property name="geometry">
+            <rect>
+              <x>120</x>
+              <y>16</y>
+              <width>193</width>
+              <height>33</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>BMPSet</string>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

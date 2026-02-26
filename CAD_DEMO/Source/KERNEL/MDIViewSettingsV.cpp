@@ -1,23 +1,25 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "MTL.h"
 #include "Usefuls.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIViewSettingsV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TMDIViewSettings *MDIViewSettings;
 //---------------------------------------------------------------------------
-__fastcall TMDIViewSettings::TMDIViewSettings(TComponent* Owner)
+ TMDIViewSettings::TMDIViewSettings(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIViewSettings::shBackColor2dMouseDown(TObject *Sender,
+void  TMDIViewSettings::shBackColor2dMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     TShape* SH = (TShape*)Sender;

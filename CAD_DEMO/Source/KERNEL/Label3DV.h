@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef Label3DV2H
@@ -11,13 +15,12 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaLabel3D(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TMetaLabel3D();
     virtual ~TMetaLabel3D(){};
 };
-extern COMMONAL_API TClassNode* TMetaLabel3D::StaticType;
 
 /*class COMMONAL_API TLabel3D : public TElement {
 protected:
@@ -28,7 +31,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     void SetCharText(char* _Text );
     TLabel3D();
@@ -36,12 +39,11 @@ public:
     __property TMetaLabel3D *MetaLabel3D = {read = GetMetaLabel3D};
     virtual void StandartCreateView();
     virtual TVisRender *MyRender(){return(Label_Node);};
-    __property AnsiString Text = {read = Description,write = SetText};
+    // __property AnsiString Text {read=Description, write=SetText}; // [manual migration needed]
     virtual void UserChangePosition(const TIntVec& Move,const TIntVec& Rotate);
     bool Rotateble;
 //    virtual void StandartRender2D(TDrawView *DrawView);
 };
-extern COMMONAL_API TClassNode* TLabel3D::StaticType;
 */
 
 
@@ -55,7 +57,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     void SetCharText(char* _Text );
     TLabel3D();
@@ -63,9 +65,8 @@ public:
     __property TMetaLabel3D *MetaLabel3D = {read = GetMetaLabel3D};
     virtual void StandartCreateView();
     virtual TVisRender *MyRender(){return(Label);};
-    __property AnsiString Text = {read = Description,write = SetText};
+    // __property AnsiString Text {read=Description, write=SetText}; // [manual migration needed]
     bool Rotateble;
 };
-extern COMMONAL_API TClassNode* TLabel3D::StaticType;
 
 #endif

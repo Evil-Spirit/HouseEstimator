@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "PlatformV.h"
 #include "MDIMetaPlatformV.h"
@@ -17,7 +20,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 
 //---------------------------TMetaPlatform-------------------------
@@ -92,7 +94,7 @@ TMyObject* TPlatform::CreateFunction()
     RegisterNewClass< TArchitectElement, TPlatform >(this,false,&CreateFunction);
     if (typeid(*_Meta)!=typeid(TMetaPlatform))
     {
-        Application->MessageBox("Ожидалось MetaPlatform, получено Unknown. Приложение СТОП.","Error");
+        Application->MessageBox("ГЋГ¦ГЁГ¤Г Г«Г®Г±Гј MetaPlatform, ГЇГ®Г«ГіГ·ГҐГ­Г® Unknown. ГЏГ°ГЁГ«Г®Г¦ГҐГ­ГЁГҐ Г‘Г’ГЋГЏ.","Error");
         Application->Terminate();
         return;
     }
@@ -201,7 +203,7 @@ void TPlatform::StandartCreateView()
             };
     }
     //---------------------------------------------
-    //проверим параллельна ли плоскость земле
+    //ГЇГ°Г®ГўГҐГ°ГЁГ¬ ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г  Г«ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГј Г§ГҐГ¬Г«ГҐ
     TMDelTList<TIntVec>& PL = *(HP->Vertex);
     TIntVec Platform_Normal = ZEROINTVEC;
     for (int i=1;i<PL.Count;i++ )

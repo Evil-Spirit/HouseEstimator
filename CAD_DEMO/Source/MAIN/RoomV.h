@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef RoomVH
@@ -14,7 +18,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaRoom(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TMetaRoom();
@@ -39,18 +43,18 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TRoom();
     virtual ~TRoom();
-    __property MBTi CeilServiceZ = {read = FCeilServiceZ,write = SetCeilServiceZ};
-    __property MBTi FloorServiceZ = {read = FFloorServiceZ,write = SetFloorServiceZ};
+    // __property MBTi CeilServiceZ {read=FCeilServiceZ, write=SetCeilServiceZ}; // [manual migration needed]
+    // __property MBTi FloorServiceZ {read=FFloorServiceZ, write=SetFloorServiceZ}; // [manual migration needed]
     TRenderParam FloorParam;
     TRenderParam CeilParam;
     void FloorCeilArea();
     MBTi GetFloorArea();
     MBTi GetCeilArea();
-    int Status;//Status 0 - площадь не считается
+    int Status;//Status 0 - ГЇГ«Г®Г№Г Г¤Гј Г­ГҐ Г±Г·ГЁГІГ ГҐГІГ±Гї
     __property TMetaRoom *MetaRoom = {read = GetMetaRoom};
     virtual void StandartCreateView();
     virtual TVisRender *MyRender(){return(RoomRender);}

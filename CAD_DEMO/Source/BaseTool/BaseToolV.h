@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef BaseToolVH
@@ -10,7 +14,7 @@
 #include "LuaAttributeV.h"
 
 
-//Переходы
+//ГЏГҐГ°ГҐГµГ®Г¤Г»
 const int Mouse_Down    = 0;
 const int Mouse_Up      = 1;
 const int Mouse_Move    = 2;
@@ -24,19 +28,21 @@ const AnsiString CharEvent[6] = {"Mouse_Down",
                                  "Key_Down",
                                  "Key_Up",
                                  "EXIT"};
-//Типы блоков
+//Г’ГЁГЇГ» ГЎГ«Г®ГЄГ®Гў
 const int btNone = 0;
 const int Control = 1;
 const int btMenu = 2;
-//Типы формы
+//Г’ГЁГЇГ» ГґГ®Г°Г¬Г»
 const int NoneForm = 0;
 const int ToolFormOnly = 1;
 const int ToolAndCustomForms = 2;
-//Тип функчий содержащих исполняемый код блока схемы
-typedef void  (__closure *TCommands)();
-typedef bool (__closure *TCondition)();
+//Г’ГЁГЇ ГґГіГ­ГЄГ·ГЁГ© Г±Г®Г¤ГҐГ°Г¦Г Г№ГЁГµ ГЁГ±ГЇГ®Г«Г­ГїГҐГ¬Г»Г© ГЄГ®Г¤ ГЎГ«Г®ГЄГ  Г±ГµГҐГ¬Г»
+// Changed from raw function pointer to std::function to support member function closures
+#include <functional>
+typedef std::function<void()>  TCommands;
+typedef std::function<bool()>  TCondition;
 
-typedef void (__closure *TChangeCursorPos)();
+typedef void ( *TChangeCursorPos)();
 
 class TBindedGoEdit;
 class TBindedBlockEdit;
@@ -47,7 +53,7 @@ class COMMONAL_API TUserInterfaceParam : public TMyObject{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 
     TUserInterfaceParam();
     virtual ~TUserInterfaceParam(){};
@@ -61,7 +67,6 @@ public:
     void Changed(void* Field);
 };
 
-extern COMMONAL_API TClassNode* TUserInterfaceParam::StaticType;
 
 class TGo;
 
@@ -69,7 +74,7 @@ class TLuaModule;
 class COMMONAL_API TBaseBlock : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TLuaModule LuaModule;
     TBaseBlock();
     virtual ~TBaseBlock();
@@ -79,7 +84,6 @@ public:
     TMDelTList<TGo> GOS;
 };
 
-extern COMMONAL_API TClassNode* TBaseBlock::StaticType;
 
 class COMMONAL_API TGo : public TMyObject{
     void SetKey(WORD _Key);
@@ -89,57 +93,56 @@ class COMMONAL_API TGo : public TMyObject{
     int FKey, FMouseButton;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGo();
     TGo(int _Event, TMouseButton _MouseButton, int _NextBlockId);
     TGo(int _Event, const WORD &_Key, int _NextBlockId);
     virtual ~TGo(){};
     int Event;
-    __property WORD Key = { read = GetKey, write = SetKey };
-    __property TMouseButton MouseButton = { read = GetMB, write = SetMB };
+    // __property WORD Key {read=GetKey, write=SetKey}; // replaced by:
+    int& Key = FKey;
+    // __property TMouseButton MouseButton {read=GetMB, write=SetMB}; // replaced by:
+    int& MouseButton = FMouseButton;
     int NextBlockId;
 };
 
-extern COMMONAL_API TClassNode* TGo::StaticType;
 
 class COMMONAL_API TStateBlock : public TBaseBlock{
 private:
     int FExexutedEvent;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TStateBlock();
     TStateBlock(TCommands _Commands, int _Id, int _ExexutedEvent, int _Type, AnsiString _Description);
     TCommands Commands;
-    __property int ExecutedEvent = {read = FExexutedEvent, write = FExexutedEvent};
+    // __property int ExecutedEvent {read=FExexutedEvent, write=FExexutedEvent}; // replaced by:
+    int& ExecutedEvent = FExexutedEvent;
     virtual ~TStateBlock(){};
 };
 
-extern COMMONAL_API TClassNode* TStateBlock::StaticType;
 
 class COMMONAL_API TActionBlock : public TBaseBlock{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TActionBlock();
     TActionBlock(TCommands _Commands, int _Id, int _Type, AnsiString _Description);
     TCommands Commands;
     virtual ~TActionBlock(){};
 };
 
-extern COMMONAL_API TClassNode* TActionBlock::StaticType;
 
 class COMMONAL_API TConditionalBlock : public TBaseBlock{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TConditionalBlock();
     TConditionalBlock(TCondition _Condition, int _Id, int _Type, AnsiString _Description);
     TCondition Condition;
     virtual ~TConditionalBlock(){};
 };
 
-extern COMMONAL_API TClassNode* TConditionalBlock::StaticType;
 
 class COMMONAL_API TBaseTool : public TMyObject{
 private:
@@ -147,7 +150,7 @@ private:
     TMTList< TMTList<TGo> > ToolCommands;
     void GetToolCommands(TMTList<TGo>* _GOS);
     void FillMenu();
-    void __fastcall MenuClick(TObject *Sender);
+    void  MenuClick(TObject *Sender);
     void ExecuteCommand(int _Index);
 protected:
     void ProcessEscapeCommands();
@@ -155,7 +158,8 @@ protected:
     int FindIndexFromId(int Id);
     TCommands EscCommands;
     TMDelTList<TBaseBlock> Blocks;
-    __property int ExecutedId = {read = FExecutedId};
+    // __property int ExecutedId {read=FExecutedId}; // replaced by:
+    int& ExecutedId = FExecutedId;
     void AddGoToBlockId(int Id, int NextBlockId);
     void AddGoToBlockId(int Id, int NextBlockId, const int Event, TMouseButton MouseButton);
     void AddGoToBlockId(int Id, int NextBlockId, const int Event, const WORD& Key);
@@ -175,7 +179,7 @@ public:
     TVisPrimitiveObj* SnapCursor;
 
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     int ImageId;
     TBaseTool();
     virtual ~TBaseTool();
@@ -197,13 +201,12 @@ public:
     virtual AnsiString Hint(void* Sender);
 };
 
-extern COMMONAL_API TClassNode* TBaseTool::StaticType;
 
 class COMMONAL_API TMyControls : public TMyObject{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TMyControls();
     virtual ~TMyControls(){};
     TMDelTList< TMTList<TBaseTool> > Matrix;
@@ -220,7 +223,6 @@ public:
     AnsiString Hint(void* Sender);
 };
 
-extern COMMONAL_API TClassNode* TMyControls::StaticType;
 
 extern COMMONAL_API bool LuaConditionResult;
 //---------------------------------------------------------------------------

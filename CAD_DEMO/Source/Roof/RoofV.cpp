@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "RoofV.h"
 #include "Poligon.h"
@@ -19,12 +22,11 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
-MBTi PEPS = 0.0001;				//мера близости точек
-MBTi CEPS = 0.0001;				//мера коллинеарности плоскостей
-MBTi EEPS = 0.0001;				//общая мера близости 
-MBTi ZERO_EPS = 0.000001;       //общая мера близости
+MBTi PEPS = 0.0001;				//Г¬ГҐГ°Г  ГЎГ«ГЁГ§Г®Г±ГІГЁ ГІГ®Г·ГҐГЄ
+MBTi CEPS = 0.0001;				//Г¬ГҐГ°Г  ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г®Г±ГІГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+MBTi EEPS = 0.0001;				//Г®ГЎГ№Г Гї Г¬ГҐГ°Г  ГЎГ«ГЁГ§Г®Г±ГІГЁ 
+MBTi ZERO_EPS = 0.000001;       //Г®ГЎГ№Г Гї Г¬ГҐГ°Г  ГЎГ«ГЁГ§Г®Г±ГІГЁ
 
 /************************************************************************************************************************/
 TRoof Roof;
@@ -46,20 +48,20 @@ void TCollinearGroup::InsertPoint(TMDelTList<int> &PntPlane, TGPoint* Pnt,MBTi U
 			PntPlane.Delete(indexOf);
 	}
 
-	//теперь проверим может точка лежит на прямой
-	//обозначающей границу коллинеарности
+	//ГІГҐГЇГҐГ°Гј ГЇГ°Г®ГўГҐГ°ГЁГ¬ Г¬Г®Г¦ГҐГІ ГІГ®Г·ГЄГ  Г«ГҐГ¦ГЁГІ Г­Г  ГЇГ°ГїГ¬Г®Г©
+	//Г®ГЎГ®Г§Г­Г Г·Г ГѕГ№ГҐГ© ГЈГ°Г Г­ГЁГ¶Гі ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г®Г±ГІГЁ
 	for (int i=0;i<Edges.Count;i++)
 		if (Edges[i].COMMON.IndexOf(Pnt)!=-1)
 		{
-			//если да то добавляем ДВЕ плоскости в список плоскостей
-			//через которые проходит точка
+			//ГҐГ±Г«ГЁ Г¤Г  ГІГ® Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г„Г‚Г… ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ Гў Г±ГЇГЁГ±Г®ГЄ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+			//Г·ГҐГ°ГҐГ§ ГЄГ®ГІГ®Г°Г»ГҐ ГЇГ°Г®ГµГ®Г¤ГЁГІ ГІГ®Г·ГЄГ 
 			PntPlane.Add(new int(indices[i]) );
 			PntPlane.Add(new int(indices[i+1]) );
 			return;
 		}
-	//точка не лежит на границе
-	//теперь однозначно отнесем ее к одной из плоскостей
-	//в смысле заданных границ коллинеарности
+	//ГІГ®Г·ГЄГ  Г­ГҐ Г«ГҐГ¦ГЁГІ Г­Г  ГЈГ°Г Г­ГЁГ¶ГҐ
+	//ГІГҐГЇГҐГ°Гј Г®Г¤Г­Г®Г§Г­Г Г·Г­Г® Г®ГІГ­ГҐГ±ГҐГ¬ ГҐГҐ ГЄ Г®Г¤Г­Г®Г© ГЁГ§ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+	//Гў Г±Г¬Г»Г±Г«ГҐ Г§Г Г¤Г Г­Г­Г»Гµ ГЈГ°Г Г­ГЁГ¶ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г®Г±ГІГЁ
 	TIntVec Intersect;
 	int pln = indices.Count-1;
 	TIntVec itr;
@@ -182,7 +184,7 @@ void ProcessAddPoint(int i,int j,int k,TGPoint* Pnt)
 
 void TRoof::CalculateStatistics(TMDelTList<TPreTriangle> &PRE_TRI)
 {
-		//расчитываем точки пересечения  у псевдотреугольников
+		//Г°Г Г±Г·ГЁГІГ»ГўГ ГҐГ¬ ГІГ®Г·ГЄГЁ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї  Гі ГЇГ±ГҐГўГ¤Г®ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ®Гў
 		for (int i=0;i<PRE_TRI.Count;i++)
 		if(PRE_TRI[i].Plane < PRE_TRI[i].Planes.Count-1)
 		{
@@ -237,8 +239,8 @@ bool TRoof::ProcessGeometry(	TMDelTList< TMDelTList<TIntVec> > &p_N,
 		}
 	}
 
-	TMDelTList< TMDelTList<int> > Parallel;		//Матрица коллинеарности-параллельности (для каждой пары плоскостй)
-	//заполнение матриц пустыми значениями
+	TMDelTList< TMDelTList<int> > Parallel;		//ГЊГ ГІГ°ГЁГ¶Г  ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г®Г±ГІГЁ-ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ (Г¤Г«Гї ГЄГ Г¦Г¤Г®Г© ГЇГ Г°Г» ГЇГ«Г®Г±ГЄГ®Г±ГІГ©)
+	//Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ Г¬Г ГІГ°ГЁГ¶ ГЇГіГ±ГІГ»Г¬ГЁ Г§Г­Г Г·ГҐГ­ГЁГїГ¬ГЁ
 	for (int i=0;i<p_Normal.Count;i++)
 	{
 		DirMatrix.Add(new TMDelTList<TIntVec>());
@@ -252,7 +254,7 @@ bool TRoof::ProcessGeometry(	TMDelTList< TMDelTList<TIntVec> > &p_N,
 		}
 	}
 
-	//расчет матрицы нормалей и матрицы коллинеарности
+	//Г°Г Г±Г·ГҐГІ Г¬Г ГІГ°ГЁГ¶Г» Г­Г®Г°Г¬Г Г«ГҐГ© ГЁ Г¬Г ГІГ°ГЁГ¶Г» ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г®Г±ГІГЁ
 	for (int i=0;i<p_Normal.Count;i++)
 		for (int j=i+1;j<p_Normal.Count;j++)
 			if ( PlanesCollinear(p_Origin[i], p_Normal[i], p_Origin[j], p_Normal[j], CEPS ))
@@ -290,7 +292,7 @@ bool TRoof::ProcessGeometry(	TMDelTList< TMDelTList<TIntVec> > &p_N,
 				OrgMatrix[j][i] = OrgMatrix[i][j];
 			}
 
-	//создаем геометрический интерфейс контура
+	//Г±Г®Г§Г¤Г ГҐГ¬ ГЈГҐГ®Г¬ГҐГІГ°ГЁГ·ГҐГ±ГЄГЁГ© ГЁГ­ГІГҐГ°ГґГҐГ©Г± ГЄГ®Г­ГІГіГ°Г 
 	TPolygon Contour;
 
 	for (int i=0;i<p_Roof.Count;i++)
@@ -321,12 +323,12 @@ bool TRoof::ProcessGeometry(	TMDelTList< TMDelTList<TIntVec> > &p_N,
 		}
 	}
 
-	//заполнений списка отрезков отрезками исходного контура крыши
+	//Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГ© Г±ГЇГЁГ±ГЄГ  Г®ГІГ°ГҐГ§ГЄГ®Гў Г®ГІГ°ГҐГ§ГЄГ Г¬ГЁ ГЁГ±ГµГ®Г¤Г­Г®ГЈГ® ГЄГ®Г­ГІГіГ°Г  ГЄГ°Г»ГёГЁ
 
 	for (int i=0;i<VertexCount;i++)
 		AddCut(&GetVertex(i), &GetVertex((i+1) % VertexCount));
 
-	//инициализируем список пре-трианглов
+	//ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°ГіГҐГ¬ Г±ГЇГЁГ±Г®ГЄ ГЇГ°ГҐ-ГІГ°ГЁГ Г­ГЈГ«Г®Гў
 /*	for (int i=0;i<PRE_TRI.Count;i++)
 	{
 		TIntVec normal = PRE_TRI[i].TruePointRight->Point - PRE_TRI[i].TruePointLeft->Point;
@@ -339,36 +341,36 @@ bool TRoof::ProcessGeometry(	TMDelTList< TMDelTList<TIntVec> > &p_N,
 		Convex.Add(new bool(ScalarP(normal,nxt)<=0));	
 	}
 */
-	//перескаем не коллинеарные
-	//пока только не коллинеарные и не параллельные
+	//ГЇГҐГ°ГҐГ±ГЄГ ГҐГ¬ Г­ГҐ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»ГҐ
+	//ГЇГ®ГЄГ  ГІГ®Г«ГјГЄГ® Г­ГҐ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»ГҐ ГЁ Г­ГҐ ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г»ГҐ
 
 	for (int i=0;i<p_Normal.Count;i++)
 	{
 		for (int j=i+1;j<p_Normal.Count;j++)
 		{
-			//для каждой пары плоскостей
-			//перебираем остальные плоскости и ищем точку пересечения тройи
+			//Г¤Г«Гї ГЄГ Г¦Г¤Г®Г© ГЇГ Г°Г» ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+			//ГЇГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г®Г±ГІГ Г«ГјГ­Г»ГҐ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЁ ГЁГ№ГҐГ¬ ГІГ®Г·ГЄГі ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї ГІГ°Г®Г©ГЁ
 			if (Parallel[i][j]>=1)
 				continue;
 
-			//поиск точки по двум плоскостям
+			//ГЇГ®ГЁГ±ГЄ ГІГ®Г·ГЄГЁ ГЇГ® Г¤ГўГіГ¬ ГЇГ«Г®Г±ГЄГ®Г±ГІГїГ¬
 
 			TIntVec CUR;
-			//две точки - прямая пересечения пары плоскостей
+			//Г¤ГўГҐ ГІГ®Г·ГЄГЁ - ГЇГ°ГїГ¬Г Гї ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї ГЇГ Г°Г» ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
 			TIntVec P1 = OrgMatrix[i][j];
 			TIntVec P2 = OrgMatrix[i][j] + DirMatrix[i][j];
-			//теперь полученную прямую пересекаем с остальными плоскостями
+			//ГІГҐГЇГҐГ°Гј ГЇГ®Г«ГіГ·ГҐГ­Г­ГіГѕ ГЇГ°ГїГ¬ГіГѕ ГЇГҐГ°ГҐГ±ГҐГЄГ ГҐГ¬ Г± Г®Г±ГІГ Г«ГјГ­Г»Г¬ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГїГ¬ГЁ
 			for (int k=j+1;k<p_Normal.Count;k++)
 			{
-				//понятно здесь только неколллинеарные-непараллельные
+				//ГЇГ®Г­ГїГІГ­Г® Г§Г¤ГҐГ±Гј ГІГ®Г«ГјГЄГ® Г­ГҐГЄГ®Г«Г«Г«ГЁГ­ГҐГ Г°Г­Г»ГҐ-Г­ГҐГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г»ГҐ
 				if (Parallel[i][k]>=1 || Parallel[j][k]>=1)
 					continue;
-				//типа не пересекаются
-				//ищем точку пересечения
+				//ГІГЁГЇГ  Г­ГҐ ГЇГҐГ°ГҐГ±ГҐГЄГ ГѕГІГ±Гї
+				//ГЁГ№ГҐГ¬ ГІГ®Г·ГЄГі ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 				int RoofByPoint = -1;
 				if ( PlaneCrossPoint2(p_Origin[k], p_Normal[k], P1, P2, CUR, EEPS) == 1 )
 				{
-					//есть такая точка
+					//ГҐГ±ГІГј ГІГ ГЄГ Гї ГІГ®Г·ГЄГ 
 					if (isIntersectPointGood(CUR, i, j ,k, b_N, b_O)/* && Contour.ConsistsPoint(CUR, EEPS*100) != pipOUTSIDE*/)
 					{
 						RoofByPoint = FVertex.IndexOf(AddPoint(CUR));
@@ -386,54 +388,54 @@ bool TRoof::ProcessGeometry(	TMDelTList< TMDelTList<TIntVec> > &p_N,
 	 }
 
 
-//заполнение коллинеарных групп         
-//сначала происходит просто заполнение
-//групп плоскостями, а потом на основе этого инициализация групп
+//Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»Гµ ГЈГ°ГіГЇГЇ         
+//Г±Г­Г Г·Г Г«Г  ГЇГ°Г®ГЁГ±ГµГ®Г¤ГЁГІ ГЇГ°Г®Г±ГІГ® Г§Г ГЇГ®Г«Г­ГҐГ­ГЁГҐ
+//ГЈГ°ГіГЇГЇ ГЇГ«Г®Г±ГЄГ®Г±ГІГїГ¬ГЁ, Г  ГЇГ®ГІГ®Г¬ Г­Г  Г®Г±Г­Г®ГўГҐ ГЅГІГ®ГЈГ® ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЈГ°ГіГЇГЇ
 
 	TMDelTList<TCollinearGroup> Groups;
 
 	for (int i=0;i<p_Normal.Count;i++)
 	{
-		//в этот список собираем номера коллинеарных плоскостей
+		//Гў ГЅГІГ®ГІ Г±ГЇГЁГ±Г®ГЄ Г±Г®ГЎГЁГ°Г ГҐГ¬ Г­Г®Г¬ГҐГ°Г  ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»Гµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
 		TMDelTList<int> CollinearTo_i;
 		for (int j=i+1;j<p_Normal.Count;j++)
 			if (Parallel[i][j] == 2)
 				CollinearTo_i.Add(new int(j));
 
-		//если список не пуст
+		//ГҐГ±Г«ГЁ Г±ГЇГЁГ±Г®ГЄ Г­ГҐ ГЇГіГ±ГІ
 		if (CollinearTo_i.Count>0)
 		{
-			//то осталось внести плоскости в соотв. группу
-			//поищем группу
+			//ГІГ® Г®Г±ГІГ Г«Г®Г±Гј ГўГ­ГҐГ±ГІГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ Гў Г±Г®Г®ГІГў. ГЈГ°ГіГЇГЇГі
+			//ГЇГ®ГЁГ№ГҐГ¬ ГЈГ°ГіГЇГЇГі
 			int gr = FindGroup(Groups,i,-1);
-			//если не существует то создадим
+			//ГҐГ±Г«ГЁ Г­ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ ГІГ® Г±Г®Г§Г¤Г Г¤ГЁГ¬
 			if (gr==-1)
 				gr = Groups.Add( new TCollinearGroup() );
-			//добавим плоскость i если надо
+			//Г¤Г®ГЎГ ГўГЁГ¬ ГЇГ«Г®Г±ГЄГ®Г±ГІГј i ГҐГ±Г«ГЁ Г­Г Г¤Г®
 			if ( FindInList(&Groups[gr].indices,i)==-1 )
 				Groups[gr].indices.Add(new int(i));
-			//если надо добавим плоскости из списка
+			//ГҐГ±Г«ГЁ Г­Г Г¤Г® Г¤Г®ГЎГ ГўГЁГ¬ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЁГ§ Г±ГЇГЁГ±ГЄГ 
 			for (int k=0;k<CollinearTo_i.Count;k++)
 				if ( FindInList(&Groups[gr].indices,CollinearTo_i[k])==-1 )
 					Groups[gr].indices.Add(new int( CollinearTo_i[k] ));
 		}
 	}
-//инициализация групп
+//ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЈГ°ГіГЇГЇ
 	for (int i=0;i<Groups.Count;i++)
 		Groups[i].Init(*Contour.Vertex, p_Normal);
 
 
-//пересекаем коллинеарные
-//в соответствии с предположением линией пересечения
-//коллинеарных плоскостей является заданны нами граница
-//пересекаем такие границы с сотальными плоскостями
+//ГЇГҐГ°ГҐГ±ГҐГЄГ ГҐГ¬ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»ГҐ
+//Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГЁ Г± ГЇГ°ГҐГ¤ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐГ¬ Г«ГЁГ­ГЁГҐГ© ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
+//ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»Гµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ© ГїГўГ«ГїГҐГІГ±Гї Г§Г Г¤Г Г­Г­Г» Г­Г Г¬ГЁ ГЈГ°Г Г­ГЁГ¶Г 
+//ГЇГҐГ°ГҐГ±ГҐГЄГ ГҐГ¬ ГІГ ГЄГЁГҐ ГЈГ°Г Г­ГЁГ¶Г» Г± Г±Г®ГІГ Г«ГјГ­Г»Г¬ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГїГ¬ГЁ
 	for (int i=0;i<Groups.Count;i++)
 		for (int j=0;j<Groups[i].Edges.Count;j++)
 			for (int k=0;k<p_Normal.Count;k++)
 			{
 				if (Groups[i].indices[j] ==k || Groups[i].indices[j+1] == k)
 					continue;
-				//тем не менее третья плоскость должна быть даже непараллельна
+				//ГІГҐГ¬ Г­ГҐ Г¬ГҐГ­ГҐГҐ ГІГ°ГҐГІГјГї ГЇГ«Г®Г±ГЄГ®Г±ГІГј Г¤Г®Г«Г¦Г­Г  ГЎГ»ГІГј Г¤Г Г¦ГҐ Г­ГҐГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г 
 				if ( Parallel[ Groups[i].indices[j] ][k]>=1 || Parallel[ Groups[i].indices[j+1] ][k]>=1)
 					continue;
 
@@ -467,7 +469,7 @@ bool TRoof::ProcessGeometry(	TMDelTList< TMDelTList<TIntVec> > &p_N,
 						found = true;
 				}
 				
-				//далее аналогично предыдущему
+				//Г¤Г Г«ГҐГҐ Г Г­Г Г«Г®ГЈГЁГ·Г­Г® ГЇГ°ГҐГ¤Г»Г¤ГіГ№ГҐГ¬Гі
 				int RoofByPoint = -1;
 				if ( found )
 				{
@@ -484,31 +486,31 @@ bool TRoof::ProcessGeometry(	TMDelTList< TMDelTList<TIntVec> > &p_N,
 					}	
 				}
 			}
-//теперь строгое раскидывание всех точек пересечения
-//по областям разделенным границами коллинеарных плоскостей
+//ГІГҐГЇГҐГ°Гј Г±ГІГ°Г®ГЈГ®ГҐ Г°Г Г±ГЄГЁГ¤Г»ГўГ Г­ГЁГҐ ГўГ±ГҐГµ ГІГ®Г·ГҐГЄ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
+//ГЇГ® Г®ГЎГ«Г Г±ГІГїГ¬ Г°Г Г§Г¤ГҐГ«ГҐГ­Г­Г»Г¬ ГЈГ°Г Г­ГЁГ¶Г Г¬ГЁ ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»Гµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
 	for (int i=0;i<PntPlane.Count;i++)
 	{
 		TMDelTList<int> groupindices;
-		//берем точку и пробегая по ее плоскостям
-		//смотрим нет ли плоскости из какой нибудь группы коллинеарности
+		//ГЎГҐГ°ГҐГ¬ ГІГ®Г·ГЄГі ГЁ ГЇГ°Г®ГЎГҐГЈГ Гї ГЇГ® ГҐГҐ ГЇГ«Г®Г±ГЄГ®Г±ГІГїГ¬
+		//Г±Г¬Г®ГІГ°ГЁГ¬ Г­ГҐГІ Г«ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЁГ§ ГЄГ ГЄГ®Г© Г­ГЁГЎГіГ¤Гј ГЈГ°ГіГЇГЇГ» ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г®Г±ГІГЁ
 		for (int j=0;j<PntPlane[i].Count;j++)
 		{
 			int gr = FindGroup(Groups,PntPlane[i][j],-1);
 			if (gr!=-1 && FindInList(&groupindices,gr)==-1)
 				groupindices.Add(new int(gr));
 		}
-		//если нашли некоторые группы коллинеарности
-		//то запускаем функцию внедрения точки в группу коллинарности
+		//ГҐГ±Г«ГЁ Г­Г ГёГ«ГЁ Г­ГҐГЄГ®ГІГ®Г°Г»ГҐ ГЈГ°ГіГЇГЇГ» ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г®Г±ГІГЁ
+		//ГІГ® Г§Г ГЇГіГ±ГЄГ ГҐГ¬ ГґГіГ­ГЄГ¶ГЁГѕ ГўГ­ГҐГ¤Г°ГҐГ­ГЁГї ГІГ®Г·ГЄГЁ Гў ГЈГ°ГіГЇГЇГі ГЄГ®Г«Г«ГЁГ­Г Г°Г­Г®Г±ГІГЁ
 		for(int gr = 0;gr<groupindices.Count;gr++)
 			Groups[groupindices[gr]].InsertPoint(Roof.PntPlane[i],&Roof.GetVertex(i),PEPS);
 	}
 
-//теперь каждой тройке плоскостей
-//поставим в соответствие точку их пересечения
-//разумеется в одной точке могут пересекаться три и более плоскостей
-//но точка може быть образована как минимум тремя плоскостями
+//ГІГҐГЇГҐГ°Гј ГЄГ Г¦Г¤Г®Г© ГІГ°Г®Г©ГЄГҐ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+//ГЇГ®Г±ГІГ ГўГЁГ¬ Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГҐ ГІГ®Г·ГЄГі ГЁГµ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
+//Г°Г Г§ГіГ¬ГҐГҐГІГ±Гї Гў Г®Г¤Г­Г®Г© ГІГ®Г·ГЄГҐ Г¬Г®ГЈГіГІ ГЇГҐГ°ГҐГ±ГҐГЄГ ГІГјГ±Гї ГІГ°ГЁ ГЁ ГЎГ®Г«ГҐГҐ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+//Г­Г® ГІГ®Г·ГЄГ  Г¬Г®Г¦ГҐ ГЎГ»ГІГј Г®ГЎГ°Г Г§Г®ГўГ Г­Г  ГЄГ ГЄ Г¬ГЁГ­ГЁГ¬ГіГ¬ ГІГ°ГҐГ¬Гї ГЇГ«Г®Г±ГЄГ®Г±ГІГїГ¬ГЁ
 
-//заполняем PntCube пустыми значениями
+//Г§Г ГЇГ®Г«Г­ГїГҐГ¬ PntCube ГЇГіГ±ГІГ»Г¬ГЁ Г§Г­Г Г·ГҐГ­ГЁГїГ¬ГЁ
 	for (int i=0;i<p_Normal.Count;i++)
 	{
 		PntCube.Add( new TMDelTList<  TMTList<TGPoint>  >() );
@@ -520,15 +522,15 @@ bool TRoof::ProcessGeometry(	TMDelTList< TMDelTList<TIntVec> > &p_N,
 		}
 	}
 
-//далее заполняем PntCube
+//Г¤Г Г«ГҐГҐ Г§Г ГЇГ®Г«Г­ГїГҐГ¬ PntCube
 	for (int p=0;p<VertexCount;p++)
 		for (int i=0;i<PntPlane[p].Count;i++)
 			for (int j=i+1;j<PntPlane[p].Count;j++)
 				for (int k=j+1;k<PntPlane[p].Count;k++)
 					ProcessAddPoint(PntPlane[p][i],PntPlane[p][j],PntPlane[p][k], &GetVertex(p));
 
-//раскидываем по полигонам отрезки
-//исходного контура
+//Г°Г Г±ГЄГЁГ¤Г»ГўГ ГҐГ¬ ГЇГ® ГЇГ®Г«ГЁГЈГ®Г­Г Г¬ Г®ГІГ°ГҐГ§ГЄГЁ
+//ГЁГ±ГµГ®Г¤Г­Г®ГЈГ® ГЄГ®Г­ГІГіГ°Г 
 
 
 	for (int i=0;i<p_Normal.Count;i++)
@@ -586,7 +588,7 @@ bool TRoof::BuildRoofRecurrent(TMDelTList<TPreTriangle> &PRE_TRI, TMDelTList<TMT
 		}		
 	}
 
-	//в случае неожиданного завершения алгоритма
+	//Гў Г±Г«ГіГ·Г ГҐ Г­ГҐГ®Г¦ГЁГ¤Г Г­Г­Г®ГЈГ® Г§Г ГўГҐГ°ГёГҐГ­ГЁГї Г Г«ГЈГ®Г°ГЁГІГ¬Г 
 	if (minindex==-1)
 	{
 		//for (int i=0;i<RESULT.Count;i++)
@@ -757,20 +759,20 @@ void CreateRoof(TMDelTList< TMDelTList<TIntVec> > &p_N,
 
 int FindRoofByThreePlane(int i1,int i2, int i3)
 {
-	//проходим по списку точек и проверяем
-	//принадлежат ли ее списку плоскостей заданные плоскости
+	//ГЇГ°Г®ГµГ®Г¤ГЁГ¬ ГЇГ® Г±ГЇГЁГ±ГЄГі ГІГ®Г·ГҐГЄ ГЁ ГЇГ°Г®ГўГҐГ°ГїГҐГ¬
+	//ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г ГІ Г«ГЁ ГҐГҐ Г±ГЇГЁГ±ГЄГі ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ© Г§Г Г¤Г Г­Г­Г»ГҐ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
 	for (int i=0;i<Roof.PntPlane.Count;i++)
 		if ( (FindInList(&Roof.PntPlane[i],i1)!=-1) && (FindInList(&Roof.PntPlane[i],i2)!=-1)&& (FindInList(&Roof.PntPlane[i],i3)!=-1) )
 			return i;
 	return -1;
 }
-//инициализировать границы коллинеарных плоскостей
-//если заданы плоскости
-//точки и нормали плоскостей переданы в качестве аргументов
+//ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°Г®ГўГ ГІГј ГЈГ°Г Г­ГЁГ¶Г» ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»Гµ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ©
+//ГҐГ±Г«ГЁ Г§Г Г¤Г Г­Г» ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+//ГІГ®Г·ГЄГЁ ГЁ Г­Г®Г°Г¬Г Г«ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ© ГЇГҐГ°ГҐГ¤Г Г­Г» Гў ГЄГ Г·ГҐГ±ГІГўГҐ Г Г°ГЈГіГ¬ГҐГ­ГІГ®Гў
 void TCollinearGroup::Init(TMTList<TIntVec>& Vert,TMTList<TIntVec>& Norm)
 {
-		//сортируем индексы плоскостей по
-		//соотв. точкам контура
+		//Г±Г®Г°ГІГЁГ°ГіГҐГ¬ ГЁГ­Г¤ГҐГЄГ±Г» ГЇГ«Г®Г±ГЄГ®Г±ГІГҐГ© ГЇГ®
+		//Г±Г®Г®ГІГў. ГІГ®Г·ГЄГ Г¬ ГЄГ®Г­ГІГіГ°Г 
 		TMDelTList<TIntVec> indicesVecs;
 		for (int i=0;i<indices.Count;i++)
 			indicesVecs.Add(new TIntVec(Vert[ Roof.p_Slope[ indices[i] ] ]));
@@ -817,11 +819,11 @@ void TCollinearGroup::Init(TMTList<TIntVec>& Vert,TMTList<TIntVec>& Norm)
 	}
 }
 /*
-//добавляем в КУБ точек очереную точку
-//формируя зависимость три плоскости - пересечения
+//Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Гў ГЉГ“ГЃ ГІГ®Г·ГҐГЄ Г®Г·ГҐГ°ГҐГ­ГіГѕ ГІГ®Г·ГЄГі
+//ГґГ®Г°Г¬ГЁГ°ГіГї Г§Г ГўГЁГ±ГЁГ¬Г®Г±ГІГј ГІГ°ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ - ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 // i < j < k 
 
-//рассчитать критерий для псевдотреугольника
+//Г°Г Г±Г±Г·ГЁГІГ ГІГј ГЄГ°ГЁГІГҐГ°ГЁГ© Г¤Г«Гї ГЇГ±ГҐГўГ¤Г®ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
 */
 void TPreTriangle::amIEvil()
 {
@@ -853,30 +855,30 @@ void TPreTriangle::CalcScatProject(TPreTriangle *left, TPreTriangle *right)
 	}
 }
 /*
-//функция реализует выбранный псевдотреугольник
-//по соответствующим скатам
-//соответствующим в смысле соответствующий псевдотреугольнику,
-//а также левый и правый от него
+//ГґГіГ­ГЄГ¶ГЁГї Г°ГҐГ Г«ГЁГ§ГіГҐГІ ГўГ»ГЎГ°Г Г­Г­Г»Г© ГЇГ±ГҐГўГ¤Г®ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄ
+//ГЇГ® Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГЁГ¬ Г±ГЄГ ГІГ Г¬
+//Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГЁГ¬ Гў Г±Г¬Г»Г±Г«ГҐ Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГЁГ© ГЇГ±ГҐГўГ¤Г®ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГі,
+//Г  ГІГ ГЄГ¦ГҐ Г«ГҐГўГ»Г© ГЁ ГЇГ°Г ГўГ»Г© Г®ГІ Г­ГҐГЈГ®
 */
 void TRoof::DivideTriangle( TMDelTList<TPreTriangle>& PRE_TRI,int index,TMDelTList<TMTList <TGCut> > &RP )
 {
-	//работаем с левой стороной псевдотреугольника
+	//Г°Г ГЎГ®ГІГ ГҐГ¬ Г± Г«ГҐГўГ®Г© Г±ГІГ®Г°Г®Г­Г®Г© ГЇГ±ГҐГўГ¤Г®ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
 
 	if (ExistsCut(PRE_TRI[index].TruePointLeft, PRE_TRI[index].CrossPointLeft)==NULL && 
 		PRE_TRI[index].TruePointLeft != PRE_TRI[index].CrossPointLeft)
 	{
-		//отрезок еще не встречался значит создаем его
+		//Г®ГІГ°ГҐГ§Г®ГЄ ГҐГ№ГҐ Г­ГҐ ГўГ±ГІГ°ГҐГ·Г Г«Г±Гї Г§Г­Г Г·ГЁГІ Г±Г®Г§Г¤Г ГҐГ¬ ГҐГЈГ®
 		TGCut *ct = AddCut( PRE_TRI[index].TruePointLeft, PRE_TRI[index].CrossPointLeft );
 		RP[p_Roof[PRE_TRI[index].Slope][PRE_TRI[index].Plane]].Add(ct);
 		RP[p_Roof[PRE_TRI.CycVal(index-1).Slope][PRE_TRI.CycVal(index-1).Plane]].Add(ct);
 	}                                       
 
-	//работаем с правой стороной псевдотреугольника
+	//Г°Г ГЎГ®ГІГ ГҐГ¬ Г± ГЇГ°Г ГўГ®Г© Г±ГІГ®Г°Г®Г­Г®Г© ГЇГ±ГҐГўГ¤Г®ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
 
 	if (ExistsCut(PRE_TRI[index].TruePointRight, PRE_TRI[index].CrossPointRight)==NULL && 
 		PRE_TRI[index].TruePointRight != PRE_TRI[index].CrossPointRight)
 	{
-		//отрезок еще не встречался значит создаем его
+		//Г®ГІГ°ГҐГ§Г®ГЄ ГҐГ№ГҐ Г­ГҐ ГўГ±ГІГ°ГҐГ·Г Г«Г±Гї Г§Г­Г Г·ГЁГІ Г±Г®Г§Г¤Г ГҐГ¬ ГҐГЈГ®
 		TGCut *ct = AddCut( PRE_TRI[index].TruePointRight, PRE_TRI[index].CrossPointRight );
 		RP[p_Roof[PRE_TRI[index].Slope][PRE_TRI[index].Plane]].Add(ct);
 		RP[p_Roof[PRE_TRI.CycVal(index+1).Slope][PRE_TRI.CycVal(index+1).Plane]].Add(ct);
@@ -884,7 +886,7 @@ void TRoof::DivideTriangle( TMDelTList<TPreTriangle>& PRE_TRI,int index,TMDelTLi
 
 	if (PRE_TRI[index].Plane != PRE_TRI[index].Planes.Count-1 )
 	{
-		//работаем с верхней стороной псевдотреугольника
+		//Г°Г ГЎГ®ГІГ ГҐГ¬ Г± ГўГҐГ°ГµГ­ГҐГ© Г±ГІГ®Г°Г®Г­Г®Г© ГЇГ±ГҐГўГ¤Г®ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
 
 		if ((ExistsCut(PRE_TRI[index].CrossPointLeft, PRE_TRI[index].CrossPointRight)==NULL)  && 
 			PRE_TRI[index].CrossPointLeft != PRE_TRI[index].CrossPointRight)
@@ -898,11 +900,11 @@ void TRoof::DivideTriangle( TMDelTList<TPreTriangle>& PRE_TRI,int index,TMDelTLi
 }
 
 /*
-//используется на заключительном этапе работы алгоритма
-//когда список отрезков принадлежащих скату
-//упорядочивается в контур
+//ГЁГ±ГЇГ®Г«ГјГ§ГіГҐГІГ±Гї Г­Г  Г§Г ГЄГ«ГѕГ·ГЁГІГҐГ«ГјГ­Г®Г¬ ГЅГІГ ГЇГҐ Г°Г ГЎГ®ГІГ» Г Г«ГЈГ®Г°ГЁГІГ¬Г 
+//ГЄГ®ГЈГ¤Г  Г±ГЇГЁГ±Г®ГЄ Г®ГІГ°ГҐГ§ГЄГ®Гў ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г Г№ГЁГµ Г±ГЄГ ГІГі
+//ГіГЇГ®Г°ГїГ¤Г®Г·ГЁГўГ ГҐГІГ±Гї Гў ГЄГ®Г­ГІГіГ°
 
-//левая сторона длиннее правой стороны левого треугольника
+//Г«ГҐГўГ Гї Г±ГІГ®Г°Г®Г­Г  Г¤Г«ГЁГ­Г­ГҐГҐ ГЇГ°Г ГўГ®Г© Г±ГІГ®Г°Г®Г­Г» Г«ГҐГўГ®ГЈГ® ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
 */
 bool TPreTriangle::IAmBadLeft(TPreTriangle* Left)
 {
@@ -917,7 +919,7 @@ bool TPreTriangle::IAmBadLeft(TPreTriangle* Left)
 				(TruePointLeft->Point - CrossPointLeft->Point).Length() - ZERO_EPS);
 }
 
-//правая сторона длиннее левой стороны правого треугольника
+//ГЇГ°Г ГўГ Гї Г±ГІГ®Г°Г®Г­Г  Г¤Г«ГЁГ­Г­ГҐГҐ Г«ГҐГўГ®Г© Г±ГІГ®Г°Г®Г­Г» ГЇГ°Г ГўГ®ГЈГ® ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
 bool TPreTriangle::IAmBadRight(TPreTriangle* Right)
 {
 	if (!CrossPointLeft || !CrossPointRight)
@@ -932,8 +934,8 @@ bool TPreTriangle::IAmBadRight(TPreTriangle* Right)
 }
 void TRoof::ProcessPreTriangle(int minindex, TMDelTList<TPreTriangle> &PRE_TRI, TMDelTList<TMTList<TGCut> > &RESULT)
 {
-		//определения одинаковых треугольников слева и справа от выбранного
-		//таких какие имеют одну точку пересечения
+		//Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГї Г®Г¤ГЁГ­Г ГЄГ®ГўГ»Гµ ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ®Гў Г±Г«ГҐГўГ  ГЁ Г±ГЇГ°Г ГўГ  Г®ГІ ГўГ»ГЎГ°Г Г­Г­Г®ГЈГ®
+		//ГІГ ГЄГЁГµ ГЄГ ГЄГЁГҐ ГЁГ¬ГҐГѕГІ Г®Г¤Г­Гі ГІГ®Г·ГЄГі ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 		TMDelTList<int> SameTriangles;
 		int i = minindex-1;
 		SameTriangles.Add(new int(minindex) );
@@ -950,8 +952,8 @@ void TRoof::ProcessPreTriangle(int minindex, TMDelTList<TPreTriangle> &PRE_TRI, 
 			i++;
 		}
 
-		//раскидывание отрезков из этих треугольников
-		//по соответствующим скатам
+		//Г°Г Г±ГЄГЁГ¤Г»ГўГ Г­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ®Гў ГЁГ§ ГЅГІГЁГµ ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ®Гў
+		//ГЇГ® Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГЁГ¬ Г±ГЄГ ГІГ Г¬
 /*		bool exit = false;
 		for (int j=0;j<SameTriangles.Count;j++)
 		{
@@ -971,11 +973,11 @@ void TRoof::ProcessPreTriangle(int minindex, TMDelTList<TPreTriangle> &PRE_TRI, 
 				if (point!=PRE_TRI[index].CrossPointLeft)
 				{
 					PRE_TRI[index].CrossPointLeft = point; 
-					//работаем с левой стороной псевдотреугольника
+					//Г°Г ГЎГ®ГІГ ГҐГ¬ Г± Г«ГҐГўГ®Г© Г±ГІГ®Г°Г®Г­Г®Г© ГЇГ±ГҐГўГ¤Г®ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
 					TGCut* cut = GetCut(PRE_TRI[index].TruePointLeft,PRE_TRI[index].CrossPointLeft);
 					if (cut==NULL && PRE_TRI[index].TruePointLeft != PRE_TRI[index].CrossPointLeft)
 					{
-						//отрезок еще не встречался значит создаем его
+						//Г®ГІГ°ГҐГ§Г®ГЄ ГҐГ№ГҐ Г­ГҐ ГўГ±ГІГ°ГҐГ·Г Г«Г±Гї Г§Г­Г Г·ГЁГІ Г±Г®Г§Г¤Г ГҐГ¬ ГҐГЈГ®
 						Cuts.Add( new TGCut() );
 						Cuts.Last()->Src = PRE_TRI[index].TruePointLeft;
 						Cuts.Last()->Dst = PRE_TRI[index].CrossPointLeft;
@@ -983,10 +985,10 @@ void TRoof::ProcessPreTriangle(int minindex, TMDelTList<TPreTriangle> &PRE_TRI, 
 					}                                       
 					if (cut)
 					{
-						// добавляем отрезок соответствующему скату
+						// Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г®ГІГ°ГҐГ§Г®ГЄ Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГҐГ¬Гі Г±ГЄГ ГІГі
 						if (RESULT[p_Roof[PRE_TRI[index].Slope][PRE_TRI[index].Plane]].FCuts.IndexOf(cut)==-1 )
 							RESULT[p_Roof[PRE_TRI[index].Slope][PRE_TRI[index].Plane]].FCuts.Add(cut);
-						// добавляем отрезок левому скату
+						// Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г®ГІГ°ГҐГ§Г®ГЄ Г«ГҐГўГ®Г¬Гі Г±ГЄГ ГІГі
 						if (RESULT[PRE_TRI.CycVal(index-1).Slope][PRE_TRI.CycVal(index-1).Plane].POLSCUT.IndexOf(cut)==-1 )
 							RESULT[PRE_TRI.CycVal(index-1).Slope][PRE_TRI.CycVal(index-1).Plane].POLSCUT.Add(cut);
 					}
@@ -1011,11 +1013,11 @@ void TRoof::ProcessPreTriangle(int minindex, TMDelTList<TPreTriangle> &PRE_TRI, 
 				if (point!=PRE_TRI[index].CrossPointRight)
 				{
 					PRE_TRI[index].CrossPointRight = point; 
-					//работаем с правой стороной псевдотреугольника
+					//Г°Г ГЎГ®ГІГ ГҐГ¬ Г± ГЇГ°Г ГўГ®Г© Г±ГІГ®Г°Г®Г­Г®Г© ГЇГ±ГҐГўГ¤Г®ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
 					TRoofCut* cut = GetCut(PRE_TRI[index].TruePointRight,PRE_TRI[index].CrossPointRight);
 					if (cut==NULL && PRE_TRI[index].TruePointRight != PRE_TRI[index].CrossPointRight)
 					{
-						//отрезок еще не встречался значит создаем его
+						//Г®ГІГ°ГҐГ§Г®ГЄ ГҐГ№ГҐ Г­ГҐ ГўГ±ГІГ°ГҐГ·Г Г«Г±Гї Г§Г­Г Г·ГЁГІ Г±Г®Г§Г¤Г ГҐГ¬ ГҐГЈГ®
 						CUTS.Add( new TRoofCut() );
 						CUTS.Last()->Src = PRE_TRI[index].TruePointRight;
 						CUTS.Last()->Dst = PRE_TRI[index].CrossPointRight;
@@ -1023,10 +1025,10 @@ void TRoof::ProcessPreTriangle(int minindex, TMDelTList<TPreTriangle> &PRE_TRI, 
 					}                                       
 					if (cut)
 					{
-						// добавляем отрезок соответствующему скату
+						// Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г®ГІГ°ГҐГ§Г®ГЄ Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГҐГ¬Гі Г±ГЄГ ГІГі
 						if (RESULT[PRE_TRI[index].Slope][PRE_TRI[index].Plane].POLSCUT.IndexOf(cut)==-1 )
 							RESULT[PRE_TRI[index].Slope][PRE_TRI[index].Plane].POLSCUT.Add(cut);
-						// добавляем отрезок правому скату
+						// Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г®ГІГ°ГҐГ§Г®ГЄ ГЇГ°Г ГўГ®Г¬Гі Г±ГЄГ ГІГі
 						if (RESULT[PRE_TRI.CycVal(index+1).Slope][PRE_TRI.CycVal(index+1).Plane].POLSCUT.IndexOf(cut)==-1 )
 							RESULT[PRE_TRI.CycVal(index+1).Slope][PRE_TRI.CycVal(index+1).Plane].POLSCUT.Add(cut);
 					}
@@ -1042,15 +1044,15 @@ void TRoof::ProcessPreTriangle(int minindex, TMDelTList<TPreTriangle> &PRE_TRI, 
 		for (int j=0;j<SameTriangles.Count;j++)
 			DivideTriangle(PRE_TRI, SameTriangles[j], RESULT);
 
-		//правый треугольник от самого правого и
-		//левый от самого левого принимают новые точки
+		//ГЇГ°Г ГўГ»Г© ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄ Г®ГІ Г±Г Г¬Г®ГЈГ® ГЇГ°Г ГўГ®ГЈГ® ГЁ
+		//Г«ГҐГўГ»Г© Г®ГІ Г±Г Г¬Г®ГЈГ® Г«ГҐГўГ®ГЈГ® ГЇГ°ГЁГ­ГЁГ¬Г ГѕГІ Г­Г®ГўГ»ГҐ ГІГ®Г·ГЄГЁ
 
 		if (SameTriangles.Count < PRE_TRI.Count)
 		{
 			PRE_TRI.CycVal(SameTriangles[0]-1).TruePointRight = PRE_TRI.CycVal(SameTriangles[0]).CrossPointLeft;
 			PRE_TRI.CycVal(SameTriangles[SameTriangles.Count-1]+1).TruePointLeft = PRE_TRI.CycVal(SameTriangles[SameTriangles.Count-1]).CrossPointRight;
 		}
-		//треугольники из списка одинаковых треугольников удаляются
+		//ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГЁ ГЁГ§ Г±ГЇГЁГ±ГЄГ  Г®Г¤ГЁГ­Г ГЄГ®ГўГ»Гµ ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ®Гў ГіГ¤Г Г«ГїГѕГІГ±Гї
 		TMTList<TPreTriangle> ToDelete;
 		for (int i=0;i<SameTriangles.Count;i++)
 			if (PRE_TRI.CycVal(SameTriangles[i]).Plane >= PRE_TRI.CycVal(SameTriangles[i]).Planes.Count-1 || PRE_TRI.CycVal(SameTriangles[i]).CrossPointLeft == PRE_TRI.CycVal(SameTriangles[i]).CrossPointRight)
@@ -1162,7 +1164,7 @@ void Lathing(const TGeomObject &roof, TGeomObject &lath)
 
 		MBTi step = 1;
 
-// Горизонтальная обрешетка
+// ГѓГ®Г°ГЁГ§Г®Г­ГІГ Г«ГјГ­Г Гї Г®ГЎГ°ГҐГёГҐГІГЄГ 
 		int cnt = (int)((p.BBox.Max.y - p.BBox.Min.y)/step)+1;
 		
 		MBTi delta = p.BBox.Max.y;
@@ -1192,7 +1194,7 @@ void Lathing(const TGeomObject &roof, TGeomObject &lath)
 		}
 		for (int k=0;k<p.Count;k++)
 			p.GetPoint(k).Point.y += delta;
-//Вертикальная обрешетка
+//Г‚ГҐГ°ГІГЁГЄГ Г«ГјГ­Г Гї Г®ГЎГ°ГҐГёГҐГІГЄГ 
 		step = 4;
 		for (int k=0;k<p.Count;k++)
 		{

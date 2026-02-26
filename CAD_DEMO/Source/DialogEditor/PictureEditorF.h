@@ -1,13 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef PictureEditorFH
 #define PictureEditorFH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
-#include <Dialogs.hpp>
+#include "compat/vcl_qt.h"
 #include <ExtDlgs.hpp>
 //---------------------------------------------------------------------------
 class TPictureEditor : public TForm
@@ -23,17 +22,17 @@ class TPictureEditor : public TForm
     TImage *Image;
     TOpenPictureDialog *OpenPictureDialog;
     TSavePictureDialog *SavePictureDialog;
-    void __fastcall OKClick(TObject *Sender);
-    void __fastcall CancelClick(TObject *Sender);
-    void __fastcall ClearClick(TObject *Sender);
-    void __fastcall SaveClick(TObject *Sender);
-    void __fastcall LoadClick(TObject *Sender);
+    void  OKClick(TObject *Sender);
+    void  CancelClick(TObject *Sender);
+    void  ClearClick(TObject *Sender);
+    void  SaveClick(TObject *Sender);
+    void  LoadClick(TObject *Sender);
     public:
-  __fastcall TPictureEditor(TComponent* Owner);
+   TPictureEditor(TComponent* Owner);
 };
 
 //---------------------------------------------------------------------------
-extern PACKAGE TPictureEditor *PictureEditor;
+extern  TPictureEditor *PictureEditor;
 //---------------------------------------------------------------------------
 #endif
 //---------------------------------------------------------------------------

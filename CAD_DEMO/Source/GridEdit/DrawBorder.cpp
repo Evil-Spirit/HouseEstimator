@@ -1,19 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
-#include <Math.hpp>
 #include "CellGrid.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 
-void __fastcall TCellGrid::SetCircumferentialBorder(int Col, int Row)
-{// Заполнить окружающие ячейки бордюрам из текущей
-    // Существуют
+void  TCellGrid::SetCircumferentialBorder(int Col, int Row)
+{// Г‡Г ГЇГ®Г«Г­ГЁГІГј Г®ГЄГ°ГіГ¦Г ГѕГ№ГЁГҐ ГїГ·ГҐГ©ГЄГЁ ГЎГ®Г°Г¤ГѕГ°Г Г¬ ГЁГ§ ГІГҐГЄГіГ№ГҐГ©
+    // Г‘ГіГ№ГҐГ±ГІГўГіГѕГІ
     if (GetCellSimple(Col, Row) !=NULL)
     {
         if (GetCellSimple(Col-1, Row) !=NULL)
@@ -49,13 +50,13 @@ void __fastcall TCellGrid::SetCircumferentialBorder(int Col, int Row)
         }
     }
     else
-        throw EMyException("<TCellGrid::SetСircumferentialBorder>: не допустимое применение данной функции");
+        throw EMyException("<TCellGrid::SetГ‘ircumferentialBorder>: Г­ГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГҐ ГЇГ°ГЁГ¬ГҐГ­ГҐГ­ГЁГҐ Г¤Г Г­Г­Г®Г© ГґГіГ­ГЄГ¶ГЁГЁ");
 
 }
 
-void __fastcall TCellGrid::SetToCellBorder(int Col, int Row)
-{// Заполнить окружающие ячейки бордюрам из текущей
-    // Существуют
+void  TCellGrid::SetToCellBorder(int Col, int Row)
+{// Г‡Г ГЇГ®Г«Г­ГЁГІГј Г®ГЄГ°ГіГ¦Г ГѕГ№ГЁГҐ ГїГ·ГҐГ©ГЄГЁ ГЎГ®Г°Г¤ГѕГ°Г Г¬ ГЁГ§ ГІГҐГЄГіГ№ГҐГ©
+    // Г‘ГіГ№ГҐГ±ГІГўГіГѕГІ
     if (GetCellSimple(Col, Row) !=NULL)
     {
         GetCellSimple(Col, Row)->Line.WidthLeft     =GetCellParam(Col-1, Row)->Line.WidthRight;
@@ -68,9 +69,9 @@ void __fastcall TCellGrid::SetToCellBorder(int Col, int Row)
 
 }
 
-void __fastcall TCellGrid::SetCircumferentialBorderCol(int Col, int Row)
-{// Заполнить окружающие ячейки бордюрам по текущим параметрам
-    // Существуют
+void  TCellGrid::SetCircumferentialBorderCol(int Col, int Row)
+{// Г‡Г ГЇГ®Г«Г­ГЁГІГј Г®ГЄГ°ГіГ¦Г ГѕГ№ГЁГҐ ГїГ·ГҐГ©ГЄГЁ ГЎГ®Г°Г¤ГѕГ°Г Г¬ ГЇГ® ГІГҐГЄГіГ№ГЁГ¬ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬
+    // Г‘ГіГ№ГҐГ±ГІГўГіГѕГІ
     int aCol;
     int aRow;
     bool bError =false;
@@ -93,7 +94,7 @@ void __fastcall TCellGrid::SetCircumferentialBorderCol(int Col, int Row)
     else
     {
         bError =true;
-        throw EMyException("<TCellGrid::SetCircumferentialBorderCol>: Не допустимое положение");
+        throw EMyException("<TCellGrid::SetCircumferentialBorderCol>: ГЌГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГҐ ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ");
     }
 
     if (!bError)
@@ -106,9 +107,9 @@ void __fastcall TCellGrid::SetCircumferentialBorderCol(int Col, int Row)
     }
 }
 
-void __fastcall TCellGrid::SetCircumferentialBorderRow(int Col, int Row)
-{// Заполнить окружающие ячейки бордюрам по текущим параметрам
-    // Существуют
+void  TCellGrid::SetCircumferentialBorderRow(int Col, int Row)
+{// Г‡Г ГЇГ®Г«Г­ГЁГІГј Г®ГЄГ°ГіГ¦Г ГѕГ№ГЁГҐ ГїГ·ГҐГ©ГЄГЁ ГЎГ®Г°Г¤ГѕГ°Г Г¬ ГЇГ® ГІГҐГЄГіГ№ГЁГ¬ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬
+    // Г‘ГіГ№ГҐГ±ГІГўГіГѕГІ
     int aCol;
     int aRow;
     bool bError =false;
@@ -131,7 +132,7 @@ void __fastcall TCellGrid::SetCircumferentialBorderRow(int Col, int Row)
     else
     {
         bError =true;
-        throw EMyException("<TCellGrid::SetCircumferentialBorderRow>: Не допустимое положение");
+        throw EMyException("<TCellGrid::SetCircumferentialBorderRow>: ГЌГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГҐ ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ");
     }
 
     if (!bError)
@@ -144,7 +145,7 @@ void __fastcall TCellGrid::SetCircumferentialBorderRow(int Col, int Row)
     }
 }
 
-void __fastcall TCellGrid::CellLineBottomSection(const TRect& RectStart)
+void  TCellGrid::CellLineBottomSection(const TRect& RectStart)
 {
 
     TPenStyle oldStyle = Canvas->Pen->Style;
@@ -162,7 +163,7 @@ void __fastcall TCellGrid::CellLineBottomSection(const TRect& RectStart)
     Canvas->Brush->Color = oldBkColor;
 }
 
-void __fastcall TCellGrid::CellLineRightSection(const TRect& RectStart)
+void  TCellGrid::CellLineRightSection(const TRect& RectStart)
 {
 
     TPenStyle oldStyle = Canvas->Pen->Style;
@@ -182,37 +183,37 @@ void __fastcall TCellGrid::CellLineRightSection(const TRect& RectStart)
 
 
 //*************** Line Width =1 Pixel
-void __fastcall TCellGrid::CellLineTop(const TRect& RectStart)
+void  TCellGrid::CellLineTop(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Left-1, RectStart.Top-1);
     Canvas->LineTo(RectStart.Right+1, RectStart.Top-1);
 }
 
-void __fastcall TCellGrid::CellRightBottomPixel(const TRect& RectStart)
+void  TCellGrid::CellRightBottomPixel(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Right, RectStart.Bottom);
     Canvas->LineTo(RectStart.Right+1, RectStart.Bottom+1);
 }
 
-void __fastcall TCellGrid::CellRightBottomPixel2(const TRect& RectStart)
+void  TCellGrid::CellRightBottomPixel2(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Left, RectStart.Top);
     Canvas->LineTo(RectStart.Right, RectStart.Bottom);
 }
 
-void __fastcall TCellGrid::CellLineLeft(const TRect& RectStart)
+void  TCellGrid::CellLineLeft(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Left-1,RectStart.Bottom);
     Canvas->LineTo(RectStart.Left-1, RectStart.Top-1);
 }
 
-void __fastcall TCellGrid::CellLineRight(const TRect& RectStart)
+void  TCellGrid::CellLineRight(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Right, RectStart.Top);
     Canvas->LineTo(RectStart.Right,RectStart.Bottom+1);
 }
 
-void __fastcall TCellGrid::CellLineRightColorBk(int Col, int Row)
+void  TCellGrid::CellLineRightColorBk(int Col, int Row)
 {
     if (Canvas->Pen->Color !=Canvas->Brush->Color)
         Canvas->Pen->Color =Canvas->Brush->Color;
@@ -232,7 +233,7 @@ void __fastcall TCellGrid::CellLineRightColorBk(int Col, int Row)
     Canvas->LineTo(RectStart.Right-1,RectStart.Bottom+1);
 }
 
-void __fastcall TCellGrid::CellLineLeftColorBk(int Col, int Row)
+void  TCellGrid::CellLineLeftColorBk(int Col, int Row)
 {
     if (Canvas->Pen->Color !=Canvas->Brush->Color)
         Canvas->Pen->Color =Canvas->Brush->Color;
@@ -245,7 +246,7 @@ void __fastcall TCellGrid::CellLineLeftColorBk(int Col, int Row)
     Canvas->LineTo(RectStart.Left,RectStart.Bottom+1);
 }
 
-void __fastcall TCellGrid::CellLineBottomColorBk(int Col, int Row)
+void  TCellGrid::CellLineBottomColorBk(int Col, int Row)
 {
     if (Col >1 && Row>1)
     {
@@ -274,7 +275,7 @@ void __fastcall TCellGrid::CellLineBottomColorBk(int Col, int Row)
     }
 }
 
-void __fastcall TCellGrid::CellLineTopColorBk(int Col, int Row)
+void  TCellGrid::CellLineTopColorBk(int Col, int Row)
 {
     if (Col >1 && Row>1)
     {
@@ -290,7 +291,7 @@ void __fastcall TCellGrid::CellLineTopColorBk(int Col, int Row)
     }
 }
 
-void __fastcall TCellGrid::CellLineBottom(const TRect& RectStart)
+void  TCellGrid::CellLineBottom(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Left,RectStart.Bottom);
     Canvas->LineTo(RectStart.Right+1,RectStart.Bottom);
@@ -299,7 +300,7 @@ void __fastcall TCellGrid::CellLineBottom(const TRect& RectStart)
 
 
 //*************** Line Width =2 Pixel
-void __fastcall TCellGrid::CellLineTop2(const TRect& RectStart)
+void  TCellGrid::CellLineTop2(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Right, RectStart.Top-1);
     Canvas->LineTo(RectStart.Left-2, RectStart.Top-1);
@@ -307,18 +308,18 @@ void __fastcall TCellGrid::CellLineTop2(const TRect& RectStart)
     Canvas->LineTo(RectStart.Left-2, RectStart.Top-2);
 }
 
-void __fastcall TCellGrid::CellLineBottom2(const TRect& RectStart)
+void  TCellGrid::CellLineBottom2(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Left-1,RectStart.Bottom);
     Canvas->LineTo(RectStart.Right+1,RectStart.Bottom);
 }
-void __fastcall TCellGrid::CellLineBottom2b(const TRect& RectStart)
+void  TCellGrid::CellLineBottom2b(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Left-1,RectStart.Bottom-1);
     Canvas->LineTo(RectStart.Right+1,RectStart.Bottom-1);
 }
 
-void __fastcall TCellGrid::CellLineLeft2(const TRect& RectStart)
+void  TCellGrid::CellLineLeft2(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Left-1,RectStart.Top-1);
     Canvas->LineTo(RectStart.Left-1,RectStart.Bottom+1);
@@ -326,19 +327,19 @@ void __fastcall TCellGrid::CellLineLeft2(const TRect& RectStart)
     Canvas->LineTo(RectStart.Left-2,RectStart.Bottom+1);
 }
 
-void __fastcall TCellGrid::CellLineRight2(const TRect& RectStart)
+void  TCellGrid::CellLineRight2(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Right, RectStart.Top);
     Canvas->LineTo(RectStart.Right,RectStart.Bottom);
 }
 
-void __fastcall TCellGrid::CellLineRight2b(const TRect& RectStart)
+void  TCellGrid::CellLineRight2b(const TRect& RectStart)
 {
     Canvas->MoveTo(RectStart.Right-1, RectStart.Top);
     Canvas->LineTo(RectStart.Right-1,RectStart.Bottom+1);
 }
 
-void __fastcall TCellGrid::Line(int Col, int Row, TColor Color)
+void  TCellGrid::Line(int Col, int Row, TColor Color)
 {
     if (Col>1 && Row>1)
     {
@@ -385,7 +386,7 @@ bool PointInRect(int Col,int Row,const TRect& Rect)
             Col<=Rect.Right);
 }
 
-void __fastcall TCellGrid::DrawBorder_0(int Col, int Row, int Border, const TRect& rect, TColor Color)
+void  TCellGrid::DrawBorder_0(int Col, int Row, int Border, const TRect& rect, TColor Color)
 {
     TRect rect2;
     bool OK=false;
@@ -404,7 +405,7 @@ void __fastcall TCellGrid::DrawBorder_0(int Col, int Row, int Border, const TRec
     else
     {
         if (Cell ==NULL && CellColumn !=NULL && CellColumn->LineColorNot)
-        {// Столбец
+        {// Г‘ГІГ®Г«ГЎГҐГ¶
             if ( PointInRect(Col,Row,CurrentAnchorSelect) )
             {
                 if (Canvas->Pen->Color !=Color)
@@ -414,7 +415,7 @@ void __fastcall TCellGrid::DrawBorder_0(int Col, int Row, int Border, const TRec
                 Canvas->Pen->Color =CellColumn->bgColor;
         }
         else if (Cell ==NULL && CellString !=NULL && CellString->LineColorNot)
-        {//Строка
+        {//Г‘ГІГ°Г®ГЄГ 
             if ( PointInRect(Col,Row,CurrentAnchorSelect) )
             {
                 if (Canvas->Pen->Color !=Color)
@@ -424,7 +425,7 @@ void __fastcall TCellGrid::DrawBorder_0(int Col, int Row, int Border, const TRec
                 Canvas->Pen->Color =CellString->bgColor;
         }
         else if (Cell ==NULL && Cell11->LineColorNot)
-        {//Таблица
+        {//Г’Г ГЎГ«ГЁГ¶Г 
             if ( PointInRect(Col,Row,CurrentAnchorSelect) )
             {
                 if (Canvas->Pen->Color !=Color)
@@ -434,7 +435,7 @@ void __fastcall TCellGrid::DrawBorder_0(int Col, int Row, int Border, const TRec
                 Canvas->Pen->Color =Cell11->bgColor;
         }
         else
-        {// Ячейка
+        {// ГџГ·ГҐГ©ГЄГ 
             if (Canvas->Pen->Color !=clSilver)
                 Canvas->Pen->Color= clSilver;
         }
@@ -586,7 +587,7 @@ void __fastcall TCellGrid::DrawBorder_0(int Col, int Row, int Border, const TRec
         }
     }
     else
-    {// Пустая ячейка
+    {// ГЏГіГ±ГІГ Гї ГїГ·ГҐГ©ГЄГ 
         switch (Border)
         {
             case 3: // Right
@@ -749,7 +750,7 @@ void __fastcall TCellGrid::DrawBorder_0(int Col, int Row, int Border, const TRec
     }
 }
 
-void __fastcall TCellGrid::DrawBorder_1(int Col, int Row, int Border, const TRect& rect, TColor Color)
+void  TCellGrid::DrawBorder_1(int Col, int Row, int Border, const TRect& rect, TColor Color)
 {
     TRect rect2;
     bool OK=false;
@@ -829,7 +830,7 @@ void __fastcall TCellGrid::DrawBorder_1(int Col, int Row, int Border, const TRec
     }
 }
 
-void __fastcall TCellGrid::DrawBorder_2(int Col, int Row, int Border, const TRect& rect, TColor Color)
+void  TCellGrid::DrawBorder_2(int Col, int Row, int Border, const TRect& rect, TColor Color)
 {
     TRect rect2;
     bool OK=false;
@@ -919,7 +920,7 @@ void __fastcall TCellGrid::DrawBorder_2(int Col, int Row, int Border, const TRec
     }
 }
 
-void __fastcall TCellGrid::SetBorder(int Col, int Row, /*1=Left, 2=Top, 3=Right, 4=Bottom*/int Border, int WidthLine, TColor Color)
+void  TCellGrid::SetBorder(int Col, int Row, /*1=Left, 2=Top, 3=Right, 4=Bottom*/int Border, int WidthLine, TColor Color)
 {
     TRect rect = GetGridRectToRectPixelForBorder(Col,Row);
 
@@ -997,7 +998,7 @@ void __fastcall TCellGrid::SetBorder(int Col, int Row, /*1=Left, 2=Top, 3=Right,
         }
     }
 
-    //- Рисуем Fixed -
+    //- ГђГЁГ±ГіГҐГ¬ Fixed -
     if (Col+1 == FixedCols && FixedCols>2)
     {
         if (Canvas->Pen->Width != 1)
@@ -1020,7 +1021,7 @@ void __fastcall TCellGrid::SetBorder(int Col, int Row, /*1=Left, 2=Top, 3=Right,
     }
 }
 
-void __fastcall TCellGrid::SectionLine(const TRect& Rect,int Param/*1=Left, 2=Top*/)
+void  TCellGrid::SectionLine(const TRect& Rect,int Param/*1=Left, 2=Top*/)
 {
 TRect localrect =Rect;
     if (Canvas->Pen->Color !=clBlack) Canvas->Pen->Color = clBlack;
@@ -1056,8 +1057,8 @@ TRect localrect =Rect;
     }
 }
 
-bool __fastcall TCellGrid::TopLineUnion(int Col, int Row)
-{// Являеться ли эта ячейка простой или Union но отличной от нижнего Union
+bool  TCellGrid::TopLineUnion(int Col, int Row)
+{// ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  ГЇГ°Г®Г±ГІГ®Г© ГЁГ«ГЁ Union Г­Г® Г®ГІГ«ГЁГ·Г­Г®Г© Г®ГІ Г­ГЁГ¦Г­ГҐГЈГ® Union
     bool ret=false;
     if (Row-1 <0)
     {
@@ -1078,8 +1079,8 @@ bool __fastcall TCellGrid::TopLineUnion(int Col, int Row)
     return ret;
 }
 
-bool __fastcall TCellGrid::LeftLineUnion(int Col, int Row)
-{// Являеться ли эта ячейка простой или Union но отличной от нижнего Union
+bool  TCellGrid::LeftLineUnion(int Col, int Row)
+{// ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  ГЇГ°Г®Г±ГІГ®Г© ГЁГ«ГЁ Union Г­Г® Г®ГІГ«ГЁГ·Г­Г®Г© Г®ГІ Г­ГЁГ¦Г­ГҐГЈГ® Union
     bool ret=false;
     if (Col-1 <0)
     {
@@ -1100,8 +1101,8 @@ bool __fastcall TCellGrid::LeftLineUnion(int Col, int Row)
     return ret;
 }
 
-bool __fastcall TCellGrid::RightLineUnion(int Col, int Row)
-{// Являеться ли эта ячейка простой или Union но отличной от нижнего Union
+bool  TCellGrid::RightLineUnion(int Col, int Row)
+{// ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  ГЇГ°Г®Г±ГІГ®Г© ГЁГ«ГЁ Union Г­Г® Г®ГІГ«ГЁГ·Г­Г®Г© Г®ГІ Г­ГЁГ¦Г­ГҐГЈГ® Union
     bool ret=false;
     if (Col+1 >ColCount)
     {
@@ -1125,8 +1126,8 @@ bool __fastcall TCellGrid::RightLineUnion(int Col, int Row)
     return ret;
 }
 
-bool __fastcall TCellGrid::BottomLineUnion(int Col, int Row)
-{// Являеться ли эта ячейка простой или Union но отличной от нижнего Union
+bool  TCellGrid::BottomLineUnion(int Col, int Row)
+{// ГџГўГ«ГїГҐГІГјГ±Гї Г«ГЁ ГЅГІГ  ГїГ·ГҐГ©ГЄГ  ГЇГ°Г®Г±ГІГ®Г© ГЁГ«ГЁ Union Г­Г® Г®ГІГ«ГЁГ·Г­Г®Г© Г®ГІ Г­ГЁГ¦Г­ГҐГЈГ® Union
     bool ret=false;
     if (Row+1 >RowCount)
     {
@@ -1148,7 +1149,7 @@ bool __fastcall TCellGrid::BottomLineUnion(int Col, int Row)
     return ret;
 }
 
-int __fastcall TCellGrid::GetLeftBorder(int Col, int Row)
+int  TCellGrid::GetLeftBorder(int Col, int Row)
 {
     int ret;
     if (Col <2 && Row <2)
@@ -1191,7 +1192,7 @@ int __fastcall TCellGrid::GetLeftBorder(int Col, int Row)
     return ret;
 }
 
-int __fastcall TCellGrid::GetLeftBorderEliminateCurrent(int Col, int Row)
+int  TCellGrid::GetLeftBorderEliminateCurrent(int Col, int Row)
 {
     int ret;
     if (Col <2 && Row <2)
@@ -1217,7 +1218,7 @@ int __fastcall TCellGrid::GetLeftBorderEliminateCurrent(int Col, int Row)
     return ret;
 }
 
-int __fastcall TCellGrid::GetRightBorder(int Col, int Row)
+int  TCellGrid::GetRightBorder(int Col, int Row)
 {
     int ret;
     if (Col <2 && Row <2)
@@ -1254,7 +1255,7 @@ int __fastcall TCellGrid::GetRightBorder(int Col, int Row)
     return ret;
 }
 
-int __fastcall TCellGrid::GetRightBorderEliminateCurrent(int Col, int Row)
+int  TCellGrid::GetRightBorderEliminateCurrent(int Col, int Row)
 {
     int ret;
     if (Col <2 && Row <2)
@@ -1279,7 +1280,7 @@ int __fastcall TCellGrid::GetRightBorderEliminateCurrent(int Col, int Row)
     return ret;
 }
 
-int __fastcall TCellGrid::GetTopBorder(int Col, int Row)
+int  TCellGrid::GetTopBorder(int Col, int Row)
 {
     int ret;
     if (Col <2 && Row <2)
@@ -1323,7 +1324,7 @@ int __fastcall TCellGrid::GetTopBorder(int Col, int Row)
 }
 
 
-int __fastcall TCellGrid::GetTopBorderEliminateCurrent(int Col, int Row)
+int  TCellGrid::GetTopBorderEliminateCurrent(int Col, int Row)
 {
     int ret;
     if (Col <2 && Row <2)
@@ -1348,7 +1349,7 @@ int __fastcall TCellGrid::GetTopBorderEliminateCurrent(int Col, int Row)
     return ret;
 }
 
-int __fastcall TCellGrid::GetBottomBorder(int Col, int Row)
+int  TCellGrid::GetBottomBorder(int Col, int Row)
 {
     int ret;
     if (Col <2 && Row <2)
@@ -1391,7 +1392,7 @@ int __fastcall TCellGrid::GetBottomBorder(int Col, int Row)
     return ret;
 }
 
-int __fastcall TCellGrid::GetBottomBorderEliminateCurrent(int Col, int Row)
+int  TCellGrid::GetBottomBorderEliminateCurrent(int Col, int Row)
 {
     int ret;
     if (Col <2 && Row <2)

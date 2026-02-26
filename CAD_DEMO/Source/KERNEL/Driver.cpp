@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "Driver.h"
 #include "MyGL.h"
@@ -16,7 +19,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 TDriver Driver;
 TDriverQueue* FDriverQueue = NULL;
 
@@ -124,7 +126,7 @@ TLINKING::TLINKING(TElement *_Source,TElement *_Target)
                 if (DynLink->Link->MetaLinkType == mltWallWall)
                 {
                     if (Driver.FloorElement)
-                        //это должна быть проверка на то что элементы с одного этажа
+                        //ГЅГІГ® Г¤Г®Г«Г¦Г­Г  ГЎГ»ГІГј ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГІГ® Г·ГІГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г± Г®Г¤Г­Г®ГЈГ® ГЅГІГ Г¦Г 
                         if ((!Source->Parent && Target->In(Driver.FloorElement)) ||
                         (!Target->Parent && Source->In(Driver.FloorElement)) )
                             WALL_DL = DynLink;
@@ -151,7 +153,7 @@ TLINKING::TLINKING(TElement *_Source,TElement *_Target)
                 if (DynLink->Link->MetaLinkType == mltWallWall)
                 {
                     if (Driver.FloorElement)
-                        //это должна быть проверка на то что элементы с одного этажа
+                        //ГЅГІГ® Г¤Г®Г«Г¦Г­Г  ГЎГ»ГІГј ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГІГ® Г·ГІГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г± Г®Г¤Г­Г®ГЈГ® ГЅГІГ Г¦Г 
                         if ((!Source->Parent && Target->In(Driver.FloorElement)) ||
                         (!Target->Parent && Source->In(Driver.FloorElement)) )
                             WALL_DL = DynLink;
@@ -326,7 +328,7 @@ TIntVec& TLINKING::GetDirection(int ind)
 
 TPoint* PP1;
 TPoint* PP2;
-bool __fastcall TLINKING::Scale__MyComp(void* item1,void* item2)
+bool  TLINKING::Scale__MyComp(void* item1,void* item2)
 {
     PP1 = (TPoint*)item1;
     PP2 = (TPoint*)item2;
@@ -338,7 +340,7 @@ bool __fastcall TLINKING::Scale__MyComp(void* item1,void* item2)
     return true;
 }
 
-bool __fastcall TLINKING::Translate__MyComp(void* item1,void* item2)
+bool  TLINKING::Translate__MyComp(void* item1,void* item2)
 {
     PP1 = (TPoint*)item1;
     PP2 = (TPoint*)item2;
@@ -583,7 +585,7 @@ void TDriver::Init(TElement *_Element,bool _IgnoreAuto,TElement* UseFloor)
         }
         if (!FloorElement)
             return;
-        //удаление связок
+        //ГіГ¤Г Г«ГҐГ­ГЁГҐ Г±ГўГїГ§Г®ГЄ
 /*        TMTList<TElement> WEBELEMENTS;
         for (int i=0;i<Element->LinksCount;i++)
             if (Element->Links[i]->MyMeta->Link->InWeb)
@@ -596,7 +598,7 @@ void TDriver::Init(TElement *_Element,bool _IgnoreAuto,TElement* UseFloor)
             WEBELEMENTS.Items[i]->AdvancedTextureView = false;
             WEBELEMENTS.Items[i]->CreateView();
         }   */
-        //удаление связок
+        //ГіГ¤Г Г«ГҐГ­ГЁГҐ Г±ГўГїГ§Г®ГЄ
         TMTList<TElement> *List = new TMTList<TElement>();
         Element->MyTree->SelectByElementLinks(Element,List);
         for (int i=0;i<List->Count;i++)
@@ -609,7 +611,7 @@ void TDriver::Init(TElement *_Element,bool _IgnoreAuto,TElement* UseFloor)
 
 TLINKING* ITEM1;
 TLINKING* ITEM2;
-bool __fastcall TLINKINGCOMPSCALE(void *item1, void *item2)
+bool  TLINKINGCOMPSCALE(void *item1, void *item2)
 {
     ITEM1 = (TLINKING*)item1;
     ITEM2 = (TLINKING*)item2;
@@ -623,7 +625,7 @@ bool __fastcall TLINKINGCOMPSCALE(void *item1, void *item2)
     return true;
 }
 
-bool __fastcall TLINKINGCOMPTRANSLATE(void *item1, void *item2)
+bool  TLINKINGCOMPTRANSLATE(void *item1, void *item2)
 {
     ITEM1 = (TLINKING*)item1;
     ITEM2 = (TLINKING*)item2;
@@ -774,7 +776,7 @@ bool TDriver::Check()
         return false;
     if (Element->MyMeta->IsAuto && IgnoreAuto)
         return true;
-    //уничтожим прооемы
+    //ГіГ­ГЁГ·ГІГ®Г¦ГЁГ¬ ГЇГ°Г®Г®ГҐГ¬Г»
     for (int j=0;j<Element->LinkHoles.Count;j++)
     {
         bool donotdelete = false;
@@ -1098,7 +1100,7 @@ bool TDriver::Stop()
 //---------------------------------------------------------------
 //---------------------------------------------------------------
 void TDriverQueue::OnProcess()
-{ /* TODO : дописать onProcess для DriverQueue:: */
+{ /* TODO : Г¤Г®ГЇГЁГ±Г ГІГј onProcess Г¤Г«Гї DriverQueue:: */
 /*    for(int i=0;i<FElements.Count;i++)
     {
         Driver.Init(FElements.Items[i]);

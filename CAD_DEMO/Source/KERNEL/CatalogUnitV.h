@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef CatalogUnitVH
@@ -11,18 +15,17 @@ private:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaCatalogUnit(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TMetaCatalogUnit();
     virtual ~TMetaCatalogUnit(){};
     TPointer<TMyRegObject> ASSOCIATED;
     void Edit(TComponent *Owner,TWinControl *Parent,void *Data);
-    __property TMetaNode* Associated = {read = GetAssociated};
+    // __property TMetaNode* Associated {read=GetAssociated}; // [manual migration needed]
     virtual void GetImage(bool Small,bool Masked,Graphics::TBitmap* bmp,Graphics::TBitmap* mask);
 };
 
-extern COMMONAL_API TClassNode* TMetaCatalogUnit::StaticType;
 
 #endif
  

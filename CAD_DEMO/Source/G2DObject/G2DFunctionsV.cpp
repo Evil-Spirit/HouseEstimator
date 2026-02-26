@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "G2DFunctionsV.h"
 #include "math.h"
@@ -15,7 +18,6 @@
 #include "G2DGeomV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 
 TPoint PointFromVMV(const TVisMathVector& VMV)
@@ -73,7 +75,7 @@ void MakeArrow(const TIntVec& P0,const TIntVec& P1,TIntVec& ArrowP11,TIntVec& Ar
 void MakeArrowsOnList(TMDelTList<TIntVec>& PointList,MBTi Length,MBTi Width,bool Back)
 {
     if (PointList.Count<2)
-        throw EMyException("<MakeArrowsOnList>: Πΰημεπ ροθρκΰ μενεε 2.");
+        throw EMyException("<MakeArrowsOnList>: ΓΓ Γ§Γ¬Γ¥Γ° Γ±Γ―Γ¨Γ±ΓªΓ  Γ¬Γ¥Γ­Γ¥Γ¥ 2.");
     TIntVec Arrows0;
     TIntVec Arrows1;
     TIntVec End = PointList[PointList.Count-1];

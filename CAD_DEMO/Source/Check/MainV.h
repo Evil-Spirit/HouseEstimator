@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MainVH
 #define MainVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TLuaModule;
 class TLuaEditorInterface;
@@ -14,16 +15,16 @@ class TLuaEditorInterface;
 class TMain : public TForm
 {
 __published:	// IDE-managed Components
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-    void __fastcall FormShortCut(TWMKey &Msg, bool &Handled);
+    void  FormCreate(TObject *Sender);
+    void  FormClose(TObject *Sender, TCloseAction &Action);
+    void  FormShortCut(TWMKey &Msg, bool &Handled);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMain(TComponent* Owner);
+     TMain(TComponent* Owner);
     TLuaModule* LM;
     TLuaEditorInterface* LE;
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMain *Main;
+extern  TMain *Main;
 //---------------------------------------------------------------------------
 #endif

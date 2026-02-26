@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ObjectInspectorF</class>
+  <widget class="QWidget" name="ObjectInspectorF">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>180</width>
+        <height>380</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Object Inspector</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsSizeToolWin → set windowFlags Qt::Tool in constructor -->
+    <widget class="QFrame" name="OIPanel">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>172</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <!-- vcl-align: alTop → arrange in a Qt layout manager -->
+      <widget class="QComboBox" name="OIComboBox">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>172</width>
+            <height>21</height>
+          </rect>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QStatusBar" name="OIStatusBar">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>334</y>
+          <width>172</width>
+          <height>19</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QTabWidget" name="OIPageControl">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>25</y>
+          <width>172</width>
+          <height>309</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+      <widget class="QWidget" name="OIProperties">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Properties</string>
+        </property>
+        <widget class="QTableWidget" name="PropertyValueListEditor">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>164</width>
+              <height>281</height>
+            </rect>
+          </property>
+          <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+        </widget>
+      </widget>
+      <widget class="QWidget" name="OIMethods">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Events</string>
+        </property>
+        <widget class="QTableWidget" name="MethodValueListEditor">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>176</width>
+              <height>281</height>
+            </rect>
+          </property>
+          <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

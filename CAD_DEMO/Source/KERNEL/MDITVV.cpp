@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
   //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDITVV.h"
 //#include "MDITransformationV.h"
@@ -15,7 +18,6 @@
 #include "AUIV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDI3DV"
 #pragma link "VisAttr"
 #pragma link "VisCam"
@@ -35,7 +37,7 @@
 #pragma resource "*.dfm"
 TMDITV *MDITV;
 //---------------------------------------------------------------------------
-__fastcall TMDITV::TMDITV(TComponent* Owner,TWinControl *_Parent,TMainTree* MT)
+ TMDITV::TMDITV(TComponent* Owner,TWinControl *_Parent,TMainTree* MT)
     : TMDI3D(Owner,MT)
 {
     Parent=_Parent;
@@ -82,7 +84,7 @@ TPoint LP;
 } */
 
 
-void __fastcall TMDITV::ViewMouseDown(TObject *Sender, TMouseButton Button,
+void  TMDITV::ViewMouseDown(TObject *Sender, TMouseButton Button,
       TShiftState Shift, int X, int Y)
 {
     LP.x = X;
@@ -90,14 +92,14 @@ void __fastcall TMDITV::ViewMouseDown(TObject *Sender, TMouseButton Button,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDITV::FormShow(TObject *Sender)
+void  TMDITV::FormShow(TObject *Sender)
 {
     LP = TPoint(-1,-1);
 }
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDITV::tbPlusMouseUp(TObject *Sender, TMouseButton Button,
+void  TMDITV::tbPlusMouseUp(TObject *Sender, TMouseButton Button,
       TShiftState Shift, int X, int Y)
 {
     _Timer->Tag=0;
@@ -106,7 +108,7 @@ void __fastcall TMDITV::tbPlusMouseUp(TObject *Sender, TMouseButton Button,
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDITV::tbMinusMouseDown(TObject *Sender,
+void  TMDITV::tbMinusMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
   _Timer->Tag = ((TComponent*)Sender)->Tag;
@@ -116,7 +118,7 @@ void __fastcall TMDITV::tbMinusMouseDown(TObject *Sender,
 
 
 
-void __fastcall TMDITV::_TimerTimer(TObject *Sender)
+void  TMDITV::_TimerTimer(TObject *Sender)
 {
   CameraAction(coLA_DEPTH_TRANSLATION_NO_ORIENT,10*_Timer->Tag);
   TPoint P = pViewButtons->ScreenToClient(Mouse->CursorPos);
@@ -129,13 +131,13 @@ void __fastcall TMDITV::_TimerTimer(TObject *Sender)
 
 
 
-void __fastcall TMDITV::ViewResize(TObject *Sender)
+void  TMDITV::ViewResize(TObject *Sender)
 {
     Label1->Caption = IntToStr(View->Width)+AnsiString(" : ")+IntToStr(View->Height);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDITV::ToolButton1Click(TObject *Sender)
+void  TMDITV::ToolButton1Click(TObject *Sender)
 {
     AUI.CameraEngine.ViewAll(View->Camera);
 }

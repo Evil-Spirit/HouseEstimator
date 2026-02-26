@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MyGLH
@@ -9,7 +13,7 @@
 
 //---------------------------------------------------------------------------
 const double EPS=0.2;
-//возможно необходима проверка на принадлежность точек одной прямой
+//ГўГ®Г§Г¬Г®Г¦Г­Г® Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г  ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГј ГІГ®Г·ГҐГЄ Г®Г¤Г­Г®Г© ГЇГ°ГїГ¬Г®Г©
 COMMONAL_API double Opredelitel2d(double x11,double x12,double x21,double x22);
 COMMONAL_API double PointInPrimitiv(TVisMathVector &P1,TVisMathVector &P2,TVisMathVector &P3,TVisMathVector &P);
 COMMONAL_API void BestPrimitive(TVisView *VV,TVisNode *VN,TVisCustomObj *OBJ,TVisMathVector &Point,int *Bests,int N=2);

@@ -1,13 +1,15 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIColorsV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MyMDIChildV"
 #pragma link "VisCanvasView"
 #pragma link "VisClass"
@@ -19,7 +21,7 @@
 TMDIColors *MDIColors;
 //---------------------------------------------------------------------------
 
-__fastcall TMDIColors::TMDIColors(TComponent* Owner,TVisRender *_VisRender,TVisView *_VisView,TWinControl *_Parent)
+ TMDIColors::TMDIColors(TComponent* Owner,TVisRender *_VisRender,TVisView *_VisView,TWinControl *_Parent)
     : TForm(Owner)
 {
     if (_Parent)
@@ -48,7 +50,7 @@ __fastcall TMDIColors::TMDIColors(TComponent* Owner,TVisRender *_VisRender,TVisV
     Creating = false;
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIColors::AmbientMouseDown(TObject *Sender,
+void  TMDIColors::AmbientMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     ColorDialog->Color = ((TShape *)Sender)->Brush->Color;
@@ -57,7 +59,7 @@ void __fastcall TMDIColors::AmbientMouseDown(TObject *Sender,
     Apply();
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIColors::ShininessChange(TObject *Sender)
+void  TMDIColors::ShininessChange(TObject *Sender)
 {
 Apply();
 }

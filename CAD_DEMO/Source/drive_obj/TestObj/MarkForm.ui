@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>Form4</class>
+  <widget class="QWidget" name="Form4">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>216</width>
+        <height>161</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Mark Options</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QPushButton" name="Accept">
+      <property name="geometry">
+        <rect>
+          <x>40</x>
+          <y>120</y>
+          <width>121</width>
+          <height>33</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+      <property name="font">
+        <font>
+          <family>MS Reference Sans Serif</family>
+          <pointsize>15</pointsize>
+        </font>
+      </property>
+    </widget>
+    <widget class="QGroupBox" name="RadioGroup1">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>8</y>
+          <width>201</width>
+          <height>57</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Mark by</string>
+      </property>
+      <property name="text">
+        <string>Mark by</string>
+      </property>
+    </widget>
+    <widget class="QRadioButton" name="RadioButton1">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>24</y>
+          <width>113</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Index</string>
+      </property>
+      <property name="text">
+        <string>Index</string>
+      </property>
+    </widget>
+    <widget class="QRadioButton" name="RadioButton2">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>40</y>
+          <width>161</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>FCuts.Count || FPlane.Count</string>
+      </property>
+      <property name="text">
+        <string>FCuts.Count || FPlane.Count</string>
+      </property>
+    </widget>
+    <widget class="QWidget" name="LabeledEdit1">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>88</y>
+          <width>193</width>
+          <height>21</height>
+        </rect>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

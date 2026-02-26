@@ -1,10 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ContainerVH
 #define ContainerVH
 #include <stdio.h>
 //---------------------------------------------------------------------------
-typedef bool __fastcall (*TMyCompareProc)(void *item1, void *item2);
+typedef bool  (*TMyCompareProc)(void *item1, void *item2);
 typedef void (*TStartProcess)(const AnsiString& ProcessName,int Count);
 typedef void (*TCountProcess) (const AnsiString& ObjectName,int Count);
 
@@ -20,10 +24,9 @@ public:
     TBaseContainer();
     ~TBaseContainer(){};
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
 };
 
-extern COMMONAL_API TClassNode* TBaseContainer::StaticType;
 
 template <class T>
 class TContainer : public TBaseContainer{
@@ -33,7 +36,7 @@ public:
     TContainer();
     ~TContainer(){};
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------TMDelLSTList
     virtual int Add(T* It){return -1;};
     virtual void Clear(){};
@@ -84,7 +87,7 @@ void TContainer<T>::WriteData(TMemoryStream *MS) const
             {
                 _Name = AnsiString(typeid(*GetItem(i)).name());
                 if (ShowProcess)
-                    CountProcess(((TMyObject*)GetItem(i))->Name,1);
+                    CountProcess(((TMyObject*)GetItem(i))->GetNameProp(),1);
                 WriteOne(&_Name,mtString,MS);
                 WriteOne(&mtMyObject,mtInt,MS);
                 ((TMyObject*)GetItem(i))->WriteData(MS);
@@ -130,7 +133,7 @@ void TContainer<T>::ReadData(TMemoryStream *MS)
                     Add( (T*)Create_Default_Constructor(CT) );
                 ((TMyObject*)GetItem(GetCount()-1))->ReadData(MS);
                 if (ShowProcess)
-                    CountProcess(((TMyObject*)GetItem(GetCount()-1))->Name,1);
+                    CountProcess(((TMyObject*)GetItem(GetCount()-1))->GetNameProp(),1);
             }
             break;
             default:
@@ -154,7 +157,7 @@ void TContainer<T>::SaveData(FILE *F) const
     AnsiString StrValue;
     TStringList *A = new TStringList();
     if (ShowProcess)
-        StartProcess("Запись данных ...",GetCount());
+        StartProcess("Г‡Г ГЇГЁГ±Гј Г¤Г Г­Г­Г»Гµ ...",GetCount());
     for (int i=0;i<GetCount();i++)
     {
         switch (mtid)
@@ -164,11 +167,11 @@ void TContainer<T>::SaveData(FILE *F) const
                 A->Clear();
                 A->Add(AnsiString(typeid(*GetItem(i)).name()));
                 A->Add(IntToStr(mtMyObject));
-                fputs((TABS_P_1 + A->CommaText).c_str(),F);
+                fputs((TABS_P_1 + A->CommaText()).c_str(),F);
                 fputs("\n",F);
                 ((TMyObject*)GetItem(i))->SaveData(F);
                 if (ShowProcess)
-                    CountProcess(((TMyObject*)GetItem(i))->Name,1);
+                    CountProcess(((TMyObject*)GetItem(i))->GetNameProp(),1);
             }break;
             default:
             {
@@ -209,15 +212,15 @@ void TContainer<T>::LoadData(FILE *F)
         {
             case  mtMyObject:
             {
-                A->CommaText = AnsiString(str).Trim();
-                CT = A->Strings[0];
+                A->CommaText(AnsiString(str).Trim());
+                CT = A->Strings(0);
                 if ( TName == CT)
                     Add( (T*)CN->CreateFunction() );
                 else
                     Add( (T*)Create_Default_Constructor(CT) );
                 ((TMyObject*)GetItem(GetCount()-1))->LoadData(F);
                 if (ShowProcess)
-                    CountProcess(((TMyObject*)GetItem(GetCount()-1))->Name,1);
+                    CountProcess(((TMyObject*)GetItem(GetCount()-1))->GetNameProp(),1);
             }
             break;
             default:
@@ -242,7 +245,7 @@ bool TContainer<T>::CheckFields()
         for (int i=0;i<GetCount();i++)
         {
             if (ShowProcess)
-                CountProcess(((TMyObject*)GetItem(i))->Name,1);
+                CountProcess(((TMyObject*)GetItem(i))->GetNameProp(),1);
             if (!((TMyObject*)GetItem(i))->RecurrentCheck())
                 return false;
         }
@@ -260,7 +263,7 @@ bool TContainer<T>::Init()
         for (int i=0;i<GetCount();i++)
         {
             if (ShowProcess)
-                CountProcess(((TMyObject*)GetItem(i))->Name,1);
+                CountProcess(((TMyObject*)GetItem(i))->GetNameProp(),1);
             if (!((TMyObject*)GetItem(i))->Init())
                 return false;
         }

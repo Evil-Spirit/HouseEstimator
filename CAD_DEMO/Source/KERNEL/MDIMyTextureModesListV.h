@@ -1,16 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMyTextureModesListVH
 #define MDIMyTextureModesListVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
-#include <ToolWin.hpp>
 //---------------------------------------------------------------------------
 class TMyTextureModesList;
 class COMMONAL_API TMDIMyTextureModesList : public TMDIObjectEdit
@@ -21,12 +19,12 @@ __published:	// IDE-managed Components
     TToolButton *tbtDel;
     TPanel *SSS;
     TListView *LV;
-    void __fastcall tbtAddClick(TObject *Sender);
-    void __fastcall LVClick(TObject *Sender);
-    void __fastcall tbtDelClick(TObject *Sender);
+    void  tbtAddClick(TObject *Sender);
+    void  LVClick(TObject *Sender);
+    void  tbtDelClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMDIMyTextureModesList(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+     TMDIMyTextureModesList(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
   virtual void Refresh();
   virtual void Apply();
   virtual  bool Checked();

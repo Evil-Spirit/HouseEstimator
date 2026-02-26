@@ -1,16 +1,18 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "MTL.h"
 #include "Usefuls.h"
 #include "MyTemplates.h"
 #include "Poligon.h"
 #include "Triangulation.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 
-#pragma hdrstop
 
 #include "ComposeV_.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 MBTi xCos(TIntVec v1, TIntVec v2)
 {
@@ -31,7 +33,7 @@ void Composing(TMDelTList<TLPoint>& Pnts, TMDelTList<TLCut>& Cuts, TMDelTList<TP
     TLPoint *dst = NULL;
     TLCut	*cut = NULL;
 
-//Íàõîäèì ñàìóþ íèæíþþ òî÷êó
+//ÃÃ ÃµÃ®Ã¤Ã¨Ã¬ Ã±Ã Ã¬Ã³Ã¾ Ã­Ã¨Ã¦Ã­Ã¾Ã¾ Ã²Ã®Ã·ÃªÃ³
     for (int i=0;i<Pnts.Count;i++)
 	{
 	   	if (src == NULL)
@@ -42,7 +44,7 @@ void Composing(TMDelTList<TLPoint>& Pnts, TMDelTList<TLCut>& Cuts, TMDelTList<TP
     }
     begin = src;
 
-//Íàõîäèì îòðåçîê, ñàìûé ïîâîðà÷èâàþùèé íàïðàâî
+//ÃÃ ÃµÃ®Ã¤Ã¨Ã¬ Ã®Ã²Ã°Ã¥Ã§Ã®Ãª, Ã±Ã Ã¬Ã»Ã© Ã¯Ã®Ã¢Ã®Ã°Ã Ã·Ã¨Ã¢Ã Ã¾Ã¹Ã¨Ã© Ã­Ã Ã¯Ã°Ã Ã¢Ã®
     for (int i=0;i<src->Cuts.Count;i++)
     	if (src->Cuts[i].Src == src)
         {

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef CounterBaseVH
@@ -33,7 +37,7 @@ public:
     TQuerryNode(TQuerryNode* newParent,TCounterBase* _CB,TMetaNode* _Nom);
     virtual ~TQuerryNode();
     TMTList<TQuerryNode> Childs;
-    __property TQuerryNode* Parent = {read = FParent, write = SetParent};
+    // __property TQuerryNode* Parent {read=FParent, write=SetParent}; // [manual migration needed]
     TMetaNode* Nom;
     int index;
     int o_index;

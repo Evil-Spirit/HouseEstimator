@@ -1,25 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //----------------------------------------------------------------------------
 #ifndef Main2H
 #define Main2H
 //----------------------------------------------------------------------------
 
 #include "VisTimer.hpp"
-#include <ActnList.hpp>
-#include <Classes.hpp>
-#include <ComCtrls.hpp>
-#include <Controls.hpp>
-#include <Dialogs.hpp>
-#include <ExtCtrls.hpp>
-#include <ImgList.hpp>
-#include <Menus.hpp>
-#include <StdActns.hpp>
-#include <StdCtrls.hpp>
-#include <ToolWin.hpp>
+#include "compat/vcl_qt.h"
 #include "BaseDockSiteFormV.h"
 
 class TMetaElement;
 class TMyMDIChild;
-//должен быть один и только один определен
+//Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Г®Г¤ГЁГ­ ГЁ ГІГ®Г«ГјГЄГ® Г®Г¤ГЁГ­ Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­
 //#define INTERNET_VER;
 //#define TRADE_VER;
 
@@ -178,91 +172,91 @@ __published:
     TToolBar *MainToolBar;
     TAction *FileDigitalSave;
     TMenuItem *FileDigitalSave1;
-        void __fastcall FileNew1Execute(TObject *Sender);
-        void __fastcall HelpAbout1Execute(TObject *Sender);
-        void __fastcall FileExit1Execute(TObject *Sender);
-    void __fastcall ScrollerMouseDown(TObject *Sender, TMouseButton Button,
+        void  FileNew1Execute(TObject *Sender);
+        void  HelpAbout1Execute(TObject *Sender);
+        void  FileExit1Execute(TObject *Sender);
+    void  ScrollerMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall ScrollerMouseUp(TObject *Sender, TMouseButton Button,
+    void  ScrollerMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall ConfiguratorExecute(TObject *Sender);
-    void __fastcall ToolButton15Click(TObject *Sender);
-    void __fastcall ToolButton16Click(TObject *Sender);
-    void __fastcall mfNewClick(TObject *Sender);
-    void __fastcall FileSaveAs1Execute(TObject *Sender);
-    void __fastcall FileOpen1Execute(TObject *Sender);
-    void __fastcall btCheckClick(TObject *Sender);
-    void __fastcall mCountClick(TObject *Sender);
-    void __fastcall mWorkCountClick(TObject *Sender);
-    void __fastcall PrintDlg1Accept(TObject *Sender);
-    void __fastcall PrintDlg1BeforeExecute(TObject *Sender);
-  void __fastcall ToolButton12MouseDown(TObject *Sender,
+    void  FormCreate(TObject *Sender);
+    void  FormDestroy(TObject *Sender);
+    void  ConfiguratorExecute(TObject *Sender);
+    void  ToolButton15Click(TObject *Sender);
+    void  ToolButton16Click(TObject *Sender);
+    void  mfNewClick(TObject *Sender);
+    void  FileSaveAs1Execute(TObject *Sender);
+    void  FileOpen1Execute(TObject *Sender);
+    void  btCheckClick(TObject *Sender);
+    void  mCountClick(TObject *Sender);
+    void  mWorkCountClick(TObject *Sender);
+    void  PrintDlg1Accept(TObject *Sender);
+    void  PrintDlg1BeforeExecute(TObject *Sender);
+  void  ToolButton12MouseDown(TObject *Sender,
           TMouseButton Button, TShiftState Shift, int X, int Y);
-  void __fastcall cbFloorsCloseUp(TObject *Sender);
-  void __fastcall miModeClick(TObject *Sender);
-    void __fastcall SearchFind1FindDialogFind(TObject *Sender);
-    void __fastcall SearchReplace1ReplaceDialogReplace(TObject *Sender);
-    void __fastcall MainTimerTimer(TObject *Sender);
-    void __fastcall FindAllDialogFind(TObject *Sender);
-    void __fastcall SearchAllModulesExecute(TObject *Sender);
-    void __fastcall mShowElTreeClick(TObject *Sender);
-    void __fastcall miFloorsClick(TObject *Sender);
-    void __fastcall N10Click(TObject *Sender);
-    void __fastcall N5Click(TObject *Sender);
-    void __fastcall MActualFloorClick(TObject *Sender);
-    void __fastcall N11Click(TObject *Sender);
-    void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-    void __fastcall ViewNetExecute(TObject *Sender);
-    void __fastcall ViewLandExecute(TObject *Sender);
-    void __fastcall tbCatalogClick(TObject *Sender);
-    void __fastcall AdvTextureExecute(TObject *Sender);
-    void __fastcall AdvTextureUpdate(TObject *Sender);
-    void __fastcall mSimpleCountClick(TObject *Sender);
-    void __fastcall pnlLeftSideDockOver(TObject *Sender,
+  void  cbFloorsCloseUp(TObject *Sender);
+  void  miModeClick(TObject *Sender);
+    void  SearchFind1FindDialogFind(TObject *Sender);
+    void  SearchReplace1ReplaceDialogReplace(TObject *Sender);
+    void  MainTimerTimer(TObject *Sender);
+    void  FindAllDialogFind(TObject *Sender);
+    void  SearchAllModulesExecute(TObject *Sender);
+    void  mShowElTreeClick(TObject *Sender);
+    void  miFloorsClick(TObject *Sender);
+    void  N10Click(TObject *Sender);
+    void  N5Click(TObject *Sender);
+    void  MActualFloorClick(TObject *Sender);
+    void  N11Click(TObject *Sender);
+    void  FormClose(TObject *Sender, TCloseAction &Action);
+    void  ViewNetExecute(TObject *Sender);
+    void  ViewLandExecute(TObject *Sender);
+    void  tbCatalogClick(TObject *Sender);
+    void  AdvTextureExecute(TObject *Sender);
+    void  AdvTextureUpdate(TObject *Sender);
+    void  mSimpleCountClick(TObject *Sender);
+    void  pnlLeftSideDockOver(TObject *Sender,
           TDragDockObject *Source, int X, int Y, TDragState State,
           bool &Accept);
-    void __fastcall pnlLeftSideDockDrop(TObject *Sender,
+    void  pnlLeftSideDockDrop(TObject *Sender,
           TDragDockObject *Source, int X, int Y);
-    void __fastcall pnlRightSideDockDrop(TObject *Sender,
+    void  pnlRightSideDockDrop(TObject *Sender,
           TDragDockObject *Source, int X, int Y);
-    void __fastcall pnlBottomSideDockDrop(TObject *Sender,
+    void  pnlBottomSideDockDrop(TObject *Sender,
           TDragDockObject *Source, int X, int Y);
-    void __fastcall pnlLeftSideUnDock(TObject *Sender, TControl *Client,
+    void  pnlLeftSideUnDock(TObject *Sender, TControl *Client,
           TWinControl *NewTarget, bool &Allow);
-    void __fastcall pnlRightSideUnDock(TObject *Sender, TControl *Client,
+    void  pnlRightSideUnDock(TObject *Sender, TControl *Client,
           TWinControl *NewTarget, bool &Allow);
-    void __fastcall pnlBottomSideUnDock(TObject *Sender, TControl *Client,
+    void  pnlBottomSideUnDock(TObject *Sender, TControl *Client,
           TWinControl *NewTarget, bool &Allow);
-    void __fastcall pnlBottomSideResize(TObject *Sender);
-    void __fastcall FormShow(TObject *Sender);
-    void __fastcall FileDigitalSaveExecute(TObject *Sender);
+    void  pnlBottomSideResize(TObject *Sender);
+    void  FormShow(TObject *Sender);
+    void  FileDigitalSaveExecute(TObject *Sender);
 private:
     TWndMethod OldLeftDockWndProc;
     TWndMethod OldRightDockWndProc;
     TWndMethod OldBottomDockWndProc;
-    void __fastcall LeftDockWindowProc(Messages::TMessage &Message);
-    void __fastcall RightDockWindowProc(Messages::TMessage &Message);
-    void __fastcall BottomDockWindowProc(Messages::TMessage &Message);
-    void __fastcall ControlVisibilityChanged(TPanel* DockTarget,TControl* Control,bool Visible);
+    void  LeftDockWindowProc(Messages::TMessage &Message);
+    void  RightDockWindowProc(Messages::TMessage &Message);
+    void  BottomDockWindowProc(Messages::TMessage &Message);
+    void  ControlVisibilityChanged(TPanel* DockTarget,TControl* Control,bool Visible);
 public:
-	virtual __fastcall TConfig1(TComponent *Owner);
+	virtual  TConfig1(TComponent *Owner);
     void FillButtonBar(TMetaElement * MEL);
     void RefreshMenu(TMenuItem *MM=NULL);
     UpdateMenu();
-    void __fastcall AppMessage(TMsg& AMessage, bool& Handled);
-    void __fastcall AppActionUpdate(Classes::TBasicAction* Action, bool &Handled);
-    void __fastcall AppActionExecute(Classes::TBasicAction* Action, bool &Handled);
-    void __fastcall AppIdle(TObject *Sender, bool &Done);
-    bool Process_Save_Project();//возвращает истина если ответ не cancel
-    void __fastcall LuaExecute(TObject *Sender);
+    void  AppMessage(TMsg& AMessage, bool& Handled);
+    void  AppActionUpdate(Classes::TBasicAction* Action, bool &Handled);
+    void  AppActionExecute(Classes::TBasicAction* Action, bool &Handled);
+    void  AppIdle(TObject *Sender, bool &Done);
+    bool Process_Save_Project();//ГўГ®Г§ГўГ°Г Г№Г ГҐГІ ГЁГ±ГІГЁГ­Г  ГҐГ±Г«ГЁ Г®ГІГўГҐГІ Г­ГҐ cancel
+    void  LuaExecute(TObject *Sender);
     TMDelTList<TMsg> Msgs;
 };
 
 //----------------------------------------------------------------------------
 extern TConfig1 *Config1;
-extern TMyMDIChild *__fastcall MDIChildCreate(void);
+extern TMyMDIChild * MDIChildCreate(void);
 
 int Mes(char *Text,char*Caption=NULL);
 TMenuItem *FindMIByTag(TMenuItem *MI,int _Tag);

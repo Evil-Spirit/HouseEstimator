@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>ObjectTreeView</class>
+  <widget class="QWidget" name="ObjectTreeView">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>191</width>
+        <height>250</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Object TreeView</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsSizeToolWin → set windowFlags Qt::Tool in constructor -->
+    <widget class="QToolBar" name="deToolBar">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>183</width>
+          <height>29</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>ToolBar</string>
+      </property>
+      <widget class="QToolButton" name="deAddButton">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>23</width>
+            <height>22</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="enabled">
+          <bool>false</bool>
+        </property>
+      </widget>
+      <widget class="QToolButton" name="deDeleteButton">
+        <property name="geometry">
+          <rect>
+            <x>23</x>
+            <y>0</y>
+            <width>23</width>
+            <height>22</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="enabled">
+          <bool>false</bool>
+        </property>
+      </widget>
+      <widget class="QWidget" name="deSeparator">
+        <property name="geometry">
+          <rect>
+            <x>46</x>
+            <y>0</y>
+            <width>8</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Separator</string>
+        </property>
+      </widget>
+      <widget class="QToolButton" name="deUpButton">
+        <property name="geometry">
+          <rect>
+            <x>54</x>
+            <y>0</y>
+            <width>23</width>
+            <height>22</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="enabled">
+          <bool>false</bool>
+        </property>
+      </widget>
+      <widget class="QToolButton" name="deDownButton">
+        <property name="geometry">
+          <rect>
+            <x>77</x>
+            <y>0</y>
+            <width>23</width>
+            <height>22</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="enabled">
+          <bool>false</bool>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QTreeWidget" name="deTreeView">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>29</y>
+          <width>183</width>
+          <height>194</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

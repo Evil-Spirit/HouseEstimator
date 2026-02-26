@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef InterFaceH
@@ -44,12 +48,12 @@ public:
     void SetAdvancedTexturing(bool Value);
     TDriver Driver;
     TCameraEngine CameraEngine;
-    __property TMetaMyMode* Mode = {read = GetMetaMyMode};
+    // __property TMetaMyMode* Mode {read=GetMetaMyMode}; // [manual migration needed]
     void CustomRender();
     void InvalidateView();
     //--------------------------------
-    __property bool AdvancedTexturing = {read = FAdvancedTexturing,write = SetAdvancedTexturing};
-    __property bool PrevAdvancedTexturing = {read = FPrevAdvancedTexturing};
+    // __property bool AdvancedTexturing {read=FAdvancedTexturing, write=SetAdvancedTexturing}; // [manual migration needed]
+    // __property bool PrevAdvancedTexturing {read=FPrevAdvancedTexturing}; // [manual migration needed]
 
 
     __property TVisView *VisView = {read = GetVisView};

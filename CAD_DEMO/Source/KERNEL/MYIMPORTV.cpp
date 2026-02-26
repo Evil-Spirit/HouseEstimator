@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <vector>
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
        
 #include "VisAttr.hpp"
 #include "VisCam.hpp"
@@ -24,39 +27,38 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
-//Êîíñòàíòû ñî ñòðîêàìè ïàðàìåòðîâ â ôàéëå ASE
-AnsiString GEOMOBJECT               =AnsiString("*GEOMOBJECT ");//íà÷àëî îáúåêòà
-AnsiString MESH                     =AnsiString("*MESH ");//íà÷àëî ãåîìåòðèè îáúåêòà
-AnsiString MESH_NUMVERTEX           =AnsiString("*MESH_NUMVERTEX ");//êîëè÷åñòâî òî÷åê
-AnsiString MESH_NUMFACES            =AnsiString("*MESH_NUMFACES ");//êîëè÷åñòâî ïîâåðõíîñòåé(òðåóãîëüíèêîâ)
-AnsiString MESH_VERTEX_LIST         =AnsiString("*MESH_VERTEX_LIST "); //íà÷àëî ñïèñêà òî÷åê
-AnsiString MESH_VERTEX              =AnsiString("*MESH_VERTEX ");//òî÷êà
-AnsiString MESH_FACE_LIST           =AnsiString("*MESH_FACE_LIST "); //  íà÷àëî ñïèñêà ïîâåðõíîñòåé
-AnsiString MESH_FACE                =AnsiString("*MESH_FACE "); //  ïîâåðõíîñòü
-AnsiString MESH_NORMALS             =AnsiString("*MESH_NORMALS "); //  ñïèñîê íîðìàëåé
-AnsiString MESH_FACENORMAL          =AnsiString("*MESH_FACENORMAL "); //  íîðìàëü ïîâåðõíîñòè
-AnsiString MESH_VERTEXNORMAL        =AnsiString("*MESH_VERTEXNORMAL "); //  íîðìàëü òî÷êè
-AnsiString MATERIAL_REF             =AnsiString("*MATERIAL_REF "); // íîìåð ìàòåðèàëà
+//ÃŠÃ®Ã­Ã±Ã²Ã Ã­Ã²Ã» Ã±Ã® Ã±Ã²Ã°Ã®ÃªÃ Ã¬Ã¨ Ã¯Ã Ã°Ã Ã¬Ã¥Ã²Ã°Ã®Ã¢ Ã¢ Ã´Ã Ã©Ã«Ã¥ ASE
+AnsiString GEOMOBJECT               =AnsiString("*GEOMOBJECT ");//Ã­Ã Ã·Ã Ã«Ã® Ã®Ã¡ÃºÃ¥ÃªÃ²Ã 
+AnsiString MESH                     =AnsiString("*MESH ");//Ã­Ã Ã·Ã Ã«Ã® Ã£Ã¥Ã®Ã¬Ã¥Ã²Ã°Ã¨Ã¨ Ã®Ã¡ÃºÃ¥ÃªÃ²Ã 
+AnsiString MESH_NUMVERTEX           =AnsiString("*MESH_NUMVERTEX ");//ÃªÃ®Ã«Ã¨Ã·Ã¥Ã±Ã²Ã¢Ã® Ã²Ã®Ã·Ã¥Ãª
+AnsiString MESH_NUMFACES            =AnsiString("*MESH_NUMFACES ");//ÃªÃ®Ã«Ã¨Ã·Ã¥Ã±Ã²Ã¢Ã® Ã¯Ã®Ã¢Ã¥Ã°ÃµÃ­Ã®Ã±Ã²Ã¥Ã©(Ã²Ã°Ã¥Ã³Ã£Ã®Ã«Ã¼Ã­Ã¨ÃªÃ®Ã¢)
+AnsiString MESH_VERTEX_LIST         =AnsiString("*MESH_VERTEX_LIST "); //Ã­Ã Ã·Ã Ã«Ã® Ã±Ã¯Ã¨Ã±ÃªÃ  Ã²Ã®Ã·Ã¥Ãª
+AnsiString MESH_VERTEX              =AnsiString("*MESH_VERTEX ");//Ã²Ã®Ã·ÃªÃ 
+AnsiString MESH_FACE_LIST           =AnsiString("*MESH_FACE_LIST "); //  Ã­Ã Ã·Ã Ã«Ã® Ã±Ã¯Ã¨Ã±ÃªÃ  Ã¯Ã®Ã¢Ã¥Ã°ÃµÃ­Ã®Ã±Ã²Ã¥Ã©
+AnsiString MESH_FACE                =AnsiString("*MESH_FACE "); //  Ã¯Ã®Ã¢Ã¥Ã°ÃµÃ­Ã®Ã±Ã²Ã¼
+AnsiString MESH_NORMALS             =AnsiString("*MESH_NORMALS "); //  Ã±Ã¯Ã¨Ã±Ã®Ãª Ã­Ã®Ã°Ã¬Ã Ã«Ã¥Ã©
+AnsiString MESH_FACENORMAL          =AnsiString("*MESH_FACENORMAL "); //  Ã­Ã®Ã°Ã¬Ã Ã«Ã¼ Ã¯Ã®Ã¢Ã¥Ã°ÃµÃ­Ã®Ã±Ã²Ã¨
+AnsiString MESH_VERTEXNORMAL        =AnsiString("*MESH_VERTEXNORMAL "); //  Ã­Ã®Ã°Ã¬Ã Ã«Ã¼ Ã²Ã®Ã·ÃªÃ¨
+AnsiString MATERIAL_REF             =AnsiString("*MATERIAL_REF "); // Ã­Ã®Ã¬Ã¥Ã° Ã¬Ã Ã²Ã¥Ã°Ã¨Ã Ã«Ã 
 
 
-AnsiString NODE_TM                  =AnsiString("*NODE_TM "); //  îïèñàíèå óçëà
-AnsiString TM_POS                   =AnsiString("*TM_POS "); //  ïîëîæåíèå óçëà
-AnsiString TM_ROTAXIS               =AnsiString("*TM_ROTAXIS "); //  ïîâîðîò óçëà
-AnsiString TM_SCALE                 =AnsiString("*TM_SCALE "); //  ìàñøòàá óçëà
+AnsiString NODE_TM                  =AnsiString("*NODE_TM "); //  Ã®Ã¯Ã¨Ã±Ã Ã­Ã¨Ã¥ Ã³Ã§Ã«Ã 
+AnsiString TM_POS                   =AnsiString("*TM_POS "); //  Ã¯Ã®Ã«Ã®Ã¦Ã¥Ã­Ã¨Ã¥ Ã³Ã§Ã«Ã 
+AnsiString TM_ROTAXIS               =AnsiString("*TM_ROTAXIS "); //  Ã¯Ã®Ã¢Ã®Ã°Ã®Ã² Ã³Ã§Ã«Ã 
+AnsiString TM_SCALE                 =AnsiString("*TM_SCALE "); //  Ã¬Ã Ã±Ã¸Ã²Ã Ã¡ Ã³Ã§Ã«Ã 
 
-AnsiString END                      =AnsiString("}"); //  êîíåö òåêóùåãî ðàçäåëà
-AnsiString START                    =AnsiString("{"); //  íà÷àëî î÷åðåäíîãî òåêóùåãî ðàçäåëà
-AnsiString SP                       =AnsiString(" "); //  ïðîáåë
+AnsiString END                      =AnsiString("}"); //  ÃªÃ®Ã­Ã¥Ã¶ Ã²Ã¥ÃªÃ³Ã¹Ã¥Ã£Ã® Ã°Ã Ã§Ã¤Ã¥Ã«Ã 
+AnsiString START                    =AnsiString("{"); //  Ã­Ã Ã·Ã Ã«Ã® Ã®Ã·Ã¥Ã°Ã¥Ã¤Ã­Ã®Ã£Ã® Ã²Ã¥ÃªÃ³Ã¹Ã¥Ã£Ã® Ã°Ã Ã§Ã¤Ã¥Ã«Ã 
+AnsiString SP                       =AnsiString(" "); //  Ã¯Ã°Ã®Ã¡Ã¥Ã«
 ///--------------------------------------------------------------------
-AnsiString CAMERAOBJECT             =AnsiString("*CAMERAOBJECT "); //  êàìåðà
-AnsiString CAMERA_SETTINGS          =AnsiString("*CAMERA_SETTINGS "); //  íàñòðîéêè êàìåðû
-AnsiString CAMERA_NEAR              =AnsiString("*CAMERA_NEAR "); //  áëèçîñòü êàìåðû
-AnsiString CAMERA_FAR               =AnsiString("*CAMERA_FAR "); //  äàëüíîñòü êàìåðû
-AnsiString CAMERA_TDIST             =AnsiString("*CAMERA_TDIST "); //  äèñòàíöèÿ êàìåðû
+AnsiString CAMERAOBJECT             =AnsiString("*CAMERAOBJECT "); //  ÃªÃ Ã¬Ã¥Ã°Ã 
+AnsiString CAMERA_SETTINGS          =AnsiString("*CAMERA_SETTINGS "); //  Ã­Ã Ã±Ã²Ã°Ã®Ã©ÃªÃ¨ ÃªÃ Ã¬Ã¥Ã°Ã»
+AnsiString CAMERA_NEAR              =AnsiString("*CAMERA_NEAR "); //  Ã¡Ã«Ã¨Ã§Ã®Ã±Ã²Ã¼ ÃªÃ Ã¬Ã¥Ã°Ã»
+AnsiString CAMERA_FAR               =AnsiString("*CAMERA_FAR "); //  Ã¤Ã Ã«Ã¼Ã­Ã®Ã±Ã²Ã¼ ÃªÃ Ã¬Ã¥Ã°Ã»
+AnsiString CAMERA_TDIST             =AnsiString("*CAMERA_TDIST "); //  Ã¤Ã¨Ã±Ã²Ã Ã­Ã¶Ã¨Ã¿ ÃªÃ Ã¬Ã¥Ã°Ã»
 //---------------------------------------------------------------------
-AnsiString MATERIAL_LIST            =AnsiString("*MATERIAL_LIST "); //  ìàòåðèàëîâ ñïèñîê
-AnsiString MATERIAL_NAME            =AnsiString("*MATERIAL_NAME "); //  èìÿ ìàòåðèàëà
+AnsiString MATERIAL_LIST            =AnsiString("*MATERIAL_LIST "); //  Ã¬Ã Ã²Ã¥Ã°Ã¨Ã Ã«Ã®Ã¢ Ã±Ã¯Ã¨Ã±Ã®Ãª
+AnsiString MATERIAL_NAME            =AnsiString("*MATERIAL_NAME "); //  Ã¨Ã¬Ã¿ Ã¬Ã Ã²Ã¥Ã°Ã¨Ã Ã«Ã 
 AnsiString MATERIAL_AMBIENT         =AnsiString("*MATERIAL_AMBIENT "); //
 AnsiString MATERIAL_DIFFUSE         =AnsiString("*MATERIAL_DIFFUSE "); //
 AnsiString MATERIAL_SPECULAR        =AnsiString("*MATERIAL_SPECULAR "); //
@@ -69,21 +71,21 @@ AnsiString MATERIAL_XP_FALLOFF      =AnsiString("*MATERIAL_XP_FALLOFF "); //
 AnsiString MATERIAL_SELFILLUM       =AnsiString("*MATERIAL_SELFILLUM "); //
 AnsiString MATERIAL_FALLOFF         =AnsiString("*MATERIAL_FALLOFF "); //
 AnsiString MATERIAL_XP_TYPE         =AnsiString("*MATERIAL_XP_TYPE "); //
-AnsiString MATERIAL                 =AnsiString("*MATERIAL "); //  ìàòåðèàë
+AnsiString MATERIAL                 =AnsiString("*MATERIAL "); //  Ã¬Ã Ã²Ã¥Ã°Ã¨Ã Ã«
 
-AnsiString MESH_TVERTLIST           =AnsiString("*MESH_TVERTLIST "); //  ñïèñîê êîîðäèíàò òåêñòóð
-AnsiString MESH_TVERT               =AnsiString("*MESH_TVERT "); //  êîîðäèíàòà òåêñòóðû
-AnsiString MESH_TFACELIST           =AnsiString("*MESH_TFACELIST "); //  ïîëèãîíû òåêñòóð
-AnsiString MESH_TFACE               =AnsiString("*MESH_TFACE "); //  ïîëèãîí òåêñòóðû
+AnsiString MESH_TVERTLIST           =AnsiString("*MESH_TVERTLIST "); //  Ã±Ã¯Ã¨Ã±Ã®Ãª ÃªÃ®Ã®Ã°Ã¤Ã¨Ã­Ã Ã² Ã²Ã¥ÃªÃ±Ã²Ã³Ã°
+AnsiString MESH_TVERT               =AnsiString("*MESH_TVERT "); //  ÃªÃ®Ã®Ã°Ã¤Ã¨Ã­Ã Ã²Ã  Ã²Ã¥ÃªÃ±Ã²Ã³Ã°Ã»
+AnsiString MESH_TFACELIST           =AnsiString("*MESH_TFACELIST "); //  Ã¯Ã®Ã«Ã¨Ã£Ã®Ã­Ã» Ã²Ã¥ÃªÃ±Ã²Ã³Ã°
+AnsiString MESH_TFACE               =AnsiString("*MESH_TFACE "); //  Ã¯Ã®Ã«Ã¨Ã£Ã®Ã­ Ã²Ã¥ÃªÃ±Ã²Ã³Ã°Ã»
 
-AnsiString MAP_DIFFUSE              =AnsiString("*MAP_DIFFUSE "); //  òåêñòóðû
-AnsiString MAP_BUMP                 =AnsiString("*MAP_BUMP "); //  òåêñòóðû
-//AnsiString MATERIAL_XP_TYPE       =AnsiString("*MATERIAL_XP_TYPE "); //  òåêñòóðû
-AnsiString MAP_GENERIC              =AnsiString("*MAP_GENERIC "); //  òåêñòóðû
-AnsiString MAP_REFRACT              =AnsiString("*MAP_REFRACT "); //  òåêñòóðû
-AnsiString MAP_OPACITY              =AnsiString("*MAP_OPACITY "); //  òåêñòóðû
+AnsiString MAP_DIFFUSE              =AnsiString("*MAP_DIFFUSE "); //  Ã²Ã¥ÃªÃ±Ã²Ã³Ã°Ã»
+AnsiString MAP_BUMP                 =AnsiString("*MAP_BUMP "); //  Ã²Ã¥ÃªÃ±Ã²Ã³Ã°Ã»
+//AnsiString MATERIAL_XP_TYPE       =AnsiString("*MATERIAL_XP_TYPE "); //  Ã²Ã¥ÃªÃ±Ã²Ã³Ã°Ã»
+AnsiString MAP_GENERIC              =AnsiString("*MAP_GENERIC "); //  Ã²Ã¥ÃªÃ±Ã²Ã³Ã°Ã»
+AnsiString MAP_REFRACT              =AnsiString("*MAP_REFRACT "); //  Ã²Ã¥ÃªÃ±Ã²Ã³Ã°Ã»
+AnsiString MAP_OPACITY              =AnsiString("*MAP_OPACITY "); //  Ã²Ã¥ÃªÃ±Ã²Ã³Ã°Ã»
 
-AnsiString tBITMAP                  =AnsiString("*BITMAP "); //  ôàéë òåêñòóðû
+AnsiString tBITMAP                  =AnsiString("*BITMAP "); //  Ã´Ã Ã©Ã« Ã²Ã¥ÃªÃ±Ã²Ã³Ã°Ã»
 //AnsiString DIGITS=AnsiString("0123456789.");
 
 
@@ -325,7 +327,7 @@ AnsiString TMyImport::GetData(AnsiString S,int ind){
 
 void TMyImport::GeomObject(TVisCustomObj *Obj,int &i,TStringList *A)
 {
-//ôóíêöèÿ áåðåò ãåîìåòðè÷åñêèé îáúåêò âìåñòå ñ íîðìàëÿìè è âîçìîæíî ñ êîîðä. òåêñòóð.
+//Ã´Ã³Ã­ÃªÃ¶Ã¨Ã¿ Ã¡Ã¥Ã°Ã¥Ã² Ã£Ã¥Ã®Ã¬Ã¥Ã²Ã°Ã¨Ã·Ã¥Ã±ÃªÃ¨Ã© Ã®Ã¡ÃºÃ¥ÃªÃ² Ã¢Ã¬Ã¥Ã±Ã²Ã¥ Ã± Ã­Ã®Ã°Ã¬Ã Ã«Ã¿Ã¬Ã¨ Ã¨ Ã¢Ã®Ã§Ã¬Ã®Ã¦Ã­Ã® Ã± ÃªÃ®Ã®Ã°Ã¤. Ã²Ã¥ÃªÃ±Ã²Ã³Ã°.
     i++;
     //    (TVisMathVector)
     while(A->Strings[i].AnsiPos(END)==0)
@@ -442,7 +444,7 @@ void TMyImport::NodeTM(TVisTransformed *Obj,int &i,TStringList *A)
 
 void TMyImport::Mesh(TVisCustomObj *Obj,int &i,TStringList *A)
 {
-//ôóíêöèÿ áåðåò èíôó èç ôàéëà èç ðàçäåëà Mesh
+//Ã´Ã³Ã­ÃªÃ¶Ã¨Ã¿ Ã¡Ã¥Ã°Ã¥Ã² Ã¨Ã­Ã´Ã³ Ã¨Ã§ Ã´Ã Ã©Ã«Ã  Ã¨Ã§ Ã°Ã Ã§Ã¤Ã¥Ã«Ã  Mesh
 
     int NumVertex;
     int NumFaces;
@@ -540,9 +542,9 @@ end;
 TIntVec SERV;
 void TMyImport::MeshVertexList(TVisCustomObj *Obj,int &i,TStringList *A,int Count)
 {
-//ôóíêöèÿ áåðåò èíôó èç ôàéëà èç ðàçäåëà "ñïèñîê òî÷åê"
+//Ã´Ã³Ã­ÃªÃ¶Ã¨Ã¿ Ã¡Ã¥Ã°Ã¥Ã² Ã¨Ã­Ã´Ã³ Ã¨Ã§ Ã´Ã Ã©Ã«Ã  Ã¨Ã§ Ã°Ã Ã§Ã¤Ã¥Ã«Ã  "Ã±Ã¯Ã¨Ã±Ã®Ãª Ã²Ã®Ã·Ã¥Ãª"
 
-//ïîëó÷àåò èíäåêñ â ïîçèöèè MESH_VERTEX_LIST, çíà÷èò íàì íóæåí ñëåäóþùèé
+//Ã¯Ã®Ã«Ã³Ã·Ã Ã¥Ã² Ã¨Ã­Ã¤Ã¥ÃªÃ± Ã¢ Ã¯Ã®Ã§Ã¨Ã¶Ã¨Ã¨ MESH_VERTEX_LIST, Ã§Ã­Ã Ã·Ã¨Ã² Ã­Ã Ã¬ Ã­Ã³Ã¦Ã¥Ã­ Ã±Ã«Ã¥Ã¤Ã³Ã¾Ã¹Ã¨Ã©
     i++;
     while(A->Strings[i].AnsiPos(END)==0)
     {
@@ -1031,7 +1033,7 @@ void T_Figure::Re_Add_Triangle_Point(int pointindex,const TIntVec& N,int triangl
 			TIntVec Normal0 = Get_Normal(i,0);
             if ( (Normal0-N).Length()<eps )
             {
-				//äîáàâëÿåì ñþäà
+				//Ã¤Ã®Ã¡Ã Ã¢Ã«Ã¿Ã¥Ã¬ Ã±Ã¾Ã¤Ã 
                 TRI[triangle].indexes[point_in_triangle] = i;
                 PNTS[i].TRI_IND.Add(new int(triangle));
                 return;
@@ -1047,7 +1049,7 @@ void T_Figure::Re_Add_Triangle_Point(int pointindex,const TIntVec& N,int triangl
 void T_Figure::ProcessPoint(int index)
 {
     T_Point& T_P = PNTS[index];
-    //ñ÷èòàåì ïåðâûé òðåóãîëüíèê ñâîèì
+    //Ã±Ã·Ã¨Ã²Ã Ã¥Ã¬ Ã¯Ã¥Ã°Ã¢Ã»Ã© Ã²Ã°Ã¥Ã³Ã£Ã®Ã«Ã¼Ã­Ã¨Ãª Ã±Ã¢Ã®Ã¨Ã¬
     int k=1;
     while(k<T_P.TRI_IND.Count)
     {

@@ -1,18 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <windows.h>
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "math.h"
-#include "Math.hpp"
 #include "math.h"
 #include "stdlib.h"
 
-#pragma package(smart_init)
 
 TIntVec tmpIntVec;
 int tmpint;
@@ -39,7 +40,7 @@ bool ISINTEGER(const AnsiString &Src)
 
 }
 
-bool __fastcall TINTCOMP(void *item1, void *item2)
+bool  TINTCOMP(void *item1, void *item2)
 {
     return (*((int*)item1)) < (*((int*)item2));
 }
@@ -894,20 +895,20 @@ MBTi Measure(const TIntVec& IV)
 }
 
 
-int PlaneAndLineCrossed(const TIntVec& A,//òî÷êà íà ïëîñêîñòè
-						const TIntVec& N,//íîðìàëü
-						const TIntVec& X,//ïðÿìàÿ òî÷êà 1
-						const TIntVec& Y,//ïðÿìàÿ òî÷êà 2
+int PlaneAndLineCrossed(const TIntVec& A,//Ã²Ã®Ã·ÃªÃ  Ã­Ã  Ã¯Ã«Ã®Ã±ÃªÃ®Ã±Ã²Ã¨
+						const TIntVec& N,//Ã­Ã®Ã°Ã¬Ã Ã«Ã¼
+						const TIntVec& X,//Ã¯Ã°Ã¿Ã¬Ã Ã¿ Ã²Ã®Ã·ÃªÃ  1
+						const TIntVec& Y,//Ã¯Ã°Ã¿Ã¬Ã Ã¿ Ã²Ã®Ã·ÃªÃ  2
 						bool xFixed,
 						bool yFixed,
-						TIntVec& O, //òî÷êà ïåðåñå÷åíèÿ
-						MBTi USEEPS)    //ìåðà ïàðàëëåëüíîñòè
+						TIntVec& O, //Ã²Ã®Ã·ÃªÃ  Ã¯Ã¥Ã°Ã¥Ã±Ã¥Ã·Ã¥Ã­Ã¨Ã¿
+						MBTi USEEPS)    //Ã¬Ã¥Ã°Ã  Ã¯Ã Ã°Ã Ã«Ã«Ã¥Ã«Ã¼Ã­Ã®Ã±Ã²Ã¨
 {
 	TIntVec V = A - X;
-	// ðàññòîÿíèå äî ïëîñêîñòè ïî íîðìàëè
+	// Ã°Ã Ã±Ã±Ã²Ã®Ã¿Ã­Ã¨Ã¥ Ã¤Ã® Ã¯Ã«Ã®Ã±ÃªÃ®Ã±Ã²Ã¨ Ã¯Ã® Ã­Ã®Ã°Ã¬Ã Ã«Ã¨
 	MBTi d = ScalarP ( N, V );
 	TIntVec W = Y - X;
-	// ïðèáëèæåíèå ê ïëîñêîñòè ïî íîðìàëè ïðè ïðîõîæäåíèè îòðåçêà
+	// Ã¯Ã°Ã¨Ã¡Ã«Ã¨Ã¦Ã¥Ã­Ã¨Ã¥ Ãª Ã¯Ã«Ã®Ã±ÃªÃ®Ã±Ã²Ã¨ Ã¯Ã® Ã­Ã®Ã°Ã¬Ã Ã«Ã¨ Ã¯Ã°Ã¨ Ã¯Ã°Ã®ÃµÃ®Ã¦Ã¤Ã¥Ã­Ã¨Ã¨ Ã®Ã²Ã°Ã¥Ã§ÃªÃ 
 	MBTi e = ScalarP ( N, W );
 
 	if( fabs(e)>USEEPS )

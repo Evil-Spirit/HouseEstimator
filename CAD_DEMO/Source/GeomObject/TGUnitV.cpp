@@ -1,16 +1,18 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "TGUnitV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 TClassNode* TGBaseLink::StaticType = NULL;
 TClassNode* TGUnit::StaticType = NULL;
 
@@ -59,7 +61,7 @@ TGBaseLink::~TGBaseLink()
 void TGBaseLink::SetClient(int index,TGUnit* Client)
 {
     if ( index<0 || index>1 )
-        throw EMyException(AnsiString("<TGBaseLink::SetClient>: неверный индекс клиента связки - ") + IntToStr(index) );
+        throw EMyException(AnsiString("<TGBaseLink::SetClient>: Г­ГҐГўГҐГ°Г­Г»Г© ГЁГ­Г¤ГҐГЄГ± ГЄГ«ГЁГҐГ­ГІГ  Г±ГўГїГ§ГЄГЁ - ") + IntToStr(index) );
 
     if ( FClients[index].ADR )
         FClients[index].ADR->Remove(this);
@@ -71,7 +73,7 @@ void TGBaseLink::SetClient(int index,TGUnit* Client)
 TGUnit* TGBaseLink::GetClient(int index)
 {
     if ( index<0 || index>1 )
-        throw EMyException(AnsiString("<TGBaseLink::SetClient>: неверный индекс клиента связки - ") + IntToStr(index) );
+        throw EMyException(AnsiString("<TGBaseLink::SetClient>: Г­ГҐГўГҐГ°Г­Г»Г© ГЁГ­Г¤ГҐГЄГ± ГЄГ«ГЁГҐГ­ГІГ  Г±ГўГїГ§ГЄГЁ - ") + IntToStr(index) );
 
     return FClients[index].ADR;
 }
@@ -131,7 +133,7 @@ TGUnit* TGBaseLink::AnotherClient(TGUnit* aClient)
     else if ( aClient == FClients[1].ADR )
         return FClients[0].ADR;
 
-    throw EMyException("<TGUnit::AnotherClient>: Клиент не принадлежит связке.");
+    throw EMyException("<TGUnit::AnotherClient>: ГЉГ«ГЁГҐГ­ГІ Г­ГҐ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г±ГўГїГ§ГЄГҐ.");
 }
 
 TGBaseLink& TGUnit::GetLink(int index)

@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "GenImageV.h"
 #include "MDIPointerEditV.h"
@@ -12,11 +15,10 @@
 #include "MyGL.h"
 #include "IntExplorerV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TGenImage *GenImage;
 //---------------------------------------------------------------------------
-__fastcall TGenImage::TGenImage(TComponent* Owner,TMDITV* _TV,Graphics::TBitmap* _BMP,Graphics::TBitmap* _mask)
+ TGenImage::TGenImage(TComponent* Owner,TMDITV* _TV,Graphics::TBitmap* _BMP,Graphics::TBitmap* _mask)
     : TForm(Owner)
 {
     mask = _mask;
@@ -29,12 +31,12 @@ __fastcall TGenImage::TGenImage(TComponent* Owner,TMDITV* _TV,Graphics::TBitmap*
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGenImage::FormDestroy(TObject *Sender)
+void  TGenImage::FormDestroy(TObject *Sender)
 {
     delete BMPS;    
 }
 //---------------------------------------------------------------------------
-void __fastcall TGenImage::sColorMouseDown(TObject *Sender,
+void  TGenImage::sColorMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     ColorDialog1->Color = sColor->Brush->Color;
@@ -42,7 +44,7 @@ void __fastcall TGenImage::sColorMouseDown(TObject *Sender,
         sColor->Brush->Color = ColorDialog1->Color;
 }
 //---------------------------------------------------------------------------
-void __fastcall TGenImage::OnLISTChange(TObject *Sender)
+void  TGenImage::OnLISTChange(TObject *Sender)
 {
     ((TMDIPointerEdit*)LIST->Controls[0])->Apply();
     Image->Picture->Bitmap->Assign(NULL);
@@ -65,7 +67,7 @@ void __fastcall TGenImage::OnLISTChange(TObject *Sender)
     }
 }
 
-void __fastcall TGenImage::btGenClick(TObject *Sender)
+void  TGenImage::btGenClick(TObject *Sender)
 {
     Graphics::TBitmap *Bitmap = new Graphics::TBitmap();
     if (!BMPS->ADR)
@@ -161,7 +163,7 @@ void __fastcall TGenImage::btGenClick(TObject *Sender)
     delete IL;
 }
 //---------------------------------------------------------------------------
-void __fastcall TGenImage::ImageMouseDown(TObject *Sender,
+void  TGenImage::ImageMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     int nWidth;

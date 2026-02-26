@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef G2DDegreeRulesVH
@@ -11,18 +15,17 @@ protected:
     virtual TIntVec GetPoint() const;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TDegreeRule();
     ~TDegreeRule(){};
     TG2DPoint* GPoint;
     TG2DLink* GLink;
-    __property TIntVec Point = {read=GetPoint};
+    // __property TIntVec Point {read=GetPoint}; // [manual migration needed]
     virtual void SwitchPointToPoint(TG2DPoint* FromPoint,TG2DPoint* ToPoint,TG2DPoint* TargetPoint)
     {
-        throw EMyException("<TDegreeRule::SwitchPointToPoint>: Нереализовано в классах наследниках.");
+        throw EMyException("<TDegreeRule::SwitchPointToPoint>: ГЌГҐГ°ГҐГ Г«ГЁГ§Г®ГўГ Г­Г® Гў ГЄГ«Г Г±Г±Г Гµ Г­Г Г±Г«ГҐГ¤Г­ГЁГЄГ Гµ.");
     };
 };
-extern COMMONAL_API TClassNode* TDegreeRule::StaticType;
 
 class COMMONAL_API TCircleDegreeRule  : public TDegreeRule{
 protected:
@@ -30,13 +33,12 @@ protected:
     MBTi FRadius;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TCircleDegreeRule();
     ~TCircleDegreeRule(){};
-    __property MBTi Radius = {read = GetRadius,write = FRadius};
+    // __property MBTi Radius {read=GetRadius, write=FRadius}; // [manual migration needed]
 };
 
-extern COMMONAL_API TClassNode* TCircleDegreeRule::StaticType;
 
 class COMMONAL_API TLineDegreeRule  : public TDegreeRule{
 protected:
@@ -44,7 +46,7 @@ protected:
     virtual TIntVec GetDirection() const;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TLineDegreeRule();
     ~TLineDegreeRule(){};
     TG2DPoint* GPX_SRC;
@@ -54,16 +56,15 @@ public:
     MBTi OffSet;
     bool Strongly;
     void InitOffSetByPoint(TG2DPoint* Point);
-    __property TIntVec Direction = {read=GetDirection};
+    // __property TIntVec Direction {read=GetDirection}; // [manual migration needed]
     void SwitchPointToPoint(TG2DPoint* FromPoint,TG2DPoint* ToPoint,TG2DPoint* TargetPoint);
 };
-extern COMMONAL_API TClassNode* TLineDegreeRule::StaticType;
 
 class COMMONAL_API TLimaconDegreeRule : public TDegreeRule{
 protected:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TLimaconDegreeRule();
     virtual ~TLimaconDegreeRule(){};
 	TG2DPoint* SkP1;
@@ -75,7 +76,6 @@ public:
     void InitPascalLimacon();
 };
 
-extern COMMONAL_API TClassNode* TLimaconDegreeRule::StaticType;
 
 
 class COMMONAL_API TCircleDegreeOfAngle  : public TCircleDegreeRule{
@@ -84,7 +84,7 @@ protected:
     virtual MBTi GetRadius() const;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TG2DPoint* GPX_DST;
     TG2DPoint* GPY_DST;
     MBTi Angle;
@@ -92,7 +92,6 @@ public:
     ~TCircleDegreeOfAngle(){};
 };
 
-extern COMMONAL_API TClassNode* TCircleDegreeOfAngle::StaticType;
 
 
 

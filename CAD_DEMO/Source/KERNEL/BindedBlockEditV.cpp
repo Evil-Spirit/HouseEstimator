@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "BindedBlockEditV.h"
 #include "BindedGoEditV.h"
 #include "MainToolsV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TBindedBlockEdit *BindedBlockEdit;
 //---------------------------------------------------------------------------
-__fastcall TBindedBlockEdit::TBindedBlockEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TBindedBlockEdit::TBindedBlockEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 //    TBindedStateBlock* BST = (TBindedStateBlock*)_Obj;
@@ -119,7 +121,7 @@ void TBindedBlockEdit::KILL()
     delete FMyBaseBlock; 
 }
 
-/*__fastcall TBindedBlockEdit::TBindedBlockEdit(TComponent* Owner, TBaseBlock* Obj)
+/* TBindedBlockEdit::TBindedBlockEdit(TComponent* Owner, TBaseBlock* Obj)
     : TForm(Owner)
 {
     Parent = (TWinControl*)Owner;
@@ -213,7 +215,7 @@ void TBindedBlockEdit::FillForm()
         if (j == BlocksCount)
         {
             LI->Caption = "None";
-            /* TODO : âûäåëèòü öâåòîì *///LI->
+            /* TODO : Ã¢Ã»Ã¤Ã¥Ã«Ã¨Ã²Ã¼ Ã¶Ã¢Ã¥Ã²Ã®Ã¬ *///LI->
         }
         if (FBlockType==0)
         {
@@ -251,7 +253,7 @@ bool TBindedBlockEdit::Checked()
         if ( j == BlocksCount)
             return false;
     }
-    /* TODO : çàïîëíèòü */
+    /* TODO : Ã§Ã Ã¯Ã®Ã«Ã­Ã¨Ã²Ã¼ */
     return true;
 }
 
@@ -319,7 +321,7 @@ void TBindedBlockEdit::Refresh()
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedBlockEdit::tbNewClick(TObject *Sender)
+void  TBindedBlockEdit::tbNewClick(TObject *Sender)
 {
     MyBaseBlock.GOS.Add(new TGo());
     MyBaseBlock.GOS.Last()->Event = Mouse_Down;
@@ -341,7 +343,7 @@ void __fastcall TBindedBlockEdit::tbNewClick(TObject *Sender)
 
 
 
-void __fastcall TBindedBlockEdit::tbEditClick(TObject *Sender)
+void  TBindedBlockEdit::tbEditClick(TObject *Sender)
 {
     if (lvNextBlock->ItemIndex < 0 || lvNextBlock->ItemIndex>=lvNextBlock->Items->Count)
         return;
@@ -355,7 +357,7 @@ void __fastcall TBindedBlockEdit::tbEditClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedBlockEdit::tbDeleteClick(TObject *Sender)
+void  TBindedBlockEdit::tbDeleteClick(TObject *Sender)
 {
     if (lvNextBlock->ItemIndex < 0 || lvNextBlock->ItemIndex >= lvNextBlock->Items->Count)
         return;
@@ -364,26 +366,26 @@ void __fastcall TBindedBlockEdit::tbDeleteClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedBlockEdit::FormDestroy(TObject *Sender)
+void  TBindedBlockEdit::FormDestroy(TObject *Sender)
 {
     BlocksNames.Clear();
     BlocksIds.Clear();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedBlockEdit::lvNextBlockDblClick(TObject *Sender)
+void  TBindedBlockEdit::lvNextBlockDblClick(TObject *Sender)
 {
     tbEditClick(Sender);
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedBlockEdit::eNameChange(TObject *Sender)
+void  TBindedBlockEdit::eNameChange(TObject *Sender)
 {
     eName->Text = eName->Text.Trim();
     eName->Text = eName->Text.LowerCase();
 }
 //---------------------------------------------------------------------------
-void __fastcall TBindedBlockEdit::lvNextBlockResize(TObject *Sender)
+void  TBindedBlockEdit::lvNextBlockResize(TObject *Sender)
 {
     for ( int i = 0; i < lvNextBlock->Columns->Count; i++ )
         lvNextBlock->Columns->Items[i]->Width = lvNextBlock->ClientWidth / lvNextBlock->Columns->Count;

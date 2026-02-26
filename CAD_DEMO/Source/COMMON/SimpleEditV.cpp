@@ -1,24 +1,26 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "SimpleEditV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TMDISimpleEdit *MDISimpleEdit;
 //---------------------------------------------------------------------------
-__fastcall TMDISimpleEdit::TMDISimpleEdit(TComponent* Owner)
+ TMDISimpleEdit::TMDISimpleEdit(TComponent* Owner)
     : TForm(Owner)
 {
     delete this;
 }
 
-__fastcall TMDISimpleEdit::TMDISimpleEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDISimpleEdit::TMDISimpleEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TForm(Owner)
 {
     Constructiong=true;
@@ -32,7 +34,7 @@ __fastcall TMDISimpleEdit::TMDISimpleEdit(TComponent* Owner,TControl *_Parent, T
     Constructiong=false;
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDISimpleEdit::lErrorClick(TObject *Sender)
+void  TMDISimpleEdit::lErrorClick(TObject *Sender)
 {
     //
 }

@@ -1,21 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIHasAngleV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma resource "*.dfm"
 TMDIAngle *MDIAngle;
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 
-__fastcall TMDIAngle::TMDIAngle(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDIAngle::TMDIAngle(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }

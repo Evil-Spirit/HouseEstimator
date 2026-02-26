@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>LuaUniForm</class>
+  <widget class="QWidget" name="LuaUniForm">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>568</width>
+        <height>314</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>LuaUniForm</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QPushButton" name="btOK">
+      <property name="geometry">
+        <rect>
+          <x>331</x>
+          <y>280</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>ОК</string>
+      </property>
+      <property name="text">
+        <string>ОК</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btCancel">
+      <property name="geometry">
+        <rect>
+          <x>411</x>
+          <y>280</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Отмена</string>
+      </property>
+      <property name="text">
+        <string>Отмена</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btApply">
+      <property name="geometry">
+        <rect>
+          <x>491</x>
+          <y>280</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Применить</string>
+      </property>
+      <property name="text">
+        <string>Применить</string>
+      </property>
+    </widget>
+    <widget class="QFrame" name="pView">
+      <property name="geometry">
+        <rect>
+          <x>257</x>
+          <y>0</y>
+          <width>311</width>
+          <height>274</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>pView</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>257</width>
+          <height>274</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Panel1</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="Panel2">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>257</width>
+          <height>274</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Panel1</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="Panel3">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>257</width>
+          <height>274</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Panel1</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="Panel4">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>257</width>
+          <height>274</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Panel1</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="Panel5">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>257</width>
+          <height>274</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Panel1</string>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "G2DPointCutV.h"
 #include "G2DFunctionsV.h"
@@ -14,13 +17,11 @@
 #include "math.h"
 #include "G2DObjectV.h"
 #include "Poligon.h"
-#include "Math.hpp"
 #include "G2DApproxCalcV.h"
 
 //---------------------------------------------------------------------------
 
 
-#pragma package(smart_init)
 
 TClassNode* TG2DCut::StaticType = NULL;
 TClassNode* TG2DPoint::StaticType = NULL;
@@ -298,8 +299,8 @@ bool CrossCircleAndLine(
 {
     if ( P1.Equal(P2,USEEPS) )
         return false;
-    //расчитаем расстояние от прямой до центра окружности как высоту треугольника
-    //через площадь
+    //Г°Г Г±Г·ГЁГІГ ГҐГ¬ Г°Г Г±Г±ГІГ®ГїГ­ГЁГҐ Г®ГІ ГЇГ°ГїГ¬Г®Г© Г¤Г® Г¶ГҐГ­ГІГ°Г  Г®ГЄГ°ГіГ¦Г­Г®Г±ГІГЁ ГЄГ ГЄ ГўГ»Г±Г®ГІГі ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
+    //Г·ГҐГ°ГҐГ§ ГЇГ«Г®Г№Г Г¤Гј
     MBTi Angle = AngleRadOX(P1,P2)*180/M_PI;
     MBTi y = RotateAround (P1-C1,TIntVec(0,0,-Angle),ZEROINTVEC).y;
     MBTi a = fabs(y);
@@ -538,7 +539,7 @@ MBTf TPolarCircle::CalcSqrDet(MBTf arg) const
 
 MBTf TPolarCircle::MoveToEdge(MBTf arg) const
 {
-    //уже предполагается что дискриминант отрицательный
+    //ГіГ¦ГҐ ГЇГ°ГҐГ¤ГЇГ®Г«Г ГЈГ ГҐГІГ±Гї Г·ГІГ® Г¤ГЁГ±ГЄГ°ГЁГ¬ГЁГ­Г Г­ГІ Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»Г©
     MBTf x0 = Center.x;
     MBTf x0_2 = x0*x0;
     MBTf x0_4 = x0_2*x0_2;
@@ -646,8 +647,8 @@ bool TPascalLimacon::CrossingWithLine(const TIntVec& P0,const TIntVec& P1,TMDelT
     TMDelTList<MBTf> _X;
     if (lc == 0)
     {
-        //Этот случай не рассмотрен
-        throw EMyException("<TPascalLimacon::CrossingWithLine>: Случай при lc==0 не рассмотрен.");
+        //ГќГІГ®ГІ Г±Г«ГіГ·Г Г© Г­ГҐ Г°Г Г±Г±Г¬Г®ГІГ°ГҐГ­
+        throw EMyException("<TPascalLimacon::CrossingWithLine>: Г‘Г«ГіГ·Г Г© ГЇГ°ГЁ lc==0 Г­ГҐ Г°Г Г±Г±Г¬Г®ГІГ°ГҐГ­.");
     }
     else
     {
@@ -807,7 +808,7 @@ TIntVec TPascalLimacon::FindClosestPoint(const TIntVec& P)
 
 void TPascalLimacon::Initialize(const TIntVec& P0,const TIntVec& P1,MBTi Angle,const TIntVec& PositionPoint)
 {
-    //нахождение параметров улитки
+    //Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГҐ ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў ГіГ«ГЁГІГЄГЁ
     TIntVec Point1 = P0;
     TIntVec Point2 = P1;
     if ( Angle>90 )
@@ -816,7 +817,7 @@ void TPascalLimacon::Initialize(const TIntVec& P0,const TIntVec& P1,MBTi Angle,c
         Angle = 180-Angle;
     }
     //--------------------------------------------------------------------------
-    //нахождение окружности
+    //Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГҐ Г®ГЄГ°ГіГ¦Г­Г®Г±ГІГЁ
     TIntVec CenterPoint;
     MBTi Radius;
     TIntVec ThirdPoint = GetThirdPoint(Point1,Point2,Angle);

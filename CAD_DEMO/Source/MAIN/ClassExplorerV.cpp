@@ -1,24 +1,26 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "ClassExplorerV.h"
 #include "QuckList.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TClassExplorer *ClassExplorer;
 //---------------------------------------------------------------------------
-__fastcall TClassExplorer::TClassExplorer(TComponent* Owner)
+ TClassExplorer::TClassExplorer(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TClassExplorer::bCloseClick(TObject *Sender)
+void  TClassExplorer::bCloseClick(TObject *Sender)
 {
     Close();    
 }
@@ -36,7 +38,7 @@ void RecurrentToTree(TClassNode* CN,TTreeNode* PNode,TTreeView* TreeView)
     }
 }
 
-void __fastcall TClassExplorer::FormShow(TObject *Sender)
+void  TClassExplorer::FormShow(TObject *Sender)
 {
     RecurrentToTree(TMyObject::StaticType,NULL,TreeView1);
 }

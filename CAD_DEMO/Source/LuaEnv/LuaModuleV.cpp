@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LuaModuleV.h"
 #include "LuaEnvV.h"
@@ -20,7 +23,6 @@
 #include "LuaAttributeV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 TClassNode* TLuaModule::StaticType = NULL;
 
 //---------------------------------------------------------------------------
@@ -172,7 +174,7 @@ bool RUN_LUA(const AnsiString& Code)
         if (__ERROR!=0)
             ShowError(NULL);
         return true;
-    _ENDTRY_(AnsiString("<RUN_LUA>: Ошибка при выполнении LUA-Модуля "),ShowError(NULL);return false;);
+    _ENDTRY_(AnsiString("<RUN_LUA>: ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ ГўГ»ГЇГ®Г«Г­ГҐГ­ГЁГЁ LUA-ГЊГ®Г¤ГіГ«Гї "),ShowError(NULL);return false;);
 }
 
 COMMONAL_API bool RUN_TEXT(TLuaModule *LM)
@@ -186,7 +188,7 @@ COMMONAL_API bool RUN_TEXT(TLuaModule *LM)
             ShowError(LM);
         return true;
 
-    _ENDTRY_(AnsiString("<RUN_BUFFER>: Ошибка при выполнении LUA-Модуля ")+LM->Name,ShowError(LM);return false;);
+    _ENDTRY_(AnsiString("<RUN_BUFFER>: ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ ГўГ»ГЇГ®Г«Г­ГҐГ­ГЁГЁ LUA-ГЊГ®Г¤ГіГ«Гї ")+LM->Name,ShowError(LM);return false;);
 }
 
 bool RUN_BUFFER(TLuaModule *LM)
@@ -200,7 +202,7 @@ bool RUN_BUFFER(TLuaModule *LM)
             ShowError(LM);
         return true;
 
-    _ENDTRY_(AnsiString("<RUN_BUFFER>: Ошибка при выполнении LUA-Модуля ")+LM->Name,ShowError(LM);return false;);
+    _ENDTRY_(AnsiString("<RUN_BUFFER>: ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ ГўГ»ГЇГ®Г«Г­ГҐГ­ГЁГЁ LUA-ГЊГ®Г¤ГіГ«Гї ")+LM->Name,ShowError(LM);return false;);
 }
 
 bool ChangeOneFunctionView(AnsiString& CODE2,int Pos)
@@ -310,44 +312,44 @@ void TLuaModule::ReadData(TMemoryStream *_MS)
 
     //-------------------------------------------------------
     if (ReadOne(&NewAName,mtString,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
 
     if (ReadOne(&NameType,mtInt,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
 
     if (NewAName!=aName || NameType!=mtString)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
 
     if (ReadOne(&Name,mtString,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
     //-------------------------------------------------------
     if (ReadOne(&NewAGlobal,mtString,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
 
     if (ReadOne(&GlobalType,mtInt,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
 
     if (NewAGlobal!=aGlobal || GlobalType!=mtBool)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
 
     if (ReadOne(&Global,mtBool,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
     //-------------------------------------------------------
     if (ReadOne(&NewAHasForm,mtString,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
 
     if (ReadOne(&HasFormType,mtInt,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
 
     if (NewAHasForm!=aHasForm || HasFormType!=mtBool)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
 
     if (ReadOne(&HasForm,mtBool,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
     //-------------------------------------------------------
     int MainSize = 0;
     if (ReadOne(&MainSize,mtInt,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
     //-------------------------------------------------------
     TMemoryStream* MS = new TMemoryStream();
     MS->Position=0;
@@ -356,7 +358,7 @@ void TLuaModule::ReadData(TMemoryStream *_MS)
     delete MS;
     //-------------------------------------------------------
     if (ReadOne(&NewMyEnd,mtString,_MS) != -1)
-          throw EMyException("Неизвестная ошибка");
+          throw EMyException("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї Г®ГёГЁГЎГЄГ ");
           */
 }
 
@@ -506,7 +508,7 @@ bool TLuaModule::Run()
         if (!_Owner)
             _Owner = Config;
         if (!_Owner)
-            throw EMyException("Создание объекта без владельца");  */
+            throw EMyException("Г‘Г®Г§Г¤Г Г­ГЁГҐ Г®ГЎГєГҐГЄГІГ  ГЎГҐГ§ ГўГ«Г Г¤ГҐГ«ГјГ¶Г ");  */
 //        TComponent* _Owner = Application;
         bool result;
 //        TLuaUniForm *LF = new TLuaUniForm(_Owner,this);

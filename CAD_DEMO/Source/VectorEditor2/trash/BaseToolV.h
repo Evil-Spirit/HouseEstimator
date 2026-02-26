@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef BaseToolVH
@@ -8,7 +12,7 @@
 #include "MyEdit.h"
 
 const int IdEscAction    = -1;
-//Переходы
+//ГЏГҐГ°ГҐГµГ®Г¤Г»
 const int Mouse_Down    = 1;
 const int Mouse_Up      = 2;
 const int Mouse_Move    = 3;
@@ -16,14 +20,14 @@ const int Key_Down      = 4;
 const int Key_Up        = 5;
 const int ESC           = 6;
 const int EXIT          = 11;
-//Типы блоков
+//Г’ГЁГЇГ» ГЎГ«Г®ГЄГ®Гў
 const int Block_State = 0;
 const int Block_Action = 1;
 const int Block_Conditional = 2;
-//Тип функчий содержащих исполняемый код блока схемы
+//Г’ГЁГЇ ГґГіГ­ГЄГ·ГЁГ© Г±Г®Г¤ГҐГ°Г¦Г Г№ГЁГµ ГЁГ±ГЇГ®Г«Г­ГїГҐГ¬Г»Г© ГЄГ®Г¤ ГЎГ«Г®ГЄГ  Г±ГµГҐГ¬Г»
 
-typedef void  (__closure *TCommands)();
-typedef bool (__closure *TCondition)();
+typedef void  ( *TCommands)();
+typedef bool ( *TCondition)();
 
 class TEditor2D;
 
@@ -43,7 +47,7 @@ class TGo;
 class TBaseBlock : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TBaseBlock();
     virtual ~TBaseBlock(){};
     int Id;
@@ -55,7 +59,7 @@ TClassNode* TBaseBlock::StaticType = NULL;
 class TGo : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGo(){};
     TGo(int _Event, TMouseButton _MouseButton, int _NextBlockId);
     TGo(int _Event, const WORD &_Key, int _NextBlockId);
@@ -73,11 +77,11 @@ private:
     int FExexutedEvent;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TStateBlock(){};
     TStateBlock(TCommands _Commands, int _Id, int _ExexutedEvent);
     TCommands Commands;
-    __property int ExecutedEvent = {read = FExexutedEvent};
+    // __property int ExecutedEvent {read=FExexutedEvent}; // [manual migration needed]
     virtual ~TStateBlock(){};
 };
 
@@ -86,7 +90,7 @@ TClassNode* TStateBlock::StaticType = NULL;
 class TActionBlock : public TBaseBlock{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TActionBlock(){};
     TActionBlock(TCommands _Commands, int _Id);
     TCommands Commands;
@@ -98,7 +102,7 @@ TClassNode* TActionBlock::StaticType = NULL;
 class TConditionalBlock : public TBaseBlock{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TConditionalBlock(){};
     TConditionalBlock(TCondition _Condition, int _Id);
     TCondition Condition;
@@ -118,7 +122,7 @@ protected:
     TUserInterfaceParam UIP;
     TVisPrimitiveObj* VCO;
     TVisPrimitiveObj* SnapCursor;
-    __property int ExecutedId = {read = FExecutedId};
+    // __property int ExecutedId {read=FExecutedId}; // [manual migration needed]
     void AddStateBlock(TCommands _Commands, int Id, const int _ExecutedEvent);
     void AddActionBlock(TCommands _Commands, int Id);
     void AddConditionalBlock(TCondition Condition,int Id);
@@ -137,7 +141,7 @@ protected:
     virtual AnsiString OnHint(){return "";};
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     int ImageId;
     TBaseTool();
     virtual ~TBaseTool();
@@ -158,7 +162,7 @@ class TMyControls : public TMyObject{
 private:
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TMyControls();
     virtual ~TMyControls(){};
     TMDelTList< TMDelTList<TBaseTool> > Matrix;

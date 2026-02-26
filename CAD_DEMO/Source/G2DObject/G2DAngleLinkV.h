@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef G2DAngleLinkVH
@@ -22,12 +26,12 @@ public:
     MBTi LabelRadius;
     MBTi LabelAngle_Param;
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TAngleLink();
     virtual ~TAngleLink();
     __property TGCut* Client0 = {read = GetCut,write = SetCut,index = 0};
     __property TGCut* Client1 = {read = GetCut,write = SetCut,index = 1};
-    __property MBTi Angle = {read = FAngle,write = SetAngle};
+    // __property MBTi Angle {read=FAngle, write=SetAngle}; // [manual migration needed]
     virtual bool GetFreePoints(const TMTList<TG2DPoint>& PointList,TMTList<TG2DPoint>& FreePoint);
 
     virtual void Render(TVisView* aView);
@@ -39,6 +43,5 @@ public:
 	bool CanUpdateList(TMTList<TG2DPoint>& PointList);
 };
 
-extern COMMONAL_API TClassNode* TAngleLink::StaticType;
 extern TMTList<TG2DPoint> ____PointList; 
 #endif

@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <Poligon.h>
-#pragma hdrstop
 
 #include "MyEdit.h"
 #include "math.h"
@@ -13,7 +16,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 //---------------------------------------------------------------------------
 const AnsiString aSnap = "Snap";
@@ -37,7 +39,7 @@ TEditorAttributes::TEditorAttributes()
     RegisterNewClass< TMyObject, TEditorAttributes >(this, false, &CreateFunction);
     Snap = true;
     SnapValuePix = 10;
-    SnapValue = 0;//íåîïðåäåëåíî
+    SnapValue = 0;//Ã­Ã¥Ã®Ã¯Ã°Ã¥Ã¤Ã¥Ã«Ã¥Ã­Ã®
     AdditionalFiguresSnap = true;
     SnapMyFigures = true;
     Colors.Additional = (TColor)0x222211;//(TColor)0x338055;

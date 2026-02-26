@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIVisibleSelectFloor</class>
+  <widget class="QWidget" name="MDIVisibleSelectFloor">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>330</width>
+        <height>313</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Видимые Этажи</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <widget class="QPushButton" name="btOK">
+      <property name="geometry">
+        <rect>
+          <x>79</x>
+          <y>248</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="btCancel">
+      <property name="geometry">
+        <rect>
+          <x>167</x>
+          <y>248</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Cancel</string>
+      </property>
+      <property name="text">
+        <string>Cancel</string>
+      </property>
+    </widget>
+    <widget class="QRadioButton" name="rbAll">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>8</y>
+          <width>129</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>All</string>
+      </property>
+      <property name="text">
+        <string>All</string>
+      </property>
+    </widget>
+    <widget class="QRadioButton" name="rbActual">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>32</y>
+          <width>129</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Actual floor</string>
+      </property>
+      <property name="text">
+        <string>Actual floor</string>
+      </property>
+    </widget>
+    <widget class="QRadioButton" name="rbActualAnd">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>56</y>
+          <width>137</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Actual floor and </string>
+      </property>
+      <property name="text">
+        <string>Actual floor and </string>
+      </property>
+    </widget>
+    <widget class="QListWidget" name="LB">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>80</y>
+          <width>289</width>
+          <height>153</height>
+        </rect>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

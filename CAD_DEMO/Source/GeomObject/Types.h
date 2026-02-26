@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef TypesH
@@ -10,21 +14,21 @@
 //---------------------------------------------------------------------------
 
 
-///typedef bool (__closure *TConditionForPass)(TGCut *cut, TGPolygon *p1, TGPolygon *p2);
+///typedef bool ( *TConditionForPass)(TGCut *cut, TGPolygon *p1, TGPolygon *p2);
 class TGPoint;
 class TGCut;
 class TGeomObject;
 
-enum TRenderType		// Тип отображения
+enum TRenderType		// Г’ГЁГЇ Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГї
 {
-	rtCLASSIFY,			// Классификация
-	rtMARK,				// Маркировка
-	rtSMOOTH,			// Сглаживание
-	rtCOLOR,			// Цвета
-	rtERROR				// Чертеж
+	rtCLASSIFY,			// ГЉГ«Г Г±Г±ГЁГґГЁГЄГ Г¶ГЁГї
+	rtMARK,				// ГЊГ Г°ГЄГЁГ°Г®ГўГЄГ 
+	rtSMOOTH,			// Г‘ГЈГ«Г Г¦ГЁГўГ Г­ГЁГҐ
+	rtCOLOR,			// Г–ГўГҐГІГ 
+	rtERROR				// Г—ГҐГ°ГІГҐГ¦
 };
 
-enum TTag				// Тип тэг
+enum TTag				// Г’ГЁГЇ ГІГЅГЈ
 {
 	tgOTHER	  	= 0,
 	tgTHIS		= 3,
@@ -37,26 +41,26 @@ enum TTag				// Тип тэг
 	tgFALSE		= 0,
 };
 
-enum TConstructFlags	// Стиль отображения
+enum TConstructFlags	// Г‘ГІГЁГ«Гј Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГї
 {
-	coPOINTS		= 0x0001,			// Точки
-	coCUTS			= 0x0002,			// Отрезки
-	coPOLYGONS		= 0x0004,			// Полигоны
-	coNORMALS		= 0x0008,			// Нормали
-	coPOLYGONHOLES  = 0x0010,			// Дырки полигонов
+	coPOINTS		= 0x0001,			// Г’Г®Г·ГЄГЁ
+	coCUTS			= 0x0002,			// ГЋГІГ°ГҐГ§ГЄГЁ
+	coPOLYGONS		= 0x0004,			// ГЏГ®Г«ГЁГЈГ®Г­Г»
+	coNORMALS		= 0x0008,			// ГЌГ®Г°Г¬Г Г«ГЁ
+	coPOLYGONHOLES  = 0x0010,			// Г„Г»Г°ГЄГЁ ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
 
-	coWIRE			= 0x0001 | 0x0002,	// Каркасное (точки+отрезки)
-	coSOLID			= 0x0004,			// Твердое тело (только полигоны)
-	coALL			= 0xFFFF			// Все
+	coWIRE			= 0x0001 | 0x0002,	// ГЉГ Г°ГЄГ Г±Г­Г®ГҐ (ГІГ®Г·ГЄГЁ+Г®ГІГ°ГҐГ§ГЄГЁ)
+	coSOLID			= 0x0004,			// Г’ГўГҐГ°Г¤Г®ГҐ ГІГҐГ«Г® (ГІГ®Г«ГјГЄГ® ГЇГ®Г«ГЁГЈГ®Г­Г»)
+	coALL			= 0xFFFF			// Г‚Г±ГҐ
 };
 
-enum TGeomResult	// Результат геометрических функций
+enum TGeomResult	// ГђГҐГ§ГіГ«ГјГІГ ГІ ГЈГҐГ®Г¬ГҐГІГ°ГЁГ·ГҐГ±ГЄГЁГµ ГґГіГ­ГЄГ¶ГЁГ©
 {
-	grOK	=	0x0001,		// Ок
-	grERROR =	0x0000,		// Ошибка
+	grOK	=	0x0001,		// ГЋГЄ
+	grERROR =	0x0000,		// ГЋГёГЁГЎГЄГ 
 };
 
-enum TGeomFixFlags			// Флаги геометрического восстановления
+enum TGeomFixFlags			// Г”Г«Г ГЈГЁ ГЈГҐГ®Г¬ГҐГІГ°ГЁГ·ГҐГ±ГЄГ®ГЈГ® ГўГ®Г±Г±ГІГ Г­Г®ГўГ«ГҐГ­ГЁГї
 {
 	gfxPOINTSINCUTS		=	0x0001,		// 
 	gfxCUTSCROSS		=	0x0002,
@@ -64,12 +68,12 @@ enum TGeomFixFlags			// Флаги геометрического восстановления
 	gfxALL				=	0xFFFF
 };
 	
-enum TStructFixFlags		// Флаги структурного восстановления
+enum TStructFixFlags		// Г”Г«Г ГЈГЁ Г±ГІГ°ГіГЄГІГіГ°Г­Г®ГЈГ® ГўГ®Г±Г±ГІГ Г­Г®ГўГ«ГҐГ­ГЁГї
 {
-	sfxREMOVE_BRANCHES					= 0x0001,	// Удалить ветки
-	sfxREMOVE_REPEATED					= 0x0002,	// Удалить повторные 	
-	sfxREMOVE_BRIDGES_BY_CONTOURIZE     = 0x0004,	// Удалить мосты контуризацией
-	sfxREMOVE_BRIDGES_BY_POLYGONIZE     = 0x0008,	// Удалить мосты полигонизацией
+	sfxREMOVE_BRANCHES					= 0x0001,	// Г“Г¤Г Г«ГЁГІГј ГўГҐГІГЄГЁ
+	sfxREMOVE_REPEATED					= 0x0002,	// Г“Г¤Г Г«ГЁГІГј ГЇГ®ГўГІГ®Г°Г­Г»ГҐ 	
+	sfxREMOVE_BRIDGES_BY_CONTOURIZE     = 0x0004,	// Г“Г¤Г Г«ГЁГІГј Г¬Г®Г±ГІГ» ГЄГ®Г­ГІГіГ°ГЁГ§Г Г¶ГЁГҐГ©
+	sfxREMOVE_BRIDGES_BY_POLYGONIZE     = 0x0008,	// Г“Г¤Г Г«ГЁГІГј Г¬Г®Г±ГІГ» ГЇГ®Г«ГЁГЈГ®Г­ГЁГ§Г Г¶ГЁГҐГ©
 };
 
 enum TGeomPrimitiveType		
@@ -86,83 +90,83 @@ enum TGeomPrimitiveType
 	gpALL		= 0xFFFFFFFF
 };
 
-enum TClassifyFlags			// Флаги 
+enum TClassifyFlags			// Г”Г«Г ГЈГЁ 
 {                       	
-	flORIGIN		= 0x0001,	// Положение
-	flHOLE			= 0x0002,	// Дырка
-	flINTERSECT		= 0x0004,	// Пересечение
-	flCONTOUR		= 0x0008,	// Контур
-	flMARK			= 0x0010,	// Маркировка
-	flALREDY		= 0x0020,	// Уже есть
-	flBELONG		= 0x0040,	// Принадлежность
-	flSAME			= 0x0080,	// Аналогичность
-	flERROR			= 0x0100,	// Ошибка
-	flCACHED		= 0x0200,	// Кэшировано
-	flNEEDCALCN		= 0x0400,	// Нужно обновить(перестроить)
-	flBOUNDARY		= 0x0800,	// Граничный
-	flNEEDCALCB		= 0x1000,	// Нужно обновить(перестроить)
-	flALL			= 0xFFFF,	// Все
+	flORIGIN		= 0x0001,	// ГЏГ®Г«Г®Г¦ГҐГ­ГЁГҐ
+	flHOLE			= 0x0002,	// Г„Г»Г°ГЄГ 
+	flINTERSECT		= 0x0004,	// ГЏГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГҐ
+	flCONTOUR		= 0x0008,	// ГЉГ®Г­ГІГіГ°
+	flMARK			= 0x0010,	// ГЊГ Г°ГЄГЁГ°Г®ГўГЄГ 
+	flALREDY		= 0x0020,	// Г“Г¦ГҐ ГҐГ±ГІГј
+	flBELONG		= 0x0040,	// ГЏГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГј
+	flSAME			= 0x0080,	// ГЂГ­Г Г«Г®ГЈГЁГ·Г­Г®Г±ГІГј
+	flERROR			= 0x0100,	// ГЋГёГЁГЎГЄГ 
+	flCACHED		= 0x0200,	// ГЉГЅГёГЁГ°Г®ГўГ Г­Г®
+	flNEEDCALCN		= 0x0400,	// ГЌГіГ¦Г­Г® Г®ГЎГ­Г®ГўГЁГІГј(ГЇГҐГ°ГҐГ±ГІГ°Г®ГЁГІГј)
+	flBOUNDARY		= 0x0800,	// ГѓГ°Г Г­ГЁГ·Г­Г»Г©
+	flNEEDCALCB		= 0x1000,	// ГЌГіГ¦Г­Г® Г®ГЎГ­Г®ГўГЁГІГј(ГЇГҐГ°ГҐГ±ГІГ°Г®ГЁГІГј)
+	flALL			= 0xFFFF,	// Г‚Г±ГҐ
 };
 
-enum TGBoolean					// Флаги булевых операций над геометрией
+enum TGBoolean					// Г”Г«Г ГЈГЁ ГЎГіГ«ГҐГўГ»Гµ Г®ГЇГҐГ°Г Г¶ГЁГ© Г­Г Г¤ ГЈГҐГ®Г¬ГҐГІГ°ГЁГҐГ©
 {
 	gbA_MINUS_B		= 0x01,		// A - B
 	gbB_MINUS_A		= 0x02,     // B - A
 
-	gbA_AND_B		= 0x03,		// пересечеие A и B
+	gbA_AND_B		= 0x03,		// ГЇГҐГ°ГҐГ±ГҐГ·ГҐГЁГҐ A ГЁ B
 	gbINTERSECTION	= 0x03,		//
 
-	gbA_XOR_B		= 0x04,		// объединение A и B
+	gbA_XOR_B		= 0x04,		// Г®ГЎГєГҐГ¤ГЁГ­ГҐГ­ГЁГҐ A ГЁ B
 	gbUNION			= 0x04,		//
 
-	gbSPLIT			= 0x05		// только разбиение
+	gbSPLIT			= 0x05		// ГІГ®Г«ГјГЄГ® Г°Г Г§ГЎГЁГҐГ­ГЁГҐ
 };
 
-enum TClassify					// Общий флаг
+enum TClassify					// ГЋГЎГ№ГЁГ© ГґГ«Г ГЈ
 {
-	gfFALSE			= 0x00,		// Истина
-	gfTRUE			= 0x01,		// Ложность
+	gfFALSE			= 0x00,		// Г€Г±ГІГЁГ­Г 
+	gfTRUE			= 0x01,		// Г‹Г®Г¦Г­Г®Г±ГІГј
 
-	gfUNDEFINED		= 0x00,		// Неопределенность
+	gfUNDEFINED		= 0x00,		// ГЌГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­Г­Г®Г±ГІГј
 
-	gfNEGATIVE		= 0x01,		// Отрицательность
-	gfPOSITIVE 		= 0x02,		// Положительность
-	gfINTERSECT 	= 0x03,		// Пересечение
-	gfCOLLINEAR 	= 0x04,		// Колиинеарность
+	gfNEGATIVE		= 0x01,		// ГЋГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г®Г±ГІГј
+	gfPOSITIVE 		= 0x02,		// ГЏГ®Г«Г®Г¦ГЁГІГҐГ«ГјГ­Г®Г±ГІГј
+	gfINTERSECT 	= 0x03,		// ГЏГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГҐ
+	gfCOLLINEAR 	= 0x04,		// ГЉГ®Г«ГЁГЁГ­ГҐГ Г°Г­Г®Г±ГІГј
 
-	gfOTHER		 	= 0x00,		// Чуждость
-	gfTHIS		 	= 0x01,		// Причастие
+	gfOTHER		 	= 0x00,		// Г—ГіГ¦Г¤Г®Г±ГІГј
+	gfTHIS		 	= 0x01,		// ГЏГ°ГЁГ·Г Г±ГІГЁГҐ
 
 };
 
-template <class t1, class t2>		// Двойной элемент. Данные и указатель(обычно)
+template <class t1, class t2>		// Г„ГўГ®Г©Г­Г®Г© ГЅГ«ГҐГ¬ГҐГ­ГІ. Г„Г Г­Г­Г»ГҐ ГЁ ГіГЄГ Г§Г ГІГҐГ«Гј(Г®ГЎГ»Г·Г­Г®)
 struct TMTwinElement
 {
 	t1 Data;
 	t2 Target;
 };
 
-struct TGeomFlags					// Главные геометрические флаги
+struct TGeomFlags					// ГѓГ«Г ГўГ­Г»ГҐ ГЈГҐГ®Г¬ГҐГІГ°ГЁГ·ГҐГ±ГЄГЁГҐ ГґГ«Г ГЈГЁ
 {
-	// Флаги работы функций
-	unsigned Origin:3;				// Положение при классификации
-	unsigned Cached:1;				// Закэшированность 
-	unsigned Intersect:1;           // Пересечение
-	unsigned Solid:1;				// Замкнутость (непротиворечие концепции твердого тела)
-	unsigned Alredy:1;				// Завершенность, Присутствие, Законченность
+	// Г”Г«Г ГЈГЁ Г°Г ГЎГ®ГІГ» ГґГіГ­ГЄГ¶ГЁГ©
+	unsigned Origin:3;				// ГЏГ®Г«Г®Г¦ГҐГ­ГЁГҐ ГЇГ°ГЁ ГЄГ«Г Г±Г±ГЁГґГЁГЄГ Г¶ГЁГЁ
+	unsigned Cached:1;				// Г‡Г ГЄГЅГёГЁГ°Г®ГўГ Г­Г­Г®Г±ГІГј 
+	unsigned Intersect:1;           // ГЏГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГҐ
+	unsigned Solid:1;				// Г‡Г Г¬ГЄГ­ГіГІГ®Г±ГІГј (Г­ГҐГЇГ°Г®ГІГЁГўГ®Г°ГҐГ·ГЁГҐ ГЄГ®Г­Г¶ГҐГЇГ¶ГЁГЁ ГІГўГҐГ°Г¤Г®ГЈГ® ГІГҐГ«Г )
+	unsigned Alredy:1;				// Г‡Г ГўГҐГ°ГёГҐГ­Г­Г®Г±ГІГј, ГЏГ°ГЁГ±ГіГІГ±ГІГўГЁГҐ, Г‡Г ГЄГ®Г­Г·ГҐГ­Г­Г®Г±ГІГј
 
-	// Внутренние флаги
-	unsigned Mark:1;				// Маркировка
-	unsigned Hole:1;				// Дырка
-	unsigned Belong:1;				// Принадлежность
-	unsigned Contour:1;				// Контур
-	unsigned Same:1;				// Аналогичность
-	unsigned Error:1;				// Ошибочность
-	unsigned NeedCalcN:1;			// Обновление 
-	unsigned NeedCalcB:1;			// Обновление 
-	unsigned Boundary:1;			// Граничность
+	// Г‚Г­ГіГІГ°ГҐГ­Г­ГЁГҐ ГґГ«Г ГЈГЁ
+	unsigned Mark:1;				// ГЊГ Г°ГЄГЁГ°Г®ГўГЄГ 
+	unsigned Hole:1;				// Г„Г»Г°ГЄГ 
+	unsigned Belong:1;				// ГЏГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГј
+	unsigned Contour:1;				// ГЉГ®Г­ГІГіГ°
+	unsigned Same:1;				// ГЂГ­Г Г«Г®ГЈГЁГ·Г­Г®Г±ГІГј
+	unsigned Error:1;				// ГЋГёГЁГЎГ®Г·Г­Г®Г±ГІГј
+	unsigned NeedCalcN:1;			// ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ 
+	unsigned NeedCalcB:1;			// ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ 
+	unsigned Boundary:1;			// ГѓГ°Г Г­ГЁГ·Г­Г®Г±ГІГј
 
-	unsigned reserved:19;			// Резерв
+	unsigned reserved:19;			// ГђГҐГ§ГҐГ°Гў
 };
 
 class TBBox

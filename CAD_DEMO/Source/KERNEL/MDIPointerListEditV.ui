@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIPointerListEdit</class>
+  <widget class="QWidget" name="MDIPointerListEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>344</width>
+        <height>272</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIPointerListEdit</string>
+    </property>
+    <widget class="QTreeWidget" name="LV">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>150</width>
+          <height>272</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QFrame" name="PButtons">
+      <property name="geometry">
+        <rect>
+          <x>256</x>
+          <y>0</y>
+          <width>88</width>
+          <height>272</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+      <!-- vcl-align: alRight → arrange in a Qt layout manager -->
+      <widget class="QToolBar" name="ToolBar1">
+        <property name="geometry">
+          <rect>
+            <x>7</x>
+            <y>4</y>
+            <width>79</width>
+            <height>110</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>ToolBar1</string>
+        </property>
+        <widget class="QWidget" name="tbtAdd">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Add</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="tbReset">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>22</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Empty</string>
+          </property>
+          <property name="visible">
+            <bool>false</bool>
+          </property>
+        </widget>
+        <widget class="QWidget" name="tbtDel">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>44</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Delete</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="tbtUp">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>66</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Shift Up</string>
+          </property>
+        </widget>
+        <widget class="QWidget" name="tbtDown">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>88</y>
+              <width>1</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Shift Down</string>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

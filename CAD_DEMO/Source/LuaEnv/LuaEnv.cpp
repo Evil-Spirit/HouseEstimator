@@ -1,17 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <basepch.h>
-#pragma hdrstop
-USEFORM("InspectorMain.cpp", DbgInspector);
-USEFORM("LuaEditorV.cpp", FLuaEditor);
-USEFORM("MDILuaEditorV.cpp", MDILuaEditor);
-USEFORM("OutPutV.cpp", OutPut);
-USEFORM("DebugU.cpp", DebugForm);
-USEFORM("BaseVariableFormV.cpp", Global);
-USEFORM("TreeFormV.cpp", TreeWindow);
-USEFORM("StackMain.cpp", StackWindow);
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 
 //   Package source.

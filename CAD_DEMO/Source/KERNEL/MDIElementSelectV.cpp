@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIElementSelectV.h"
 //#include "MDIConfigV.h"
 #include "MetaNodeCollectionV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TMDIElementSelect *MDIElementSelect;
 //---------------------------------------------------------------------------
-__fastcall TMDIElementSelect::TMDIElementSelect(TComponent* Owner,TClassNode* CN,bool self,bool childs,TMetaNode *_Parent)
+ TMDIElementSelect::TMDIElementSelect(TComponent* Owner,TClassNode* CN,bool self,bool childs,TMetaNode *_Parent)
     : TForm(Owner)
 {
     Selected = NULL;
@@ -32,7 +34,7 @@ __fastcall TMDIElementSelect::TMDIElementSelect(TComponent* Owner,TClassNode* CN
     delete L;
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIElementSelect::OKClick(TObject *Sender)
+void  TMDIElementSelect::OKClick(TObject *Sender)
 {
     if (!(LV->Selected))
         return;
@@ -42,7 +44,7 @@ void __fastcall TMDIElementSelect::OKClick(TObject *Sender)
     Close();
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIElementSelect::btCancelClick(TObject *Sender)
+void  TMDIElementSelect::btCancelClick(TObject *Sender)
 {
     Selected = NULL;
     Close();    

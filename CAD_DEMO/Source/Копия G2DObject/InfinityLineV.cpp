@@ -1,20 +1,22 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "InfinityLineV.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 TClassNode* TInfinityLine::StaticType = NULL;
 
-    //инициализация классов
+    //ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЄГ«Г Г±Г±Г®Гў
 void Register2DGObject()
 {
     T2DGObject CF;

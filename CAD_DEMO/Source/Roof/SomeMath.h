@@ -1,13 +1,16 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef SomeMathH
 #define SomeMathH
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "RoofV.h"
 #include "Poligon.h"
@@ -22,24 +25,24 @@
 
 bool __declspec(dllexport) PlanesParallel(const TIntVec& N1,const TIntVec& N2,MBTi USEEPS);
 
-int __declspec(dllexport) PlaneCrossPoint2(   const TIntVec& A,//точка на плоскости
-						const TIntVec& N,//нормаль
-						const TIntVec& X,//прямая точка 1
-						const TIntVec& Y,//прямая точка 2
-						TIntVec& O, //точка пересечения
-						MBTi USEEPS);    //мера параллельности
+int __declspec(dllexport) PlaneCrossPoint2(   const TIntVec& A,//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+						const TIntVec& N,//Г­Г®Г°Г¬Г Г«Гј
+						const TIntVec& X,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+						const TIntVec& Y,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
+						TIntVec& O, //ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
+						MBTi USEEPS);    //Г¬ГҐГ°Г  ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ
 
-int __declspec(dllexport) PlaneAndLineCrossed(const TIntVec& A,//точка на плоскости
-						const TIntVec& N,//нормаль
-						const TIntVec& X,//прямая точка 1
-						const TIntVec& Y,//прямая точка 2
+int __declspec(dllexport) PlaneAndLineCrossed(const TIntVec& A,//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+						const TIntVec& N,//Г­Г®Г°Г¬Г Г«Гј
+						const TIntVec& X,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+						const TIntVec& Y,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
 						bool xFixed,
 						bool yFixed,
-						TIntVec& O, //точка пересечения
-						MBTi USEEPS);    //мера параллельности
+						TIntVec& O, //ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
+						MBTi USEEPS);    //Г¬ГҐГ°Г  ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ
 
-bool __declspec(dllexport) PlanesCollinear(   const TIntVec& X1,//точка на плоскости
-						const TIntVec& N1,//нормаль
+bool __declspec(dllexport) PlanesCollinear(   const TIntVec& X1,//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+						const TIntVec& N1,//Г­Г®Г°Г¬Г Г«Гј
 						const TIntVec& X2,
 						const TIntVec& N2,
 						MBTi USEEPS  );

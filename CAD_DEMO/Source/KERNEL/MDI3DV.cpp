@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
   //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDI3DV.h"
 //#include "MDITransformationV.h"
@@ -17,7 +20,6 @@
 #include "Select.h"
 #include "SkinEngineV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MyMDIChildV"
 #pragma link "VisCam"
 #pragma link "VisCanvasView"
@@ -35,7 +37,7 @@
 #pragma resource "*.dfm"
 TMDI3D *MDI3D;
 //---------------------------------------------------------------------------
-__fastcall TMDI3D::TMDI3D(TComponent* Owner,TMainTree* MT)
+ TMDI3D::TMDI3D(TComponent* Owner,TMainTree* MT)
     : TMyMDIChild(Owner)
 {
     SkinEngine->AddForm_BCB(this);
@@ -212,7 +214,7 @@ MBTi TMDI3D::Factor(int Pixels)
     return RES; 
 }
 
-void __fastcall TMDI3D::ViewRender(TVisView *aView)
+void  TMDI3D::ViewRender(TVisView *aView)
 {
     bool NeedToRecalc = NeedToReCalcMatrices();
     if (NeedToRecalc && !View->AutoClearBuffers.Contains(btDepth) )
@@ -251,7 +253,7 @@ void TMDI3D::CameraAction(TCameraOperation CameraOperation,double value)
     View->InvalidateGL();
 }
 
-void __fastcall TMDI3D::ViewMouseDown(TObject *Sender, TMouseButton Button,
+void  TMDI3D::ViewMouseDown(TObject *Sender, TMouseButton Button,
       TShiftState Shift, int X, int Y)
 {
     WinPoint.x = X;
@@ -267,7 +269,7 @@ void __fastcall TMDI3D::ViewMouseDown(TObject *Sender, TMouseButton Button,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDI3D::ViewMouseMove(TObject *Sender, TShiftState Shift,
+void  TMDI3D::ViewMouseMove(TObject *Sender, TShiftState Shift,
       int X, int Y)
 {
     if (Shift.Contains(ssMiddle))
@@ -305,7 +307,7 @@ void __fastcall TMDI3D::ViewMouseMove(TObject *Sender, TShiftState Shift,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDI3D::ViewMouseUp(TObject *Sender, TMouseButton Button,
+void  TMDI3D::ViewMouseUp(TObject *Sender, TMouseButton Button,
       TShiftState Shift, int X, int Y)
 {
     CustomMouseUp(Button, Shift,  X,  Y);
@@ -334,7 +336,7 @@ void TMDI3D::TogglePolygonMode()
         Attributes->PolygonMode = pmFill;          
 }
 
-void __fastcall TMDI3D::ViewKeyDown(TObject *Sender, WORD &Key,
+void  TMDI3D::ViewKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
   switch(Key)
@@ -368,7 +370,7 @@ void __fastcall TMDI3D::ViewKeyDown(TObject *Sender, WORD &Key,
   }
 }
 
-void __fastcall TMDI3D::FormClose(TObject *Sender, TCloseAction &Action)
+void  TMDI3D::FormClose(TObject *Sender, TCloseAction &Action)
 {
     TMyMDIChild::FormClose(Sender,Action);
 }
@@ -398,7 +400,7 @@ void TMDI3D::SetMode(TMetaMyMode *nMode)
   }
 }
 
-void __fastcall TMDI3D::ViewMouseWheel(TObject *Sender, TShiftState Shift,
+void  TMDI3D::ViewMouseWheel(TObject *Sender, TShiftState Shift,
       int WheelDelta, TPoint &MousePos, bool &Handled)
 {
     A = TIntVec(*View->Camera->LA_LookAt);
@@ -409,7 +411,7 @@ void __fastcall TMDI3D::ViewMouseWheel(TObject *Sender, TShiftState Shift,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDI3D::FormDestroy(TObject *Sender)
+void  TMDI3D::FormDestroy(TObject *Sender)
 {
     AUI.UnRegister(this);
     delete Old3DCameraPos;
@@ -417,7 +419,7 @@ void __fastcall TMDI3D::FormDestroy(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDI3D::FormActivate(TObject *Sender)
+void  TMDI3D::FormActivate(TObject *Sender)
 {
     ::SetFocus(View->Handle);
     AUI.ActivateView(this);
@@ -425,7 +427,7 @@ void __fastcall TMDI3D::FormActivate(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDI3D::FormCreate(TObject *Sender)
+void  TMDI3D::FormCreate(TObject *Sender)
 {
     AntiAliasingLine = false;
     NeedRender = true;
@@ -449,7 +451,7 @@ void __fastcall TMDI3D::FormCreate(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDI3D::ViewKeyUp(TObject *Sender, WORD &Key,
+void  TMDI3D::ViewKeyUp(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
     CustomKeyUp(Key,Shift);

@@ -1,18 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "TGObject.h"
-#pragma hdrstop
 
 #include "Triangulation.h"
 #include "Poligon.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 TDelone* pDeloune = NULL;
 
@@ -182,7 +184,7 @@ bool TDSide::ConsistsPoint(const TDVec& Point,MBTi USEEPS)
 
 
 //----------------------------------------------------------------------------
-//-= пересекаются ли две прямые ?
+//-= ГЇГҐГ°ГҐГ±ГҐГЄГ ГѕГІГ±Гї Г«ГЁ Г¤ГўГҐ ГЇГ°ГїГ¬Г»ГҐ ?
 
 bool TDelone::SimpleIntersection(TDSide& a,TDSide& b)
 {
@@ -215,7 +217,7 @@ bool TDelone::CheckBldCrossing(int i, int i1, int i2)
     return false;
 }
 
-//-= пересекаются ли построенные с исходными ребрами ?
+//-= ГЇГҐГ°ГҐГ±ГҐГЄГ ГѕГІГ±Гї Г«ГЁ ГЇГ®Г±ГІГ°Г®ГҐГ­Г­Г»ГҐ Г± ГЁГ±ГµГ®Г¤Г­Г»Г¬ГЁ Г°ГҐГЎГ°Г Г¬ГЁ ?
 bool TDelone::CheckSimpleCrossing(int i, int i1, int i2)
 {
     TDSide r1(pAll.Items[i],pAll.Items[i1]);
@@ -229,14 +231,14 @@ bool TDelone::CheckSimpleCrossing(int i, int i1, int i2)
 
 void TDelone::FindBaseRibs(int& i1,int& i2)
 {
-    //-= 1-я базовая точка
-    for (int i=0; i<pAll.Count; i++)  //еще условие по x
+    //-= 1-Гї ГЎГ Г§Г®ГўГ Гї ГІГ®Г·ГЄГ 
+    for (int i=0; i<pAll.Count; i++)  //ГҐГ№ГҐ ГіГ±Г«Г®ГўГЁГҐ ГЇГ® x
         if (pAll[i].y > pAll[i1].y + EPS)
             i1 = i;
         else if ( fabs(pAll[i].y - pAll[i1].y) < EPS  && pAll[i].x < pAll[i1].x)
             i1 = i;
 
-    //-= 2-я базовая точка
+    //-= 2-Гї ГЎГ Г§Г®ГўГ Гї ГІГ®Г·ГЄГ 
     float Angle = 1;
     float Length = 900000;
     for (int i=0; i<pAll.Count; i++)
@@ -283,7 +285,7 @@ bool TDelone::FindDeloneBrother(int i1,int i2)
 {
                 TDSide *nSide = new TDSide(pAll.Items[i1], pAll.Items[i2]);
                 for (int i=0; i<rBld.Count; i++)
-                    if (*nSide == rBld[i] || SimpleIntersection(*nSide, rBld[i])) //-= Было ли уже ребро ?
+                    if (*nSide == rBld[i] || SimpleIntersection(*nSide, rBld[i])) //-= ГЃГ»Г«Г® Г«ГЁ ГіГ¦ГҐ Г°ГҐГЎГ°Г® ?
                     {
                         delete nSide;
                         return false;
@@ -320,10 +322,10 @@ bool TDelone::FindDeloneBrother(int i1,int i2)
     } // for
     if (_max != 1)
     {
-        bool f = FindDeloneBrother(i1, iN); //-= запустим 2 новые базовые линии
+        bool f = FindDeloneBrother(i1, iN); //-= Г§Г ГЇГіГ±ГІГЁГ¬ 2 Г­Г®ГўГ»ГҐ ГЎГ Г§Г®ГўГ»ГҐ Г«ГЁГ­ГЁГЁ
         bool s = FindDeloneBrother(iN, i2);
         bool not_cross = !CheckBldCrossing(iN, i1, i2);
-        if ( not_cross && (f || s) )                //-= нашли новый теругольник
+        if ( not_cross && (f || s) )                //-= Г­Г ГёГ«ГЁ Г­Г®ГўГ»Г© ГІГҐГ°ГіГЈГ®Г«ГјГ­ГЁГЄ
         {
             
             Triangles.Add( (TIntVec*)pAll.Items[iN] );
@@ -350,7 +352,7 @@ bool TDelone::FindDeloneBrother_Ribs(int i1,int i2)
 {
                 TDSide *nSide = new TDSide(pAll.Items[i1], pAll.Items[i2]);
                 for (int i=0; i<rBld.Count; i++)
-                    if (*nSide == rBld[i] || SimpleIntersection(*nSide, rBld[i])) //-= Было ли уже ребро ?
+                    if (*nSide == rBld[i] || SimpleIntersection(*nSide, rBld[i])) //-= ГЃГ»Г«Г® Г«ГЁ ГіГ¦ГҐ Г°ГҐГЎГ°Г® ?
                     {
                         delete nSide;
                         return false;
@@ -387,10 +389,10 @@ bool TDelone::FindDeloneBrother_Ribs(int i1,int i2)
     } // for
     if (_max != 1)
     {
-        bool f = FindDeloneBrother_Ribs(i1, iN); //-= запустим 2 новые базовые линии
+        bool f = FindDeloneBrother_Ribs(i1, iN); //-= Г§Г ГЇГіГ±ГІГЁГ¬ 2 Г­Г®ГўГ»ГҐ ГЎГ Г§Г®ГўГ»ГҐ Г«ГЁГ­ГЁГЁ
         bool s = FindDeloneBrother_Ribs(iN, i2);
         bool not_cross = !CheckBldCrossing(iN, i1, i2);
-        if ( not_cross && (f || s) )                //-= нашли новый теругольник
+        if ( not_cross && (f || s) )                //-= Г­Г ГёГ«ГЁ Г­Г®ГўГ»Г© ГІГҐГ°ГіГЈГ®Г«ГјГ­ГЁГЄ
         {
             Tri_Ribs.Add( FindRibByPoints(pAll.Items[iN],pAll.Items[i2]) );
             Tri_Ribs.Add( FindRibByPoints(pAll.Items[i2],pAll.Items[i1]) );
@@ -553,7 +555,7 @@ void TDelone::ProcessCrossList()
 			DestDest = rAll[i].DEST == rAll[j].DEST;
 			if ( int(OrgnOrgn)+int(OrgnDest)+int(DestOrgn)+int(DestDest)>=2 )
 			{
-				//равны
+				//Г°Г ГўГ­Г»
 				rAll.Delete(j--);
 				continue;
 			}
@@ -565,7 +567,7 @@ void TDelone::ProcessCrossList()
 
  /*           if ( int(iC_Orgn)+int(iC_Dest)+int(jC_Orgn)+int(jC_Dest)>=2 )
             {
-                //коллинеарны
+                //ГЄГ®Г«Г«ГЁГ­ГҐГ Г°Г­Г»
                 TDVec* P[4];
                 P[0] = rAll[i].ORGN;
                 P[1] = rAll[i].DEST;
@@ -600,8 +602,8 @@ void TDelone::ProcessCrossList()
                 break;
             }     */
             
-            //просто содержит точку
-            //не рассмотрен случай когда
+            //ГЇГ°Г®Г±ГІГ® Г±Г®Г¤ГҐГ°Г¦ГЁГІ ГІГ®Г·ГЄГі
+            //Г­ГҐ Г°Г Г±Г±Г¬Г®ГІГ°ГҐГ­ Г±Г«ГіГ·Г Г© ГЄГ®ГЈГ¤Г 
             bool OneCommonPoint = OrgnOrgn || OrgnDest || DestOrgn || DestDest;
 			if (OneCommonPoint && (iC_Orgn || iC_Dest))
             {
@@ -643,7 +645,7 @@ void TDelone::ProcessCrossList()
             }
             if (OneCommonPoint)
                 continue;
-            //простое пересечение
+            //ГЇГ°Г®Г±ГІГ®ГҐ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГҐ
 			TDVec CROSS_VEC;
             if ( rAll[i].Crossed(rAll[j],CROSS_VEC,EPS) == lcCROSSING )
             {

@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <windows.h>
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MyGL.h"
 //#include "VisObj.hpp"
@@ -13,14 +16,12 @@
 //#include "VisClass.hpp"
 #include "VisShape.hpp"
 #include "VisGL.hpp"
-#include "Math.hpp"
 #include "Poligon.h"
 //#include "TBox.h"
 
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 const int BestCount=2;
 double Opredelitel2d(double x11,double x12,double x21,double x22)
 {
@@ -198,7 +199,7 @@ void CopyVisNode(TVisNode *Source,TVisNode *Target)
     }
 }
 
-//âûçûâàåòñÿ âíóòðè ðåíäåðà
+//Ã¢Ã»Ã§Ã»Ã¢Ã Ã¥Ã²Ã±Ã¿ Ã¢Ã­Ã³Ã²Ã°Ã¨ Ã°Ã¥Ã­Ã¤Ã¥Ã°Ã 
 TVisMathVector CameraPosition(TVisView *VV)
 {
     TVisBox *VC = new TVisBox(NULL);
@@ -426,10 +427,10 @@ void Slope( TVisPrimitiveObj *Obj,
             const TIntVec& ParamPlus,
             const TIntVec& ParamMinus )
 {
-    //çàïîìíèëè ïîëîæåíèå
+    //Ã§Ã Ã¯Ã®Ã¬Ã­Ã¨Ã«Ã¨ Ã¯Ã®Ã«Ã®Ã¦Ã¥Ã­Ã¨Ã¥
     TVisMathVector TR = Obj->Transformation->Translation->AsMathVector;
     TVisMathVector RO = Obj->Transformation->Rotation->AsMathVector;
-    //çàäàëè èñõîäíîå ïîëîæåíèå
+    //Ã§Ã Ã¤Ã Ã«Ã¨ Ã¨Ã±ÃµÃ®Ã¤Ã­Ã®Ã¥ Ã¯Ã®Ã«Ã®Ã¦Ã¥Ã­Ã¨Ã¥
     Obj->Transformation->Translation->AsMathVector = ZEROVEC;
     Obj->Transformation->Rotation->AsMathVector = ZEROVEC;
 
@@ -485,7 +486,7 @@ void CreateArrow(TVisPrimitiveObj* Obj, const TIntVec& Size, TColor Color)
 {
     Obj->Init();
     Obj->AddPrimitiveArray(GL_LINES);
-    //-----------------ñîçäàíèå óãëîêîâ
+    //-----------------Ã±Ã®Ã§Ã¤Ã Ã­Ã¨Ã¥ Ã³Ã£Ã«Ã®ÃªÃ®Ã¢
     Obj->AddIndex(Obj->Points->Add(ToVec(-Size.x/2,0,0),ZEROVEC,ZEROVEC));
     Obj->AddIndex(Obj->Points->Add(ToVec(Size.x/2,0,0),ZEROVEC,ZEROVEC));
     Obj->AddIndex(Obj->Points->Add(ToVec(0,-Size.y/2,0),ZEROVEC,ZEROVEC));
@@ -545,17 +546,17 @@ void CreateSizer(TVisPrimitiveObj* Sizer, const TIntVec& Size, TColor Color)
 {
     Sizer->Init();
     Sizer->AddPrimitiveArray(GL_LINES);
-    //îñíîâíàÿ ëèíèÿ
+    //Ã®Ã±Ã­Ã®Ã¢Ã­Ã Ã¿ Ã«Ã¨Ã­Ã¨Ã¿
     Sizer->AddIndex(Sizer->Points->Add(ToVec(-Size.x/2,0,0),ZEROVEC,ZEROVEC));
     Sizer->AddIndex(Sizer->Points->Add(ToVec(Size.x/2,0,0),ZEROVEC,ZEROVEC));
 
-    //êðåñò ëèíèÿ
+    //ÃªÃ°Ã¥Ã±Ã² Ã«Ã¨Ã­Ã¨Ã¿
     Sizer->AddIndex(Sizer->Points->Add(ToVec(-Size.x,-Size.y/2,0),ZEROVEC,ZEROVEC));
     Sizer->AddIndex(Sizer->Points->Add(ToVec(-Size.x,Size.y/2,0),ZEROVEC,ZEROVEC));
     Sizer->AddIndex(Sizer->Points->Add(ToVec(-Size.x,0,-Size.z/2),ZEROVEC,ZEROVEC));
     Sizer->AddIndex(Sizer->Points->Add(ToVec(-Size.x,0,Size.z/2),ZEROVEC,ZEROVEC));
 
-    //êðåñò ëèíèÿ
+    //ÃªÃ°Ã¥Ã±Ã² Ã«Ã¨Ã­Ã¨Ã¿
     Sizer->AddIndex(Sizer->Points->Add(ToVec(Size.x,-Size.y/2,0),ZEROVEC,ZEROVEC));
     Sizer->AddIndex(Sizer->Points->Add(ToVec(Size.x,Size.y/2,0),ZEROVEC,ZEROVEC));
     Sizer->AddIndex(Sizer->Points->Add(ToVec(Size.x,0,-Size.z/2),ZEROVEC,ZEROVEC));

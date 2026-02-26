@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDICanExistsCheckEdit</class>
+  <widget class="QWidget" name="MDICanExistsCheckEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>538</width>
+        <height>289</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDICanExistsCheckEdit</string>
+    </property>
+    <widget class="QTreeWidget" name="TV">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>25</y>
+          <width>538</width>
+          <height>264</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QToolBar" name="ToolBar1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>538</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>ToolBar1</string>
+      </property>
+      <widget class="QWidget" name="ToolButton1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Новый</string>
+        </property>
+      </widget>
+      <widget class="QWidget" name="ToolButton4">
+        <property name="geometry">
+          <rect>
+            <x>23</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Новая группа</string>
+        </property>
+      </widget>
+      <widget class="QWidget" name="ToolButton3">
+        <property name="geometry">
+          <rect>
+            <x>46</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Удалить</string>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QMenu" name="PopupMenu1">
+      <property name="geometry">
+        <rect>
+          <x>80</x>
+          <y>128</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QAction" name="N1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Новая связка в группе</string>
+        </property>
+      </widget>
+      <widget class="QAction" name="N4">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Новая группа связок</string>
+        </property>
+      </widget>
+      <widget class="QAction" name="N3">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Удалить</string>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

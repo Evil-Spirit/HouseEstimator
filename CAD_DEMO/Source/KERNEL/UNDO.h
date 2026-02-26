@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef UNDOH
@@ -32,7 +36,7 @@ public:
     virtual ~TUndoSession();
     void Open(const AnsiString& aName);
     void Close();
-    __property bool Closed = {read = FClosed};
+    // __property bool Closed {read=FClosed}; // [manual migration needed]
     void RegisterChanges(TUnit* MRO);
     void RegisterCreation(TUnit* MRO);
     void RegisterDeletion(TUnit* MRO);

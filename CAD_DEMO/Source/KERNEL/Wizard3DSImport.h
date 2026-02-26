@@ -1,21 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef Wizard3DSImportH
 #define Wizard3DSImportH
-#include <CheckLst.hpp>
-#include <Classes.hpp>
-#include <ComCtrls.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <ExtCtrls.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 #include <vector>
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <CheckLst.hpp>
-#include <ComCtrls.hpp>
 
 #include "VisAttr.hpp"
 #include "VisCam.hpp"
@@ -36,7 +29,7 @@
 #include "MDITVV.h"
 #include "MySupportV.h"
 //---------------------------------------------------------------------------
-class PACKAGE TfrmWizard3DSImport : public TForm
+class  TfrmWizard3DSImport : public TForm
 {
 __published:	// IDE-managed Components
 	TPageControl *pcSteps;
@@ -59,17 +52,17 @@ __published:	// IDE-managed Components
 	TPanel *Panel2;
 	TButton *btnNext;
 	TButton *btnPrev;
-	void __fastcall pcStepsChange(TObject *Sender);
-	void __fastcall FormCreate(TObject *Sender);
-	void __fastcall FormDestroy(TObject *Sender);
-	void __fastcall lvObjectsListChange(TObject *Sender, TListItem *Item,
+	void  pcStepsChange(TObject *Sender);
+	void  FormCreate(TObject *Sender);
+	void  FormDestroy(TObject *Sender);
+	void  lvObjectsListChange(TObject *Sender, TListItem *Item,
           TItemChange Change);
-	void __fastcall btnNextClick(TObject *Sender);
-	void __fastcall btnPrevClick(TObject *Sender);
-	void __fastcall btnRestoreClick(TObject *Sender);
-	void __fastcall btnFindClick(TObject *Sender);
-	void __fastcall btnReplaceClick(TObject *Sender);
-	void __fastcall lvMaterialsChange(TObject *Sender, TListItem *Item,
+	void  btnNextClick(TObject *Sender);
+	void  btnPrevClick(TObject *Sender);
+	void  btnRestoreClick(TObject *Sender);
+	void  btnFindClick(TObject *Sender);
+	void  btnReplaceClick(TObject *Sender);
+	void  lvMaterialsChange(TObject *Sender, TListItem *Item,
           TItemChange Change);
 private:	// User declarations
 	void FinishImport();
@@ -89,16 +82,16 @@ private:	// User declarations
 	TMainTree *MT;
 	TCameraEngine *CameraEngine;
 	void Restructure();
-	void __fastcall SyncObjectsList();
-	void __fastcall SyncObjects();
-	void __fastcall SyncMaterialsList();
-	void __fastcall SyncMaterials();
+	void  SyncObjectsList();
+	void  SyncObjects();
+	void  SyncMaterialsList();
+	void  SyncMaterials();
 public:		// User declarations
-	__fastcall TfrmWizard3DSImport(TComponent* Owner);
-	int __fastcall Import(AnsiString fileName);
+	 TfrmWizard3DSImport(TComponent* Owner);
+	int  Import(AnsiString fileName);
 	static TVisPrimitiveObj* ImportFile(AnsiString, std::vector<TMetaMaterial *>&);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TfrmWizard3DSImport *frmWizard3DSImport;
+extern  TfrmWizard3DSImport *frmWizard3DSImport;
 //---------------------------------------------------------------------------
 #endif

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>PictureEditorF</class>
+  <widget class="QWidget" name="PictureEditorF">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>344</width>
+        <height>296</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Picture Editor</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QFrame" name="MainPanel">
+      <property name="geometry">
+        <rect>
+          <x>8</x>
+          <y>8</y>
+          <width>249</width>
+          <height>281</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+      <widget class="QFrame" name="WorkPanel">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>8</y>
+            <width>233</width>
+            <height>233</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>(None)</string>
+        </property>
+        <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+        </property>
+        <widget class="QLabel" name="Image">
+          <property name="geometry">
+            <rect>
+              <x>2</x>
+              <y>2</y>
+              <width>229</width>
+              <height>229</height>
+            </rect>
+          </property>
+          <property name="text">
+            <string/>
+          </property>
+          <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+        </widget>
+      </widget>
+      <widget class="QPushButton" name="Load">
+        <property name="geometry">
+          <rect>
+            <x>8</x>
+            <y>248</y>
+            <width>75</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Load</string>
+        </property>
+        <property name="text">
+          <string>Load</string>
+        </property>
+      </widget>
+      <widget class="QPushButton" name="Save">
+        <property name="geometry">
+          <rect>
+            <x>88</x>
+            <y>248</y>
+            <width>75</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Save</string>
+        </property>
+        <property name="text">
+          <string>Save</string>
+        </property>
+      </widget>
+      <widget class="QPushButton" name="Clear">
+        <property name="geometry">
+          <rect>
+            <x>168</x>
+            <y>248</y>
+            <width>75</width>
+            <height>25</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Clear</string>
+        </property>
+        <property name="text">
+          <string>Clear</string>
+        </property>
+      </widget>
+    </widget>
+    <widget class="QPushButton" name="OK">
+      <property name="geometry">
+        <rect>
+          <x>264</x>
+          <y>8</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Cancel">
+      <property name="geometry">
+        <rect>
+          <x>264</x>
+          <y>40</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Cancel</string>
+      </property>
+      <property name="text">
+        <string>Cancel</string>
+      </property>
+    </widget>
+    <widget class="QWidget" name="OpenPictureDialog">
+      <property name="geometry">
+        <rect>
+          <x>272</x>
+          <y>264</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="SavePictureDialog">
+      <property name="geometry">
+        <rect>
+          <x>304</x>
+          <y>264</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

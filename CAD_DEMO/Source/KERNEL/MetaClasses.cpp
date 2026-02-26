@@ -1,12 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //-------------  .h>
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MetaClasses.h"
-#include <typeinfo.h>
 #include "VisMat.hpp"
 #include "VisComp.hpp"
 #include "VisObj.hpp"
@@ -47,7 +49,6 @@
 #endif
 
 //--------------------------------------------------------------------------
-#pragma package(smart_init)
 //--------------------------------------------------------------------------
 TImageList *ILDefault;
 TVisMaterial *MaterialDefault;
@@ -170,7 +171,7 @@ TMyObject* THasAngle::CreateFunction()
 }
 
 const AnsiString aMirrored = AnsiString("Mirrored");
-//уже описаны
+//ГіГ¦ГҐ Г®ГЇГЁГ±Г Г­Г»
 const AnsiString aHI = AnsiString("HI");
 const AnsiString aLOW = AnsiString("LOW");
 
@@ -781,7 +782,7 @@ TImageList* TBMPSet::GetIL()
         AnsiString Dir = MainDir+SL+BMPDirName;
         if ( !DirectoryExists(Dir) && !ForceDirectories(Dir))
         {
-            AnsiString Str = "Невозможно открыть файл - ";
+            AnsiString Str = "ГЌГҐГўГ®Г§Г¬Г®Г¦Г­Г® Г®ГІГЄГ°Г»ГІГј ГґГ Г©Г« - ";
             ErrorMsg(Str + Dir+SL+Name+BMP);
             Application->Terminate();
         }
@@ -882,7 +883,7 @@ void TBMPSet::SaveData(FILE *F) const
         AnsiString Dir = MainDir+SL+BMPDirName;
         if ( (!DirectoryExists(Dir) && !ForceDirectories(Dir)) || !CHECK_FILE_SAVE(Dir+SL+Name+BMP))
         {
-            AnsiString Str = "Невозможно создать файл - ";
+            AnsiString Str = "ГЌГҐГўГ®Г§Г¬Г®Г¦Г­Г® Г±Г®Г§Г¤Г ГІГј ГґГ Г©Г« - ";
             ErrorMsg(Str + Dir+SL+Name+BMP);
             Application->Terminate();
                 Application->Terminate();
@@ -899,7 +900,7 @@ void TBMPSet::WriteData(TMemoryStream *MS) const
         AnsiString Dir = MainDir+SL+BMPDirName;
         if ( (!DirectoryExists(Dir) && !ForceDirectories(Dir)) || !CHECK_FILE_SAVE(Dir+SL+Name+BMP))
         {
-            AnsiString Str = "Невозможно создать файл - ";
+            AnsiString Str = "ГЌГҐГўГ®Г§Г¬Г®Г¦Г­Г® Г±Г®Г§Г¤Г ГІГј ГґГ Г©Г« - ";
             ErrorMsg(Str + Dir+SL+Name+BMP);
             Application->Terminate();
                 Application->Terminate();
@@ -1602,7 +1603,7 @@ bool TCanExistCheck::TechCheck(TElement *El,AnsiString& Str)
     for (int i=0;i<LinkGroups->Count;i++)
     {
         if (i>0)
-            Str = Str + AnsiString("\nили\n");
+            Str = Str + AnsiString("\nГЁГ«ГЁ\n");
         for (int j=0;j<LinkGroups->Items[i]->Count;j++)
         {
             if (j>0)
@@ -1836,7 +1837,7 @@ TDynamicLink::TDynamicLink(TMetaElement *_Parent,int _ID,const AnsiString& _Name
 //    ID0 = 0;
 //    IDL = 0;
     ImageIndex=iiDynamicLink;
-    //потом будет ландшафт и каждый элемент имеет с ним связку по умолчанию
+    //ГЇГ®ГІГ®Г¬ ГЎГіГ¤ГҐГІ Г«Г Г­Г¤ГёГ ГґГІ ГЁ ГЄГ Г¦Г¤Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ ГЁГ¬ГҐГҐГІ Г± Г­ГЁГ¬ Г±ГўГїГ§ГЄГі ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ
 }
 
 bool TDynamicLink::UsedTrigger(int Trigger)
@@ -1865,7 +1866,7 @@ TDynamicLink::TDynamicLink()
 //    ID0 = -1;
 //    IDL = -1;
     ImageIndex=iiDynamicLink;
-    //потом будет ландшафт и каждый элемент имеет с ним связку по умолчанию
+    //ГЇГ®ГІГ®Г¬ ГЎГіГ¤ГҐГІ Г«Г Г­Г¤ГёГ ГґГІ ГЁ ГЄГ Г¦Г¤Г»Г© ГЅГ«ГҐГ¬ГҐГ­ГІ ГЁГ¬ГҐГҐГІ Г± Г­ГЁГ¬ Г±ГўГїГ§ГЄГі ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ
 }
 
 /*void TDynamicLink::LookingTo(TMyObject *Target,TMTList<TMyObject>& OBJL) const

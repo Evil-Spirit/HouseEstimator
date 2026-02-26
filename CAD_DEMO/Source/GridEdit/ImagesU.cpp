@@ -1,18 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
 
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "ImagesU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TCGIL *CGIL = NULL;
 //---------------------------------------------------------------------------
-__fastcall TCGIL::TCGIL(TComponent* Owner)
+ TCGIL::TCGIL(TComponent* Owner)
     : TDataModule(Owner)
 {
 }
@@ -24,16 +26,16 @@ void RegisterImages()
 
 #pragma startup RegisterImages
 
-void __fastcall TCGIL::DataModuleDestroy(TObject *Sender)
+void  TCGIL::DataModuleDestroy(TObject *Sender)
 {
     CGIL = NULL;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TCGIL::DataModuleCreate(TObject *Sender)
+void  TCGIL::DataModuleCreate(TObject *Sender)
 {
     if (CGIL)
-        throw EMyException("<TCGIL::DataModuleCreate>: CGIL óæå ñîçäàí.");
+        throw EMyException("<TCGIL::DataModuleCreate>: CGIL Ã³Ã¦Ã¥ Ã±Ã®Ã§Ã¤Ã Ã­.");
     CGIL = this;
 }
 //---------------------------------------------------------------------------

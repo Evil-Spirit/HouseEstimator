@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
   //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <vector>
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDI3DUserV.h"
 //#include "Main.h"
@@ -27,7 +30,6 @@
 #include "..\GeomObject\TGPrimitive.h"
 #include "..\GeomObject\Misc.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDI3DV"
 
 #pragma link "VisAttr"
@@ -47,7 +49,7 @@
 #pragma resource "*.dfm"
 TMDI3DUser *MDI3DUser;
 //---------------------------------------------------------------------------
-__fastcall TMDI3DUser::TMDI3DUser(TComponent* Owner,TMainTree* MT)//,const AnsiString& Name,bool load)
+ TMDI3DUser::TMDI3DUser(TComponent* Owner,TMainTree* MT)//,const AnsiString& Name,bool load)
     : TMDI3D(Owner,MT)
 {
     Obj = NULL;
@@ -71,7 +73,7 @@ void TMDI3DUser::CustomRender(TVisCustomView *aView)
         BIF->CustomRender();
         ControlCenter->Render(this);
     }*/
-      /* TODO : проверка какое окно рендерить в AUI */
+      /* TODO : ГЇГ°Г®ГўГҐГ°ГЄГ  ГЄГ ГЄГ®ГҐ Г®ГЄГ­Г® Г°ГҐГ­Г¤ГҐГ°ГЁГІГј Гў AUI */
 }
 
 void TMDI3DUser::CustomMouseDown(TMouseButton Button,
@@ -96,7 +98,7 @@ void TMDI3DUser::CustomMouseUp(TMouseButton Button,
 }
 
 
-void __fastcall TMDI3DUser::FormDestroy(TObject *Sender)
+void  TMDI3DUser::FormDestroy(TObject *Sender)
 {
 
 /*    if (this && !ElseExists(this) && World)
@@ -125,7 +127,7 @@ void TMDI3DUser::CustomKeyUp(WORD &Key,TShiftState Shift)
 
 
 
-void __fastcall TMDI3DUser::FormCreate(TObject *Sender)
+void  TMDI3DUser::FormCreate(TObject *Sender)
 {
     TMDI3D::FormCreate(Sender);
     if (ElseExists(this))
@@ -133,7 +135,7 @@ void __fastcall TMDI3DUser::FormCreate(TObject *Sender)
     Mode = MetaNodeCollection->KernelSupport->DEFAULT_MODE;
 }
 //---------------------------------------------------------------------------
-bool TMDI3DUser::Process_Save_Project()//возвращает истина если ответ не cancel
+bool TMDI3DUser::Process_Save_Project()//ГўГ®Г§ГўГ°Г Г№Г ГҐГІ ГЁГ±ГІГЁГ­Г  ГҐГ±Г«ГЁ Г®ГІГўГҐГІ Г­ГҐ cancel
 {
 //-------------
     _TRY_
@@ -166,7 +168,7 @@ bool TMDI3DUser::Process_Save_Project()//возвращает истина если ответ не cancel
 //---------------------
 
 }
-void __fastcall TMDI3DUser::mEditClick(TObject *Sender)
+void  TMDI3DUser::mEditClick(TObject *Sender)
 {
 /*    if (Select->Element&&Select->SM == smSyngle)
     {
@@ -187,7 +189,7 @@ void __fastcall TMDI3DUser::mEditClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TMDI3DUser::mEditFragmentsClick(TObject *Sender)
+void  TMDI3DUser::mEditFragmentsClick(TObject *Sender)
 {
 /*        TVisRender* VR = (TVisRender*)Obj;
         TElement *El = Select->IdentifyElement(VR);
@@ -213,7 +215,7 @@ void __fastcall TMDI3DUser::mEditFragmentsClick(TObject *Sender)
 
 
 
-void __fastcall TMDI3DUser::FormCloseQuery(TObject *Sender, bool &CanClose)
+void  TMDI3DUser::FormCloseQuery(TObject *Sender, bool &CanClose)
 {
     CanClose = AUI.UnRegister(this);
     if (CanClose)

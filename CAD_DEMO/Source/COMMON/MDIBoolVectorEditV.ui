@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIBOOLVECEDIT</class>
+  <widget class="QWidget" name="MDIBOOLVECEDIT">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>290</width>
+        <height>45</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIBOOLVECEDIT</string>
+    </property>
+    <widget class="QLabel" name="Label1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>20</y>
+          <width>10</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>X:</string>
+      </property>
+      <property name="text">
+        <string>X:</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label2">
+      <property name="geometry">
+        <rect>
+          <x>104</x>
+          <y>20</y>
+          <width>10</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Y:</string>
+      </property>
+      <property name="text">
+        <string>Y:</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label3">
+      <property name="geometry">
+        <rect>
+          <x>208</x>
+          <y>20</y>
+          <width>10</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Z:</string>
+      </property>
+      <property name="text">
+        <string>Z:</string>
+      </property>
+    </widget>
+    <widget class="QComboBox" name="ComboBox1">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>16</y>
+          <width>73</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <item>
+        <property name="text">
+          <string>FALSE</string>
+        </property>
+      </item>
+      <item>
+        <property name="text">
+          <string>TRUE</string>
+        </property>
+      </item>
+    </widget>
+    <widget class="QComboBox" name="ComboBox2">
+      <property name="geometry">
+        <rect>
+          <x>120</x>
+          <y>16</y>
+          <width>73</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <item>
+        <property name="text">
+          <string>FALSE</string>
+        </property>
+      </item>
+      <item>
+        <property name="text">
+          <string>TRUE</string>
+        </property>
+      </item>
+    </widget>
+    <widget class="QComboBox" name="ComboBox3">
+      <property name="geometry">
+        <rect>
+          <x>224</x>
+          <y>16</y>
+          <width>65</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <item>
+        <property name="text">
+          <string>FALSE</string>
+        </property>
+      </item>
+      <item>
+        <property name="text">
+          <string>TRUE</string>
+        </property>
+      </item>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

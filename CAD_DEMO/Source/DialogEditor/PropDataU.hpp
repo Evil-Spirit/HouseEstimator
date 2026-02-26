@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 // Borland C++ Builder
 // Copyright (c) 1995, 2002 by Borland Software Corporation
 // All rights reserved
@@ -13,21 +17,11 @@
 #include <Types.hpp>	// Pascal unit
 #include <TypInfo.hpp>	// Pascal unit
 #include <ValEdit.hpp>	// Pascal unit
-#include <Grids.hpp>	// Pascal unit
-#include <ExtCtrls.hpp>	// Pascal unit
-#include <StdCtrls.hpp>	// Pascal unit
-#include <ComCtrls.hpp>	// Pascal unit
-#include <Dialogs.hpp>	// Pascal unit
-#include <Forms.hpp>	// Pascal unit
-#include <Controls.hpp>	// Pascal unit
-#include <Graphics.hpp>	// Pascal unit
-#include <Classes.hpp>	// Pascal unit
+#include "compat/vcl_qt.h"
 #include <Variants.hpp>	// Pascal unit
-#include <SysUtils.hpp>	// Pascal unit
 #include <Messages.hpp>	// Pascal unit
 #include <Windows.hpp>	// Pascal unit
 #include <SysInit.hpp>	// Pascal unit
-#include <System.hpp>	// Pascal unit
 
 //-- user supplied -----------------------------------------------------------
 
@@ -64,20 +58,20 @@ public:
 	int FSetLength;
 	
 private:
-	AnsiString __fastcall NextWord(char * &Value);
+	AnsiString  NextWord(char * &Value);
 	
 public:
-	__fastcall TPropObject(void);
-	__fastcall virtual ~TPropObject(void);
-	void __fastcall SetObject(AnsiString _Name, const System::TObject* Value, const System::TObject* Default, bool _Copy = true, TPropObject* _Parent = (TPropObject*)(0x0));
-	Variant __fastcall GetPropertyValue(AnsiString Name)/* overload */;
-	bool __fastcall IsAnyType(int Index, const Typinfo::TTypeKinds PropType);
-	TPropObject* __fastcall GetChild(AnsiString _Name);
+	 TPropObject(void);
+	 virtual ~TPropObject(void);
+	void  SetObject(AnsiString _Name, const System::TObject* Value, const System::TObject* Default, bool _Copy = true, TPropObject* _Parent = (TPropObject*)(0x0));
+	Variant  GetPropertyValue(AnsiString Name)/* overload */;
+	bool  IsAnyType(int Index, const Typinfo::TTypeKinds PropType);
+	TPropObject*  GetChild(AnsiString _Name);
 	__property bool OpenFlag = {read=FOpenFlag, write=FOpenFlag, nodefault};
-	__property AnsiString Name = {read=FName, write=FName};
+	// __property AnsiString Name {read=FName, write=FName}; // [manual migration needed]
 	__property bool Refresh = {read=FRefresh, write=FRefresh, nodefault};
-	__property TPropObject* Parent = {read=FParent, write=FParent};
-	__property System::TObject* ThisObject = {read=FObject, write=FObject};
+	// __property TPropObject* Parent {read=FParent, write=FParent}; // [manual migration needed]
+	// __property System::TObject* ThisObject {read=FObject, write=FObject}; // [manual migration needed]
 };
 
 
@@ -104,25 +98,25 @@ public:
 	AnsiString FData;
 	
 private:
-	void __fastcall SetProperty(const Typinfo::PPropInfo Value);
-	Typinfo::PPropInfo __fastcall GetProperty(void);
+	void  SetProperty(const Typinfo::PPropInfo Value);
+	Typinfo::PPropInfo  GetProperty(void);
 	
 public:
 	bool SawFlag;
-	__fastcall TProp(void);
-	__property AnsiString Data = {read=FData, write=FData};
-	__property Typinfo::PPropInfo PropertyInfo = {read=GetProperty, write=SetProperty};
-	__property Typinfo::TTypeInfo PropertyType = {read=FPropertyType, write=FPropertyType};
-	__property Typinfo::PTypeInfo PPropertyType = {read=FPPropertyType, write=FPPropertyType};
-	__property Variant PropertyValue = {read=FPropertyValue, write=FPropertyValue};
-	__property Variant DefaultValue = {read=FDefaultValue, write=FDefaultValue};
+	 TProp(void);
+	// __property AnsiString Data {read=FData, write=FData}; // [manual migration needed]
+	// __property Typinfo::PPropInfo PropertyInfo {read=GetProperty, write=SetProperty}; // [manual migration needed]
+	// __property Typinfo::TTypeInfo PropertyType {read=FPropertyType, write=FPropertyType}; // [manual migration needed]
+	// __property Typinfo::PTypeInfo PPropertyType {read=FPPropertyType, write=FPPropertyType}; // [manual migration needed]
+	// __property Variant PropertyValue {read=FPropertyValue, write=FPropertyValue}; // [manual migration needed]
+	// __property Variant DefaultValue {read=FDefaultValue, write=FDefaultValue}; // [manual migration needed]
 	__property Typinfo::TTypeKind PropertyKind = {read=FPropertyKind, write=FPropertyKind, nodefault};
-	__property AnsiString PropertyName = {read=FPropertyName, write=FPropertyName};
-	__property TPropObject* ThisObject = {read=FObject, write=FObject};
-	__property TPropObject* Parent = {read=FParent, write=FParent};
+	// __property AnsiString PropertyName {read=FPropertyName, write=FPropertyName}; // [manual migration needed]
+	// __property TPropObject* ThisObject {read=FObject, write=FObject}; // [manual migration needed]
+	// __property TPropObject* Parent {read=FParent, write=FParent}; // [manual migration needed]
 public:
 	#pragma option push -w-inl
-	/* TObject.Destroy */ inline __fastcall virtual ~TProp(void) { }
+	/* TObject.Destroy */ inline  virtual ~TProp(void) { }
 	#pragma option pop
 	
 };
@@ -130,7 +124,7 @@ public:
 
 //-- var, const, procedure ---------------------------------------------------
 static const Byte MaxPropLen = 0xff;
-extern PACKAGE System::TObject* __fastcall DefaultObject(const System::TObject* Value, Classes::TComponent* Owner);
+extern  System::TObject*  DefaultObject(const System::TObject* Value, Classes::TComponent* Owner);
 
 }	/* namespace Propdatau */
 using namespace Propdatau;

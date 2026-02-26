@@ -1,8 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 
-#pragma hdrstop
 
 #include "ConverterV.h"
 #include "xmldom.hpp"
@@ -13,7 +16,7 @@ const AnsiString ml_id = "id";
 const AnsiString ml_real = "real";
 const AnsiString ml_parens = "parens";
 
-//двух местные функции
+//Г¤ГўГіГµ Г¬ГҐГ±ГІГ­Г»ГҐ ГґГіГ­ГЄГ¶ГЁГЁ
 const AnsiString ml_plus = "plus";
 const AnsiString ml_minus = "minus";
 const AnsiString ml_mult = "mult";
@@ -113,13 +116,13 @@ void RecurrentEnumerate(const AnsiString& MathML,AnsiString& Input,int& index)
 
 	if ( _tag == ml_neg )
     {
-        //одно местная функция
+        //Г®Г¤Г­Г® Г¬ГҐГ±ГІГ­Г Гї ГґГіГ­ГЄГ¶ГЁГї
 		Input+=operation;
         RecurrentProcessNode(MathML,Input,index);
     }
     else
     {
-        //двух местная функция
+        //Г¤ГўГіГµ Г¬ГҐГ±ГІГ­Г Гї ГґГіГ­ГЄГ¶ГЁГї
         RecurrentProcessNode(MathML,Input,index);
 /*        if (_tag == ml_indexer )
             Input+="[";
@@ -168,5 +171,4 @@ bool Convert(const AnsiString& aMathML,AnsiString& Input)
     return true;
 }
 
-#pragma package(smart_init)
  

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMetaUI</class>
+  <widget class="QWidget" name="MDIMetaUI">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1</width>
+        <height>1</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMetaUI</string>
+    </property>
+    <widget class="QTabWidget" name="PCNode">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QWidget" name="tsMetaUI">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Element of interface</string>
+        </property>
+        <widget class="QCheckBox" name="cbEnabled">
+          <property name="geometry">
+            <rect>
+              <x>24</x>
+              <y>16</y>
+              <width>97</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Enabled</string>
+          </property>
+          <property name="text">
+            <string>Enabled</string>
+          </property>
+        </widget>
+        <widget class="QCheckBox" name="cbVisible">
+          <property name="geometry">
+            <rect>
+              <x>24</x>
+              <y>40</y>
+              <width>97</width>
+              <height>17</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>Visible</string>
+          </property>
+          <property name="text">
+            <string>Visible</string>
+          </property>
+        </widget>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

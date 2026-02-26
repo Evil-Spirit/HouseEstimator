@@ -1,17 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "MTL.h"
 #include "Usefuls.h"
 #include "MyTemplates.h"
 #include "..\GeomObject\Triangulation.h"
 #include "..\GeomObject\Poligon.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 
-#pragma hdrstop
 
 #include "ComposeV.h"
 #include "Compose.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 
 
 MBTi xCos(TIntVec v1, TIntVec v2)
@@ -67,7 +69,7 @@ void Composing(TMDelTList<TLPoint>& Pnts, TMDelTList<TLCut>& Cuts, TMDelTList<TP
 	TLCut	*cut = NULL;
 	TMTList<TLCut> new_cuts;
 
-//Находим самую нижнюю точку
+//ГЌГ ГµГ®Г¤ГЁГ¬ Г±Г Г¬ГіГѕ Г­ГЁГ¦Г­ГѕГѕ ГІГ®Г·ГЄГі
 	for (int i=0;i<Pnts.Count;i++)
 	{
 		if (src == NULL)
@@ -78,7 +80,7 @@ void Composing(TMDelTList<TLPoint>& Pnts, TMDelTList<TLCut>& Cuts, TMDelTList<TP
 	}
 	begin = src;
 
-//Находим отрезок, самый поворачивающий направо
+//ГЌГ ГµГ®Г¤ГЁГ¬ Г®ГІГ°ГҐГ§Г®ГЄ, Г±Г Г¬Г»Г© ГЇГ®ГўГ®Г°Г Г·ГЁГўГ ГѕГ№ГЁГ© Г­Г ГЇГ°Г ГўГ®
 	for (int i=0;i<src->Cuts.Count;i++)
 		if (src->Cuts[i].Src == src)
 		{
@@ -154,7 +156,7 @@ void Composing(TMDelTList<TLPoint>& Pnts, TMDelTList<TLCut>& Cuts, TMDelTList<TP
 	Cuts.NoDelClear();
 	for (int i=0;i<new_cuts.Count;i++)
 		Cuts.Add(&new_cuts[i]);
-//Удалениие "бантиков"
+//Г“Г¤Г Г«ГҐГ­ГЁГЁГҐ "ГЎГ Г­ГІГЁГЄГ®Гў"
 	TLPoint *point;
 	while ( (point = isTheBranchPoint(Pnts))!= NULL)
 	{

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIMetaRoom</class>
+  <widget class="QWidget" name="MDIMetaRoom">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>819</width>
+        <height>524</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIMetaRoom</string>
+    </property>
+    <widget class="QSplitter" name="Splitter1">
+      <property name="geometry">
+        <rect>
+          <x>545</x>
+          <y>0</y>
+          <width>1</width>
+          <height>446</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QTabWidget" name="PCNode">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>545</width>
+          <height>446</height>
+        </rect>
+      </property>
+      <widget class="QWidget" name="tsInterface">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <widget class="QFrame" name="MAS">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>537</width>
+              <height>367</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+        <widget class="QFrame" name="pInterface">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>537</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsAttributes">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <widget class="QSplitter" name="Splitter2">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>537</width>
+              <height>1</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QFrame" name="Attributes">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>537</width>
+              <height>1</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+        <widget class="QFrame" name="TB">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>537</width>
+              <height>255</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsDrawView">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <widget class="QFrame" name="PanelDraw">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>537</width>
+              <height>400</height>
+            </rect>
+          </property>
+          <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+          </property>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsRoom">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Area</string>
+        </property>
+        <widget class="QTreeWidget" name="LV">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>32</y>
+              <width>230</width>
+              <height>366</height>
+            </rect>
+          </property>
+        </widget>
+        <widget class="QToolBar" name="ToolBar1">
+          <property name="geometry">
+            <rect>
+              <x>269</x>
+              <y>9</y>
+              <width>43</width>
+              <height>38</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolBar1</string>
+          </property>
+          <widget class="QWidget" name="tbtAdd">
+            <property name="geometry">
+              <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>Add</string>
+            </property>
+          </widget>
+          <widget class="QWidget" name="tbtDel">
+            <property name="geometry">
+              <rect>
+                <x>0</x>
+                <y>19</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>Delete</string>
+            </property>
+          </widget>
+        </widget>
+        <widget class="QComboBox" name="cbDM">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>8</y>
+              <width>264</width>
+              <height>21</height>
+            </rect>
+          </property>
+          <item>
+            <property name="text">
+              <string>( #1054#1073#1083#1072#1089#1090#1100</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>#1086#1075#1088#1072#1085#1080#1095#1077#1085#1085#1072#1103 #1054#1073#1083#1072#1089#1090#1100</string>
+            </property>
+          </item>
+          <item>
+            <property name="text">
+              <string>#1079#1072#1085#1103#1090#1072#1103)</string>
+            </property>
+          </item>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>446</y>
+          <width>801</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+    </widget>
+    <widget class="QFrame" name="Panel2">
+      <property name="geometry">
+        <rect>
+          <x>553</x>
+          <y>0</y>
+          <width>248</width>
+          <height>446</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 
 #ifndef RoofH
 #define RoofH
@@ -24,16 +28,16 @@ __declspec(dllexport) void CreateRoofOld(   TMDelTList<TIntVec>* RoofPolygon,
                                             TMDelTList<TLuaRoofCut>* FLEGS,
                                             TMDelTList<TLuaRoofCut>* FSCATES);
 
-__declspec(dllexport) void CreateRoof(  TMDelTList< TMDelTList<TIntVec> >& pp_N, //контур крыши
-										TMDelTList< TMDelTList<TIntVec> >& pp_O, //список векторов параметров (x - угол,y - выступ карниза в случае фронтона)
+__declspec(dllexport) void CreateRoof(  TMDelTList< TMDelTList<TIntVec> >& pp_N, //ГЄГ®Г­ГІГіГ° ГЄГ°Г»ГёГЁ
+										TMDelTList< TMDelTList<TIntVec> >& pp_O, //Г±ГЇГЁГ±Г®ГЄ ГўГҐГЄГІГ®Г°Г®Гў ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў (x - ГіГЈГ®Г«,y - ГўГ»Г±ГІГіГЇ ГЄГ Г°Г­ГЁГ§Г  Гў Г±Г«ГіГ·Г ГҐ ГґГ°Г®Г­ГІГ®Г­Г )
 										TIntVec& b_N,
 										TIntVec& b_O,
-										TMDelTList< TMDelTList<TPolygon> >& RES,  //результат работы список полигонов
-										TMDelTList<TLuaRoofCut>& FLEGS, //список ендов
-                                        TMDelTList<TLuaRoofCut>& FSCATES);   //список коньков
+										TMDelTList< TMDelTList<TPolygon> >& RES,  //Г°ГҐГ§ГіГ«ГјГІГ ГІ Г°Г ГЎГ®ГІГ» Г±ГЇГЁГ±Г®ГЄ ГЇГ®Г«ГЁГЈГ®Г­Г®Гў
+										TMDelTList<TLuaRoofCut>& FLEGS, //Г±ГЇГЁГ±Г®ГЄ ГҐГ­Г¤Г®Гў
+                                        TMDelTList<TLuaRoofCut>& FSCATES);   //Г±ГЇГЁГ±Г®ГЄ ГЄГ®Г­ГјГЄГ®Гў
 
-__declspec(dllexport) void ConstructRoof(  TMDelTList< TMDelTList<TIntVec> >& pp_N, //контур крыши
-										TMDelTList< TMDelTList<TIntVec> >& pp_O, //список векторов параметров (x - угол,y - выступ карниза в случае фронтона)
+__declspec(dllexport) void ConstructRoof(  TMDelTList< TMDelTList<TIntVec> >& pp_N, //ГЄГ®Г­ГІГіГ° ГЄГ°Г»ГёГЁ
+										TMDelTList< TMDelTList<TIntVec> >& pp_O, //Г±ГЇГЁГ±Г®ГЄ ГўГҐГЄГІГ®Г°Г®Гў ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў (x - ГіГЈГ®Г«,y - ГўГ»Г±ГІГіГЇ ГЄГ Г°Г­ГЁГ§Г  Гў Г±Г«ГіГ·Г ГҐ ГґГ°Г®Г­ГІГ®Г­Г )
 										TIntVec& b_N,
 										TIntVec& b_O,
 										TGeomObject& GO);

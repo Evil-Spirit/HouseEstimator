@@ -1,17 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MyRegTreeV.h"
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 TClassNode* TMyRegTree::StaticType = NULL;
 
@@ -131,9 +133,9 @@ void TMyRegTree::SaveData(FILE *F) const
     TMyObject::SaveData(F);
     TMTList<TMyRegObject> MROL;
     SelectByCT(Head,TMyRegObject::StaticType,&MROL,true,true);
-    StartProcess("Ñîõðàíåíèå ìåòàäàííûõ ...",MROL.Count);
+    StartProcess("Ã‘Ã®ÃµÃ°Ã Ã­Ã¥Ã­Ã¨Ã¥ Ã¬Ã¥Ã²Ã Ã¤Ã Ã­Ã­Ã»Ãµ ...",MROL.Count);
     RecurrentSave(Head,F);
-    //äëÿ òîãî ÷òîáû çàêðûëñÿ mdiconfig èíà÷å ïðîöåññ
+    //Ã¤Ã«Ã¿ Ã²Ã®Ã£Ã® Ã·Ã²Ã®Ã¡Ã» Ã§Ã ÃªÃ°Ã»Ã«Ã±Ã¿ mdiconfig Ã¨Ã­Ã Ã·Ã¥ Ã¯Ã°Ã®Ã¶Ã¥Ã±Ã±
     //PB->Visible = false;
 }
 

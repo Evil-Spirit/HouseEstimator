@@ -1,14 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMetaMaterialVH
 #define MDIMetaMaterialVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaNodeV.h"
 #include "VisShape.hpp"
 
@@ -24,7 +23,7 @@ __published:	// IDE-managed Components
     TPanel *Panel2;
     TSplitter *Splitter1;
     TPanel *P3;
-    void __fastcall FormActivate(TObject *Sender);
+    void  FormActivate(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     virtual void SETUP();
@@ -36,7 +35,7 @@ public:		// User declarations
     TMDIColors *MDIC;
     TVisBox *VisBox;
     void KILL();
-    __fastcall TMDIMetaMaterial(TComponent* Owner,TMetaMaterial *MM);
+     TMDIMetaMaterial(TComponent* Owner,TMetaMaterial *MM);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIMetaMaterial *MDIMetaMaterial;

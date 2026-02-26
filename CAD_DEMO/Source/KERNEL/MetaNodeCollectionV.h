@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MetaNodeCollectionVH
@@ -19,12 +23,12 @@ private:
     TMetaNode *CreateMetaFunction(TMetaNode *Owner,const AnsiString& NeedCT,int _ID, const AnsiString& _Name, bool IsNew=false);
     TKernelSupport* GetKernelSupport();
 public:
-    __property TKernelSupport* KernelSupport = {read = GetKernelSupport};
+    // __property TKernelSupport* KernelSupport {read=GetKernelSupport}; // [manual migration needed]
     static TQuickList TypesToEdit;
     TMDelTList<TMySupport> Supports;
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaNodeCollection();
     virtual ~TMetaNodeCollection(){};
@@ -55,9 +59,7 @@ public:
     AnsiString SelectClassIfNeed(const AnsiString& VirtualClass );
 };
 
-extern COMMONAL_API TQuickList TMetaNodeCollection::TypesToEdit;
 
-extern COMMONAL_API TClassNode* TMetaNodeCollection::StaticType;
 
 extern COMMONAL_API TMetaNodeCollection *MetaNodeCollection;
 

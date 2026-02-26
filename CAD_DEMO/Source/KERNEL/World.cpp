@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
            
 #include "World.h"
 #include "MyGL.h"
@@ -23,14 +26,13 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 TMainTree* World;
 TClassNode* TFloor::StaticType = NULL;
 TClassNode* TMainTree::StaticType = NULL;
 
 bool TMainTree::TechCheck(AnsiString& Str)
 {
-    /* TODO : отключение неправильного элемента */
+    /* TODO : Г®ГІГЄГ«ГѕГ·ГҐГ­ГЁГҐ Г­ГҐГЇГ°Г ГўГЁГ«ГјГ­Г®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  */
 //    Select->ErrElement = NULL;
     bool result = true;
     TMTList<TMyRegObject> *L = new TMTList<TMyRegObject>();
@@ -39,7 +41,7 @@ bool TMainTree::TechCheck(AnsiString& Str)
     for (int i=0;i<L->Count;i++)
         if (((TElement*)L->Items[i])->TechCheck(Str)==false)
         {
-            /* TODO : включение неправильного элемента */
+            /* TODO : ГўГЄГ«ГѕГ·ГҐГ­ГЁГҐ Г­ГҐГЇГ°Г ГўГЁГ«ГјГ­Г®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  */
             //Select->ErrElement = (TElement*)L->Items[i];
             //Select->CreateErrView();
             result = false;
@@ -118,7 +120,7 @@ void TMainTree::CompleteFromBufferUndo(TMemoryStream *MS)
 {
     load = true;
 
-    //удаление помещений
+    //ГіГ¤Г Г«ГҐГ­ГЁГҐ ГЇГ®Г¬ГҐГ№ГҐГ­ГЁГ©
     SelectByCT(NULL,TElement::StaticType,&ELS,true,true);
     for (int i=0;i<ELS.Count;i++)
         if (((TElement*)ELS.Items[i])->MyMeta->IsAuto)
@@ -211,8 +213,8 @@ bool TMainTree::CheckFields()
     return (LLS.CheckFields() && ELS.CheckFields());
 }
 
-//recurrent check   агрегатная иерархия tmyobject ()
-// check data иерархия в дереве
+//recurrent check   Г ГЈГ°ГҐГЈГ ГІГ­Г Гї ГЁГҐГ°Г Г°ГµГЁГї tmyobject ()
+// check data ГЁГҐГ°Г Г°ГµГЁГї Гў Г¤ГҐГ°ГҐГўГҐ
 bool TMainTree::Init()
 {
     for (int i=0;i<LLS.Count;i++)
@@ -480,7 +482,7 @@ TMainTree::TMainTree()
 TMainTree::~TMainTree()
 {
 //    AUI.UnRegister(this);    
-//  /* TODO : отключение действия обратить внимание */  Select->Terminate();
+//  /* TODO : Г®ГІГЄГ«ГѕГ·ГҐГ­ГЁГҐ Г¤ГҐГ©Г±ГІГўГЁГї Г®ГЎГ°Г ГІГЁГІГј ГўГ­ГЁГ¬Г Г­ГЁГҐ */  Select->Terminate();
     Clear();
     delete FloorInfo;
     delete SERVICE;
@@ -589,8 +591,8 @@ void TMainTree::RecurrentSelectByElementLinks(TUnit *Node,TMetaElement *ME_B,TMT
     if ( Node->Is(TElement::StaticType) )
     {
         TMetaElement *ME_A = ((TElement *)Node)->MyMeta;
-        //выгружаются в список все объекты
-        //даже с необязательными связками
+        //ГўГ»ГЈГ°ГіГ¦Г ГѕГІГ±Гї Гў Г±ГЇГЁГ±Г®ГЄ ГўГ±ГҐ Г®ГЎГєГҐГЄГІГ»
+        //Г¤Г Г¦ГҐ Г± Г­ГҐГ®ГЎГїГ§Г ГІГҐГ«ГјГ­Г»Г¬ГЁ Г±ГўГїГ§ГЄГ Г¬ГЁ
         for (int i=0;i<ME_A->ChildList->Count;i++)
             if ( ((TDynamicLink *)(ME_A->ChildList->Items[i]))->Exists(ME_B))
             {
@@ -741,7 +743,7 @@ bool TMainTree::AddFloor(int index)
     if (!FloorInfo->OK_Pressed)
         return false;
 
-    //если добавляется этаж в середину то поднять этажи
+    //ГҐГ±Г«ГЁ Г¤Г®ГЎГ ГўГ«ГїГҐГІГ±Гї ГЅГІГ Г¦ Гў Г±ГҐГ°ГҐГ¤ГЁГ­Гі ГІГ® ГЇГ®Г¤Г­ГїГІГј ГЅГІГ Г¦ГЁ
     for (int i=index;i<Head->ChildList->Count;i++)
     {
         Floors[i].First.ADR->UserChangePosition(TIntVec(0,0,FloorInfo->Height),ZEROINTVEC);

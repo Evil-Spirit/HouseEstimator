@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "Poligon.h"
 #include "MyGL.h"
@@ -14,7 +17,6 @@
 #include "G2DObjectV.h"
 #include "G2DPointCutV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 TMTList<TG2DPoint> ____PointList;
 TClassNode* TAngleLink::StaticType = NULL;
 
@@ -130,7 +132,7 @@ TG2DPoint* TAngleLink::GetYEnd()
 bool TAngleLink::IsBestToUpdate(TG2DPoint* GPoint)
 {
     if (!GPoint)
-        throw EMyException("<TAngleLink::IsBestToUpdate>: Ошибка");
+        throw EMyException("<TAngleLink::IsBestToUpdate>: ГЋГёГЁГЎГЄГ ");
     return GPoint != Client0->CanConnect(*Client1);
 };
 
@@ -185,7 +187,7 @@ bool TAngleLink::UpdatePointRule(TG2DPoint* GPoint)
 
     if ( Client && (!Client0->ConsistsPoint(Client) && !Client1->ConsistsPoint(Client)) )
     {
-        AnsiString Str = "<TAngleLink::UpdateClient>: точка не принадлежит связке";
+        AnsiString Str = "<TAngleLink::UpdateClient>: ГІГ®Г·ГЄГ  Г­ГҐ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г±ГўГїГ§ГЄГҐ";
         throw EMyException(Str);
     }
 
@@ -254,7 +256,7 @@ bool TAngleLink::CanUpdateList(TMTList<TG2DPoint>& PointList)
 
     if ( Client && (!Client0->ConsistsPoint(Client) && !Client1->ConsistsPoint(Client)) )
     {
-        AnsiString Str = "<TAngleLink::UpdateClient>: точка не принадлежит связке";
+        AnsiString Str = "<TAngleLink::UpdateClient>: ГІГ®Г·ГЄГ  Г­ГҐ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г±ГўГїГ§ГЄГҐ";
         throw EMyException(Str);
     }
 
@@ -300,7 +302,7 @@ bool TAngleLink::CanUpdateList(TMTList<TG2DPoint>& PointList)
     }
     else
     {
-        //под вопросом
+        //ГЇГ®Г¤ ГўГ®ГЇГ°Г®Г±Г®Г¬
         FlowInfo.UnResolved.Remove(this);
         Owner->ChangePointCoordinateRecursive(YStart,NewYStart,FlowInfo);
         Owner->ChangePointCoordinateRecursive(YEnd,NewYEnd,FlowInfo);

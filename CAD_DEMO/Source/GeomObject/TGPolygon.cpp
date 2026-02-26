@@ -1,16 +1,18 @@
-#include <vcl.h>                           
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"  
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "math.h"                                    
 #include "MathV.h"
-#pragma hdrstop
 
 #include "TGObject.h"
 
 #include "MYGL.h"
 #include "Poligon.h"
-#pragma package(smart_init)
 
 TClassNode* TGPolygon::StaticType = NULL;
 
@@ -50,7 +52,7 @@ TGPolygon::TGPolygon()
 TGPolygon::TGPolygon(TMTList <TGCut> &cuts)
 {
 	if (cuts.Count<3)
-		throw EMyException ("<TGeomObject::AddPolygon> ýõôþ¸ªðªþ¢ýþ ôðýýv¿!");
+		throw EMyException ("<TGeomObject::AddPolygon> Ã½ÃµÃ´Ã¾Â¸ÂªÃ°ÂªÃ¾Â¢Ã½Ã¾ Ã´Ã°Ã½Ã½vÂ¿!");
 
 	RegisterNewClass< TGUnit, TGPolygon >(this, false, &CreateFunction);
 	RegisterField(&Tag, &aPOLYTAG, mtInt);
@@ -65,13 +67,13 @@ TGPolygon::TGPolygon(TMTList <TGCut> &cuts)
 	FNormal		= TIntVec(0,0,1);
 	for (int i=0;i<cuts.Count;i++)
 		if (AddCut(cuts.Items[i]) == grERROR)
-			ErrorMsg("<TGPolygon::TGPolygon> ýõòþ÷üþöýþ ôþñðòøª¹ þª¨õ÷þú!");
+			ErrorMsg("<TGPolygon::TGPolygon> Ã½ÃµÃ²Ã¾Ã·Ã¼Ã¾Ã¶Ã½Ã¾ Ã´Ã¾Ã±Ã°Ã²Ã¸ÂªÂ¹ Ã¾ÂªÂ¨ÃµÃ·Ã¾Ãº!");
 }
 
 void TGPolygon::Assign(TMyObject* MO)
 {
 	if (!MO->Is(TGPolygon::StaticType) )
-		throw EMyException("+°øñúð úþÿø¨þòðýø ");
+		throw EMyException("+Â°Ã¸Ã±ÃºÃ° ÃºÃ¾Ã¿Ã¸Â¨Ã¾Ã²Ã°Ã½Ã¸Â ");
 
 	TMyObject::Assign(MO);
 
@@ -113,15 +115,15 @@ int TGPolygon::AddCut(TGCut* Cut)
 {
 /*	if (Closed)
 	{
-		throw EMyException("<TGPolygon::AddCut> ôþñðòûõýøõ þª¨õ÷úð ò ÷ðüúýºªvù ÿþûøóþý");
+		throw EMyException("<TGPolygon::AddCut> Ã´Ã¾Ã±Ã°Ã²Ã»ÃµÃ½Ã¸Ãµ Ã¾ÂªÂ¨ÃµÃ·ÃºÃ° Ã² Ã·Ã°Ã¼ÃºÃ½ÂºÂªvÃ¹ Ã¿Ã¾Ã»Ã¸Ã³Ã¾Ã½");
 		return grERROR;
 	}	
 */
 	if (!Cut)
-		throw EMyException("<TGPolygon::AddCut> ýõòþ÷üþöýþ ôþñðòøª¹ NULL");
+		throw EMyException("<TGPolygon::AddCut> Ã½ÃµÃ²Ã¾Ã·Ã¼Ã¾Ã¶Ã½Ã¾ Ã´Ã¾Ã±Ã°Ã²Ã¸ÂªÂ¹ NULL");
 		
 	if (FCuts.IndexOf(Cut) != -1)
-		throw EMyException("<TGPolygon::AddCut> ýõòþ÷üþöýþ ôþñðòøª¹ ¸º•õ¸ªòº¦•øù þª¨õ÷þú!");
+		throw EMyException("<TGPolygon::AddCut> Ã½ÃµÃ²Ã¾Ã·Ã¼Ã¾Ã¶Ã½Ã¾ Ã´Ã¾Ã±Ã°Ã²Ã¸ÂªÂ¹ Â¸ÂºÂ•ÃµÂ¸ÂªÃ²ÂºÂ¦Â•Ã¸Ã¹ Ã¾ÂªÂ¨ÃµÃ·Ã¾Ãº!");
 
 //		return grERROR;
 
@@ -138,7 +140,7 @@ int TGPolygon::AddCut(TGCut* Cut)
 	bool canConnectToBegin	= ( Cut->CanConnect(FCuts[0]) != NULL)/* && !Cut->Equal(FCuts[0])*/;
 	bool canConnectToEnd	= ( Cut->CanConnect(*FCuts.Last())!= NULL)/* && !Cut->Equal(*FCuts.Last())*/;
 
-	// Týð¢ðûð ýºöýþ ¦¨þòõ¨øª¹ úþýõ¡ - ¢ªþñv ýõ ÿþûº¢øª¹ øýòõ¨¸øø þª¨õ÷úþò.
+	// TÃ½Ã°Â¢Ã°Ã»Ã° Ã½ÂºÃ¶Ã½Ã¾ Â¦Â¨Ã¾Ã²ÃµÂ¨Ã¸ÂªÂ¹ ÃºÃ¾Ã½ÃµÂ¡ - Â¢ÂªÃ¾Ã±v Ã½Ãµ Ã¿Ã¾Ã»ÂºÂ¢Ã¸ÂªÂ¹ Ã¸Ã½Ã²ÃµÂ¨Â¸Ã¸Ã¸ Ã¾ÂªÂ¨ÃµÃ·ÃºÃ¾Ã².
 	if ( canConnectToEnd)
 	{
 		FCuts.Add(Cut);
@@ -199,7 +201,7 @@ bool TGPolygon::FindBasisPoints(TMTList<TGPoint> &points)
 			MBTi b = (p2->Point-p0->Point).Length();
 			MBTi c = (p2->Point-p1->Point).Length();
 //			if (a<PEPS || b<PEPS)
-//				throw EMyException("<TGPolygon::FindBasisPoints> - ÿûþ¿þù ÿþûøóþý!");
+//				throw EMyException("<TGPolygon::FindBasisPoints> - Ã¿Ã»Ã¾Â¿Ã¾Ã¹ Ã¿Ã¾Ã»Ã¸Ã³Ã¾Ã½!");
 			MBTi k = fabs(sqr(c)-sqr(a)-sqr(b))/sqr(a*b);
 			if (!bestP1 || !bestP2 || min_k>k)
 			{
@@ -235,7 +237,7 @@ bool TGPolygon::CalculatePlane()
 	TMTList<TGPoint> basis;
 
 /*	if (!FindBasisPoints(basis))
-		throw EMyException("<TGPolygon::CalculatePlane> =õòþ÷üþöýþ ¨ð¸¸¢øªðª¹ ýþ¨üðû¹!");
+		throw EMyException("<TGPolygon::CalculatePlane> =ÃµÃ²Ã¾Ã·Ã¼Ã¾Ã¶Ã½Ã¾ Â¨Ã°Â¸Â¸Â¢Ã¸ÂªÃ°ÂªÂ¹ Ã½Ã¾Â¨Ã¼Ã°Ã»Â¹!");
 	FNormal = VectorP(basis[2].Point - basis[0].Point,  basis[1].Point - basis[0].Point).Normalize();
 */
 	TIntVec normal;
@@ -324,7 +326,7 @@ void TGPolygon::DeleteCut(TGCut *cut)
 	if ( cut->RemovePlane(this) != -1 )
 		FCuts.Remove(cut);
 	else
-		throw EMyException("TGPolygon::RemoveCut : þª¨õ÷þú ò ÿþûøóþýõ ýõ ÷ýðõª þ ýõü.");
+		throw EMyException("TGPolygon::RemoveCut : Ã¾ÂªÂ¨ÃµÃ·Ã¾Ãº Ã² Ã¿Ã¾Ã»Ã¸Ã³Ã¾Ã½Ãµ Ã½Ãµ Ã·Ã½Ã°ÃµÂª Ã¾ Ã½ÃµÃ¼.");
 }
 
 void TGPolygon::DeleteCut(int index)
@@ -334,7 +336,7 @@ void TGPolygon::DeleteCut(int index)
 	if ( FCuts.Items[index]->RemovePlane( this ) != -1 )
 		FCuts.Delete(index);
 	else
-		throw EMyException("TGPolygon::DeleteCut : þª¨õ÷þú ò ÿþûøóþýõ ýõ ÷ýðõª þ ýõü.");
+		throw EMyException("TGPolygon::DeleteCut : Ã¾ÂªÂ¨ÃµÃ·Ã¾Ãº Ã² Ã¿Ã¾Ã»Ã¸Ã³Ã¾Ã½Ãµ Ã½Ãµ Ã·Ã½Ã°ÃµÂª Ã¾ Ã½ÃµÃ¼.");
 
 }
 
@@ -410,7 +412,7 @@ TGPolygon *TGPolygon::AddHole(TMTList<TGCut> &cuts)
 	}
 
 	if (!p->Closed)
-		throw EMyException ("<TGeomObject::AddPolygon> ôþñðòûõý ýõ÷ðüúýºªvù ÿþûøóþý-ôv¨úð!");
+		throw EMyException ("<TGeomObject::AddPolygon> Ã´Ã¾Ã±Ã°Ã²Ã»ÃµÃ½ Ã½ÃµÃ·Ã°Ã¼ÃºÃ½ÂºÂªvÃ¹ Ã¿Ã¾Ã»Ã¸Ã³Ã¾Ã½-Ã´vÂ¨ÃºÃ°!");
 
 	p->FNormal = Normal;
 //	p->CalculatePlane();
@@ -555,7 +557,7 @@ bool TGPolygon::DetectSelfHoles()
 /*	for (int k=0;k<Count;k++)
 		for (int l=k+1;l<Count;l++)
 			if (&GetPoint(k) == &GetPoint(l))
-				throw EMyException("<TGeomObject::SolidCheck> : ÿþûøóþý ¸þôõ¨öøª þôøýðúþòvõ òõ¨°øýv!");
+				throw EMyException("<TGeomObject::SolidCheck> : Ã¿Ã¾Ã»Ã¸Ã³Ã¾Ã½ Â¸Ã¾Ã´ÃµÂ¨Ã¶Ã¸Âª Ã¾Ã´Ã¸Ã½Ã°ÃºÃ¾Ã²vÃµ Ã²ÃµÂ¨Â°Ã¸Ã½v!");
 */
 
 	for (int k=0;k<Count;k++)

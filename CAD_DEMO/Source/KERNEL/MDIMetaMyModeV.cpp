@@ -1,18 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMetaMyModeV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIMetaNodeV"
 #pragma resource "*.dfm"
 TMDIMetaMyMode *MDIMetaMyMode;
 //---------------------------------------------------------------------------
-__fastcall TMDIMetaMyMode::TMDIMetaMyMode(TComponent* Owner,TMetaMyMode *MM)
+ TMDIMetaMyMode::TMDIMetaMyMode(TComponent* Owner,TMetaMyMode *MM)
   : TMDIMetaNode(Owner,MM)
 {
 }

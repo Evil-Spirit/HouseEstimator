@@ -1,20 +1,22 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MyTemplates.h"
 #include "MTL.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "TreeViewF.h"
 #include "MyDialogEditU.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 
 TObjectTreeView *TreeView = NULL;
 enum {tvForm = 0, tvParentControl = 1, tvNonParentControl = 2};
 //---------------------------------------------------------------------------
-__fastcall TObjectTreeView::TObjectTreeView(TComponent* Owner) : TForm(Owner)
+ TObjectTreeView::TObjectTreeView(TComponent* Owner) : TForm(Owner)
 {
         TreeView = this;
         Selected = new TList;
@@ -24,19 +26,19 @@ __fastcall TObjectTreeView::TObjectTreeView(TComponent* Owner) : TForm(Owner)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TObjectTreeView::deUpButtonClick(TObject *Sender)
+void  TObjectTreeView::deUpButtonClick(TObject *Sender)
 {
         //
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TObjectTreeView::deDownButtonClick(TObject *Sender)
+void  TObjectTreeView::deDownButtonClick(TObject *Sender)
 {
         //
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TObjectTreeView::deDeleteButtonClick(TObject *Sender)
+void  TObjectTreeView::deDeleteButtonClick(TObject *Sender)
 {
         if (deTreeView->Selected->AbsoluteIndex)
         {
@@ -46,7 +48,7 @@ void __fastcall TObjectTreeView::deDeleteButtonClick(TObject *Sender)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TObjectTreeView::deAddButtonClick(TObject *Sender)
+void  TObjectTreeView::deAddButtonClick(TObject *Sender)
 {
         //
 }
@@ -105,7 +107,7 @@ void TObjectTreeView::CreateTree(TVCLEditorElement *_Node)
 }
 
 //---------------------------------------------------------------------------
-void __fastcall TObjectTreeView::deTreeViewChange(TObject *Sender, TTreeNode *Node)
+void  TObjectTreeView::deTreeViewChange(TObject *Sender, TTreeNode *Node)
 {
         if (!Node->AbsoluteIndex)
                 deDeleteButton->Enabled = false;
@@ -113,7 +115,7 @@ void __fastcall TObjectTreeView::deTreeViewChange(TObject *Sender, TTreeNode *No
                 deDeleteButton->Enabled = true;
 }
 //---------------------------------------------------------------------------
-void __fastcall TObjectTreeView::deTreeViewKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+void  TObjectTreeView::deTreeViewKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
         int i;
         int Minimal = 0xFFFF;

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>Form3</class>
+  <widget class="QWidget" name="Form3">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>150</width>
+        <height>196</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Vector</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QWidget" name="EditX">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>32</y>
+          <width>121</width>
+          <height>21</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="EditY">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>72</y>
+          <width>121</width>
+          <height>21</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QWidget" name="EditZ">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>112</y>
+          <width>121</width>
+          <height>21</height>
+        </rect>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Accept">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>152</y>
+          <width>121</width>
+          <height>33</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string/>
+      </property>
+      <property name="font">
+        <font>
+          <family>MS Reference Sans Serif</family>
+          <pointsize>15</pointsize>
+        </font>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

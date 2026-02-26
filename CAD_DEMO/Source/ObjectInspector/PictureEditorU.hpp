@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 // Borland C++ Builder
 // Copyright (c) 1995, 2002 by Borland Software Corporation
 // All rights reserved
@@ -10,20 +14,12 @@
 #pragma delphiheader begin
 #pragma option push -w-
 #pragma option push -Vx
-#include <StdCtrls.hpp>	// Pascal unit
-#include <ExtCtrls.hpp>	// Pascal unit
+#include "compat/vcl_qt.h"
 #include <ExtDlgs.hpp>	// Pascal unit
-#include <Dialogs.hpp>	// Pascal unit
-#include <Forms.hpp>	// Pascal unit
-#include <Controls.hpp>	// Pascal unit
-#include <Graphics.hpp>	// Pascal unit
-#include <Classes.hpp>	// Pascal unit
 #include <Variants.hpp>	// Pascal unit
-#include <SysUtils.hpp>	// Pascal unit
 #include <Messages.hpp>	// Pascal unit
 #include <Windows.hpp>	// Pascal unit
 #include <SysInit.hpp>	// Pascal unit
-#include <System.hpp>	// Pascal unit
 
 //-- user supplied -----------------------------------------------------------
 
@@ -46,33 +42,33 @@ __published:
 	Extctrls::TImage* Image;
 	Extdlgs::TOpenPictureDialog* OpenPictureDialog;
 	Extdlgs::TSavePictureDialog* SavePictureDialog;
-	void __fastcall OKClick(System::TObject* Sender);
-	void __fastcall CancelClick(System::TObject* Sender);
-	void __fastcall LoadClick(System::TObject* Sender);
-	void __fastcall SaveClick(System::TObject* Sender);
-	void __fastcall ClearClick(System::TObject* Sender);
-	void __fastcall FormCreate(System::TObject* Sender);
+	void  OKClick(System::TObject* Sender);
+	void  CancelClick(System::TObject* Sender);
+	void  LoadClick(System::TObject* Sender);
+	void  SaveClick(System::TObject* Sender);
+	void  ClearClick(System::TObject* Sender);
+	void  FormCreate(System::TObject* Sender);
 public:
 	#pragma option push -w-inl
-	/* TCustomForm.Create */ inline __fastcall virtual TPictureEditorF(Classes::TComponent* AOwner) : Forms::TForm(AOwner) { }
+	/* TCustomForm.Create */ inline  virtual TPictureEditorF(Classes::TComponent* AOwner) : Forms::TForm(AOwner) { }
 	#pragma option pop
 	#pragma option push -w-inl
-	/* TCustomForm.CreateNew */ inline __fastcall virtual TPictureEditorF(Classes::TComponent* AOwner, int Dummy) : Forms::TForm(AOwner, Dummy) { }
+	/* TCustomForm.CreateNew */ inline  virtual TPictureEditorF(Classes::TComponent* AOwner, int Dummy) : Forms::TForm(AOwner, Dummy) { }
 	#pragma option pop
 	#pragma option push -w-inl
-	/* TCustomForm.Destroy */ inline __fastcall virtual ~TPictureEditorF(void) { }
+	/* TCustomForm.Destroy */ inline  virtual ~TPictureEditorF(void) { }
 	#pragma option pop
 	
 public:
 	#pragma option push -w-inl
-	/* TWinControl.CreateParented */ inline __fastcall TPictureEditorF(HWND ParentWindow) : Forms::TForm(ParentWindow) { }
+	/* TWinControl.CreateParented */ inline  TPictureEditorF(HWND ParentWindow) : Forms::TForm(ParentWindow) { }
 	#pragma option pop
 	
 };
 
 
 //-- var, const, procedure ---------------------------------------------------
-extern PACKAGE TPictureEditorF* PictureEditorF;
+extern  TPictureEditorF* PictureEditorF;
 
 }	/* namespace Pictureeditoru */
 using namespace Pictureeditoru;

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef G2DPointCutVH
@@ -16,23 +20,21 @@ public:
     TMDelTList<TDegreeRule> Rules;
 
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TG2DPoint();
     virtual ~TG2DPoint(){};
     bool RemoveLevel(TG2DLink* Link);
     bool Update();
 };
-extern COMMONAL_API TClassNode* TG2DPoint::StaticType;
 
 class COMMONAL_API TG2DCut : public TGCut {
 private:
 public:
     static TClassNode* StaticType;
     TMDelTList<TDegreeRule> Rules;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TG2DCut();
     virtual ~TG2DCut(){};
 };
-extern COMMONAL_API TClassNode* TG2DCut::StaticType;
 
 #endif

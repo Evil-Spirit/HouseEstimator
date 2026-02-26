@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDI3DVH
 #define MDI3DVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MyMDIChildV.h"
 #include "VisCam.hpp"
 #include "VisCanvasView.hpp"
@@ -20,7 +21,6 @@
 #include "VisPrimitiveObj.hpp"
 #include "VisShape.hpp"
 #include "VisGeom.hpp"
-#include <ExtCtrls.hpp>
 #include "MetaClasses.h"
 #include "VisTex.hpp"
 #include "CameraEngineV.h"
@@ -59,22 +59,22 @@ __published:	// IDE-managed Components
     TVisAttributes *Attr2D;
 	TPanel *Panel2;
 	TVisView *View;
-    void __fastcall ViewRender(TVisView *aView);
-    void __fastcall ViewMouseDown(TObject *Sender, TMouseButton Button,
+    void  ViewRender(TVisView *aView);
+    void  ViewMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall ViewMouseMove(TObject *Sender, TShiftState Shift,
+    void  ViewMouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
-    void __fastcall ViewMouseUp(TObject *Sender, TMouseButton Button,
+    void  ViewMouseUp(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-  void __fastcall ViewKeyDown(TObject *Sender, WORD &Key,
+  void  ViewKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
-  void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-    void __fastcall ViewMouseWheel(TObject *Sender, TShiftState Shift,
+  void  FormClose(TObject *Sender, TCloseAction &Action);
+    void  ViewMouseWheel(TObject *Sender, TShiftState Shift,
           int WheelDelta, TPoint &MousePos, bool &Handled);
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall FormActivate(TObject *Sender);
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall ViewKeyUp(TObject *Sender, WORD &Key,
+    void  FormDestroy(TObject *Sender);
+    void  FormActivate(TObject *Sender);
+    void  FormCreate(TObject *Sender);
+    void  ViewKeyUp(TObject *Sender, WORD &Key,
           TShiftState Shift);
 private:	// User declarations
 protected:
@@ -92,7 +92,7 @@ public:		// User declarations
     void TogglePolygonMode();
     TMainTree* MyMT;
   __property TMetaMyMode *Mode = {read = FMode,write = SetMode};
-  __fastcall TMDI3D(TComponent* Owner,TMainTree* MT);
+   TMDI3D(TComponent* Owner,TMainTree* MT);
     TViewSettings ViewSet2D;
     TViewSettings ViewSet3D;
     TViewSettings* CurSet;

@@ -1,27 +1,29 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIBoolVectorEditV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma link "SimpleEditV"
 #pragma resource "*.dfm"
 TMDIBOOLVECEDIT *MDIBOOLVECEDIT;
 TBoolVec BoolVec;
 //---------------------------------------------------------------------------
-__fastcall TMDIBOOLVECEDIT::TMDIBOOLVECEDIT(TComponent* Owner)
+ TMDIBOOLVECEDIT::TMDIBOOLVECEDIT(TComponent* Owner)
     : TMDISimpleEdit(Owner)
 {
 delete this;
 }
 //---------------------------------------------------------------------------
-__fastcall TMDIBOOLVECEDIT::TMDIBOOLVECEDIT(TComponent* Owner,TControl *_Parent,TMyObject *_Obj,const AnsiString& _Text,void *_Data)
+ TMDIBOOLVECEDIT::TMDIBOOLVECEDIT(TComponent* Owner,TControl *_Parent,TMyObject *_Obj,const AnsiString& _Text,void *_Data)
     : TMDISimpleEdit(Owner,_Parent,_Obj,_Text,_Data)
 {
 }
@@ -33,7 +35,7 @@ void TMDIBOOLVECEDIT::SETUP()
     A[2]=ComboBox3;
 }
 
-//Îñâåæèòü
+//ÃŽÃ±Ã¢Ã¥Ã¦Ã¨Ã²Ã¼
 void TMDIBOOLVECEDIT::Refresh()
 {
     BoolVec = *((TBoolVec *)(Obj->GetFieldAddress(L->Caption)));

@@ -1,16 +1,18 @@
-#include <vcl.h>                           
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"  
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "math.h"                                    
-#pragma hdrstop
 
 #include "GeomObjV.h"
 
 #include "Poligon.h"
 #include "MyGL.h"
 #include "Triangulation.h"
-#pragma package(smart_init)
 
 void GPolygonToPolygon(TGPolygon& GHP,TPolygon& HP)
 {
@@ -165,7 +167,7 @@ MBTi DistancePointCut(const TIntVec &P, const TIntVec &A, const TIntVec &B)
 	if ( res == clNEGATIVE)
 		return (P-B).Length();
 		
-	throw EMyException("DistancePointCut - критическая ошибка!");
+	throw EMyException("DistancePointCut - ГЄГ°ГЁГІГЁГ·ГҐГ±ГЄГ Гї Г®ГёГЁГЎГЄГ !");
 }
 
 // ....
@@ -186,18 +188,18 @@ bool DistanceLineLine(const TIntVec &A1, const TIntVec &B1, const TIntVec &A2, c
 	return true;
 }
 
-TCrossResult PlaneSegmentCross(	const	TIntVec& N,	//нормаль
-						const	TIntVec& A,	//точка на плоскости
+TCrossResult PlaneSegmentCross(	const	TIntVec& N,	//Г­Г®Г°Г¬Г Г«Гј
+						const	TIntVec& A,	//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
 
-						const	TIntVec& X,	//прямая точка 1
-						const	TIntVec& Y,	//прямая точка 2
+						const	TIntVec& X,	//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+						const	TIntVec& Y,	//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
 
-						bool	xFix,		//попадание начала
-						bool	yFix,		//попаданеие конца
+						bool	xFix,		//ГЇГ®ГЇГ Г¤Г Г­ГЁГҐ Г­Г Г·Г Г«Г 
+						bool	yFix,		//ГЇГ®ГЇГ Г¤Г Г­ГҐГЁГҐ ГЄГ®Г­Г¶Г 
 
-						TIntVec& O, 		//точка пересечения
+						TIntVec& O, 		//ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 						
-						MBTi USEEPS)    	//мера параллельности
+						MBTi USEEPS)    	//Г¬ГҐГ°Г  ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ
 {
 	if (VectorsPerpendicular(N, Y-X, USEEPS))
 		return crNONE;
@@ -229,38 +231,38 @@ TCrossResult PlaneSegmentCross(	const	TIntVec& N,	//нормаль
 		}
 
 	TIntVec V = A - X ;
-	// расстояние до плоскости по нормали
+	// Г°Г Г±Г±ГІГ®ГїГ­ГЁГҐ Г¤Г® ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ
 	MBTi d = ScalarP ( N, V );
 	
 	TIntVec W = Y - X;
 	
-	// приближение к плоскости по нормали при прохождении отрезка
+	// ГЇГ°ГЁГЎГ«ГЁГ¦ГҐГ­ГЁГҐ ГЄ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ ГЇГ°ГЁ ГЇГ°Г®ГµГ®Г¦Г¤ГҐГ­ГЁГЁ Г®ГІГ°ГҐГ§ГЄГ 
 	MBTi e = ScalarP ( N, W );
 	
 	O = X + W * (d/e);
 	
 	return crCROSS;
 }
-TCrossResult PlaneLineCross(	const TIntVec& N,	//нормаль
-								const TIntVec& A,	//точка на плоскости
-								const TIntVec& X,	//прямая точка 1
-								const TIntVec& Y,	//прямая точка 2
-								TIntVec& O, 		//точка пересечения
+TCrossResult PlaneLineCross(	const TIntVec& N,	//Г­Г®Г°Г¬Г Г«Гј
+								const TIntVec& A,	//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+								const TIntVec& X,	//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+								const TIntVec& Y,	//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
+								TIntVec& O, 		//ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
 								MBTi USEEPS)    	
 {              		
 	return crNONE;
 }
 
 
-// отлажено
-TGeoClassify PlaneCutCrossClass(	const TIntVec& A,//точка на плоскости
-						const TIntVec& N,//нормаль
-						const TIntVec& X,//прямая точка 1
-						const TIntVec& Y,//прямая точка 2
-						TIntVec& O, //точка пересечения
-						MBTi USE_PEPS)    //мера параллельности
+// Г®ГІГ«Г Г¦ГҐГ­Г®
+TGeoClassify PlaneCutCrossClass(	const TIntVec& A,//ГІГ®Г·ГЄГ  Г­Г  ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+						const TIntVec& N,//Г­Г®Г°Г¬Г Г«Гј
+						const TIntVec& X,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  1
+						const TIntVec& Y,//ГЇГ°ГїГ¬Г Гї ГІГ®Г·ГЄГ  2
+						TIntVec& O, //ГІГ®Г·ГЄГ  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
+						MBTi USE_PEPS)    //Г¬ГҐГ°Г  ГЇГ Г°Г Г«Г«ГҐГ«ГјГ­Г®Г±ГІГЁ
 {
-	// определить факт пересечения отрезка и плоскости.
+	// Г®ГЇГ°ГҐГ¤ГҐГ«ГЁГІГј ГґГ ГЄГІ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї Г®ГІГ°ГҐГ§ГЄГ  ГЁ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ.
 
 	MBTi d1 = DistancePointPlane(X, N ,A);
 	MBTi d2 = DistancePointPlane(Y, N ,A);
@@ -283,12 +285,12 @@ TGeoClassify PlaneCutCrossClass(	const TIntVec& A,//точка на плоскости
 		}
 	
 	TIntVec V = A - X ;
-	// расстояние до плоскости по нормали
+	// Г°Г Г±Г±ГІГ®ГїГ­ГЁГҐ Г¤Г® ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ
 
 	MBTi d = ScalarP ( N, V );
 	TIntVec W = Y - X;
 
-	// приближение к плоскости по нормали при прохождении отрезка
+	// ГЇГ°ГЁГЎГ«ГЁГ¦ГҐГ­ГЁГҐ ГЄ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ ГЇГ® Г­Г®Г°Г¬Г Г«ГЁ ГЇГ°ГЁ ГЇГ°Г®ГµГ®Г¦Г¤ГҐГ­ГЁГЁ Г®ГІГ°ГҐГ§ГЄГ 
 	if (!VectorsPerpendicular(N, W, USE_PEPS))
 	{
 		MBTi e = ScalarP ( N, W );
@@ -301,7 +303,7 @@ TGeoClassify PlaneCutCrossClass(	const TIntVec& A,//точка на плоскости
 
 
 
-//отлажено
+//Г®ГІГ«Г Г¦ГҐГ­Г®
 bool PlanePlaneCross(	const TIntVec &N1, const TIntVec &O1,
 						const TIntVec &N2, const TIntVec &O2,
 						TIntVec &NL, TIntVec &OL, MBTi USEEPS)
@@ -331,7 +333,7 @@ TIntVec VectorP2d(const TIntVec &src);
 int Classify_(const TIntVec& P, const TIntVec& A, const TIntVec& B, MBTi EPS);
 
 
-// ОК
+// ГЋГЉ
 int SegmentSegmentCross2d(
 	const TIntVec &A1,
 	const TIntVec &B1,
@@ -505,7 +507,7 @@ int ClassifyLine(const TIntVec& P, const TIntVec& A, const TIntVec& B, MBTi EPS)
 }
 
 
-// ОК
+// ГЋГЉ
 int EdgeType(const TIntVec& A, const TIntVec& V0,const TIntVec& V1,MBTi USEEPS)
 {
 

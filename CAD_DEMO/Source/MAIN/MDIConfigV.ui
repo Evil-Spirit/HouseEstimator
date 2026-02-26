@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIConfig</class>
+  <widget class="QWidget" name="MDIConfig">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>747</width>
+        <height>473</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIConfig</string>
+    </property>
+    <widget class="QTabWidget" name="PageControl1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>739</width>
+          <height>446</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+      <widget class="QWidget" name="tsTechnology">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Technology</string>
+        </property>
+        <widget class="QTreeWidget" name="tvTechnology">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>25</y>
+              <width>731</width>
+              <height>395</height>
+            </rect>
+          </property>
+          <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+        </widget>
+        <widget class="QToolBar" name="ToolBar1">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>731</width>
+              <height>25</height>
+            </rect>
+          </property>
+          <property name="windowTitle">
+            <string>ToolBar1</string>
+          </property>
+          <widget class="QWidget" name="ToolButton1">
+            <property name="geometry">
+              <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+          </widget>
+          <widget class="QWidget" name="ToolButton4">
+            <property name="geometry">
+              <rect>
+                <x>23</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+          </widget>
+          <widget class="QWidget" name="ToolButton7">
+            <property name="geometry">
+              <rect>
+                <x>46</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+          </widget>
+          <widget class="QWidget" name="ToolButton2">
+            <property name="geometry">
+              <rect>
+                <x>69</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+          </widget>
+          <widget class="QWidget" name="ToolButton3">
+            <property name="geometry">
+              <rect>
+                <x>92</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+          </widget>
+          <widget class="QWidget" name="ToolButton5">
+            <property name="geometry">
+              <rect>
+                <x>115</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+          </widget>
+          <widget class="QWidget" name="ToolButton6">
+            <property name="geometry">
+              <rect>
+                <x>138</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+          </widget>
+          <widget class="QWidget" name="ToolButton8">
+            <property name="geometry">
+              <rect>
+                <x>161</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+          </widget>
+          <widget class="QWidget" name="ToolButton9">
+            <property name="geometry">
+              <rect>
+                <x>184</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+          </widget>
+        </widget>
+      </widget>
+      <widget class="QWidget" name="tsOptions">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Options</string>
+        </property>
+        <widget class="QTabWidget" name="pcOptions">
+          <property name="geometry">
+            <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>731</width>
+              <height>420</height>
+            </rect>
+          </property>
+          <!-- vcl-align: alClient → arrange in a Qt layout manager -->
+          <widget class="QWidget" name="tsInterface">
+            <property name="geometry">
+              <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>Panel of objects</string>
+            </property>
+          </widget>
+          <widget class="QWidget" name="tsMainVariable">
+            <property name="geometry">
+              <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1</width>
+                <height>1</height>
+              </rect>
+            </property>
+            <property name="windowTitle">
+              <string>Basic variables</string>
+            </property>
+          </widget>
+        </widget>
+      </widget>
+    </widget>
+    <widget class="QMenu" name="PopupMenu1">
+      <property name="geometry">
+        <rect>
+          <x>696</x>
+          <y>376</y>
+          <width>1</width>
+          <height>1</height>
+        </rect>
+      </property>
+      <widget class="QAction" name="N1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QAction" name="N4">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QAction" name="N5">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QAction" name="N2">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QAction" name="N3">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QAction" name="UpAction1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+      <widget class="QAction" name="DownAction1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

@@ -1,21 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef TreeViewFH
 #define TreeViewFH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ToolWin.hpp>
-#include <ImgList.hpp>
-#include <Menus.hpp>
-#include <Buttons.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class TVCLEditorElement;
 class TMyDialogEdit;
 
-class PACKAGE TObjectTreeView : public TForm
+class  TObjectTreeView : public TForm
 {
       __published:
         TToolBar *deToolBar;
@@ -26,12 +22,12 @@ class PACKAGE TObjectTreeView : public TForm
         TToolButton *deSeparator;
         TSpeedButton *deUpButton;
         TSpeedButton *deDownButton;
-        void __fastcall deUpButtonClick(TObject *Sender);
-        void __fastcall deDownButtonClick(TObject *Sender);
-        void __fastcall deDeleteButtonClick(TObject *Sender);
-        void __fastcall deAddButtonClick(TObject *Sender);
-        void __fastcall deTreeViewChange(TObject *Sender, TTreeNode *Node);
-        void __fastcall deTreeViewKeyDown(TObject *Sender, WORD &Key,
+        void  deUpButtonClick(TObject *Sender);
+        void  deDownButtonClick(TObject *Sender);
+        void  deDeleteButtonClick(TObject *Sender);
+        void  deAddButtonClick(TObject *Sender);
+        void  deTreeViewChange(TObject *Sender, TTreeNode *Node);
+        void  deTreeViewKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
 
         private:
@@ -48,14 +44,14 @@ class PACKAGE TObjectTreeView : public TForm
 
         public:
         TMyDialogEdit* DialogEdit;
-      __fastcall TObjectTreeView(TComponent* Owner);
+       TObjectTreeView(TComponent* Owner);
       __property TVCLEditorElement* Tree = {write = CreateTree};
         void DeleteObject(TComponent *_Object);
         void SelectObject(TComponent *_Object, bool Add = false);
 };
 
 //---------------------------------------------------------------------------
-extern PACKAGE TObjectTreeView *TreeView;
+extern  TObjectTreeView *TreeView;
 //---------------------------------------------------------------------------
 #endif
 //---------------------------------------------------------------------------

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MDIBMPSetEdit</class>
+  <widget class="QWidget" name="MDIBMPSetEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>280</width>
+        <height>196</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MDIBMPSetEdit</string>
+    </property>
+    <widget class="QFrame" name="ColorBox">
+      <property name="geometry">
+        <rect>
+          <x>240</x>
+          <y>166</y>
+          <width>33</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+      </property>
+    </widget>
+    <widget class="QLabel" name="Label1">
+      <property name="geometry">
+        <rect>
+          <x>223</x>
+          <y>140</y>
+          <width>7</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Y</string>
+      </property>
+      <property name="text">
+        <string>Y</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="lX">
+      <property name="geometry">
+        <rect>
+          <x>223</x>
+          <y>112</y>
+          <width>7</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>X</string>
+      </property>
+      <property name="text">
+        <string>X</string>
+      </property>
+    </widget>
+    <widget class="QCheckBox" name="cbTrans">
+      <property name="geometry">
+        <rect>
+          <x>160</x>
+          <y>168</y>
+          <width>74</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Background</string>
+      </property>
+      <property name="text">
+        <string>Background</string>
+      </property>
+    </widget>
+    <widget class="QLineEdit" name="eX">
+      <property name="geometry">
+        <rect>
+          <x>240</x>
+          <y>108</y>
+          <width>33</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>0</string>
+      </property>
+    </widget>
+    <widget class="QLineEdit" name="eY">
+      <property name="geometry">
+        <rect>
+          <x>240</x>
+          <y>136</y>
+          <width>33</width>
+          <height>21</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>0</string>
+      </property>
+    </widget>
+    <widget class="QTreeWidget" name="LV">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>156</width>
+          <height>196</height>
+        </rect>
+      </property>
+      <!-- vcl-align: alLeft → arrange in a Qt layout manager -->
+    </widget>
+    <widget class="QToolBar" name="ToolBar1">
+      <property name="geometry">
+        <rect>
+          <x>162</x>
+          <y>16</y>
+          <width>79</width>
+          <height>88</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>ToolBar1</string>
+      </property>
+      <widget class="QWidget" name="tbtAdd">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Add</string>
+        </property>
+      </widget>
+      <widget class="QWidget" name="tbtDel">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>22</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Delete</string>
+        </property>
+      </widget>
+      <widget class="QWidget" name="tbtUp">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>44</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Shift Ups</string>
+        </property>
+      </widget>
+      <widget class="QWidget" name="tbtDown">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>66</y>
+            <width>1</width>
+            <height>1</height>
+          </rect>
+        </property>
+        <property name="windowTitle">
+          <string>Shift Down</string>
+        </property>
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

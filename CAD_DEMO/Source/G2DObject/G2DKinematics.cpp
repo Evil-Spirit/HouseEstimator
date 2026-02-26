@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "math.h"
 #include "G2DPointCutV.h"
@@ -17,7 +20,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 bool IsLinkCompleted(TMTList<TG2DPoint>& Skeleton,TG2DPoint* Point,bool UseFixed,TMTList<TG2DLink>& Links)
 {
     bool Result = false;
@@ -215,7 +217,7 @@ bool TFlowInfo::FindAngleEdgesAndLinkedGroupsRec(TG2DCut* NotCut,TG2DCut* Cut,in
             Was_AngleLink = NotCut || (!NotCut && LinkCount>=2);
             if ( ElseCut->Flags.Mark == gfTRUE )
             {
-                ErrorMsg("<FindAngleTreeRec>: Эскиз переопределен.");
+                ErrorMsg("<FindAngleTreeRec>: ГќГ±ГЄГЁГ§ ГЇГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­.");
                 return false;
             }
             bool res = FindAngleEdgesAndLinkedGroupsRec(Cut,ElseCut,index);
@@ -244,7 +246,7 @@ bool TFlowInfo::FindAngleEdges()
                 ElseCuts.Delete(i--);
     }
 
-	//объединение связных отрезков
+	//Г®ГЎГєГҐГ¤ГЁГ­ГҐГ­ГЁГҐ Г±ГўГїГ§Г­Г»Гµ Г®ГІГ°ГҐГ§ГЄГ®Гў
     for (int i=0; i<CutGroups.Count; i++)
 		for (int k=0; k<Skeletons.Count; k++)
         {
@@ -276,10 +278,10 @@ bool TFlowInfo::FindAngleEdges()
             }
         }
 
-	//удаление связных отрезков полностью находящихся внутри скелетона, пока не надо
+	//ГіГ¤Г Г«ГҐГ­ГЁГҐ Г±ГўГїГ§Г­Г»Гµ Г®ГІГ°ГҐГ§ГЄГ®Гў ГЇГ®Г«Г­Г®Г±ГІГјГѕ Г­Г ГµГ®Г¤ГїГ№ГЁГµГ±Гї ГўГ­ГіГІГ°ГЁ Г±ГЄГҐГ«ГҐГІГ®Г­Г , ГЇГ®ГЄГ  Г­ГҐ Г­Г Г¤Г®
     
 
-	//нахождение ножек скелетона
+	//Г­Г ГµГ®Г¦Г¤ГҐГ­ГЁГҐ Г­Г®Г¦ГҐГЄ Г±ГЄГҐГ«ГҐГІГ®Г­Г 
     for (int i1=0;i1<CutGroups.Count;i1++)
 	    for (int s1=0;s1<CutGroups[i1].Skeletons.Count;s1++)
         {
@@ -292,7 +294,7 @@ bool TFlowInfo::FindAngleEdges()
             {
             	int SkeletonIndex = Skeletons.IndexOf( &CutGroups[i1].Skeletons[s1] );
                 if ( Skeletons[ SkeletonIndex ].Legs.Count>0 )
-                	throw EMyException("<TFlowInfo::FindAngleEdges>: ошибка.");
+                	throw EMyException("<TFlowInfo::FindAngleEdges>: Г®ГёГЁГЎГЄГ .");
                 Skeletons[ SkeletonIndex ].Legs.Assign( &Legs );
             }
         }
@@ -386,9 +388,9 @@ bool TSkeleton::CheckLimacon()
 	if (LimaconOK)
     	return true;
 	if (Legs.Count==0)
-    	return true;//нет ножек
+    	return true;//Г­ГҐГІ Г­Г®Г¦ГҐГЄ
 //    if ( IndexOfCut( &Legs[0] )==-1 )
-//    	return true;//нет зафиксированных по углу ножек
+//    	return true;//Г­ГҐГІ Г§Г ГґГЁГЄГ±ГЁГ°Г®ГўГ Г­Г­Г»Гµ ГЇГ® ГіГЈГ«Гі Г­Г®Г¦ГҐГЄ
 
 	
 	//-------------------------------------------------------
@@ -415,18 +417,18 @@ bool TSkeleton::CheckLimacon()
         }
 
     if ( SkeletonLegPoints.Count<2 )
-    	return true;//нет ножек с зафиксированными точками
+    	return true;//Г­ГҐГІ Г­Г®Г¦ГҐГЄ Г± Г§Г ГґГЁГЄГ±ГЁГ°Г®ГўГ Г­Г­Г»Г¬ГЁ ГІГ®Г·ГЄГ Г¬ГЁ
 	//-------------------------------------------------------
     if ( FCheckedRules.Count > 1 )
     {
-//    	throw EMyException("<TSkeleton::CheckLimacon>: переопределение.");
+//    	throw EMyException("<TSkeleton::CheckLimacon>: ГЇГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ.");
         return true;
     }
 	//-------------------------------------------------------
     LimaconOK = true;
 
     if ( SkeletonLegPoints.Count<2 )
-    	throw EMyException("<TSkeleton::CheckLimacon>: ошибка.");
+    	throw EMyException("<TSkeleton::CheckLimacon>: Г®ГёГЁГЎГЄГ .");
 
 
 	int LimaconCount = 0;        
@@ -469,7 +471,7 @@ bool TSkeleton::CheckLimacon()
 
     }
     if ( LimaconCount<2 )
-    	throw EMyException("<TSkeleton::CheckLimacon>: ошибка.");
+    	throw EMyException("<TSkeleton::CheckLimacon>: Г®ГёГЁГЎГЄГ .");
 
     for (int i=0;i<ChangedPoints.Count;i++)
     	if (!FlowInfo->RegisterPointFreedomDegree( ChangedPoints.Items[i],AddedRules.Items[i] ) )
@@ -482,15 +484,15 @@ bool TSkeleton::CheckLimacon()
 bool TSkeleton::Check()
 {
     if ( FCheckedRules.Count > 3 )
-	  	throw EMyException("<TSkeleton::Check>: переопределен.");
+	  	throw EMyException("<TSkeleton::Check>: ГЇГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­.");
 
     if ( FCheckedRules.Count == 3 )
     {
     	if ( FCheckedPoints.Count == 1 )
         {
-        	//ситуация когда зафиксирован отрезок
-            //но ни с чем не связан
-            throw EMyException("<TSkeleton::Check>: Ошибка.");
+        	//Г±ГЁГІГіГ Г¶ГЁГї ГЄГ®ГЈГ¤Г  Г§Г ГґГЁГЄГ±ГЁГ°Г®ГўГ Г­ Г®ГІГ°ГҐГ§Г®ГЄ
+            //Г­Г® Г­ГЁ Г± Г·ГҐГ¬ Г­ГҐ Г±ГўГїГ§Г Г­
+            throw EMyException("<TSkeleton::Check>: ГЋГёГЁГЎГЄГ .");
         }
         FixByAngle(FCheckedPoints.Items[0],FCheckedPoints.Items[1],FlowInfo->InfluenceSequence);
     }
@@ -526,7 +528,7 @@ bool TSkeleton::RegisterFreedomDegree(TG2DPoint* Point,TDegreeRule* Rule)
 bool TFlowInfo::RegisterPointFreedomDegree(TG2DPoint* GPoint,TDegreeRule* Rule)
 {
 	if ( GPoint->Rules.Count > 2 )
-    	throw EMyException("<TFlowInfo::RegisterPointFreedomDegree>: Ошибка");
+    	throw EMyException("<TFlowInfo::RegisterPointFreedomDegree>: ГЋГёГЁГЎГЄГ ");
     //-----------------------------------------------------------------------
     GPoint->Rules.Add(Rule);
     
@@ -535,8 +537,8 @@ bool TFlowInfo::RegisterPointFreedomDegree(TG2DPoint* GPoint,TDegreeRule* Rule)
         InfluenceSequence.Add(GPoint);
     }
 
-    //повторного наложения ограничений не будет т.к. в UpdateSkeletonAndSequenceIfNeed
-    //проверяется
+    //ГЇГ®ГўГІГ®Г°Г­Г®ГЈГ® Г­Г Г«Г®Г¦ГҐГ­ГЁГї Г®ГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГ© Г­ГҐ ГЎГіГ¤ГҐГІ ГІ.ГЄ. Гў UpdateSkeletonAndSequenceIfNeed
+    //ГЇГ°Г®ГўГҐГ°ГїГҐГІГ±Гї
     for (int i=0;i<Skeletons.Count;i++)
         if ( Skeletons[i].Pnts.IndexOf(GPoint) != -1 )
             if ( !Skeletons[i].RegisterFreedomDegree(GPoint,Rule) )
@@ -615,11 +617,11 @@ bool TFlowInfo::IsRealized(TG2DCut* Cut)
 bool TFlowInfo::Ensure_Not_Skeleton_Links(TG2DPoint* GPoint)
 {
 	if (GPoint->Rules.Count<2)
-    	throw EMyException("<TFlowInfo::Ensure_Not_Skeleton_Links>: Ошибка.");
+    	throw EMyException("<TFlowInfo::Ensure_Not_Skeleton_Links>: ГЋГёГЁГЎГЄГ .");
 
 	for (int i=0;i<GPoint->CutsCount;i++)
     	if ( ((TG2DPoint*)GPoint->GetCut(i).GetAnotherPoint( GPoint ))->Rules.Count == 2 )
-        	//отрезок надо запушить
+        	//Г®ГІГ°ГҐГ§Г®ГЄ Г­Г Г¤Г® Г§Г ГЇГіГёГЁГІГј
             ProcessAddCut( (TG2DCut*)&(GPoint->GetCut(i)) );
 
     bool IsFindedLink=true;
@@ -653,7 +655,7 @@ bool TFlowInfo::Ensure_Not_Skeleton_Links(TG2DPoint* GPoint)
         {
             if ( UpdatePoints[i].Rules.Count + UpdatePointLinks[i].Count > 2 )
             {
-                ErrorMsg("<TFlowInfo::Ensure_Not_Skeleton_Links>: Эскиз переопределен.");
+                ErrorMsg("<TFlowInfo::Ensure_Not_Skeleton_Links>: ГќГ±ГЄГЁГ§ ГЇГҐГ°ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­.");
                 return false;
             }
             while (UpdatePointLinks[i].Count)
@@ -720,15 +722,15 @@ bool TFlowInfo::CreateInfluenceSequence(TG2DPoint* MainPoint)
                     TotalPoints.Add(&FreePoints[j]);
         }
         TG2DPoint* BestPoint = NULL;
-        //все точки плохие
-        //если берем одну из плохих точек внутри скелетона,
-        //то лучше уже с rules
+        //ГўГ±ГҐ ГІГ®Г·ГЄГЁ ГЇГ«Г®ГµГЁГҐ
+        //ГҐГ±Г«ГЁ ГЎГҐГ°ГҐГ¬ Г®Г¤Г­Гі ГЁГ§ ГЇГ«Г®ГµГЁГµ ГІГ®Г·ГҐГЄ ГўГ­ГіГІГ°ГЁ Г±ГЄГҐГ«ГҐГІГ®Г­Г ,
+        //ГІГ® Г«ГіГ·ГёГҐ ГіГ¦ГҐ Г± rules
         for (int k=0;k<TotalPoints.Count && !BestPoint;k++)
             if ( !CheckPointOnEdgeCuts (&TotalPoints[k],FlowInfo) )
                 BestPoint = &TotalPoints[k];
         if (!BestPoint)
         {
-            //ищем скелетон
+            //ГЁГ№ГҐГ¬ Г±ГЄГҐГ«ГҐГІГ®Г­
             for (int k=0;k<TotalPoints.Count && !BestPoint;k++)
                 if ( !BestPoint || BestPoint->Rules.Count<TotalPoints[k].Rules.Count )
                     BestPoint = &TotalPoints[k];
@@ -736,7 +738,7 @@ bool TFlowInfo::CreateInfluenceSequence(TG2DPoint* MainPoint)
         Result = Result && ProcessAddPointToSequence( BestPoint ,FlowInfo);
     }        
     //-------------------Apply else-free points in Skeletons--------------------
-    //фиксация скелетонов
+    //ГґГЁГЄГ±Г Г¶ГЁГї Г±ГЄГҐГ«ГҐГІГ®Г­Г®Гў
     while ( !Is_Skeletons_Fixed(FlowInfo) )
     {
         for (int i=0;i<FlowInfo.MSPS.Count;i++)
@@ -771,7 +773,7 @@ bool TFlowInfo::CreateInfluence(TG2DPoint* Point)
 {
     bool Result = true;
     //---------------------------------
-    FindSkeletons();//сначала скелетоны а потом сервис
+    FindSkeletons();//Г±Г­Г Г·Г Г«Г  Г±ГЄГҐГ«ГҐГІГ®Г­Г» Г  ГЇГ®ГІГ®Г¬ Г±ГҐГ°ГўГЁГ±
     //-------Apply-Fixed---------------
     //---------------------------------------------------
     //Find Fixed Cuts

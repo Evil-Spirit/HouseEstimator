@@ -1,16 +1,17 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
-#include <Math.hpp>
 #include "CellGrid.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
-__fastcall TCellMatrix::TCellMatrix(Classes::TComponent* AOwner, TCellGrid* _CellGrid)
+ TCellMatrix::TCellMatrix(Classes::TComponent* AOwner, TCellGrid* _CellGrid)
     :TMyDrawGrid(AOwner)
 {
     FData =NULL;
@@ -24,7 +25,7 @@ __fastcall TCellMatrix::TCellMatrix(Classes::TComponent* AOwner, TCellGrid* _Cel
     CellGrid->NullRect(RectCopy);
 }
 
-inline __fastcall TCellMatrix::~TCellMatrix(void)
+inline  TCellMatrix::~TCellMatrix(void)
 {
     delete gCellFlag;
     gCellFlag =NULL;
@@ -33,7 +34,7 @@ inline __fastcall TCellMatrix::~TCellMatrix(void)
 }
 
 
-void __fastcall TCellMatrix::ClearAll()
+void  TCellMatrix::ClearAll()
 {
     MatrixForAllTest();
     TSparseList* SL = ((TSparseList*)FData);
@@ -54,14 +55,14 @@ void TCellMatrix::Initialize()
         FData = new TSparseList( (RowCount > 256) ? SPALarge : SPASmall );
 }
 
-void* __fastcall TCellMatrix::EnsureDataRow(int aRow)
+void*  TCellMatrix::EnsureDataRow(int aRow)
 {
     if ( !((TSparseList*)FData)->Items[aRow] )
         ((TSparseList*)FData)->Items[aRow] = new TCellList( (RowCount > 256) ? SPALarge : SPASmall ) ;
     return ((TSparseList*)FData)->Items[aRow];
 }
 
-int __fastcall TCellMatrix::ProcessMx(int Col, int Row, void * TheItem)
+int  TCellMatrix::ProcessMx(int Col, int Row, void * TheItem)
 {
     TCellFlag* Cell =(TCellFlag*)TheItem;
     if (Cell !=NULL)
@@ -70,22 +71,22 @@ int __fastcall TCellMatrix::ProcessMx(int Col, int Row, void * TheItem)
     return 0;
 }
 
-void  __fastcall TCellMatrix::MatrixForAllTest()
+void   TCellMatrix::MatrixForAllTest()
 {
     FForAll(TRect(0,0,ColCount,RowCount),ProcessMx);
 }
 
-void __fastcall TCellMatrix::FForAll(TRect& rect, TMyFunc Func)
+void  TCellMatrix::FForAll(TRect& rect, TMyFunc Func)
 {
     ((TSparseList*)FData)->SForAll(rect,Func);
 }
 
-void __fastcall TCellMatrix::SetCell(int aCol, int aRow, TCellFlag* data)
+void  TCellMatrix::SetCell(int aCol, int aRow, TCellFlag* data)
 {
     ((TSparseList*)EnsureDataRow(aRow))->Items[aCol] = data;
 }
 
-void __fastcall TCellMatrix::NewCell(int Col, int Row, TCellFlag* data)
+void  TCellMatrix::NewCell(int Col, int Row, TCellFlag* data)
 {
     SetCell(Col, Row, data);
     if (EndCell.X <Col)
@@ -94,12 +95,12 @@ void __fastcall TCellMatrix::NewCell(int Col, int Row, TCellFlag* data)
         EndCell.Y =Row;
 }
 
-void __fastcall TCellMatrix::NewCell(int Col, int Row)
+void  TCellMatrix::NewCell(int Col, int Row)
 {
     NewCell(Col, Row, new TCellFlag);
 }
 
-void __fastcall TCellMatrix::DelCell(int Col, int Row)
+void  TCellMatrix::DelCell(int Col, int Row)
 {
     if (GetCellSimple(Col,Row) !=NULL)
     {
@@ -114,7 +115,7 @@ void __fastcall TCellMatrix::DelCell(int Col, int Row)
     }
 }
 
-TCellFlag* __fastcall TCellMatrix::GetCell(int Col, int Row)
+TCellFlag*  TCellMatrix::GetCell(int Col, int Row)
 {
     TCellFlag* Cell =GetCellSimple(Col, Row);
     if (Cell != NULL && Cell->UnionRect != NULL)
@@ -122,7 +123,7 @@ TCellFlag* __fastcall TCellMatrix::GetCell(int Col, int Row)
     return Cell;
 }
 
-TCellFlag* __fastcall TCellMatrix::GetCellSimple(int Col, int Row)
+TCellFlag*  TCellMatrix::GetCellSimple(int Col, int Row)
 {
     if ( !((TSparseList*)FData)->Items[Row] )
         return NULL;
@@ -130,7 +131,7 @@ TCellFlag* __fastcall TCellMatrix::GetCellSimple(int Col, int Row)
         return (TCellFlag*)((TSparseList*)EnsureDataRow(Row))->Items[Col];
 }
 
-void __fastcall TCellMatrix::SetAllFlag(TCellFlag* CellFlag, bool Set)
+void  TCellMatrix::SetAllFlag(TCellFlag* CellFlag, bool Set)
 {
     CellFlag->UnionCell.Left    =0;
     CellFlag->UnionCell.Top     =0;
@@ -167,8 +168,8 @@ void __fastcall TCellMatrix::SetAllFlag(TCellFlag* CellFlag, bool Set)
     CellFlag->f_SetUnion        =Set;
 }
 
-TCellFlag* __fastcall TCellMatrix::GetCellParam(int Col, int Row)
-{ // Ïîëó÷èòü ïàðàìåòðû ÿ÷åéêè
+TCellFlag*  TCellMatrix::GetCellParam(int Col, int Row)
+{ // ÃÃ®Ã«Ã³Ã·Ã¨Ã²Ã¼ Ã¯Ã Ã°Ã Ã¬Ã¥Ã²Ã°Ã» Ã¿Ã·Ã¥Ã©ÃªÃ¨
     TCellFlag* Cell;
     if (GetCell(Col,Row) !=NULL)
         Cell=GetCell(Col,Row);
@@ -182,8 +183,8 @@ TCellFlag* __fastcall TCellMatrix::GetCellParam(int Col, int Row)
     return Cell;
 }
 
-void __fastcall TCellMatrix::CopyCell1ToCell2(int Col,int Row, TCellFlag* Cell2)
-{// Êîïèðîâàòüü èç Cell1 â Cell2
+void  TCellMatrix::CopyCell1ToCell2(int Col,int Row, TCellFlag* Cell2)
+{// ÃŠÃ®Ã¯Ã¨Ã°Ã®Ã¢Ã Ã²Ã¼Ã¼ Ã¨Ã§ Cell1 Ã¢ Cell2
     TCellFlag* Cell1;
     if (GetCellSimple(Col,Row) ==NULL)
         Cell1 =GetCellParam(Col,Row);
@@ -201,8 +202,8 @@ void __fastcall TCellMatrix::CopyCell1ToCell2(int Col,int Row, TCellFlag* Cell2)
     Cell2->UnionCell    =Cell1->UnionCell;
 }
 
-TCellFlag* __fastcall TCellMatrix::GetParamCell(int Col, int Row)
-{ // Ïîëó÷èòü ÿ÷åéêó ñî âñåìè ïàðàìåòðàìè
+TCellFlag*  TCellMatrix::GetParamCell(int Col, int Row)
+{ // ÃÃ®Ã«Ã³Ã·Ã¨Ã²Ã¼ Ã¿Ã·Ã¥Ã©ÃªÃ³ Ã±Ã® Ã¢Ã±Ã¥Ã¬Ã¨ Ã¯Ã Ã°Ã Ã¬Ã¥Ã²Ã°Ã Ã¬Ã¨
     SetAllFlag(gCellFlag,true);
 
     if (GetCellSimple(Col,Row) !=NULL)
@@ -220,13 +221,13 @@ TCellFlag* __fastcall TCellMatrix::GetParamCell(int Col, int Row)
         CopyCell1ToCell2(Col,Row,gCellFlag);
 
         TCell* Cell11 =GetCellSimple(1,1);
-        // Òàáëèöà
+        // Ã’Ã Ã¡Ã«Ã¨Ã¶Ã 
         gCellFlag->Line.WidthLeft    =Cell11->Line.WidthLeft;
         gCellFlag->Line.WidthTop     =Cell11->Line.WidthTop;
         gCellFlag->Line.WidthRight   =Cell11->Line.WidthRight;
         gCellFlag->Line.WidthBottom  =Cell11->Line.WidthBottom;
 
-        //Ñîñåäíèå Ñòðîêè, Ñòîëáöû
+        //Ã‘Ã®Ã±Ã¥Ã¤Ã­Ã¨Ã¥ Ã‘Ã²Ã°Ã®ÃªÃ¨, Ã‘Ã²Ã®Ã«Ã¡Ã¶Ã»
         if (GetCellSimple(Col+1,1) !=NULL)// Left
             gCellFlag->Line.WidthRight =GetCellSimple(Col+1,1)->Line.WidthLeft;
 
@@ -240,7 +241,7 @@ TCellFlag* __fastcall TCellMatrix::GetParamCell(int Col, int Row)
             gCellFlag->Line.WidthTop =GetCellSimple(1,Row-1)->Line.WidthBottom;
 
         if (GetCellSimple(Col,1) !=NULL)
-        {// Òåêóùèå Ñòîëáöû
+        {// Ã’Ã¥ÃªÃ³Ã¹Ã¨Ã¥ Ã‘Ã²Ã®Ã«Ã¡Ã¶Ã»
             TCell* CellCol               =GetCellSimple(Col,1);
             gCellFlag->Line.WidthRight   =CellCol->Line.WidthRight;
             gCellFlag->Line.WidthLeft    =CellCol->Line.WidthLeft;
@@ -248,7 +249,7 @@ TCellFlag* __fastcall TCellMatrix::GetParamCell(int Col, int Row)
             gCellFlag->Line.WidthTop     =CellCol->Line.WidthTop;
         }
         else if (GetCellSimple(1,Row) !=NULL)
-        {// Òåêóùèå Ñòðîêè
+        {// Ã’Ã¥ÃªÃ³Ã¹Ã¨Ã¥ Ã‘Ã²Ã°Ã®ÃªÃ¨
             TCell* CellRow               =GetCellSimple(1,Row);
             gCellFlag->Line.WidthRight   =CellRow->Line.WidthRight;
             gCellFlag->Line.WidthLeft    =CellRow->Line.WidthLeft;
@@ -256,7 +257,7 @@ TCellFlag* __fastcall TCellMatrix::GetParamCell(int Col, int Row)
             gCellFlag->Line.WidthTop     =CellRow->Line.WidthTop;
         }
 
-        // Ñîñåäíèå ÿ÷åéêè
+        // Ã‘Ã®Ã±Ã¥Ã¤Ã­Ã¨Ã¥ Ã¿Ã·Ã¥Ã©ÃªÃ¨
         if (GetCellSimple(Col+1,Row) !=NULL)// Left
             gCellFlag->Line.WidthRight =GetCellSimple(Col+1,Row)->Line.WidthLeft;
 
@@ -269,7 +270,7 @@ TCellFlag* __fastcall TCellMatrix::GetParamCell(int Col, int Row)
         if (GetCellSimple(Col,Row-1) !=NULL)// Top
             gCellFlag->Line.WidthTop =GetCellSimple(Col,Row-1)->Line.WidthBottom;
 
-        // Òåêóùàÿ ÿ÷åéêà
+        // Ã’Ã¥ÃªÃ³Ã¹Ã Ã¿ Ã¿Ã·Ã¥Ã©ÃªÃ 
         if (GetCellSimple(Col,Row) !=NULL)
         {
             TCell* Cell =GetCellSimple(Col,Row);
@@ -282,8 +283,8 @@ TCellFlag* __fastcall TCellMatrix::GetParamCell(int Col, int Row)
     return gCellFlag;
 }
 
-TCellFlag* __fastcall TCellMatrix::GetParamCellAndFlag(int Col, int Row)
-{ // Ïîëó÷èòü ÿ÷åéêó ñî âñåìè ïàðàìåòðàìè
+TCellFlag*  TCellMatrix::GetParamCellAndFlag(int Col, int Row)
+{ // ÃÃ®Ã«Ã³Ã·Ã¨Ã²Ã¼ Ã¿Ã·Ã¥Ã©ÃªÃ³ Ã±Ã® Ã¢Ã±Ã¥Ã¬Ã¨ Ã¯Ã Ã°Ã Ã¬Ã¥Ã²Ã°Ã Ã¬Ã¨
 
     SetAllFlag(gCellFlag,false);
     if (GetCellSimple(Col,Row) !=NULL)
@@ -298,13 +299,13 @@ TCellFlag* __fastcall TCellMatrix::GetParamCellAndFlag(int Col, int Row)
             CellGrid->CopyFlag1ToFlag2(GetCellSimple(1,1),gCellFlag);
 
         TCell* Cell11 =GetCellSimple(1,1);
-        // Òàáëèöà
+        // Ã’Ã Ã¡Ã«Ã¨Ã¶Ã 
         gCellFlag->Line.WidthLeft    =Cell11->Line.WidthLeft;
         gCellFlag->Line.WidthTop     =Cell11->Line.WidthTop;
         gCellFlag->Line.WidthRight   =Cell11->Line.WidthRight;
         gCellFlag->Line.WidthBottom  =Cell11->Line.WidthBottom;
 
-        //Ñîñåäíèå Ñòðîêè, Ñòîëáöû
+        //Ã‘Ã®Ã±Ã¥Ã¤Ã­Ã¨Ã¥ Ã‘Ã²Ã°Ã®ÃªÃ¨, Ã‘Ã²Ã®Ã«Ã¡Ã¶Ã»
         if (GetCellSimple(Col+1,1) !=NULL)// Left
             gCellFlag->Line.WidthRight =GetCellSimple(Col+1,1)->Line.WidthLeft;
 
@@ -318,7 +319,7 @@ TCellFlag* __fastcall TCellMatrix::GetParamCellAndFlag(int Col, int Row)
             gCellFlag->Line.WidthTop =GetCellSimple(1,Row-1)->Line.WidthBottom;
 
         if (GetCellSimple(Col,1) !=NULL)
-        {// Òåêóùèå Ñòîëáöû
+        {// Ã’Ã¥ÃªÃ³Ã¹Ã¨Ã¥ Ã‘Ã²Ã®Ã«Ã¡Ã¶Ã»
             TCell* CellCol               =GetCellSimple(Col,1);
             gCellFlag->Line.WidthRight   =CellCol->Line.WidthRight;
             gCellFlag->Line.WidthLeft    =CellCol->Line.WidthLeft;
@@ -326,7 +327,7 @@ TCellFlag* __fastcall TCellMatrix::GetParamCellAndFlag(int Col, int Row)
             gCellFlag->Line.WidthTop     =CellCol->Line.WidthTop;
         }
         else if (GetCellSimple(1,Row) !=NULL)
-        {// Òåêóùèå Ñòðîêè
+        {// Ã’Ã¥ÃªÃ³Ã¹Ã¨Ã¥ Ã‘Ã²Ã°Ã®ÃªÃ¨
             TCell* CellRow               =GetCellSimple(1,Row);
             gCellFlag->Line.WidthRight   =CellRow->Line.WidthRight;
             gCellFlag->Line.WidthLeft    =CellRow->Line.WidthLeft;
@@ -334,7 +335,7 @@ TCellFlag* __fastcall TCellMatrix::GetParamCellAndFlag(int Col, int Row)
             gCellFlag->Line.WidthTop     =CellRow->Line.WidthTop;
         }
 
-        // Ñîñåäíèå ÿ÷åéêè
+        // Ã‘Ã®Ã±Ã¥Ã¤Ã­Ã¨Ã¥ Ã¿Ã·Ã¥Ã©ÃªÃ¨
         if (GetCellSimple(Col+1,Row) !=NULL)// Left
             gCellFlag->Line.WidthRight =GetCellSimple(Col+1,Row)->Line.WidthLeft;
 

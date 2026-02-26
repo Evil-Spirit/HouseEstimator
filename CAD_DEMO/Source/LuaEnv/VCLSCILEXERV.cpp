@@ -1,8 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
  
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "VCLSCILEXERV.h"
 #include "Scintilla.h"
@@ -10,11 +13,10 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 HINSTANCE hlexer = 0;
 void RegisterVCLSCILEXER()
 {
-    //загрузка библиотеки Lexer
+    //Г§Г ГЈГ°ГіГ§ГЄГ  ГЎГЁГЎГ«ГЁГ®ГІГҐГЄГЁ Lexer
     if (hlexer==0)
     	hlexer = ::LoadLibrary("SciLexer.DLL");
 }
@@ -142,14 +144,14 @@ void TSciLexer::InitialiseEditor()
 	SetAStyle(SCI_BRACEMATCH, red, white, 10, "Courier New");
 }
 
-void __fastcall TSciLexer::CreateParams(Controls::TCreateParams &Params)
+void  TSciLexer::CreateParams(Controls::TCreateParams &Params)
 {
     TWinControl::CreateParams(Params);
     CreateSubClass(Params, "Scintilla");
     Params.Style = Params.Style | WS_TABSTOP|WS_CHILD| WS_VISIBLE|WS_VSCROLL | WS_HSCROLL;
 }
 
-void __fastcall TSciLexer::CreateWnd(void)
+void  TSciLexer::CreateWnd(void)
 {
     TWinControl::CreateWnd();
     InitialiseEditor();
@@ -162,7 +164,7 @@ LRESULT TSciLexer::SendEditor(UINT Msg, WPARAM wParam, LPARAM lParam)
     return ::SendMessage(Handle, Msg, wParam, lParam);
 }
 
-__fastcall TSciLexer::TSciLexer(Classes::TComponent* AOwner)
+ TSciLexer::TSciLexer(Classes::TComponent* AOwner)
     :TWinControl(AOwner)
 {
 }

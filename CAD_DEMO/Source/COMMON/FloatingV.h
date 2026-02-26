@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef FloatingVH
 #define FloatingVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "BaseFormV.h"
 //---------------------------------------------------------------------------
 class COMMONAL_API TMyControlState{
@@ -29,7 +30,7 @@ const int AlignRight = 2;
 class COMMONAL_API TFloatForm : public TBaseForm
 {
 __published:	// IDE-managed Components
-    void __fastcall FormEndDock(TObject *Sender, TObject *Target, int X,
+    void  FormEndDock(TObject *Sender, TObject *Target, int X,
           int Y);
 private:	// User declarations
     bool    NeedToResize;
@@ -48,15 +49,20 @@ private:	// User declarations
     void	SetDockIndex(int aDockIndex);
     int 	GetParentDockIndex(TWinControl* Parent);
 protected:
-    __property int AL = {read = FAL,write = SetAL};
-    __property bool Fixed = {read = FFixed,write = SetFixed};
-    __property int FixedSize = {read = FFixedSize,write = SetFixedSize};
+    // __property int AL {read=FAL, write=SetAL}; // replaced by:
+    int& AL = FAL;
+    // __property bool Fixed {read=FFixed, write=SetFixed}; // replaced by:
+    bool& Fixed = FFixed;
+    // __property int FixedSize {read=FFixedSize, write=SetFixedSize}; // replaced by:
+    int& FixedSize = FFixedSize;
     virtual void OnMyResize(){};
-    __property int DefaultSize = {read = FDefaultSize,write = SetDefaultSize};
-	virtual void __fastcall WndProc(Messages::TMessage &Message);
+    // __property int DefaultSize {read=FDefaultSize, write=SetDefaultSize}; // replaced by:
+    int& DefaultSize = FDefaultSize;
+    virtual void WndProc(Messages::TMessage& /*Message*/) {}
 public:		// User declarations
-    __property int DockIndex = {read = FDockIndex,write = SetDockIndex};
-    __fastcall TFloatForm(TComponent* Owner);
+    // __property int DockIndex {read=FDockIndex, write=SetDockIndex}; // replaced by:
+    int& DockIndex = FDockIndex;
+     TFloatForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------

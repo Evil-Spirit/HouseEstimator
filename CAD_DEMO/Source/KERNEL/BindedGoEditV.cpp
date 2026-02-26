@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "BindedGoEditV.h"
 #include "BaseToolV.h"
 #include "MainToolsV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TBindedGoEdit *BindedGoEdit;
 //---------------------------------------------------------------------------
-__fastcall TBindedGoEdit::TBindedGoEdit(TComponent* Owner, TGo* Obj, const TMDelTList<AnsiString>& BlocksNames, TMDelTList<int>& BlocksIds, int BlockType)
+ TBindedGoEdit::TBindedGoEdit(TComponent* Owner, TGo* Obj, const TMDelTList<AnsiString>& BlocksNames, TMDelTList<int>& BlocksIds, int BlockType)
     : TForm(Owner)
 {
     for (int i = 0; i < BlocksNames.Count; i++)
@@ -51,7 +53,7 @@ __fastcall TBindedGoEdit::TBindedGoEdit(TComponent* Owner, TGo* Obj, const TMDel
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedGoEdit::eKeyKeyDown(TObject *Sender, WORD &Key,
+void  TBindedGoEdit::eKeyKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
     eKey->Text = "";
@@ -106,7 +108,7 @@ void TBindedGoEdit::Refresh()
 //---------------------------------------------------------------------------
 
 
-void __fastcall TBindedGoEdit::bOkClick(TObject *Sender)
+void  TBindedGoEdit::bOkClick(TObject *Sender)
 {
 //    Apply(FObj);
     flag = 0;
@@ -114,14 +116,14 @@ void __fastcall TBindedGoEdit::bOkClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedGoEdit::bCancelClick(TObject *Sender)
+void  TBindedGoEdit::bCancelClick(TObject *Sender)
 {
     flag = 1;
     Close();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TBindedGoEdit::cbEventChange(TObject *Sender)
+void  TBindedGoEdit::cbEventChange(TObject *Sender)
 {
     if ( FBlockType == 0 )
         if (cbEvent->ItemIndex < 3)
@@ -156,7 +158,7 @@ void __fastcall TBindedGoEdit::cbEventChange(TObject *Sender)
             }
 }
 //---------------------------------------------------------------------------
-void __fastcall TBindedGoEdit::eKeyChange(TObject *Sender)
+void  TBindedGoEdit::eKeyChange(TObject *Sender)
 {
     eKey->Text = eKey->Text.UpperCase();
     if ( eKey->Text.Length()>4 && eKey->Text[2] == 'V' && eKey->Text[3] == 'K' && eKey->Text[4] == '_' )

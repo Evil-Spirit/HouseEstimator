@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIMyModeSettingsEditVH
 #define MDIMyModeSettingsEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
-#include <ExtCtrls.hpp>
-#include <ComCtrls.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIMyModeSettingsEdit : public TMDIObjectEdit
 {
@@ -31,7 +30,7 @@ public:		// User declarations
   virtual void Apply();
   virtual  bool Checked();
   virtual void SETUP();
-  __fastcall TMDIMyModeSettingsEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+   TMDIMyModeSettingsEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIMyModeSettingsEdit *MDIMyModeSettingsEdit;

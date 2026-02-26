@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef DriverH
@@ -94,8 +98,8 @@ public:
     void MakeSize(bool Try,int ind=cNeed);
     void UndoSize(bool Try,int ind=cNeed);
     bool ExistsWallLink();
-    bool __fastcall Scale__MyComp(void* item1,void* item2);
-    bool __fastcall Translate__MyComp(void* item1,void* item2);
+    bool  Scale__MyComp(void* item1,void* item2);
+    bool  Translate__MyComp(void* item1,void* item2);
 };
 
 const int ocmNone=-1;
@@ -142,7 +146,7 @@ public:
     bool CheckCrossingAfterRealizeLinks();
     //-----------------------------
     TLinkInfo& GetPreLink(int index);
-    __property int PreLinksCount = {read = GetPreLinksCount};
+    // __property int PreLinksCount {read=GetPreLinksCount}; // [manual migration needed]
     //-----------------------------
 };
 

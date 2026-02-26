@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef ColorComboBoxUH
 #define ColorComboBoxUH
@@ -11,16 +15,16 @@ protected:
 __published:
     __property Font;
     __property Color;
-    __property TNotifyEvent OnColorChange = {read = FOnColorChange,write = FOnColorChange};
+    // __property TNotifyEvent OnColorChange {read=FOnColorChange, write=FOnColorChange}; // [manual migration needed]
 public:
     TCellGrid* CellGrid;
     TSelectColor* SC;
     TForm* CellParameter;
-	__fastcall virtual TColorComboBox(Classes::TComponent* AOwner,TCellGrid* _CellGrid,  TForm* _Form);
-	__fastcall virtual ~TColorComboBox(void);
-    void __fastcall AdjustDropDown(void);
-    void __fastcall AdjustDropDown2();
-	virtual void __fastcall WndProc(Messages::TMessage &Message);
-    void __fastcall SelectColorClose(TObject *Sender,TCloseAction &Action);
+	 virtual TColorComboBox(Classes::TComponent* AOwner,TCellGrid* _CellGrid,  TForm* _Form);
+	 virtual ~TColorComboBox(void);
+    void  AdjustDropDown(void);
+    void  AdjustDropDown2();
+	virtual void  WndProc(Messages::TMessage &Message);
+    void  SelectColorClose(TObject *Sender,TCloseAction &Action);
 };
 #endif

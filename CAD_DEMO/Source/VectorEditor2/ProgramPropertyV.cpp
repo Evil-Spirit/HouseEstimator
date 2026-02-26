@@ -1,19 +1,22 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 
 #include "G2DObjectV.h"
 #include "ProgramPropertyV.h"
 #include "EditorV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TProgramProperty *ProgramProperty;
 //---------------------------------------------------------------------------
-__fastcall TProgramProperty::TProgramProperty(TComponent* Owner)
+ TProgramProperty::TProgramProperty(TComponent* Owner)
     : TForm(Owner)
 {
     ProgramProperty->cbSnapOn->Checked = Editor2D->Attributes.Snap;
@@ -37,7 +40,7 @@ __fastcall TProgramProperty::TProgramProperty(TComponent* Owner)
     ProgramProperty->cbCursor->Selected = Editor2D->MyCursor.Color;
 }
 //---------------------------------------------------------------------------
-void __fastcall TProgramProperty::StepExit(TObject *Sender)
+void  TProgramProperty::StepExit(TObject *Sender)
 {
 //    ProgramProperty->Close();
 }
@@ -45,7 +48,7 @@ void __fastcall TProgramProperty::StepExit(TObject *Sender)
 
 
 
-void __fastcall TProgramProperty::bOkClick(TObject *Sender)
+void  TProgramProperty::bOkClick(TObject *Sender)
 {
     Editor2D->Attributes.Snap = ProgramProperty->cbSnapOn->Checked;
     Editor2D->Attributes.AdditionalFiguresSnap = ProgramProperty->cbAdditionalSnapOn->Checked;
@@ -87,13 +90,13 @@ void __fastcall TProgramProperty::bOkClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TProgramProperty::bCancelClick(TObject *Sender)
+void  TProgramProperty::bCancelClick(TObject *Sender)
 {
     ProgramProperty->Close();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TProgramProperty::FormShow(TObject *Sender)
+void  TProgramProperty::FormShow(TObject *Sender)
 {
     ProgramProperty->cbSnapOn->Checked = Editor2D->Attributes.Snap;
     ProgramProperty->cbAdditionalSnapOn->Checked = Editor2D->Attributes.AdditionalFiguresSnap;

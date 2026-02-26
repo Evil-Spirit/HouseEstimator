@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDICustomElementVH
@@ -5,15 +9,8 @@
 //---------------------------------------------------------------------------
 #include "MetaClasses.h"
 //--------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIElementV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
-#include <Buttons.hpp>
-#include <Dialogs.hpp>
 //---------------------------------------------------------------------------
 class TCustomMetaElement;
 class COMMONAL_API TMDICustomElement : public TMDIElement
@@ -27,11 +24,11 @@ __published:	// IDE-managed Components
     TCheckBox *cbLoadNormals;
     TButton *btImport;
     TCheckBox *cbLoadTexels;
-    void __fastcall SpeedButton1Click(TObject *Sender);
-    void __fastcall btImportClick(TObject *Sender);
+    void  SpeedButton1Click(TObject *Sender);
+    void  btImportClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMDICustomElement(TComponent* Owner,TCustomMetaElement *N);
+     TMDICustomElement(TComponent* Owner,TCustomMetaElement *N);
 
 };
 //---------------------------------------------------------------------------

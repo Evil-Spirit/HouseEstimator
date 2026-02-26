@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 /*
 ** Lua binding: z_VCL
 ** Generated automatically by tolua++-1.0.3 on 03/10/05 17:17:48.
@@ -17,7 +21,7 @@ TOLUA_API int  tolua_z_VCL_open (lua_State* tolua_S);
 #include "MyTemplates.h"
 #include "MTL.h"
 #include "bind.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "MyDialogU.h"
 
 /* function to release collected object via destructor */

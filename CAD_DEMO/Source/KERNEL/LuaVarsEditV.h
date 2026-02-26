@@ -1,17 +1,15 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef LuaVarsEditVH
 #define LuaVarsEditVH
 //---------------------------------------------------------------------------
 #include "MetaClasses.h"
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ToolWin.hpp>
-#include <ImgList.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TLuaVarsEdit : public TMDIObjectEdit
 {
@@ -21,9 +19,9 @@ __published:	// IDE-managed Components
     TToolButton *tbtAdd;
     TToolButton *tbtEdit;
     TToolButton *tbtDel;
-    void __fastcall btAddClick(TObject *Sender);
-    void __fastcall btEditClick(TObject *Sender);
-    void __fastcall btDelClick(TObject *Sender);
+    void  btAddClick(TObject *Sender);
+    void  btEditClick(TObject *Sender);
+    void  btDelClick(TObject *Sender);
 private:	// User declarations
     TMetaNode *GetElemFromObj()
     {
@@ -40,7 +38,7 @@ public:		// User declarations
                             const AnsiString& _Comment,
                             const AnsiString& _Meter);
     void AddLuaVar(TLuaAttribute *LV);
-    __fastcall TLuaVarsEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+     TLuaVarsEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
 };
 //---------------------------------------------------------------------------
 void COMMONAL_API EditAttributes(TComponent *Owner,TWinControl *Parent,void *Data,TMetaNode *Elem)

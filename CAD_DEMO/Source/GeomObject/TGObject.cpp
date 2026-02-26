@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #include "TGPoint.h"
@@ -21,8 +25,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma hdrstop
-#pragma package(smart_init)
 
 void RegisterGeomObject()
 {
@@ -258,7 +260,7 @@ void TGeomObject::ReadPolygon(TGPolygon *poly, TMemoryStream *MS)
 		
 }
 
-//запись и чтение из файла
+//Г§Г ГЇГЁГ±Гј ГЁ Г·ГІГҐГ­ГЁГҐ ГЁГ§ ГґГ Г©Г«Г 
 void TGeomObject::SaveData(FILE *F) const
 {
 	TMyObject::SaveData(F);
@@ -282,7 +284,7 @@ void TGeomObject::LoadData(FILE *F)
 	for (int i=0;i<FPolygons.Count;i++)
 		LoadPolygon(FPolygons.Items[i], F);
 }
-//запись и чтение в поток
+//Г§Г ГЇГЁГ±Гј ГЁ Г·ГІГҐГ­ГЁГҐ Гў ГЇГ®ГІГ®ГЄ
 void TGeomObject::WriteData(TMemoryStream *MS) const
 {
 	TMyObject::WriteData( MS );
@@ -435,7 +437,7 @@ TGPoint* TGeomObject::ExistsPointNearest(const TGPoint& v)
 TGCut *TGeomObject::AddCut(TGPoint *p1, TGPoint *p2)
 {
 	if (CheckCutData && (FVertex.IndexOf(p1) == -1 || FVertex.IndexOf(p2) == -1 || p2 == p1))
-		throw EMyException ("<TGeomObject::AddCut> ошибка данных!");
+		throw EMyException ("<TGeomObject::AddCut> Г®ГёГЁГЎГЄГ  Г¤Г Г­Г­Г»Гµ!");
 
 	TGCut *n;
 	if (SnapCuts && (n = ExistsCut(p1, p2)) != NULL)
@@ -487,7 +489,7 @@ TGPolygon *TGeomObject::CopyPolygonToObject(const TGPolygon &poly )
 	TMTList <TGPoint> points;
 	TMTList <TGCut> cuts;
 
-	//Добавляем точки полигона так, чтобы не получилось отрезков из двух одинаковых точек(В новом обьекте разные точки могут стать одной)
+	//Г„Г®ГЎГ ГўГ«ГїГҐГ¬ ГІГ®Г·ГЄГЁ ГЇГ®Г«ГЁГЈГ®Г­Г  ГІГ ГЄ, Г·ГІГ®ГЎГ» Г­ГҐ ГЇГ®Г«ГіГ·ГЁГ«Г®Г±Гј Г®ГІГ°ГҐГ§ГЄГ®Гў ГЁГ§ Г¤ГўГіГµ Г®Г¤ГЁГ­Г ГЄГ®ГўГ»Гµ ГІГ®Г·ГҐГЄ(Г‚ Г­Г®ГўГ®Г¬ Г®ГЎГјГҐГЄГІГҐ Г°Г Г§Г­Г»ГҐ ГІГ®Г·ГЄГЁ Г¬Г®ГЈГіГІ Г±ГІГ ГІГј Г®Г¤Г­Г®Г©)
 	for (int i=0;i<poly.Count;i++)	
 	{
 		TGPoint *p = AddPoint(poly.GetPoint(i).Point);
@@ -504,8 +506,8 @@ TGPolygon *TGeomObject::CopyPolygonToObject(const TGPolygon &poly )
 		cuts.Clear();
 		points.Clear();
 		
-		// Добавляем точки полигона так, чтобы не получилось отрезков из двух одинаковых точек
-		// (В новом обьекте разные точки могут стать одной)
+		// Г„Г®ГЎГ ГўГ«ГїГҐГ¬ ГІГ®Г·ГЄГЁ ГЇГ®Г«ГЁГЈГ®Г­Г  ГІГ ГЄ, Г·ГІГ®ГЎГ» Г­ГҐ ГЇГ®Г«ГіГ·ГЁГ«Г®Г±Гј Г®ГІГ°ГҐГ§ГЄГ®Гў ГЁГ§ Г¤ГўГіГµ Г®Г¤ГЁГ­Г ГЄГ®ГўГ»Гµ ГІГ®Г·ГҐГЄ
+		// (Г‚ Г­Г®ГўГ®Г¬ Г®ГЎГјГҐГЄГІГҐ Г°Г Г§Г­Г»ГҐ ГІГ®Г·ГЄГЁ Г¬Г®ГЈГіГІ Г±ГІГ ГІГј Г®Г¤Г­Г®Г©)
 
 		for (int j=0;j<poly.FHoles[i].Count;j++)	
 		{
@@ -526,14 +528,14 @@ TGPolygon *TGeomObject::AddPolygon(TMTList<TGCut> &cuts, const TIntVec &nrm)
 {
 	if (cuts.Count<3)
 		return NULL;
-//		throw EMyException ("<TGeomObject::AddPolygon> недостаточно данных!");
+//		throw EMyException ("<TGeomObject::AddPolygon> Г­ГҐГ¤Г®Г±ГІГ ГІГ®Г·Г­Г® Г¤Г Г­Г­Г»Гµ!");
 	
 	FPolygons.Add((TGPolygon *)CreatePolygonFunction());
 	TGPolygon *p = FPolygons.Last();;
 	for (int i=0;i<cuts.Count;i++)
 		p->AddCut(cuts.Items[i]);
 	if (!p->Closed)
-		throw EMyException ("<TGeomObject::AddPolygon> добавлен незамкнутый полигон!");
+		throw EMyException ("<TGeomObject::AddPolygon> Г¤Г®ГЎГ ГўГ«ГҐГ­ Г­ГҐГ§Г Г¬ГЄГ­ГіГІГ»Г© ГЇГ®Г«ГЁГЈГ®Г­!");
 
 	if (nrm == TIntVec(0,0,0))
 		p->CalculatePlane();
@@ -564,7 +566,7 @@ void TGeomObject::Clear()
 
 TGCut* TGeomObject::GetCutByPoints(TGPoint* P1, TGPoint* P2)
 {
-	//просто перебираем список отрезков одной из точек
+	//ГЇГ°Г®Г±ГІГ® ГЇГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г±ГЇГЁГ±Г®ГЄ Г®ГІГ°ГҐГ§ГЄГ®Гў Г®Г¤Г­Г®Г© ГЁГ§ ГІГ®Г·ГҐГЄ
 	if (P1==NULL)
 		return NULL;
 	if (P2==NULL)
@@ -714,8 +716,8 @@ bool TGeomObject::Contourize2d(const TMTList<TGCut> &Cuts, TMTList<TGCut> &conto
 	FillCutsFlags(cuts, flBELONG, gfFALSE);
 
 	if (begin == NULL) 
-		begin = GetLowestPoint2d(cuts);					//Находим самую нижнюю точку
-	TGCut	*cut = begin->GetTurnLeftCut(true);		//Находим отрезок, самый поворачивающий направо
+		begin = GetLowestPoint2d(cuts);					//ГЌГ ГµГ®Г¤ГЁГ¬ Г±Г Г¬ГіГѕ Г­ГЁГ¦Г­ГѕГѕ ГІГ®Г·ГЄГі
+	TGCut	*cut = begin->GetTurnLeftCut(true);		//ГЌГ ГµГ®Г¤ГЁГ¬ Г®ГІГ°ГҐГ§Г®ГЄ, Г±Г Г¬Г»Г© ГЇГ®ГўГ®Г°Г Г·ГЁГўГ ГѕГ№ГЁГ© Г­Г ГЇГ°Г ГўГ®
 //	TGCut	*begCut = cut;
 	TGPoint *dst = begin;//cut->GetAnotherPoint(begin);
 	int i=0;
@@ -892,7 +894,7 @@ void TGeomObject::FillPointsFlags(TMTList<TMyObject> &what, TClassifyFlags fl, T
 					}	
 			} else
 			{
-				throw EMyException(what[i].DynamicType->Name + " <TGeomObject::TransformToPlane> : неверный тип!");
+				throw EMyException(what[i].DynamicType->Name + " <TGeomObject::TransformToPlane> : Г­ГҐГўГҐГ°Г­Г»Г© ГІГЁГЇ!");
 			}	
 		}	  
 }
@@ -1121,7 +1123,7 @@ bool TGeomObject::SplitCut(TGCut *c, TGPoint *newPnt, TGCut *&Result1, TGCut *&R
 			{
 #ifdef GEOMETRY_DEBUG			
 				if (c->FPlane[i].FCuts.IndexOf(cn1)!=-1 || c->FPlane[i].FCuts.IndexOf(cn)!=-1)
-					throw EMyException("<TGeomObject::SplitCut> - эрыюцхэшх юЄЁхчъют!");
+					throw EMyException("<TGeomObject::SplitCut> - ГЅГ°Г»ГѕГ¶ГµГЅГёГµ ГѕВЄВЁГµГ·ГєГѕГІ!");
 #endif				
 				if (c->FPlane[i].FCuts.IndexOf(cn1)==-1)
 					c->FPlane[i].FCuts.Insert(index, cn1);
@@ -1132,7 +1134,7 @@ bool TGeomObject::SplitCut(TGCut *c, TGPoint *newPnt, TGCut *&Result1, TGCut *&R
 			{
 #ifdef GEOMETRY_DEBUG			
 				if (c->FPlane[i].FCuts.IndexOf(cn1)!=-1 || c->FPlane[i].FCuts.IndexOf(cn)!=-1)
-					throw EMyException("<TGeomObject::SplitCut> - эрыюцхэшх юЄЁхчъют!");
+					throw EMyException("<TGeomObject::SplitCut> - ГЅГ°Г»ГѕГ¶ГµГЅГёГµ ГѕВЄВЁГµГ·ГєГѕГІ!");
 #endif				
 				if (c->FPlane[i].FCuts.IndexOf(cn)==-1)
 					c->FPlane[i].FCuts.Insert(index, cn);
@@ -1150,7 +1152,7 @@ bool TGeomObject::SplitCut(TGCut *c, TGPoint *newPnt, TGCut *&Result1, TGCut *&R
 bool TGeomObject::MultiSplitCut(TGCut *c, const TMTList<TGPoint> &newPnt, TMTList<TGCut> &Result)
 {
 	if (!c)
-		throw EMyException("<TGeomObject::MultiSplitCut> : NULL отрезок!");
+		throw EMyException("<TGeomObject::MultiSplitCut> : NULL Г®ГІГ°ГҐГ§Г®ГЄ!");
 
 	Result.Clear();
 	TMTList<TGPoint> pnt;
@@ -1233,7 +1235,7 @@ void TGeomObject::UpdateCutPointers(TGCut *o, TGCut *n, TGCut *n2)
 		throw EMyException("<TGeomObject::UpdateCutPointers> :: NULL!!!"); 
 	if (n2->DynamicType->Name != TGCut::StaticType->Name ||
 		n ->DynamicType->Name != TGCut::StaticType->Name)
-		throw EMyException("<TGeomObject::UpdateCutPointers> :: Несовтадение типа!"); 
+		throw EMyException("<TGeomObject::UpdateCutPointers> :: ГЌГҐГ±Г®ГўГІГ Г¤ГҐГ­ГЁГҐ ГІГЁГЇГ !"); 
 */		
 	for (int i=0;i<FUserCuts.Count;i++)
 	{
@@ -1392,7 +1394,7 @@ void TGeomObject::DetectHolesCreatePolygons2d(TMTList<TGPolygon> &poly)
 
 bool TGeomObject::SplitPolygon(TGPolygon *p, TMTList<TGCut> &Ct, TMTList<TGPolygon> &Result)
 {
-	// Подготовка
+	// ГЏГ®Г¤ГЈГ®ГІГ®ГўГЄГ 
 	Result.Clear();
 	Result.Add(p);
 	if (!p || !p->Closed ) 
@@ -1401,38 +1403,38 @@ bool TGeomObject::SplitPolygon(TGPolygon *p, TMTList<TGCut> &Ct, TMTList<TGPolyg
 	TMTList <TGCut> Cut;
 	Cut.Assign(&Ct);
 
-	//Удаляем отрезки, содержащиеся в полигоне
+	//Г“Г¤Г Г«ГїГҐГ¬ Г®ГІГ°ГҐГ§ГЄГЁ, Г±Г®Г¤ГҐГ°Г¦Г Г№ГЁГҐГ±Гї Гў ГЇГ®Г«ГЁГЈГ®Г­ГҐ
 	for (int i=0;i<Cut.Count;i++)
 		if (p->FCuts.IndexOf(Cut.Items[i]) != -1)	
 			Cut.Delete(i--);
 			
-	// Удаляем повторные отрезки
+	// Г“Г¤Г Г«ГїГҐГ¬ ГЇГ®ГўГІГ®Г°Г­Г»ГҐ Г®ГІГ°ГҐГ§ГЄГЁ
 	for (int i=0;i<Cut.Count;i++)
 		for (int j=i+1;j<Cut.Count;j++)
 			if (Cut.Items[i] == Cut.Items[j])
 				Cut.Delete(j--);
 		
-	// Если нечем резать - выходим
+	// Г…Г±Г«ГЁ Г­ГҐГ·ГҐГ¬ Г°ГҐГ§Г ГІГј - ГўГ»ГµГ®Г¤ГЁГ¬
 	if (!Cut.Count)
 		return false;
 
-	TMTList <TGCut> Heap;			// Куча отрезков
-	TMTList <TGPoint> polyPnt;		// Точки полинона
-	TMDelTList <TGPolygon> Holes;	// Дырки
+	TMTList <TGCut> Heap;			// ГЉГіГ·Г  Г®ГІГ°ГҐГ§ГЄГ®Гў
+	TMTList <TGPoint> polyPnt;		// Г’Г®Г·ГЄГЁ ГЇГ®Г«ГЁГ­Г®Г­Г 
+	TMDelTList <TGPolygon> Holes;	// Г„Г»Г°ГЄГЁ
 
-	// Куча отрезков для разбиения
+	// ГЉГіГ·Г  Г®ГІГ°ГҐГ§ГЄГ®Гў Г¤Г«Гї Г°Г Г§ГЎГЁГҐГ­ГЁГї
 	Heap.Assign(&p->FCuts);
 
 	for (int i=0;i<Cut.Count;i++)
 		Heap.Add(Cut.Items[i]);
-	// Не дырки
+	// ГЌГҐ Г¤Г»Г°ГЄГЁ
 	FillCutsFlags(Heap, flHOLE, gfFALSE);
 
-	// Помним данные
+	// ГЏГ®Г¬Г­ГЁГ¬ Г¤Г Г­Г­Г»ГҐ
 	TIntVec norm = p->FNormal;
 	TIntVec orig = p->Origin;
 
-	// Запоминаем дырки 
+	// Г‡Г ГЇГ®Г¬ГЁГ­Г ГҐГ¬ Г¤Г»Г°ГЄГЁ 
 	for (int i=0;i<p->FHoles.Count;i++)
 	{
 		TMTListAdd(Heap, p->FHoles[i].FCuts);
@@ -1440,29 +1442,29 @@ bool TGeomObject::SplitPolygon(TGPolygon *p, TMTList<TGCut> &Ct, TMTList<TGPolyg
 		p->FHoles.RemoveOnly(i--);
 	}	
 
-	// Удаляем повторные отрезки
+	// Г“Г¤Г Г«ГїГҐГ¬ ГЇГ®ГўГІГ®Г°Г­Г»ГҐ Г®ГІГ°ГҐГ§ГЄГЁ
 	for (int i=0;i<Heap.Count;i++)
 		for (int j=i+1;j<Heap.Count;j++)
 			if (Heap.Items[i] == Heap.Items[j])
 				Heap.Delete(j--);
 				
-	// Удаляем разбиваемый полигон
+	// Г“Г¤Г Г«ГїГҐГ¬ Г°Г Г§ГЎГЁГўГ ГҐГ¬Г»Г© ГЇГ®Г«ГЁГЈГ®Г­
 	FPolygons.Remove(p);
 	Result.Clear();
 
-	TMDelTList< TMTList<TGCut> > Poly;		//Полигоны
+	TMDelTList< TMTList<TGCut> > Poly;		//ГЏГ®Г«ГЁГЈГ®Г­Г»
 
-	// Полигонизируем кучу...
+	// ГЏГ®Г«ГЁГЈГ®Г­ГЁГ§ГЁГ°ГіГҐГ¬ ГЄГіГ·Гі...
 	Fix.BridgesByPolygonize(Heap);
 	Polygonize2d(Heap, Poly);
 
 	for (int i=0;i<Poly.Count;i++)
 		Result.Add(AddPolygon(Poly[i], norm));	
 
-	// Никто не дырка:)
+	// ГЌГЁГЄГІГ® Г­ГҐ Г¤Г»Г°ГЄГ :)
 	FillPolygonsFlags(Result, flHOLE, gfFALSE);
 
-	// Отмечаем полигоны дыками, исходя из того, что полигоны пренадлежат дыркам. Можно оптимизировать, вставив TGPolygon::Equals
+	// ГЋГІГ¬ГҐГ·Г ГҐГ¬ ГЇГ®Г«ГЁГЈГ®Г­Г» Г¤Г»ГЄГ Г¬ГЁ, ГЁГ±ГµГ®Г¤Гї ГЁГ§ ГІГ®ГЈГ®, Г·ГІГ® ГЇГ®Г«ГЁГЈГ®Г­Г» ГЇГ°ГҐГ­Г Г¤Г«ГҐГ¦Г ГІ Г¤Г»Г°ГЄГ Г¬. ГЊГ®Г¦Г­Г® Г®ГЇГІГЁГ¬ГЁГ§ГЁГ°Г®ГўГ ГІГј, ГўГ±ГІГ ГўГЁГў TGPolygon::Equals
 	for (int i=0;i<Result.Count;i++)
 		for (int j=0;j<Holes.Count;j++)
 			if (Holes[j].PolygonInPolygon2d(Result[i], PEPS) == pipINSIDE)
@@ -1472,7 +1474,7 @@ bool TGeomObject::SplitPolygon(TGPolygon *p, TMTList<TGCut> &Ct, TMTList<TGPolyg
 				break;
 			}	
 
-	// Строим матрицу принадлежностей
+	// Г‘ГІГ°Г®ГЁГ¬ Г¬Г ГІГ°ГЁГ¶Гі ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГҐГ©
 	TMDelTList<TMDelTList<int> > matrix;
 
 	for (int i=0;i<Result.Count;i++)

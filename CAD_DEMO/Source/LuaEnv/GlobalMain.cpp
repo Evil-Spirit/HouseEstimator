@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
 #include "LuaModuleV.h"
 #include "LuaStationV.h"
-#pragma hdrstop
 
 #include "LuaEnvV.h"
 #include "LuaEditorV.h"
@@ -14,15 +17,14 @@
 #include "GlobalMain.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TGlobal *Global;
 //---------------------------------------------------------------------------
-//Êëññ TLuaVariables
-/*TLuaVariables* __fastcall TLuaVariables::GetAllGlobal()
+//ÃŠÃ«Ã±Ã± TLuaVariables
+/*TLuaVariables*  TLuaVariables::GetAllGlobal()
 {
 }
-TLuaVariables* __fastcall TLuaVariables::GetAllLocal()
+TLuaVariables*  TLuaVariables::GetAllLocal()
 {
 }
 */
@@ -78,7 +80,7 @@ int SetLuaValue(AnsiString type, AnsiString value)
 };
 
 
-TLuaVariable* __fastcall TLuaVariables::GetLocal(AnsiString Name)
+TLuaVariable*  TLuaVariables::GetLocal(AnsiString Name)
 {
     TLuaVariable *Var = new TLuaVariable;
     lua_Debug *ar;
@@ -104,7 +106,7 @@ TLuaVariable* __fastcall TLuaVariables::GetLocal(AnsiString Name)
 };
 
 
-TLuaVariable* __fastcall TLuaVariables::GetGlobal(AnsiString Name)
+TLuaVariable*  TLuaVariables::GetGlobal(AnsiString Name)
 {
     TLuaVariable *Var = new TLuaVariable;
     lua_pushstring(_LUA_,Name.c_str());
@@ -117,7 +119,7 @@ TLuaVariable* __fastcall TLuaVariables::GetGlobal(AnsiString Name)
     return (Var);
 };
 
-bool __fastcall TLuaVariables::SetGlobal(TLuaVariable *Var)
+bool  TLuaVariables::SetGlobal(TLuaVariable *Var)
 {
     lua_pushstring(_LUA_,Var->Name.c_str());
     if (SetLuaValue(Var->Type,Var->Value))
@@ -132,7 +134,7 @@ bool __fastcall TLuaVariables::SetGlobal(TLuaVariable *Var)
     }
 };
 
-bool __fastcall TLuaVariables::SetLocal(TLuaVariable *Var)
+bool  TLuaVariables::SetLocal(TLuaVariable *Var)
 {
     lua_Debug *ar;
     int i=0,level=0;
@@ -154,12 +156,12 @@ bool __fastcall TLuaVariables::SetLocal(TLuaVariable *Var)
 };
 
 //---------------------------------------------------------------------------
-__fastcall TGlobal::TGlobal(TComponent* Owner)
+ TGlobal::TGlobal(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-__fastcall TGlobal::~TGlobal()
+ TGlobal::~TGlobal()
 {
     List->Free();
 }
@@ -208,7 +210,7 @@ void TGlobal::ViewLocal()
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGlobal::ListClick(TObject *Sender)
+void  TGlobal::ListClick(TObject *Sender)
 {
 //   ShowMessage(((TListView*)Sender)->Selected->Caption);
 //    TVariable *temp =Debuger->GetGlobalValue(_LUA_,((TListView*)Sender)->Selected->Caption);

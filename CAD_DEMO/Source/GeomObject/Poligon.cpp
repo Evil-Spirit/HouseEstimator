@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <windows.h>
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 #include <stdlib.h>
 #include "Poligon.h"
 #include "math.h"
@@ -12,7 +15,6 @@
 #include "TGObject.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 TClassNode* TLPoint::StaticType = NULL;
 TClassNode* TLCut::StaticType = NULL;
 TClassNode* TPolygon::StaticType = NULL;
@@ -97,8 +99,8 @@ TPolygon::TPolygon(TMDelTList<TIntVec>* PNTS)
     RegisterNewClass< TMyObject, TPolygon >(this,false,&CreateFunction);
     NotInstanced = true;
     Vertex = (/*TMDelLSTList*/TMDelTList<TIntVec>*)PNTS;
-    //регистрация здесь нелопустима из-за переадресации сообщений
-    //с нижнего уровня на верхний
+    //Г°ГҐГЈГЁГ±ГІГ°Г Г¶ГЁГї Г§Г¤ГҐГ±Гј Г­ГҐГ«Г®ГЇГіГ±ГІГЁГ¬Г  ГЁГ§-Г§Г  ГЇГҐГ°ГҐГ Г¤Г°ГҐГ±Г Г¶ГЁГЁ Г±Г®Г®ГЎГ№ГҐГ­ГЁГ©
+    //Г± Г­ГЁГ¦Г­ГҐГЈГ® ГіГ°Г®ГўГ­Гї Г­Г  ГўГҐГ°ГµГ­ГЁГ©
 //    RegisterField(Vertex,&aVertex,mtMyObject);
     Router = NULL;
 }
@@ -127,7 +129,7 @@ TPolygon::~TPolygon()
 void TPolygon::Clear()
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::Clear()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::Clear()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     Vertex->Clear();
 }
 
@@ -196,7 +198,7 @@ bool TPolygon::FindSelfCrossing(int& i1,int& i2,MBTi USEEPS)
 	return false;
 }
 
-bool __fastcall SortByX(void *item1, void *item2)
+bool  SortByX(void *item1, void *item2)
 {
 	return ((TIntVec*)item1)->x > ((TIntVec*)item2)->x;
 }
@@ -264,13 +266,13 @@ void TPolygon::GetCrossPoints(
 	{
 		if (cps.Items[i] == cps.Items[i+1])
 			continue;
-		// Принадлежность отрезков полигонам
-		// Эпсилон принадлежности должен быть в несколько раз меньше эпсилона точек
+		// ГЏГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГј Г®ГІГ°ГҐГ§ГЄГ®Гў ГЇГ®Г«ГЁГЈГ®Г­Г Г¬
+		// ГќГЇГ±ГЁГ«Г®Г­ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГЁ Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Гў Г­ГҐГ±ГЄГ®Г«ГјГЄГ® Г°Г Г§ Г¬ГҐГ­ГјГёГҐ ГЅГЇГ±ГЁГ«Г®Г­Г  ГІГ®Г·ГҐГЄ
 		TIntVec mid = (cps[i].Point + cps[i+1].Point)/2.0;
 
 		int a = p->PointInPolygon2d( mid, USEEPS/2);
 
-		// Если отрезок принадлежит обоим полигонам, добавляем общий отрезок
+		// Г…Г±Г«ГЁ Г®ГІГ°ГҐГ§Г®ГЄ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г®ГЎГ®ГЁГ¬ ГЇГ®Г«ГЁГЈГ®Г­Г Г¬, Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г®ГЎГ№ГЁГ© Г®ГІГ°ГҐГ§Г®ГЄ
 		if (a == pipINSIDE || a == pipBOUNDARY)
 		{
 			PList.Add( new TIntVec(cps[i].Point) );
@@ -300,7 +302,7 @@ int TPolygon::FindCollinear(MBTi USEEPS)
 bool TPolygon::KillCloseEdges_0(MBTi USEEPS)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::KillCloseEdges_0()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::KillCloseEdges_0()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     TMDelTList<TIntVec>& vVertex = *(Vertex);
     for (int i=0;i<vVertex.Count;i++)
         if (vVertex.Count>=2 && (vVertex[i]-vVertex[(i+1)%vVertex.Count]).Length()<USEEPS )
@@ -312,7 +314,7 @@ bool TPolygon::KillCloseEdges_0(MBTi USEEPS)
 bool TPolygon::KillCollinear_1(MBTi USEEPS)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::KillCollinear_1()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::KillCollinear_1()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     TMDelTList<TIntVec>& vVertex = *(Vertex);
     if (vVertex.Count<3)
         return false;
@@ -328,7 +330,7 @@ bool TPolygon::KillCollinear_1(MBTi USEEPS)
 void TPolygon::SquareCreate(const TIntVec& Size)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::SquareCreate()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::SquareCreate()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     Clear();
     Vertex->Add( new TIntVec(Size.x/2,Size.y/2,-Size.z/2) );
 	Vertex->Add( new TIntVec(-Size.x/2,Size.y/2,-Size.z/2) );
@@ -340,7 +342,7 @@ void TPolygon::SquareCreate(const TIntVec& Size)
 bool TPolygon::Valid(MBTi USEEPS)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::Valid()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::Valid()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     if (!KillCloseEdges_0(USEEPS) || !KillCollinear_1(USEEPS))
         return false;
     if (Vertex->Count<3)
@@ -544,8 +546,8 @@ int TPolygon::ConsistsPolygon(TPolygon* ElsePol)
         return(p_pINSIDE);
     if (CountOUTSIDE)
         return(p_pOUTSIDE);
-    //все точки граничные
-    //теперь надо проверить одну внутреннюю точку Elsepol
+    //ГўГ±ГҐ ГІГ®Г·ГЄГЁ ГЈГ°Г Г­ГЁГ·Г­Г»ГҐ
+    //ГІГҐГЇГҐГ°Гј Г­Г Г¤Г® ГЇГ°Г®ГўГҐГ°ГЁГІГј Г®Г¤Г­Гі ГўГ­ГіГІГ°ГҐГ­Г­ГѕГѕ ГІГ®Г·ГЄГі Elsepol
     TIntVec ElseCenter = ElsePol->Center();
     switch (ConsistsPoint(ElseCenter,INTEPS))
     {
@@ -589,7 +591,7 @@ TIntVec TPolygon::MAX()
 void TPolygon::Assign(TMyObject *MO)
 {
     if (NotInstanced)
-        throw EMyException("<TPolygon::Assign()>: Полигон is read only!");
+        throw EMyException("<TPolygon::Assign()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     if ( typeid(*MO) == typeid(TPolygon) || typeid(*MO) == typeid(THoledPolygon) )
     {
         TPolygon* P = (TPolygon*)MO;
@@ -625,7 +627,7 @@ TIntVec TPolygon::Center()
 int TPolygon::IntrudeRib(int i, MBTi Value, MBTi USEEPS)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::IntrudeRib()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::IntrudeRib()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     TMDelTList<TIntVec>& vVertex = *Vertex;
     if (vVertex.Count<3)
         return psNoPoints;
@@ -660,7 +662,7 @@ int TPolygon::IntrudeRib(int i, MBTi Value, MBTi USEEPS)
 void TPolygon::Move(const TIntVec& _Move)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::Move()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::Move()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     for (int i=0;i<Vertex->Count;i++)
         (*(Vertex->Items[i])) += _Move;
 }
@@ -668,7 +670,7 @@ void TPolygon::Move(const TIntVec& _Move)
 void TPolygon::Rotate(const TIntVec &Angle,const TIntVec &Center)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::Rotate()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::Rotate()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     for (int i=0;i<Vertex->Count;i++)
         RotateAround(*(Vertex->Items[i]),Angle,Center);
 }
@@ -687,14 +689,14 @@ TIntVec* TPolygon::GetCyclePoint(int i)
 void TPolygon::Insert(int index,TIntVec* Item)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::Insert()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::Insert()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     Vertex->Insert(index,Item);
 }
 
 void TPolygon::Set(int axes,MBTi Value)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::Set()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::Set()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     for (int i=0;i<Vertex->Count;i++)
         Vertex->Items[i]->a[axes] = Value;
 }
@@ -765,7 +767,7 @@ bool TPolygon::RibIsConvex(int index,MBTi USEEPS)
 void TPolygon::ToConvex(MBTi USEEPS)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::ToConvex()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::ToConvex()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     bool WasDelete = true;
     while (WasDelete)
     {
@@ -797,7 +799,7 @@ void TPolygon::ToConvex(MBTi USEEPS)
 void TPolygon::ToConvexAndExtrude(MBTi USEEPS,MBTi Value)
 {
 //    if (NotInstanced)
-  //      throw EMyException("<TPolygon::ToConvexAndExtrude()>: Полигон is read only!");
+  //      throw EMyException("<TPolygon::ToConvexAndExtrude()>: ГЏГ®Г«ГЁГЈГ®Г­ is read only!");
     ToConvex(USEEPS);
     if (Vertex->Count<3)
         return;
@@ -954,11 +956,11 @@ void THoledPolygon::GetCrossPoints_UseHoles(    const TIntVec& P1,
         PList.Add(new TIntVec(P1));
         
     TIntVec CrossPoint;
-    //Найти пересечения
+    //ГЌГ Г©ГІГЁ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї
     for (int i=0;i<Vert.Count;i++)
         switch( IsCutsCrossed(P1,P2,Vert[i],Vert[(i+1)%Vert.Count],CrossPoint,USEEPS) )
         {
-            //если равны то общие точки  в i и в i+1
+            //ГҐГ±Г«ГЁ Г°Г ГўГ­Г» ГІГ® Г®ГЎГ№ГЁГҐ ГІГ®Г·ГЄГЁ  Гў i ГЁ Гў i+1
             case lcEQUAL:
                 continue;
             case lcCOMMONPOINT:
@@ -966,12 +968,12 @@ void THoledPolygon::GetCrossPoints_UseHoles(    const TIntVec& P1,
                 PList.Add(new TIntVec(CrossPoint.x,CrossPoint.y,0));
         };
 
-    //Найти пересечения с дырами
+    //ГЌГ Г©ГІГЁ ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГї Г± Г¤Г»Г°Г Г¬ГЁ
     for (int h=0;h<Holes->Count;h++)
         for (int i=0;i<Holes->Items[h]->Vertex->Count;i++)
             switch( IsCutsCrossed(P1,P2,*(Holes->Items[h]->Vertex->Items[i]),*(Holes->Items[h]->Vertex->CycleItems[i+1]),CrossPoint,USEEPS) )
             {
-                //если равны то общие точки  в i и в i+1
+                //ГҐГ±Г«ГЁ Г°Г ГўГ­Г» ГІГ® Г®ГЎГ№ГЁГҐ ГІГ®Г·ГЄГЁ  Гў i ГЁ Гў i+1
                 case lcEQUAL:
                     continue;
                 case lcCOMMONPOINT:
@@ -983,7 +985,7 @@ void THoledPolygon::GetCrossPoints_UseHoles(    const TIntVec& P1,
     if (UseLinePoints)
         PList.Add(new TIntVec(P2));
 
-    //повернем для упорядочивания
+    //ГЇГ®ГўГҐГ°Г­ГҐГ¬ Г¤Г«Гї ГіГЇГ®Г°ГїГ¤Г®Г·ГЁГўГ Г­ГЁГї
     MBTi AngleOX = (AngleRadOX(P1,P2,USEEPS)*180)/M_PI;
     TIntVec Angle3D = TIntVec(0,0,-AngleOX);
     if (PList.Count == 0 )
@@ -992,10 +994,10 @@ void THoledPolygon::GetCrossPoints_UseHoles(    const TIntVec& P1,
     for (int i=0;i<PList.Count;i++)
         PList[i] = RotateAround(PList[i],Angle3D,RotPoint);
 
-    //Точки упорядочить
+    //Г’Г®Г·ГЄГЁ ГіГЇГ®Г°ГїГ¤Г®Г·ГЁГІГј
     PList.Sort(SortByX);
 
-    //откинем близкие
+    //Г®ГІГЄГЁГ­ГҐГ¬ ГЎГ«ГЁГ§ГЄГЁГҐ
     bool Was_Delete = true;
     while (Was_Delete)
     {
@@ -1020,11 +1022,11 @@ void THoledPolygon::GetCrossPoints_UseHoles(    const TIntVec& P1,
         PList.Clear();
         return;
     }
-    //развернем список в изначальное положение
+    //Г°Г Г§ГўГҐГ°Г­ГҐГ¬ Г±ГЇГЁГ±Г®ГЄ Гў ГЁГ§Г­Г Г·Г Г«ГјГ­Г®ГҐ ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ
 //    if ( (PList[0]-P1).Length2D() > (PList[PList.Count-1]-P1).Length2D() )
 //        PList.Invert();
 
-    //посмотрим на принадлежность 1 отрезок принадлежит -1 нет 0 неизвестно
+    //ГЇГ®Г±Г¬Г®ГІГ°ГЁГ¬ Г­Г  ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГј 1 Г®ГІГ°ГҐГ§Г®ГЄ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ -1 Г­ГҐГІ 0 Г­ГҐГЁГ§ГўГҐГ±ГІГ­Г®
     TMDelTList<int> Status;
     TIntVec Point;
 

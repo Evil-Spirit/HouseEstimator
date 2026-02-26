@@ -1,22 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #include "Usefuls.h"
 #include "MyTemplates.h"
 #include "MTL.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "check.h"
-#include <typeinfo.h>
 #include <DesignIntf.hpp>
 #include "VCLSCILexerV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
 //---------------------------------------------------------------------------
-__fastcall TForm1::TForm1(TComponent* Owner)
+ TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
 {
     TSciLexer* SciLexer = new TSciLexer(this);
@@ -63,7 +64,7 @@ void DoSomeThing(const TA& A)
     AnsiString Str = A[0].Description;
 }
 
-void __fastcall TForm1::FormClick(TObject *Sender)
+void  TForm1::FormClick(TObject *Sender)
 {
 /*    ShowMessage( IntToStr(TMTList<AnsiString>::StaticType == NULL) );
     Garbage.AddStr(new AnsiString());
@@ -84,7 +85,7 @@ void __fastcall TForm1::FormClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button2Click(TObject *Sender)
+void  TForm1::Button2Click(TObject *Sender)
 {
 /*    TNewVec NewVec;
     TIntVec& Vec = (TIntVec&)NewVec;
@@ -106,7 +107,7 @@ void TNewVec::SetY(MBTi ay){TIntVec::y = ay;};
 void TNewVec::SetZ(MBTi az){TIntVec::z = az;};
 
 
-void __fastcall TForm1::BitBtn1Click(TObject *Sender)
+void  TForm1::BitBtn1Click(TObject *Sender)
 {
 //    CustomizeDlg->Show();        
 }

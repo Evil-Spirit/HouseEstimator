@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "CellGrid.h"
 #include "ColorComboBoxU.h"
@@ -11,11 +14,10 @@
 #include "SelectColorU.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TSelectColor *SelectColor;
 //---------------------------------------------------------------------------
-__fastcall TSelectColor::TSelectColor(TComponent* Owner,TCellGrid* _CellGrid, TColorComboBox* _ColorComboBox)
+ TSelectColor::TSelectColor(TComponent* Owner,TCellGrid* _CellGrid, TColorComboBox* _ColorComboBox)
     : TForm(Owner)
 {
     CellGrid = _CellGrid;
@@ -72,7 +74,7 @@ __fastcall TSelectColor::TSelectColor(TComponent* Owner,TCellGrid* _CellGrid, TC
     CL85->Brush->Color =(TColor)RGB(255,255,255);
 }
 //---------------------------------------------------------------------------
-void __fastcall TSelectColor::CL11MouseMove(TObject *Sender,
+void  TSelectColor::CL11MouseMove(TObject *Sender,
       TShiftState Shift, int X, int Y)
 {
     if ( IS (Sender,__classid(TShape)) )
@@ -131,7 +133,7 @@ void __fastcall TSelectColor::CL11MouseMove(TObject *Sender,
 
 }
 //---------------------------------------------------------------------------
-void __fastcall TSelectColor::CL11MouseDown(TObject *Sender,
+void  TSelectColor::CL11MouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     if ( IS (Sender,__classid(TShape)) )
@@ -143,25 +145,25 @@ void __fastcall TSelectColor::CL11MouseDown(TObject *Sender,
     }
 }
 //---------------------------------------------------------------------------
-TColor __fastcall TSelectColor::GetColor()
+TColor  TSelectColor::GetColor()
 {
     return GetColors->Brush->Color;
 }
 //---------------------------------------------------------------------------
-void __fastcall TSelectColor::CloseU2()
+void  TSelectColor::CloseU2()
 {
     Close();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TSelectColor::AutoFontColorClick(TObject *Sender)
+void  TSelectColor::AutoFontColorClick(TObject *Sender)
 {
         GetColors->Brush->Color =shAutoColor->Brush->Color;
         bAutoColor =true;
         CloseU2();
 }
 //---------------------------------------------------------------------------
-void __fastcall TSelectColor::FormDeactivate(TObject *Sender)
+void  TSelectColor::FormDeactivate(TObject *Sender)
 {
     if (ColorComboBox !=NULL)
     {

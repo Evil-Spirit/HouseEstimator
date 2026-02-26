@@ -1,13 +1,16 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 //#pragma option -zRSegment1
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "MTL.h"
 #include "Usefuls.h"
 #include <windows.h>
 #include <ComObj.hpp>
 #include "MyTemplates.h"
-#pragma hdrstop
 //---------------------------------------------------------------------------
 #include "math.h"
 #include "QuckList.h"
@@ -17,7 +20,6 @@
 #include "MDIBoolVectorEditV.h"
 #include "MDISignVectorEditV.h"
 #include "LuaAttributeV.h"
-#pragma package(smart_init)
 
 TClassNode* TMyObject::StaticType = NULL;
 TClassNode* TMyRegObject::StaticType = NULL;
@@ -51,7 +53,7 @@ void UnRegisterUsefuls()
 #pragma exit UnRegisterUsefuls 64
 
 
-__fastcall EMyException::EMyException(const AnsiString& _Error_Text)
+ EMyException::EMyException(const AnsiString& _Error_Text)
     :Exception(_Error_Text)
 {
 };    
@@ -399,7 +401,7 @@ void TMyObject::AssignLST(const TMyObject *Obj,TStringList *SKIP)
     }
 }
 
-//---------------------Функции Регистрации---------------------------
+//---------------------Г”ГіГ­ГЄГ¶ГЁГЁ ГђГҐГЈГЁГ±ГІГ°Г Г¶ГЁГЁ---------------------------
 //--------------------------------------------------------------------------
 int IterateByName(TQuickList *QL,const AnsiString& Name)
 {
@@ -1021,8 +1023,8 @@ void TMyObject::LoadData(FILE *F)
 
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------
-// если передается 0  в _METAID то идентификаторы генер. автом.
-// если имя уже есть к имени добавляется 1,2,3,4,....
+// ГҐГ±Г«ГЁ ГЇГҐГ°ГҐГ¤Г ГҐГІГ±Гї 0  Гў _METAID ГІГ® ГЁГ¤ГҐГ­ГІГЁГґГЁГЄГ ГІГ®Г°Г» ГЈГҐГ­ГҐГ°. Г ГўГІГ®Г¬.
+// ГҐГ±Г«ГЁ ГЁГ¬Гї ГіГ¦ГҐ ГҐГ±ГІГј ГЄ ГЁГ¬ГҐГ­ГЁ Г¤Г®ГЎГ ГўГ«ГїГҐГІГ±Гї 1,2,3,4,....
 const AnsiString aAttributes = AnsiString("Attributes");
 //const AnsiString aName = AnsiString("Name");
 const AnsiString aDescription = AnsiString("Description");
@@ -1030,7 +1032,7 @@ const AnsiString aDescription = AnsiString("Description");
 void TMyRegObject::SetParent(TMyRegObject *_Parent)
 {
     if (Parent == _Parent)
-        return;//т.к. динамические связки прыгают из конца в начало
+        return;//ГІ.ГЄ. Г¤ГЁГ­Г Г¬ГЁГ·ГҐГ±ГЄГЁГҐ Г±ГўГїГ§ГЄГЁ ГЇГ°Г»ГЈГ ГѕГІ ГЁГ§ ГЄГ®Г­Г¶Г  Гў Г­Г Г·Г Г«Г®
     if (Parent)
         Parent->ChildList->Remove(this);
     FParent = _Parent;
@@ -1865,7 +1867,7 @@ bool ClassCheck(const TMyObject* Object,const TClassNode* _Class)
 {
     if ( !Object->DynamicType )
     {
-        AnsiString Str = "<ClassCheck>: аргумент-объект не зарегистрирован.";
+        AnsiString Str = "<ClassCheck>: Г Г°ГЈГіГ¬ГҐГ­ГІ-Г®ГЎГєГҐГЄГІ Г­ГҐ Г§Г Г°ГҐГЈГЁГ±ГІГ°ГЁГ°Г®ГўГ Г­.";
         throw EMyException(Str);
     }
     return Object->Is(_Class);

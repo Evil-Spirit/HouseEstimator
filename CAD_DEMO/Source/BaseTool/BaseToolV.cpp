@@ -1,13 +1,15 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 #include "BaseToolV.h"
 #include "math.h"
 
-#pragma package(smart_init)
 
 TClassNode* TUserInterfaceParam::StaticType = NULL;
 TClassNode* TBaseBlock::StaticType = NULL;
@@ -446,12 +448,12 @@ void TBaseTool::FillMenu()
         TMenuItem* menu = new TMenuItem( MenuToolCommands );
         menu->Caption = ToolCommands[i].Description;
         menu->Tag = i;
-        menu->OnClick = MenuClick;
-        MenuToolCommands->Items->Add(menu);
+        menu->OnClick = [this](TObject* s){ MenuClick(s); };
+        MenuToolCommands->Items.Add(menu);
     }
 }
 
-void __fastcall TBaseTool::MenuClick(TObject *Sender)
+void  TBaseTool::MenuClick(TObject *Sender)
 {
     if ( !IS( Sender, __classid(TMenuItem) ) )
         return;
@@ -463,7 +465,7 @@ void __fastcall TBaseTool::MenuClick(TObject *Sender)
         ExecuteCommand( menu->Tag );
     }else
     {
-        ::SendMessage( Application->MainForm,WM_KEYDOWN,VK_ESCAPE,0);
+        SendMessage( Application->MainForm,WM_KEYDOWN,VK_ESCAPE,0);
     }
 }
 //------------------------------------Menu--------------------------------------
@@ -493,7 +495,7 @@ void TBaseTool::AddStateBlock(TCommands _Commands, int Id, const int _ExecutedEv
     if ( n == 1 )
     {
 //        IdEscAction = GetUnicId();
-        AddActionBlock(ProcessEscapeCommands,IdEscAction, btMenu, "Break");
+        AddActionBlock([this](){ ProcessEscapeCommands(); },IdEscAction, btMenu, "Break");
         Blocks[FindIndexFromId(IdEscAction)].SetName("escaction"+IntToStr(IdEscAction));
         AddGoToBlockId(IdEscAction,Id);
         FExecutedId = Id;
@@ -687,7 +689,8 @@ void TBaseTool::MouseDown(void* Sender, TMouseButton Button, TShiftState Shift, 
         }
     if ( Button == mbRight )
     {
-        MenuToolCommands->Items->Clear();
+        MenuToolCommands->Items.Add(nullptr);
+        MenuToolCommands->clear();
         ToolCommands.Clear();
         if ( ExecutedId != 0 )
         {

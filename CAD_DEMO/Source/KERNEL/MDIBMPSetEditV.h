@@ -1,18 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIBMPSetEditVH
 #define MDIBMPSetEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
-#include <ImgList.hpp>
-#include <ComCtrls.hpp>
-#include <ToolWin.hpp>
-#include <Dialogs.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIBMPSetEdit : public TMDIObjectEdit
 {
@@ -32,14 +28,14 @@ __published:	// IDE-managed Components
     TShape *ColorBox;
     TColorDialog *ColorDialog;
     TCheckBox *cbTrans;
-    void __fastcall tbtDelClick(TObject *Sender);
-    void __fastcall tbtUpClick(TObject *Sender);
-    void __fastcall tbtDownClick(TObject *Sender);
-    void __fastcall tbtAddClick(TObject *Sender);
-    void __fastcall eXChange(TObject *Sender);
-    void __fastcall ColorBoxMouseDown(TObject *Sender, TMouseButton Button,
+    void  tbtDelClick(TObject *Sender);
+    void  tbtUpClick(TObject *Sender);
+    void  tbtDownClick(TObject *Sender);
+    void  tbtAddClick(TObject *Sender);
+    void  eXChange(TObject *Sender);
+    void  ColorBoxMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall FormDestroy(TObject *Sender);
+    void  FormDestroy(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     virtual void Refresh();
@@ -47,7 +43,7 @@ public:		// User declarations
     virtual  bool Checked();
     virtual void SETUP();
     TMDelTList<int>* findices;
-    __fastcall TMDIBMPSetEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+     TMDIBMPSetEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIBMPSetEdit *MDIBMPSetEdit;

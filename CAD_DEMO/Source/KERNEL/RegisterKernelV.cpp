@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
       
 #include "RegisterKernelV.h"
 #include "Label3DV.h"
@@ -16,7 +19,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
  //---------------------------------------------------------------------------
 
 #include "AddLuaVarV.h"
@@ -86,7 +88,6 @@
 #include "LuaModuleV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 bool KernelIsRegistered = false;
 
 void RegisterKernel()
@@ -136,7 +137,7 @@ void RegisterKernel()
 
     TUnit();
     TLink();
-    /* TODO : срочно откомментировать *///TElement();
+    /* TODO : Г±Г°Г®Г·Г­Г® Г®ГІГЄГ®Г¬Г¬ГҐГ­ГІГЁГ°Г®ГўГ ГІГј *///TElement();
     TLabel3D();
     TMetaMultiElement();
     TMultiElement();

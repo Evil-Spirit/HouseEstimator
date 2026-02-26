@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LuaStationV.h"
 #include "LuaEditorV.h"
@@ -17,9 +20,8 @@
 #include "LuaEnvV.h"
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
-//Инициализация глобальных переменных
+//Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЈГ«Г®ГЎГ Г«ГјГ­Г»Гµ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ
 //---------------------------------------------------------------------------
 lua_State* _LUA_ = NULL;
 int LuaEnvMode = MODE_NORMAL;
@@ -33,7 +35,7 @@ GUID LuaModuleGUID=IID_IUnknown;
 
 AnsiString LuaFunctionGUID=AnsiString();
 //---------------------------------------------------------------------------
-//Локальные переменные
+//Г‹Г®ГЄГ Г«ГјГ­Г»ГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ
 //---------------------------------------------------------------------------
 int LevelHook=0,CurLevel=0;
 bool Started=true;
@@ -41,7 +43,7 @@ int Handled=false;
 tagMSG Message;
 
 //---------------------------------------------------------------------------
-//Клсс TLuaVariable
+//ГЉГ«Г±Г± TLuaVariable
 TClassNode* TLuaVariable::StaticType = NULL;
 const AnsiString aName = "Name";
 const AnsiString aType = "Type";
@@ -64,7 +66,7 @@ TMyObject* TLuaVariable::CreateFunction()
     return new TLuaVariable();
 }
 //---------------------------------------------------------------------------
-//Клсс TLuaRegObject
+//ГЉГ«Г±Г± TLuaRegObject
 TClassNode* TLuaRegObject::StaticType = NULL;
 const AnsiString aModules = "Modules";
 const AnsiString aImageIndex = "ImageIndex";
@@ -97,7 +99,7 @@ int Panic(lua_State *l)
     return 0;
 }
 
-void __fastcall SaveState(lua_Debug *ar)
+void  SaveState(lua_Debug *ar)
 {
     TMDelTList<TLuaVariable>* Vars = new TMDelTList<TLuaVariable>;
     TLuaVariables *All = new TLuaVariables();
@@ -174,7 +176,7 @@ void ReccurentCopy(TMyRegObject *Root,TLuaRegObject *LuaReg)
     }
 }
 
-void __fastcall DebugInit()
+void  DebugInit()
 {
     if (AnsiString(GetCommandLine()).Pos("INIT")!=0)
     {
@@ -282,7 +284,7 @@ void RestoreGlobals()
 }
 
 
-void __fastcall TMessageHandler::MyWndProc(tagMSG &Message, bool &Handled)
+void  TMessageHandler::MyWndProc(tagMSG &Message, bool &Handled)
 {
     switch(Message.message)
     {
@@ -766,7 +768,7 @@ void InspectVariable(HANDLE hnd,AnsiString Text)
 }
 
 
-void __fastcall TLuaVariables::FillGlobals(TMDelTList<TLuaVariable>* Vars)
+void  TLuaVariables::FillGlobals(TMDelTList<TLuaVariable>* Vars)
 {
     int type;
     Vars->Clear();
@@ -791,7 +793,7 @@ void __fastcall TLuaVariables::FillGlobals(TMDelTList<TLuaVariable>* Vars)
 	lua_pop(_LUA_, 1); // pop table of globals;
 }
 
-void __fastcall TLuaVariables::FillLocals(TMDelTList<TLuaVariable>* Vars)
+void  TLuaVariables::FillLocals(TMDelTList<TLuaVariable>* Vars)
 {
     lua_Debug ar;
     int i,type,level=0;
@@ -816,7 +818,7 @@ void __fastcall TLuaVariables::FillLocals(TMDelTList<TLuaVariable>* Vars)
     }
 }
 
-void __fastcall TLuaVariables::FillStack(TMDelTList<TLuaVariable>* Vars)
+void  TLuaVariables::FillStack(TMDelTList<TLuaVariable>* Vars)
 {
     int dat,tot=lua_gettop(_LUA_);
     Vars->Clear();
@@ -832,7 +834,7 @@ void __fastcall TLuaVariables::FillStack(TMDelTList<TLuaVariable>* Vars)
 
 
 
-TLuaVariable* __fastcall TLuaVariables::GetLocal(AnsiString Name, TLuaVariable *LuaVar)
+TLuaVariable*  TLuaVariables::GetLocal(AnsiString Name, TLuaVariable *LuaVar)
 {
     lua_Debug ar;
 
@@ -860,7 +862,7 @@ TLuaVariable* __fastcall TLuaVariables::GetLocal(AnsiString Name, TLuaVariable *
 };
 
 
-TLuaVariable* __fastcall TLuaVariables::GetGlobal(AnsiString Name, TLuaVariable *LuaVar)
+TLuaVariable*  TLuaVariables::GetGlobal(AnsiString Name, TLuaVariable *LuaVar)
 {
     lua_pushstring(_LUA_,Name.c_str());
     lua_gettable(_LUA_,LUA_GLOBALSINDEX);
@@ -871,7 +873,7 @@ TLuaVariable* __fastcall TLuaVariables::GetGlobal(AnsiString Name, TLuaVariable 
     return LuaVar;
 };
 
-bool __fastcall TLuaVariables::SetGlobal(TLuaVariable *Var)
+bool  TLuaVariables::SetGlobal(TLuaVariable *Var)
 {
     lua_pushstring(_LUA_,Var->Name.c_str());
     if (SetLuaValue(Var->Type,Var->Value))
@@ -886,7 +888,7 @@ bool __fastcall TLuaVariables::SetGlobal(TLuaVariable *Var)
     }
 };
 
-bool __fastcall TLuaVariables::SetLocal(TLuaVariable *Var)
+bool  TLuaVariables::SetLocal(TLuaVariable *Var)
 {
     lua_Debug ar;
     int i=0,level=0;
@@ -908,7 +910,7 @@ bool __fastcall TLuaVariables::SetLocal(TLuaVariable *Var)
     return (strcmp(name,Var->Name.c_str())==0);
 };
 
-/*void __fastcall TLuaVariables::FillTable(TMDelTList<TLuaVariable>* Vars, int index)
+/*void  TLuaVariables::FillTable(TMDelTList<TLuaVariable>* Vars, int index)
 {
     int type;
     Vars->Clear();
@@ -927,7 +929,7 @@ bool __fastcall TLuaVariables::SetLocal(TLuaVariable *Var)
 	}
 }
 
-void __fastcall TLuaVariables::FillTable(TMDelTList<TLuaVariable>* Vars, AnsiString name)
+void  TLuaVariables::FillTable(TMDelTList<TLuaVariable>* Vars, AnsiString name)
 {
     int type;
     Vars->Clear();
@@ -960,7 +962,7 @@ void DisplayMessage(int CODE)
         (LPTSTR) &lpMessageBuffer,
         0,
         NULL );
-    MessageBox(NULL,(char*) lpMessageBuffer, AnsiString("Ошибка "+IntToStr(CODE)).c_str(), MB_OK|MB_ICONERROR);
+    MessageBox(NULL,(char*) lpMessageBuffer, AnsiString("ГЋГёГЁГЎГЄГ  "+IntToStr(CODE)).c_str(), MB_OK|MB_ICONERROR);
     LocalFree( lpMessageBuffer );
 };
 
@@ -982,29 +984,39 @@ void LuaAllOpen()
 
     _LUA_ = lua_open();
 
-    //загрузка библиотеки Lexer
+    //Г§Г ГЈГ°ГіГ§ГЄГ  ГЎГЁГЎГ«ГЁГ®ГІГҐГЄГЁ Lexer
 	::LoadLibrary("SciLexer.DLL");
-    //инициализация информации о классах
+    //ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГЁ Г® ГЄГ«Г Г±Г±Г Гµ
 
     luaopen_base(_LUA_);
     luaopen_string(_LUA_);
-    luaopen_table(_LUA_);
+
+    luaopen_table(_LUA_);
     luaopen_math(_LUA_);
     luaopen_io(_LUA_);
     luaopen_debug(_LUA_);
-    luaopen_loadlib(_LUA_);
+
+    luaopen_loadlib(_LUA_);
 
     iuplua_open(_LUA_); /* iup Binding Lua */
     //-------------
-    controlslua_open(_LUA_); /* Inicialize CPI controls binding Lua */    //controlslua_open(_LUA_);
 
-////////////////////////////////////////////////////////////////////
-//Debuger features
-////////////////////////////////////////////////////////////////////
-    if ( LuaEnvMode == MODE_DEBUG )
-    {
-        lua_register(_LUA_, "_ALERT", Panic);
-        lua_register(_LUA_, "_ERRORMESSAGE", Panic);
+    controlslua_open(_LUA_); /* Inicialize CPI controls binding Lua */    //controlslua_open(_LUA_);
+
+
+////////////////////////////////////////////////////////////////////
+
+//Debuger features
+
+////////////////////////////////////////////////////////////////////
+
+    if ( LuaEnvMode == MODE_DEBUG )
+
+    {
+
+        lua_register(_LUA_, "_ALERT", Panic);
+
+        lua_register(_LUA_, "_ERRORMESSAGE", Panic);
         lua_atpanic(_LUA_,Panic);
         lua_sethook(_LUA_,Hooker,LUA_MASKLINE+LUA_MASKCALL+LUA_MASKRET,0);
         CreateGUID(LuaModuleGUID);
@@ -1024,12 +1036,16 @@ void LuaAllClose()
     _LUA_ = NULL;
     if ( LuaEnvMode == MODE_DEBUG )
     {
-        delete FileMap;
-        DebugMode=DBGMODE_STOP;
-        SendMessage(DebugHnd,WM_USER,MSG_SETMODE,DebugMode);
+
+        delete FileMap;
+
+        DebugMode=DBGMODE_STOP;
+
+        SendMessage(DebugHnd,WM_USER,MSG_SETMODE,DebugMode);
         SendMessage(DebugHnd,WM_USER,MSG_FINISH,0);
     }
 
-}
+
+}
 
 

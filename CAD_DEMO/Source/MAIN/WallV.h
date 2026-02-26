@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef WallVH
@@ -10,7 +14,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TMetaCube(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TMetaCube();
@@ -32,7 +36,7 @@ protected:
 public:
     //----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     MBTi LEFT_LINK_HEIGHT;
     MBTi RIGHT_LINK_HEIGHT;

@@ -1,21 +1,23 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMetaActionListV.h"
 #include "MDIPointerEditV.h"
 #include "UI.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIMetaNodeV"
 #pragma resource "*.dfm"
 TMDIMetaActionList *MDIMetaActionList;
 //---------------------------------------------------------------------------
-__fastcall TMDIMetaActionList::TMDIMetaActionList(TComponent* Owner,TMetaNode *N)
+ TMDIMetaActionList::TMDIMetaActionList(TComponent* Owner,TMetaNode *N)
     : TMDIMetaNode(Owner,N)
 {
 }

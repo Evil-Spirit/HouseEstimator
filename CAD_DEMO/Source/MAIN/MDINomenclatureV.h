@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDINomenclatureVH
 #define MDINomenclatureVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaNodeV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMDINomenclature : public TMDIMetaNode
 {
@@ -39,9 +38,9 @@ public:		// User declarations
     virtual void MNApply();
     virtual bool MNChecked();
     virtual void SETUP();
-    __fastcall TMDINomenclature(TComponent* Owner,TMetaNode *N);
+     TMDINomenclature(TComponent* Owner,TMetaNode *N);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMDINomenclature *MDINomenclature;
+extern  TMDINomenclature *MDINomenclature;
 //---------------------------------------------------------------------------
 #endif

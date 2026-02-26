@@ -1,14 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIElementSelectVH
 #define MDIElementSelectVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <typeinfo.h>
+#include "compat/vcl_qt.h"
 #include "MetaClasses.h"
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIElementSelect : public TForm
@@ -17,12 +16,12 @@ __published:	// IDE-managed Components
     TListView *LV;
     TButton *OK;
     TButton *btCancel;
-    void __fastcall OKClick(TObject *Sender);
-    void __fastcall btCancelClick(TObject *Sender);
+    void  OKClick(TObject *Sender);
+    void  btCancelClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     TMetaNode *Selected;
-    __fastcall TMDIElementSelect(TComponent* Owner,TClassNode* CN,bool self,bool childs,TMetaNode *Parent);
+     TMDIElementSelect(TComponent* Owner,TClassNode* CN,bool self,bool childs,TMetaNode *Parent);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIElementSelect *MDIElementSelect;

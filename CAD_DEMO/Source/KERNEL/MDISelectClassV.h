@@ -1,12 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDISelectClassVH
 #define MDISelectClassVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 template <class T> class TMTList;
 
@@ -16,12 +17,12 @@ __published:	// IDE-managed Components
     TButton *Button1;
     TButton *Button2;
     TListBox *ListBox1;
-    void __fastcall Button2Click(TObject *Sender);
-    void __fastcall Button1Click(TObject *Sender);
-    void __fastcall FormShow(TObject *Sender);
+    void  Button2Click(TObject *Sender);
+    void  Button1Click(TObject *Sender);
+    void  FormShow(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TMDISelectClass(TComponent* Owner,TMTList<TClassNode> *L);
+     TMDISelectClass(TComponent* Owner,TMTList<TClassNode> *L);
 int Returned;
 };
 //---------------------------------------------------------------------------

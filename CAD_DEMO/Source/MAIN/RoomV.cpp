@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "RoomV.h"
 #include "World.h"
@@ -24,7 +27,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 //---------------------------TMetaPlatform-------------------------
 TMyObject* TMetaRoom::CreateFunction()
@@ -102,7 +104,7 @@ void TMetaRoom::Fix_Changes(TMetaElement *MEL,TElement* UsedElement)
         if (index!=-1)
         {
             //------------------------------
-            //ïîìåùåíèå îñòàëîñü íî âîçìîæíî äûðîê ñòàëî áîëüøå
+            //Ã¯Ã®Ã¬Ã¥Ã¹Ã¥Ã­Ã¨Ã¥ Ã®Ã±Ã²Ã Ã«Ã®Ã±Ã¼ Ã­Ã® Ã¢Ã®Ã§Ã¬Ã®Ã¦Ã­Ã® Ã¤Ã»Ã°Ã®Ãª Ã±Ã²Ã Ã«Ã® Ã¡Ã®Ã«Ã¼Ã¸Ã¥
 
 /*            R->Exclusion->Clear();
             for (int h=0;h<EXCL->Items[index]->Count;h++)
@@ -300,7 +302,7 @@ void PolygonFromOneToTwo(TElement* One,TElement* Two,TPolygon* HP)
 void CreateCrossingObject(TRoom* One,TPlatform* Two, TVisPrimitiveObj* Obj, MBTi Z,bool Invert)
 {
     if ( !Two->Is(TPlatform::StaticType))
-        return;//èñêëþ÷èòü êðûøó
+        return;//Ã¨Ã±ÃªÃ«Ã¾Ã·Ã¨Ã²Ã¼ ÃªÃ°Ã»Ã¸Ã³
     THoledPolygon ELSEHP;
     Two->FillCompletePolygon(&ELSEHP);
     PolygonFromOneToTwo(One,Two,&ELSEHP);
@@ -452,8 +454,8 @@ bool TRoom::Init()
         Pos.z = Determinators->Items[0]->AbsPos.z;
     UserChangePosition(Pos-AbsPos,ZEROINTVEC);
 //    RunElementTrigger(trChangeSize);
-    //ïîêà âûñîòà ñòåí ìîæåò áûòü ðàçíîé
-    //íî ñâÿçêè òàêîâû ÷òî ñòåíû ñîåäèíÿþòñÿ åñëè âûñîòà îäèíàêîâàÿ
+    //Ã¯Ã®ÃªÃ  Ã¢Ã»Ã±Ã®Ã²Ã  Ã±Ã²Ã¥Ã­ Ã¬Ã®Ã¦Ã¥Ã² Ã¡Ã»Ã²Ã¼ Ã°Ã Ã§Ã­Ã®Ã©
+    //Ã­Ã® Ã±Ã¢Ã¿Ã§ÃªÃ¨ Ã²Ã ÃªÃ®Ã¢Ã» Ã·Ã²Ã® Ã±Ã²Ã¥Ã­Ã» Ã±Ã®Ã¥Ã¤Ã¨Ã­Ã¿Ã¾Ã²Ã±Ã¿ Ã¥Ã±Ã«Ã¨ Ã¢Ã»Ã±Ã®Ã²Ã  Ã®Ã¤Ã¨Ã­Ã ÃªÃ®Ã¢Ã Ã¿
 /*    ChangeSize(Determinators->Items[0]->AbsSize-AbsSize,ZEROINTVEC);
     TIntVec Pos = HP->Center();
     Pos.z = Determinators->Items[0]->AbsPos.z+Determinators->Items[0]->AbsSize.z/2;

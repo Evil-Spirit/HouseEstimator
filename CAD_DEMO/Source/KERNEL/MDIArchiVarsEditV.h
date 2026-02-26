@@ -1,14 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIArchiVarsEditVH
 #define MDIArchiVarsEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TMetaNodeCollection;
 class TMDIArchiVarsEdit : public TMDIObjectEdit
@@ -26,10 +26,10 @@ public:		// User declarations
     virtual void Apply();
     virtual  bool Checked();
     virtual void SETUP();
-    __fastcall TMDIArchiVarsEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+     TMDIArchiVarsEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
     TMetaNodeCollection* MNC();
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMDIArchiVarsEdit *MDIArchiVarsEdit;
+extern  TMDIArchiVarsEdit *MDIArchiVarsEdit;
 //---------------------------------------------------------------------------
 #endif

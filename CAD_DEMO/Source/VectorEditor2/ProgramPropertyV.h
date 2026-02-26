@@ -1,15 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef ProgramPropertyVH
 #define ProgramPropertyVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
-#include <Dialogs.hpp>
+#include "compat/vcl_qt.h"
 //#include ""
 //---------------------------------------------------------------------------
 class TProgramProperty : public TForm
@@ -55,15 +53,15 @@ __published:	// IDE-managed Components
     TLabel *lLinesFixid;
     TButton *bOk;
     TButton *bCancel;
-    void __fastcall StepExit(TObject *Sender);
-    void __fastcall bOkClick(TObject *Sender);
-    void __fastcall bCancelClick(TObject *Sender);
-    void __fastcall FormShow(TObject *Sender);
+    void  StepExit(TObject *Sender);
+    void  bOkClick(TObject *Sender);
+    void  bCancelClick(TObject *Sender);
+    void  FormShow(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TProgramProperty(TComponent* Owner);
+     TProgramProperty(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TProgramProperty *ProgramProperty;
+extern  TProgramProperty *ProgramProperty;
 //---------------------------------------------------------------------------
 #endif

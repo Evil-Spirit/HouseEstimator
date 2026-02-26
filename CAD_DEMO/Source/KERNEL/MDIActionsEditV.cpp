@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MetaClasses.h"
 #include "MDIActionsEditV.h"
@@ -11,12 +14,11 @@
 #include "MetaToolV.h"
 //#include "Main.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma resource "*.dfm"
 TMDIActionsEdit *MDIActionsEdit;
 //---------------------------------------------------------------------------
-__fastcall TMDIActionsEdit::TMDIActionsEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDIActionsEdit::TMDIActionsEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }
@@ -52,7 +54,7 @@ bool TMDIActionsEdit::Checked()
             ((TMDIObjectEdit*)CreateTools->Controls[0])->Checked();
 };
 
-void __fastcall TMDIActionsEdit::FormResize(TObject *Sender)
+void  TMDIActionsEdit::FormResize(TObject *Sender)
 {
     Tools->Width = ClientWidth/2;    
 }

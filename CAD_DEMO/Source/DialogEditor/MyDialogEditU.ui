@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>MyDialogEdit</class>
+  <widget class="QWidget" name="MyDialogEdit">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>673</width>
+        <height>530</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>MyDialogEdit</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

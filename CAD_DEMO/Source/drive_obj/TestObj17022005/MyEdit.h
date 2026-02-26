@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #ifndef MyEditH
 #define MyEditH
@@ -7,37 +11,35 @@
 //---------------------------------------------------------------------------
 class TMyView;
 class TRedCut;
-//точка
-class PACKAGE TRedPoint : public TMyObject{
+//ГІГ®Г·ГЄГ 
+class  TRedPoint : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TRedPoint();
     virtual ~TRedPoint(){};
     TChangeVec Point;
     TMTList<TRedCut> Cuts;
 };
 
-extern PACKAGE TClassNode* TRedPoint::StaticType;
 
-//отрезок
-class PACKAGE TRedCut : public TMyObject{
+//Г®ГІГ°ГҐГ§Г®ГЄ
+class  TRedCut : public TMyObject{
     TRedPoint* FSrc;
     TRedPoint* FDst;
     void SetSrc(TRedPoint* Value);
     void SetDst(TRedPoint* Value);
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TRedCut();
     virtual ~TRedCut();
-    __property TRedPoint* Src = {read = FSrc,write = SetSrc};
-    __property TRedPoint* Dst = {read = FDst,write = SetDst};
+    // __property TRedPoint* Src {read=FSrc, write=SetSrc}; // [manual migration needed]
+    // __property TRedPoint* Dst {read=FDst, write=SetDst}; // [manual migration needed]
 };
 
-extern PACKAGE TClassNode* TRedCut::StaticType;
 
-class PACKAGE TMyFigure : public TMyObject{
+class  TMyFigure : public TMyObject{
 protected:
     TVisPrimitiveObj* VCO;
     virtual void ProcessCreateView();
@@ -50,9 +52,9 @@ protected:
     void SetLineWidth(int ALineWidth);
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
-    __property TColor Color = {read = FColor,write = SetColor};
-    __property int LineWidth = {read = FLineWidth,write = SetLineWidth};
+    static TMyObject* CreateFunction();
+    // __property TColor Color {read=FColor, write=SetColor}; // [manual migration needed]
+    // __property int LineWidth {read=FLineWidth, write=SetLineWidth}; // [manual migration needed]
     TChangeVec RotateCenter;
     void CreateRC();
     void CreateBBox();
@@ -65,10 +67,10 @@ public:
     virtual int FindPoint(const TIntVec& V) const;
     virtual bool Snap(const TIntVec &Point, TIntVec& SnapPoint, int& CutIndex, MBTi CEPS, bool Infinity) const;
 
-    __property int PointsCount = {read = GetPointsCount};
-//    __property TRedPoint& Points[int i] = {read = GetPoint};
-    __property int CutsCount = {read = GetCutsCount};
-//    __property TRedCut& Cuts[int i] = {read = GetCut};
+    // __property int PointsCount {read=GetPointsCount}; // [manual migration needed]
+// [indexed property - needs manual migration]: //    __property TRedPoint& Points[int i] = {read = GetPoint};
+    // __property int CutsCount {read=GetCutsCount}; // [manual migration needed]
+// [indexed property - needs manual migration]: //    __property TRedCut& Cuts[int i] = {read = GetCut};
 
     virtual TRedCut& GetCut(int Index);
     virtual const TRedCut& GetCut(int Index) const;
@@ -82,9 +84,8 @@ public:
     virtual void AboutToChange(void* Sender);
 };
 
-extern PACKAGE TClassNode* TMyFigure::StaticType;
 
-class PACKAGE TCustomFigure : public TMyFigure{
+class  TCustomFigure : public TMyFigure{
 protected:
     TMDelTList<TRedPoint> PNTS;
     TMDelTList<TRedCut> CUTS;
@@ -93,7 +94,7 @@ protected:
     void IndicesToCuts(TMDelTList<int>& CutPointIndices);
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TCustomFigure();
     virtual ~TCustomFigure(){};
 
@@ -116,25 +117,24 @@ public:
     virtual int IndexOfCut(TRedCut* Cut) const;
 
 
-    //сохранение и загрузка в текстовый файл
+    //Г±Г®ГµГ°Г Г­ГҐГ­ГЁГҐ ГЁ Г§Г ГЈГ°ГіГ§ГЄГ  Гў ГІГҐГЄГ±ГІГ®ГўГ»Г© ГґГ Г©Г«
     virtual void SaveData(FILE *F) const;
     virtual void LoadData(FILE *F);
-    //запись и чтение в поток
+    //Г§Г ГЇГЁГ±Гј ГЁ Г·ГІГҐГ­ГЁГҐ Гў ГЇГ®ГІГ®ГЄ
     virtual void WriteData(TMemoryStream *MS) const;
     virtual void ReadData(TMemoryStream *MS);
-    //присвоение
+    //ГЇГ°ГЁГ±ГўГ®ГҐГ­ГЁГҐ
     virtual void Assign(TMyObject* MO);
 };
 
-extern PACKAGE TClassNode* TCustomFigure::StaticType;
 
-class PACKAGE TInfinityLine : public TMyFigure{
+class  TInfinityLine : public TMyFigure{
 private:
     TRedPoint RedPoint[2];
     TRedCut RedCut;
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TInfinityLine();
     virtual ~TInfinityLine(){};
     void Render(TMyView* aView);
@@ -152,7 +152,6 @@ public:
 //    virtual void ProcessCreateView();
 };
 
-extern PACKAGE TClassNode* TInfinityLine::StaticType;
 
 struct TEditorColors {
     TColor Additional;
@@ -169,10 +168,10 @@ struct TEditorLineWidth{
     int Fixid;
 };
 
-class PACKAGE TEditorAttributes : public TMyObject{
+class  TEditorAttributes : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TEditorAttributes();
     virtual ~TEditorAttributes(){};
     bool Snap;
@@ -185,7 +184,6 @@ public:
     TEditorLineWidth LinesWidth;
 };
 
-extern PACKAGE TClassNode* TEditorAttributes::StaticType;
 
 struct TGridColors{
     TColor OSI;
@@ -199,10 +197,10 @@ struct TGridLineWidth{
     int MAX;
 };
 
-class PACKAGE TGridAttributes : public TMyObject{
+class  TGridAttributes : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGridAttributes();
     virtual ~TGridAttributes(){};
     bool Snap;
@@ -220,12 +218,11 @@ public:
     bool Minimal;
 };
 
-extern PACKAGE TClassNode* TGridAttributes::StaticType;
 
-class PACKAGE TGrid : public TMyObject{
+class  TGrid : public TMyObject{
 public:
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     TGrid();
     virtual ~TGrid();
     int Precision;
@@ -238,7 +235,6 @@ public:
     void Render(TMyView* aView);
 };
 
-extern PACKAGE TClassNode* TGrid::StaticType;
 
 class TSelected{
 public:

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef CustomElementVH
@@ -34,10 +38,10 @@ protected:
 public:
 	//----------------------------------
 	static TClassNode* StaticType;
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	//----------------------------------
 
-    __property TVisPrimitiveObj* VisObject = {read = GetVisObject};
+    // __property TVisPrimitiveObj* VisObject {read=GetVisObject}; // [manual migration needed]
     TCustomMetaElement(TMetaNode *Parent,int _ID,const AnsiString& Name);
     TCustomMetaElement();
     virtual ~TCustomMetaElement();
@@ -46,7 +50,6 @@ public:
     virtual void SaveData(FILE *F) const;
     virtual void WriteData(TMemoryStream *MS) const;
 };
-extern TClassNode* COMMONAL_API TCustomMetaElement::StaticType;
 
 
 class COMMONAL_API TCustomElement : public TElement{
@@ -56,13 +59,13 @@ protected:
     void SetMetaObject(TMyRegObject* aMetaObject);
 public:
 //    TGeomObject* FGeomObject;
-    __property TVisPrimitiveObj* VisObject = {read = OBJ};
+    // __property TVisPrimitiveObj* VisObject {read=OBJ}; // [manual migration needed]
     void ApplyObject(const TIntVec& AbsPoint,TVisRender* Render,TMyObject* Object, int PrimID);
 //	void ProcessTexturing();
 	void TexturePrimitive(TVisPrimitiveObj* Obj,TVisPrimitiveArray* Array,TRenderParam& RP, int Index = 0);
 	//----------------------------------
     static TClassNode* StaticType;
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //----------------------------------
     TCustomElement();
     virtual ~TCustomElement();
@@ -71,7 +74,6 @@ public:
     virtual TVisRender *MyRender(){return(OBJ);};
     bool CheckFields();
 };
-extern TClassNode* COMMONAL_API TCustomElement::StaticType;
 
 void UnpackMaterials(TVisPrimitiveObj *CO,
 					 TMDelTList< TPointer<TMetaMaterial> >& MaterialRefs,

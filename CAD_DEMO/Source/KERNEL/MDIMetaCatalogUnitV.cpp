@@ -1,22 +1,24 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIMetaCatalogUnitV.h"
 #include "MDIPointerEditV.h"
 #include "MDIObjectEditV.h"
 #include "CatalogUnitV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIMetaNodeV"
 #pragma resource "*.dfm"
 TMDIMetaCatalogUnit *MDIMetaCatalogUnit;
 //---------------------------------------------------------------------------
-__fastcall TMDIMetaCatalogUnit::TMDIMetaCatalogUnit(TComponent* Owner,TMetaNode *N)
+ TMDIMetaCatalogUnit::TMDIMetaCatalogUnit(TComponent* Owner,TMetaNode *N)
     : TMDIMetaNode(Owner,N)
 {
 }

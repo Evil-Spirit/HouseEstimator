@@ -1,19 +1,21 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIHasStepV.h"
 #include "MetaClasses.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma resource "*.dfm"
 TMDIHasStep *MDIHasStep;
 //---------------------------------------------------------------------------
-__fastcall TMDIHasStep::TMDIHasStep(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDIHasStep::TMDIHasStep(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }

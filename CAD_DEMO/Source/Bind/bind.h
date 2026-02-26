@@ -1,8 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 #ifndef BINDH
 #define BINDH
 
 #include "tolua++.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 
 TOLUA_API AnsiString tolua_toansi(lua_State* tolua_S, int narg, const char* def)
 {

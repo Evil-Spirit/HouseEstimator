@@ -1,22 +1,19 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef BindedBlockEditVH
 #define BindedBlockEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ToolWin.hpp>
-#include <ImgList.hpp>
-#include <ExtCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
 class TBaseBlock;
 class TBindedBaseTool;
 class TBindedGoEdit;
 //---------------------------------------------------------------------------
-class PACKAGE TBindedBlockEdit : public TMDIObjectEdit
+class  TBindedBlockEdit : public TMDIObjectEdit
 {
 //    friend class TBaseTool;
 __published:	// IDE-managed Components
@@ -35,16 +32,16 @@ __published:	// IDE-managed Components
     TListView *lvNextBlock;
     TSplitter *Splitter1;
     TPanel *pLuaModuleEdit;
-    void __fastcall tbNewClick(TObject *Sender);
-    void __fastcall tbEditClick(TObject *Sender);
-    void __fastcall tbDeleteClick(TObject *Sender);
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall lvNextBlockDblClick(TObject *Sender);
-    void __fastcall eNameChange(TObject *Sender);
-    void __fastcall lvNextBlockResize(TObject *Sender);
+    void  tbNewClick(TObject *Sender);
+    void  tbEditClick(TObject *Sender);
+    void  tbDeleteClick(TObject *Sender);
+    void  FormDestroy(TObject *Sender);
+    void  lvNextBlockDblClick(TObject *Sender);
+    void  eNameChange(TObject *Sender);
+    void  lvNextBlockResize(TObject *Sender);
 private:	// User declarations
     TBaseBlock* GetFObj();
-    __property TBaseBlock* FObj = {read = GetFObj};
+    // __property TBaseBlock* FObj {read=GetFObj}; // [manual migration needed]
     TBindedBaseTool* BT;
     int FBlockType;
     TBindedGoEdit* BindedGoEdit;
@@ -57,15 +54,15 @@ private:	// User declarations
     TMDelTList<AnsiString>* FBlocksNames;
     TMDelTList<int>* FBlocksIds;
 
-    __property TMDelTList<AnsiString> BlocksNames = {read = GetBlocksNames};
-    __property TMDelTList<int> BlocksIds = {read = GetBlocksIds};
+    // __property TMDelTList<AnsiString> BlocksNames {read=GetBlocksNames}; // [manual migration needed]
+    // __property TMDelTList<int> BlocksIds {read=GetBlocksIds}; // [manual migration needed]
     int BlocksCount;
     int Size0;
     TBaseBlock& GetMyBaseBlock();
     TBaseBlock* FMyBaseBlock;
-    __property TBaseBlock MyBaseBlock = {read = GetMyBaseBlock};
+    // __property TBaseBlock MyBaseBlock {read=GetMyBaseBlock}; // [manual migration needed]
 public:		// User declarations
-    __fastcall TBindedBlockEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
+     TBindedBlockEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data);
     void EditLuaModule();
     bool Checked();
     void Apply();
@@ -76,6 +73,6 @@ public:		// User declarations
     bool NameChanged;
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TBindedBlockEdit *BindedBlockEdit;
+extern  TBindedBlockEdit *BindedBlockEdit;
 //---------------------------------------------------------------------------
 #endif

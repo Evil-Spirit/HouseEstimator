@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
      
 #include "OutPutV.h"
 #include "LuaModuleV.h"
@@ -15,18 +18,17 @@
 #include "MDILuaEditorV.h"
 //#include "Select.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //#pragma link "MyMDIChildV"
 #pragma resource "*.dfm"
-//output == null åñëè íå àêòèâåí
+//output == null Ã¥Ã±Ã«Ã¨ Ã­Ã¥ Ã ÃªÃ²Ã¨Ã¢Ã¥Ã­
 TOutPut *OutPut = NULL;
 //---------------------------------------------------------------------------
-__fastcall TOutPut::TOutPut(TComponent* Owner)
+ TOutPut::TOutPut(TComponent* Owner)
     : TFloatForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TOutPut::FormDestroy(TObject *Sender)
+void  TOutPut::FormDestroy(TObject *Sender)
 {
     OutPut=NULL;
 }
@@ -49,7 +51,7 @@ bool AllWindowsAreClosed()
 }
 
 
-void __fastcall TOutPut::LVDblClick(TObject *Sender)
+void  TOutPut::LVDblClick(TObject *Sender)
 {
     #if !defined(INTERNET_VER) && !defined(TRADE_VER)
     CloseAllWindows();
@@ -91,7 +93,7 @@ void __fastcall TOutPut::LVDblClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TOutPut::LVResize(TObject *Sender)
+void  TOutPut::LVResize(TObject *Sender)
 {
     LV->Column[0]->Width = LV->ClientWidth;
 }

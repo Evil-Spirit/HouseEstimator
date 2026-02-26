@@ -1,18 +1,11 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <basepch.h>
-#pragma hdrstop
-USEFORM("MDIObjectEditV.cpp", MDIObjectEdit);
-USEFORM("SimpleEditV.cpp", MDISimpleEdit);
-USEFORM("MDISignVectorEditV.cpp", MDISIGNVECEDIT);
-USEFORM("MDIBoolVectorEditV.cpp", MDIBOOLVECEDIT);
-USEFORM("MDIVectorEditV.cpp", MDIVECEDIT);
-USEFORM("MyMDIChildV.cpp", MyMDIChild);
-USEFORM("FloatingV.cpp", FloatForm);
-USEFORM("BaseFormV.cpp", BaseForm);
-USEFORM("BaseDockSiteFormV.cpp", BaseDockSiteForm);
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 
 //   Package source.

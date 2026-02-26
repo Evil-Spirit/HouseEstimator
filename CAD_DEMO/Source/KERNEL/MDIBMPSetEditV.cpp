@@ -1,20 +1,22 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MDIBMPSetEditV.h"
 #include "MetaClasses.h"
 #include "MetaNodeCollectionV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIObjectEditV"
 #pragma resource "*.dfm"
 TMDIBMPSetEdit *MDIBMPSetEdit;
 //---------------------------------------------------------------------------
-__fastcall TMDIBMPSetEdit::TMDIBMPSetEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
+ TMDIBMPSetEdit::TMDIBMPSetEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void *Data)
     : TMDIObjectEdit(Owner,_Parent,_Obj,Text,Data)
 {
 }
@@ -37,7 +39,7 @@ TMyRegObject* GETREGOBJ(TMyObject * Target)
     return (TMyRegObject*)Target;
 }
 
-void __fastcall TMDIBMPSetEdit::tbtDelClick(TObject *Sender)
+void  TMDIBMPSetEdit::tbtDelClick(TObject *Sender)
 {
     if (!LV->Selected)
         return;
@@ -75,7 +77,7 @@ void __fastcall TMDIBMPSetEdit::tbtDelClick(TObject *Sender)
         LV->Selected = LV->Items->Item[index];
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIBMPSetEdit::tbtUpClick(TObject *Sender)
+void  TMDIBMPSetEdit::tbtUpClick(TObject *Sender)
 {
     if (!LV->Selected)
         return;
@@ -88,7 +90,7 @@ void __fastcall TMDIBMPSetEdit::tbtUpClick(TObject *Sender)
     LV->Selected = LV->Items->Item[index-1];
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIBMPSetEdit::tbtDownClick(TObject *Sender)
+void  TMDIBMPSetEdit::tbtDownClick(TObject *Sender)
 {
     if (!LV->Selected)
         return;
@@ -101,7 +103,7 @@ void __fastcall TMDIBMPSetEdit::tbtDownClick(TObject *Sender)
     LV->Selected = LV->Items->Item[index+1];
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDIBMPSetEdit::tbtAddClick(TObject *Sender)
+void  TMDIBMPSetEdit::tbtAddClick(TObject *Sender)
 {
     if (!OpenDialog->Execute())
         return;
@@ -191,7 +193,7 @@ bool TMDIBMPSetEdit::Checked()
     return true;
 }
 
-void __fastcall TMDIBMPSetEdit::eXChange(TObject *Sender)
+void  TMDIBMPSetEdit::eXChange(TObject *Sender)
 {
     if (ISINTEGER(eX->Text) && ISINTEGER(eY->Text)
         && (eX->Text.ToInt()>0) && (eY->Text.ToInt()>0))
@@ -203,7 +205,7 @@ void __fastcall TMDIBMPSetEdit::eXChange(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIBMPSetEdit::ColorBoxMouseDown(TObject *Sender,
+void  TMDIBMPSetEdit::ColorBoxMouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y)
 {
     ColorDialog->Color = ColorBox->Brush->Color;
@@ -215,7 +217,7 @@ void __fastcall TMDIBMPSetEdit::ColorBoxMouseDown(TObject *Sender,
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDIBMPSetEdit::FormDestroy(TObject *Sender)
+void  TMDIBMPSetEdit::FormDestroy(TObject *Sender)
 {
     delete findices;
 }

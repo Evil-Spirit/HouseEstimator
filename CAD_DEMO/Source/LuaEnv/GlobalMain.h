@@ -1,13 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef GlobalMainH
 #define GlobalMainH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
+#include "compat/vcl_qt.h"
 
 
 extern "C"
@@ -15,7 +15,7 @@ extern "C"
 #include "lua.h"
 }
 //---------------------------------------------------------------------------
-//Описание классов и типов переменных ЛУА
+//ГЋГЇГЁГ±Г Г­ГЁГҐ ГЄГ«Г Г±Г±Г®Гў ГЁ ГІГЁГЇГ®Гў ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ Г‹Г“ГЂ
 //---------------------------------------------------------------------------
 typedef struct
 {
@@ -26,33 +26,33 @@ typedef struct
 class TLuaVariables : public TObject
 {
     public:
-    __fastcall TLuaVariables();
-    __fastcall ~TLuaVariables();
+     TLuaVariables();
+     ~TLuaVariables();
 
-//    void __fastcall FillGlobals(TMDelTLIst<TLuaVariable>& Vars);
-//    void __fastcall FillLocals(TMDelTLIst<TLuaVariable>& Vars);
+//    void  FillGlobals(TMDelTLIst<TLuaVariable>& Vars);
+//    void  FillLocals(TMDelTLIst<TLuaVariable>& Vars);
 
-    TLuaVariable* __fastcall GetLocal(AnsiString Name);
-    TLuaVariable* __fastcall GetGlobal(AnsiString Name);
-    bool __fastcall SetGlobal(TLuaVariable *Var);
-    bool __fastcall SetLocal(TLuaVariable *Var);
+    TLuaVariable*  GetLocal(AnsiString Name);
+    TLuaVariable*  GetGlobal(AnsiString Name);
+    bool  SetGlobal(TLuaVariable *Var);
+    bool  SetLocal(TLuaVariable *Var);
 };
 //---------------------------------------------------------------------------
-//MDI-форма для переменных
+//MDI-ГґГ®Г°Г¬Г  Г¤Г«Гї ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ
 //---------------------------------------------------------------------------
 class TGlobal : public TForm
 {
 __published:	// IDE-managed Components
     TListView *List;
-    void __fastcall ListClick(TObject *Sender);
+    void  ListClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     void ViewGlobal();
     void ViewLocal();
-    __fastcall TGlobal(TComponent* Owner);
-    __fastcall ~TGlobal();
+     TGlobal(TComponent* Owner);
+     ~TGlobal();
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TGlobal *Global;
+extern  TGlobal *Global;
 //---------------------------------------------------------------------------
 #endif

@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 /*
 ** Lua binding: z_List_int
 ** Generated automatically by tolua++-1.0.3 on 10/17/04 18:02:51.
@@ -14,11 +18,10 @@
 TOLUA_API int  tolua_z_List_int_open (lua_State* tolua_S);
 #include "Bind.h"
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #define LUA_N = 1<<31;
 

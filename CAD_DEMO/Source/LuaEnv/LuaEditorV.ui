@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>FLuaEditor</class>
+  <widget class="QWidget" name="FLuaEditor">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>781</width>
+        <height>512</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>FLuaEditor</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsNone → set windowFlags Qt::FramelessWindowHint in constructor -->
+    <widget class="QFrame" name="Panel1">
+      <property name="geometry">
+        <rect>
+          <x>0</x>
+          <y>495</y>
+          <width>781</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+      </property>
+      <!-- vcl-align: alBottom → arrange in a Qt layout manager -->
+      <widget class="QLabel" name="Label1">
+        <property name="geometry">
+          <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>3</width>
+            <height>17</height>
+          </rect>
+        </property>
+        <property name="text">
+          <string/>
+        </property>
+        <property name="font">
+          <font>
+            <family>MS Sans Serif</family>
+            <pointsize>8</pointsize>
+          </font>
+        </property>
+        <!-- vcl-align: alLeft → arrange in a Qt layout manager -->
+      </widget>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

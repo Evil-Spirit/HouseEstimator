@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 #ifndef FileMapperH
 #define FileMapperH
 
@@ -8,15 +12,15 @@
 class COMMONAL_API TFileMapStream : public TMemoryStream
 {
 public:
-	virtual int __fastcall Write(const void *Buffer, int Count);
-    virtual int __fastcall Read(void *Buffer, int Count);
-    virtual void __fastcall SetSize(int NewSize);
-    virtual void __fastcall SetSize(__int64 NewSize) {TStream::SetSize(NewSize);};
+	virtual int  Write(const void *Buffer, int Count);
+    virtual int  Read(void *Buffer, int Count);
+    virtual void  SetSize(int NewSize);
+    virtual void  SetSize(__int64 NewSize) {TStream::SetSize(NewSize);};
 
-    __fastcall TFileMapStream(AnsiString fmName);
-    __fastcall ~TFileMapStream();
-    void __fastcall Open();
-    void __fastcall Close();
+     TFileMapStream(AnsiString fmName);
+     ~TFileMapStream();
+    void  Open();
+    void  Close();
 
     __property AnsiString Name = {read=FName, nodefault};
     __property bool Ready = {read=ReadEvent, write=WriteEvent, default = true};

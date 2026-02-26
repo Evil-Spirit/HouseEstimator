@@ -1,23 +1,25 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "LOGOV.h"
 #include "Main.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"                   
 TLogo *Logo = NULL;
 //---------------------------------------------------------------------------
-__fastcall TLogo::TLogo(TComponent* Owner)
+ TLogo::TLogo(TComponent* Owner)
     : TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TLogo::FormCreate(TObject *Sender)
+void  TLogo::FormCreate(TObject *Sender)
 {
     AnsiString _Name = MainDir+SL+AnsiString("LOGO")+BMP;
     if (FileExists(_Name))
@@ -33,12 +35,12 @@ void __fastcall TLogo::FormCreate(TObject *Sender)
     Top = Config->Height/2 - Height/2 + Config->Top;
 }
 //---------------------------------------------------------------------------
-void __fastcall TLogo::FormDestroy(TObject *Sender)
+void  TLogo::FormDestroy(TObject *Sender)
 {
     Logo = NULL;    
 }
 //---------------------------------------------------------------------------
-void __fastcall TLogo::Timer1Timer(TObject *Sender)
+void  TLogo::Timer1Timer(TObject *Sender)
 {
     if (Delete)
     {
@@ -56,7 +58,7 @@ int RunLogo()
     Application->ProcessMessages();
     return 1;
 }
-void __fastcall TLogo::FormShow(TObject *Sender)
+void  TLogo::FormShow(TObject *Sender)
 {
     Delete = false;
     Timer1->Enabled=true;

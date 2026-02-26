@@ -1,16 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIPointerListEditVH
 #define MDIPointerListEditVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIObjectEditV.h"
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
-#include <ToolWin.hpp>
 //---------------------------------------------------------------------------
 class TMetaNode;
 typedef TPointer<TMetaNode>* (*TNewItem)();
@@ -26,11 +24,11 @@ __published:	// IDE-managed Components
 	TToolButton *tbtUp;
 	TToolButton *tbtDown;
 	TToolButton *tbReset;
-	void __fastcall btAddClick(TObject *Sender);
-	void __fastcall btDelClick(TObject *Sender);
-	void __fastcall sbupClick(TObject *Sender);
-	void __fastcall sbdownClick(TObject *Sender);
-	void __fastcall tbResetClick(TObject *Sender);
+	void  btAddClick(TObject *Sender);
+	void  btDelClick(TObject *Sender);
+	void  sbupClick(TObject *Sender);
+	void  sbdownClick(TObject *Sender);
+	void  tbResetClick(TObject *Sender);
 private:	// User declarations
 	bool AllowDuplicates;
 	TMetaNode* FEXCL;
@@ -42,9 +40,9 @@ public:		// User declarations
 	TClassNode* CN;
 	virtual void SETUP();
 	/*TMDelLSTList*/TMDelTList< TPointer<TMetaNode> >* List;
-	__property TMetaNode* EXCL = {read = FEXCL, write = SetEXCL};
+	// __property TMetaNode* EXCL {read=FEXCL, write=SetEXCL}; // [manual migration needed]
 	TNewItem NewItem;
-	__fastcall TMDIPointerListEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void* Data, bool AllowDuplicates=false);
+	 TMDIPointerListEdit(TComponent* Owner,TControl *_Parent, TMyObject *_Obj,const AnsiString& Text,void* Data, bool AllowDuplicates=false);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TMDIPointerListEdit *MDIPointerListEdit;

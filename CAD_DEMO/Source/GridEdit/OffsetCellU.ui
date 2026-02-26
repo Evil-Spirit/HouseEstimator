@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>OffsetCell</class>
+  <widget class="QWidget" name="OffsetCell">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>207</width>
+        <height>118</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>Удаление ячеек</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsDialog → set windowFlags Qt::Dialog in constructor -->
+    <widget class="QLabel" name="Label1">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>8</y>
+          <width>43</width>
+          <height>13</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Удалить</string>
+      </property>
+      <property name="text">
+        <string>Удалить</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button1">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>88</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>OK</string>
+      </property>
+      <property name="text">
+        <string>OK</string>
+      </property>
+    </widget>
+    <widget class="QPushButton" name="Button2">
+      <property name="geometry">
+        <rect>
+          <x>96</x>
+          <y>88</y>
+          <width>75</width>
+          <height>25</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Отмена</string>
+      </property>
+      <property name="text">
+        <string>Отмена</string>
+      </property>
+    </widget>
+    <widget class="QRadioButton" name="rbLeftOffset">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>32</y>
+          <width>169</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Ячейки, со сдвигом влево</string>
+      </property>
+      <property name="text">
+        <string>Ячейки, со сдвигом влево</string>
+      </property>
+    </widget>
+    <widget class="QRadioButton" name="rbTopOffset">
+      <property name="geometry">
+        <rect>
+          <x>16</x>
+          <y>56</y>
+          <width>169</width>
+          <height>17</height>
+        </rect>
+      </property>
+      <property name="windowTitle">
+        <string>Ячейки, со сдвигом вверх</string>
+      </property>
+      <property name="text">
+        <string>Ячейки, со сдвигом вверх</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

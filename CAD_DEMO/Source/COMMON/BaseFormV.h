@@ -1,19 +1,20 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef BaseFormVH
 #define BaseFormVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class COMMONAL_API TBaseForm : public TForm
 {
 __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
-	__fastcall TBaseForm(TComponent* Owner);
+	 TBaseForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
 #endif

@@ -1,24 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef GridFormVH
 #define GridFormVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "CellGrid.h"
-#include <Grids.hpp>
-#include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
-#include <Dialogs.hpp>
-#include <Buttons.hpp>
-#include <ToolWin.hpp>
-#include <ImgList.hpp>
-#include <Menus.hpp>
-#include <AppEvnts.hpp>
-#include <ActnList.hpp>
-#include <StdActns.hpp>
 //---------------------------------------------------------------------------
 class TCellGrid;
 class TSelectColor;
@@ -62,36 +52,36 @@ __published:	// IDE-managed Components
     TMenuItem *N2;
     TButton *Button7;
     TButton *Button10;
-    void __fastcall StringGrid1DrawCell(TObject *Sender, int ACol,
+    void  StringGrid1DrawCell(TObject *Sender, int ACol,
           int ARow, TRect &Rect, TGridDrawState State);
-    void __fastcall Button5Click(TObject *Sender);
-    void __fastcall FormActivate(TObject *Sender);
-    void __fastcall Button8Click(TObject *Sender);
-    void __fastcall Button1Click(TObject *Sender);
-    void __fastcall ApplicationEvents1Idle(TObject *Sender, bool &Done);
-    void __fastcall Button2Click(TObject *Sender);
-    void __fastcall Button3Click(TObject *Sender);
-    void __fastcall Button4Click(TObject *Sender);
-    void __fastcall Button6Click(TObject *Sender);
-    void __fastcall Button9Click(TObject *Sender);
-    void __fastcall EditCutExecute(TObject *Sender);
-    void __fastcall EditCopyExecute(TObject *Sender);
-    void __fastcall EditPasteExecute(TObject *Sender);
-    void __fastcall EditSelectAllExecute(TObject *Sender);
-    void __fastcall EditDeleteExecute(TObject *Sender);
-    void __fastcall EditClearExecute(TObject *Sender);
-    void __fastcall EditFormatCellExecute(TObject *Sender);
-    void __fastcall Button7Click(TObject *Sender);
-    void __fastcall Button10Click(TObject *Sender);
-    void __fastcall PopupMenuCellGridPopup(TObject *Sender);
+    void  Button5Click(TObject *Sender);
+    void  FormActivate(TObject *Sender);
+    void  Button8Click(TObject *Sender);
+    void  Button1Click(TObject *Sender);
+    void  ApplicationEvents1Idle(TObject *Sender, bool &Done);
+    void  Button2Click(TObject *Sender);
+    void  Button3Click(TObject *Sender);
+    void  Button4Click(TObject *Sender);
+    void  Button6Click(TObject *Sender);
+    void  Button9Click(TObject *Sender);
+    void  EditCutExecute(TObject *Sender);
+    void  EditCopyExecute(TObject *Sender);
+    void  EditPasteExecute(TObject *Sender);
+    void  EditSelectAllExecute(TObject *Sender);
+    void  EditDeleteExecute(TObject *Sender);
+    void  EditClearExecute(TObject *Sender);
+    void  EditFormatCellExecute(TObject *Sender);
+    void  Button7Click(TObject *Sender);
+    void  Button10Click(TObject *Sender);
+    void  PopupMenuCellGridPopup(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TGridForm(TComponent* Owner);
-    void __fastcall CellGrid1DrawCell(System::TObject *Sender, int ACol, int ARow,Types::TRect &Rect, TGridDrawState State);
+     TGridForm(TComponent* Owner);
+    void  CellGrid1DrawCell(System::TObject *Sender, int ACol, int ARow,Types::TRect &Rect, TGridDrawState State);
     TCellGrid* CellGrid1;
     TToolBarCellGrid *ToolBarCellGrid;
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TGridForm *GridForm;
+extern  TGridForm *GridForm;
 //---------------------------------------------------------------------------
 #endif

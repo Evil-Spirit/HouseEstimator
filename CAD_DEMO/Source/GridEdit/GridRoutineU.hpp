@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 // Borland C++ Builder
 // Copyright (c) 1995, 2002 by Borland Software Corporation
 // All rights reserved
@@ -10,21 +14,12 @@
 #pragma delphiheader begin
 #pragma option push -w-
 #pragma option push -Vx
-#include <Dialogs.hpp>	// Pascal unit
-#include <Grids.hpp>	// Pascal unit
+#include "compat/vcl_qt.h"
 #include <Mask.hpp>	// Pascal unit
-#include <StdCtrls.hpp>	// Pascal unit
-#include <Forms.hpp>	// Pascal unit
-#include <Controls.hpp>	// Pascal unit
-#include <Menus.hpp>	// Pascal unit
-#include <Graphics.hpp>	// Pascal unit
 #include <Variants.hpp>	// Pascal unit
-#include <Classes.hpp>	// Pascal unit
-#include <SysUtils.hpp>	// Pascal unit
 #include <Windows.hpp>	// Pascal unit
 #include <Messages.hpp>	// Pascal unit
 #include <SysInit.hpp>	// Pascal unit
-#include <System.hpp>	// Pascal unit
 
 //-- user supplied -----------------------------------------------------------
 
@@ -84,156 +79,156 @@ public:
 	int FColOffset;
 	bool FDefaultDrawing;
 	bool FEditorMode;
-	Grids::TGridCoord __fastcall CalcCoordFromPoint(int X, int Y, const Grids::TGridDrawInfo &DrawInfo);
-	void __fastcall CalcDrawInfoXY(Grids::TGridDrawInfo &DrawInfo, int UseWidth, int UseHeight);
-	Grids::TGridCoord __fastcall CalcMaxTopLeft(const Grids::TGridCoord &Coord, const Grids::TGridDrawInfo &DrawInfo);
-	void __fastcall CancelMode(void);
-	void __fastcall ChangeSize(int NewColCount, int NewRowCount);
-	void __fastcall ClampInView(const Grids::TGridCoord &Coord);
-	void __fastcall DrawSizingLine(const Grids::TGridDrawInfo &DrawInfo);
-	void __fastcall DrawMove(void);
-	void __fastcall GridRectToScreenRect(const Grids::TGridRect &GridRect, Types::TRect &ScreenRect, bool IncludeLine);
-	void __fastcall Initialize(void);
-	void __fastcall InvalidateRect(const Grids::TGridRect &ARect);
-	virtual void __fastcall ModifyScrollBar(unsigned ScrollBar, unsigned ScrollCode, unsigned Pos, bool UseRightToLeft);
-	void __fastcall MoveAdjust(int &CellPos, int FromIndex, int ToIndex);
-	void __fastcall MoveAnchor(const Grids::TGridCoord &NewAnchor);
-	void __fastcall MoveAndScroll(int Mouse, int CellHit, Grids::TGridDrawInfo &DrawInfo, Grids::TGridAxisDrawInfo &Axis, int Scrollbar, const Types::TPoint &MousePt);
-	void __fastcall MoveCurrent(int ACol, int ARow, bool MoveAnchor, bool Show);
-	void __fastcall MoveTopLeft(int ALeft, int ATop);
-	virtual void __fastcall ResizeCol(int Index, int OldSize, int NewSize);
-	virtual void __fastcall ResizeRow(int Index, int OldSize, int NewSize);
-	void __fastcall SelectionMoved(const Grids::TGridRect &OldSel);
-	void __fastcall ScrollDataInfo(int DX, int DY, Grids::TGridDrawInfo &DrawInfo);
-	void __fastcall TopLeftMoved(const Grids::TGridCoord &OldTopLeft);
-	void __fastcall UpdateScrollPos(void);
-	void __fastcall UpdateScrollRange(void);
-	int __fastcall GetColWidths(int Index);
-	int __fastcall GetRowHeights(int Index);
-	Grids::TGridRect __fastcall GetSelection();
-	bool __fastcall GetTabStops(int Index);
-	int __fastcall GetVisibleColCount(void);
-	int __fastcall GetVisibleRowCount(void);
-	bool __fastcall IsActiveControl(void);
-	void __fastcall ReadColWidths(Classes::TReader* Reader);
-	void __fastcall ReadRowHeights(Classes::TReader* Reader);
-	void __fastcall SetBorderStyle(Forms::TBorderStyle Value);
-	void __fastcall SetCol(int Value);
-	void __fastcall SetColCount(int Value);
-	void __fastcall SetColWidths(int Index, int Value);
-	void __fastcall SetDefaultColWidth(int Value);
-	void __fastcall SetDefaultRowHeight(int Value);
-	void __fastcall SetEditorMode(bool Value);
-	void __fastcall SetFixedColor(Graphics::TColor Value);
-	void __fastcall SetFixedCols(int Value);
-	void __fastcall SetFixedRows(int Value);
-	void __fastcall SetGridLineWidth(int Value);
-	void __fastcall SetLeftCol(int Value);
-	void __fastcall SetOptions(Grids::TGridOptions Value);
-	void __fastcall SetRow(int Value);
-	void __fastcall SetRowCount(int Value);
-	void __fastcall SetRowHeights(int Index, int Value);
-	void __fastcall SetScrollBars(Stdctrls::TScrollStyle Value);
-	void __fastcall SetSelection(const Grids::TGridRect &Value);
-	void __fastcall SetTabStops(int Index, bool Value);
-	void __fastcall SetTopRow(int Value);
-	void __fastcall UpdateEdit(void);
-	void __fastcall UpdateText(void);
-	void __fastcall WriteColWidths(Classes::TWriter* Writer);
-	void __fastcall WriteRowHeights(Classes::TWriter* Writer);
-	MESSAGE void __fastcall CMCancelMode(Messages::TMessage &Msg);
-	HIDESBASE MESSAGE void __fastcall CMFontChanged(Messages::TMessage &Message);
-	HIDESBASE MESSAGE void __fastcall CMCtl3DChanged(Messages::TMessage &Message);
-	HIDESBASE MESSAGE void __fastcall CMDesignHitTest(Messages::TWMMouse &Msg);
-	MESSAGE void __fastcall CMWantSpecialKey(Messages::TWMKey &Msg);
-	HIDESBASE MESSAGE void __fastcall CMShowingChanged(Messages::TMessage &Message);
-	HIDESBASE MESSAGE void __fastcall WMChar(Messages::TWMKey &Msg);
-	HIDESBASE MESSAGE void __fastcall WMCancelMode(Messages::TWMNoParams &Msg);
-	HIDESBASE MESSAGE void __fastcall WMCommand(Messages::TWMCommand &Message);
-	MESSAGE void __fastcall WMGetDlgCode(Messages::TWMNoParams &Msg);
-	HIDESBASE MESSAGE void __fastcall WMHScroll(Messages::TWMScroll &Msg);
-	HIDESBASE MESSAGE void __fastcall WMKillFocus(Messages::TWMKillFocus &Msg);
-	HIDESBASE MESSAGE void __fastcall WMLButtonDown(Messages::TMessage &Message);
-	HIDESBASE MESSAGE void __fastcall WMNCHitTest(Messages::TWMNCHitTest &Msg);
-	HIDESBASE MESSAGE void __fastcall WMSetCursor(Messages::TWMSetCursor &Msg);
-	HIDESBASE MESSAGE void __fastcall WMSetFocus(Messages::TWMSetFocus &Msg);
-	HIDESBASE MESSAGE void __fastcall WMSize(Messages::TWMSize &Msg);
-	MESSAGE void __fastcall WMTimer(Messages::TWMTimer &Msg);
-	HIDESBASE MESSAGE void __fastcall WMVScroll(Messages::TWMScroll &Msg);
-	HIDESBASE virtual void __fastcall Paint(void);
-	DYNAMIC bool __fastcall DoMouseWheelDown(Classes::TShiftState Shift, const Types::TPoint &MousePos);
-	DYNAMIC bool __fastcall DoMouseWheelUp(Classes::TShiftState Shift, const Types::TPoint &MousePos);
-	DYNAMIC void __fastcall KeyDown(Word &Key, Classes::TShiftState Shift);
-	DYNAMIC void __fastcall KeyPress(char &Key);
+	Grids::TGridCoord  CalcCoordFromPoint(int X, int Y, const Grids::TGridDrawInfo &DrawInfo);
+	void  CalcDrawInfoXY(Grids::TGridDrawInfo &DrawInfo, int UseWidth, int UseHeight);
+	Grids::TGridCoord  CalcMaxTopLeft(const Grids::TGridCoord &Coord, const Grids::TGridDrawInfo &DrawInfo);
+	void  CancelMode(void);
+	void  ChangeSize(int NewColCount, int NewRowCount);
+	void  ClampInView(const Grids::TGridCoord &Coord);
+	void  DrawSizingLine(const Grids::TGridDrawInfo &DrawInfo);
+	void  DrawMove(void);
+	void  GridRectToScreenRect(const Grids::TGridRect &GridRect, Types::TRect &ScreenRect, bool IncludeLine);
+	void  Initialize(void);
+	void  InvalidateRect(const Grids::TGridRect &ARect);
+	virtual void  ModifyScrollBar(unsigned ScrollBar, unsigned ScrollCode, unsigned Pos, bool UseRightToLeft);
+	void  MoveAdjust(int &CellPos, int FromIndex, int ToIndex);
+	void  MoveAnchor(const Grids::TGridCoord &NewAnchor);
+	void  MoveAndScroll(int Mouse, int CellHit, Grids::TGridDrawInfo &DrawInfo, Grids::TGridAxisDrawInfo &Axis, int Scrollbar, const Types::TPoint &MousePt);
+	void  MoveCurrent(int ACol, int ARow, bool MoveAnchor, bool Show);
+	void  MoveTopLeft(int ALeft, int ATop);
+	virtual void  ResizeCol(int Index, int OldSize, int NewSize);
+	virtual void  ResizeRow(int Index, int OldSize, int NewSize);
+	void  SelectionMoved(const Grids::TGridRect &OldSel);
+	void  ScrollDataInfo(int DX, int DY, Grids::TGridDrawInfo &DrawInfo);
+	void  TopLeftMoved(const Grids::TGridCoord &OldTopLeft);
+	void  UpdateScrollPos(void);
+	void  UpdateScrollRange(void);
+	int  GetColWidths(int Index);
+	int  GetRowHeights(int Index);
+	Grids::TGridRect  GetSelection();
+	bool  GetTabStops(int Index);
+	int  GetVisibleColCount(void);
+	int  GetVisibleRowCount(void);
+	bool  IsActiveControl(void);
+	void  ReadColWidths(Classes::TReader* Reader);
+	void  ReadRowHeights(Classes::TReader* Reader);
+	void  SetBorderStyle(Forms::TBorderStyle Value);
+	void  SetCol(int Value);
+	void  SetColCount(int Value);
+	void  SetColWidths(int Index, int Value);
+	void  SetDefaultColWidth(int Value);
+	void  SetDefaultRowHeight(int Value);
+	void  SetEditorMode(bool Value);
+	void  SetFixedColor(Graphics::TColor Value);
+	void  SetFixedCols(int Value);
+	void  SetFixedRows(int Value);
+	void  SetGridLineWidth(int Value);
+	void  SetLeftCol(int Value);
+	void  SetOptions(Grids::TGridOptions Value);
+	void  SetRow(int Value);
+	void  SetRowCount(int Value);
+	void  SetRowHeights(int Index, int Value);
+	void  SetScrollBars(Stdctrls::TScrollStyle Value);
+	void  SetSelection(const Grids::TGridRect &Value);
+	void  SetTabStops(int Index, bool Value);
+	void  SetTopRow(int Value);
+	void  UpdateEdit(void);
+	void  UpdateText(void);
+	void  WriteColWidths(Classes::TWriter* Writer);
+	void  WriteRowHeights(Classes::TWriter* Writer);
+	MESSAGE void  CMCancelMode(Messages::TMessage &Msg);
+	HIDESBASE MESSAGE void  CMFontChanged(Messages::TMessage &Message);
+	HIDESBASE MESSAGE void  CMCtl3DChanged(Messages::TMessage &Message);
+	HIDESBASE MESSAGE void  CMDesignHitTest(Messages::TWMMouse &Msg);
+	MESSAGE void  CMWantSpecialKey(Messages::TWMKey &Msg);
+	HIDESBASE MESSAGE void  CMShowingChanged(Messages::TMessage &Message);
+	HIDESBASE MESSAGE void  WMChar(Messages::TWMKey &Msg);
+	HIDESBASE MESSAGE void  WMCancelMode(Messages::TWMNoParams &Msg);
+	HIDESBASE MESSAGE void  WMCommand(Messages::TWMCommand &Message);
+	MESSAGE void  WMGetDlgCode(Messages::TWMNoParams &Msg);
+	HIDESBASE MESSAGE void  WMHScroll(Messages::TWMScroll &Msg);
+	HIDESBASE MESSAGE void  WMKillFocus(Messages::TWMKillFocus &Msg);
+	HIDESBASE MESSAGE void  WMLButtonDown(Messages::TMessage &Message);
+	HIDESBASE MESSAGE void  WMNCHitTest(Messages::TWMNCHitTest &Msg);
+	HIDESBASE MESSAGE void  WMSetCursor(Messages::TWMSetCursor &Msg);
+	HIDESBASE MESSAGE void  WMSetFocus(Messages::TWMSetFocus &Msg);
+	HIDESBASE MESSAGE void  WMSize(Messages::TWMSize &Msg);
+	MESSAGE void  WMTimer(Messages::TWMTimer &Msg);
+	HIDESBASE MESSAGE void  WMVScroll(Messages::TWMScroll &Msg);
+	HIDESBASE virtual void  Paint(void);
+	DYNAMIC bool  DoMouseWheelDown(Classes::TShiftState Shift, const Types::TPoint &MousePos);
+	DYNAMIC bool  DoMouseWheelUp(Classes::TShiftState Shift, const Types::TPoint &MousePos);
+	DYNAMIC void  KeyDown(Word &Key, Classes::TShiftState Shift);
+	DYNAMIC void  KeyPress(char &Key);
 	
 protected:
 	Grids::TGridState FGridState;
 	bool FSaveCellExtents;
 	Grids::TGridOptions DesignOptionsBoost;
 	bool VirtualView;
-	void __fastcall CalcDrawInfo(Grids::TGridDrawInfo &DrawInfo);
-	void __fastcall CalcFixedInfo(Grids::TGridDrawInfo &DrawInfo);
-	virtual void __fastcall CalcSizingState(int X, int Y, Grids::TGridState &State, int &Index, int &SizingPos, int &SizingOfs, Grids::TGridDrawInfo &FixedInfo);
-	void __fastcall ChangeGridOrientation(bool RightToLeftOrientation);
-	virtual TMyInplaceEdit* __fastcall CreateEditor(void);
-	virtual void __fastcall CreateParams(Controls::TCreateParams &Params);
-	DYNAMIC void __fastcall MouseDown(Controls::TMouseButton Button, Classes::TShiftState Shift, int X, int Y);
-	DYNAMIC void __fastcall MouseMove(Classes::TShiftState Shift, int X, int Y);
-	DYNAMIC void __fastcall MouseUp(Controls::TMouseButton Button, Classes::TShiftState Shift, int X, int Y);
-	HIDESBASEDYNAMIC void __fastcall AdjustSize(int Index, int Amount, bool Rows);
-	Types::TRect __fastcall BoxRect(int ALeft, int ATop, int ARight, int ABottom);
-	DYNAMIC void __fastcall DoExit(void);
-	Types::TRect __fastcall CellRect(int ACol, int ARow);
-	DYNAMIC bool __fastcall CanEditAcceptKey(char Key);
-	DYNAMIC bool __fastcall CanGridAcceptKey(Word Key, Classes::TShiftState Shift);
-	DYNAMIC bool __fastcall CanEditModify(void);
-	virtual bool __fastcall CanEditShow(void);
-	void __fastcall FocusCell(int ACol, int ARow, bool MoveAnchor);
-	DYNAMIC AnsiString __fastcall GetEditText(int ACol, int ARow);
-	DYNAMIC void __fastcall SetEditText(int ACol, int ARow, const AnsiString Value);
-	DYNAMIC int __fastcall GetEditLimit(void);
-	DYNAMIC AnsiString __fastcall GetEditMask(int ACol, int ARow);
-	DYNAMIC Grids::TEditStyle __fastcall GetEditStyle(int ACol, int ARow);
-	int __fastcall GetGridWidth(void);
-	int __fastcall GetGridHeight(void);
-	void __fastcall HideEdit(void);
-	void __fastcall HideEditor(void);
-	void __fastcall ShowEditor(void);
-	void __fastcall ShowEditorChar(char Ch);
-	void __fastcall InvalidateEditor(void);
-	void __fastcall InvalidateGrid(void);
-	void __fastcall MoveColumn(int FromIndex, int ToIndex);
-	DYNAMIC void __fastcall ColumnMoved(int FromIndex, int ToIndex);
-	void __fastcall MoveRow(int FromIndex, int ToIndex);
-	DYNAMIC void __fastcall RowMoved(int FromIndex, int ToIndex);
-	virtual void __fastcall DrawCell(int ACol, int ARow, const Types::TRect &ARect, Grids::TGridDrawState AState) = 0 ;
-	virtual void __fastcall DefineProperties(Classes::TFiler* Filer);
-	void __fastcall MoveColRow(int ACol, int ARow, bool MoveAnchor, bool Show);
-	virtual bool __fastcall SelectCell(int ACol, int ARow);
-	DYNAMIC void __fastcall SizeChanged(int OldColCount, int OldRowCount);
-	bool __fastcall Sizing(int X, int Y);
-	void __fastcall ScrollData(int DX, int DY);
-	void __fastcall InvalidateCell(int ACol, int ARow);
-	void __fastcall InvalidateCol(int ACol);
-	void __fastcall InvalidateRow(int ARow);
-	DYNAMIC void __fastcall TopLeftChanged(void);
-	DYNAMIC void __fastcall TimedScroll(Grids::TGridScrollDirection Direction);
-	DYNAMIC void __fastcall ColWidthsChanged(void);
-	DYNAMIC void __fastcall RowHeightsChanged(void);
-	virtual void __fastcall DeleteColumn(int ACol);
-	virtual void __fastcall DeleteRow(int ARow);
-	void __fastcall UpdateDesigner(void);
-	DYNAMIC bool __fastcall BeginColumnDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
-	DYNAMIC bool __fastcall BeginRowDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
-	DYNAMIC bool __fastcall CheckColumnDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
-	DYNAMIC bool __fastcall CheckRowDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
-	DYNAMIC bool __fastcall EndColumnDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
-	DYNAMIC bool __fastcall EndRowDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
+	void  CalcDrawInfo(Grids::TGridDrawInfo &DrawInfo);
+	void  CalcFixedInfo(Grids::TGridDrawInfo &DrawInfo);
+	virtual void  CalcSizingState(int X, int Y, Grids::TGridState &State, int &Index, int &SizingPos, int &SizingOfs, Grids::TGridDrawInfo &FixedInfo);
+	void  ChangeGridOrientation(bool RightToLeftOrientation);
+	virtual TMyInplaceEdit*  CreateEditor(void);
+	virtual void  CreateParams(Controls::TCreateParams &Params);
+	DYNAMIC void  MouseDown(Controls::TMouseButton Button, Classes::TShiftState Shift, int X, int Y);
+	DYNAMIC void  MouseMove(Classes::TShiftState Shift, int X, int Y);
+	DYNAMIC void  MouseUp(Controls::TMouseButton Button, Classes::TShiftState Shift, int X, int Y);
+	HIDESBASEDYNAMIC void  AdjustSize(int Index, int Amount, bool Rows);
+	Types::TRect  BoxRect(int ALeft, int ATop, int ARight, int ABottom);
+	DYNAMIC void  DoExit(void);
+	Types::TRect  CellRect(int ACol, int ARow);
+	DYNAMIC bool  CanEditAcceptKey(char Key);
+	DYNAMIC bool  CanGridAcceptKey(Word Key, Classes::TShiftState Shift);
+	DYNAMIC bool  CanEditModify(void);
+	virtual bool  CanEditShow(void);
+	void  FocusCell(int ACol, int ARow, bool MoveAnchor);
+	DYNAMIC AnsiString  GetEditText(int ACol, int ARow);
+	DYNAMIC void  SetEditText(int ACol, int ARow, const AnsiString Value);
+	DYNAMIC int  GetEditLimit(void);
+	DYNAMIC AnsiString  GetEditMask(int ACol, int ARow);
+	DYNAMIC Grids::TEditStyle  GetEditStyle(int ACol, int ARow);
+	int  GetGridWidth(void);
+	int  GetGridHeight(void);
+	void  HideEdit(void);
+	void  HideEditor(void);
+	void  ShowEditor(void);
+	void  ShowEditorChar(char Ch);
+	void  InvalidateEditor(void);
+	void  InvalidateGrid(void);
+	void  MoveColumn(int FromIndex, int ToIndex);
+	DYNAMIC void  ColumnMoved(int FromIndex, int ToIndex);
+	void  MoveRow(int FromIndex, int ToIndex);
+	DYNAMIC void  RowMoved(int FromIndex, int ToIndex);
+	virtual void  DrawCell(int ACol, int ARow, const Types::TRect &ARect, Grids::TGridDrawState AState) = 0 ;
+	virtual void  DefineProperties(Classes::TFiler* Filer);
+	void  MoveColRow(int ACol, int ARow, bool MoveAnchor, bool Show);
+	virtual bool  SelectCell(int ACol, int ARow);
+	DYNAMIC void  SizeChanged(int OldColCount, int OldRowCount);
+	bool  Sizing(int X, int Y);
+	void  ScrollData(int DX, int DY);
+	void  InvalidateCell(int ACol, int ARow);
+	void  InvalidateCol(int ACol);
+	void  InvalidateRow(int ARow);
+	DYNAMIC void  TopLeftChanged(void);
+	DYNAMIC void  TimedScroll(Grids::TGridScrollDirection Direction);
+	DYNAMIC void  ColWidthsChanged(void);
+	DYNAMIC void  RowHeightsChanged(void);
+	virtual void  DeleteColumn(int ACol);
+	virtual void  DeleteRow(int ARow);
+	void  UpdateDesigner(void);
+	DYNAMIC bool  BeginColumnDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
+	DYNAMIC bool  BeginRowDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
+	DYNAMIC bool  CheckColumnDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
+	DYNAMIC bool  CheckRowDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
+	DYNAMIC bool  EndColumnDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
+	DYNAMIC bool  EndRowDrag(int &Origin, int &Destination, const Types::TPoint &MousePt);
 	__property Forms::TBorderStyle BorderStyle = {read=FBorderStyle, write=SetBorderStyle, default=1};
 	__property int Col = {read=FCurrent.X, write=SetCol, nodefault};
 	__property Color  = {default=-2147483643};
 	__property int ColCount = {read=FColCount, write=SetColCount, default=5};
-	__property int ColWidths[int Index] = {read=GetColWidths, write=SetColWidths};
+// [indexed property - needs manual migration]: 	__property int ColWidths[int Index] = {read=GetColWidths, write=SetColWidths};
 	__property int DefaultColWidth = {read=FDefaultColWidth, write=SetDefaultColWidth, default=64};
 	__property bool DefaultDrawing = {read=FDefaultDrawing, write=FDefaultDrawing, default=1};
 	__property int DefaultRowHeight = {read=FDefaultRowHeight, write=SetDefaultRowHeight, default=24};
@@ -244,31 +239,31 @@ protected:
 	__property int GridHeight = {read=GetGridHeight, nodefault};
 	__property int GridLineWidth = {read=FGridLineWidth, write=SetGridLineWidth, default=1};
 	__property int GridWidth = {read=GetGridWidth, nodefault};
-	__property Types::TPoint HitTest = {read=FHitTest};
-	__property TMyInplaceEdit* InplaceEditor = {read=FInplaceEdit};
+	// __property Types::TPoint HitTest {read=FHitTest}; // [manual migration needed]
+	// __property TMyInplaceEdit* InplaceEditor {read=FInplaceEdit}; // [manual migration needed]
 	__property int LeftCol = {read=FTopLeft.X, write=SetLeftCol, nodefault};
 	__property Grids::TGridOptions Options = {read=FOptions, write=SetOptions, default=31};
 	__property ParentColor  = {default=0};
 	__property int Row = {read=FCurrent.Y, write=SetRow, nodefault};
 	__property int RowCount = {read=FRowCount, write=SetRowCount, default=5};
-	__property int RowHeights[int Index] = {read=GetRowHeights, write=SetRowHeights};
+// [indexed property - needs manual migration]: 	__property int RowHeights[int Index] = {read=GetRowHeights, write=SetRowHeights};
 	__property Stdctrls::TScrollStyle ScrollBars = {read=FScrollBars, write=SetScrollBars, default=3};
-	__property Grids::TGridRect Selection = {read=GetSelection, write=SetSelection};
-	__property bool TabStops[int Index] = {read=GetTabStops, write=SetTabStops};
+	// __property Grids::TGridRect Selection {read=GetSelection, write=SetSelection}; // [manual migration needed]
+// [indexed property - needs manual migration]: 	__property bool TabStops[int Index] = {read=GetTabStops, write=SetTabStops};
 	__property int TopRow = {read=FTopLeft.Y, write=SetTopRow, nodefault};
 	__property int VisibleColCount = {read=GetVisibleColCount, nodefault};
 	__property int VisibleRowCount = {read=GetVisibleRowCount, nodefault};
 	
 public:
-	__fastcall virtual TMyCustomGrid(Classes::TComponent* AOwner);
-	__fastcall virtual ~TMyCustomGrid(void);
-	Grids::TGridCoord __fastcall MouseCoord(int X, int Y);
+	 virtual TMyCustomGrid(Classes::TComponent* AOwner);
+	 virtual ~TMyCustomGrid(void);
+	Grids::TGridCoord  MouseCoord(int X, int Y);
 	
 __published:
 	__property TabStop  = {default=1};
 public:
 	#pragma option push -w-inl
-	/* TWinControl.CreateParented */ inline __fastcall TMyCustomGrid(HWND ParentWindow) : Controls::TCustomControl(ParentWindow) { }
+	/* TWinControl.CreateParented */ inline  TMyCustomGrid(HWND ParentWindow) : Controls::TCustomControl(ParentWindow) { }
 	#pragma option pop
 	
 };
@@ -281,43 +276,43 @@ class PASCALIMPLEMENTATION TMyInplaceEdit : public Mask::TCustomMaskEdit
 private:
 	TMyCustomGrid* FGrid;
 	int FClickTime;
-	void __fastcall InternalMove(const Types::TRect &Loc, bool Redraw);
-	void __fastcall SetGrid(TMyCustomGrid* Value);
-	HIDESBASE MESSAGE void __fastcall CMShowingChanged(Messages::TMessage &Message);
-	MESSAGE void __fastcall WMGetDlgCode(Messages::TWMNoParams &Message);
-	HIDESBASE MESSAGE void __fastcall WMPaste(void *Message);
-	HIDESBASE MESSAGE void __fastcall WMCut(void *Message);
-	MESSAGE void __fastcall WMClear(void *Message);
+	void  InternalMove(const Types::TRect &Loc, bool Redraw);
+	void  SetGrid(TMyCustomGrid* Value);
+	HIDESBASE MESSAGE void  CMShowingChanged(Messages::TMessage &Message);
+	MESSAGE void  WMGetDlgCode(Messages::TWMNoParams &Message);
+	HIDESBASE MESSAGE void  WMPaste(void *Message);
+	HIDESBASE MESSAGE void  WMCut(void *Message);
+	MESSAGE void  WMClear(void *Message);
 	
 protected:
-	virtual void __fastcall CreateParams(Controls::TCreateParams &Params);
-	DYNAMIC void __fastcall DblClick(void);
-	DYNAMIC bool __fastcall DoMouseWheel(Classes::TShiftState Shift, int WheelDelta, const Types::TPoint &MousePos);
-	virtual bool __fastcall EditCanModify(void);
-	DYNAMIC void __fastcall KeyDown(Word &Key, Classes::TShiftState Shift);
-	DYNAMIC void __fastcall KeyPress(char &Key);
-	DYNAMIC void __fastcall KeyUp(Word &Key, Classes::TShiftState Shift);
-	virtual void __fastcall BoundsChanged(void);
-	virtual void __fastcall UpdateContents(void);
-	virtual void __fastcall WndProc(Messages::TMessage &Message);
-	__property TMyCustomGrid* Grid = {read=FGrid};
+	virtual void  CreateParams(Controls::TCreateParams &Params);
+	DYNAMIC void  DblClick(void);
+	DYNAMIC bool  DoMouseWheel(Classes::TShiftState Shift, int WheelDelta, const Types::TPoint &MousePos);
+	virtual bool  EditCanModify(void);
+	DYNAMIC void  KeyDown(Word &Key, Classes::TShiftState Shift);
+	DYNAMIC void  KeyPress(char &Key);
+	DYNAMIC void  KeyUp(Word &Key, Classes::TShiftState Shift);
+	virtual void  BoundsChanged(void);
+	virtual void  UpdateContents(void);
+	virtual void  WndProc(Messages::TMessage &Message);
+	// __property TMyCustomGrid* Grid {read=FGrid}; // [manual migration needed]
 	
 public:
-	__fastcall virtual TMyInplaceEdit(Classes::TComponent* AOwner);
-	void __fastcall Deselect(void);
-	HIDESBASE void __fastcall Hide(void);
-	HIDESBASE void __fastcall Invalidate(void);
-	void __fastcall Move(const Types::TRect &Loc);
-	bool __fastcall PosEqual(const Types::TRect &Rect);
-	HIDESBASE void __fastcall SetFocus(void);
-	void __fastcall UpdateLoc(const Types::TRect &Loc);
-	HIDESBASE bool __fastcall Visible(void);
+	 virtual TMyInplaceEdit(Classes::TComponent* AOwner);
+	void  Deselect(void);
+	HIDESBASE void  Hide(void);
+	HIDESBASE void  Invalidate(void);
+	void  Move(const Types::TRect &Loc);
+	bool  PosEqual(const Types::TRect &Rect);
+	HIDESBASE void  SetFocus(void);
+	void  UpdateLoc(const Types::TRect &Loc);
+	HIDESBASE bool  Visible(void);
 public:
 	#pragma option push -w-inl
-	/* TWinControl.CreateParented */ inline __fastcall TMyInplaceEdit(HWND ParentWindow) : Mask::TCustomMaskEdit(ParentWindow) { }
+	/* TWinControl.CreateParented */ inline  TMyInplaceEdit(HWND ParentWindow) : Mask::TCustomMaskEdit(ParentWindow) { }
 	#pragma option pop
 	#pragma option push -w-inl
-	/* TWinControl.Destroy */ inline __fastcall virtual ~TMyInplaceEdit(void) { }
+	/* TWinControl.Destroy */ inline  virtual ~TMyInplaceEdit(void) { }
 	#pragma option pop
 	
 };
@@ -339,26 +334,26 @@ private:
 	Classes::TNotifyEvent FOnTopLeftChanged;
 	
 protected:
-	DYNAMIC void __fastcall ColumnMoved(int FromIndex, int ToIndex);
-	virtual void __fastcall DrawCell(int ACol, int ARow, const Types::TRect &ARect, Grids::TGridDrawState AState);
-	DYNAMIC AnsiString __fastcall GetEditMask(int ACol, int ARow);
-	DYNAMIC AnsiString __fastcall GetEditText(int ACol, int ARow);
-	DYNAMIC void __fastcall RowMoved(int FromIndex, int ToIndex);
-	virtual bool __fastcall SelectCell(int ACol, int ARow);
-	DYNAMIC void __fastcall SetEditText(int ACol, int ARow, const AnsiString Value);
-	DYNAMIC void __fastcall TopLeftChanged(void);
-	__property Grids::TMovedEvent OnColumnMoved = {read=FOnColumnMoved, write=FOnColumnMoved};
-	__property Grids::TDrawCellEvent OnDrawCell = {read=FOnDrawCell, write=FOnDrawCell};
-	__property Grids::TGetEditEvent OnGetEditMask = {read=FOnGetEditMask, write=FOnGetEditMask};
-	__property Grids::TGetEditEvent OnGetEditText = {read=FOnGetEditText, write=FOnGetEditText};
-	__property Grids::TMovedEvent OnRowMoved = {read=FOnRowMoved, write=FOnRowMoved};
-	__property Grids::TSelectCellEvent OnSelectCell = {read=FOnSelectCell, write=FOnSelectCell};
-	__property Grids::TSetEditEvent OnSetEditText = {read=FOnSetEditText, write=FOnSetEditText};
-	__property Classes::TNotifyEvent OnTopLeftChanged = {read=FOnTopLeftChanged, write=FOnTopLeftChanged};
+	DYNAMIC void  ColumnMoved(int FromIndex, int ToIndex);
+	virtual void  DrawCell(int ACol, int ARow, const Types::TRect &ARect, Grids::TGridDrawState AState);
+	DYNAMIC AnsiString  GetEditMask(int ACol, int ARow);
+	DYNAMIC AnsiString  GetEditText(int ACol, int ARow);
+	DYNAMIC void  RowMoved(int FromIndex, int ToIndex);
+	virtual bool  SelectCell(int ACol, int ARow);
+	DYNAMIC void  SetEditText(int ACol, int ARow, const AnsiString Value);
+	DYNAMIC void  TopLeftChanged(void);
+	// __property Grids::TMovedEvent OnColumnMoved {read=FOnColumnMoved, write=FOnColumnMoved}; // [manual migration needed]
+	// __property Grids::TDrawCellEvent OnDrawCell {read=FOnDrawCell, write=FOnDrawCell}; // [manual migration needed]
+	// __property Grids::TGetEditEvent OnGetEditMask {read=FOnGetEditMask, write=FOnGetEditMask}; // [manual migration needed]
+	// __property Grids::TGetEditEvent OnGetEditText {read=FOnGetEditText, write=FOnGetEditText}; // [manual migration needed]
+	// __property Grids::TMovedEvent OnRowMoved {read=FOnRowMoved, write=FOnRowMoved}; // [manual migration needed]
+	// __property Grids::TSelectCellEvent OnSelectCell {read=FOnSelectCell, write=FOnSelectCell}; // [manual migration needed]
+	// __property Grids::TSetEditEvent OnSetEditText {read=FOnSetEditText, write=FOnSetEditText}; // [manual migration needed]
+	// __property Classes::TNotifyEvent OnTopLeftChanged {read=FOnTopLeftChanged, write=FOnTopLeftChanged}; // [manual migration needed]
 	
 public:
-	HIDESBASE Types::TRect __fastcall CellRect(int ACol, int ARow);
-	void __fastcall MouseToCell(int X, int Y, int &ACol, int &ARow);
+	HIDESBASE Types::TRect  CellRect(int ACol, int ARow);
+	void  MouseToCell(int X, int Y, int &ACol, int &ARow);
 	__property Canvas ;
 	__property Col ;
 	__property ColWidths ;
@@ -373,15 +368,15 @@ public:
 	__property TopRow ;
 public:
 	#pragma option push -w-inl
-	/* TMyCustomGrid.Create */ inline __fastcall virtual TMyCustomDrawGrid(Classes::TComponent* AOwner) : TMyCustomGrid(AOwner) { }
+	/* TMyCustomGrid.Create */ inline  virtual TMyCustomDrawGrid(Classes::TComponent* AOwner) : TMyCustomGrid(AOwner) { }
 	#pragma option pop
 	#pragma option push -w-inl
-	/* TMyCustomGrid.Destroy */ inline __fastcall virtual ~TMyCustomDrawGrid(void) { }
+	/* TMyCustomGrid.Destroy */ inline  virtual ~TMyCustomDrawGrid(void) { }
 	#pragma option pop
 	
 public:
 	#pragma option push -w-inl
-	/* TWinControl.CreateParented */ inline __fastcall TMyCustomDrawGrid(HWND ParentWindow) : TMyCustomGrid(ParentWindow) { }
+	/* TWinControl.CreateParented */ inline  TMyCustomDrawGrid(HWND ParentWindow) : TMyCustomGrid(ParentWindow) { }
 	#pragma option pop
 	
 };
@@ -456,23 +451,23 @@ __published:
 	__property OnTopLeftChanged ;
 public:
 	#pragma option push -w-inl
-	/* TMyCustomGrid.Create */ inline __fastcall virtual TMyDrawGrid(Classes::TComponent* AOwner) : TMyCustomDrawGrid(AOwner) { }
+	/* TMyCustomGrid.Create */ inline  virtual TMyDrawGrid(Classes::TComponent* AOwner) : TMyCustomDrawGrid(AOwner) { }
 	#pragma option pop
 	#pragma option push -w-inl
-	/* TMyCustomGrid.Destroy */ inline __fastcall virtual ~TMyDrawGrid(void) { }
+	/* TMyCustomGrid.Destroy */ inline  virtual ~TMyDrawGrid(void) { }
 	#pragma option pop
 	
 public:
 	#pragma option push -w-inl
-	/* TWinControl.CreateParented */ inline __fastcall TMyDrawGrid(HWND ParentWindow) : TMyCustomDrawGrid(ParentWindow) { }
+	/* TWinControl.CreateParented */ inline  TMyDrawGrid(HWND ParentWindow) : TMyCustomDrawGrid(ParentWindow) { }
 	#pragma option pop
 	
 };
 
 
-typedef int __fastcall (*TSPAApply)(int TheIndex, void * TheItem);
+typedef int  (*TSPAApply)(int TheIndex, void * TheItem);
 
-typedef int __fastcall (__closure *TMyFunc)(int Col, int Row, void * TheItem);
+typedef int  ( *TMyFunc)(int Col, int Row, void * TheItem);
 
 typedef void *TSecDir[4096];
 
@@ -499,20 +494,20 @@ private:
 	Word FSectionSize;
 	int cachedIndex;
 	void *cachedPointer;
-	void * __fastcall GetAt(int Index);
-	PPointer __fastcall MakeAt(int Index);
-	void __fastcall PutAt(int Index, void * Item);
+	void *  GetAt(int Index);
+	PPointer  MakeAt(int Index);
+	void  PutAt(int Index, void * Item);
 	
 public:
-	__fastcall TSparsePointerArray(TSPAQuantum Quantum);
-	__fastcall virtual ~TSparsePointerArray(void);
-	int __fastcall ForAll(void * ApplyFunction);
-	int __fastcall SForAll(const Types::TRect &rect, TMyFunc Func);
-	int __fastcall CForAll(int min, int max, int Row, TMyFunc ApplyFunction);
-	void __fastcall ResetHighBound(void);
+	 TSparsePointerArray(TSPAQuantum Quantum);
+	 virtual ~TSparsePointerArray(void);
+	int  ForAll(void * ApplyFunction);
+	int  SForAll(const Types::TRect &rect, TMyFunc Func);
+	int  CForAll(int min, int max, int Row, TMyFunc ApplyFunction);
+	void  ResetHighBound(void);
 	__property int HighBound = {read=FHighBound, nodefault};
 	__property Word SectionSize = {read=FSectionSize, nodefault};
-	__property void * Items[int Index] = {read=GetAt, write=PutAt/*, default*/};
+// [indexed property - needs manual migration]: 	__property void * Items[int Index] = {read=GetAt, write=PutAt/*, default*/};
 };
 
 
@@ -528,25 +523,25 @@ private:
 	TSparsePointerArray* FList;
 	int FCount;
 	TSPAQuantum FQuantum;
-	void __fastcall NewList(TSPAQuantum Quantum);
+	void  NewList(TSPAQuantum Quantum);
 	
 protected:
-	void * __fastcall Get(int Index);
-	void __fastcall Put(int Index, void * Item);
+	void *  Get(int Index);
+	void  Put(int Index, void * Item);
 	
 public:
-	__fastcall TSparseList(TSPAQuantum Quantum);
-	__fastcall virtual ~TSparseList(void);
-	void __fastcall Clear(void);
-	void __fastcall Delete(int Index);
-	void __fastcall Exchange(int Index1, int Index2);
-	int __fastcall ForAll(void * ApplyFunction);
-	int __fastcall SForAll(const Types::TRect &rect, TMyFunc Func);
-	int __fastcall CForAll(int min, int max, int Row, TMyFunc ApplyFunction);
-	void __fastcall Insert(int Index, void * Item);
-	void __fastcall Move(int CurIndex, int NewIndex);
+	 TSparseList(TSPAQuantum Quantum);
+	 virtual ~TSparseList(void);
+	void  Clear(void);
+	void  Delete(int Index);
+	void  Exchange(int Index1, int Index2);
+	int  ForAll(void * ApplyFunction);
+	int  SForAll(const Types::TRect &rect, TMyFunc Func);
+	int  CForAll(int min, int max, int Row, TMyFunc ApplyFunction);
+	void  Insert(int Index, void * Item);
+	void  Move(int CurIndex, int NewIndex);
 	__property int Count = {read=FCount, nodefault};
-	__property void * Items[int Index] = {read=Get, write=Put/*, default*/};
+// [indexed property - needs manual migration]: 	__property void * Items[int Index] = {read=Get, write=Put/*, default*/};
 };
 
 
@@ -555,12 +550,12 @@ typedef int TIntArray[134217728];
 typedef int *PIntArray;
 
 //-- var, const, procedure ---------------------------------------------------
-extern PACKAGE Byte SPAIndexMask[2];
-extern PACKAGE Byte SPASecShift[2];
-extern PACKAGE AnsiString __fastcall IntToBin(unsigned Value);
-extern PACKAGE void __fastcall FillDWord(void *Dest, int Count, int Value);
-extern PACKAGE void * __fastcall StackAlloc(int Size);
-extern PACKAGE void __fastcall StackFree(void * P);
+extern  Byte SPAIndexMask[2];
+extern  Byte SPASecShift[2];
+extern  AnsiString  IntToBin(unsigned Value);
+extern  void  FillDWord(void *Dest, int Count, int Value);
+extern  void *  StackAlloc(int Size);
+extern  void  StackFree(void * P);
 
 }	/* namespace Gridroutineu */
 using namespace Gridroutineu;

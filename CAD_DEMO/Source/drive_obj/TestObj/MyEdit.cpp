@@ -1,11 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include <Poligon.h>
-#pragma hdrstop
 
 #include "MyEdit.h"
 #include "math.h"
@@ -14,7 +17,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 
 TClassNode* TRedPoint::StaticType = NULL;
 TClassNode* TRedCut::StaticType = NULL;
@@ -131,22 +133,22 @@ TMyObject* TMyFigure::CreateFunction()
 
 TRedCut& TMyFigure::GetCut(int i)
 {
-    throw EMyException("Невозможно использование <TMyFigure::GetCut>");
+    throw EMyException("ГЌГҐГўГ®Г§Г¬Г®Г¦Г­Г® ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐ <TMyFigure::GetCut>");
 }
 
 TRedPoint& TMyFigure::GetPoint(int i)
 {
-    throw EMyException("Невозможно использование <TMyFigure::GetPoint>");
+    throw EMyException("ГЌГҐГўГ®Г§Г¬Г®Г¦Г­Г® ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐ <TMyFigure::GetPoint>");
 }
 
 const TRedCut& TMyFigure::GetCut(int i) const
 {
-    throw EMyException("Невозможно использование <TMyFigure::GetCut>");
+    throw EMyException("ГЌГҐГўГ®Г§Г¬Г®Г¦Г­Г® ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐ <TMyFigure::GetCut>");
 }
 
 const TRedPoint& TMyFigure::GetPoint(int i) const
 {
-    throw EMyException("Невозможно использование <TMyFigure::GetPoint>");
+    throw EMyException("ГЌГҐГўГ®Г§Г¬Г®Г¦Г­Г® ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐ <TMyFigure::GetPoint>");
 }
 
 int TMyFigure::FindPoint(const TIntVec &V) const
@@ -306,7 +308,7 @@ void TCustomFigure::LoadData(FILE *F)
 //    NeedCreateView = true;
 }
 
-    //запись и чтение в поток
+    //Г§Г ГЇГЁГ±Гј ГЁ Г·ГІГҐГ­ГЁГҐ Гў ГЇГ®ГІГ®ГЄ
 void TCustomFigure::WriteData(TMemoryStream *MS) const
 {
     TMyFigure::WriteData(MS);
@@ -647,20 +649,20 @@ TRedCut::~TRedCut()
     Dst = NULL;
 }
 
-//функция привязки начальной точки
+//ГґГіГ­ГЄГ¶ГЁГї ГЇГ°ГЁГўГїГ§ГЄГЁ Г­Г Г·Г Г«ГјГ­Г®Г© ГІГ®Г·ГЄГЁ
 void TRedCut::SetSrc(TRedPoint* Value)
 {
     AboutToChange(this);
-    //если нач. точка уже задана то
-    //уберем себя из ее списка отрезков
+    //ГҐГ±Г«ГЁ Г­Г Г·. ГІГ®Г·ГЄГ  ГіГ¦ГҐ Г§Г Г¤Г Г­Г  ГІГ®
+    //ГіГЎГҐГ°ГҐГ¬ Г±ГҐГЎГї ГЁГ§ ГҐГҐ Г±ГЇГЁГ±ГЄГ  Г®ГІГ°ГҐГ§ГЄГ®Гў
     if (FSrc)
         FSrc->Cuts.Remove(this);
 
-    //задаем новую нач. точку
+    //Г§Г Г¤Г ГҐГ¬ Г­Г®ГўГіГѕ Г­Г Г·. ГІГ®Г·ГЄГі
     FSrc = Value;
 
-    //если нач. точка уже задана то
-    //добавим себя в список ее отрезков
+    //ГҐГ±Г«ГЁ Г­Г Г·. ГІГ®Г·ГЄГ  ГіГ¦ГҐ Г§Г Г¤Г Г­Г  ГІГ®
+    //Г¤Г®ГЎГ ГўГЁГ¬ Г±ГҐГЎГї Гў Г±ГЇГЁГ±Г®ГЄ ГҐГҐ Г®ГІГ°ГҐГ§ГЄГ®Гў
     if (FSrc)
         FSrc->Cuts.Add(this);
 }
@@ -668,22 +670,22 @@ void TRedCut::SetSrc(TRedPoint* Value)
 void TRedCut::SetDst(TRedPoint* Value)
 {
     AboutToChange(this);
-    //если кон. точка уже задана то
-    //уберем себя из ее списка отрезков
+    //ГҐГ±Г«ГЁ ГЄГ®Г­. ГІГ®Г·ГЄГ  ГіГ¦ГҐ Г§Г Г¤Г Г­Г  ГІГ®
+    //ГіГЎГҐГ°ГҐГ¬ Г±ГҐГЎГї ГЁГ§ ГҐГҐ Г±ГЇГЁГ±ГЄГ  Г®ГІГ°ГҐГ§ГЄГ®Гў
     if (FDst)
         FDst->Cuts.Remove(this);
-    //задаем новую кон. точку
+    //Г§Г Г¤Г ГҐГ¬ Г­Г®ГўГіГѕ ГЄГ®Г­. ГІГ®Г·ГЄГі
     FDst = Value;
-    //если кон. точка уже задана то
-    //добавим себя в список ее отрезков
+    //ГҐГ±Г«ГЁ ГЄГ®Г­. ГІГ®Г·ГЄГ  ГіГ¦ГҐ Г§Г Г¤Г Г­Г  ГІГ®
+    //Г¤Г®ГЎГ ГўГЁГ¬ Г±ГҐГЎГї Гў Г±ГЇГЁГ±Г®ГЄ ГҐГҐ Г®ГІГ°ГҐГ§ГЄГ®Гў
     if (FDst)
         FDst->Cuts.Add(this);
 }
 
-/*//находим отрезок по двум точкам
+/*//Г­Г ГµГ®Г¤ГЁГ¬ Г®ГІГ°ГҐГ§Г®ГЄ ГЇГ® Г¤ГўГіГ¬ ГІГ®Г·ГЄГ Г¬
 TRedCut* GetCut(TRedPoint* P1,TRedPoint* P2)
 {
-    //просто перебираем список отрезков одной из точек
+    //ГЇГ°Г®Г±ГІГ® ГЇГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г±ГЇГЁГ±Г®ГЄ Г®ГІГ°ГҐГ§ГЄГ®Гў Г®Г¤Г­Г®Г© ГЁГ§ ГІГ®Г·ГҐГЄ
     for (int i=0;i<P1->Cuts.Count;i++)
         if ( P1->Cuts[i].ConsistsDstAndSrc(P1,P2) )
             return P1->Cuts.Items[i];
@@ -711,7 +713,7 @@ TEditorAttributes::TEditorAttributes()
     RegisterNewClass< TMyObject, TEditorAttributes >(this, false, &CreateFunction);
     Snap = true;
     SnapValuePix = 10;
-    SnapValue = 0;//неопределено
+    SnapValue = 0;//Г­ГҐГ®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­Г®
     AdditionalFiguresSnap = true;
     SnapMyFigures = true;
     Colors.Additional = (TColor)0x222211;//(TColor)0x338055;

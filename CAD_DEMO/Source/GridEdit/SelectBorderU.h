@@ -1,16 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef SelectBorderUH
 #define SelectBorderUH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
-#include <ImgList.hpp>
-#include <ToolWin.hpp>
-#include <ExtCtrls.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class COMMONAL_API TSelectBorder : public TForm
 {
@@ -29,23 +26,23 @@ __published:	// IDE-managed Components
     TToolButton *ToolButton12;
     TToolButton *ToolButton13;
     TPanel *Panel1;
-    void __fastcall FormDeactivate(TObject *Sender);
-    void __fastcall SetIndex(int Index);
-    void __fastcall ToolButton1Click(TObject *Sender);
-    void __fastcall ToolButton2Click(TObject *Sender);
-    void __fastcall ToolButton4Click(TObject *Sender);
-    void __fastcall ToolButton5Click(TObject *Sender);
-    void __fastcall ToolButton6Click(TObject *Sender);
-    void __fastcall ToolButton7Click(TObject *Sender);
-    void __fastcall ToolButton8Click(TObject *Sender);
-    void __fastcall ToolButton9Click(TObject *Sender);
-    void __fastcall ToolButton10Click(TObject *Sender);
-    void __fastcall ToolButton11Click(TObject *Sender);
-    void __fastcall ToolButton12Click(TObject *Sender);
-    void __fastcall ToolButton13Click(TObject *Sender);
+    void  FormDeactivate(TObject *Sender);
+    void  SetIndex(int Index);
+    void  ToolButton1Click(TObject *Sender);
+    void  ToolButton2Click(TObject *Sender);
+    void  ToolButton4Click(TObject *Sender);
+    void  ToolButton5Click(TObject *Sender);
+    void  ToolButton6Click(TObject *Sender);
+    void  ToolButton7Click(TObject *Sender);
+    void  ToolButton8Click(TObject *Sender);
+    void  ToolButton9Click(TObject *Sender);
+    void  ToolButton10Click(TObject *Sender);
+    void  ToolButton11Click(TObject *Sender);
+    void  ToolButton12Click(TObject *Sender);
+    void  ToolButton13Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-    __fastcall TSelectBorder(TComponent* Owner);
+     TSelectBorder(TComponent* Owner);
     int SelectBorderIndex;
 };
 //---------------------------------------------------------------------------

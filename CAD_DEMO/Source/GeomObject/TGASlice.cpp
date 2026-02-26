@@ -1,7 +1,10 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 
-#pragma hdrstop
 // TGATransform.h
 #include "TGASlice.h"
 
@@ -12,7 +15,6 @@
 
 //---------------------------------------------------------------------------
 
-#pragma package(smart_init)
 #define PEPS go.PEPS
 
 bool TGASlice::PlanePolygonIntersect(const TIntVec &n, const TIntVec &o, TGPolygon *p, TMTList <TGPoint> &cps)
@@ -23,7 +25,7 @@ bool TGASlice::PlanePolygonIntersect(const TIntVec &n, const TIntVec &o, TGPolyg
 	for (int i=0;i<p->FHoles.Count;i++)
 		TMTListAdd(cuts, p->FHoles[i].FCuts);
 
-	// ¦рчЁхчрхь юЄЁхчъш яыюёъюёЄ№¦ фЁєуюую яюышуюэр
+	// В¦Г°Г·ВЁГµГ·Г°ГµГј ГѕВЄВЁГµГ·ГєГё ГїГ»ГѕВёГєГѕВёВЄВ№В¦ ГґВЁВєГіГѕГіГѕ ГїГѕГ»ГёГіГѕГЅГ°
 	for (int i=0;i<cuts.Count;i++)
 	{
 		TIntVec it;
@@ -73,13 +75,13 @@ void TGASlice::SplitPolygonByPlane(TGPolygon *p, const TIntVec& n, const TIntVec
 	{
 		if (cps.Items[i] == cps.Items[i+1])	
 			continue;
-		// Принадлежность отрезков полигонам
-		// Эпсилон принадлежности должен быть в несколько раз меньше эпсилона точек
+		// ГЏГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГј Г®ГІГ°ГҐГ§ГЄГ®Гў ГЇГ®Г«ГЁГЈГ®Г­Г Г¬
+		// ГќГЇГ±ГЁГ«Г®Г­ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГЁ Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Гў Г­ГҐГ±ГЄГ®Г«ГјГЄГ® Г°Г Г§ Г¬ГҐГ­ГјГёГҐ ГЅГЇГ±ГЁГ«Г®Г­Г  ГІГ®Г·ГҐГЄ
 		TIntVec mid = (cps[i].Point + cps[i+1].Point)/2.0;
 
 		int a = p->PointInPolygon_UseHoles2d( mid, PEPS/2);
 
-		// Если отрезок принадлежит обоим полигонам, добавляем общий отрезок
+		// Г…Г±Г«ГЁ Г®ГІГ°ГҐГ§Г®ГЄ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г®ГЎГ®ГЁГ¬ ГЇГ®Г«ГЁГЈГ®Г­Г Г¬, Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г®ГЎГ№ГЁГ© Г®ГІГ°ГҐГ§Г®ГЄ
 		if ((a == pipINSIDE || a == pipBOUNDARY || a == pipHOLEBOUNDARY))
 		{
 			split.Add(go.AddCut(cps.Items[i], cps.Items[i+1]));
@@ -248,13 +250,13 @@ void TGASlice::TransfixPolygonOX(TGPolygon *p, TMTList<TGCut> &Result)
 	{
 		if (cps.Items[i] == cps.Items[i+1])	
 			continue;
-		// Принадлежность отрезков полигонам
-		// Эпсилон принадлежности должен быть в несколько раз меньше эпсилона точек
+		// ГЏГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГј Г®ГІГ°ГҐГ§ГЄГ®Гў ГЇГ®Г«ГЁГЈГ®Г­Г Г¬
+		// ГќГЇГ±ГЁГ«Г®Г­ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г­Г®Г±ГІГЁ Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Гў Г­ГҐГ±ГЄГ®Г«ГјГЄГ® Г°Г Г§ Г¬ГҐГ­ГјГёГҐ ГЅГЇГ±ГЁГ«Г®Г­Г  ГІГ®Г·ГҐГЄ
 		TIntVec mid = (cps[i].Point + cps[i+1].Point)/2.0;
 
 		int a = p->PointInPolygon_UseHoles2d( mid, PEPS/2);
 
-		// Если отрезок принадлежит обоим полигонам, добавляем общий отрезок
+		// Г…Г±Г«ГЁ Г®ГІГ°ГҐГ§Г®ГЄ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г®ГЎГ®ГЁГ¬ ГЇГ®Г«ГЁГЈГ®Г­Г Г¬, Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г®ГЎГ№ГЁГ© Г®ГІГ°ГҐГ§Г®ГЄ
 		if ((a == pipINSIDE || a == pipBOUNDARY || a == pipHOLEBOUNDARY))
 		{
 			Result.Add(go.AddCut(cps.Items[i], cps.Items[i+1]));

@@ -1,11 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
-#include <basepch.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 USEFORMNS("ObjectInspectorU.pas", Objectinspectoru, ObjectInspectorF);
 USEFORMNS("PictureEditorU.pas", Pictureeditoru, PictureEditorF);
 USEFORMNS("StringListEditorU.pas", Stringlisteditoru, StringListEditorF);
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 //---------------------------------------------------------------------------
 //   Package source.
 //---------------------------------------------------------------------------

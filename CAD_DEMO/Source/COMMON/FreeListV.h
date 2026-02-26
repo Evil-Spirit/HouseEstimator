@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef FreeListVH
@@ -6,17 +10,17 @@
 #include "ListV.h"
 
 template <class T>
-class /*PACKAGE*/ TMDelTList : public TMTList<T>{
+class /**/ TMDelTList : public TMTList<T>{
 protected:
     void RegisterItem(T* Item);
     void UnRegisterItem(T* Item);
     static int FSimpleType;
     virtual int GetSimpleType() const;
 public:
-    static /*PACKAGE*/ TClassNode* StaticType;
+    static /**/ TClassNode* StaticType;
     TMDelTList();
 	virtual ~TMDelTList();
-    TMyObject* CreateFunction();
+    static TMyObject* CreateFunction();
     //add-remove routine
     virtual int Add(T* It);
     virtual void Insert(int index,T* Item);
@@ -41,10 +45,10 @@ public:
 };
 
 template <class T>
-/*extern PACKAGE*/ int TMDelTList<T>::FSimpleType = mtNotDefined;
+/*extern */ int TMDelTList<T>::FSimpleType = mtNotDefined;
 
 template <class T>
-/*extern PACKAGE*/ TClassNode* TMDelTList<T>::StaticType = NULL;
+/*extern */ TClassNode* TMDelTList<T>::StaticType = NULL;
 
 //------------------------------------------------------------------------------
 template <class T>
@@ -63,9 +67,9 @@ int TMDelTList<T>::GetSimpleType() const
 template <class T>
 void TMDelTList<T>::RegisterItem(T* Item)
 {
-    int mt = GetSimpleType();
+    int mt = this->GetSimpleType();
     if ( mt == mtMyObject || mt == mtMyRegObject)
-        ((TMyObject*)Item)->MyObjectParent = this;
+        ((TMyObject*)Item)->SetMyObjectParentProp(this);
     else if ( mt == mtIntVec )
         ((TIntVec*)Item)->MyObjectParent = this;
 }
@@ -75,11 +79,11 @@ void TMDelTList<T>::UnRegisterItem(T* Item)
 {
     _TRY_
     {
-        int mt = GetSimpleType();
-        if ( (mt == mtMyObject || mt == mtMyRegObject) && ((TMyObject*)Item)->MyObjectParent == this)
-            ((TMyObject*)Item)->MyObjectParent = NULL;
+        int mt = this->GetSimpleType();
+        if ( (mt == mtMyObject || mt == mtMyRegObject) && ((TMyObject*)Item)->GetMyObjectParentProp() == this)
+            ((TMyObject*)Item)->SetMyObjectParentProp(nullptr);
         else if ( mt == mtIntVec && ((TIntVec*)Item)->MyObjectParent == this )
-            ((TIntVec*)Item)->MyObjectParent = NULL;
+            ((TIntVec*)Item)->MyObjectParent = nullptr;
     }
     _ENDTRY_("<TMDelTList<T>::UnRegisterItem>: Child was destroyed before Unregister",);
 }
@@ -107,7 +111,7 @@ TMyObject* TMDelTList<T>::CreateFunction()
 template <class T>
 int TMDelTList<T>::Add(T* It)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     int retval = TMTList<T>::Add(It);
     RegisterItem(It);
     return retval;
@@ -116,7 +120,7 @@ int TMDelTList<T>::Add(T* It)
 template <class T>
 void TMDelTList<T>::Insert(int index,T* Item)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     TMTList<T>::Insert(index,Item);
     RegisterItem(Item);
 }
@@ -125,11 +129,11 @@ void TMDelTList<T>::Insert(int index,T* Item)
 template <class T>
 void TMDelTList<T>::Delete(int i)
 {
-    AboutToChange(this);
-    Direct_Iterate(i);
-    UnRegisterItem(FCurrent->Data);
-    KillValue( FCurrent->Data );
-    DeleteCurrent();
+    this->AboutToChange(this);
+    this->Direct_Iterate(i);
+    UnRegisterItem(this->FCurrent->Data);
+    this->KillValue( this->FCurrent->Data );
+    this->DeleteCurrent();
 }
 
 template <class T>
@@ -141,7 +145,7 @@ void TMDelTList<T>::RealDelete(int i)
 template <class T>
 void TMDelTList<T>::RemoveOnly(T* it)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     UnRegisterItem(it);
     TMTList<T>::Remove(it);
 }
@@ -149,22 +153,22 @@ void TMDelTList<T>::RemoveOnly(T* it)
 template <class T>
 void TMDelTList<T>::RemoveOnly(int index)
 {
-    AboutToChange(this);
-    Direct_Iterate(index);
-    UnRegisterItem(FCurrent->Data);
-    DeleteCurrent();
+    this->AboutToChange(this);
+    this->Direct_Iterate(index);
+    UnRegisterItem(this->FCurrent->Data);
+    this->DeleteCurrent();
 }
 
 template <class T>
 int TMDelTList<T>::Remove( T* it)
 {
-    AboutToChange(this);
-    if (Find(it))
+    this->AboutToChange(this);
+    if (this->Find(it))
     {
-        int result = FCurrentIndex;
-        UnRegisterItem(FCurrent->Data);
-        KillValue( FCurrent->Data );
-        DeleteCurrent();
+        int result = this->FCurrentIndex;
+        UnRegisterItem(this->FCurrent->Data);
+        this->KillValue( this->FCurrent->Data );
+        this->DeleteCurrent();
         return result;
     }
     return -1;
@@ -173,40 +177,40 @@ int TMDelTList<T>::Remove( T* it)
 template <class T>
 void TMDelTList<T>::SetItem(int id, T* newit)
 {
-    AboutToChange(this);
-    Direct_Iterate(id);
-    UnRegisterItem(FCurrent->Data);
-    FCurrent->Data = newit;
-    RegisterItem(FCurrent->Data);
+    this->AboutToChange(this);
+    this->Direct_Iterate(id);
+    UnRegisterItem(this->FCurrent->Data);
+    this->FCurrent->Data = newit;
+    RegisterItem(this->FCurrent->Data);
 }
 
 template <class T>
 void TMDelTList<T>::SetCount(int aCount)
 {
-    while (FCount>aCount)
-        Delete(FCount-1);
-    while (FCount<aCount)
+    while (this->FCount>aCount)
+        Delete(this->FCount-1);
+    while (this->FCount<aCount)
         Add(new T());
 }
 
 template <class T>
 void TMDelTList<T>::Clear()
 {
-    AboutToChange(this);
-    while(FCount)
+    this->AboutToChange(this);
+    while(this->FCount)
         Delete(0);
 }
 
 template <class T>
 void TMDelTList<T>::Invert()
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     TMTList<T> *L = new TMTList<T>();
-    for (int i=0;i<Count;i++)
-        L->Add(Items[i]);
+    for (int i=0;i<this->GetCount();i++)
+        L->Add(this->GetItem(i));
     TMTList<T>::Clear();
-    for (int i=L->Count-1;i>=0;i--)
-        Add(L->Items[i]);
+    for (int i=L->GetCount()-1;i>=0;i--)
+        Add(L->GetItem(i));
     delete L;
 }
 
@@ -225,15 +229,15 @@ bool TMDelTList<T>::Same ( const TMTList<T> *L) const
 template <class T>
 void TMDelTList<T>::NoDelClear ()
 {
-    AboutToChange(this);
-    while (FCount)
+    this->AboutToChange(this);
+    while (this->FCount)
         RemoveOnly(0);
 }
 
 template <class T>
 TMDelTList<T>& TMDelTList<T>::operator= (TMDelTList<T>& ML)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     Assign(&ML);
     return *this;
 }
@@ -244,7 +248,7 @@ TMDelTList<T>& TMDelTList<T>::operator= (TMDelTList<T>& ML)
 template <class T>
 void TMDelTList<T>::Assign(TMyObject* MO)
 {
-    AboutToChange(this);
+    this->AboutToChange(this);
     if ( typeid(*MO)!=typeid(*this) )
         throw EMyException("Attempt to assign wrong type.");
     TMDelTList<T>* L = (TMDelTList<T>*)MO;
@@ -255,20 +259,20 @@ void TMDelTList<T>::Assign(TMyObject* MO)
         case  mtMyObject:
         {
             Clear();
-            for (int i=0;i<L->Count;i++)
+            for (int i=0;i<L->GetCount();i++)
             {
-                Add( (T*)((TMyObject*)L->Items[i])->DynamicType->CreateFunction() );
-                ((TMyObject*)Last())->Assign((TMyObject*)L->Items[i]);
+                Add( (T*)((TMyObject*)L->GetItem(i))->DynamicType->CreateFunction() );
+                ((TMyObject*)this->Last())->Assign((TMyObject*)L->GetItem(i));
             }
         }
         break;
         default:
         {
             Clear();
-            for (int i=0;i<L->Count;i++)
+            for (int i=0;i<L->GetCount();i++)
             {
                 Add(new T());
-                CopyType(mtid,Items[i],L->Items[i]);
+                CopyType(mtid,this->GetItem(i),L->GetItem(i));
             }
         }
     }

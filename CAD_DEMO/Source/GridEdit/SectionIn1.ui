@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>SectionIn</class>
+  <widget class="QWidget" name="SectionIn">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>326</width>
+        <height>125</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>SectionIn</string>
+    </property>
+    <property name="font">
+      <font>
+        <family>MS Sans Serif</family>
+        <pointsize>8</pointsize>
+      </font>
+    </property>
+    <!-- vcl-BorderStyle: bsSingle → set windowFlags Qt::MSWindowsFixedSizeDialogHint in constructor -->
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

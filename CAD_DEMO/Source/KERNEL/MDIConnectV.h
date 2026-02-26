@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDIConnectVH
 #define MDIConnectVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
+#include "compat/vcl_qt.h"
 #include "MDIMetaNodeV.h"
-#include <ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class COMMONAL_API TMDIConnect : public TMDIMetaNode
 {
@@ -44,7 +43,7 @@ __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
 void SETUP();
-    __fastcall TMDIConnect(TComponent* Owner,TMetaLink *N);
+     TMDIConnect(TComponent* Owner,TMetaLink *N);
     virtual void MNRefresh();
     virtual void MNApply();
     virtual bool MNChecked();

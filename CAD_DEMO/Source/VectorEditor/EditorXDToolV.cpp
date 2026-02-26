@@ -1,9 +1,12 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#include <vcl.h>
-#pragma hdrstop
+#include "compat/vcl_qt.h"
 
 #include "EditorXDToolV.h"
 
@@ -57,4 +60,3 @@ void TEditorXDTool::setEditorXD(TEditor2D* EXD)
     UIP.Sender = EXD;
 };
 
-#pragma package(smart_init)

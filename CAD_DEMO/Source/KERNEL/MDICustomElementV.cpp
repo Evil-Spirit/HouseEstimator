@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
  //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MyGL.h"
 
@@ -16,17 +19,16 @@
 #include "MetaNodeCollectionV.h"
 
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma link "MDIElementV"
 #pragma resource "*.dfm"
 TMDICustomElement *MDICustomElement;
 //---------------------------------------------------------------------------
-__fastcall TMDICustomElement::TMDICustomElement(TComponent* Owner,TCustomMetaElement *N)
+ TMDICustomElement::TMDICustomElement(TComponent* Owner,TCustomMetaElement *N)
     : TMDIElement(Owner,N)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TMDICustomElement::SpeedButton1Click(TObject *Sender)
+void  TMDICustomElement::SpeedButton1Click(TObject *Sender)
 {
     if (OpenDialog1->Execute())
     {
@@ -35,7 +37,7 @@ void __fastcall TMDICustomElement::SpeedButton1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMDICustomElement::btImportClick(TObject *Sender)
+void  TMDICustomElement::btImportClick(TObject *Sender)
 {
 	std::vector<TMetaMaterial *> Materials;
 	if (!IS_FLOAT(EdEPS->Text))

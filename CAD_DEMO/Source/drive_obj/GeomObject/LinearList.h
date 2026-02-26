@@ -1,3 +1,7 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef LinearListH
@@ -29,7 +33,7 @@ protected:
 public:		
 	static TClassNode* StaticType;
 	TLList();
-	TMyObject* CreateFunction();
+	static TMyObject* CreateFunction();
 	virtual ~TLList();
 
 	//acessing routin
@@ -53,9 +57,9 @@ public:
 	const T* Last() const;
 	T* First();
 	const T* First() const;
-	__property T* Items[int i] = {read = GetItem,write = SetItem};
-	__property T* CycleItems[int i] = {read = GetCycleItem};
-	__property int Count = { read = GetCount, write = SetCount};
+// [indexed property - needs manual migration]: 	__property T* Items[int i] = {read = GetItem,write = SetItem};
+// [indexed property - needs manual migration]: 	__property T* CycleItems[int i] = {read = GetCycleItem};
+	// __property int Count {read=GetCount, write=SetCount}; // [manual migration needed]
 	
 	void ForEachIndex(TDoSomeThing DoSomeThing);
 	
@@ -87,8 +91,8 @@ public:
 	void Grow();
 	void SetCapacity(int NewCapacity);
 	void Pack();
-	__property int Capacity = { read = FCapacity, write = SetCapacity};
-	__property T** List = { read = FList };
+	// __property int Capacity {read=FCapacity, write=SetCapacity}; // [manual migration needed]
+	// __property T** List {read=FList}; // [manual migration needed]
 };
 
 template <class T>

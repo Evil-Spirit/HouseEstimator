@@ -1,17 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef MDICountReportVH
 #define MDICountReportVH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
+#include "compat/vcl_qt.h"
 #include "MyMDIChildV.h"
-#include <ComCtrls.hpp>
-#include <Grids.hpp>
-#include <ToolWin.hpp>
-#include <ImgList.hpp>
 
 //enum TViewMode
 const int vmList = 0;
@@ -31,33 +28,33 @@ __published:	// IDE-managed Components
     TToolButton *tbFull;
     TToolButton *ToolButton1;
     TImageList *ImageList1;
-    void __fastcall FormDestroy(TObject *Sender);
-    void __fastcall FormShow(TObject *Sender);
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall SGDrawCell(TObject *Sender, int ACol, int ARow,
+    void  FormDestroy(TObject *Sender);
+    void  FormShow(TObject *Sender);
+    void  FormCreate(TObject *Sender);
+    void  SGDrawCell(TObject *Sender, int ACol, int ARow,
           TRect &Rect, TGridDrawState State);
-    void __fastcall FormActivate(TObject *Sender);
-    void __fastcall SGMouseMove(TObject *Sender, TShiftState Shift, int X,
+    void  FormActivate(TObject *Sender);
+    void  SGMouseMove(TObject *Sender, TShiftState Shift, int X,
           int Y);
-    void __fastcall SGMouseDown(TObject *Sender, TMouseButton Button,
+    void  SGMouseDown(TObject *Sender, TMouseButton Button,
           TShiftState Shift, int X, int Y);
-    void __fastcall SGDblClick(TObject *Sender);
-    void __fastcall tbTreeClick(TObject *Sender);
-    void __fastcall tbUpClick(TObject *Sender);
-    void __fastcall ToolButton1Click(TObject *Sender);
+    void  SGDblClick(TObject *Sender);
+    void  tbTreeClick(TObject *Sender);
+    void  tbUpClick(TObject *Sender);
+    void  ToolButton1Click(TObject *Sender);
 private:	// User declarations
     TQuerryNode* FQNParent;
     void SetQNParent(TQuerryNode* newQNParent);
     TMTList<TQuerryNode> QNS;
 public:		// User declarations
     void UpdateReport();
-    __fastcall TMDICountReport(TComponent* Owner);
+     TMDICountReport(TComponent* Owner);
     TCounterBase* CB;
     void DrawCounterBase();
     void ToExcel(const AnsiString& FileName);
     void DrawCounterBaseStandart();
     void DrawCounterBaseAdvanced();
-    __property TQuerryNode* QNParent = {read = FQNParent, write = SetQNParent};
+    // __property TQuerryNode* QNParent {read=FQNParent, write=SetQNParent}; // [manual migration needed]
     THierarchyQuerry* HQ;
     bool ShowName;
     bool TreeView;
@@ -67,6 +64,6 @@ public:		// User declarations
 };
 extern int TakeMode;
 //---------------------------------------------------------------------------
-extern PACKAGE TMDICountReport *MDICountReport;
+extern  TMDICountReport *MDICountReport;
 //---------------------------------------------------------------------------
 #endif

@@ -1,14 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef SelectBMPVH
 #define SelectBMPVH
 //---------------------------------------------------------------------------
 #include "MetaClasses.h"
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ComCtrls.hpp>
+#include "compat/vcl_qt.h"
 //---------------------------------------------------------------------------
 class COMMONAL_API TSelectBMP : public TForm
 {
@@ -18,18 +18,18 @@ __published:	// IDE-managed Components
     TButton *btOK;
     TButton *btCancel;
     TButton *btClear;
-    void __fastcall FormShow(TObject *Sender);
-    void __fastcall FormCreate(TObject *Sender);
-    void __fastcall btOKClick(TObject *Sender);
-    void __fastcall btCancelClick(TObject *Sender);
-    void __fastcall btClearClick(TObject *Sender);
-    void __fastcall CBEChange(TObject *Sender);
+    void  FormShow(TObject *Sender);
+    void  FormCreate(TObject *Sender);
+    void  btOKClick(TObject *Sender);
+    void  btCancelClick(TObject *Sender);
+    void  btClearClick(TObject *Sender);
+    void  CBEChange(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     TBMPSet *BMPS;
     int Index;
     bool Clear;
-    __fastcall TSelectBMP(TComponent* Owner);
+     TSelectBMP(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
 extern COMMONAL_API TSelectBMP *SelectBMP;

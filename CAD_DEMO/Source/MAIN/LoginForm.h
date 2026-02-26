@@ -1,15 +1,14 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
 #ifndef LoginFormH
 #define LoginFormH
 //---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include "SUISkinEngine.hpp"
-#include <ExtCtrls.hpp>
-#include <Graphics.hpp>
+#include "compat/vcl_qt.h"
+#include "compat/SUISkinEngine.hpp"
 //---------------------------------------------------------------------------
 class TfrmLogin : public TForm
 {
@@ -21,15 +20,15 @@ __published:	// IDE-managed Components
   TEdit *edtName;
   TEdit *edtPassword;
   TImage *Image1;
-  void __fastcall FormShow(TObject *Sender);
-  void __fastcall btnOKClick(TObject *Sender);
-  void __fastcall btnCancelClick(TObject *Sender);
+  void  FormShow(TObject *Sender);
+  void  btnOKClick(TObject *Sender);
+  void  btnCancelClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-  __fastcall TfrmLogin(TComponent* Owner);
+   TfrmLogin(TComponent* Owner);
   bool btnOKPressed;
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TfrmLogin *frmLogin;
+extern  TfrmLogin *frmLogin;
 //---------------------------------------------------------------------------
 #endif

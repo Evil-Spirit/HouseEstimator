@@ -1,10 +1,13 @@
+// [migrated-to-qt]
+#ifndef __BORLANDC__
+#include "compat/borland.h"
+#endif
 //---------------------------------------------------------------------------
 
-#include <vcl.h>
+#include "compat/vcl_qt.h"
 #include "Usefuls.h"
 #include "MTL.h"
 #include "MyTemplates.h"
-#pragma hdrstop
 
 #include "MainV.h"
 #include "LuaEditorV.h"
@@ -12,17 +15,16 @@
 #include "LuaModuleV.h"
 #include "LuaStationV.h"
 //---------------------------------------------------------------------------
-#pragma package(smart_init)
 #pragma resource "*.dfm"
 TMain *Main;
 //---------------------------------------------------------------------------
-__fastcall TMain::TMain(TComponent* Owner)
+ TMain::TMain(TComponent* Owner)
     : TForm(Owner)
 {
     this->TabStop = true;
 }
 //---------------------------------------------------------------------------
-void __fastcall TMain::FormCreate(TObject *Sender)
+void  TMain::FormCreate(TObject *Sender)
 {
     LuaAllOpen();
     LM = new TLuaModule();
@@ -31,7 +33,7 @@ void __fastcall TMain::FormCreate(TObject *Sender)
 //    LuaStation.UnRegister(LM);
 }
 //---------------------------------------------------------------------------
-void __fastcall TMain::FormClose(TObject *Sender, TCloseAction &Action)
+void  TMain::FormClose(TObject *Sender, TCloseAction &Action)
 {
     delete LE;
     delete LM;
@@ -39,7 +41,7 @@ void __fastcall TMain::FormClose(TObject *Sender, TCloseAction &Action)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMain::FormShortCut(TWMKey &Msg, bool &Handled)
+void  TMain::FormShortCut(TWMKey &Msg, bool &Handled)
 {
     LE->FormShortCut(Msg,Handled);    
 }
